@@ -22,4 +22,9 @@ class GameProgram {
         }
         return randomNumbers
     }
+
+    private fun readUserInput():String {
+        val userInput = Console.readLine()
+        return userInput.trim()
+    }
 }
