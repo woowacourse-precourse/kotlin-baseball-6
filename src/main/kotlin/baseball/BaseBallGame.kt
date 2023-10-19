@@ -18,7 +18,7 @@ class BaseBallGame {
             val score = Score(ball, strike)
 
             printBallAndStrike(score.ball, score.strike)
-            if (strike == 3) {
+            if (isEndGame(score.strike)) {
                 print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             }
         }
@@ -63,5 +63,7 @@ class BaseBallGame {
 
         return strike
     }
+
+    fun isEndGame(strike: Int) = strike == BASEBALL_SIZE
 
 }
