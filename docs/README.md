@@ -2,7 +2,8 @@
 - isBall() : 볼인지 판별하는 기능
 - isStrike() : 스트라이크인지 판별하는 기능
 - countBallAndStrike() : 볼과 스트라이크 개수를 구하는 기능
-- pickBaseBallNumber() : 서로 다른 3개의 숫자 선택하기
+- pickBaseBallNumber() : 서로 다른 3개의 숫자 선택하는 기능
+- inputBaseBallNumber() : 서로 다른 3개의 숫자 입력받는 기능
 
 
 ## 예외 처리
