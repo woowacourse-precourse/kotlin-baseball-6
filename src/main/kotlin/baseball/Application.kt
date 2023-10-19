@@ -4,11 +4,10 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
-
+val computer = mutableListOf<Int>()
 fun main() {
     // 3자리 랜덤 숫자 생성
     // computer[0]은 첫번째 자리 [2]는 세번째 자리
-    val computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
@@ -18,8 +17,8 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
     print("숫자를 입력해주세요 : ")
-    val num = Console.readLine()
-    readNumber(num)
+    val num = readNumber(Console.readLine())
+    evaluateGuess(num)
 }
 
 // 입력 유효성 확인
@@ -33,4 +32,30 @@ fun readNumber(num: String): Int {
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("숫자를 입력해 주세요")
     }
+}
+
+fun evaluateGuess(num: Int) {
+    val first: Int = num / 100
+    val second: Int = (num / 10) % 10
+    val third: Int = num % 100
+
+    var strike = 0
+    var ball = 0
+
+    if (first == computer[0]) strike++
+    else if (first == computer[1] || first == computer[2]) ball++
+    if (second == computer[1]) strike++
+    else if (second == computer[0] || second == computer[2]) ball++
+    if (third == computer[2]) strike++
+    else if (third == computer[1] || third == computer[0]) ball++
+
+    val output: String = when {
+        strike == 3 -> "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        strike == 0 && ball == 0 -> "낫싱"
+        strike == 0 -> "${ball}볼"
+        ball == 0 -> "${strike}스트라이크"
+        else -> "${ball}볼 ${strike}스트라이크"
+    }
+
+    println(output)
 }
