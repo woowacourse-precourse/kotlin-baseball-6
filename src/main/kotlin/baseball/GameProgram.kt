@@ -98,4 +98,10 @@ class GameProgram {
 
         return listOf(total,ball,strike)
     }
+
+    private fun validateUserAnswer(userInput: String) {
+        if (!(userInput == "1" || userInput == "2")) {
+            throw IllegalArgumentException("1 또는 2를 입력 해야 합니다.")
+        }
+    }
 }
