@@ -31,6 +31,10 @@ class BaseBallGame {
         return computerBaseBallNumber.indexOf(inputBaseBallNumber) != idx
     }
 
+    fun isStrike(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
+        return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
+    }
+
     companion object {
         const val BASEBALL_SIZE = 3
     }
