@@ -1,6 +1,7 @@
 package baseball
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 class BaseballNumberTest {
@@ -13,7 +14,9 @@ class BaseballNumberTest {
             "427",
         )
         testCases.forEach { case ->
-            BaseballNumber(case)
+            assertDoesNotThrow {
+                BaseballNumber(case)
+            }
         }
     }
 
