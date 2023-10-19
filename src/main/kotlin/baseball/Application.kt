@@ -70,7 +70,8 @@ fun startGame(){
                 throw IllegalArgumentException()
             }
         }.toList()
-        if(answer.size != numList.size){
+        val set = numList.toSet()
+        if(answer.size != numList.size || answer.size != set.size){
             throw IllegalArgumentException()
         }
 
