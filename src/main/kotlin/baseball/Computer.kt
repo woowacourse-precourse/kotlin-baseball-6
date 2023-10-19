@@ -22,7 +22,6 @@ class Computer {
         if(strike!=3)
             playInning()
     }
-
     private fun setRandomNumber() {
         computerNumber = mutableListOf()
         while (computerNumber.size < 3) {

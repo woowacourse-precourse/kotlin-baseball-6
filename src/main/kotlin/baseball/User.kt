@@ -3,31 +3,29 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 class User {
-    private var userNumber = mutableListOf<Int>()
+
     fun inputNumber(): MutableList<Int> {
         val inputNumber = Console.readLine()
-        if (inputNumber.length != 3)
-            throw IllegalArgumentException()
-        userNumber.clear()
+        val userNumber = mutableListOf<Int>()
+        checkInputNumber(inputNumber)
         for (char in inputNumber) {
-            val digit = char.toString().toIntOrNull()
-            if (digit != null) {
-                userNumber.add(digit)
-            }
+            val digit = char.toString().toIntOrNull() ?: throw IllegalArgumentException()
+            userNumber.add(digit)
         }
-        if(userNumber.size!=3)
-            throw IllegalArgumentException()
         return userNumber
     }
 
+    private fun checkInputNumber(inputNumber: String) {
+        if (inputNumber.length != 3)
+            throw IllegalArgumentException()
+    }
     fun playAgain() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val inputNumber = Console.readLine().toIntOrNull()
-        if (inputNumber == 1){
+        if (inputNumber == 1) {
             val computer = Computer()
             computer.playGame()
-        }
-        else if(inputNumber != 2)
+        } else if (inputNumber != 2)
             playAgain()
     }
 }
