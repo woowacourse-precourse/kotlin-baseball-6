@@ -14,7 +14,7 @@ fun main() {
             answer.add(randomNum)
         }
     }
-
+    println(answer)
     while (true) {
         var ballCnt = 0
         var strikeCnt = 0
@@ -56,6 +56,31 @@ fun main() {
             println("${strikeCnt}스트라이크")
         } else {
             println("${ballCnt}볼 ${strikeCnt}스트라이크")
+        }
+
+        // C-1 모두 맞힌 경우
+        if (strikeCnt == 3) {
+            println("""3개의 숫자를 모두 맞히셨습니다! 게임 종료
+                |게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+            """.trimMargin())
+
+            when (readLine().toIntOrNull()) {
+                1 -> {
+                    answer.clear()
+                    while (answer.size < 3) {
+                        val randomNum = pickNumberInRange(1, 9)
+                        if (!answer.contains(randomNum)) {
+                            answer.add(randomNum)
+                        }
+                    }
+                    println(answer)
+                    continue
+                }
+
+                2 -> break
+                else -> throw IllegalArgumentException("유효하지 않은 형식입니다.")
+            }
+
         }
     }
 }
