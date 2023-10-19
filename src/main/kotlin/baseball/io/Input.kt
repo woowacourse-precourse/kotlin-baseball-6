@@ -4,7 +4,7 @@ import baseball.util.validateInputBaseBall
 import camp.nextstep.edu.missionutils.Console
 
 fun inputBaseBallNumber(): List<Int> {
-    val inputBaseBallNumber = Console.readLine().map { it ->
+    val inputBaseBallNumber = Console.readLine().map {
         it.code - '0'.code
     }
 

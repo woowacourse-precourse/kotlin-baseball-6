@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.constants.BASEBALL_SIZE
 import baseball.io.inputBaseBallNumber
 import baseball.io.printBallAndStrike
 import baseball.model.Score
@@ -61,10 +62,6 @@ class BaseBallGame {
         }
 
         return strike
-    }
-
-    companion object {
-        const val BASEBALL_SIZE = 3
     }
 
 }

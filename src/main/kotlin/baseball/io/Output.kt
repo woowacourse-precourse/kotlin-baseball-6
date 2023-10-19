@@ -1,5 +1,9 @@
 package baseball.io
 
+import baseball.constants.BALL
+import baseball.constants.NOTHING
+import baseball.constants.STRIKE
+
 fun printBallAndStrike(ball: Int, strike: Int) {
     if (ball > 0 && strike > 0) {
         println("$ball$BALL $strike$STRIKE")
@@ -15,7 +19,3 @@ fun printBallAndStrike(ball: Int, strike: Int) {
     }
     println(NOTHING)
 }
-
-const val BALL = "볼"
-const val STRIKE = "스트라이크"
-const val NOTHING = "낫싱"

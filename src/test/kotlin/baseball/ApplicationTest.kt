@@ -1,5 +1,8 @@
 package baseball
 
+import baseball.constants.EXCEPTION_DUPLICATION
+import baseball.constants.EXCEPTION_RANGE
+import baseball.constants.EXCEPTION_SIZE
 import baseball.io.printBallAndStrike
 import baseball.util.validateInputBaseBall
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
@@ -115,15 +118,15 @@ class ApplicationTest : NsTest() {
 
         assertThatThrownBy { validateInputBaseBall(case2) }
                 .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage("3개의 숫자를 입력해주세요.")
+                .hasMessage(EXCEPTION_SIZE)
 
         assertThatThrownBy { validateInputBaseBall(case3) }
                 .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage("중복되지 않는 숫자를 입력해주세요.")
+                .hasMessage(EXCEPTION_DUPLICATION)
 
         assertThatThrownBy { validateInputBaseBall(case4) }
                 .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage("1~9 사이의 숫자를 입력해주세요.")
+                .hasMessage(EXCEPTION_RANGE)
     }
 
     @Test
