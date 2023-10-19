@@ -13,11 +13,29 @@ fun main() {
 
     //컴퓨터가 3자리 수를 생성한다.
 
-    var user: Int
+    var user: Int = 0
 
-    user = readLine().toInt()
+
+    fun numBall(a:IntArray, b:IntArray): Int {
+        var ballNum: Int =0
+        for(i in 0..2){
+            if(a[i] in b){
+                if(a[i]!=b[i]){
+                    ballNum=ballNum+1
+                }
+            }
+        }
+
+        return ballNum
+    }
+
+    fun ifStrike(){
+
+    }
+
 
     while (user !=ans){
+        user = readLine().toInt()
 
 
 
