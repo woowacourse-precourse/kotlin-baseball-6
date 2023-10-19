@@ -5,6 +5,9 @@ class BaseballGame {
     private val console: BaseballConsole by lazy {
         BaseballConsole()
     }
+    private val engine: BaseballEngine by lazy {
+        BaseballEngine()
+    }
 
     fun start() {
         initialize()
@@ -16,9 +19,8 @@ class BaseballGame {
      * 그리고 구조 분해의 장점이 있음
      * 핵심적인 기능은 아니니까. 컴퓨터 - 사용자 숫자 비교할 때 어느게 속도가 빠를지
      */
-    private fun initialize(): Triple<Int, Int, Int> {
+    private fun initialize(): BaseballNum {
         console.printWelcomeMessage()
-
-        return Triple(1, 2, 3)
+        return engine.generateRandomNumber()
     }
 }
