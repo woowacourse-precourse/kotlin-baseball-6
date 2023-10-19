@@ -70,6 +70,22 @@ class ApplicationTest : NsTest() {
                 .hasMessage("3개의 숫자를 입력해주세요.")
     }
 
+    @Test
+    fun `validateInputBaseBallDuplication() 테스트`() {
+        // given
+        val baseBallGame = BaseBallGame()
+        val case1 = listOf(1, 2, 3)
+        val case2 = listOf(1, 2, 2)
+
+        // when, then
+        assertThatCode { baseBallGame.validateInputBaseBallDuplication(case1) }
+                .doesNotThrowAnyException()
+
+        assertThatThrownBy { baseBallGame.validateInputBaseBallDuplication(case2) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage("중복되지 않는 숫자를 입력해주세요.")
+    }
+
     override fun runMain() {
         main()
     }
