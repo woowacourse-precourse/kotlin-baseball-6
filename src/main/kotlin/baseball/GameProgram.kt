@@ -1,13 +1,14 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class GameProgram {
 
     fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
-
         val computerNumbers = createRandomNumbers()
+        print("숫자를 입력해주세요 : ")
     }
 
     private fun createRandomNumbers():List<Int> {
