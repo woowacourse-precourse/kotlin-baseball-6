@@ -8,8 +8,8 @@ fun main() {
     var ball = 0
     var strike = 0
 
-    var computerRandomNumbers = getRandomNumber()
-    println(computerRandomNumbers)
+    var computerRandomNumber = getRandomNumber()
+    println(computerRandomNumber)
     println("숫자 야구 게임을 시작합니다.")
 
     while (strike != 3) {
@@ -19,11 +19,11 @@ fun main() {
         ball = 0
         strike = 0
 
-        for (i in computerRandomNumbers.indices) {
-            if (computerRandomNumbers[i] == userNumbers.chunked(1)[i].toInt())
+        for (i in computerRandomNumber.indices) {
+            if (computerRandomNumber[i] == userNumbers.chunked(1)[i].toInt())
                 strike++
             for (j in userNumbers.indices) {
-                if (i != j && computerRandomNumbers[i] == userNumbers.chunked(1)[j].toInt())
+                if (i != j && computerRandomNumber[i] == userNumbers.chunked(1)[j].toInt())
                     ball++
             }
         }
@@ -36,8 +36,8 @@ fun main() {
                 val inputOneIsPlayTwoIsDone = Console.readLine().replace("\\s".toRegex(), "")
                 when (inputOneIsPlayTwoIsDone) {
                     "1" -> {
-                        computerRandomNumbers = getRandomNumber()
-                        println(computerRandomNumbers)
+                        computerRandomNumber = getRandomNumber()
+                        println(computerRandomNumber)
                         strike = 0
                     }
                     "2" -> {
@@ -67,13 +67,13 @@ fun isThreeDigitNumber(number: String): Boolean {
 }
 
 fun getRandomNumber(): MutableList<Int> {
-    val computerRandomNumbers = mutableListOf<Int>()
+    val computerRandomNumber = mutableListOf<Int>()
 
-    while (computerRandomNumbers.size < 3) {
+    while (computerRandomNumber.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1,9)
-        if (!computerRandomNumbers.contains(randomNumber)) {
-            computerRandomNumbers.add(randomNumber)
+        if (!computerRandomNumber.contains(randomNumber)) {
+            computerRandomNumber.add(randomNumber)
         }
     }
-    return computerRandomNumbers
+    return computerRandomNumber
 }
