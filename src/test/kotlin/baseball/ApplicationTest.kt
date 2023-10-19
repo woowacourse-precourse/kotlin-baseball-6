@@ -27,6 +27,28 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `pickBaseBallNumber() 테스트`() {
+        // given
+        val case1 = BaseBallGame()
+
+        // when
+        val result1 = case1.pickBaseBallNumber()
+
+        // then
+        assertThat(result1.size)
+                .`as`("3개의 수를 선택했는지 확인")
+                .isEqualTo(3)
+
+        assertThat(result1.distinct().size)
+                .`as`("중복된 수가 없는지 확인")
+                .isEqualTo(3)
+
+        assertThat(result1.filter { it in 1..9 }.toList().size)
+                .`as`("1~9 사이의 수를 선택했는지 확인")
+                .isEqualTo(3)
+    }
+
     override fun runMain() {
         main()
     }
