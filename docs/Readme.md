@@ -37,8 +37,7 @@ main ->> Computer: 게임 시작 요청
 Computer->>User: 사용자 입력 요청
 User->> Computer: 예외 처리 후 사용자 입력 전달
 Computer-->User: 3스트라이크가 될 때 까지 반복
-Computer->> main: 게임 종료를 알림
-main->> User: 게임 재시작 여부 질문
+Computer->> User: 게임 재시작 여부 질문
 User-->> Computer: 게임 시작 요청
 User-->> main: 프로그램 종료
 ```
