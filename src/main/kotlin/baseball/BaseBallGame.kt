@@ -8,11 +8,11 @@ import camp.nextstep.edu.missionutils.Randoms
 class BaseBallGame {
 
     fun run() {
-        val computerBaseBallNumber = pickBaseBallNumber()
+        val computerBaseBallList = pickBaseBallNumber()
         while (true) {
-            val inputBaseBallNumber = inputBaseBallNumber()
-            val ball = countBall(inputBaseBallNumber, computerBaseBallNumber)
-            val strike = countStrike(inputBaseBallNumber, computerBaseBallNumber)
+            val inputBaseBallList = inputBaseBallNumber()
+            val ball = countBall(inputBaseBallList, computerBaseBallList)
+            val strike = countStrike(inputBaseBallList, computerBaseBallList)
 
             val score = Score(ball, strike)
 
@@ -35,29 +35,29 @@ class BaseBallGame {
         return computerNumber
     }
 
-    private fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
-        return computerBaseBallNumber.indexOf(inputBaseBallNumber) != idx
+    private fun isBall(inputBaseBallIdx: Int, inputBaseBallNumber: Int, computerBaseBallList: List<Int>): Boolean {
+        return computerBaseBallList.indexOf(inputBaseBallNumber) != inputBaseBallIdx
     }
 
-    private fun isStrike(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
-        return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
+    private fun isStrike(inputBaseBallIdx: Int, inputBaseBallNumber: Int, computerBaseBallList: List<Int>): Boolean {
+        return computerBaseBallList.indexOf(inputBaseBallNumber) == inputBaseBallIdx
     }
 
-    fun countBall(inputBaseBallNumber: List<Int>, computerBaseBallNumber: List<Int>): Int {
+    fun countBall(inputBaseBallList: List<Int>, computerBaseBallList: List<Int>): Int {
         var ball = 0
 
-        inputBaseBallNumber.forEachIndexed { idx, number ->
-            if (isBall(idx, number, computerBaseBallNumber)) ball++
+        inputBaseBallList.forEachIndexed { idx, number ->
+            if (isBall(idx, number, computerBaseBallList)) ball++
         }
 
         return ball
     }
 
-    fun countStrike(inputBaseBallNumber: List<Int>, computerBaseBallNumber: List<Int>): Int {
+    fun countStrike(inputBaseBallList: List<Int>, computerBaseBallList: List<Int>): Int {
         var strike = 0
 
-        inputBaseBallNumber.forEachIndexed { idx, number ->
-            if (isStrike(idx, number, computerBaseBallNumber)) strike++
+        inputBaseBallList.forEachIndexed { idx, number ->
+            if (isStrike(idx, number, computerBaseBallList)) strike++
         }
 
         return strike
