@@ -32,6 +32,13 @@ class BaseBallGame {
         }
     }
 
+    fun validateInputBaseBallDuplication(inputBaseBallNumber: List<Int>) {
+        val distinctBaseBallNumber = inputBaseBallNumber.distinct()
+        if (distinctBaseBallNumber.size != BASEBALL_SIZE) {
+            throw IllegalArgumentException("중복되지 않는 숫자를 입력해주세요.")
+        }
+    }
+
     companion object {
         const val BASEBALL_SIZE = 3
     }
