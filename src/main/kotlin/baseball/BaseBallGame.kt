@@ -28,7 +28,7 @@ class BaseBallGame {
     }
 
     fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
-        return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
+        return computerBaseBallNumber.indexOf(inputBaseBallNumber) != idx
     }
 
     companion object {
