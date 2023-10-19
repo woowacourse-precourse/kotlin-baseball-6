@@ -102,11 +102,6 @@ fun checkAnswer(computer: List<Int>, user: List<Int>): Boolean {
         return true
     }
 
-    if (ball == 0 && strike == 0) {
-        println("낫싱")
-        return false
-    }
-
     if (ball != 0 && strike != 0) {
         println("${ball}볼 ${strike}스트라이크")
         return false
@@ -122,6 +117,7 @@ fun checkAnswer(computer: List<Int>, user: List<Int>): Boolean {
         return false
     }
 
+    println("낫싱")
     return false
 }
 
