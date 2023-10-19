@@ -1,6 +1,19 @@
 package baseball.util
 
 import baseball.constants.*
+import camp.nextstep.edu.missionutils.Randoms
+
+fun pickBaseBallNumber(): List<Int> {
+    val computerNumber = mutableListOf<Int>()
+    while (computerNumber.size < BASEBALL_SIZE) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computerNumber.contains(randomNumber)) {
+            computerNumber.add(randomNumber)
+        }
+    }
+
+    return computerNumber
+}
 
 fun validateInputBaseBall(inputBaseBallNumber: List<Int>) {
     validateInputBaseBallSize(inputBaseBallNumber)

@@ -4,7 +4,7 @@ import baseball.constants.BASEBALL_SIZE
 import baseball.io.inputBaseBallNumber
 import baseball.io.printBallAndStrike
 import baseball.model.Score
-import camp.nextstep.edu.missionutils.Randoms
+import baseball.util.pickBaseBallNumber
 
 class BaseBallGame {
 
@@ -22,18 +22,6 @@ class BaseBallGame {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             }
         }
-    }
-
-    fun pickBaseBallNumber(): List<Int> {
-        val computerNumber = mutableListOf<Int>()
-        while (computerNumber.size < BASEBALL_SIZE) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computerNumber.contains(randomNumber)) {
-                computerNumber.add(randomNumber)
-            }
-        }
-
-        return computerNumber
     }
 
     private fun isBall(inputBaseBallIdx: Int, inputBaseBallNumber: Int, computerBaseBallList: List<Int>): Boolean {
