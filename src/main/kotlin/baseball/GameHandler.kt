@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms
 class GameHandler(private val io: IOHandler) {
 
     private val answer: MutableList<Int> = mutableListOf()
+    private var strikeCount = 0
+    private var ballCount = 0
 
     fun start() {
         io.show(SENTENCE_FOR_START)
@@ -23,38 +25,33 @@ class GameHandler(private val io: IOHandler) {
     private fun reset() {
         answer.clear()
 
-        while (answer.size < DIGIT) {
+        val tempNumSet = mutableSetOf<Int>()
+        while (tempNumSet.size < DIGIT) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (answer.contains(randomNumber).not()) {
-                answer.add(randomNumber)
-            }
+            tempNumSet.add(randomNumber)
         }
+        answer.addAll(tempNumSet)
     }
 
     private fun playGame() {
         io.show(SENTENCE_FOR_INPUT)
 
-        var inputNum = io.getInput(InputType.WHILE_GAME)
-        while (checkInputIsCorrect(inputNum).not()) {
+        var inputString = io.getInput(InputType.WHILE_GAME)
+        while (checkInputIsCorrect(inputString).not()) {
             io.show(SENTENCE_FOR_INPUT)
-            inputNum = io.getInput(InputType.WHILE_GAME)
+            inputString = io.getInput(InputType.WHILE_GAME)
         }
 
         io.show(SENTENCE_FOR_CLOSING)
     }
 
-    private fun checkInputIsCorrect(inputNum: String): Boolean {
-        var ballCount = 0
-        var strikeCount = 0
+    private fun checkInputIsCorrect(inputString: String): Boolean {
+        val nums = changeStringToIntList(inputString)
+        strikeCount = 0
+        ballCount = 0
 
-        inputNum.map {
-            it.code - ASCII_0_CODE
-        }.forEachIndexed { index, num ->
-            if (answer[index] == num) {
-                strikeCount++
-            } else if (num in answer) {
-                ballCount++
-            }
+        for ((index, num) in nums.withIndex()) {
+            checkIsStrikeOrBall(index, num)
         }
 
         if (ballCount == 0 && strikeCount == 0) {
@@ -70,6 +67,21 @@ class GameHandler(private val io: IOHandler) {
         io.show("\n")
 
         return strikeCount == 3
+    }
+
+    private fun changeStringToIntList(inputString: String): List<Int> {
+        return inputString.map {
+            it.code - ASCII_0_CODE
+        }
+    }
+
+    private fun checkIsStrikeOrBall(index: Int, num: Int) {
+        val numIndexAtAnswer = answer.indexOf(num)
+        if (numIndexAtAnswer == index) {
+            strikeCount++
+        } else if (numIndexAtAnswer != -1) {
+            ballCount++
+        }
     }
 
     companion object {

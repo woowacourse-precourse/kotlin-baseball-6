@@ -11,11 +11,7 @@ class IOHandler {
     fun getInput(inputType: InputType): String {
         val input = Console.readLine()
 
-        val isValid = when (inputType) {
-            InputType.WHILE_GAME -> checkInputValidWhileGame(input)
-            InputType.AFTER_GAME -> checkInputValidAfterGame(input)
-        }
-        if (isValid.not()) {
+        if (checkInputValid(input, inputType).not()) {
             throw IllegalArgumentException()
         }
         return input
@@ -23,16 +19,17 @@ class IOHandler {
 
     fun show(msg: String) = print(msg)
 
-    private fun checkInputValidWhileGame(input: String): Boolean {
-        val inputNum = mutableSetOf<Char>()
-
-        for (num in input) {
-            if (num !in validInputWhileGame || inputNum.contains(num) || inputNum.size > 2) {
-                return false
-            }
-            inputNum.add(num)
+    private fun checkInputValid(input: String, inputType: InputType): Boolean {
+        return when (inputType) {
+            InputType.WHILE_GAME -> checkInputValidWhileGame(input)
+            InputType.AFTER_GAME -> checkInputValidAfterGame(input)
         }
-        return true
+    }
+
+    private fun checkInputValidWhileGame(input: String): Boolean {
+        return input.filter {
+            it in validInputWhileGame
+        }.toSet().size == 3
     }
 
     private fun checkInputValidAfterGame(input: String) = input in validInputAfterGame
