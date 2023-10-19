@@ -26,11 +26,11 @@ class IOHandler {
     private fun checkInputValidWhileGame(input: String): Boolean {
         val inputNum = mutableSetOf<Char>()
 
-        input.forEach {
-            if (it !in validInputWhileGame || inputNum.contains(it) || inputNum.size > 2) {
+        for (num in input) {
+            if (num !in validInputWhileGame || inputNum.contains(num) || inputNum.size > 2) {
                 return false
             }
-            inputNum.add(it)
+            inputNum.add(num)
         }
         return true
     }
