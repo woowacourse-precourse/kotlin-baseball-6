@@ -35,6 +35,26 @@ class BaseBallGame {
         return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
     }
 
+    fun countBall(inputBaseBallNumber: List<Int>, computerBaseBallNumber: List<Int>): Int {
+        var ball = 0
+
+        inputBaseBallNumber.forEachIndexed { idx, number ->
+            if (isBall(idx, number, computerBaseBallNumber)) ball++
+        }
+
+        return ball
+    }
+
+    fun countStrike(inputBaseBallNumber: List<Int>, computerBaseBallNumber: List<Int>): Int {
+        var strike = 0
+
+        inputBaseBallNumber.forEachIndexed { idx, number ->
+            if (isStrike(idx, number, computerBaseBallNumber)) strike++
+        }
+
+        return strike
+    }
+
     companion object {
         const val BASEBALL_SIZE = 3
     }
