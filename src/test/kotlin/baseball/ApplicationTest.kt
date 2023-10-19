@@ -52,41 +52,53 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `isBall() 테스트`() {
+    fun `countBall() 테스트`() {
         // given
         val baseBallGame = BaseBallGame()
-        val case1 = listOf(1, 2, listOf(1, 2, 3))
-        val case2 = listOf(1, 3, listOf(1, 2, 3))
-        val case3 = listOf(1, 1, listOf(1, 2, 3))
+        val case1 = listOf(listOf(1, 2, 3), listOf(1, 2, 3))
+        val case2 = listOf(listOf(3, 1, 2), listOf(1, 2, 3))
+        val case3 = listOf(listOf(1, 5, 6), listOf(1, 2, 3))
+        val case4 = listOf(listOf(1, 3, 4), listOf(1, 2, 3))
+        val case5 = listOf(listOf(3, 1, 4), listOf(1, 2, 3))
 
         // when
-        val result1 = baseBallGame.isBall(case1[0] as Int, case1[1] as Int, case1[2] as List<Int>)
-        val result2 = baseBallGame.isBall(case2[0] as Int, case2[1] as Int, case2[2] as List<Int>)
-        val result3 = baseBallGame.isBall(case3[0] as Int, case3[1] as Int, case3[2] as List<Int>)
+        val result1 = baseBallGame.countBall(case1[0], case1[1])
+        val result2 = baseBallGame.countBall(case2[0], case2[1])
+        val result3 = baseBallGame.countBall(case3[0], case3[1])
+        val result4 = baseBallGame.countBall(case4[0], case4[1])
+        val result5 = baseBallGame.countBall(case5[0], case5[1])
 
         // then
-        assertThat(result1).isEqualTo(false)
-        assertThat(result2).isEqualTo(true)
-        assertThat(result3).isEqualTo(true)
+        assertThat(result1).isEqualTo(0)
+        assertThat(result2).isEqualTo(3)
+        assertThat(result3).isEqualTo(0)
+        assertThat(result4).isEqualTo(1)
+        assertThat(result5).isEqualTo(2)
     }
 
     @Test
-    fun `isStrike() 테스트`() {
+    fun `countStrike() 테스트`() {
         // given
         val baseBallGame = BaseBallGame()
-        val case1 = listOf(1, 2, listOf(1, 2, 3))
-        val case2 = listOf(1, 4, listOf(1, 2, 3))
-        val case3 = listOf(1, 1, listOf(1, 2, 3))
+        val case1 = listOf(listOf(1, 2, 3), listOf(1, 2, 3))
+        val case2 = listOf(listOf(3, 1, 2), listOf(1, 2, 3))
+        val case3 = listOf(listOf(1, 5, 6), listOf(1, 2, 3))
+        val case4 = listOf(listOf(1, 3, 4), listOf(1, 2, 3))
+        val case5 = listOf(listOf(3, 2, 4), listOf(1, 2, 3))
 
         // when
-        val result1 = baseBallGame.isStrike(case1[0] as Int, case1[1] as Int, case1[2] as List<Int>)
-        val result2 = baseBallGame.isStrike(case2[0] as Int, case2[1] as Int, case2[2] as List<Int>)
-        val result3 = baseBallGame.isStrike(case3[0] as Int, case3[1] as Int, case3[2] as List<Int>)
+        val result1 = baseBallGame.countBall(case1[0], case1[1])
+        val result2 = baseBallGame.countBall(case2[0], case2[1])
+        val result3 = baseBallGame.countBall(case3[0], case3[1])
+        val result4 = baseBallGame.countBall(case4[0], case4[1])
+        val result5 = baseBallGame.countBall(case5[0], case5[1])
 
         // then
-        assertThat(result1).isEqualTo(true)
-        assertThat(result2).isEqualTo(false)
-        assertThat(result3).isEqualTo(false)
+        assertThat(result1).isEqualTo(0)
+        assertThat(result2).isEqualTo(3)
+        assertThat(result3).isEqualTo(0)
+        assertThat(result4).isEqualTo(1)
+        assertThat(result5).isEqualTo(2)
     }
 
     @Test
