@@ -10,6 +10,10 @@ class GameProgram {
         val computerNumbers = createRandomNumbers()
         print("숫자를 입력해주세요 : ")
         val userNumbers = setUserNumbers()
+
+        val result = compareNumbers(computerNumbers,userNumbers)
+        val hintMessage = provideHintMessage(result)
+        println(hintMessage)
     }
 
     private fun createRandomNumbers():List<Int> {
@@ -46,6 +50,28 @@ class GameProgram {
         }
         if (userInput.length != 3) throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
         if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException("서로 중복되지 않는 숫자를 입력 해야 합니다.")
+    }
+
+    private fun provideHintMessage(result: List<Int>) : String {
+        val total = result[0]
+        val ball = result[1]
+        val strike = result[2]
+        var resultMessage = ""
+
+        if (total == 0) {
+            resultMessage += "낫씽"
+        }
+        if (ball > 0) {
+            resultMessage += ball.toString() + "볼"
+        }
+        if (strike > 0 && ball == 0) {
+            resultMessage += strike.toString() + "스트라이크"
+        }
+        else if (strike > 0 && ball > 0) {
+            resultMessage += " " + strike.toString() + "스트라이크"
+        }
+
+        return resultMessage
     }
 
     private fun compareNumbers(computerNumbers : List<Int>,userNumbers : List<Int>): List<Int> {
