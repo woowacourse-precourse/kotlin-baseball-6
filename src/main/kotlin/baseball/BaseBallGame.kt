@@ -1,8 +1,8 @@
 package baseball
 
+import baseball.io.inputBaseBallNumber
 import baseball.io.printBallAndStrike
-import baseball.util.validateInputBaseBall
-import camp.nextstep.edu.missionutils.Console
+import baseball.model.Score
 import camp.nextstep.edu.missionutils.Randoms
 
 class BaseBallGame {
@@ -14,7 +14,9 @@ class BaseBallGame {
             val ball = countBall(inputBaseBallNumber, computerBaseBallNumber)
             val strike = countStrike(inputBaseBallNumber, computerBaseBallNumber)
 
-            printBallAndStrike(ball, strike)
+            val score = Score(ball, strike)
+
+            printBallAndStrike(score.ball, score.strike)
             if (strike == 3) {
                 print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             }
@@ -31,15 +33,6 @@ class BaseBallGame {
         }
 
         return computerNumber
-    }
-
-    private fun inputBaseBallNumber(): List<Int> {
-        val inputBaseBallNumber = Console.readLine().map { it ->
-            it.code - '0'.code
-        }
-
-        validateInputBaseBall(inputBaseBallNumber)
-        return inputBaseBallNumber
     }
 
     private fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
