@@ -1,5 +1,6 @@
 package baseball
 
 fun main() {
-    TODO("프로그램 구현")
+    var a =1
+    print(a)
 }
