@@ -43,4 +43,14 @@ class Computer {
             return "${strike}스트라이크"
         return "${ball}볼 ${strike}스트라이크"
     }
+    private fun countStrike(userNumbers: MutableList<Int>): Int {
+        var count = 0
+        val userIterate = userNumbers.listIterator()
+        val computerIterate = computerNumber.listIterator()
+        while (userIterate.hasNext() && computerIterate.hasNext()) {
+            if (userIterate.next() == computerIterate.next())
+                count++
+        }
+        return count
+    }
 }
