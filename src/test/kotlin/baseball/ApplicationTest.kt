@@ -86,6 +86,28 @@ class ApplicationTest : NsTest() {
                 .hasMessage("중복되지 않는 숫자를 입력해주세요.")
     }
 
+    @Test
+    fun `validateInputBaseBallRange() 테스트`() {
+        // given
+        val baseBallGame = BaseBallGame()
+        val case1 = listOf(1, 2, 3)
+        val case2 = listOf(1, 2, 0)
+        val case3 = listOf(1, 2, 15)
+
+        // when, then
+        assertThatCode { baseBallGame.validateInputBaseBallRange(case1) }
+                .doesNotThrowAnyException()
+
+        assertThatThrownBy { baseBallGame.validateInputBaseBallRange(case2) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage("1~9 사이의 숫자를 입력해주세요.")
+
+        assertThatThrownBy { baseBallGame.validateInputBaseBallRange(case3) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage("1~9 사이의 숫자를 입력해주세요.")
+    }
+
+
     override fun runMain() {
         main()
     }
