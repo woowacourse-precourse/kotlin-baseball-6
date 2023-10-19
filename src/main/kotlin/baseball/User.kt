@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 
 class User {
     private var userNumber = mutableListOf<Int>()
+    private val computer = Computer()
     fun inputNumber(): MutableList<Int> {
         val inputNumber = Console.readLine()
         if (inputNumber.length != 3)
@@ -18,5 +19,14 @@ class User {
         if(userNumber.size!=3)
             throw IllegalArgumentException()
         return userNumber
+    }
+
+    fun playAgain() {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val inputNumber = Console.readLine().toIntOrNull()
+        if (inputNumber == 1)
+            computer.playGame()
+        else if(inputNumber != 2)
+            playAgain()
     }
 }
