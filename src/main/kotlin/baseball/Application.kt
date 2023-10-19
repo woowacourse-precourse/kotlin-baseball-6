@@ -2,6 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+import java.lang.IllegalArgumentException
 
 fun main() {
     val computerRandomNumbers = mutableListOf<Int>()
@@ -14,25 +15,24 @@ fun main() {
     }
 
     println(computerRandomNumbers)
-    println("숫자 3개 입력")
+    println("숫자 야구 게임을 시작합니다.")
+    println("숫자를 입력해주세요 : ")
 
     var userNumbers = Console.readLine().replace("\\s".toRegex(), "")
+    isThreeDigitNumber(userNumbers)
 
-    while (isThreeDigitNumber(userNumbers) != "pass") {
-        //값비교
-        println(isThreeDigitNumber(userNumbers))
-        userNumbers = Console.readLine().replace("\\s".toRegex(), "")
-    }
 }
 
-fun isThreeDigitNumber(number: String) : String {
+fun isThreeDigitNumber(number: String) : Boolean {
     if (number.isBlank())
-        return "입력 하지 않았습니다"
+        throw IllegalArgumentException("비어있습니다")
     if (!number.all { it.isDigit()})
-        return "숫자를 입력 해 주세요"
+        throw IllegalArgumentException("숫자만 입력 해 주세요")
+    if (number.contains("0"))
+        throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
     if (number.length != 3)
-        return "세자리수를 입력 해주세요"
+        throw IllegalArgumentException("세자리수를 입력 해주세요")
     if (number.chunked(1).distinct().size != 3)
-        return "중복된 숫자는 입력 불가 합니다"
-    return "pass"
+        throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
+    return true
 }
