@@ -2,6 +2,8 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
+import sun.jvm.hotspot.runtime.DeadlockDetector.print
+import java.sql.DriverManager.println
 
 fun main() {
 
@@ -13,7 +15,7 @@ fun main() {
 
     //컴퓨터가 3자리 수를 생성한다.
 
-    var user: Int = 0
+
 
 
     fun numBall(a:IntArray, b:IntArray): Int {
@@ -39,9 +41,40 @@ fun main() {
         return strikeNum
     }
 
+    println("숫자 야구 게임을 시작합니다.")
 
     while (user !=ans){
+
+        var ball:Int = numBall()
+        var strike:Int = numStrike()
+        var user: Int = 0
+        var ifCon:Int
+
         user = readLine().toInt()
+
+        if (ball>0){
+            print("$ball")
+            print("볼 ")
+        }
+
+        if (strike>0){
+            print("$strike")
+            print("스트라이크")
+        }
+
+        print("\n")
+
+        if (ball==0 && strike==0){
+            println("낫싱")
+        }
+
+        if (ans==user){
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            ifCon = readLine().toInt()
+
+        }
+
 
 
 
