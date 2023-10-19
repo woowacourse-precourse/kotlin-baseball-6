@@ -64,6 +64,6 @@ class GameProgram {
         }
         val ball = total - strike
 
-        return listOf(ball,strike)
+        return listOf(total,ball,strike)
     }
 }
