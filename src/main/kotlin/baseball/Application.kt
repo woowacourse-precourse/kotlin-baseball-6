@@ -19,21 +19,33 @@ fun main() {
     println("숫자 야구 게임을 시작합니다.")
     while (!is3strike) {
         print("숫자를 입력해주세요 : ")
-        val num = readNumber(Console.readLine())
+        val num = readNumber(Console.readLine(), false)
         evaluateGuess(num)
     }
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val restartNum = readNumber(Console.readLine(), true)
 }
 
 // 입력 유효성 확인
-fun readNumber(num: String): Int {
+fun readNumber(num: String, isRestart: Boolean): Int {
     try {
         val validNum = num.toInt()
-        if (num.length != 3) {
-            throw IllegalArgumentException("숫자는 3자리여야 합니다. ")
+        if (isRestart) {
+            if (validNum != 1 && validNum != 2) {
+                throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            }
+        } else {
+            if (num.length != 3) {
+                throw IllegalArgumentException("숫자는 3자리여야 합니다. ")
+            }
         }
         return validNum
     } catch (e: NumberFormatException) {
-        throw IllegalArgumentException("숫자를 입력해 주세요")
+        if (isRestart) {
+            throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\"")
+        } else {
+            throw IllegalArgumentException("숫자를 입력해 주세요")
+        }
     }
 }
 
