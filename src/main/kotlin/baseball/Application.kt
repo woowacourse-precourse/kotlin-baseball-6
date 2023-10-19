@@ -12,9 +12,6 @@ fun main() {
     println(computerRandomNumbers)
     println("숫자 야구 게임을 시작합니다.")
 
-//    var userNumbers = Console.readLine().replace("\\s".toRegex(), "")
-//    isThreeDigitNumber(userNumbers)
-
     while (strike != 3) {
         println("숫자를 입력해주세요 : ")
         val userNumbers = Console.readLine().replace("\\s".toRegex(), "")
@@ -59,17 +56,14 @@ fun main() {
 }
 
 fun isThreeDigitNumber(number: String): Boolean {
-    if (number.isBlank())
-        throw IllegalArgumentException("비어있습니다")
-    if (!number.all { it.isDigit()})
-        throw IllegalArgumentException("숫자만 입력 해 주세요")
-    if (number.contains("0"))
-        throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
-    if (number.length != 3)
-        throw IllegalArgumentException("세자리수를 입력 해주세요")
-    if (number.chunked(1).distinct().size != 3)
-        throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
-    return true
+    when {
+        number.isBlank() -> throw IllegalArgumentException("비어있습니다")
+        !number.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력 해 주세요")
+        number.contains("0") -> throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
+        number.length != 3 -> throw IllegalArgumentException("세자리수를 입력 해주세요")
+        number.chunked(1).distinct().size != 3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
+        else -> return true
+    }
 }
 
 fun getRandomNumber(): MutableList<Int> {
