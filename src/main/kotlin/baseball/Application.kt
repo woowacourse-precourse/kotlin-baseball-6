@@ -29,8 +29,14 @@ fun main() {
         return ballNum
     }
 
-    fun ifStrike(){
-
+    fun numStrike(a:IntArray, b:IntArray):Int{
+        var strikeNum: Int =0
+        for (i in 0..2){
+            if(a[i]==b[i]){
+                strikeNum=strikeNum+1
+            }
+        }
+        return strikeNum
     }
 
 
