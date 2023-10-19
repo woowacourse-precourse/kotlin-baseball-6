@@ -6,24 +6,34 @@ import kotlin.collections.mutableListOf
 
 val computer = mutableListOf<Int>()
 var is3strike: Boolean = false
+
 fun main() {
-    // 3자리 랜덤 숫자 생성
-    // computer[0]은 첫번째 자리 [2]는 세번째 자리
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
+    var isRestartGame: Boolean = true
+    while (isRestartGame) {
+        // 3자리 랜덤 숫자 생성
+        // computer[0]은 첫번째 자리 [2]는 세번째 자리
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+        println("숫자 야구 게임을 시작합니다.")
+        while (!is3strike) {
+            print("숫자를 입력해주세요 : ")
+            val num = readNumber(Console.readLine(), false)
+            evaluateGuess(num)
+        }
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val restartNum = readNumber(Console.readLine(), true)
+
+        if (restartNum == 2){
+            isRestartGame = false
+        } else {
+            is3strike = false
+            computer.clear()
         }
     }
-
-    println("숫자 야구 게임을 시작합니다.")
-    while (!is3strike) {
-        print("숫자를 입력해주세요 : ")
-        val num = readNumber(Console.readLine(), false)
-        evaluateGuess(num)
-    }
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val restartNum = readNumber(Console.readLine(), true)
 }
 
 // 입력 유효성 확인
