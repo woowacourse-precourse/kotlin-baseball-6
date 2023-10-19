@@ -1,6 +1,5 @@
 package baseball.util
 
-import baseball.BaseBallGame
 import baseball.constants.*
 
 fun validateInputBaseBall(inputBaseBallNumber: List<Int>) {
