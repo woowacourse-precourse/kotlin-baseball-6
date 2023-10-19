@@ -31,7 +31,14 @@ class BaseballNumber {
         }
     }
 
+    fun judge(other: BaseballNumber): JudgeResult {
+        return JudgeResult(
+            strikes = 0,
+            balls = 0
+        )
+    }
+
     companion object {
-        private const val NUMBER_SIZE = 3
+        const val NUMBER_SIZE = 3
     }
 }
