@@ -1,6 +1,7 @@
 package baseball.io
 
 import baseball.util.validateInputBaseBall
+import baseball.util.validateInputExit
 import camp.nextstep.edu.missionutils.Console
 
 fun inputBaseBallNumber(): List<Int> {

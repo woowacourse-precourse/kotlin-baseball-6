@@ -1,10 +1,7 @@
 package baseball.util
 
 import baseball.BaseBallGame
-import baseball.constants.BASEBALL_SIZE
-import baseball.constants.EXCEPTION_DUPLICATION
-import baseball.constants.EXCEPTION_RANGE
-import baseball.constants.EXCEPTION_SIZE
+import baseball.constants.*
 
 fun validateInputBaseBall(inputBaseBallNumber: List<Int>) {
     validateInputBaseBallSize(inputBaseBallNumber)
@@ -29,5 +26,11 @@ private fun validateInputBaseBallRange(inputBaseBallNumber: List<Int>) {
     val rangeBaseBallNumber = inputBaseBallNumber.filter { it in 1..8 }
     if (rangeBaseBallNumber.size != BASEBALL_SIZE) {
         throw IllegalArgumentException(EXCEPTION_RANGE)
+    }
+}
+
+fun validateInputExit(inputExitGame: String) {
+    if (inputExitGame != "1" && inputExitGame != "2") {
+        throw IllegalArgumentException(EXCEPTION_EXIT)
     }
 }
