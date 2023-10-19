@@ -19,9 +19,7 @@ class IOHandler {
         return input
     }
 
-    fun show(msg: String) {
-        print(msg)
-    }
+    fun show(msg: String) = print(msg)
 
     private fun checkInputValidWhileGame(input: String) {
         val inputNum = mutableSetOf<Char>()
