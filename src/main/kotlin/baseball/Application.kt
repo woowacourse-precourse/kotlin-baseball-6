@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
 val computer = mutableListOf<Int>()
+var is3strike: Boolean = false
 fun main() {
     // 3자리 랜덤 숫자 생성
     // computer[0]은 첫번째 자리 [2]는 세번째 자리
@@ -16,9 +17,11 @@ fun main() {
     }
 
     println("숫자 야구 게임을 시작합니다.")
-    print("숫자를 입력해주세요 : ")
-    val num = readNumber(Console.readLine())
-    evaluateGuess(num)
+    while (!is3strike) {
+        print("숫자를 입력해주세요 : ")
+        val num = readNumber(Console.readLine())
+        evaluateGuess(num)
+    }
 }
 
 // 입력 유효성 확인
@@ -37,8 +40,7 @@ fun readNumber(num: String): Int {
 fun evaluateGuess(num: Int) {
     val first: Int = num / 100
     val second: Int = (num / 10) % 10
-    val third: Int = num % 100
-
+    val third: Int = num % 10
     var strike = 0
     var ball = 0
 
@@ -50,7 +52,11 @@ fun evaluateGuess(num: Int) {
     else if (third == computer[1] || third == computer[0]) ball++
 
     val output: String = when {
-        strike == 3 -> "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        strike == 3 -> {
+            is3strike = true
+            "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        }
+
         strike == 0 && ball == 0 -> "낫싱"
         strike == 0 -> "${ball}볼"
         ball == 0 -> "${strike}스트라이크"
