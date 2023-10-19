@@ -11,3 +11,10 @@ fun inputBaseBallNumber(): List<Int> {
     validateInputBaseBall(inputBaseBallNumber)
     return inputBaseBallNumber
 }
+
+fun inputExitGame(): String {
+    val exitGame = Console.readLine()
+    validateInputExit(exitGame)
+
+    return exitGame
+}
