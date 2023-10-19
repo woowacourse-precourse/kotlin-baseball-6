@@ -1,5 +1,5 @@
 package baseball.data
 
 enum class InputType {
-    WHILE_GAME, AFTER_GAME
+    WHILE_GAME, AFTER_GAME,
 }
