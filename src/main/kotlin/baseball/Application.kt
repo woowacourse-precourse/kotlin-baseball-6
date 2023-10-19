@@ -18,7 +18,7 @@ fun main() {
             restart = gameRestartOrOver()
         }
 
-        if(result && restart) {
+        if (result && restart) {
             computer = generateRandomThreeNumber()
         }
     }
@@ -51,30 +51,56 @@ fun inputThreeAnswerNumber(): List<Int> {
     val inputList = Console.readLine()
     val answerList = mutableListOf<Int>()
 
-    if (inputList.length != 3) {
-        throw IllegalArgumentException("길이가 3이 되게 입력해주세요.")
+    val isValid = checkValidation(inputList)
+
+    if(!isValid) {
+        throw IllegalArgumentException("1~9사이의 서로 다른 3개의 숫자를 입력한다.")
     }
 
     for (input in inputList) {
+        val number = input.toString().toInt()
+        answerList.add(number)
+    }
+
+    return answerList
+}
+
+/*
+    기능2-1. 입력한 정답 유효성 검사
+    : 예외1. 입력 길이가 3이 아니다.
+      예외2. 숫자0을 입력했다.
+      예외3. 입력 숫자가 중복된다.
+      예외4. 숫자가 아닌 값을 입력했다.
+ */
+fun checkValidation(checkList: String): Boolean {
+    val answerList = mutableListOf<Int>()
+
+    var isValid = true
+
+    if (checkList.length != 3) {
+        isValid = false
+    }
+
+    for (check in checkList) {
         try {
-            val number = input.toString().toInt()
+            val number = check.toString().toInt()
 
             if (number == 0) {
-                throw IllegalArgumentException("1~9사이의 숫자만 입력해주세요.")
+                isValid = false
             }
 
             if (answerList.contains(number)) {
-                throw IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.")
+                isValid = false
             }
 
             answerList.add(number)
 
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("1~9사이의 숫자만 입력해주세요.")
+            isValid = false
         }
     }
 
-    return answerList
+    return isValid
 }
 
 /*
