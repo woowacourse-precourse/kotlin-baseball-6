@@ -9,4 +9,6 @@ data class JudgeResult(
         require(balls >= 0)
         require(strikes + balls <= BaseballNumber.NUMBER_SIZE)
     }
+
+    val isFinished: Boolean get() = strikes == BaseballNumber.NUMBER_SIZE
 }
