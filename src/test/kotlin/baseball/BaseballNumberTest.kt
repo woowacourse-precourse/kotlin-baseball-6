@@ -77,7 +77,9 @@ class BaseballNumberTest {
         inputs.forEachIndexed { index, input ->
             val result = computerNumber.judge(input)
             val output = outputs[index]
-            assert(result == output) { "Failed at $index index" }
+            assert(result == output) {
+                "Failed at $index index. Expected ${output}, Actual: $result"
+            }
         }
     }
 
