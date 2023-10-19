@@ -11,33 +11,31 @@ class IOHandler {
     fun getInput(inputType: InputType): String {
         val input = Console.readLine()
 
-        when (inputType) {
+        val isValid = when (inputType) {
             InputType.WHILE_GAME -> checkInputValidWhileGame(input)
             InputType.AFTER_GAME -> checkInputValidAfterGame(input)
         }
-
+        if (isValid.not()) {
+            throw IllegalArgumentException()
+        }
         return input
     }
 
     fun show(msg: String) = print(msg)
 
-    private fun checkInputValidWhileGame(input: String) {
+    private fun checkInputValidWhileGame(input: String): Boolean {
         val inputNum = mutableSetOf<Char>()
 
         input.forEach {
             if (it !in validInputWhileGame || inputNum.contains(it) || inputNum.size > 2) {
-                throw IllegalArgumentException()
+                return false
             }
             inputNum.add(it)
         }
+        return true
     }
 
-    private fun checkInputValidAfterGame(input: String) {
-        if (input in validInputAfterGame) {
-            return
-        }
-        throw IllegalArgumentException()
-    }
+    private fun checkInputValidAfterGame(input: String) = input in validInputAfterGame
 
     companion object {
         private const val ASCII_0_CODE = 48
