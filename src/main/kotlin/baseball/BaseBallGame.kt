@@ -42,11 +42,11 @@ class BaseBallGame {
         return inputBaseBallNumber
     }
 
-    fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
+    private fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
         return computerBaseBallNumber.indexOf(inputBaseBallNumber) != idx
     }
 
-    fun isStrike(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
+    private fun isStrike(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
         return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
     }
 
