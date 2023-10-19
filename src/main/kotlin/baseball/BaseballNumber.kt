@@ -31,10 +31,33 @@ class BaseballNumber {
         }
     }
 
+    private fun countStrikes(other: BaseballNumber): Int {
+        var strikes = 0
+        for (i in 0..<NUMBER_SIZE) {
+            if (other.numbers[i] == this.numbers[i]) {
+                ++strikes
+            }
+        }
+        return strikes
+    }
+
+    private fun countBalls(other: BaseballNumber): Int {
+        var balls = 0
+        numbers.forEachIndexed { index, number ->
+            val otherNumbers = other.numbers
+            val containsNumber = otherNumbers.contains(number)
+            val sameIndex = otherNumbers[index] == number
+            if (containsNumber && !sameIndex) {
+                ++balls
+            }
+        }
+        return balls
+    }
+
     fun judge(other: BaseballNumber): JudgeResult {
         return JudgeResult(
-            strikes = 0,
-            balls = 0
+            balls = countBalls(other),
+            strikes = countStrikes(other)
         )
     }
 
