@@ -7,7 +7,14 @@ class BaseballNumber {
     private val numbers: List<Int>
 
     constructor() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 9, NUMBER_SIZE)
+        val numbers = mutableListOf<Int>()
+        while (numbers.size < NUMBER_SIZE) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!numbers.contains(randomNumber)) {
+                numbers.add(randomNumber)
+            }
+        }
+        this.numbers = numbers
     }
 
     constructor(numbers: String) {
@@ -59,6 +66,10 @@ class BaseballNumber {
             balls = countBalls(other),
             strikes = countStrikes(other)
         )
+    }
+
+    override fun toString(): String {
+        return numbers.joinToString()
     }
 
     companion object {
