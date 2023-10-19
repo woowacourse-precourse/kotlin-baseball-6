@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.util.validateInputBaseBall
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -50,63 +51,29 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `validateInputBaseBallSize() 테스트`() {
+    fun `validateInputBaseBall() 테스트`() {
         // given
-        val baseBallGame = BaseBallGame()
         val case1 = listOf(1, 2, 3)
         val case2 = listOf(1, 2, 3, 4)
-        val case3 = listOf(1, 2)
+        val case3 = listOf(1, 2, 2)
+        val case4 = listOf(1, 2, 0)
 
         // when, then
-        assertThatCode { baseBallGame.validateInputBaseBallSize(case1) }
+        assertThatCode { validateInputBaseBall(case1) }
                 .doesNotThrowAnyException()
 
-        assertThatThrownBy { baseBallGame.validateInputBaseBallSize(case2) }
+        assertThatThrownBy { validateInputBaseBall(case2) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("3개의 숫자를 입력해주세요.")
 
-        assertThatThrownBy { baseBallGame.validateInputBaseBallSize(case3) }
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage("3개의 숫자를 입력해주세요.")
-    }
-
-    @Test
-    fun `validateInputBaseBallDuplication() 테스트`() {
-        // given
-        val baseBallGame = BaseBallGame()
-        val case1 = listOf(1, 2, 3)
-        val case2 = listOf(1, 2, 2)
-
-        // when, then
-        assertThatCode { baseBallGame.validateInputBaseBallDuplication(case1) }
-                .doesNotThrowAnyException()
-
-        assertThatThrownBy { baseBallGame.validateInputBaseBallDuplication(case2) }
+        assertThatThrownBy { validateInputBaseBall(case3) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("중복되지 않는 숫자를 입력해주세요.")
-    }
 
-    @Test
-    fun `validateInputBaseBallRange() 테스트`() {
-        // given
-        val baseBallGame = BaseBallGame()
-        val case1 = listOf(1, 2, 3)
-        val case2 = listOf(1, 2, 0)
-        val case3 = listOf(1, 2, 15)
-
-        // when, then
-        assertThatCode { baseBallGame.validateInputBaseBallRange(case1) }
-                .doesNotThrowAnyException()
-
-        assertThatThrownBy { baseBallGame.validateInputBaseBallRange(case2) }
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage("1~9 사이의 숫자를 입력해주세요.")
-
-        assertThatThrownBy { baseBallGame.validateInputBaseBallRange(case3) }
+        assertThatThrownBy { validateInputBaseBall(case4) }
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage("1~9 사이의 숫자를 입력해주세요.")
     }
-
 
     override fun runMain() {
         main()
