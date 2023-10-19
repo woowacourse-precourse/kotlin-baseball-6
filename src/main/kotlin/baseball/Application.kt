@@ -3,12 +3,10 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
-var computer: List<Int> = emptyList()
-
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
-    generateRandomThreeNumber()
+    var computer: List<Int> = generateRandomThreeNumber()
 
     var start = true
     while (start) {
@@ -19,6 +17,10 @@ fun main() {
         if (result) {
             start = gameRestartOrOver()
         }
+
+        if(result && start) {
+            computer = generateRandomThreeNumber()
+        }
     }
 }
 
@@ -26,7 +28,7 @@ fun main() {
     기능1. 랜덤숫자 3개 생성
     : 컴퓨터는 1에서 9까지 서로 다른 임의의 수 3개를 선택한다.
  */
-fun generateRandomThreeNumber() {
+fun generateRandomThreeNumber(): List<Int> {
     val randomList = mutableListOf<Int>()
 
     while (randomList.size < 3) {
@@ -36,7 +38,7 @@ fun generateRandomThreeNumber() {
         }
     }
 
-    computer = randomList
+    return randomList
 }
 
 /*
@@ -132,7 +134,6 @@ fun gameRestartOrOver(): Boolean {
     val decision = Console.readLine()
 
     if (decision == "1") {
-        generateRandomThreeNumber()
         return true
     }
 
