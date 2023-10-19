@@ -1,10 +1,12 @@
 package baseball
 
 import baseball.constants.EXCEPTION_DUPLICATION
+import baseball.constants.EXCEPTION_EXIT
 import baseball.constants.EXCEPTION_RANGE
 import baseball.constants.EXCEPTION_SIZE
 import baseball.io.printBallAndStrike
 import baseball.util.validateInputBaseBall
+import baseball.util.validateInputExit
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -151,6 +153,25 @@ class ApplicationTest : NsTest() {
                         "2볼",
                         "3스트라이크"
                 )
+    }
+
+    @Test
+    fun `validateInputExit() 테스트`() {
+        // given
+        val case1 = "0"
+        val case2 = "1"
+        val case3 = "2"
+
+        // when, then
+        assertThatThrownBy { validateInputExit(case1) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage(EXCEPTION_EXIT)
+
+        assertThatCode { validateInputExit(case2) }
+                .doesNotThrowAnyException()
+
+        assertThatCode { validateInputExit(case3) }
+                .doesNotThrowAnyException()
     }
 
     override fun runMain() {
