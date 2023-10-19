@@ -26,6 +26,12 @@ class BaseBallGame {
         return inputBaseBallNumber
     }
 
+    fun validateInputBaseBallSize(inputBaseBallNumber: List<Int>) {
+        if (inputBaseBallNumber.size != BASEBALL_SIZE) {
+            throw IllegalArgumentException("3개의 숫자를 입력해주세요.")
+        }
+    }
+
     companion object {
         const val BASEBALL_SIZE = 3
     }
