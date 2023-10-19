@@ -18,7 +18,7 @@ class BaseBallGame {
     }
 
     fun inputBaseBallNumber(): List<Int> {
-        val inputBaseBallNumber = Console.readLine().map {it ->
+        val inputBaseBallNumber = Console.readLine().map { it ->
             it.code - '0'.code
         }
         //validate(inputBaseBallNumber)
@@ -36,6 +36,13 @@ class BaseBallGame {
         val distinctBaseBallNumber = inputBaseBallNumber.distinct()
         if (distinctBaseBallNumber.size != BASEBALL_SIZE) {
             throw IllegalArgumentException("중복되지 않는 숫자를 입력해주세요.")
+        }
+    }
+
+    fun validateInputBaseBallRange(inputBaseBallNumber: List<Int>) {
+        val rangeBaseBallNumber = inputBaseBallNumber.filter { it in 1..8 }
+        if (rangeBaseBallNumber.size != BASEBALL_SIZE) {
+            throw IllegalArgumentException("1~9 사이의 숫자를 입력해주세요.")
         }
     }
 
