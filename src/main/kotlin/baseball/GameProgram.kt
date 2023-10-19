@@ -8,12 +8,15 @@ class GameProgram {
     fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
         val computerNumbers = createRandomNumbers()
-        print("숫자를 입력해주세요 : ")
-        val userNumbers = setUserNumbers()
 
-        val result = compareNumbers(computerNumbers,userNumbers)
-        val hintMessage = provideHintMessage(result)
-        println(hintMessage)
+        do {
+            print("숫자를 입력해주세요 : ")
+            val userNumbers = setUserNumbers()
+
+            val result = compareNumbers(computerNumbers, userNumbers)
+            val hintMessage = provideHintMessage(result)
+            println(hintMessage)
+        } while (hintMessage != "3스트라이크")
     }
 
     private fun createRandomNumbers():List<Int> {
