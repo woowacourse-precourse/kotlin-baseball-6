@@ -57,8 +57,8 @@ class GameProgram {
                 total++
             }
         }
-        for (i in 0..userNumbers.size) {
-            if (computerNumbers[i] == userNumbers[i]) {
+        for (idx in userNumbers.indices) {
+            if (computerNumbers[idx] == userNumbers[idx]) {
                 strike++
             }
         }
