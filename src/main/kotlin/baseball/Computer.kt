@@ -53,4 +53,13 @@ class Computer {
         }
         return count
     }
+    private fun countBall(userNumbers: MutableList<Int>): Int {
+        var count = 0
+        val userIterate = userNumbers.listIterator()
+        while (userIterate.hasNext()) {
+            if (computerNumber.contains(userIterate.next()))
+                count++
+        }
+        return count
+    }
 }
