@@ -51,6 +51,25 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `isBall() 테스트`() {
+        // given
+        val baseBallGame = BaseBallGame()
+        val case1 = listOf(1, 2, listOf(1, 2, 3))
+        val case2 = listOf(1, 3, listOf(1, 2, 3))
+        val case3 = listOf(1, 1, listOf(1, 2, 3))
+
+        // when
+        val result1 = baseBallGame.isBall(case1[0] as Int, case1[1] as Int, case1[2] as List<Int>)
+        val result2 = baseBallGame.isBall(case2[0] as Int, case2[1] as Int, case2[2] as List<Int>)
+        val result3 = baseBallGame.isBall(case3[0] as Int, case3[1] as Int, case3[2] as List<Int>)
+
+        // then
+        assertThat(result1).isEqualTo(false)
+        assertThat(result2).isEqualTo(true)
+        assertThat(result3).isEqualTo(true)
+    }
+
+    @Test
     fun `validateInputBaseBall() 테스트`() {
         // given
         val case1 = listOf(1, 2, 3)
