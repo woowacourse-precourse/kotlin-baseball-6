@@ -7,7 +7,7 @@ class BaseBallGame {
 
     fun pickBaseBallNumber(): List<Int> {
         val computerNumber = mutableListOf<Int>()
-        while (computerNumber.size < 3) {
+        while (computerNumber.size < BASEBALL_SIZE) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!computerNumber.contains(randomNumber)) {
                 computerNumber.add(randomNumber)
@@ -24,6 +24,10 @@ class BaseBallGame {
         validate(inputBaseBallNumber)
 
         return inputBaseBallNumber
+    }
+
+    companion object {
+        const val BASEBALL_SIZE = 3
     }
 
 }
