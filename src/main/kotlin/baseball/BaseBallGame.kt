@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.util.validate
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
@@ -24,32 +25,6 @@ class BaseBallGame {
 
         validate(inputBaseBallNumber)
         return inputBaseBallNumber
-    }
-
-    fun validate(inputBaseBallNumber: List<Int>) {
-        validateInputBaseBallSize(inputBaseBallNumber)
-        validateInputBaseBallDuplication(inputBaseBallNumber)
-        validateInputBaseBallRange(inputBaseBallNumber)
-    }
-
-    fun validateInputBaseBallSize(inputBaseBallNumber: List<Int>) {
-        if (inputBaseBallNumber.size != BASEBALL_SIZE) {
-            throw IllegalArgumentException("3개의 숫자를 입력해주세요.")
-        }
-    }
-
-    fun validateInputBaseBallDuplication(inputBaseBallNumber: List<Int>) {
-        val distinctBaseBallNumber = inputBaseBallNumber.distinct()
-        if (distinctBaseBallNumber.size != BASEBALL_SIZE) {
-            throw IllegalArgumentException("중복되지 않는 숫자를 입력해주세요.")
-        }
-    }
-
-    fun validateInputBaseBallRange(inputBaseBallNumber: List<Int>) {
-        val rangeBaseBallNumber = inputBaseBallNumber.filter { it in 1..8 }
-        if (rangeBaseBallNumber.size != BASEBALL_SIZE) {
-            throw IllegalArgumentException("1~9 사이의 숫자를 입력해주세요.")
-        }
     }
 
     companion object {
