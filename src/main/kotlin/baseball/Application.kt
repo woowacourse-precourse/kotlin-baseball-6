@@ -5,7 +5,21 @@ import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    startGame()
+    while (true){
+        startGame()
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val input = Console.readLine()
+        val num = try{
+            input.toInt()
+        }catch (e:Error){
+            throw IllegalArgumentException()
+        }
+        when(num){
+            1->continue
+            2->break
+            else-> throw IllegalArgumentException()
+        }
+    }
 }
 
 val BASE_BALL_SIZE = 3
