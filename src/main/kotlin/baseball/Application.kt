@@ -15,22 +15,47 @@ fun main() {
         }
     }
 
-    // B: 사용자의 수를 입력받는다.
-    print("숫자를 입력해주세요 : ")
-    val input = readLine()
+    while (true) {
+        var ballCnt = 0
+        var strikeCnt = 0
 
-    // B-2 유효성 검증
-    if (input.length != 3) {
-        throw IllegalArgumentException("입력한 수가 3자리가 아닙니다.")
+        // B: 사용자의 수를 입력받는다.
+        print("숫자를 입력해주세요 : ")
+        val input = readLine()
+
+        // B-2 유효성 검증
+        if (input.length != 3) {
+            throw IllegalArgumentException("입력한 수가 3자리가 아닙니다.")
+        }
+        if (input.contains("""[^123456789]""".toRegex())) {
+            throw IllegalArgumentException("유효하지 않은 형식입니다.")
+        }
+
+        val numSet = input.toCharArray().toSet()
+        if (numSet.size < 3) {
+            throw IllegalArgumentException("중복된 수를 가집니다.")
+        }
+
+        // C: 정답과 사용자의 입력을 비교해서 결과를 리턴받는다.
+        for (i in 0..2) {
+            if (answer.contains(input[i] - '0')) {
+                ballCnt++
+            }
+            if (input[i] - '0' == answer[i]) {
+                strikeCnt++
+            }
+        }
+        ballCnt -= strikeCnt
+
+        // C-2 모두 맞히지 못했을 경우
+        if (ballCnt == 0 && strikeCnt == 0) {
+            println("낫싱")
+        } else if (strikeCnt == 0) {
+            println("${ballCnt}볼")
+        } else if (ballCnt == 0) {
+            println("${strikeCnt}스트라이크")
+        } else {
+            println("${ballCnt}볼 ${strikeCnt}스트라이크")
+        }
     }
-    if (input.contains("""[^123456789]""".toRegex())) {
-        throw IllegalArgumentException("유효하지 않은 형식입니다.")
-    }
-
-    val numSet = input.toCharArray().toSet()
-    if (numSet.size < 3) {
-        throw IllegalArgumentException("중복된 수를 가집니다.")
-    }
-
-
 }
