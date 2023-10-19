@@ -1,6 +1,6 @@
 package baseball
 
-import baseball.util.validate
+import baseball.util.validateInputBaseBall
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
@@ -18,12 +18,12 @@ class BaseBallGame {
         return computerNumber
     }
 
-    fun inputBaseBallNumber(): List<Int> {
+    private fun inputBaseBallNumber(): List<Int> {
         val inputBaseBallNumber = Console.readLine().map { it ->
             it.code - '0'.code
         }
 
-        validate(inputBaseBallNumber)
+        validateInputBaseBall(inputBaseBallNumber)
         return inputBaseBallNumber
     }
 

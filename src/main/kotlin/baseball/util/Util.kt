@@ -2,7 +2,7 @@ package baseball.util
 
 import baseball.BaseBallGame
 
-fun validate(inputBaseBallNumber: List<Int>) {
+fun validateInputBaseBall(inputBaseBallNumber: List<Int>) {
     validateInputBaseBallSize(inputBaseBallNumber)
     validateInputBaseBallDuplication(inputBaseBallNumber)
     validateInputBaseBallRange(inputBaseBallNumber)
