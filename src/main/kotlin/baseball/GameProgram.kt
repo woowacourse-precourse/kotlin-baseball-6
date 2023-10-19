@@ -47,4 +47,23 @@ class GameProgram {
         if (userInput.length != 3) throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
         if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException("서로 중복되지 않는 숫자를 입력 해야 합니다.")
     }
+
+    private fun compareNumbers(computerNumbers : List<Int>,userNumbers : List<Int>): List<Int> {
+        var total = 0
+        var strike = 0
+
+        for (number in userNumbers) {
+            if (computerNumbers.contains(number)) {
+                total++
+            }
+        }
+        for (i in 0..userNumbers.size) {
+            if (computerNumbers[i] == userNumbers[i]) {
+                strike++
+            }
+        }
+        val ball = total - strike
+
+        return listOf(ball,strike)
+    }
 }
