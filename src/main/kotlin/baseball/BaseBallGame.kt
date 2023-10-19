@@ -27,6 +27,10 @@ class BaseBallGame {
         return inputBaseBallNumber
     }
 
+    fun isBall(idx: Int, inputBaseBallNumber: Int, computerBaseBallNumber: List<Int>): Boolean {
+        return computerBaseBallNumber.indexOf(inputBaseBallNumber) == idx
+    }
+
     companion object {
         const val BASEBALL_SIZE = 3
     }
