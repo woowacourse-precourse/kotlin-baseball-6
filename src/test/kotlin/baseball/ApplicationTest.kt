@@ -3,7 +3,7 @@ package baseball
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -47,6 +47,27 @@ class ApplicationTest : NsTest() {
         assertThat(result1.filter { it in 1..9 }.toList().size)
                 .`as`("1~9 사이의 수를 선택했는지 확인")
                 .isEqualTo(3)
+    }
+
+    @Test
+    fun `validateInputBaseBallSize() 테스트`() {
+        // given
+        val baseBallGame = BaseBallGame()
+        val case1 = listOf(1, 2, 3)
+        val case2 = listOf(1, 2, 3, 4)
+        val case3 = listOf(1, 2)
+
+        // when, then
+        assertThatCode { baseBallGame.validateInputBaseBallSize(case1) }
+                .doesNotThrowAnyException()
+
+        assertThatThrownBy { baseBallGame.validateInputBaseBallSize(case2) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage("3개의 숫자를 입력해주세요.")
+
+        assertThatThrownBy { baseBallGame.validateInputBaseBallSize(case3) }
+                .isInstanceOf(IllegalArgumentException::class.java)
+                .hasMessage("3개의 숫자를 입력해주세요.")
     }
 
     override fun runMain() {

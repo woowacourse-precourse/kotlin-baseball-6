@@ -21,7 +21,7 @@ class BaseBallGame {
         val inputBaseBallNumber = Console.readLine().map {it ->
             it.code - '0'.code
         }
-        validate(inputBaseBallNumber)
+        //validate(inputBaseBallNumber)
 
         return inputBaseBallNumber
     }
