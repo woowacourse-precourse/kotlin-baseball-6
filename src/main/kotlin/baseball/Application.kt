@@ -39,16 +39,22 @@ fun inputThreeAnswerNumber(): List<Int> {
     val inputList = Console.readLine()
     val answerList = mutableListOf<Int>()
 
-    if(inputList.length != 3) {
+    if (inputList.length != 3) {
         throw IllegalArgumentException("길이가 3이 되게 입력해주세요.")
     }
 
-    for(input in inputList) {
+    for (input in inputList) {
         try {
             val number = input.toString().toInt()
+
+            if (answerList.contains(number)) {
+                throw IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.")
+            }
+
             answerList.add(number)
+
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("1~9사이의 숫자만 입력해주세요. $e")
+            throw IllegalArgumentException("1~9사이의 숫자만 입력해주세요.")
         }
     }
 
