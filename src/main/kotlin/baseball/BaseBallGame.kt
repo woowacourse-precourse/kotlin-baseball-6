@@ -21,9 +21,15 @@ class BaseBallGame {
         val inputBaseBallNumber = Console.readLine().map { it ->
             it.code - '0'.code
         }
-        //validate(inputBaseBallNumber)
 
+        validate(inputBaseBallNumber)
         return inputBaseBallNumber
+    }
+
+    fun validate(inputBaseBallNumber: List<Int>) {
+        validateInputBaseBallSize(inputBaseBallNumber)
+        validateInputBaseBallDuplication(inputBaseBallNumber)
+        validateInputBaseBallRange(inputBaseBallNumber)
     }
 
     fun validateInputBaseBallSize(inputBaseBallNumber: List<Int>) {
