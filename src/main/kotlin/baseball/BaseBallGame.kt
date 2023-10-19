@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class BaseBallGame {
@@ -15,4 +16,14 @@ class BaseBallGame {
 
         return computerNumber
     }
+
+    fun inputBaseBallNumber(): List<Int> {
+        val inputBaseBallNumber = Console.readLine().map {it ->
+            it.code - '0'.code
+        }
+        validate(inputBaseBallNumber)
+
+        return inputBaseBallNumber
+    }
+
 }
