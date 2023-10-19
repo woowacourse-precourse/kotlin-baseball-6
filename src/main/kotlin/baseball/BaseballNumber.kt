@@ -21,7 +21,7 @@ class BaseballNumber {
         require(numbers.length == NUMBER_SIZE)
         requireUnique(numbers)
         requireOnlyDigit(numbers)
-        this.numbers = numbers.map { it.code }
+        this.numbers = numbers.map { it.digitToInt() }
     }
 
     private fun requireOnlyDigit(numbers: String) {
