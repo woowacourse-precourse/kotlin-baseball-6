@@ -11,7 +11,24 @@ class BaseballNumber {
     }
 
     constructor(numbers: String) {
+        require(numbers.length == NUMBER_SIZE)
+        requireUnique(numbers)
+        requireOnlyDigit(numbers)
         this.numbers = numbers.map { it.code }
+    }
+
+    private fun requireOnlyDigit(numbers: String) {
+        numbers.forEach { numberChar ->
+            require(numberChar.isDigit()) { Messages.ContainsNonDigitChar }
+        }
+    }
+
+    private fun requireUnique(numbers: String) {
+        val hashSet = hashSetOf<Char>()
+        numbers.forEach { numberChar ->
+            require(!hashSet.contains(numberChar)) { Messages.DuplicatedNumber }
+            hashSet.add(numberChar)
+        }
     }
 
     companion object {
