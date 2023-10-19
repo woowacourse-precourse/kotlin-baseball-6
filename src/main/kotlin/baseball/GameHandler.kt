@@ -3,19 +3,19 @@ package baseball
 import baseball.data.InputType
 import camp.nextstep.edu.missionutils.Randoms
 
-class GameHandler(private val io: IoHandler) {
+class GameHandler(private val io: IOHandler) {
 
     private val answer: MutableList<Int> = mutableListOf()
 
-    fun init() {
-        io.show(START_SENTENCE)
+    fun start() {
+        io.show(SENTENCE_FOR_START)
         var isKeepPlay = YES
 
         while (isKeepPlay == YES) {
             reset()
             playGame()
 
-            io.show(AFTER_GAME_SENTENCE)
+            io.show(SENTENCE_FOR_AFTER_GAME)
             isKeepPlay = io.getInput(InputType.AFTER_GAME).toInt()
         }
     }
@@ -32,18 +32,18 @@ class GameHandler(private val io: IoHandler) {
     }
 
     private fun playGame() {
-        io.show(INPUT_SENTENCE)
+        io.show(SENTENCE_FOR_INPUT)
 
         var inputNum = io.getInput(InputType.WHILE_GAME)
-        while (checkIsCorrect(inputNum).not()) {
-            io.show(INPUT_SENTENCE)
+        while (checkInputIsCorrect(inputNum).not()) {
+            io.show(SENTENCE_FOR_INPUT)
             inputNum = io.getInput(InputType.WHILE_GAME)
         }
 
-        io.show(CLOSING_SENTENCE)
+        io.show(SENTENCE_FOR_CLOSING)
     }
 
-    private fun checkIsCorrect(inputNum: String): Boolean {
+    private fun checkInputIsCorrect(inputNum: String): Boolean {
         var ballCount = 0
         var strikeCount = 0
 
@@ -58,7 +58,7 @@ class GameHandler(private val io: IoHandler) {
         }
 
         if (ballCount == 0 && strikeCount == 0) {
-            io.show(NOTHING_CORRECT_SENTENCE)
+            io.show(SENTENCE_FOR_NOTHING_CORRECT)
             return false
         }
         if (ballCount != 0) {
@@ -75,11 +75,11 @@ class GameHandler(private val io: IoHandler) {
     companion object {
         private const val DIGIT = 3
         private const val ASCII_0_CODE = 48
-        private const val START_SENTENCE = "숫자 야구 게임을 시작합니다.\n"
-        private const val INPUT_SENTENCE = "숫자를 입력해주세요 : "
-        private const val NOTHING_CORRECT_SENTENCE = "낫싱\n"
-        private const val CLOSING_SENTENCE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n"
-        private const val AFTER_GAME_SENTENCE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n"
+        private const val SENTENCE_FOR_START = "숫자 야구 게임을 시작합니다.\n"
+        private const val SENTENCE_FOR_INPUT = "숫자를 입력해주세요 : "
+        private const val SENTENCE_FOR_NOTHING_CORRECT = "낫싱\n"
+        private const val SENTENCE_FOR_CLOSING = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n"
+        private const val SENTENCE_FOR_AFTER_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n"
         private const val YES = 1
     }
 }

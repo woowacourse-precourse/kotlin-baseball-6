@@ -3,7 +3,7 @@ package baseball
 import baseball.data.InputType
 import camp.nextstep.edu.missionutils.Console
 
-class IoHandler {
+class IOHandler {
 
     private val validInputAfterGame = listOf("1", "2")
     private val validInputWhileGame = (1..10).map { (it + ASCII_0_CODE).toChar() }
@@ -12,8 +12,8 @@ class IoHandler {
         val input = Console.readLine()
 
         when (inputType) {
-            InputType.WHILE_GAME -> checkValidWhileGame(input)
-            InputType.AFTER_GAME -> checkValidAfterGame(input)
+            InputType.WHILE_GAME -> checkInputValidWhileGame(input)
+            InputType.AFTER_GAME -> checkInputValidAfterGame(input)
         }
 
         return input
@@ -23,7 +23,7 @@ class IoHandler {
         print(msg)
     }
 
-    private fun checkValidWhileGame(input: String) {
+    private fun checkInputValidWhileGame(input: String) {
         val inputNum = mutableSetOf<Char>()
 
         input.forEach {
@@ -34,7 +34,7 @@ class IoHandler {
         }
     }
 
-    private fun checkValidAfterGame(input: String) {
+    private fun checkInputValidAfterGame(input: String) {
         if (input in validInputAfterGame) {
             return
         }
