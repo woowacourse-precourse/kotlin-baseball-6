@@ -8,8 +8,8 @@ class GameProgram {
     fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
         val computerNumbers = createRandomNumbers()
-
         print("숫자를 입력해주세요 : ")
+        val userNumbers = setUserNumbers()
     }
 
     private fun createRandomNumbers():List<Int> {
@@ -22,6 +22,17 @@ class GameProgram {
             }
         }
         return randomNumbers
+    }
+
+    private fun setUserNumbers(): List<Int> {
+        val userInput = readUserInput()
+        validateUserInput(userInput)
+        val userNumbers = mutableListOf<Int>()
+
+        for (number in userInput) {
+            userNumbers.add(number.digitToInt())
+        }
+        return userNumbers
     }
 
     private fun readUserInput():String {
