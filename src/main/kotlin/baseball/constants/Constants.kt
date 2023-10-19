@@ -2,6 +2,8 @@ package baseball.constants
 
 const val BASEBALL_SIZE = 3
 
+const val EXIT = "2"
+
 const val BALL = "볼"
 const val STRIKE = "스트라이크"
 const val NOTHING = "낫싱"
