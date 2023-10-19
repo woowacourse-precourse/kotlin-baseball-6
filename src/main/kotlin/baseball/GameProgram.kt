@@ -35,7 +35,7 @@ class GameProgram {
 
     private fun setUserNumbers(): List<Int> {
         val userInput = readUserInput()
-        validateUserInput(userInput)
+        validateUserNumbers(userInput)
         val userNumbers = mutableListOf<Int>()
 
         for (number in userInput) {
@@ -49,7 +49,7 @@ class GameProgram {
         return userInput.trim()
     }
 
-    private fun validateUserInput(userInput : String) {
+    private fun validateUserNumbers(userInput : String) {
         for (c in userInput.toCharArray()) {
             if (!c.isDigit()) throw IllegalArgumentException("숫자를 입력 해야 합니다.")
         }
