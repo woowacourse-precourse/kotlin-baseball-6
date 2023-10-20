@@ -36,6 +36,7 @@ Computer 클래스와 User 클래스를 만들고 기능을 분리하여 구현
 ```mermaid
 sequenceDiagram
 main ->> Computer: playGame()
+Computer-->User: playGame()
 Computer->> Computer: setRandomNumber()
 Computer-->User: playInning()
 Computer->>User: user.inputNumber()
@@ -43,6 +44,7 @@ User->>Computer:
 Computer->> Computer: countStrike(), countBall(), resultString()
 Computer-->User: 
 Computer->>Computer: strike!=3 -> playInning()
+Computer-->User: 
 Computer->> User: playAgain()
 User-->> Computer: input == 1 -> playGame()
 User-->> main: input != 2 -> throw IllegalArgumentException()
