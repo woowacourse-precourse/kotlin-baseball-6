@@ -3,6 +3,7 @@ package baseball
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
 import sun.jvm.hotspot.runtime.DeadlockDetector.print
+import java.lang.System.exit
 import java.sql.DriverManager.println
 
 fun main() {
@@ -31,14 +32,15 @@ fun main() {
 
     fun getUser(a:Int): IntArray {
         var userNum = IntArray(3)
+        var ans : Int = a
 
         userNum[0]=a/100
-        a -= 100 * userNum[0]
+        ans -= 100 * userNum[0]
 
         userNum[1]=a/10
-        a -= 10 * userNum[1]
+        ans -= 10 * userNum[1]
 
-        userNum[2]=a
+        userNum[2]=ans
 
         return userNum
     }
@@ -102,12 +104,12 @@ fun main() {
             println("낫싱")
         }
 
-        if (ans==user){
+        if (ansArray==userArray){
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             ifCon = readLine().toInt()
 
-            if(ifCon==1) exitProcess(0)
+            if(ifCon==1) exit(0)
 
         }
 
