@@ -40,6 +40,21 @@ fun main() {
             nothing =1
         }
 
+        if (strike == 3) {
+            println("3스트라이크")
+            print("3개의 숫자를 모두 맞히셨습니다! 게임종료")
+
+        } else if (nothing == 1) {
+            println("낫싱")
+        } else {
+            if (strike == 0) {
+                println("${ball}볼")
+            } else if (ball == 0) {
+                println("${strike}스트라이크")
+            } else {
+                println("${ball}볼 ${strike}스트라이크")
+            }
+        }
 
     } else {
         throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
