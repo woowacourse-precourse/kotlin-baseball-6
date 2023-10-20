@@ -50,14 +50,7 @@ class GameProgram {
         return userNumbers
     }
 
-    private fun setUserAnswer() : Int {
-        val userInput = readUserInput()
-        validateUserAnswer(userInput)
-
-        return Integer.parseInt(userInput)
-    }
-
-    private fun readUserInput() :String {
+    private fun readUserInput() : String {
         val userInput = Console.readLine()
         return userInput.trim()
     }
@@ -68,6 +61,38 @@ class GameProgram {
         }
         if (userInput.length != 3) throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
         if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException("서로 중복되지 않는 숫자를 입력 해야 합니다.")
+    }
+
+    private fun setUserAnswer() : Int {
+        val userInput = readUserInput()
+        validateUserAnswer(userInput)
+
+        return Integer.parseInt(userInput)
+    }
+
+    private fun validateUserAnswer(userInput: String) {
+        if (!(userInput == "1" || userInput == "2")) {
+            throw IllegalArgumentException(USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE)
+        }
+    }
+
+    private fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
+        var total = 0
+        var strike = 0
+
+        for (number in userNumbers) {
+            if (computerNumbers.contains(number)) {
+                total++
+            }
+        }
+        for (idx in userNumbers.indices) {
+            if (computerNumbers[idx] == userNumbers[idx]) {
+                strike++
+            }
+        }
+        val ball = total - strike
+
+        return listOf(total,ball,strike)
     }
 
     private fun provideHintMessage(result: List<Int>) : String {
