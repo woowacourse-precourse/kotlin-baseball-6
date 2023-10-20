@@ -1,10 +1,14 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.lang.IllegalArgumentException
 
 fun main() {
     gameStartMessage()
     val computerNum = createRandomNum()
+    val userNum = getUserInputNum()
+
 }
 
 fun gameStartMessage() {
@@ -20,5 +24,11 @@ fun createRandomNum(): List<Int> {
         }
     }
     return computer
+}
+
+fun getUserInputNum(): List<Int> {
+    val userInputChar = Console.readLine().toCharArray()
+    val inputNum = userInputChar.map { num -> num.toString().toInt() }
+    return inputNum
 }
 
