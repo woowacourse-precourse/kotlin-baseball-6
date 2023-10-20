@@ -29,6 +29,7 @@ fun newGame(): Int {
 
 fun getInput(len: Int): Int {
     val str: String = Console.readLine()
+//    println(str)
     if (str.length != len)
         throw IllegalArgumentException("illegal length was input")
     if (str[0] == '0')
@@ -97,11 +98,14 @@ fun endGame(): Boolean {
 }
 
 fun baseballGame() {
+    println("숫자 야구 게임을 시작합니다.")
     while (true) {
         val target: Int = newGame()
-        while (true)
+        while (true) {
+            print("숫자를 입력해주세요 : ")
             if (!getScore(target, getInput(3)))
                 break
+        }
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         if (endGame())
             break
