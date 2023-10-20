@@ -11,7 +11,7 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    while (strike != 3) {
+    while (true) {
         ball = 0
         strike = 0
 
@@ -37,7 +37,6 @@ fun main() {
                     "1" -> {
                         computerRandomNumber = getRandomNumber()
                         println(computerRandomNumber)
-                        strike = 0
                     }
                     "2" -> {
                         println("게임 종료")
