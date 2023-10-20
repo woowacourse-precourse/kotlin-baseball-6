@@ -1,11 +1,11 @@
 package baseball.view
 
 import baseball.model.Score
-import utils.Constant.GAME_OVER_MESSAGE
-import utils.Constant.GAME_RESTART_MESSAGE
-import utils.Constant.GAME_START_MESSAGE
-import utils.Constant.GAME_SUCCESS_MESSAGE
-import utils.Constant.NUMBER_INPUT_MESSAGE
+import baseball.utils.Constant.GAME_OVER_MESSAGE
+import baseball.utils.Constant.GAME_RESTART_MESSAGE
+import baseball.utils.Constant.GAME_START_MESSAGE
+import baseball.utils.Constant.GAME_SUCCESS_MESSAGE
+import baseball.utils.Constant.NUMBER_INPUT_MESSAGE
 
 class OutputView {
 

@@ -1,6 +1,6 @@
-package utils
+package baseball.utils
 
-import utils.Constant.GAME_OVER_MESSAGE
+import baseball.utils.Constant.GAME_OVER_MESSAGE
 
 object Exception {
 
