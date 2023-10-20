@@ -12,3 +12,6 @@ fun inputNumber() {
     print("숫자를 입력해주세요 : ")
     val inputNumber = Console.readLine()
 }
+fun callException(): Nothing {
+    throw IllegalArgumentException("")
+}
