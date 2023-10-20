@@ -2,40 +2,45 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseballNumber {
-
+class BaseballNumber private constructor(
     private val numbers: List<Int>
+) {
+    companion object {
 
-    constructor() {
-        val numbers = mutableListOf<Int>()
-        while (numbers.size < NUMBER_SIZE) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber)
+        const val NUMBER_SIZE = 3
+
+        fun random(): BaseballNumber {
+            val numbers = mutableListOf<Int>()
+            while (numbers.size < NUMBER_SIZE) {
+                val randomNumber = Randoms.pickNumberInRange(1, 9)
+                if (!numbers.contains(randomNumber)) {
+                    numbers.add(randomNumber)
+                }
+            }
+            return BaseballNumber(numbers)
+        }
+
+        fun createOrThrow(input: String): BaseballNumber {
+            require(input.length == NUMBER_SIZE)
+            requireUnique(input)
+            requireOnlyDigit(input)
+            val numbers = input.map { it.digitToInt() }
+            return BaseballNumber(numbers)
+        }
+
+        private fun requireOnlyDigit(numbers: String) {
+            numbers.forEach { numberChar ->
+                require(numberChar.isDigit()) { Messages.ContainsNonDigitChar }
+                require(numberChar != '0') { Messages.ContainsZeroNumberDigit }
             }
         }
-        this.numbers = numbers
-    }
 
-    constructor(numbers: String) {
-        require(numbers.length == NUMBER_SIZE)
-        requireUnique(numbers)
-        requireOnlyDigit(numbers)
-        this.numbers = numbers.map { it.digitToInt() }
-    }
-
-    private fun requireOnlyDigit(numbers: String) {
-        numbers.forEach { numberChar ->
-            require(numberChar.isDigit()) { Messages.ContainsNonDigitChar }
-            require(numberChar != '0') { Messages.ContainsZeroNumberDigit }
-        }
-    }
-
-    private fun requireUnique(numbers: String) {
-        val hashSet = hashSetOf<Char>()
-        numbers.forEach { numberChar ->
-            require(!hashSet.contains(numberChar)) { Messages.DuplicatedNumber }
-            hashSet.add(numberChar)
+        private fun requireUnique(numbers: String) {
+            val hashSet = hashSetOf<Char>()
+            numbers.forEach { numberChar ->
+                require(!hashSet.contains(numberChar)) { Messages.DuplicatedNumber }
+                hashSet.add(numberChar)
+            }
         }
     }
 
@@ -71,9 +76,5 @@ class BaseballNumber {
 
     override fun toString(): String {
         return numbers.joinToString()
-    }
-
-    companion object {
-        const val NUMBER_SIZE = 3
     }
 }

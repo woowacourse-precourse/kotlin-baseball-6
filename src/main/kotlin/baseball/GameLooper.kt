@@ -7,11 +7,11 @@ class GameLooper(
 ) {
 
     private fun runInGame() {
-        val computer = BaseballNumber()
+        val computer = BaseballNumber.random()
         while (true) {
             printer.printTypeNumber()
             val input = Console.readLine()
-            val user = BaseballNumber(input)
+            val user = BaseballNumber.createOrThrow(input)
             val judgeResult = computer.judge(user)
             printer.printJudgeResult(judgeResult)
             if (judgeResult.isFinished) {

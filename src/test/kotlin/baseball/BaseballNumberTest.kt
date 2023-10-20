@@ -15,7 +15,7 @@ class BaseballNumberTest {
         )
         testCases.forEach { case ->
             assertDoesNotThrow {
-                BaseballNumber(case)
+                BaseballNumber.createOrThrow(case)
             }
         }
     }
@@ -28,7 +28,7 @@ class BaseballNumberTest {
             "1523",
         )
         testCases.assertThrows<String, IllegalArgumentException> { case ->
-            BaseballNumber(case)
+            BaseballNumber.createOrThrow(case)
         }
     }
 
@@ -41,7 +41,7 @@ class BaseballNumberTest {
             "2.2"
         )
         testCases.assertThrows<String, IllegalArgumentException> { case ->
-            BaseballNumber(case)
+            BaseballNumber.createOrThrow(case)
         }
     }
 
@@ -53,7 +53,7 @@ class BaseballNumberTest {
             "888"
         )
         testCases.assertThrows<String, IllegalArgumentException> { case ->
-            BaseballNumber(case)
+            BaseballNumber.createOrThrow(case)
         }
     }
 
@@ -65,19 +65,19 @@ class BaseballNumberTest {
             "540"
         )
         testCases.assertThrows<String, IllegalArgumentException> { case ->
-            BaseballNumber(case)
+            BaseballNumber.createOrThrow(case)
         }
     }
 
     @Test
     fun `판정 함수 테스트`() {
-        val computerNumber = BaseballNumber("713")
+        val computerNumber = BaseballNumber.createOrThrow("713")
         val inputs = listOf(
-            BaseballNumber("123"),
-            BaseballNumber("145"),
-            BaseballNumber("671"),
-            BaseballNumber("216"),
-            BaseballNumber("713")
+            BaseballNumber.createOrThrow("123"),
+            BaseballNumber.createOrThrow("145"),
+            BaseballNumber.createOrThrow("671"),
+            BaseballNumber.createOrThrow("216"),
+            BaseballNumber.createOrThrow("713")
         )
         val outputs = listOf(
             JudgeResult(balls = 1, strikes = 1),
