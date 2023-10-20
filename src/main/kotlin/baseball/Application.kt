@@ -23,8 +23,7 @@ fun playGame(): PlayAgain {
         val validInput = getValidUserInput()
 
         val result = compareInput(input = validInput, targetNumber = targetNumber)
-
-        // TODO: CompareResult를 이용하여 출력
+        result.print()
 
         if (result.isCorrectGuess()) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -129,4 +128,18 @@ data class CompareResult(
     val ball: Int
 ) {
     fun isCorrectGuess(): Boolean = strike == 3
+
+    fun print() {
+        if (strike == 0 && ball == 0) {
+            println("낫싱")
+            return
+        }
+
+        val result = buildString {
+            if (ball != 0) append("${ball}볼 ") // 볼과 스크라이크 사이 공백이 있어야함
+            if (strike != 0) append("${strike}스트라이크")
+        }
+
+        println(result)
+    }
 }
