@@ -62,10 +62,10 @@ fun inputNumber(digit: Int, range: CharRange) {
 
     // [2, 4] 오류 검증 1. 입력된 문자열의 길이가 digit 자리가 아닌 경우
     // [2, 4] 오류 검증 2. range 범위의 문자가 아닌 경우
-    // 오류 발생시키는 법 : throw Exception()
     if (inputData.length != digit ||
         digitRangeCheck == false
     ) {
+        // 오류 발생시키는 법 : throw Exception()
         throw IllegalArgumentException()
     }
 

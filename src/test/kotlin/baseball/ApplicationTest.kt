@@ -21,7 +21,7 @@ class ApplicationTest : NsTest() {
 //    }
 
     @Test
-    fun `입력 예외 테스트`() {
+    fun `사용자 입력 예외 테스트(digit = NUMBER_OF_DIGITS)`() {
         assertSimpleTest {
             // 자리수 테스트
             assertThrows<IllegalArgumentException> { runException("1234") } // 4자리
@@ -32,10 +32,16 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("a165") } // 문자 포함 4자리
             assertThrows<IllegalArgumentException> { runException("#^$") }  // 특수문자 3자리
             assertThrows<IllegalArgumentException> { runException("#215") } // 특수문자 포함 4자리
+
             // 중복 테스트
             assertThrows<IllegalArgumentException> { runException("212") }  // 숫자2 중복
             assertThrows<IllegalArgumentException> { runException("551") }  // 숫자5 중복
             assertThrows<IllegalArgumentException> { runException("555") }  // 숫자5 중복
+
+            // 빈 문자열("")을 runException으로 전달하면 assertThrows에서
+            // IllegalArgumentException 오류가 발생하여 테스트가 불가능함 -> null로 대체
+            // assertThrows<IllegalArgumentException> { runException("") }  // empty
+            assertThrows<IllegalArgumentException> { runException(null) }   // null
         }
     }
 
