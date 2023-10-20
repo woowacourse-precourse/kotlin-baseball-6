@@ -92,6 +92,10 @@ fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
     }
 }
 
+fun printGameEndMessage() {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+}
+
 var gameFlag = true
 
 fun main() {
@@ -102,5 +106,9 @@ fun main() {
     while (gameFlag) {
         val userNumber = inputUserNumber()
         compareAndPrintHint(computerNumber, userNumber)
+
+        if (!gameFlag) {
+            printGameEndMessage()
+        }
     }
 }
