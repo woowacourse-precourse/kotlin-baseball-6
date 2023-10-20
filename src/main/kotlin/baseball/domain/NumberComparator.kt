@@ -23,7 +23,4 @@ class NumberComparator {
         ballAndStrike.strike = 0
     }
 
-
-
-
 }
