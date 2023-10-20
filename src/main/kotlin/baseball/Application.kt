@@ -1,6 +1,9 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
+
+private const val MAX_DIGIT = 3
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -16,9 +19,13 @@ fun main() {
 fun playGame(): PlayAgain {
     val targetNumber = createTargetNumber()
 
-    // TODO: 유저 입력 가져오기 + validation
+    while (true) {
+        val validInput = getValidUserInput()
 
-    // TODO: 입력과 target number 비교 + 출력
+        // TODO: 입력과 target number 비교 + 출력
+
+        // TODO: 3 strikes일 경우 while 빠져나가기
+    }
 
     // TODO: 1 입력하면 again을 true, 2 입력하면 again false
 
@@ -60,5 +67,32 @@ class TargetNumber {
 
     override fun toString(): String {
         return numberMap.toString()
+    }
+}
+
+
+fun getValidUserInput(): Int {
+    val input = readLine().toString().toInt()
+
+    validateInput(input = input)
+
+    return input
+}
+
+
+fun validateInput(input: Int) {
+    require(input <= 999)
+
+    var inputVar = input
+    var digit = MAX_DIGIT
+
+    with(TargetNumber()) {
+        repeat(MAX_DIGIT) {
+            // putDigitInfo의 경우 이미 있는 숫자를 put할 경우 false return
+            require(putDigitInfo(inputVar % 10, digit))
+
+            inputVar /= 10
+            digit--
+        }
     }
 }
