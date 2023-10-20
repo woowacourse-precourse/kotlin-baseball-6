@@ -1,7 +1,7 @@
 ## 기능 목록
 
 - [x] 야구 게임 시작 - run()#BaseballController
-- [ ] 게임 시작 문구 출력 기능 - printGameStartMessage()#OutputView
+- [x] 게임 시작 문구 출력 기능 - printGameStartMessage()#OutputView
 - [ ] 야구 게임 진행 - processGameInProgress()#BaseballController
 - [ ] 랜덤 야구 숫자 생성 기능 - generateRandomNumber()#BaseballGame
 - [ ] 숫자를 입력해주세요 출력 기능 - printNumberInputMessage()#OutputView
