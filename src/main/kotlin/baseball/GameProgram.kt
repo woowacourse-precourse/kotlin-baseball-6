@@ -5,33 +5,33 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class GameProgram {
     fun startProgram() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(PROGRAM_START_MESSAGE)
 
         do {
             playGame()
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            println(INPUT_USER_ANSWER_MESSAGE)
             val userAnswer = setUserAnswer()
-        } while(userAnswer == 1)
+        } while(userAnswer != GAME_END_USER_ANSWER)
     }
 
     private fun playGame() {
         val computerNumbers = createRandomNumbers()
 
         do {
-            print("숫자를 입력해주세요 : ")
+            print(INPUT_USER_NUMBERS_MESSAGE)
             val userNumbers = setUserNumbers()
             val result = compareNumbers(computerNumbers, userNumbers)
             val hintMessage = provideHintMessage(result)
             println(hintMessage)
-        } while (hintMessage != "3스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        } while (hintMessage != ANSWER_HINT_MESSAGE)
+        println(GAME_END_MESSAGE)
     }
 
     private fun createRandomNumbers(): List<Int> {
         val randomNumbers = mutableListOf<Int>()
 
-        while (randomNumbers.size < 3) {
-            val number = Randoms.pickNumberInRange(1,9)
+        while (randomNumbers.size < BASEBALLGAME_NUMBERS_LENGTH) {
+            val number = Randoms.pickNumberInRange(NUMBERS_START_RANGE, NUMBERS_END_RANGE)
             if (!randomNumbers.contains(number)) {
                 randomNumbers.add(number)
             }
@@ -57,10 +57,10 @@ class GameProgram {
 
     private fun validateUserNumbers(userInput: String) {
         for (c in userInput.toCharArray()) {
-            if (!c.isDigit()) throw IllegalArgumentException("숫자를 입력 해야 합니다.")
+            if (!c.isDigit()) throw IllegalArgumentException(USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE)
         }
-        if (userInput.length != 3) throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
-        if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException("서로 중복되지 않는 숫자를 입력 해야 합니다.")
+        if (userInput.length != BASEBALLGAME_NUMBERS_LENGTH) throw IllegalArgumentException(USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE)
+        if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException(USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE)
     }
 
     private fun setUserAnswer() : Int {
@@ -102,7 +102,7 @@ class GameProgram {
         var resultMessage = ""
 
         if (total == 0) {
-            resultMessage += "낫싱"
+            resultMessage += NOTING_MESSAGE
         }
         if (ball > 0) {
             resultMessage += ball.toString() + "볼"
@@ -117,32 +117,25 @@ class GameProgram {
         return resultMessage
     }
 
-    private fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
-        var total = 0
-        var strike = 0
-
-        for (number in userNumbers) {
-            if (computerNumbers.contains(number)) {
-                total++
-            }
-        }
-        for (idx in userNumbers.indices) {
-            if (computerNumbers[idx] == userNumbers[idx]) {
-                strike++
-            }
-        }
-        val ball = total - strike
-
-        return listOf(total,ball,strike)
-    }
-
-    private fun validateUserAnswer(userInput: String) {
-        if (!(userInput == "1" || userInput == "2")) {
-            throw IllegalArgumentException(USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE)
-        }
-    }
-
     companion object {
+        private const val BASEBALLGAME_NUMBERS_LENGTH = 3
+        private const val NUMBERS_START_RANGE = 1
+        private const val NUMBERS_END_RANGE = 9
+        private const val GAME_END_USER_ANSWER = 2
+
+        private const val PROGRAM_START_MESSAGE = "숫자 야구 게임을 시작합니다."
+        private const val INPUT_USER_NUMBERS_MESSAGE = "숫자를 입력해주세요 : "
+        private const val INPUT_USER_ANSWER_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+        private const val GAME_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+
+        private const val NOTING_MESSAGE = "낫싱"
+        private const val BALL_MESSAGE = "볼"
+        private const val STRIKE_MESSAGE = "스트라이크"
+        private const val ANSWER_HINT_MESSAGE = "3스트라이크"
+
         private const val USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE = "1 또는 2를 입력 해야 합니다."
+        private const val USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE = "숫자가 아닌 다른 형식을 입력할 수 없습니다."
+        private const val USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE = "3개의 숫자를 입력 해야 합니다."
+        private const val USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE = "중복된 숫자를 입력할 수 없습니다."
     }
 }
