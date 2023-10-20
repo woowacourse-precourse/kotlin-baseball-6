@@ -10,6 +10,27 @@ fun main() {
     } while (askReplay())
 }
 
+fun playGame() {
+    val computerNumbers = generateComputerNumbers()
+//    println(computerNumbers)
+    do {
+        val playerNumbers = getValidPlayerNumbers()
+        val strikeCount = calculateStrikeCount(computerNumbers, playerNumbers)
+        val ballCount = calculateBallCount(computerNumbers, playerNumbers)
+        printResult(strikeCount, ballCount)
+    } while (strikeCount != 3)
+}
+
+fun askReplay(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val playerInput = Console.readLine()
+    return when (playerInput) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("ERROR")
+    }
+}
+
 fun generateComputerNumbers(): List<Int> {
     val computerNumbers = mutableSetOf<Int>()
     while (computerNumbers.size < 3) {
@@ -49,25 +70,4 @@ fun printResult(strikeCount: Int, ballCount: Int) {
         strikeCount > 0 -> println("${strikeCount}스트라이크")
         else -> println("낫싱")
     }
-}
-
-fun askReplay(): Boolean {
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val playerInput = Console.readLine()
-    return when (playerInput) {
-        "1" -> true
-        "2" -> false
-        else -> throw IllegalArgumentException("ERROR")
-    }
-}
-
-fun playGame() {
-    val computerNumbers = generateComputerNumbers()
-//    println(computerNumbers)
-    do {
-        val playerNumbers = getValidPlayerNumbers()
-        val strikeCount = calculateStrikeCount(computerNumbers, playerNumbers)
-        val ballCount = calculateBallCount(computerNumbers, playerNumbers)
-        printResult(strikeCount, ballCount)
-    } while (strikeCount != 3)
 }
