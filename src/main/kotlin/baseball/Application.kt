@@ -65,8 +65,9 @@ fun getRandomNumber(): MutableList<Int> {
 
     while (computerRandomNumber.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1,9)
-        if (!computerRandomNumber.contains(randomNumber))
+        if (!computerRandomNumber.contains(randomNumber)) {
             computerRandomNumber.add(randomNumber)
+        }
     }
     return computerRandomNumber
 }
