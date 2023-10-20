@@ -2,6 +2,7 @@
 
 
 
+
 # Class
 
 Computer 클래스와 User 클래스를 만들고 기능을 분리하여 구현
@@ -19,6 +20,7 @@ Computer 클래스와 User 클래스를 만들고 기능을 분리하여 구현
 |playGame|  숫자야구게임을 시작|            
 |setRandomNumber | 랜덤 넘버를 설정          |           
 |countStrike| 입력된 숫자의 Strike의 수를 카운트       |   
+|playInning| 사용자의 입력과 랜덤 넘버를 비교       |   
 |countBall|  입력된 숫자의 Ball의 수를 카운트| 
 |resultString|  strike의 수와 ball의 수를 통해 알맞은 출력을 결정|        
 ### User
@@ -33,12 +35,15 @@ Computer 클래스와 User 클래스를 만들고 기능을 분리하여 구현
 
 ```mermaid
 sequenceDiagram
-main ->> Computer: 게임 시작 요청
-Computer->>User: 사용자 입력 요청
-User->> Computer: 예외 처리 후 사용자 입력 전달
-Computer-->User: 3스트라이크가 될 때 까지 반복
-Computer->> main: 게임 종료를 알림
-main->> User: 게임 재시작 여부 질문
-User-->> Computer: 게임 시작 요청
-User-->> main: 프로그램 종료
+main ->> Computer: playGame()
+Computer->> Computer: setRandomNumber()
+Computer-->User: playInning()
+Computer->>User: user.inputNumber()
+User->>Computer: 
+Computer->> Computer: countStrike(), countBall(), resultString()
+Computer-->User: 
+Computer->>Computer: strike!=3 -> playInning()
+Computer->> User: playAgain()
+User-->> Computer: input == 1 -> playGame()
+User-->> main: input != 2 -> throw IllegalArgumentException()
 ```
