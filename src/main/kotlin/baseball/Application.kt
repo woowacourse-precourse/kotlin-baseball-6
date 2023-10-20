@@ -15,69 +15,70 @@ import camp.nextstep.edu.missionutils.Randoms
     9. Git에 업로드 안된 내용이라도 Local History를 통해서 파일 단위로 코드 복구가 가능하다.
 */
 
-const val NUMBER_OF_DIGITS = 3
+const val BASEBALL_DIGITS = 3
+const val MENU_DIGITS = 1
+
 fun main() {
-    // 1. 게임 시작을 위한 세팅
     val answer = answerSelect()
     println("숫자 야구 게임을 시작합니다.")
-    // println("Debug - answer : ${answer.contentToString()}")
 
-    // 2. 사용자 입력
     inputNumber(
-        digit = NUMBER_OF_DIGITS,
-        range = CharRange(start = '1', endInclusive = '9')
+        digit = BASEBALL_DIGITS,
+        range = CharRange('1', '9')
     )
 }
 
-// 1. 게임 시작을 위한 세팅
+/** [1]. 1..9에서 서로 다른 N개의 수 뽑기 */
 fun answerSelect(): IntArray {
     val computer = mutableListOf<Int>()
 
-    while (computer.size < NUMBER_OF_DIGITS) {
+    while (computer.size < BASEBALL_DIGITS) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
             computer.add(randomNumber)
         }
     }
-
     return computer.toIntArray()
 }
 
-// 2. 사용자 입력
+/** [2]. 사용자 입력 */
 fun inputNumber(digit: Int, range: CharRange) {
     var inputData: String = ""
 
-    // 사용자 입력
-    if (digit == NUMBER_OF_DIGITS) {
+    if (digit == BASEBALL_DIGITS) {
         print("숫자를 입력해주세요 : ")
-        inputData = Console.readLine()
-    } else if (digit == 1) {
+    } else if (digit == MENU_DIGITS) {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        inputData = Console.readLine()
     }
-
-    // 입력된 데이터 전체가 range에 속하는지 체크
-    val digitRangeCheck = inputData.map { it }
+    inputData = Console.readLine()
+    checkDigitRange(inputData, digit, range)
+    checkDuplicate(inputData, digit)
+}
+/** [2]. (2, 4) 입력된 문자열의 길이 및 범위 체크 */
+fun checkDigitRange(
+    inputData: String,
+    digit: Int,
+    range: CharRange
+) {
+    // 입력된 데이터 모두가 range에 속하는지 체크
+    val rangeCheck = inputData.map { it }
         .all { it in range }
 
-    // [2, 4] 오류 검증 1. 입력된 문자열의 길이가 digit 자리가 아닌 경우
-    // [2, 4] 오류 검증 2. range 범위의 문자가 아닌 경우
-    if (inputData.length != digit ||
-        digitRangeCheck == false
-    ) {
-        // 오류 발생시키는 법 : throw Exception()
-        throw IllegalArgumentException()
+    if (inputData.length != digit || rangeCheck == false) {
+        throw IllegalArgumentException() // 오류 발생시키는 법 : throw Exception()
     }
+}
 
-    // [2] 오류 검증 3. 중복된 숫자가 들어온 경우
+/** [2]. (2) 3) 숫자 중복 체크 */
+fun checkDuplicate(inputData: String, digit: Int) {
+    if(digit == MENU_DIGITS) return
+    // 숫자 중복이 있는지 : String -> Array -> Set으로 변환하여 size 조사
     val inputDataSet = inputData.map { it.toString()
         .toInt()
     }.toIntArray()
         .toSet()
 
-    if (digit == NUMBER_OF_DIGITS &&
-        inputDataSet.size < NUMBER_OF_DIGITS
-    ) {
+    if (inputDataSet.size < BASEBALL_DIGITS) {
         throw IllegalArgumentException()
     }
 }
