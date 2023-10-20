@@ -46,7 +46,7 @@ class BaseballNumber private constructor(
 
     private fun countStrikes(other: BaseballNumber): Int {
         var strikes = 0
-        for (i in 0..<NUMBER_SIZE) {
+        repeat(NUMBER_SIZE) { i ->
             if (other.numbers[i] == this.numbers[i]) {
                 ++strikes
             }
