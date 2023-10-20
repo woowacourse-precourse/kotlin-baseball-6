@@ -147,7 +147,7 @@ while (computer.size() < 3) {
 
 ## 구현 기능 목록
 - 상대방(Computer) 랜덤 수 생성 //`pickNumberInRange()`를 활용
-  -중복되지 않는 1부터 9까지의 3자리 정수
+  - 중복되지 않는 1부터 9까지의 3자리 정수
 - 플레이어(Player) 입력 처리 //`readLine()`을 활용
   - 사용자가 잘못된 값을 입력한 경우 애플리케이션 종료 //`IllegalArgumentException`을 발생
     - 3자리 이상의 숫자인 경우
