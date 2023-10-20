@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.domain.AnswerGenerator
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
@@ -7,14 +8,10 @@ fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
     // A. 컴퓨터는 사용자가 맞힐 정답을 생성한다.
-    val answer = mutableListOf<Int>()
-    while (answer.size < 3) {
-        val randomNum = pickNumberInRange(1, 9)
-        if (!answer.contains(randomNum)) {
-            answer.add(randomNum)
-        }
-    }
+    val answerGenerator = AnswerGenerator()
+    var answer = answerGenerator.generate()
     println(answer)
+
     while (true) {
         var ballCnt = 0
         var strikeCnt = 0
@@ -66,13 +63,7 @@ fun main() {
 
             when (readLine().toIntOrNull()) {
                 1 -> {
-                    answer.clear()
-                    while (answer.size < 3) {
-                        val randomNum = pickNumberInRange(1, 9)
-                        if (!answer.contains(randomNum)) {
-                            answer.add(randomNum)
-                        }
-                    }
+                    answer = answerGenerator.generate()
                     println(answer)
                     continue
                 }
