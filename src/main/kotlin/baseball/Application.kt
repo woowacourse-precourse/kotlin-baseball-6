@@ -60,8 +60,38 @@ fun checkValidNumber(number: String) {
     }
 }
 
+fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>){
+    var strike = 0
+    var ball = 0
+
+    user.forEach {
+        if(computer.contains(it)){
+            ball++
+        }
+    }
+
+    for(i in user.indices){
+        if(user[i] == computer[i]){
+            strike++
+            ball--
+        }
+    }
+
+    if(strike == 0 && ball == 0){
+        println("낫싱")
+    }else if(strike > 0 && ball == 0){
+        println("${strike}스트라이크")
+    }else if(strike == 0 && ball > 0){
+        println("${ball}볼")
+    }else{
+        println("${ball}볼 ${strike}스트라이크")
+    }
+}
+
 fun main() {
     printGameStartMessage()
     val computerNumber = setComputerNumber()
-    var userNumber = inputUserNumber()
+    val userNumber = inputUserNumber()
+    println(computerNumber)
+    compareAndPrintHint(computerNumber, userNumber)
 }
