@@ -5,26 +5,25 @@ import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
 fun main() {
-    var ball: Int
-    var strike: Int
     var computerRandomNumber = getRandomNumber()
 
     println("숫자 야구 게임을 시작합니다.")
 
     while (true) {
-        ball = 0
-        strike = 0
+        var ball = 0
+        var strike = 0
 
         println("숫자를 입력해주세요 : ")
-        val userGuessNumbers = Console.readLine().replace("\\s".toRegex(), "")
-
-        isThreeDigitNumber(userGuessNumbers)
+        val userGuessNumber = Console.readLine().replace("\\s".toRegex(), "")
+        isThreeDigitNumber(userGuessNumber)
 
         for (i in computerRandomNumber.indices) {
-            if (computerRandomNumber[i] == userGuessNumbers[i].toString().toInt())
+            if (computerRandomNumber[i] == userGuessNumber[i].toString().toInt()) {
                 strike++
-            else if (userGuessNumbers[i].toString().toInt() in computerRandomNumber)
+            }
+            else if (userGuessNumber[i].toString().toInt() in computerRandomNumber) {
                 ball++
+            }
         }
 
         when {
@@ -66,9 +65,8 @@ fun getRandomNumber(): MutableList<Int> {
 
     while (computerRandomNumber.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1,9)
-        if (!computerRandomNumber.contains(randomNumber)) {
+        if (!computerRandomNumber.contains(randomNumber))
             computerRandomNumber.add(randomNumber)
-        }
     }
     return computerRandomNumber
 }
