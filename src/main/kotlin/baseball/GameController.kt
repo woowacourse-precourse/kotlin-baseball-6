@@ -1,15 +1,18 @@
 package baseball
 
 import baseball.domain.AnswerGenerator
+import baseball.domain.NumberValidator
 import camp.nextstep.edu.missionutils.Console
 
 class GameController {
+
+    val answerGenerator = AnswerGenerator()
+    val numberValidator = NumberValidator()
 
     fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
 
         // A. 컴퓨터는 사용자가 맞힐 정답을 생성한다.
-        val answerGenerator = AnswerGenerator()
         var answer = answerGenerator.generate()
         println(answer)
 
@@ -22,17 +25,7 @@ class GameController {
             val input = Console.readLine()
 
             // B-2 유효성 검증
-            if (input.length != 3) {
-                throw IllegalArgumentException("입력한 수가 3자리가 아닙니다.")
-            }
-            if (input.contains("""[^123456789]""".toRegex())) {
-                throw IllegalArgumentException("유효하지 않은 형식입니다.")
-            }
-
-            val numSet = input.toCharArray().toSet()
-            if (numSet.size < 3) {
-                throw IllegalArgumentException("중복된 수를 가집니다.")
-            }
+            numberValidator.validate(input)
 
             // C: 정답과 사용자의 입력을 비교해서 결과를 리턴받는다.
             for (i in 0..2) {
