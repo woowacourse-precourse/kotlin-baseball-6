@@ -1,53 +1,5 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
-
-/*
-fun main() {
-    println("숫자 야구 게임을 시작합니다.")
-    var computerNumber = RandomNumber()
-    print("숫자를 입력해주세요 :")
-    var guessNumber = readLine()
-    var result = Result(guessNumber)
-    if(check(guessNumber)){
-        println("$guessNumber")
-    }
-    else{
-        throw IllegalArgumentException("종료 되었습니다.")
-    }
-
-
-}
-fun check(guessNumber: String?): Boolean {
-    if (guessNumber == null || guessNumber.length != 3) return false
-    if (guessNumber.contains('0')) return false
-
-    return guessNumber[0] != guessNumber[1] && guessNumber[0] != guessNumber[2] && guessNumber[1] != guessNumber[2]
-}
-
-class RandomNumber(){       // 랜덤으로 1~9까지중 3개 뽑기
-    val computer = mutableListOf<Int>()
-    init {
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
-    }
-}
-
-
-class Result(var message : Int) {
-    fun resultStrike() {
-        while (true) {
-            if(){
-
-            }
-
-        }
-    }
-}
-*/
 /*
 var strikeCount : Int = 0
 var ballCount : Int = 0
@@ -126,11 +78,24 @@ fun reOrStop(){
 }
 */
 fun main(){
-    println("숫자 야구 게임을 시작합니다.")
-    val cN = randNumber()
-    println(cN)   //나중에 바꿀꺼
-    compareNumber(cN)
+    var keepPlaying: Boolean
+    do {
+        println("숫자 야구 게임을 시작합니다.")
+        val cN = randNumber()
+        var strikeCount = 0
 
+        while (strikeCount != 3) {
+            //println(cN) // 나중에 바꿀꺼
+            strikeCount = compareNumber(cN)
+        }
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        keepPlaying = readLine()?.toLowerCase() == "1"
+
+    } while (keepPlaying)
+
+    println("게임을 종료합니다. 감사합니다!")
 }
 fun randNumber(): List<Int> {
     var computer = mutableListOf<Int>()
@@ -152,10 +117,10 @@ fun inputNumber(): List<Int> {            // 반환값 정수다
     return input.map { it.toString().toInt() } // 문자열에서 숫자 리스트로 변환
 }
 
-fun compareNumber(cN : List<Int>) {        //비교, 출력
+fun compareNumber(cN : List<Int>): Int {        //비교, 출력
     // var aa = cN //이게 아니라 randNumber의 computer을 받아와야한느데, 이렇게하면 새로운 숫자가생성됨
-    val userNumbers = inputNumber()
     print("숫자를 입력해주세요 :")
+    val userNumbers = inputNumber()
     var strikeCount: Int = 0
     var ballCount: Int = 0
     for (i in 0..2) {
@@ -171,7 +136,11 @@ fun compareNumber(cN : List<Int>) {        //비교, 출력
         ballCount != 0 -> println("${ballCount}볼")
         else -> println("낫싱")
     }
+    return strikeCount
 }
+
+
+//when이용해 간략하게 바꾸기
     /*
     if(strikeCount !=0 && ballCount !=0){
         println("${ballCount}볼 ${strikeCount}스트라이크")
