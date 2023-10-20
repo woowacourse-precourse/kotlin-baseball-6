@@ -45,12 +45,8 @@ class Computer {
         return BallCount(strikeCount, ballCount)
     }
 
-    private fun checkBallCount(userBall: Int): Int {
-        var ballCount = 0
-        baseballNumberList.forEach { _computerBall ->
-            if (userBall == _computerBall) ballCount++
-        }
-        return ballCount
+    private fun checkBallCount(userBall: Int): Int = baseballNumberList.count { _computerBall ->
+        _computerBall == userBall
     }
 
     private fun getUserInput(): List<Int> =
