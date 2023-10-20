@@ -44,6 +44,24 @@ fun main() {
             if (strike == 3) {
                 println("3스트라이크")
                 print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+                val restart = Console.readLine()
+                if (restart == "1") {
+                    finish = false
+                    temp = ""
+                    randomNumList = mutableListOf<String>()
+                    while (randomNumList.size < 3) {
+                        temp = Randoms.pickNumberInRange(1, 9).toString()
+                        if (!randomNumList.contains(temp)) {
+                            randomNumList.add(temp)
+                        }
+                    }
+                } else if (restart == "2") {
+                    finish = true
+                } else {
+                    throw IllegalArgumentException("1 또는 2를 입력해야 합니다.")
+                }
 
             } else if (nothing == 1) {
                 println("낫싱")
