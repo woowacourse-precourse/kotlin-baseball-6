@@ -27,7 +27,7 @@ fun askReplay(): Boolean {
     return when (playerInput) {
         "1" -> true
         "2" -> false
-        else -> throw IllegalArgumentException("ERROR")
+        else -> throw IllegalArgumentException("입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요.")
     }
 }
 
@@ -52,7 +52,7 @@ fun getPlayerInputNumbers(): List<Char> {
 
 fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
     if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() } || playerInputNumbers.contains('0')) {
-        throw IllegalArgumentException("ERROR")
+        throw IllegalArgumentException("입력값이 올바르지 않습니다. 서로 다른 숫자 3개를 입력해주세요.")
     }
 }
 
