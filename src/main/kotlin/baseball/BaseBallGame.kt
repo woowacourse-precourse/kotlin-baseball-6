@@ -44,7 +44,7 @@ class BaseBallGame {
         println(GAME_END_MESSAGE)
     }
 
-    private fun generateRandomNumbers(): List<Int> {
+    fun generateRandomNumbers(): List<Int> {
         val randomNumbers = mutableListOf<Int>()
 
         while (randomNumbers.size < NUMBERS_LENGTH) {
@@ -73,7 +73,7 @@ class BaseBallGame {
         return userInput.trim()
     }
 
-    private fun validateUserNumbers(userInput: String) {
+    fun validateUserNumbers(userInput: String) {
         if (!userInput.all { it.isDigit() }) {
             throw IllegalArgumentException(USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE)
         }
