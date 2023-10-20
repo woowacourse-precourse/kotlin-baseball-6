@@ -31,7 +31,6 @@ class BaseBallGame {
 
         do {
             playRound()
-            println(INPUT_USER_ANSWER_MESSAGE)
         } while(getUserAnswer() != GAME_END_USER_ANSWER)
     }
 
@@ -39,7 +38,6 @@ class BaseBallGame {
         val computerNumbers = generateRandomNumbers()
 
         do {
-            print(INPUT_USER_NUMBERS_MESSAGE)
             val userNumbers = getUserNumbers()
             val result = compareNumbers(computerNumbers, userNumbers)
             val hintMessage = provideHintMessage(result)
@@ -61,6 +59,7 @@ class BaseBallGame {
     }
 
     private fun getUserNumbers() : List<Int> {
+        print(INPUT_USER_NUMBERS_MESSAGE)
         val userInput = readUserInput()
         validateUserNumbers(userInput)
         val userNumbers = mutableListOf<Int>()
@@ -89,6 +88,7 @@ class BaseBallGame {
     }
 
     private fun getUserAnswer() : Int {
+        println(INPUT_USER_ANSWER_MESSAGE)
         val userInput = readUserInput()
         validateUserAnswer(userInput)
 
