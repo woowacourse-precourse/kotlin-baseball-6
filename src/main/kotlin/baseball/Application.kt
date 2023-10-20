@@ -1,6 +1,6 @@
 package baseball
 
 fun main() {
-    val baseballGame = GameProgram()
-    baseballGame.startProgram()
+    val baseballGame = BaseBallGame()
+    baseballGame.startGame()
 }
