@@ -2,56 +2,30 @@ package baseball
 
 import baseball.util.GameState
 import camp.nextstep.edu.missionutils.*
+
 fun main() {
     appStart()
 }
 
-fun appStart(){
+fun appStart() {
     println(GameState.GAME_START_MESSAGE)
-    do{
+    do {
         gameStart()
-    } while(true)
+    } while (true)
 
 }
 
-fun gameStart(){
+fun gameStart() {
     val computerNumber = Computer.makeNumber()
+    do {
+        val playerNumber = Player.inputNumber()
+        println(playerNumber)
+    } while (true)
 }
 
 
 
 
-
-fun inputNumber(): MutableList<Int> {
-
-    val playNumber = mutableListOf<Int>()
-    print(GameState.NUMBER_INPUT_MESSAGE)
-    val inputNumber = Console.readLine()
-    if (inputNumberCheck(inputNumber)) {
-        inputNumber.forEach {
-            playNumber.add(it - '0')
-        }
-        return playNumber
-    }
-    throw IllegalArgumentException()
-}
-
-fun inputNumberCheck(inputNumber: String): Boolean {
-
-    if (inputNumber.length != 3) return false
-    val duplicateCheckArray = BooleanArray(9) // 중복 숫자 확인 배열
-
-    for (num in inputNumber) {
-        if (num !in '1'..'9') { // 유효 형식 확인
-            return false
-        }
-        if (duplicateCheckArray[num - '1']) { // 중복 숫자 확인
-            return false
-        }
-        duplicateCheckArray[num - '1'] = true
-    }
-    return true
-}
 
 fun getInputResult(targetNumber: MutableList<Int>, inputNumber: MutableList<Int>): Boolean {
 
