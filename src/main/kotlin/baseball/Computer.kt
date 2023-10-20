@@ -32,6 +32,7 @@ class Computer {
                 break
             }
         }
+        if(checkRematch(Console.readLine()!!.toInt())) startGame()
     }
 
     private fun checkUserInput(userInput: List<Int>): BallCount {
@@ -55,5 +56,12 @@ class Computer {
     private fun getUserInput(): List<Int> =
         Console.readLine()!!.map {
             it.toString().toInt()
+        }
+
+    private fun checkRematch(userInput: Any?): Boolean =
+        when (userInput) {
+            1 -> true
+            2 -> false
+            else -> throw IllegalArgumentException("잘못된 값을 입력했습니다.")
         }
 }
