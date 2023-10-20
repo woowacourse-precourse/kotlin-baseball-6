@@ -13,6 +13,6 @@
 - [ ] 게임 종료/재시작 기능 - gameRestart()#BaseballController
 - [ ] 예외 처리 함수 #Exception
   - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션을 종료하는 기능
-  - [ ] 입력한 값이 숫자가 아닌 경우 예외 처리
+  - [x] 입력한 값이 숫자가 아닌 경우 예외 처리
   - [ ] 입력한 값이 3개의 숫자가 아닌 경우 예외 처리
 - [ ] 상수 값 #Constant
