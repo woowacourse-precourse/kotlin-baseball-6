@@ -25,7 +25,7 @@ class GameProgram {
         } while(userAnswer == 1)
     }
 
-    private fun createRandomNumbers():List<Int> {
+    private fun createRandomNumbers(): List<Int> {
         val randomNumbers = mutableListOf<Int>()
 
         while (randomNumbers.size < 3) {
@@ -37,7 +37,7 @@ class GameProgram {
         return randomNumbers
     }
 
-    private fun setUserNumbers(): List<Int> {
+    private fun setUserNumbers() : List<Int> {
         val userInput = readUserInput()
         validateUserNumbers(userInput)
         val userNumbers = mutableListOf<Int>()
@@ -48,19 +48,19 @@ class GameProgram {
         return userNumbers
     }
 
-    private fun setUserAnswer(): Int {
+    private fun setUserAnswer() : Int {
         val userInput = readUserInput()
         validateUserAnswer(userInput)
 
         return Integer.parseInt(userInput)
     }
 
-    private fun readUserInput():String {
+    private fun readUserInput() :String {
         val userInput = Console.readLine()
         return userInput.trim()
     }
 
-    private fun validateUserNumbers(userInput : String) {
+    private fun validateUserNumbers(userInput: String) {
         for (c in userInput.toCharArray()) {
             if (!c.isDigit()) throw IllegalArgumentException("숫자를 입력 해야 합니다.")
         }
@@ -75,7 +75,7 @@ class GameProgram {
         var resultMessage = ""
 
         if (total == 0) {
-            resultMessage += "낫씽"
+            resultMessage += "낫싱"
         }
         if (ball > 0) {
             resultMessage += ball.toString() + "볼"
@@ -90,7 +90,7 @@ class GameProgram {
         return resultMessage
     }
 
-    private fun compareNumbers(computerNumbers : List<Int>,userNumbers : List<Int>): List<Int> {
+    private fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
         var total = 0
         var strike = 0
 
@@ -111,7 +111,11 @@ class GameProgram {
 
     private fun validateUserAnswer(userInput: String) {
         if (!(userInput == "1" || userInput == "2")) {
-            throw IllegalArgumentException("1 또는 2를 입력 해야 합니다.")
+            throw IllegalArgumentException(USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE)
         }
+    }
+
+    companion object {
+        private const val USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE = "1 또는 2를 입력 해야 합니다."
     }
 }
