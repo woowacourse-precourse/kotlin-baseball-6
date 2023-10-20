@@ -19,7 +19,6 @@ class Computer {
                 if (!contains(randomNumber)) add(randomNumber)
             }
         }
-        println(baseballNumberList)
     }
 
     private fun playGame() {
