@@ -13,7 +13,7 @@ fun main() {
         var ball = 0
         var strike = 0
 
-        println("숫자를 입력해주세요 : ")
+        print("숫자를 입력해주세요 : ")
         val userGuessNumber = Console.readLine()
         isThreeDigitNumber(userGuessNumber)
 
@@ -42,7 +42,7 @@ fun main() {
                 }
             }
             ball == 0 && strike == 0 -> println("낫싱")
-            ball != 0 && strike != 0 -> println("$ball 볼 $strike 스트라이크")
+            ball != 0 && strike != 0 -> println("${ball}볼 ${strike}스트라이크")
             ball == 0 && strike != 0 -> println("$strike 스트라이크")
             else -> println("$ball 볼")
         }
