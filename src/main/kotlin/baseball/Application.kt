@@ -51,7 +51,7 @@ fun getPlayerInputNumbers(): List<Char> {
 }
 
 fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
-    if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() }) {
+    if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() } || playerInputNumbers.contains('0')) {
         throw IllegalArgumentException("ERROR")
     }
 }
