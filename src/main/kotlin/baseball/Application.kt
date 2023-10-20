@@ -21,13 +21,28 @@ fun main() {
 
     //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
     if (regex.matches(userInput) && (userInput.length == userInput.toSet().size)) {
-        val userInputList:List<String> = userInput.chunked(1)
+        val userInputList: List<String> = userInput.chunked(1)
         //난수와 사용자 입력 비교
+        var strike = 0
+        var ball = 0
+        var nothing = 0
+        for (i in userInputList.indices) {
+            if (userInputList[i] == randomNumList[i]) {
+                //모든 자릿 수 일치
+                strike++
+            } else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) {
+                //같은 수가 다른 자리에 있는 경우
+                ball++
+            }
+        }
+        if (ball == 0 && strike == 0) {
+            //스트라이크도 아니고 볼도 아닐 때
+            nothing = 1
+        }
+
+        println("$strike 스트라이크 $ball 볼 $nothing 낫싱")
+
     } else {
         throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
     }
-
-
-
-
 }
