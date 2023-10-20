@@ -56,15 +56,28 @@ fun inputNumber(digit: Int, range: CharRange) {
         inputData = Console.readLine()
     }
 
-    // 오류 발생시키는 법 : throw Exception()
-    val digitAndRangeCheck = inputData.map { it }
+    // 입력된 데이터 전체가 range에 속하는지 체크
+    val digitRangeCheck = inputData.map { it }
         .all { it in range }
 
     // [2, 4] 오류 검증 1. 입력된 문자열의 길이가 digit 자리가 아닌 경우
     // [2, 4] 오류 검증 2. range 범위의 문자가 아닌 경우
-    if (inputData.length != digit) {
+    // 오류 발생시키는 법 : throw Exception()
+    if (inputData.length != digit ||
+        digitRangeCheck == false
+    ) {
         throw IllegalArgumentException()
-    } else if (!digitAndRangeCheck) {
+    }
+
+    // [2] 오류 검증 3. 중복된 숫자가 들어온 경우
+    val inputDataSet = inputData.map { it.toString()
+        .toInt()
+    }.toIntArray()
+        .toSet()
+
+    if (digit == NUMBER_OF_DIGITS &&
+        inputDataSet.size < NUMBER_OF_DIGITS
+    ) {
         throw IllegalArgumentException()
     }
 }

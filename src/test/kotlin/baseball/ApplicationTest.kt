@@ -21,17 +21,21 @@ class ApplicationTest : NsTest() {
 //    }
 
     @Test
-    fun `예외 테스트`() {
+    fun `입력 예외 테스트`() {
         assertSimpleTest {
+            // 자리수 테스트
             assertThrows<IllegalArgumentException> { runException("1234") } // 4자리
             assertThrows<IllegalArgumentException> { runException("12") }   // 2자리
+            // 숫자0, 문자, 특수문자 테스트
             assertThrows<IllegalArgumentException> { runException("012") }  // 숫자0 포함 3자리
             assertThrows<IllegalArgumentException> { runException("aaa") }  // 문자 3자리
             assertThrows<IllegalArgumentException> { runException("a165") } // 문자 포함 4자리
             assertThrows<IllegalArgumentException> { runException("#^$") }  // 특수문자 3자리
             assertThrows<IllegalArgumentException> { runException("#215") } // 특수문자 포함 4자리
-            // TODO 숫자 중복 테스트 케이스 추가후,"./gradlew.bat clean test" 해볼 것
-            // assertThrows<IllegalArgumentException> { runException("212") }  // 숫자 중복 -
+            // 중복 테스트
+            assertThrows<IllegalArgumentException> { runException("212") }  // 숫자2 중복
+            assertThrows<IllegalArgumentException> { runException("551") }  // 숫자5 중복
+            assertThrows<IllegalArgumentException> { runException("555") }  // 숫자5 중복
         }
     }
 
