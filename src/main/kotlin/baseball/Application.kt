@@ -29,6 +29,21 @@ fun main() {
 
     } //서로 다른 3자리의 수를 가진 배열 생성
 
+    fun getUser(a:Int): IntArray {
+        var userNum = IntArray(3)
+
+        userNum[0]=a/100
+        a -= 100 * userNum[0]
+
+        userNum[1]=a/10
+        a -= 10 * userNum[1]
+
+        userNum[2]=a
+
+        return userNum
+    }
+
+
     fun numBall(a:IntArray, b:IntArray): Int {
         var ballNum: Int =0
         for(i in 0..2){
@@ -54,16 +69,19 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    while (True){
+    var ball:Int
+    var strike:Int
+    var ansArray = IntArray(3)
+    var user: Int
+    var userArray = IntArray(3)
+    var ifCon:Int
 
-        var ball:Int = numBall()
-        var strike:Int = numStrike()
-        var user: Int = 0
-        var ifCon:Int
+    while (true){
 
-        makeNum()
+        ansArray=makeNum()
 
         user = readLine().toInt()
+        userArray = getUser(user)
 
         if (ball>0){
             print("$ball")
