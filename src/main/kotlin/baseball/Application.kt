@@ -53,7 +53,7 @@ fun inputThreeAnswerNumber(): List<Int> {
 
     val isValid = checkValidation(inputList)
 
-    if(!isValid) {
+    if (!isValid) {
         throw IllegalArgumentException("1~9사이의 서로 다른 3개의 숫자를 입력한다.")
     }
 
