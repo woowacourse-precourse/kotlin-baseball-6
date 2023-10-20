@@ -26,4 +26,7 @@ class BaseballGame {
         }
         return score
     }
+
+    fun isCorrectAnswer(answer: String, userAnswer: String): Boolean = answer == userAnswer
+
 }
