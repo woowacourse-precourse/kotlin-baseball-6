@@ -12,34 +12,36 @@ package baseball
     9. Git에 업로드 안된 내용이라도 Local History를 통해서 파일 단위로 코드 복구가 가능하다.
 */
 
-const val BASEBALL_DIGITS = 4
+const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    var isAnswer = false
     var isStay = true
     var answer = answerSelect()
     var inputData: IntArray
 
     do {
+        // TODO For Debuging
         println("정답 : ${answer.contentToString()}")
 
+        // 2. 숫자 입력 받기 : 1 ~ 9 3자리
         inputData = inputVaildator(
             digit = BASEBALL_DIGITS,
             range = CharRange('1', '9')
         )
         if (inputData.size == BASEBALL_DIGITS) {
-            isAnswer = calculateBallAndStrike(inputData, answer)
-            if (isAnswer == false) continue
+            val isAnswer = calculateBallAndStrike(inputData, answer)
+            if (isAnswer == false)
+                continue
         }
 
+        // 4. 메뉴 입력 받기 : 1 or 2
         inputData = inputVaildator(
             digit = MENU_DIGITS,
             range = CharRange('1', '2')
         )
         if (inputData[0] == 1) {
-            isAnswer = false
             isStay = true
             answer = answerSelect()
         } else if (inputData[0] == 2) {
@@ -52,23 +54,25 @@ fun main() {
 /** [3]. 1) 매개변수 2개를 이용하여 "S, B" 형태로 변환 */
 fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
     var calculateResult = "" + inputData.filterIndexed { index, i ->
-        i == answer[index] // Strike
-    }.size
-
-    calculateResult += ", " + inputData.filterIndexed { index, i ->
         i in answer.filter { it != answer[index] } // Ball
     }.size
 
+    calculateResult += ", " + inputData.filterIndexed { index, i ->
+        i == answer[index] // Strike
+    }.size
+
+    // TODO For Debuging
     // println(calculateResult)
+
     calculateResultPrint(calculateResult)
-    if(calculateResult == "${BASEBALL_DIGITS}, 0")
+    if(calculateResult == "0, ${BASEBALL_DIGITS}")
         return true
     return false
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 */
 fun calculateResultPrint(calculateResult: String) {
-    val (strike, ball) = calculateResult.split(", ")
+    val (ball, strike) = calculateResult.split(", ")
 
     if (strike == "${BASEBALL_DIGITS}") {
         println("${BASEBALL_DIGITS}스트라이크")
