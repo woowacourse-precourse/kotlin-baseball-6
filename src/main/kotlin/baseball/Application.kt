@@ -34,3 +34,6 @@ fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
 
 fun calculateStrikeCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
     computerNumbers.indices.count { i -> computerNumbers[i] == playerNumbers[i] }
+
+fun calculateBallCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
+    playerNumbers.filterIndexed { i, playerNumber -> playerNumber in computerNumbers && computerNumbers[i] != playerNumber }.size
