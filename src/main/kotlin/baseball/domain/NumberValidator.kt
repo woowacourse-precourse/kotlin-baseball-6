@@ -19,7 +19,7 @@ class NumberValidator {
     }
 
     private fun validateFormat(input: String) {
-        if (input.contains("""[^$START_INCLUSIVE-$END_INCLUSIVE]""".toRegex())) {
+        if (input.contains("""[^$START_INCLUSIVE -$END_INCLUSIVE]""".toRegex())) {
             throw IllegalArgumentException("유효하지 않은 형식입니다.")
         }
     }
@@ -29,5 +29,4 @@ class NumberValidator {
             throw IllegalArgumentException("입력이 중복된 수를 가집니다.")
         }
     }
-
 }

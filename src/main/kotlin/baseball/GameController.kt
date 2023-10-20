@@ -1,9 +1,9 @@
 package baseball
 
-import baseball.domain.AnswerGenerator
 import baseball.config.GameCommandConfig.EXIT_CMD
 import baseball.config.GameCommandConfig.RESTART_CMD
 import baseball.config.GameNumberConfig.DIGIT_NUMBER
+import baseball.domain.AnswerGenerator
 import baseball.domain.GameRestartHandler
 import baseball.domain.NumberComparator
 import baseball.domain.NumberValidator
@@ -24,7 +24,7 @@ class GameController {
     }
 
     private fun startTurn() {
-        val answer = answerGenerator.generate() // A. 컴퓨터는 사용자가 맞힐 정답을 생성한다.
+        val answer = answerGenerator.generated() // A. 컴퓨터는 사용자가 맞힐 정답을 생성한다.
         println(answer)
 
         while (true) {
@@ -41,9 +41,11 @@ class GameController {
     }
 
     private fun printEndMsg() {
-        println("""${DIGIT_NUMBER}개의 숫자를 모두 맞히셨습니다! 게임 종료
+        println(
+            """${DIGIT_NUMBER}개의 숫자를 모두 맞히셨습니다! 게임 종료
                 |게임을 새로 시작하려면 ${RESTART_CMD}, 종료하려면 ${EXIT_CMD}를 입력하세요.
-            """.trimMargin())
+            """.trimMargin()
+        )
     }
 
 }
