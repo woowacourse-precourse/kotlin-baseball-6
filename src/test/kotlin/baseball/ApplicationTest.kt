@@ -34,6 +34,9 @@ class ApplicationTest : NsTest() {
             // 빈 문자열("")을 runException으로 전달하면 assertThrows에서
             // IllegalArgumentException 오류가 발생하여 테스크가 불가능함 -> null로 대체
             // assertThrows<IllegalArgumentException> { runException("") }     // empty
+
+            // 기존 브랜치에서도 null로 테스트 시 자리수에서 오류 발생하는 것으로 확인됨.
+            // 따라서 브랜치를 삭제하는 게 맞겠지만, 학습을 위해 Merge 해본뒤 삭제할 것.
             assertThrows<IllegalArgumentException> { runException(null) }     // null
 
             // TODO 숫자 중복 테스트 케이스 추가후,"./gradlew.bat clean test" 해볼 것
