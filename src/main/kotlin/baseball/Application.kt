@@ -3,6 +3,20 @@ package baseball
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
 
+
+fun generateRandomNumber(): List<Int> {
+
+    val computer = mutableListOf<Int>()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+
+    return computer
+}
+
 fun processInputWithException(input: String): List<Int> {
 
     /*
@@ -27,7 +41,8 @@ fun processInputWithException(input: String): List<Int> {
 
 }
 
-fun baseballGame(user: List<Int>): Pair<Int, Int> {
+
+fun baseballGame(user: List<Int>, computer: List<Int>): Pair<Int, Int> {
 
     /*
     * 2. 게임 설계
@@ -40,13 +55,7 @@ fun baseballGame(user: List<Int>): Pair<Int, Int> {
     *   - 낫싱: 3개의 숫자가 모두 다를 경우
     * */
 
-    val computer = mutableListOf<Int>()
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
+
 
     println("computer: $computer")
 
@@ -58,27 +67,57 @@ fun baseballGame(user: List<Int>): Pair<Int, Int> {
 
 }
 
+
+fun displyResult(strike: Int, ball: Int): MutableList<String> {
+
+    val result = mutableListOf<String>()
+
+    if (ball == 0 && strike == 0) {
+        result.add("낫싱")
+        return result
+    }
+
+    if (ball > 0) result.add("${ball}볼")
+    if (strike > 0) result.add("${strike}스트라이크")
+
+    return result
+
+}
+
 fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    print("숫자를 입력해주세요 : ")
-    val userInput = readLine()
-    val number = processInputWithException(userInput)
+    do {
 
-    val (strike, ball) = baseballGame(number)
+        // 1. 랜덤수 생성
+        val computer = generateRandomNumber()
 
-    val output = mutableListOf<String>()
+        do {
 
-    if (ball == 0 && strike == 0) {
-        output.add("낫싱")
-    } else if (ball > 0) {
-        output.add("${ball}볼")
-    } else if (strike > 0) {
-        output.add("${strike}스트라이크")
-    }
+            //2. 숫자 입력받기
+            print("숫자를 입력해주세요 : ")
+            val userInput = readLine()
+            val user = processInputWithException(userInput)
 
-    println(output.joinToString(separator = " "))
+            //3. 숫자 맞추기
+            val (strike, ball) = baseballGame(user, computer)
+
+            //3.1 출력형식
+            val result = displyResult(strike, ball)
+            println(result.joinToString(separator = " "))
+
+
+        } while (strike < 3)
+
+        //4. 종료 여부 확인
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+        val isExit = if (readLine() == "1") true else false
+
+    } while (isExit) // 종료 선택
 
 
 }
