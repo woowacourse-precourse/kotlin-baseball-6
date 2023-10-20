@@ -86,6 +86,28 @@ fun getScore(target: Int, input: Int): Boolean {
     return true
 }
 
-fun main() {
+fun endGame(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val input: Int = getInput(1)
+    when (input) {
+        1 -> return false
+        2 -> return true
+        else -> throw IllegalArgumentException("input 1 or 2")
+    }
+}
 
+fun baseballGame() {
+    while (true) {
+        val target: Int = newGame()
+        while (true)
+            if (!getScore(target, getInput(3)))
+                break
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        if (endGame())
+            break
+    }
+}
+
+fun main() {
+    baseballGame()
 }
