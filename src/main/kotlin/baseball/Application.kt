@@ -16,31 +16,28 @@ const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
 fun main() {
+    println("숫자 야구 게임을 시작합니다.")
     var isAnswer = false
     var isStay = true
     var answer = answerSelect()
+    var inputData: IntArray
 
     do {
-        // println(answer.contentToString())
-        println("숫자 야구 게임을 시작합니다.")
+        // println("정답 : ${answer.contentToString()})
 
-        var inputData: IntArray = inputVaildator(
+        inputData = inputVaildator(
             digit = BASEBALL_DIGITS,
             range = CharRange('1', '9')
         )
         if (inputData.size == BASEBALL_DIGITS) {
             isAnswer = calculateBallAndStrike(inputData, answer)
+            if (isAnswer == false) continue
         }
 
-        if (isAnswer == true) {
-            inputData = inputVaildator(
-                digit = MENU_DIGITS,
-                range = CharRange('1', '2')
-            )
-        }
-
-        if (inputData.size != MENU_DIGITS) continue
-
+        inputData = inputVaildator(
+            digit = MENU_DIGITS,
+            range = CharRange('1', '2')
+        )
         if (inputData[0] == 1) {
             isAnswer = false
             isStay = true
