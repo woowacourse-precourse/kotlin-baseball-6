@@ -142,3 +142,10 @@ while (computer.size() < 3) {
 - 미션은 [kotlin-baseball](https://github.com/woowacourse-precourse/kotlin-baseball-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 구현할 기능
+
+- 각 자리가 서로 다른 3자리 숫자를 생성
+- 사용자의 입력이 서로 다른 3자리 숫자인지 확인 (그렇지 않다면 잘못된 입력)
+- 사용자의 입력과 컴퓨터가 선택한 숫자를 비교하여 결과 생성
+- 게임을 다시 시작하거나 종료할 수 있는 기능 구현 (`1`, `2` 외에는 전부 잘못된 입력)
