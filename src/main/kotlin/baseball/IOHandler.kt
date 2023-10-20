@@ -29,7 +29,7 @@ class IOHandler {
     private fun checkInputValidWhileGame(input: String): Boolean {
         return input.filter {
             it in validInputWhileGame
-        }.toSet().size == 3
+        }.toSet().size == input.length
     }
 
     private fun checkInputValidAfterGame(input: String) = input in validInputAfterGame
