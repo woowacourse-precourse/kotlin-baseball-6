@@ -1,14 +1,15 @@
 package baseball
 
 import baseball.domain.AnswerGenerator
+import baseball.domain.NumberComparator
 import baseball.domain.NumberValidator
 import camp.nextstep.edu.missionutils.Console
 
 class GameController {
 
-    val answerGenerator = AnswerGenerator()
-    val numberValidator = NumberValidator()
-
+    private val answerGenerator = AnswerGenerator()
+    private val numberValidator = NumberValidator()
+    private val numberComparator = NumberComparator()
     fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
 
@@ -17,9 +18,6 @@ class GameController {
         println(answer)
 
         while (true) {
-            var ballCnt = 0
-            var strikeCnt = 0
-
             // B: 사용자의 수를 입력받는다.
             print("숫자를 입력해주세요 : ")
             val input = Console.readLine()
@@ -28,29 +26,21 @@ class GameController {
             numberValidator.validate(input)
 
             // C: 정답과 사용자의 입력을 비교해서 결과를 리턴받는다.
-            for (i in 0..2) {
-                if (answer.contains(input[i] - '0')) {
-                    ballCnt++
-                }
-                if (input[i] - '0' == answer[i]) {
-                    strikeCnt++
-                }
-            }
-            ballCnt -= strikeCnt
+            val ballAndStrike = numberComparator.compare(input, answer)
 
             // C-2 모두 맞히지 못했을 경우
-            if (ballCnt == 0 && strikeCnt == 0) {
+            if (ballAndStrike.ball == 0 && ballAndStrike.strike == 0) {
                 println("낫싱")
-            } else if (strikeCnt == 0) {
-                println("${ballCnt}볼")
-            } else if (ballCnt == 0) {
-                println("${strikeCnt}스트라이크")
+            } else if (ballAndStrike.strike == 0) {
+                println("${ballAndStrike.ball}볼")
+            } else if (ballAndStrike.ball == 0) {
+                println("${ballAndStrike.strike}스트라이크")
             } else {
-                println("${ballCnt}볼 ${strikeCnt}스트라이크")
+                println("${ballAndStrike.ball}볼 ${ballAndStrike.strike}스트라이크")
             }
 
             // C-1 모두 맞힌 경우
-            if (strikeCnt == 3) {
+            if (ballAndStrike.strike == 3) {
                 println("""3개의 숫자를 모두 맞히셨습니다! 게임 종료
                 |게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
             """.trimMargin())
@@ -70,14 +60,6 @@ class GameController {
         }
     }
 
-    fun startTurn() {
-        var ballCnt = 0
-        var strikeCnt = 0
-
-        print("숫자를 입력해주세요 : ")
-        val input = Console.readLine()
-
-    }
 
 
 }
