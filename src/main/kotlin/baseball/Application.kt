@@ -100,6 +100,15 @@ fun decideGame() {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
     val userInput = Console.readLine()
+    checkValidInput(userInput)
+}
+
+fun checkValidInput(input: String) {
+    if (input == "1" || input == "2") {
+        return
+    }
+
+    throw IllegalArgumentException("입력이 1 또는 2가 아닙니다.")
 }
 
 var gameFlag = true
@@ -115,6 +124,7 @@ fun main() {
 
         if (!gameFlag) {
             printGameEndMessage()
+            decideGame()
         }
     }
 }
