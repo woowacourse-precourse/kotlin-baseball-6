@@ -60,7 +60,7 @@ fun baseballGame(user: List<Int>, computer: List<Int>): Pair<Int, Int> {
     println("computer: $computer")
 
     val strike = computer.zip(user).count { (c, u) -> c == u }
-    val ball = computer.intersect(user).size - strike
+    val ball = computer.intersect(user.toSet()).size - strike
 
     return Pair(strike, ball)
 
@@ -88,7 +88,7 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    do {
+    loop@ do {
 
         // 1. 랜덤수 생성
         val computer = generateRandomNumber()
@@ -98,7 +98,15 @@ fun main() {
             //2. 숫자 입력받기
             print("숫자를 입력해주세요 : ")
             val userInput = readLine()
-            val user = processInputWithException(userInput)
+            val user: List<Int>
+
+            try {
+                user = processInputWithException(userInput)
+            } catch (_: IllegalArgumentException) {
+                println("ERROR: 잘못된 값을 입력하여, 프로그램을 종료 합니다.")
+                break@loop
+            }
+
 
             //3. 숫자 맞추기
             val (strike, ball) = baseballGame(user, computer)
@@ -115,9 +123,23 @@ fun main() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
-        val isExit = if (readLine() == "1") true else false
+        val isExit: Boolean
+        val flag = readLine()
 
-    } while (isExit) // 종료 선택
+        isExit = try {
+
+            when (flag) {
+                "1" -> true
+                "2" -> false
+                else -> throw IllegalArgumentException()
+            }
+
+        } catch (_: IllegalArgumentException) {
+            println("ERROR: 잘못된 값을 입력하여, 프로그램을 종료 합니다.")
+            break@loop
+        }
+
+    } while (isExit)
 
 
 }
