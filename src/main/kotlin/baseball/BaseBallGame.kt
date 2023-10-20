@@ -93,7 +93,7 @@ class BaseBallGame {
         return userInput.toInt()
     }
 
-    private fun validateUserAnswer(userInput: String) {
+    fun validateUserAnswer(userInput: String) {
         if (!(userInput == "1" || userInput == "2")) {
             throw IllegalArgumentException(USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE)
         }
