@@ -5,7 +5,7 @@
 - [ ] 야구 게임 진행 - processGameInProgress()#BaseballController
 - [ ] 랜덤 야구 숫자 생성 기능 - generateRandomNumber()#BaseballGame
 - [ ] 숫자를 입력해주세요 출력 기능 - printNumberInputMessage()#OutputView
-- [ ] 숫자를 입력하는 기능 - getInputNumber()#InputView
+- [x] 숫자를 입력하는 기능 - getInputNumber()#InputView
 - [ ] 스트라이크, 볼 확인 기능 - calculateScore()#BaseballGame
 - [ ] 입력한 수에 대한 결과를 볼, 스트라이크 개수로 표시하는 기능 - printScoreMessage()#OutputView
 - [ ] 정답인지 확인하는 기능 - isCorrectAnswer()#BaseballGame
