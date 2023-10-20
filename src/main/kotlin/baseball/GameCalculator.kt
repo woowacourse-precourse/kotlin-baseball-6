@@ -19,8 +19,6 @@ class GameCalculator {
                 }
 
 
-        }else{
-            gameResult = GameResult(0,0)
         }
 
         }
