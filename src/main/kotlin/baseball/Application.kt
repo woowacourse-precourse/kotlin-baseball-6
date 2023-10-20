@@ -60,7 +60,7 @@ fun checkValidNumber(number: String) {
     }
 }
 
-fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
+fun countStrikeAndBall(computer: MutableList<Int>, user: MutableList<Int>): Pair<Int, Int> {
     var strike = 0
     var ball = 0
 
@@ -77,6 +77,16 @@ fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
         }
     }
 
+    if (strike == 3) {
+        gameFlag = false
+    }
+
+    return Pair(strike, ball)
+}
+
+fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
+    var (strike, ball) = countStrikeAndBall(computer, user)
+
     if (strike == 0 && ball == 0) {
         println("낫싱")
     } else if (strike > 0 && ball == 0) {
@@ -85,10 +95,6 @@ fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
         println("${ball}볼")
     } else {
         println("${ball}볼 ${strike}스트라이크")
-    }
-
-    if (strike == 3) {
-        gameFlag = false
     }
 }
 
