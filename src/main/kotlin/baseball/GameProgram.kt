@@ -15,7 +15,7 @@ class GameProgram {
     }
 
     private fun playGame() {
-        val computerNumbers = createRandomNumbers()
+        val computerNumbers = generateRandomNumbers()
 
         do {
             print(INPUT_USER_NUMBERS_MESSAGE)
@@ -27,7 +27,7 @@ class GameProgram {
         println(GAME_END_MESSAGE)
     }
 
-    private fun createRandomNumbers(): List<Int> {
+    private fun generateRandomNumbers(): List<Int> {
         val randomNumbers = mutableListOf<Int>()
 
         while (randomNumbers.size < BASEBALLGAME_NUMBERS_LENGTH) {
