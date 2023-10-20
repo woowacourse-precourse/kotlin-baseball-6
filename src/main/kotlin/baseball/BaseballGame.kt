@@ -1,5 +1,8 @@
 package baseball
 
+import java.lang.IllegalArgumentException
+import java.lang.NumberFormatException
+
 class BaseballGame {
 
     private val console: BaseballConsole by lazy {
@@ -10,7 +13,8 @@ class BaseballGame {
     }
 
     fun start() {
-        initialize()
+        val computer = initialize()
+        val userInput = getUserInput()
     }
 
     /** TODO
@@ -22,5 +26,32 @@ class BaseballGame {
     private fun initialize(): BaseballNum {
         console.printWelcomeMessage()
         return engine.generateRandomNumber()
+    }
+
+    private fun getUserInput(): String {
+        val userInput = console.getInput()
+        val isValid = verifyUserInput(userInput)
+        if (isValid) {
+            return userInput!!
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+
+    private fun verifyUserInput(userInput: String?): Boolean {
+        return if (userInput.isNullOrEmpty()) {
+            false
+        } else {
+            if (userInput.length != 3) {
+                false
+            } else {
+                try {
+                    userInput.toInt()
+                    true
+                } catch (nfe: NumberFormatException) {
+                    false
+                }
+            }
+        }
     }
 }
