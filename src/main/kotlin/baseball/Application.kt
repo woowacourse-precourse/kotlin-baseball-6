@@ -40,22 +40,18 @@ fun main() {
 fun readNumber(num: String, isRestart: Boolean): Int {
     try {
         val validNum = num.toInt()
-        if (isRestart) {
-            if (validNum != 1 && validNum != 2) {
-                throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            }
-        } else {
-            if (num.length != 3) {
-                throw IllegalArgumentException("숫자는 3자리여야 합니다. ")
-            }
+        if (isRestart && validNum != 1 && validNum != 2) {
+            throw IllegalArgumentException()
+        } else if (!isRestart && (num.length != 3 || num[0] == num[1] || num[1] == num[2] || num[0] == num[2]) || num.contains(
+                "0"
+            )
+        ) {
+            throw IllegalArgumentException()
         }
         return validNum
-    } catch (e: NumberFormatException) {
-        if (isRestart) {
-            throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\"")
-        } else {
-            throw IllegalArgumentException("숫자를 입력해 주세요")
-        }
+    } catch (e: Exception) {
+        if (isRestart) throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        else throw IllegalArgumentException("1-9까지의 서로 다른 3자리 숫자를 입력해주세요.")
     }
 }
 
