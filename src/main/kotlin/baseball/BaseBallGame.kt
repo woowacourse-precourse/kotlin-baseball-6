@@ -5,9 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class BaseBallGame {
     companion object {
-        private const val BASEBALLGAME_NUMBERS_LENGTH = 3
-        private const val NUMBERS_START_RANGE = 1
-        private const val NUMBERS_END_RANGE = 9
+        private const val NUMBERS_LENGTH = 3
+        private const val NUMBER_START_RANGE = 1
+        private const val NUMBER_END_RANGE = 9
         private const val GAME_END_USER_ANSWER = 2
 
         private const val PROGRAM_START_MESSAGE = "숫자 야구 게임을 시작합니다."
@@ -51,8 +51,8 @@ class BaseBallGame {
     private fun generateRandomNumbers(): List<Int> {
         val randomNumbers = mutableListOf<Int>()
 
-        while (randomNumbers.size < BASEBALLGAME_NUMBERS_LENGTH) {
-            val number = Randoms.pickNumberInRange(NUMBERS_START_RANGE, NUMBERS_END_RANGE)
+        while (randomNumbers.size < NUMBERS_LENGTH) {
+            val number = Randoms.pickNumberInRange(NUMBER_START_RANGE, NUMBER_END_RANGE)
             if (!randomNumbers.contains(number)) {
                 randomNumbers.add(number)
             }
