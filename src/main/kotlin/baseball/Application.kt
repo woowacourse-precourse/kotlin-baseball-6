@@ -47,3 +47,13 @@ fun printResult(strikeCount: Int, ballCount: Int) {
         else -> println("낫싱")
     }
 }
+
+fun askReplay(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val playerInput = Console.readLine()
+    return when (playerInput) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("ERROR")
+    }
+}
