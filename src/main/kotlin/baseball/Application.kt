@@ -31,3 +31,6 @@ fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
         throw IllegalArgumentException("ERROR")
     }
 }
+
+fun calculateStrikeCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
+    computerNumbers.indices.count { i -> computerNumbers[i] == playerNumbers[i] }
