@@ -24,8 +24,26 @@ class ApplicationTest : NsTest() {
     fun `예외 테스트`() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> { runException("1234") }
+        }
+    }
+    @Test
+    fun `길이 3이하 입력시`() {
+        assertSimpleTest {
             assertThrows<IllegalArgumentException> { runException("12") }
-            assertThrows<IllegalArgumentException> { runException("awef") }
+        }
+    }
+
+    @Test
+    fun `문자 입력시`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("a!=bㅁ") }
+        }
+    }
+
+    @Test
+    fun `공백 입력시`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException(" ") }
         }
     }
 
