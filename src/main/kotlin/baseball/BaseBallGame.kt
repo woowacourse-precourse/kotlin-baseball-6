@@ -32,8 +32,7 @@ class BaseBallGame {
         do {
             playRound()
             println(INPUT_USER_ANSWER_MESSAGE)
-            val userAnswer = setUserAnswer()
-        } while(userAnswer != GAME_END_USER_ANSWER)
+        } while(getUserAnswer() != GAME_END_USER_ANSWER)
     }
 
     private fun playRound() {
@@ -41,7 +40,7 @@ class BaseBallGame {
 
         do {
             print(INPUT_USER_NUMBERS_MESSAGE)
-            val userNumbers = setUserNumbers()
+            val userNumbers = getUserNumbers()
             val result = compareNumbers(computerNumbers, userNumbers)
             val hintMessage = provideHintMessage(result)
             println(hintMessage)
@@ -61,7 +60,7 @@ class BaseBallGame {
         return randomNumbers
     }
 
-    private fun setUserNumbers() : List<Int> {
+    private fun getUserNumbers() : List<Int> {
         val userInput = readUserInput()
         validateUserNumbers(userInput)
         val userNumbers = mutableListOf<Int>()
@@ -85,7 +84,7 @@ class BaseBallGame {
         if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException(USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE)
     }
 
-    private fun setUserAnswer() : Int {
+    private fun getUserAnswer() : Int {
         val userInput = readUserInput()
         validateUserAnswer(userInput)
 
