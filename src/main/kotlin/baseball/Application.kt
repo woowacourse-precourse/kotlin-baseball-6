@@ -5,11 +5,19 @@ import camp.nextstep.edu.missionutils.Console
 
 
 fun main() {
+    // 야구 게임 시작
+    println("숫자 야구 게임을 시작합니다.")
     // 랜덤한 3개의 숫자 생성
     val computer = createNumber()
-    //야구 게임 시작
-    println("숫자 야구 게임을 시작합니다.")
-    val guessNum = guessNumber()
+    do {
+        // 숫자 추론 하기
+        val guessNum = guessNumber()
+        // 정답인지 확인
+        var check = checkNum(computer, guessNum)
+
+    }
+    // 정답이 아닌 경우 반복
+    while (check)
 
 }
 
@@ -64,7 +72,55 @@ fun guessNumber() : MutableList<Int> {
 
     }
     return human
+}
 
+// 입력 받은 숫자를 판단해주는 함수
+// 입력 : 정답 MutableList<Int> , 추론한 숫자 MutableList<Int>
+// 출력 : X
+//  - 자리와 숫자가 일치하는 경우 1스트라이크 추가
+//  - 자리가 틀리고 숫자가 존재하는 경우 1볼 추가
+//  - 전부 다 틀린 경우 낫싱 출력
+fun checkNum(computer : MutableList<Int>, guessNum:MutableList<Int>) : Boolean{
+    var strike=0
+    var ball=0
+    for (i : Int in 0..2){
+        // 위치와 숫자가 동일한 경우
+        if (guessNum[i]==computer[i]){
+            strike+=1
+        }
+        else {
+            // 숫자는 동일하지만 자리가 틀린 경우
+            for ( j : Int in 0..2){
+                if(guessNum[i]==computer[j]){
+                    ball+=1
+                }
+            }
+        }
+    }
+    //볼이 있는 경우
+    if(ball!=0) {
+        //볼도 있고 스트라이크도 있는 경우
+        if(strike!=0){
+            println("${ball}볼 ${strike}스트라이크")
+        }
+        //볼만 있는 경우
+        else {
+            println("${ball}볼")
+        }
+    }
+    //스트라이크만 있는 경우
+    else if(strike!=0){
+        println("${strike}스트라이크")
+        if (strike==3){
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            return false
+        }
+    }
+    //아무 것도 없는 경우
+    else{
+        println("낫싱")
+    }
+    return true
 }
 
 
