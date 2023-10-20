@@ -24,21 +24,26 @@ class Computer {
     private fun playGame() {
         println("숫자 야구 게임을 시작합니다.\n숫자를 입력해주세요 : ")
         while (true) {
-            val userInput = getUserInput()
-            if (userInput.size == 3) {
-                val ballCounts = checkUserInput(userInput)
-                println(ballCounts)
-                if (ballCounts.isStrikeOut()) {
-                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-                    if (checkRematch(Console.readLine()!!.toInt())) {
-                        startGame()
-                        return
-                    }
-                    println("게임 종료")
-                    return
-                }
-            } else throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+            if (checkGameEnd(getUserInput())) break
         }
+    }
+
+    private fun checkGameEnd(userInput: List<Int>): Boolean {
+        if (userInput.size == 3) {
+            val ballCounts = checkUserInput(userInput)
+            println(ballCounts)
+            if (ballCounts.isStrikeOut()) {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+                if (checkRematch(Console.readLine()!!.toInt())) {
+                    startGame()
+                    return true
+                }
+                println("게임 종료")
+                return true
+            }
+        } else throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+
+        return false
     }
 
     private fun checkUserInput(userInput: List<Int>): BallCount {
