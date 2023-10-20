@@ -7,16 +7,27 @@ import java.sql.DriverManager.println
 
 fun main() {
 
-    var ran1: Int = Randoms.pickNumberInRange(1, 9)
-    var ran2: Int = Randoms.pickNumberInRange(1, 9)
-    var ran3: Int = Randoms.pickNumberInRange(1, 9)
 
-    var ans: Int = 100 * ran1 + 10 * ran2 + ran3
+    fun makeNum():IntArray {
+        var ans = IntArray(3)
+        var ran1: Int
+        var ran2: Int
+        var ran3: Int
 
-    //컴퓨터가 3자리 수를 생성한다.
+        ran1 = Randoms.pickNumberInRange(1, 9)
+        ans[0]=ran1
 
+        do{ ran2 = Randoms.pickNumberInRange(1, 9)
+        } while(ran2==ran1)
+        ans[1]=ran2
 
+        do{ ran3 = Randoms.pickNumberInRange(1, 9)
+        }while(ran3==ran2 || ran3==ran1)
+        ans[2]=ran3
 
+        return ans
+
+    } //서로 다른 3자리의 수를 가진 배열 생성
 
     fun numBall(a:IntArray, b:IntArray): Int {
         var ballNum: Int =0
@@ -29,7 +40,7 @@ fun main() {
         }
 
         return ballNum
-    }
+    } // 볼의 개수를 알려주는 함수
 
     fun numStrike(a:IntArray, b:IntArray):Int{
         var strikeNum: Int =0
@@ -39,16 +50,18 @@ fun main() {
             }
         }
         return strikeNum
-    }
+    } //스트라이크의 개수를 알려주는 함수
 
     println("숫자 야구 게임을 시작합니다.")
 
-    while (user !=ans){
+    while (True){
 
         var ball:Int = numBall()
         var strike:Int = numStrike()
         var user: Int = 0
         var ifCon:Int
+
+        makeNum()
 
         user = readLine().toInt()
 
@@ -76,9 +89,6 @@ fun main() {
             if(ifCon==1) exitProcess(0)
 
         }
-
-
-
 
     }
 }
