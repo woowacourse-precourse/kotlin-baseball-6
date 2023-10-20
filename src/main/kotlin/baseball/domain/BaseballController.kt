@@ -36,9 +36,18 @@ class BaseballController(private val inputView: InputView = InputView(), private
         if (baseballGame.isCorrectAnswer(randomNumber, userInput)) {
             outputView.printGameSuccessMessage()
             outputView.printGameRestartMessage()
+            return if (gameRestart()) GameStatus.GAME_START else GameStatus.GAME_OVER
         }
         return gameStatus
     }
 
+    private fun gameRestart(): Boolean {
+        return when (inputView.getInputBaseballRestart()) {
+            "1" -> true
+            else -> {
+                outputView.printGameOverMessage()
+                false
+            }
+        }
     }
 }
