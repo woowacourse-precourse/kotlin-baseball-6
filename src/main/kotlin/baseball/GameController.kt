@@ -1,6 +1,9 @@
 package baseball
 
 import baseball.domain.AnswerGenerator
+import baseball.config.GameCommandConfig.EXIT_CMD
+import baseball.config.GameCommandConfig.RESTART_CMD
+import baseball.config.GameNumberConfig.DIGIT_NUMBER
 import baseball.domain.GameRestartHandler
 import baseball.domain.NumberComparator
 import baseball.domain.NumberValidator
@@ -17,7 +20,7 @@ class GameController {
         do {
             startTurn()
             printEndMsg()
-        } while (gameRestartHandler.restart(readLine().toIntOrNull()))
+        } while (gameRestartHandler.restart(readLine()))
     }
 
     private fun startTurn() {
@@ -31,15 +34,15 @@ class GameController {
 
             val result = numberComparator.compare(input, answer)  // C: 정답과 사용자의 입력을 비교해서 결과를 리턴받는다.
             println(result)
-            if (result.strike == 3) {
+            if (result.strike == DIGIT_NUMBER) {
                 break
             }
         }
     }
 
     private fun printEndMsg() {
-        println("""3개의 숫자를 모두 맞히셨습니다! 게임 종료
-                |게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+        println("""${DIGIT_NUMBER}개의 숫자를 모두 맞히셨습니다! 게임 종료
+                |게임을 새로 시작하려면 ${RESTART_CMD}, 종료하려면 ${EXIT_CMD}를 입력하세요.
             """.trimMargin())
     }
 

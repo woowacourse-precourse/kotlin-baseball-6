@@ -1,12 +1,14 @@
 package baseball.domain
 
+import baseball.config.GameNumberConfig
+
 class NumberComparator {
 
     private val ballAndStrike = BallAndStrike()
 
     fun compare(input: String, answer: List<Int>): BallAndStrike {
         initBallAndStrike()
-        for (i in 0..2) {
+        for (i in 0 until GameNumberConfig.DIGIT_NUMBER) {
             if (answer.contains(input[i] - '0')) {
                 ballAndStrike.ball++
             }
