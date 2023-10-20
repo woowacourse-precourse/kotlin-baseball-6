@@ -9,12 +9,10 @@ repositories {
 
 dependencies {
     implementation("com.github.woowacourse-projects:mission-utils:1.1.0")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
 }
 
 tasks {
