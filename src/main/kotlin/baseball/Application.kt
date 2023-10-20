@@ -34,10 +34,7 @@ fun main() {
 
                 val inputOneIsPlayTwoIsDone = Console.readLine().replace("\\s".toRegex(), "")
                 when (inputOneIsPlayTwoIsDone) {
-                    "1" -> {
-                        computerRandomNumber = getRandomNumber()
-                        println(computerRandomNumber)
-                    }
+                    "1" -> computerRandomNumber = getRandomNumber()
                     "2" -> {
                         println("게임 종료")
                         break
@@ -51,16 +48,15 @@ fun main() {
             else -> println("$ball 볼")
         }
     }
-
 }
 
-fun isThreeDigitNumber(number: String): Boolean {
+fun isThreeDigitNumber(userGuessNumbers: String): Boolean {
     when {
-        number.isBlank() -> throw IllegalArgumentException("비어있습니다")
-        !number.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력 해 주세요")
-        number.contains("0") -> throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
-        number.length != 3 -> throw IllegalArgumentException("세자리수를 입력 해주세요")
-        number.toSet().size !=3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
+        userGuessNumbers.isBlank() -> throw IllegalArgumentException("비어있습니다")
+        !userGuessNumbers.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력 해 주세요")
+        userGuessNumbers.contains("0") -> throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
+        userGuessNumbers.length != 3 -> throw IllegalArgumentException("세자리수를 입력 해주세요")
+        userGuessNumbers.toSet().size !=3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
         else -> return true
     }
 }
