@@ -13,6 +13,6 @@ fun main() {
         val userInputList:List<String> = userInput.chunked(1)
 
     } else {
-        
+        throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
     }
 }
