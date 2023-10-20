@@ -14,7 +14,7 @@ fun main() {
         var strike = 0
 
         println("숫자를 입력해주세요 : ")
-        val userGuessNumber = Console.readLine().replace("\\s".toRegex(), "")
+        val userGuessNumber = Console.readLine()
         isThreeDigitNumber(userGuessNumber)
 
         for (i in computerRandomNumber.indices) {
@@ -31,7 +31,7 @@ fun main() {
                 println("3 스트라이크\n" + "3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
-                val inputOneIsPlayTwoIsDone = Console.readLine().replace("\\s".toRegex(), "")
+                val inputOneIsPlayTwoIsDone = Console.readLine()
                 when (inputOneIsPlayTwoIsDone) {
                     "1" -> computerRandomNumber = getRandomNumber()
                     "2" -> {
