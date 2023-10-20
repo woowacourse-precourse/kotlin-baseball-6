@@ -16,12 +16,69 @@ const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
 fun main() {
-    val answer = answerSelect()
-    println("숫자 야구 게임을 시작합니다.")
+    var isAnswer = false
+    var isStay = true
+    var answer = answerSelect()
 
-    inputNumber(
-        digit = BASEBALL_DIGITS,
-        range = CharRange('1', '9')
-    )
+    do {
+        // println(answer.contentToString())
+        println("숫자 야구 게임을 시작합니다.")
+
+        var inputData: IntArray = inputVaildator(
+            digit = BASEBALL_DIGITS,
+            range = CharRange('1', '9')
+        )
+        if (inputData.size == BASEBALL_DIGITS) {
+            isAnswer = calculateBallAndStrike(inputData, answer)
+        }
+
+        if (isAnswer == true) {
+            inputData = inputVaildator(
+                digit = MENU_DIGITS,
+                range = CharRange('1', '2')
+            )
+        }
+
+        if (inputData.size != MENU_DIGITS) continue
+
+        if (inputData[0] == 1) {
+            isAnswer = false
+            isStay = true
+            answer = answerSelect()
+        } else if (inputData[0] == 2) {
+            println("게임 종료")
+            isStay = false
+        }
+    } while (isStay)
+}
+
+/** [3]. 1) 매개변수 2개를 이용하여 "S, B" 형태로 변환 */
+fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
+    var calculateResult = "" + inputData.filterIndexed { index, i ->
+        i == answer[index] // Strike
+    }.size
+
+    calculateResult += ", " + inputData.filterIndexed { index, i ->
+        i in answer.filter { it != answer[index] } // Ball
+    }.size
+
+    println(calculateResult)
+    calculateResultPrint(calculateResult)
+    if(calculateResult == "3, 0")
+        return true
+    return false
+}
+
+/** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 */
+fun calculateResultPrint(calculateResult: String) {
+    val (strike, ball) = calculateResult.split(", ")
+
+    if (strike == "3") {
+        println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    } else if (strike == "0" && ball == "0") {
+        println("낫싱")
+    }
+    println("${ball}볼 ${strike}스트라이크")
 }
 

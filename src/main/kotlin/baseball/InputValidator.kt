@@ -3,17 +3,16 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 /** [2]. 사용자 입력 */
-fun inputNumber(digit: Int, range: CharRange) {
-    var inputData: String = ""
-
+fun inputVaildator(digit: Int, range: CharRange): IntArray {
     if (digit == BASEBALL_DIGITS) {
         print("숫자를 입력해주세요 : ")
     } else if (digit == MENU_DIGITS) {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
-    inputData = Console.readLine()
+
+    var inputData = Console.readLine() ?: ""
     checkDigitRange(inputData, digit, range)
-    checkDuplicate(inputData, digit)
+    return checkDuplicate(inputData, digit)
 }
 /** [2]. (2, 4) 입력된 문자열의 길이 및 범위 체크 */
 fun checkDigitRange(
@@ -31,15 +30,16 @@ fun checkDigitRange(
 }
 
 /** [2]. (2) 3) 숫자 중복 체크 */
-fun checkDuplicate(inputData: String, digit: Int) {
-    if(digit == MENU_DIGITS) return
+fun checkDuplicate(inputData: String, digit: Int): IntArray {
     // 숫자 중복이 있는지 : String -> Array -> Set으로 변환하여 size 조사
-    val inputDataSet = inputData.map { it.toString()
-        .toInt()
-    }.toIntArray()
+    val inputDataSet = inputData
+        .map { it.charToInt() }
+        .toIntArray()
         .toSet()
 
-    if (inputDataSet.size < BASEBALL_DIGITS) {
+    if (inputDataSet.size < digit) {
         throw IllegalArgumentException()
     }
+    return inputDataSet.toIntArray()
 }
+
