@@ -15,24 +15,23 @@ fun main() {
             // 숫자 추론 하기
             val guessNum = guessNumber()
             // 정답인지 확인
-            var check = checkNum(computer, guessNum)
+            val check = checkNum(computer, guessNum)
 
         }
         // 정답이 아닌 경우 반복
         while (check)
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        var restart= readLine()?.toInt()
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val restartNum= Console.readLine()?.toInt() ?: 0
+        // 1인경우 재시작, 2인 경우 종료
         // 1 또는 2가 아닌 경우 예외 처리
-        if(restart==1){
-
-        }else if(restart==2){
-
-        }else{
-            throw IllegalArgumentException("1또는 2를 입력 하세요.")
+        val resart = when(restartNum){
+            1-> true
+            2->false
+            else->throw IllegalArgumentException("1또는 2를 입력 하세요.")
         }
     }
     //재시작을 원하는 경우 다시 실행
-    while (restart==1)
+    while (resart)
 
 }
 
@@ -56,10 +55,10 @@ fun createNumber () :MutableList<Int> {
 // 예외 : 잘못된 입력을 받는 경우 "IllegalArgumentException" 발생
 fun guessNumber() : MutableList<Int> {
     val human :MutableList<Int>  = mutableListOf()
-    var guessNum : Int =0
+    var guessNum : Int
     print("숫자를 입력해주세요 : ")
     try {
-        guessNum = readLine()?.toInt() ?: 0
+        guessNum = Console.readLine()?.toInt() ?: 0
     } catch (ex: NumberFormatException){
         throw IllegalArgumentException("숫자를 입력해 주세요")
     }
@@ -82,7 +81,7 @@ fun guessNumber() : MutableList<Int> {
         else if (human.contains(pickNumber)) {
             throw IllegalArgumentException("서로 다른 수를 넣어야합니다.")
         }
-        guessNum=guessNum/10
+        guessNum /= 10
         human.add(0,pickNumber)
 
     }
