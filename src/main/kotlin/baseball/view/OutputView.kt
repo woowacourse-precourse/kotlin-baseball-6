@@ -1,7 +1,10 @@
 package baseball.view
 
 import baseball.model.Score
+import utils.Constant.GAME_OVER_MESSAGE
+import utils.Constant.GAME_RESTART_MESSAGE
 import utils.Constant.GAME_START_MESSAGE
+import utils.Constant.GAME_SUCCESS_MESSAGE
 import utils.Constant.NUMBER_INPUT_MESSAGE
 
 class OutputView {
@@ -15,5 +18,11 @@ class OutputView {
         if (score.strikes > 0) append("${score.strikes}스트라이크")
         if (score.outs == 3) append("낫싱")
     }.trim())
+
+    fun printGameSuccessMessage() = println(GAME_SUCCESS_MESSAGE)
+
+    fun printGameRestartMessage() = println(GAME_RESTART_MESSAGE)
+
+    fun printGameOverMessage() = println(GAME_OVER_MESSAGE)
 
 }
