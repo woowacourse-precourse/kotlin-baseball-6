@@ -12,9 +12,9 @@
       ```
       (완료) data class BallCount를 생성하자 
       (완료) 프로퍼티로 strike: Int, ball: Int를 추가
-      () isStrikeOut 메서드를 생성해, strike 3개를 모두 맞혔는지 확인하자!
-      () isNothing 메서드를 생성해, 아무것도 못 맞춘 경우를 확인하자!
-      () toString 메서드를 생성해, 반복되는 message format을 줄이자!
+      (완료) isStrikeOut 메서드를 생성해, strike 3개를 모두 맞혔는지 확인하자!
+      (완료) isNothing 메서드를 생성해, 아무것도 못 맞춘 경우를 확인하자!
+      (완료) toString 메서드를 생성해, 반복되는 message format을 줄이자!
      ```
 
 <hr />
