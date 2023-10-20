@@ -12,13 +12,13 @@ fun main() {
     while (start) {
         val user: List<Int> = inputThreeAnswerNumber()
 
-        val answer = checkAnswer(computer, user)
+        val isAnswer = checkAnswer(computer, user)
 
-        if (answer) {
+        if (isAnswer) {
             start = gameRestartOrOver()
         }
 
-        if (answer && start) {
+        if (isAnswer && start) {
             computer = generateThreeRandomNumber()
         }
     }
