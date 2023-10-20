@@ -2,15 +2,16 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
-import sun.jvm.hotspot.runtime.DeadlockDetector.print
+import org.mockito.internal.matchers.text.ValuePrinter.print
 import java.lang.System.exit
 import java.sql.DriverManager.println
+import java.util.ArrayList
 
 fun main() {
 
 
-    fun makeNum():IntArray {
-        var ans = IntArray(3)
+    fun makeNum():ArrayList<Int> {
+        var ans = ArrayList<Int>(3)
         var ran1: Int
         var ran2: Int
         var ran3: Int
@@ -30,8 +31,8 @@ fun main() {
 
     } //서로 다른 3자리의 수를 가진 배열 생성
 
-    fun getUser(a:Int): IntArray {
-        var userNum = IntArray(3)
+    fun getUser(a:Int): ArrayList<Int> {
+        var userNum = ArrayList<Int>(3)
         var ans : Int = a
 
         userNum[0]=a/100
@@ -46,7 +47,7 @@ fun main() {
     }
 
 
-    fun numBall(a:IntArray, b:IntArray): Int {
+    fun numBall(a:ArrayList<Int>, b: ArrayList<Int>): Int {
         var ballNum: Int =0
         for(i in 0..2){
             if(a[i] in b){
@@ -59,7 +60,7 @@ fun main() {
         return ballNum
     } // 볼의 개수를 알려주는 함수
 
-    fun numStrike(a:IntArray, b:IntArray):Int{
+    fun numStrike(a:ArrayList<Int>, b:ArrayList<Int>):Int{
         var strikeNum: Int =0
         for (i in 0..2){
             if(a[i]==b[i]){
@@ -73,16 +74,18 @@ fun main() {
 
     var ball:Int
     var strike:Int
-    var ansArray = IntArray(3)
-    var user: Int
-    var userArray = IntArray(3)
+    var ansArray = ArrayList<Int>(3)
+    var userString: String
+    var user: Int =0
+    var userArray = ArrayList<Int>(3)
     var ifCon:Int
 
     while (true){
 
         ansArray=makeNum()
 
-        user = readLine().toInt()
+        userString = readLine()
+        user = userString.toInt()
         userArray = getUser(user)
 
         ball = numBall(ansArray,userArray)
