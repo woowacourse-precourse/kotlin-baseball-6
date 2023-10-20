@@ -7,10 +7,11 @@
         - 456을 제시한 경우 : 1볼 1스트라이크
         - 789를 제시한 경우 : 낫싱
 
-  🧐 생각한 방법 : data class BallCount를 생성해서, 스트라이크, 볼 갯수를 관리하자!
-     ```
-      () data class BallCount를 생성하자 
-      () 프로퍼티로 strike: Int, ball: Int를 추가
+   🧐 생각한 방법 : data class BallCount를 생성해서, 스트라이크, 볼 갯수를 관리하자!
+     
+      ```
+      (완료) data class BallCount를 생성하자 
+      (완료) 프로퍼티로 strike: Int, ball: Int를 추가
       () isStrikeOut 메서드를 생성해, strike 3개를 모두 맞혔는지 확인하자!
       () isNothing 메서드를 생성해, 아무것도 못 맞춘 경우를 확인하자!
       () toString 메서드를 생성해, 반복되는 message format을 줄이자!
