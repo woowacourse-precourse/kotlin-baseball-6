@@ -3,7 +3,7 @@
 - [x] 야구 게임 시작 - run()#BaseballController
 - [x] 게임 시작 문구 출력 기능 - printGameStartMessage()#OutputView
 - [ ] 야구 게임 진행 - processGameInProgress()#BaseballController
-- [ ] 랜덤 야구 숫자 생성 기능 - generateRandomNumber()#BaseballGame
+- [x] 랜덤 야구 숫자 생성 기능 - generateRandomNumber()#BaseballGame
 - [x] 숫자를 입력해주세요 출력 기능 - printNumberInputMessage()#OutputView
 - [x] 숫자를 입력하는 기능 - getInputNumber()#InputView
 - [ ] 스트라이크, 볼 확인 기능 - calculateScore()#BaseballGame
