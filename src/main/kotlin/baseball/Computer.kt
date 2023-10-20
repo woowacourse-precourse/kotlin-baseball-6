@@ -37,7 +37,7 @@ class Computer {
                     println("게임 종료")
                     return
                 }
-            } else break
+            } else throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
         }
     }
 
