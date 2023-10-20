@@ -28,7 +28,7 @@ fun main() {
 
         when {
             strike == 3 -> {
-                println("3 스트라이크\n" + "3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println("3스트라이크\n" + "3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
                 val inputOneIsPlayTwoIsDone = Console.readLine()
@@ -51,11 +51,11 @@ fun main() {
 
 fun isThreeDigitNumber(userGuessNumbers: String): Boolean {
     when {
-        userGuessNumbers.isBlank() -> throw IllegalArgumentException("비어있습니다")
-        !userGuessNumbers.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력 해 주세요")
-        userGuessNumbers.contains("0") -> throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
-        userGuessNumbers.length != 3 -> throw IllegalArgumentException("세자리수를 입력 해주세요")
-        userGuessNumbers.toSet().size !=3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
+        userGuessNumbers.isBlank() -> throw IllegalArgumentException("비어있습니다.")
+        !userGuessNumbers.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력해 주세요.")
+        userGuessNumbers.contains("0") -> throw IllegalArgumentException("1~9 사이 숫자만 입력해 주세요.")
+        userGuessNumbers.length != 3 -> throw IllegalArgumentException("세 자릿수를 입력해 주세요.")
+        userGuessNumbers.toSet().size !=3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다.")
         else -> return true
     }
 }
