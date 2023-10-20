@@ -4,25 +4,27 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class GameProgram {
-
-    fun startGame() {
+    fun startProgram() {
         println("숫자 야구 게임을 시작합니다.")
 
         do {
-            val computerNumbers = createRandomNumbers()
-            do {
-                print("숫자를 입력해주세요 : ")
-                val userNumbers = setUserNumbers()
-
-                val result = compareNumbers(computerNumbers, userNumbers)
-                val hintMessage = provideHintMessage(result)
-                println(hintMessage)
-            } while (hintMessage != "3스트라이크")
-
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            playGame()
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             val userAnswer = setUserAnswer()
         } while(userAnswer == 1)
+    }
+
+    private fun playGame() {
+        val computerNumbers = createRandomNumbers()
+
+        do {
+            print("숫자를 입력해주세요 : ")
+            val userNumbers = setUserNumbers()
+            val result = compareNumbers(computerNumbers, userNumbers)
+            val hintMessage = provideHintMessage(result)
+            println(hintMessage)
+        } while (hintMessage != "3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
     private fun createRandomNumbers(): List<Int> {
