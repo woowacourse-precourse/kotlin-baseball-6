@@ -50,6 +50,41 @@ fun getInput(): Int {
     }
 }
 
+// return True when game isn't continue, return false when 3-strike
+fun getScore(target: Int, input: Int): Boolean {
+    if (target == input) {
+        println("3스트라이크")
+        return false
+    }
+    val targetToStr: String = target.toString()
+    val inputToStr: String = input.toString()
+    var ball: Int = 0
+    var strike: Int = 0
+    for (i in 0..2) {
+        for (j in 0..2) {
+            if (targetToStr[i] == inputToStr[j]) {
+                if (i == j)
+                    strike++
+                else
+                    ball++
+            }
+        }
+    }
+    if (ball + strike == 0)
+        println("낫싱")
+    else {
+        if (ball > 0) {
+            print(String.format("%d볼", ball))
+            if (strike > 0)
+                println(String.format(" %d스트라이크", strike))
+            else
+                println()
+        } else
+            println(String.format("%d스트라이크", strike))
+    }
+    return true
+}
+
 fun main() {
 
 }
