@@ -30,6 +30,9 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("a165") } // 문자 포함 4자리
             assertThrows<IllegalArgumentException> { runException("#^$") }  // 특수문자 3자리
             assertThrows<IllegalArgumentException> { runException("#215") } // 특수문자 포함 4자리
+            // TODO [Error] empty 입력 시, IllegalArgumentException 발생 안됨
+            assertThrows<IllegalArgumentException> { runException("") }     // empty
+
             // TODO 숫자 중복 테스트 케이스 추가후,"./gradlew.bat clean test" 해볼 것
             // assertThrows<IllegalArgumentException> { runException("212") }  // 숫자 중복 -
         }
