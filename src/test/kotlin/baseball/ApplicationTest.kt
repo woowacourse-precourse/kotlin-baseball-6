@@ -21,7 +21,7 @@ class ApplicationTest : NsTest() {
 //    }
 
     @Test
-    fun `예외 테스트`() {
+    fun `사용자 입력 예외 테스트(digit = NUMBER_OF_DIGITS)`() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> { runException("1234") } // 4자리
             assertThrows<IllegalArgumentException> { runException("12") }   // 2자리
@@ -30,8 +30,11 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("a165") } // 문자 포함 4자리
             assertThrows<IllegalArgumentException> { runException("#^$") }  // 특수문자 3자리
             assertThrows<IllegalArgumentException> { runException("#215") } // 특수문자 포함 4자리
-            // TODO [Error] empty 입력 시, IllegalArgumentException 발생 안됨
-            assertThrows<IllegalArgumentException> { runException("") }     // empty
+
+            // 빈 문자열("")을 runException으로 전달하면 assertThrows에서
+            // IllegalArgumentException 오류가 발생하여 테스크가 불가능함 -> null로 대체
+            // assertThrows<IllegalArgumentException> { runException("") }     // empty
+            assertThrows<IllegalArgumentException> { runException(null) }     // null
 
             // TODO 숫자 중복 테스트 케이스 추가후,"./gradlew.bat clean test" 해볼 것
             // assertThrows<IllegalArgumentException> { runException("212") }  // 숫자 중복 -
