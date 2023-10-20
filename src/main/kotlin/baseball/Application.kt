@@ -15,7 +15,7 @@ fun appStart(){
 }
 
 fun gameStart(){
-
+    val computerNumber = Computer.makeNumber()
 }
 
 
