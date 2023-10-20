@@ -12,3 +12,4 @@
 2. `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`을 이용하여 맞춰야할 서로 다른 3자리 수 생성
 3. `camp.nextstep.edu.missionutils.Console`의 `readLine()`로 유저 입력을 가져오고 서로 다른 3자리 수 인지 확인
 4. 유저가 입력한 숫자와 맞춰야할 숫자를 비교하여 결과 생성
+5. 비교 결과를 이용하여 스르라이크와 볼의 갯수를 출력한다. 만약 둘 다 없을 경우 낫싱을 출력한다.
