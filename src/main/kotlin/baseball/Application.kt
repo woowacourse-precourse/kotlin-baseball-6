@@ -86,12 +86,21 @@ fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
     } else {
         println("${ball}볼 ${strike}스트라이크")
     }
+
+    if (strike == 3) {
+        gameFlag = false
+    }
 }
+
+var gameFlag = true
 
 fun main() {
     printGameStartMessage()
     val computerNumber = setComputerNumber()
-    val userNumber = inputUserNumber()
     println(computerNumber)
-    compareAndPrintHint(computerNumber, userNumber)
+
+    while (gameFlag) {
+        val userNumber = inputUserNumber()
+        compareAndPrintHint(computerNumber, userNumber)
+    }
 }
