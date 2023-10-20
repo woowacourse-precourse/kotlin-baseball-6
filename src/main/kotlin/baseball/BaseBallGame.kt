@@ -77,11 +77,15 @@ class BaseBallGame {
     }
 
     private fun validateUserNumbers(userInput: String) {
-        for (c in userInput.toCharArray()) {
-            if (!c.isDigit()) throw IllegalArgumentException(USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE)
+        if (!userInput.all { it.isDigit() }) {
+            throw IllegalArgumentException(USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE)
         }
-        if (userInput.length != BASEBALLGAME_NUMBERS_LENGTH) throw IllegalArgumentException(USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE)
-        if (userInput[0] == userInput[1] || userInput[0] == userInput[2] || userInput[1] == userInput[2]) throw IllegalArgumentException(USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE)
+        if (userInput.length != NUMBERS_LENGTH) {
+            throw IllegalArgumentException(USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE)
+        }
+        if (userInput.toSet().size != NUMBERS_LENGTH) {
+            throw IllegalArgumentException(USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE)
+        }
     }
 
     private fun getUserAnswer() : Int {
