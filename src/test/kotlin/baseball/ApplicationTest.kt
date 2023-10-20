@@ -42,6 +42,7 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("1223") }
             assertThrows<IllegalArgumentException> { runException("1 3") }
             assertThrows<IllegalArgumentException> { runException("1 3 5") }
+            assertThrows<IllegalArgumentException> { runException("012") }
         }
     }
 
