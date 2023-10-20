@@ -27,18 +27,19 @@ fun newGame(): Int {
     return target.toInt()
 }
 
-fun getInput(): Int {
+fun getInput(len: Int): Int {
     val str: String = Console.readLine()
+    if (str.length != len)
+        throw IllegalArgumentException("illegal length was input")
+    if (str[0] == '0')
+        throw IllegalArgumentException("do not start 0")
     try {
         val num: Int = str.toInt()
-        if ((num > 999) or (num < 100))
-            throw IllegalArgumentException("illegal length was input")
-        val list = mutableListOf<Int>(num / 100, num % 100 / 10, num % 10)
-        for (i in 0..2) {
-            for (j in 0..2) {
+        for (i in 0 until len) {
+            for (j in 0 until len) {
                 if (i == j)
                     continue
-                else if (list[i] == list[j])
+                else if (str[i] == str[j])
                     throw IllegalArgumentException("duplicate-digit was input")
             }
         }
