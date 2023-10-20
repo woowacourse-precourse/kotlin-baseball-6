@@ -8,17 +8,17 @@ fun main() {
 
     var computer: List<Int> = generateThreeRandomNumber()
 
-    var restart = true
-    while (restart) {
+    var start = true
+    while (start) {
         val user: List<Int> = inputThreeAnswerNumber()
 
         val answer = checkAnswer(computer, user)
 
         if (answer) {
-            restart = gameRestartOrOver()
+            start = gameRestartOrOver()
         }
 
-        if (answer && restart) {
+        if (answer && start) {
             computer = generateThreeRandomNumber()
         }
     }
