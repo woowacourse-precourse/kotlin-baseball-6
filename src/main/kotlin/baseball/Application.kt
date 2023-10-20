@@ -23,6 +23,24 @@ fun main() {
     if (regex.matches(userInput) && (userInput.length == userInput.toSet().size)) {
         val userInputList:List<String> = userInput.chunked(1)
         //난수와 사용자 입력 비교
+        var strike = 0
+        var ball = 0
+        var nothing = 0
+
+        for (i in userInputList.indices) {
+            if (userInputList[i] == randomNumList[i]) {
+                //각 자릿 수 모두 일치
+                strike++
+            } else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) {
+               //같은 숫자가 다른 자리에 존재
+                ball++
+            }
+        }
+        if(ball ==0 && strike==0){
+            nothing =1
+        }
+
+
     } else {
         throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
     }
