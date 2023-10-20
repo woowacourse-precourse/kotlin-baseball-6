@@ -48,7 +48,7 @@ class Result(var message : Int) {
     }
 }
 */
-
+/*
 var strikeCount : Int = 0
 var ballCount : Int = 0
 fun main(){
@@ -124,6 +124,70 @@ fun reOrStop(){
 
     }
 }
+*/
+fun main(){
+    println("숫자 야구 게임을 시작합니다.")
+    val cN = randNumber()
+    println(cN)   //나중에 바꿀꺼
+    compareNumber(cN)
+
+}
+fun randNumber(): List<Int> {
+    var computer = mutableListOf<Int>()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+    return computer
+}
+fun inputNumber(): List<Int> {            // 반환값 정수다
+    var input = readLine()!!.toString() // 이변수는 null이 아니다
+    if(input.contains('0')
+        || input.length !=3
+        || ((input[0] == input[1]) || (input[1] == input[2]) || (input[2] == input[0]))) {
+        throw IllegalArgumentException("")
+    }
+    return input.map { it.toString().toInt() } // 문자열에서 숫자 리스트로 변환
+}
+
+fun compareNumber(cN : List<Int>) {        //비교, 출력
+    // var aa = cN //이게 아니라 randNumber의 computer을 받아와야한느데, 이렇게하면 새로운 숫자가생성됨
+    val userNumbers = inputNumber()
+    print("숫자를 입력해주세요 :")
+    var strikeCount: Int = 0
+    var ballCount: Int = 0
+    for (i in 0..2) {
+        if (userNumbers[i] == cN[i]) {
+            strikeCount++
+        } else if (cN.contains(userNumbers[i])) {
+            ballCount++
+        }
+    }
+    when {
+        strikeCount != 0 && ballCount != 0 -> println("${ballCount}볼 ${strikeCount}스트라이크")
+        strikeCount != 0 -> println("${strikeCount}스트라이크")
+        ballCount != 0 -> println("${ballCount}볼")
+        else -> println("낫싱")
+    }
+}
+    /*
+    if(strikeCount !=0 && ballCount !=0){
+        println("${ballCount}볼 ${strikeCount}스트라이크")
+    }else if(strikeCount != 0 && ballCount == 0){
+        println("${strikeCount}스트라이크")
+    }else if(strikeCount == 0 && ballCount != 0){
+        println("${ballCount}볼")
+    }else if(strikeCount ==0 && ballCount ==0){
+        println("낫싱")
+    }else{
+    }
+     */
+
+
+
+
 
 
 
