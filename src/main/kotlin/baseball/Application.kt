@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.Constants.START
+
 fun main() {
-    TODO("프로그램 구현")
+    println(START)
 }
