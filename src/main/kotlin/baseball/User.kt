@@ -26,6 +26,6 @@ class User {
             val computer = Computer()
             computer.playGame()
         } else if (inputNumber != 2)
-            playAgain()
+            throw IllegalArgumentException()
     }
 }
