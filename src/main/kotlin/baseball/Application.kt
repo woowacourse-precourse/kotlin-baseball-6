@@ -22,9 +22,14 @@ fun playGame(): PlayAgain {
     while (true) {
         val validInput = getValidUserInput()
 
-        // TODO: 입력과 target number 비교 + 출력
+        val result = compareInput(input = validInput, targetNumber = targetNumber)
 
-        // TODO: 3 strikes일 경우 while 빠져나가기
+        // TODO: CompareResult를 이용하여 출력
+
+        if (result.isCorrectGuess()) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
     }
 
     // TODO: 1 입력하면 again을 true, 2 입력하면 again false
@@ -95,4 +100,32 @@ fun validateInput(input: Int) {
             digit--
         }
     }
+}
+
+
+fun compareInput(input: Int, targetNumber: TargetNumber): CompareResult {
+    var strike = 0
+    var ball = 0
+
+    var inputVar = input
+    var currentDigit = MAX_DIGIT
+
+    repeat(MAX_DIGIT) {
+        targetNumber.getDigitInfoOrNull(number = inputVar % 10)?.let { digit ->
+            if (digit == currentDigit) strike++ else ball++
+        }
+
+        inputVar /= 10
+        currentDigit--
+    }
+
+    return CompareResult(strike = strike, ball = ball)
+}
+
+
+data class CompareResult(
+    val strike: Int,
+    val ball: Int
+) {
+    fun isCorrectGuess(): Boolean = strike == 3
 }
