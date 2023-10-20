@@ -14,7 +14,7 @@ fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
     // println(calculateResult)
 
     calculateResultPrint(calculateResult)
-    if(calculateResult == "0, ${BASEBALL_DIGITS}")
+    if (calculateResult == "0, ${BASEBALL_DIGITS}")
         return true
     return false
 }

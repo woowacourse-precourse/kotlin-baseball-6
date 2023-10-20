@@ -14,6 +14,7 @@ fun inputVaildator(digit: Int, range: CharRange): IntArray {
     checkDigitRange(inputData, digit, range)
     return checkDuplicate(inputData, digit)
 }
+
 /** [2]. (2, 4) 입력된 문자열의 길이 및 범위 체크 */
 fun checkDigitRange(
     inputData: String,
