@@ -92,7 +92,7 @@ class BaseBallGame {
         val userInput = readUserInput()
         validateUserAnswer(userInput)
 
-        return Integer.parseInt(userInput)
+        return userInput.toInt()
     }
 
     private fun validateUserAnswer(userInput: String) {
@@ -102,31 +102,25 @@ class BaseBallGame {
     }
 
     private fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
-        var total = 0
+        var ball = 0
         var strike = 0
 
-        for (number in userNumbers) {
-            if (computerNumbers.contains(number)) {
-                total++
-            }
-        }
-        for (idx in userNumbers.indices) {
-            if (computerNumbers[idx] == userNumbers[idx]) {
+        for (i in userNumbers.indices) {
+            if (userNumbers[i] == computerNumbers[i]) {
                 strike++
+            } else if (userNumbers[i] in computerNumbers) {
+                ball++
             }
         }
-        val ball = total - strike
-
-        return listOf(total,ball,strike)
+        return listOf(ball,strike)
     }
 
     private fun provideHintMessage(result: List<Int>) : String {
-        val total = result[0]
-        val ball = result[1]
-        val strike = result[2]
+        val ball = result[0]
+        val strike = result[1]
         var resultMessage = ""
 
-        if (total == 0) {
+        if (ball + strike == 0) {
             resultMessage += NOTING_MESSAGE
         }
         if (ball > 0) {
