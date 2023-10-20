@@ -5,19 +5,34 @@ import camp.nextstep.edu.missionutils.Console
 
 
 fun main() {
-    // 야구 게임 시작
-    println("숫자 야구 게임을 시작합니다.")
-    // 랜덤한 3개의 숫자 생성
-    val computer = createNumber()
+    // 게임 실행
     do {
-        // 숫자 추론 하기
-        val guessNum = guessNumber()
-        // 정답인지 확인
-        var check = checkNum(computer, guessNum)
+        // 야구 게임 시작
+        println("숫자 야구 게임을 시작합니다.")
+        // 랜덤한 3개의 숫자 생성
+        val computer = createNumber()
+        do {
+            // 숫자 추론 하기
+            val guessNum = guessNumber()
+            // 정답인지 확인
+            var check = checkNum(computer, guessNum)
 
+        }
+        // 정답이 아닌 경우 반복
+        while (check)
+        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        var restart= readLine()?.toInt()
+        // 1 또는 2가 아닌 경우 예외 처리
+        if(restart==1){
+
+        }else if(restart==2){
+
+        }else{
+            throw IllegalArgumentException("1또는 2를 입력 하세요.")
+        }
     }
-    // 정답이 아닌 경우 반복
-    while (check)
+    //재시작을 원하는 경우 다시 실행
+    while (restart==1)
 
 }
 
@@ -76,7 +91,7 @@ fun guessNumber() : MutableList<Int> {
 
 // 입력 받은 숫자를 판단해주는 함수
 // 입력 : 정답 MutableList<Int> , 추론한 숫자 MutableList<Int>
-// 출력 : X
+// 출력 : 맞춘 경우 false, 틀린 경우 true를 출력
 //  - 자리와 숫자가 일치하는 경우 1스트라이크 추가
 //  - 자리가 틀리고 숫자가 존재하는 경우 1볼 추가
 //  - 전부 다 틀린 경우 낫싱 출력
