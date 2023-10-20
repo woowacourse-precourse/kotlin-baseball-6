@@ -36,24 +36,16 @@ fun main() {
 
         userNum.add(a/100)
         ans -= 100 * userNum[0]
-        println(userNum)
-        println(ans)
 
         userNum.add(ans/10)
         ans -= 10 * userNum[1]
-        println(userNum)
-        println(ans)
-
 
         userNum.add(ans)
-        println(userNum)
-        println(ans)
 
         return userNum
     }
 
-    var a:ArrayList<Int> = getUser(942)
-
+//    var a:ArrayList<Int> = getUser(104)
 
     fun numBall(a:ArrayList<Int>, b: ArrayList<Int>): Int {
         var ballNum: Int =0
@@ -101,7 +93,7 @@ fun main() {
 
     kotlin.io.println("숫자 야구 게임을 시작합니다.")
 
-    while(false){
+    while(true){
 
         ansArray=makeNum()
 
@@ -115,10 +107,9 @@ fun main() {
             ball = numBall(ansArray, userArray)
             strike = numStrike(ansArray, userArray)
 
-            println(ansArray)
-            println(ball)
-            println(strike)
-
+//            println(ansArray)
+//            println(ball)
+//            println(strike)
 
             if(ball > 0){
                 print(ball)
@@ -138,8 +129,8 @@ fun main() {
 
         }while(ansArray!=userArray)
 
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        kotlin.io.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        kotlin.io.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
         ifCon = readLine().toInt()
 
