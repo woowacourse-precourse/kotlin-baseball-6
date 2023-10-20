@@ -37,3 +37,13 @@ fun calculateStrikeCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
 
 fun calculateBallCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
     playerNumbers.filterIndexed { i, playerNumber -> playerNumber in computerNumbers && computerNumbers[i] != playerNumber }.size
+
+fun printResult(strikeCount: Int, ballCount: Int) {
+    when {
+        strikeCount == 3 -> println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        ballCount > 0 && strikeCount > 0 -> println("${ballCount}볼 ${strikeCount}스트라이크")
+        ballCount > 0 -> println("${ballCount}볼")
+        strikeCount > 0 -> println("${strikeCount}스트라이크")
+        else -> println("낫싱")
+    }
+}
