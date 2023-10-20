@@ -26,25 +26,12 @@ class GameController {
             numberValidator.validate(input)
 
             // C: 정답과 사용자의 입력을 비교해서 결과를 리턴받는다.
-            val ballAndStrike = numberComparator.compare(input, answer)
-
-            // C-2 모두 맞히지 못했을 경우
-            if (ballAndStrike.ball == 0 && ballAndStrike.strike == 0) {
-                println("낫싱")
-            } else if (ballAndStrike.strike == 0) {
-                println("${ballAndStrike.ball}볼")
-            } else if (ballAndStrike.ball == 0) {
-                println("${ballAndStrike.strike}스트라이크")
-            } else {
-                println("${ballAndStrike.ball}볼 ${ballAndStrike.strike}스트라이크")
-            }
-
-            // C-1 모두 맞힌 경우
-            if (ballAndStrike.strike == 3) {
+            val result = numberComparator.compare(input, answer)
+            println(result)
+            if (result.strike == 3) {
                 println("""3개의 숫자를 모두 맞히셨습니다! 게임 종료
                 |게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
             """.trimMargin())
-
                 when (Console.readLine().toIntOrNull()) {
                     1 -> {
                         answer = answerGenerator.generate()
@@ -55,11 +42,9 @@ class GameController {
                     2 -> break
                     else -> throw IllegalArgumentException("유효하지 않은 형식입니다.")
                 }
-
             }
         }
     }
-
 
 
 }
