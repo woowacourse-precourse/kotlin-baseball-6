@@ -5,6 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 private const val MAX_DIGIT = 3
 
+private const val PLAY_AGAIN = "1"
+private const val PLAY_NO_MORE = "2"
+
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
@@ -31,9 +34,7 @@ fun playGame(): PlayAgain {
         }
     }
 
-    // TODO: 1 입력하면 again을 true, 2 입력하면 again false
-
-    return PlayAgain(again = false)
+    return askPlayAgain()
 }
 
 
@@ -142,4 +143,14 @@ data class CompareResult(
 
         println(result)
     }
+}
+
+
+fun askPlayAgain(): PlayAgain {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+    val input = readLine().toString()
+    require(input == PLAY_AGAIN || input == PLAY_NO_MORE)
+
+    return PlayAgain(input == PLAY_AGAIN)
 }
