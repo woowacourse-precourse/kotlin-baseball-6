@@ -1,7 +1,7 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -105,8 +105,7 @@ fun checkValidation(checkList: String): Boolean {
 
 /*
     기능3. 정답 확인
-    : 컴퓨터는 입력한 숫자에 대한 결과를 출력한다.
-    같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱이란 힌트를 얻는다.
+    : 같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱이란 힌트를 얻는다.
     이 같은 과정을 반복해 컴퓨터가 선택한 3개의 숫자를 모두 맞히면 게임이 종료된다.
  */
 fun checkAnswer(computer: List<Int>, user: List<Int>): Boolean {
@@ -124,29 +123,42 @@ fun checkAnswer(computer: List<Int>, user: List<Int>): Boolean {
         }
     }
 
+    printHint(ball, strike)
+
+    if (strike == 3) {
+        return true
+    }
+
+    return false
+}
+
+/*
+    기능3-1. 힌트 출력
+    : 컴퓨터는 입력한 숫자에 대한 결과(힌트)를 출력한다.
+ */
+fun printHint(ball: Int, strike: Int) {
     if (strike == 3) {
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        return true
+        return
     }
 
     if (ball != 0 && strike != 0) {
         println("${ball}볼 ${strike}스트라이크")
-        return false
+        return
     }
 
     if (ball != 0) {
         println("${ball}볼")
-        return false
+        return
     }
 
     if (strike != 0) {
         println("${strike}스트라이크")
-        return false
+        return
     }
 
     println("낫싱")
-    return false
 }
 
 /*
