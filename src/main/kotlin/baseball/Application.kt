@@ -12,7 +12,7 @@ package baseball
     9. Git에 업로드 안된 내용이라도 Local History를 통해서 파일 단위로 코드 복구가 가능하다.
 */
 
-const val BASEBALL_DIGITS = 3
+const val BASEBALL_DIGITS = 4
 const val MENU_DIGITS = 1
 
 fun main() {
@@ -23,7 +23,7 @@ fun main() {
     var inputData: IntArray
 
     do {
-        // println("정답 : ${answer.contentToString()})
+        println("정답 : ${answer.contentToString()}")
 
         inputData = inputVaildator(
             digit = BASEBALL_DIGITS,
@@ -59,9 +59,9 @@ fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
         i in answer.filter { it != answer[index] } // Ball
     }.size
 
-    println(calculateResult)
+    // println(calculateResult)
     calculateResultPrint(calculateResult)
-    if(calculateResult == "3, 0")
+    if(calculateResult == "${BASEBALL_DIGITS}, 0")
         return true
     return false
 }
@@ -70,12 +70,17 @@ fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
 fun calculateResultPrint(calculateResult: String) {
     val (strike, ball) = calculateResult.split(", ")
 
-    if (strike == "3") {
-        println("3스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    if (strike == "${BASEBALL_DIGITS}") {
+        println("${BASEBALL_DIGITS}스트라이크")
+        println("${BASEBALL_DIGITS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
     } else if (strike == "0" && ball == "0") {
         println("낫싱")
     }
-    println("${ball}볼 ${strike}스트라이크")
+    if (strike == "0") {
+        println("${ball}볼")
+    } else if (ball == "0") {
+        println("${strike}스트라이크")
+    } else if (strike != "0" && ball != "0") {
+        println("${ball}볼 ${strike}스트라이크")
+    }
 }
-
