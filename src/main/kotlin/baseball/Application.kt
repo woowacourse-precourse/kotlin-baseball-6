@@ -1,5 +1,7 @@
 package baseball
 
+import org.junit.jupiter.api.assertThrows
+
 fun main() {
 
 
@@ -19,7 +21,7 @@ fun main() {
     while(!programFinish) {
 //        answerList.forEach { println(it) }
         //문자열 입력
-        try {
+
             print("숫자를 입력해주세요 : ")
             val inputNum = readlnOrNull()
 
@@ -57,12 +59,6 @@ fun main() {
                     }
             }
 
-
-        } catch (e: IllegalArgumentException) {
-
-            programFinish = true
-          
-        }
     }
 }
 
@@ -78,7 +74,7 @@ fun checkInput(input : String?) : List<Int> {
         it.toString()
     }.toTypedArray()
 
-    if(array.distinct().size!=3) throw IllegalArgumentException()
+    if(array.distinct().size!=3) throw IllegalArgumentException("압력 값은 서로 다른 0~9까지의 숫자 3자리로 구성 되어야 합니다.")
     //문자 배열을 숫자 배열로 변환
     array.forEach {
         //숫자가 아닌 문자가 입력된 경우
