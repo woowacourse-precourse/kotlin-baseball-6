@@ -7,25 +7,24 @@ import java.lang.IllegalArgumentException
 fun main() {
     var ball = 0
     var strike = 0
-
     var computerRandomNumber = getRandomNumber()
-    println(computerRandomNumber)
+
     println("숫자 야구 게임을 시작합니다.")
 
     while (strike != 3) {
-        println("숫자를 입력해주세요 : ")
-        val userNumbers = Console.readLine().replace("\\s".toRegex(), "")
-        isThreeDigitNumber(userNumbers)
         ball = 0
         strike = 0
 
+        println("숫자를 입력해주세요 : ")
+        val userGuessNumbers = Console.readLine().replace("\\s".toRegex(), "")
+
+        isThreeDigitNumber(userGuessNumbers)
+
         for (i in computerRandomNumber.indices) {
-            if (computerRandomNumber[i] == userNumbers.chunked(1)[i].toInt())
+            if (computerRandomNumber[i] == userGuessNumbers[i].toString().toInt())
                 strike++
-            for (j in userNumbers.indices) {
-                if (i != j && computerRandomNumber[i] == userNumbers.chunked(1)[j].toInt())
-                    ball++
-            }
+            else if (userGuessNumbers[i].toString().toInt() in computerRandomNumber)
+                ball++
         }
 
         when {
@@ -42,6 +41,7 @@ fun main() {
                     }
                     "2" -> {
                         println("게임 종료")
+                        break
                     }
                     else -> throw IllegalArgumentException("1과2중 에서만 입력해주세요")
                 }
@@ -61,7 +61,7 @@ fun isThreeDigitNumber(number: String): Boolean {
         !number.all { it.isDigit()} -> throw IllegalArgumentException("숫자만 입력 해 주세요")
         number.contains("0") -> throw IllegalArgumentException("1~9사이 숫자만 입력 해주세요")
         number.length != 3 -> throw IllegalArgumentException("세자리수를 입력 해주세요")
-        number.chunked(1).distinct().size != 3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
+        number.toSet().size !=3 -> throw IllegalArgumentException("중복된 숫자는 입력 불가 합니다")
         else -> return true
     }
 }
