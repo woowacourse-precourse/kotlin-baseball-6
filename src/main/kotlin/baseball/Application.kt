@@ -85,16 +85,13 @@ fun countStrikeAndBall(computer: MutableList<Int>, user: MutableList<Int>): Pair
 }
 
 fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
-    var (strike, ball) = countStrikeAndBall(computer, user)
+    val (strike, ball) = countStrikeAndBall(computer, user)
 
-    if (strike == 0 && ball == 0) {
-        println("낫싱")
-    } else if (strike > 0 && ball == 0) {
-        println("${strike}스트라이크")
-    } else if (strike == 0 && ball > 0) {
-        println("${ball}볼")
-    } else {
-        println("${ball}볼 ${strike}스트라이크")
+    when {
+        strike == 0 && ball == 0 -> println("낫싱")
+        strike > 0 && ball == 0 -> println("${strike}스트라이크")
+        strike == 0 && ball > 0 -> println("${ball}볼")
+        else -> println("${ball}볼 ${strike}스트라이크")
     }
 }
 
