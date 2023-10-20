@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
@@ -18,4 +19,9 @@ class Computer {
             }
         }
     }
+
+    private fun getUserInput(): List<Int> =
+        Console.readLine()!!.map {
+            it.toString().toInt()
+        }
 }
