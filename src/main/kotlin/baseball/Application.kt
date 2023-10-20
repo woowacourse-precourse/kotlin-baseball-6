@@ -11,6 +11,14 @@ package baseball
 import kotlin.random.Random
 data class Answer(val a: Int, val b: Int, val c: Int)
 
+fun problem(seed : Int): Answer {
+    val random = Random(seed)
+    val a = random.nextInt(1, 9) // 1부터 9 사이의 정수
+    val b = random.nextInt(1,9)
+    val c = random.nextInt(1, 9)
+    return Answer(a,b,c)
+}
+
 fun User_response():Answer {
     val base = readln()
     if (base.length != 3) {
