@@ -1,38 +1,58 @@
-### 기능 구현 정리
+# 기능 구현 정리
+
+### 실행 결과 예시
 ___
+```
+숫자 야구 게임을 시작합니다.
+숫자를 입력해주세요 : 123
+1볼 1스트라이크
+숫자를 입력해주세요 : 145
+1볼
+숫자를 입력해주세요 : 671
+2볼
+숫자를 입력해주세요 : 216
+1스트라이크
+숫자를 입력해주세요 : 713
+3스트라이크
+3개의 숫자를 모두 맞히셨습니다! 게임 종료
+게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+1
+숫자를 입력해주세요 : 123
+1볼
+```
 
 1. 게임 시작을 위한 세팅
-    * 1~9 사이의 서로 다른 임의의 수 3개 선택 -> `Answer: IntArray`
-    * 게임 시작 문구 출력 - `"숫자 야구 게임을 시작합니다."`<br><br>
+   * 1~9 사이의 서로 다른 임의의 수 3개 선택 -> `Answer: IntArray`
+   * 게임 시작 문구 출력 - `"숫자 야구 게임을 시작합니다."`<br><br>
 
 2. 사용자 입력 (4번에서 메서드 재활용 가능하게 할 것!)
-    * `"숫자를 입력해주세요 : "` -> 사용자 입력 받고, `<??>` 타입 변수에 저장
-    * 잘못된 값일 경우, IllegalArgumentException 발생 시키고 종료
-      ```kotlin
-      inputNumber(digit: Int, range: IntRange): Int
-      1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우 - 중복
-      2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증) - 중복
-      3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)<br><br>
-      ```
+   * `"숫자를 입력해주세요 : "` -> 사용자 입력 받고, `<??>` 타입 변수에 저장
+   * 잘못된 값일 경우, IllegalArgumentException 발생 시키고 종료
+     ```kotlin
+     inputNumber(digit: Int, range: IntRange): Int
+     1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우 - 중복
+     2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증) - 중복
+     3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)<br><br>
+     ```
 
 3. Ball, Strike 검증 및 결과 출력
-    * Ball, Strike 검증
-      ```kotlin
-      1. inputNumber에서 반환된 Int를 IntArray로 변환한 뒤, Answer과 인덱스 비교 => Strike
-      2. inputNumber에서 반환된 Int를 IntArray로 변환한 뒤, Answer과 !인덱스 비교 => Ball
-      ```
-    * 입력한 수에 대한 검증 결과 출력<br><br>
+   * Ball, Strike 검증
+     ```kotlin
+     1. inputNumber에서 반환된 Int를 IntArray로 변환한 뒤, Answer과 인덱스 비교 => Strike
+     2. inputNumber에서 반환된 Int를 IntArray로 변환한 뒤, Answer과 !인덱스 비교 => Ball
+     ```
+   * 입력한 수에 대한 검증 결과 출력<br><br>
 
 4. 3S -> 게임 종료 및 재시작 or 종료 입력받기
-    * `"3개의 숫자를 모두 맞히셨습니다! 게임 종료"` 출력
-    * `"게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."` 재시작 또는 종료 입력 받기
-    * 잘못된 값일 경우, `IllegalArgumentException` 발생 시키고 종료
-      ```kotlin
-      inputNumber(digit: Int, range: IntRange): Int
-      1. else if 또는 if) 입력 받은 데이터가 1인 경우
-      2. else if 또는 else) 입력 받은 데이터가 2인 경우
-      ```
-      <br>
+   * `"3개의 숫자를 모두 맞히셨습니다! 게임 종료"` 출력
+   * `"게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."` 재시작 또는 종료 입력 받기
+   * 잘못된 값일 경우, `IllegalArgumentException` 발생 시키고 종료
+     ```kotlin
+     inputNumber(digit: Int, range: IntRange): Int
+     1. else if 또는 if) 입력 받은 데이터가 1인 경우
+     2. else if 또는 else) 입력 받은 데이터가 2인 경우
+     ```
+     <br>
 
 `원래 습관대로 구현한 뒤, 목표를 적용하면서 바뀌는 부분을 보며 피드백하기.`
 
