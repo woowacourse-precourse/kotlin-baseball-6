@@ -1,4 +1,4 @@
-package baseball.presentation
+package baseball.view
 
 import camp.nextstep.edu.missionutils.Console
 import utils.Exception.userWrongDuplicationAnswer
@@ -16,4 +16,7 @@ class InputView {
 
         return number
     }
+
+    fun getInputBaseballRestart(): String = Console.readLine()
+
 }
