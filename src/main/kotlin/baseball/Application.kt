@@ -33,7 +33,7 @@ fun inputUserNumber(): MutableList<Int> {
 fun checkValidNumber(number: String) {
     //사용자의 입력이 3자리인지 확인
     if (number.length != 3) {
-        throw java.lang.IllegalArgumentException("3자리의 입력이 아닙니다.")
+        throw IllegalArgumentException("3자리의 입력이 아닙니다.")
     }
 
     //사용자의 입력이 숫자인지 확인
@@ -60,30 +60,30 @@ fun checkValidNumber(number: String) {
     }
 }
 
-fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>){
+fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
     var strike = 0
     var ball = 0
 
     user.forEach {
-        if(computer.contains(it)){
+        if (computer.contains(it)) {
             ball++
         }
     }
 
-    for(i in user.indices){
-        if(user[i] == computer[i]){
+    for (i in user.indices) {
+        if (user[i] == computer[i]) {
             strike++
             ball--
         }
     }
 
-    if(strike == 0 && ball == 0){
+    if (strike == 0 && ball == 0) {
         println("낫싱")
-    }else if(strike > 0 && ball == 0){
+    } else if (strike > 0 && ball == 0) {
         println("${strike}스트라이크")
-    }else if(strike == 0 && ball > 0){
+    } else if (strike == 0 && ball > 0) {
         println("${ball}볼")
-    }else{
+    } else {
         println("${ball}볼 ${strike}스트라이크")
     }
 }
