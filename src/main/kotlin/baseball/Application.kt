@@ -101,6 +101,11 @@ fun decideGame() {
 
     val userInput = Console.readLine()
     checkValidInput(userInput)
+
+    if (userInput == "1") {
+        gameFlag = true
+        gameStart()
+    }
 }
 
 fun checkValidInput(input: String) {
@@ -111,10 +116,7 @@ fun checkValidInput(input: String) {
     throw IllegalArgumentException("입력이 1 또는 2가 아닙니다.")
 }
 
-var gameFlag = true
-
-fun main() {
-    printGameStartMessage()
+fun gameStart() {
     val computerNumber = setComputerNumber()
     println(computerNumber)
 
@@ -127,4 +129,11 @@ fun main() {
             decideGame()
         }
     }
+}
+
+var gameFlag = true
+
+fun main() {
+    printGameStartMessage()
+    gameStart()
 }
