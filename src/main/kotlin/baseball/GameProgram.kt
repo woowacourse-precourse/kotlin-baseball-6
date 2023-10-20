@@ -105,13 +105,13 @@ class GameProgram {
             resultMessage += NOTING_MESSAGE
         }
         if (ball > 0) {
-            resultMessage += ball.toString() + "볼"
+            resultMessage += "$ball$BALL_MESSAGE"
         }
         if (strike > 0 && ball == 0) {
-            resultMessage += strike.toString() + "스트라이크"
+            resultMessage += "$strike$STRIKE_MESSAGE"
         }
         else if (strike > 0 && ball > 0) {
-            resultMessage += " " + strike.toString() + "스트라이크"
+            resultMessage += " $strike$STRIKE_MESSAGE"
         }
 
         return resultMessage
