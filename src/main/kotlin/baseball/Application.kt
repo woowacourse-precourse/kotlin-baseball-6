@@ -20,6 +20,19 @@ fun gamePlay() {
         }
         val result = calCount(computer, input)
         println(result)
+        if(result.equals("3스트라이크")) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val reInput = Console.readLine()
+            if(reInput[0] == '1') {
+                computer = makeComputerNumber()
+                println("컴퓨터 숫자 : $computer")
+                continue
+            }
+            else if (reInput[0] == '2') {
+                break
+            }
+        }
     }
 }
 
