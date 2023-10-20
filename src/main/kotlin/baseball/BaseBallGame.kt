@@ -28,7 +28,6 @@ class BaseBallGame {
 
     fun startGame() {
         println(PROGRAM_START_MESSAGE)
-
         do {
             playRound()
         } while(getUserAnswer() != GAME_END_USER_ANSWER)
@@ -36,7 +35,6 @@ class BaseBallGame {
 
     private fun playRound() {
         val computerNumbers = generateRandomNumbers()
-
         do {
             val userNumbers = getUserNumbers()
             val result = compareNumbers(computerNumbers, userNumbers)
