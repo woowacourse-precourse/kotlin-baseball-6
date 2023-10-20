@@ -142,3 +142,28 @@ while (computer.size() < 3) {
 - 미션은 [kotlin-baseball](https://github.com/woowacourse-precourse/kotlin-baseball-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+---
+
+## 구현 기능 목록
+- 상대방(Computer) 랜덤 수 생성 //`pickNumberInRange()`를 활용
+  -중복되지 않는 1부터 9까지의 3자리 정수
+- 플레이어(Player) 입력 처리 //`readLine()`을 활용
+  - 사용자가 잘못된 값을 입력한 경우 애플리케이션 종료 //`IllegalArgumentException`을 발생
+    - 3자리 이상의 숫자인 경우
+    - 숫자가 1부터 9까지의 범위를 벗어난 경우
+    - 중복되는 숫자가 존재할 경우
+- 조건 검사
+  - 볼 증가
+    - 숫자 일치, 자리 불일치인 경우
+  - 스트라이크 증가
+    - 숫자 일치, 자리 일치인 경우
+- 조건 검사 출력
+  - 볼, 스트라이크
+  - 낫싱
+    - 0볼, 0스트라이크인 경우
+  - 게임 종료
+    - 3스트라이크인 경우
+- 재시작(1)/종료(2) 플레이어(Player) 입력
+  - 사용자가 잘못된 값을 입력한 경우 애플리케이션 종료 //`IllegalArgumentException`을 발생
+    - 1과 2가 아닌 수를 입력한 경우 
