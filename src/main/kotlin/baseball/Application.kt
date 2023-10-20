@@ -23,12 +23,18 @@ fun main() {
 
 fun gameStart() {
     println("숫자 야구 게임을 시작합니다.")
-    val computerNumber: ArrayList<Int> = answerNumber()
+    var computerNumber: ArrayList<Int> = answerNumber()
     while (true) {
         val myNumber: ArrayList<Int> = input()
-
         println(myNumber)
         println(computerNumber)
+        if (!comparisonNumber(myNumber, computerNumber)) {
+            if (!reGame()) {
+                break
+            } else {
+                computerNumber = answerNumber()
+            }
+        }
     }
 }
 
@@ -58,4 +64,24 @@ fun answerNumber(): ArrayList<Int> {
         }
     }
     return computer
+}
+fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): Boolean {
+    return if (!myNumber.containsAll(computerNumber)) {
+        true
+    } else {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        false
+    }
+}
+
+fun reGame(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val choice = readln().toInt()
+    return when (choice) {
+        1 -> true
+        2 -> false
+        else -> {
+            throw IllegalArgumentException()
+        }
+    }
 }
