@@ -11,3 +11,4 @@
 1. 프로그램의 전반적인 흐름과 구현할 TODO 작성
 2. `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`을 이용하여 맞춰야할 서로 다른 3자리 수 생성
 3. `camp.nextstep.edu.missionutils.Console`의 `readLine()`로 유저 입력을 가져오고 서로 다른 3자리 수 인지 확인
+4. 유저가 입력한 숫자와 맞춰야할 숫자를 비교하여 결과 생성
