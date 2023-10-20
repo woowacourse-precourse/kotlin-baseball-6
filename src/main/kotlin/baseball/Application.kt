@@ -83,6 +83,9 @@ fun main() {
         user = readLine().toInt()
         userArray = getUser(user)
 
+        ball = numBall(ansArray,userArray)
+        strike = numStrike(ansArray,userArray)
+
         if (ball>0){
             print("$ball")
             print("볼 ")
