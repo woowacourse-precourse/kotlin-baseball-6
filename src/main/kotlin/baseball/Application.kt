@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
 fun main() {
-    var ball = 0
-    var strike = 0
+    var ball: Int
+    var strike: Int
     var computerRandomNumber = getRandomNumber()
 
     println("숫자 야구 게임을 시작합니다.")
