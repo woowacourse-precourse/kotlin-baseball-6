@@ -27,3 +27,6 @@ return 값은 볼의 개수
 
 7. 유저 입력 값을 IntArray로 바꾸는 함수 추가:
 
+8. in 을 쓰기 위해 IntArray를 전부 ArrayList 로 변경
+
+9. get_user 에서 기능 에러 수정

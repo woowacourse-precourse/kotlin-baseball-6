@@ -5,9 +5,7 @@ import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
 import java.lang.System.exit
 import java.sql.DriverManager.println
-
-
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 fun main() {
 
@@ -38,14 +36,24 @@ fun main() {
 
         userNum.add(a/100)
         ans -= 100 * userNum[0]
+        println(userNum)
+        println(ans)
 
-        userNum.add(a/10)
+        userNum.add(ans/10)
         ans -= 10 * userNum[1]
+        println(userNum)
+        println(ans)
+
 
         userNum.add(ans)
+        println(userNum)
+        println(ans)
 
         return userNum
     }
+
+    var a:ArrayList<Int> = getUser(942)
+
 
     fun numBall(a:ArrayList<Int>, b: ArrayList<Int>): Int {
         var ballNum: Int =0
@@ -70,6 +78,19 @@ fun main() {
         return strikeNum
     } //스트라이크의 개수를 알려주는 함수
 
+//    var a =ArrayList<Int>(3)
+//    var b =ArrayList<Int>(3)
+//
+//    a.add(1)
+//    a.add(2)
+//    a.add(3)
+//    b.add(4)
+//    b.add(2)
+//    b.add(3)
+//
+//    var c: Int = numStrike(a,b)
+//    println(c)
+
     var ball:Int
     var strike:Int
     var ansArray = ArrayList<Int>(3)
@@ -80,12 +101,13 @@ fun main() {
 
     kotlin.io.println("숫자 야구 게임을 시작합니다.")
 
-    while(true){
+    while(false){
 
         ansArray=makeNum()
 
-        do{
+        println(ansArray)
 
+        do{
             userString = readLine()
             user = userString.toInt()
             userArray = getUser(user)
@@ -93,22 +115,28 @@ fun main() {
             ball = numBall(ansArray, userArray)
             strike = numStrike(ansArray, userArray)
 
-            if (ball > 0) {
-                print("$ball")
+            println(ansArray)
+            println(ball)
+            println(strike)
+
+
+            if(ball > 0){
+                print(ball)
                 print("볼 ")
             }
 
             if (strike > 0) {
-                print("$strike")
+                print(strike)
                 print("스트라이크")
             }
 
             print("\n")
 
-            if (ball == 0 && strike == 0) {
-                println("낫싱")
+            if((ball == 0)&&(strike == 0)){
+                print("낫싱\n")
             }
-        }while(ansArray==userArray)
+
+        }while(ansArray!=userArray)
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
@@ -120,6 +148,7 @@ fun main() {
         }
 
     }
-}
+
+
 
 
