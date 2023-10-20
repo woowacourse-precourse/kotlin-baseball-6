@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
-val computer = mutableListOf<Int>()
 var is3strike: Boolean = false
 
 fun main() {
@@ -12,6 +11,7 @@ fun main() {
     while (isRestartGame) {
         // 3자리 랜덤 숫자 생성
         // computer[0]은 첫번째 자리 [2]는 세번째 자리
+        val computer = mutableListOf<Int>()
         while (computer.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!computer.contains(randomNumber)) {
@@ -22,7 +22,7 @@ fun main() {
         while (!is3strike) {
             print("숫자를 입력해주세요 : ")
             val num = readNumber(Console.readLine(), false)
-            evaluateGuess(num)
+            evaluateGuess(num, computer)
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val restartNum = readNumber(Console.readLine(), true)
@@ -31,7 +31,6 @@ fun main() {
             isRestartGame = false
         } else {
             is3strike = false
-            computer.clear()
         }
     }
 }
@@ -55,7 +54,7 @@ fun readNumber(num: String, isRestart: Boolean): Int {
     }
 }
 
-fun evaluateGuess(num: Int) {
+fun evaluateGuess(num: Int, computer: MutableList<Int>) {
     val first: Int = num / 100
     val second: Int = (num / 10) % 10
     val third: Int = num % 10
