@@ -57,3 +57,14 @@ fun askReplay(): Boolean {
         else -> throw IllegalArgumentException("ERROR")
     }
 }
+
+fun playGame() {
+    val computerNumbers = generateComputerNumbers()
+//    println(computerNumbers)
+    do {
+        val playerNumbers = getValidPlayerNumbers()
+        val strikeCount = calculateStrikeCount(computerNumbers, playerNumbers)
+        val ballCount = calculateBallCount(computerNumbers, playerNumbers)
+        printResult(strikeCount, ballCount)
+    } while (strikeCount != 3)
+}
