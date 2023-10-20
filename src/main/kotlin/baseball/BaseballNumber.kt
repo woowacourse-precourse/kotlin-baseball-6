@@ -27,6 +27,7 @@ class BaseballNumber {
     private fun requireOnlyDigit(numbers: String) {
         numbers.forEach { numberChar ->
             require(numberChar.isDigit()) { Messages.ContainsNonDigitChar }
+            require(numberChar != '0') { Messages.ContainsZeroNumberDigit }
         }
     }
 

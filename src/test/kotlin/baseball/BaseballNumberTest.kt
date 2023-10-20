@@ -58,6 +58,18 @@ class BaseballNumberTest {
     }
 
     @Test
+    fun `0을 포함하면 예외를 던진다`() {
+        val testCases = listOf(
+            "103",
+            "092",
+            "540"
+        )
+        testCases.assertThrows<String, IllegalArgumentException> { case ->
+            BaseballNumber(case)
+        }
+    }
+
+    @Test
     fun `판정 함수 테스트`() {
         val computerNumber = BaseballNumber("713")
         val inputs = listOf(
