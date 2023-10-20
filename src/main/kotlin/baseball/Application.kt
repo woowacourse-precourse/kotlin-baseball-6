@@ -73,14 +73,13 @@ fun calculateResultPrint(calculateResult: String) {
     if (strike == "${BASEBALL_DIGITS}") {
         println("${BASEBALL_DIGITS}스트라이크")
         println("${BASEBALL_DIGITS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    } else if (strike == "0" && ball == "0") {
-        println("낫싱")
-    }
-    if (strike == "0") {
-        println("${ball}볼")
-    } else if (ball == "0") {
-        println("${strike}스트라이크")
     } else if (strike != "0" && ball != "0") {
         println("${ball}볼 ${strike}스트라이크")
+    } else if (strike == "0" && ball == "0") {
+        println("낫싱")
+    } else if (ball == "0") {
+        println("${strike}스트라이크")
+    } else if (strike == "0") {
+        println("${ball}볼")
     }
 }
