@@ -99,7 +99,7 @@ class BaseBallGame {
         }
     }
 
-    private fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
+    fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
         var ball = 0
         var strike = 0
 
@@ -113,7 +113,7 @@ class BaseBallGame {
         return listOf(ball,strike)
     }
 
-    private fun provideHintMessage(result: List<Int>) : String {
+    fun provideHintMessage(result: List<Int>) : String {
         val ball = result[0]
         val strike = result[1]
         var resultMessage = ""
