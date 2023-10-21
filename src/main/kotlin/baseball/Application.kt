@@ -6,11 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms
 //리팩토링-> 작은 덩어리로 쪼개기
 fun main() {
     val system = System()
+    val computer = Computer()
     var finish = false
     println("숫자 야구 게임을 시작합니다.")
     //난수 생성
 
-    var randomNumList = makeRandomNumList()
+    var randomNumList = computer.makeRandomNumList()
     while (!finish) {
 
         val userInput = system.getUserInput()
@@ -21,7 +22,7 @@ fun main() {
         val userInputList: List<String> = userInput.chunked(1)
 
         //난수와 사용자 입력 비교 분리
-        val result = getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
+        val result = computer.getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
 
         val strike = result.first
         val ball = result.second
@@ -35,38 +36,11 @@ fun main() {
 
             val restart = Console.readLine()
             system. setRestartFlag(restart).let {
-                if (it) randomNumList = makeRandomNumList()
+                if (it) randomNumList = computer.makeRandomNumList()
                 else finish = true
             }
         }
     }
-}
-
-
-//난수를 생성하는 함수
-fun makeRandomNumList(): MutableList<String> {
-    var temp = ""
-    val randomNumList = mutableListOf<String>()
-    while (randomNumList.size < 3) {
-        temp = Randoms.pickNumberInRange(1, 9).toString()
-        if (!randomNumList.contains(temp)) {
-            randomNumList.add(temp)
-        }
-    }
-    return randomNumList
-}
-
-//게임 결과를 도출하는 함수
-fun getGameResult(userInputList: List<String>, randomNumList: MutableList<String>): Triple<Int, Int, Int> {
-    var strike = 0
-    var ball = 0
-    var nothing = 0
-    for (i in userInputList.indices) {
-        if (userInputList[i] == randomNumList[i]) strike++
-        else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) ball++
-    }
-    if (ball + strike == 0) nothing = 1
-    return Triple(strike, ball, nothing)
 }
 
 
