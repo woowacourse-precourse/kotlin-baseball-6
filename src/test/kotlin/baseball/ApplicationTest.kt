@@ -5,6 +5,7 @@ import baseball.constants.EXCEPTION_EXIT
 import baseball.constants.EXCEPTION_RANGE
 import baseball.constants.EXCEPTION_SIZE
 import baseball.io.printBallAndStrike
+import baseball.util.pickBaseBallNumber
 import baseball.util.validateInputBaseBall
 import baseball.util.validateInputExit
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
@@ -37,10 +38,9 @@ class ApplicationTest : NsTest() {
     @Test
     fun `pickBaseBallNumber() 테스트`() {
         // given
-        val case1 = BaseBallGame()
 
         // when
-        val result1 = case1.pickBaseBallNumber()
+        val result1 = pickBaseBallNumber()
 
         // then
         assertThat(result1.size)
@@ -172,6 +172,25 @@ class ApplicationTest : NsTest() {
 
         assertThatCode { validateInputExit(case3) }
                 .doesNotThrowAnyException()
+    }
+
+    @Test
+    fun `isEndGame() 테스트`() {
+        // given
+        val baseBallGame = BaseBallGame()
+        val case1 = 0
+        val case2 = 1
+        val case3 = 3
+
+        // when
+        val result1 = baseBallGame.isEndGame(case1)
+        val result2 = baseBallGame.isEndGame(case2)
+        val result3 = baseBallGame.isEndGame(case3)
+
+        // then
+        assertThat(result1).isEqualTo(false)
+        assertThat(result2).isEqualTo(false)
+        assertThat(result3).isEqualTo(true)
     }
 
     override fun runMain() {
