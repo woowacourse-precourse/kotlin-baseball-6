@@ -23,8 +23,9 @@ class BaseBall(computerList: List<Int>) {
     }
 
     private fun printScore(computerList: List<Int>): GameStatus {
-        val strike = countStrike(computerList)
-        val ball = countBall(computerList)
+        val countScore = countScore(computerList)
+        val strike = countScore.first
+        val ball = countScore.second
 
         return if (strike == 3) {
             println("3스트라이크")
@@ -39,26 +40,18 @@ class BaseBall(computerList: List<Int>) {
         }
     }
 
-    private fun countBall(computerList: List<Int>): Int {
+    private fun countScore(computerList: List<Int>): Pair<Int,Int> {
+        var strike =0
         var ball = 0
-        computerList.forEach { item ->
-            if (item in userList) {
-                ball += 1
-            }
-        }
-        return ball
-    }
-
-    private fun countStrike(computerList: List<Int>): Int {
-        var strike = 0
         computerList.forEachIndexed { index, item ->
             if (item == userList[index]) {
                 strike += 1
+            }else if( item in userList){
+                ball +=1
             }
         }
-        return strike
+        return Pair(strike,ball)
     }
-
 
     private fun insertUserList(input: String) {
         regex.matchEntire(input)?.let { result ->
