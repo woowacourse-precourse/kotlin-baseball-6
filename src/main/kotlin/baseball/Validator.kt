@@ -18,6 +18,20 @@ object Validator {
         return numbers.size != distinctNumbers.size
     }
 
+    fun validateNumbers(numbers: List<Int>) {
+        if (areInvalidCountNumbers(numbers)) {
+            throw IllegalArgumentException("수의 개수가 올바르지 않습니다.")
+        }
+
+        if (areOutOfRangeNumbers(numbers)) {
+            throw IllegalArgumentException("수의 범위가 잘못되었습니다.")
+        }
+
+        if (areDuplicateNumbers(numbers)) {
+            throw IllegalArgumentException("중복된 수가 있습니다.")
+        }
+    }
+
     fun isInvalidNumericInput(input: String): Boolean {
         return !input.all { it.isDigit() }
     }
