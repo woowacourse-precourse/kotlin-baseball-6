@@ -65,8 +65,8 @@ object Computer {
             _computerBall == userBall
         }
 
-    private fun getUserInput(): List<Int> =
-        Console.readLine()!!.map {
+    private fun getUserInput(): List<Int> {
+        val userInput = Console.readLine()!!.map {
             try {
                 it.toString().toInt()
             } catch (e: NumberFormatException) {
@@ -74,6 +74,9 @@ object Computer {
             }
         }
 
+        if (userInput.toSet().size < 3) throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+        return userInput
+    }
 
     private fun checkRematch(userInput: Any?): Boolean =
         when (userInput) {
