@@ -39,25 +39,13 @@ class GameHandler(private val io: IOHandler) {
     }
 
     private fun checkInputIsCorrect(inputString: String): Boolean {
-        val nums = splitInputToNumber(inputString)
-        strikeCount = 0
-        ballCount = 0
+        resetStrikeAndBallCount()
 
+        val nums = splitInputToNumber(inputString)
         for ((index, num) in nums.withIndex()) {
             checkIsStrikeOrBall(index, num)
         }
-
-        if (ballCount == 0 && strikeCount == 0) {
-            io.show(SENTENCE_FOR_NOTHING_CORRECT)
-            return false
-        }
-        if (ballCount != 0) {
-            io.show("${ballCount}볼 ")
-        }
-        if (strikeCount != 0) {
-            io.show("${strikeCount}스트라이크")
-        }
-        io.show("\n")
+        showResult()
 
         return strikeCount == 3
     }
@@ -68,6 +56,11 @@ class GameHandler(private val io: IOHandler) {
         }
     }
 
+    private fun resetStrikeAndBallCount() {
+        strikeCount = 0
+        ballCount = 0
+    }
+
     private fun checkIsStrikeOrBall(index: Int, num: Int) {
         val numIndexAtAnswer = answer.nums.indexOf(num)
         if (numIndexAtAnswer == index) {
@@ -75,6 +68,20 @@ class GameHandler(private val io: IOHandler) {
         } else if (numIndexAtAnswer != -1) {
             ballCount++
         }
+    }
+
+    private fun showResult() {
+        if (ballCount == 0 && strikeCount == 0) {
+            io.show(SENTENCE_FOR_NOTHING_CORRECT)
+            return
+        }
+        if (ballCount != 0) {
+            io.show("${ballCount}볼 ")
+        }
+        if (strikeCount != 0) {
+            io.show("${strikeCount}스트라이크")
+        }
+        io.show("\n")
     }
 
     companion object {
