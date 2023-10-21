@@ -10,8 +10,10 @@ package baseball
 
 import kotlin.random.Random
 data class Answer(val a: Int, val b: Int, val c: Int)
+data class Info(val Amount:Int, val out:Int, val bool:Int, val strike:Int)
+data class result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
 
-fun problem(seed : Int): Answer {
+fun problem(seed : Int): Answer { //문제를 시드에 따라 생성
     val random = Random(seed)
     val a = random.nextInt(1, 9) // 1부터 9 사이의 정수
     val b = random.nextInt(1,9)
@@ -19,7 +21,7 @@ fun problem(seed : Int): Answer {
     return Answer(a,b,c)
 }
 
-fun User_response():Answer {
+fun User_response():Answer { //User용 입력
     val base = readln()
     if (base.length != 3) {
         throw IllegalArgumentException()
@@ -27,7 +29,29 @@ fun User_response():Answer {
     return Answer(base[0].toString().toInt(), base[1].toString().toInt(), base[2].toString().toInt()) //toInt로 하면 아스키 코드 값으로 변환됨
 }
 
-fun main() {
-    println(problem(0))
-    println(User_response())
+fun start_Game(user:Boolean == true){
+    val infoList = mutableListOf<Info>() //정보 저장용
+    val Answer case = problem()
+    while (true): {
+        if (user == true) {
+            val answer = User_response()
+            val tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
+             display(tmp)// 그 결과를 변환해서 안내메세지를 출력
+        }
+        elif (user == false) { //ai로 돌림
+            val answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
+            val tmp = case_check(case, answer) //info형태로 결과를 반환
+            display(tmp)
+        }
+        infoList.add(answer, tmp) //이 형태의 값을 넣음
+
+        if (tmp == Info(3, 0, 0, 3)) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
+    }
+}
+
+fun main() :
+    start_Game(user=true)
 }
