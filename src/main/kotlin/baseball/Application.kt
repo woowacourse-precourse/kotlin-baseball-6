@@ -74,7 +74,7 @@ fun inputThreeAnswerNumber(): List<Int> {
       예외4. 숫자가 아닌 값을 입력했다.
  */
 fun checkValidation(checkList: String): Boolean {
-    val duplicateCheckList = mutableListOf<Int>()
+    val duplicateCheckList = mutableListOf<String>()
 
     var isValid = true
 
@@ -83,21 +83,13 @@ fun checkValidation(checkList: String): Boolean {
     }
 
     for (check in checkList) {
-        try {
-            val stringNumber = check.toString()
-            val number = stringNumber.toInt()
+        val stringNumber = check.toString()
 
-            if (number == 0) {
-                isValid = false
-            }
+        if (stringNumber < "1" || stringNumber > "9") {
+            isValid = false
+        }
 
-            if (duplicateCheckList.contains(number)) {
-                isValid = false
-            }
-
-            duplicateCheckList.add(number)
-
-        } catch (e: NumberFormatException) {
+        if (duplicateCheckList.contains(stringNumber)) {
             isValid = false
         }
     }
