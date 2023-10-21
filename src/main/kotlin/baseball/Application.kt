@@ -1,5 +1,11 @@
 package baseball
 
+
+fun createRandom(): Int {
+    return (1..9).random()
+}
+
 fun main() {
-    TODO("프로그램 구현")
+    val computerList  = listOf(createRandom(),createRandom(),createRandom())
+    println("TEST")
 }
