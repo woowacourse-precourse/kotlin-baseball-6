@@ -7,9 +7,11 @@ class System {
     init {
         println("숫자 야구 게임을 시작합니다.")
     }
+
     companion object {
         var isFinished = false
     }
+
     fun getUserInput(): String {
         print("숫자를 입력해주세요 : ")
         return Console.readLine() //플레이어 입력
@@ -33,11 +35,11 @@ class System {
     }
 
     //게임 결과를 출력하는 함수
-    fun printGameResult(strike: Int, ball: Int, nothing: Int) {
+    fun printGameResult(strike: Int, ball: Int) {
         val resultText = when {
             strike > 0 && ball == 0 -> "${strike}스트라이크"
-            strike < 0 && ball > 0 -> "${ball}볼"
-            nothing > 0 -> "낫싱"
+            strike == 0 && ball > 0 -> "${ball}볼"
+            strike == 0 && ball == 0 -> "낫싱"
             else -> "${ball}볼 ${strike}스트라이크"
         }
         println(resultText)

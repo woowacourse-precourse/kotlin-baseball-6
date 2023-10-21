@@ -3,10 +3,12 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
-    private var randomNumList:MutableList<String> = mutableListOf()
+    private var randomNumList: MutableList<String> = mutableListOf()
+
     init {
         makeRandomNumList()
     }
+
     //난수를 생성하는 함수
     fun makeRandomNumList() {
         var temp = ""
@@ -20,16 +22,14 @@ class Computer {
     }
 
     //게임 결과를 도출하는 함수
-    fun getGameResult(userInputList: List<String>): Triple<Int, Int, Int> {
+    fun getGameResult(userInputList: List<String>): Pair<Int, Int> {
         var strike = 0
         var ball = 0
-        var nothing = 0
         for (i in userInputList.indices) {
             if (userInputList[i] == randomNumList[i]) strike++
             else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) ball++
         }
-        if (ball + strike == 0) nothing = 1
-        return Triple(strike, ball, nothing)
+        return Pair(strike, ball)
     }
 
 
