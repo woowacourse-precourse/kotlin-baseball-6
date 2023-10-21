@@ -6,19 +6,25 @@ import java.lang.IllegalArgumentException
 import kotlin.math.absoluteValue
 
 fun main() {
-    val collectNumber = creatNumbers()
-    var userAnswer: List<Int>? = null
-    try {
-        userAnswer = userInput()
-    } catch (e: IllegalArgumentException) {
-        println(e.message)
-        return
-    }
-    println(collectNumber)
-    println(userAnswer)
+    do {
+        val collectNumber = createNumbers()
+        val userAnswer: List<Int>
+        try {
+            userAnswer = userInput()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            return
+        }
+        println(collectNumber)
+        println(userAnswer)
+        val play = Play(collectNumber, userAnswer)
+        var result: Boolean
+        play.compare()
+    } while (play.result)
+
 }
 
-fun creatNumbers(): List<Int> {
+fun createNumbers(): List<Int> {
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
