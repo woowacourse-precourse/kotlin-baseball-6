@@ -72,8 +72,8 @@ fun getPlayerInputForReplay() : String{
     return Console.readLine()
 }
 
-fun continueOrExit(playerInput: String) : Boolean{
-    return when (playerInput) {
+fun continueOrExit(playerInputForReplay: String) : Boolean {
+    return when (playerInputForReplay) {
         "1" -> true
         "2" -> false
         else -> throw IllegalArgumentException("입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요.")
