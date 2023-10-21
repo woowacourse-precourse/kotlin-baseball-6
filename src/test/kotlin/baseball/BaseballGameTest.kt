@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class BaseBallGameTest {
-    private val game = BaseBallGame()
+class BaseballGameTest {
+    private val game = BaseballGame()
     private var userInput = ""
 
     @Nested

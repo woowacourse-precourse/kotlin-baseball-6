@@ -3,7 +3,7 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseBallGame {
+class BaseballGame {
     companion object {
         private const val NUMBERS_LENGTH = 3
         private const val NUMBER_START_RANGE = 1
@@ -15,7 +15,7 @@ class BaseBallGame {
         private const val INPUT_USER_ANSWER_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
         private const val GAME_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
 
-        private const val NOTING_MESSAGE = "낫싱"
+        private const val NOTHING_MESSAGE = "낫싱"
         private const val BALL_MESSAGE = "볼"
         private const val STRIKE_MESSAGE = "스트라이크"
         private const val ANSWER_HINT_MESSAGE = "3스트라이크"
@@ -30,7 +30,7 @@ class BaseBallGame {
         println(PROGRAM_START_MESSAGE)
         do {
             playRound()
-        } while(getUserAnswer() != GAME_END_USER_ANSWER)
+        } while (getUserAnswer() != GAME_END_USER_ANSWER)
     }
 
     private fun playRound() {
@@ -119,7 +119,7 @@ class BaseBallGame {
         var resultMessage = ""
 
         if (ball + strike == 0) {
-            resultMessage += NOTING_MESSAGE
+            resultMessage += NOTHING_MESSAGE
         }
         if (ball > 0) {
             resultMessage += "$ball$BALL_MESSAGE"
