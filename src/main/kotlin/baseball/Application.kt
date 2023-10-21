@@ -61,6 +61,18 @@ fun displayResult(strike: Int, ball: Int): MutableList<String> {
 
 }
 
+fun terminateProgram(flag: String): Boolean {
+
+    val isExit = when (flag) {
+        "1" -> false
+        "2" -> true
+        else -> throw IllegalArgumentException()
+    }
+
+    return isExit
+
+}
+
 fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
@@ -93,16 +105,12 @@ fun main() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
-        val isExit: Boolean
+
         val flag = readLine()
+        val isExit = terminateProgram(flag)
 
-        isExit = when (flag) {
-            "1" -> true
-            "2" -> false
-            else -> throw IllegalArgumentException()
-        }
 
-    } while (isExit)
+    } while (!isExit)
 
 
 }
