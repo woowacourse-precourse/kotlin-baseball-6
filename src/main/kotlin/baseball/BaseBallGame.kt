@@ -13,11 +13,7 @@ class BaseBallGame {
         while(true) {
             baseBallGameMessage.printPersonInputMessage()
             person.inputNumber()
-            try {
-                inputValidator.isValidInput(person.getInputList())
-            } catch (e: IllegalArgumentException) {
-                break
-            }
+            inputValidator.isValidInput(person.getInputList())
             val(strike, ball) = calCount(person.getInputList(), computer.getNumberList())
             baseBallGameMessage.printCountMessage(strike, ball)
             if(!askForRestart(strike, ball)) break
@@ -42,6 +38,7 @@ class BaseBallGame {
 
     private fun askForRestart(strike: Int, ball: Int): Boolean{
         if(strike == 3 && ball == 0) {
+            baseBallGameMessage.printGameEndMessage()
             baseBallGameMessage.printRestartAndExitMessage()
             person.inputNumber()
             if(inputValidator.isRestart(person.getInputList())) {

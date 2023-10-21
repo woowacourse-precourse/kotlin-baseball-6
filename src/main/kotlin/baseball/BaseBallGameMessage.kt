@@ -7,6 +7,7 @@ class BaseBallGameMessage {
     private val strikeMessage = "%d스트라이크"
     private val ballMessage = "%d볼"
     private val restartAndExitMessage = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+    private val gameEndMessage = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
 
     fun printStartMessage() {
         println(startMessage)
@@ -18,6 +19,10 @@ class BaseBallGameMessage {
 
     fun printRestartAndExitMessage() {
         println(restartAndExitMessage)
+    }
+
+    fun printGameEndMessage() {
+        println(gameEndMessage)
     }
 
     fun printCountMessage(strike: Int, ball: Int) {
