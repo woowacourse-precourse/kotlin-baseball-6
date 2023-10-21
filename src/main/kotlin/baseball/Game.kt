@@ -88,13 +88,14 @@ class Game {
 
     fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
         val (strike, ball) = countStrikeAndBall(computer, user)
-
-        when {
-            strike == 0 && ball == 0 -> println("낫싱")
-            strike > 0 && ball == 0 -> println("${strike}스트라이크")
-            strike == 0 && ball > 0 -> println("${ball}볼")
-            else -> println("${ball}볼 ${strike}스트라이크")
+        val hint = when {
+            strike == 0 && ball == 0 -> "낫싱"
+            strike > 0 && ball == 0 -> "${strike}스트라이크"
+            strike == 0 && ball > 0 -> "${ball}볼"
+            else -> "${ball}볼 ${strike}스트라이크"
         }
+        
+        println(hint)
     }
 
     fun printGameEndMessage() {
