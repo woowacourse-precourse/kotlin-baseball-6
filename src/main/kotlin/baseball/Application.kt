@@ -1,18 +1,16 @@
 package baseball
 
+import baseball.System.Companion.finish
+
 //리팩토링-> 작은 덩어리로 쪼개기
 fun main() {
     val system = System()
     val computer = Computer()
-    var finish = false
-    println("숫자 야구 게임을 시작합니다.")
-    //난수 생성
 
+    //난수 생성
     var randomNumList = computer.makeRandomNumList()
     while (!finish) {
-
         val userInput = system.getUserInput()
-
         //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
         system.checkUserInputValid(userInput)
 
