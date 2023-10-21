@@ -9,5 +9,5 @@ fun main() {
 
     do {
         baseBallGame.run()
-    } while (inputExitGame() == EXIT)
+    } while (inputExitGame() != EXIT)
 }
