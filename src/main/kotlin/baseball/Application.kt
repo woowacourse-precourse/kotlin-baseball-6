@@ -2,14 +2,17 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import org.mockito.internal.matchers.Null
 import kotlin.random.Random
 
-fun check(str_num : String): Boolean{
+fun count(str_num : String): Boolean{
     for(item in str_num) {
+        if(item.equals('0'))
+            return true
         var cnt = 0
         for(item_2 in str_num){
             if(item == item_2)
-                cnt++;
+                cnt++
         }
         if(cnt > 1)
             return true
@@ -17,26 +20,36 @@ fun check(str_num : String): Boolean{
     return false
 }
 
+fun check(str_num : String): Boolean{
+    if(str_num.isBlank() || str_num.toInt() > 999 || str_num.toInt() < 100 || count(str_num))
+        return true
+    return false
+}
+
 fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
     while(true){
-        var rand = Randoms.pickUniqueNumbersInRange(1,9,3)
-
-        var sum = 0;
+        var rand : MutableList<Int> = mutableListOf()
+        while(rand.size < 3){
+            var randomNum = Randoms.pickNumberInRange(1,9)
+            if(!rand.contains(randomNum))
+                rand.add(randomNum)
+        }
+        var sum = 0
         for(item in rand){
             sum += item
             sum *= 10
         }
-        sum /= 10
+        var rand_num = (sum/10).toString()
 
-        var rand_num = sum.toString()
+        //println(rand_num)
 
         while(true){
             var flag = false
             print("숫자를 입력해주세요 : ")
             var str_num = Console.readLine()
-            if(str_num.toInt() > 999 || str_num.toInt() < 100 || check(str_num)){
+            if(check(str_num)){
                 throw IllegalArgumentException("입력 오류")
             }
             while(true) {
@@ -68,12 +81,11 @@ fun main() {
 
                     print("숫자를 입력해주세요 : ")
                     str_num = Console.readLine()
-                    if(str_num.toInt() > 999 || str_num.toInt() < 100 || check(str_num)){
+                    if(check(str_num)){
                         throw IllegalArgumentException("입력 오류")
                     }
 
                 } else {
-                    println("정답입니다.")
                     flag = true
                     break
                 }
@@ -81,14 +93,20 @@ fun main() {
             if(flag)
                 break
         }
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료 \n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        var scan : Int = Console.readLine().toInt()
-        if(scan == 1)
-        else if(scan == 2)
+        println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        var scan = Console.readLine()
+
+        if(scan.isBlank())
+            throw IllegalArgumentException("입력 오류")
+        else if(scan.toInt() == 1)
+        else if(scan.toInt() == 2)
             break
         else
             throw IllegalArgumentException("입력 오류")
     }
+
+    Console.close()
 
 
 }
