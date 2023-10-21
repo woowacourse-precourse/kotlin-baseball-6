@@ -75,6 +75,9 @@ fun main() {
     }
 }
 
+// size 3, 서로 다른 수야 함, 1~9 사이 수여야 함
 private fun isValid(input: List<Int>) = (input.size == 3) && input.all {
-    it.digitToChar().isDigit()
+    it in 1 .. 9
+} && run {
+    input[0] != input[1] && input[1] != input[2]
 }
