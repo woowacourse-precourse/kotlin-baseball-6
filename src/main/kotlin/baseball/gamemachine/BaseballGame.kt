@@ -3,23 +3,31 @@ package baseball.gamemachine
 import baseball.io.Input
 import baseball.io.Output
 
+const val START = 1
+const val END = 2
 class BaseballGame(
-    val input: Input = Input(),
-    val printer: Output = Output(),
-    val generator: ComputerNumberGenerator = ComputerNumberGenerator()
+    private val input: Input = Input(),
+    private val printer: Output = Output(),
+    private val generator: ComputerNumberGenerator = ComputerNumberGenerator()
 
 ) {
 
     // 이건 전체 게임 즉, 맞출때 까지
     fun game() {
-        while(true) {
+        var flag = START
+
+        while(flag == START) {
             var computerNum = generator.makeComputerNumber()
         }
     }
 
     // 이건 하나에 대한 문답 만을 책임
     fun smallGame(answer: List<Int>) {
-        var myNum = input.inputMyNumber()
+
+        while(true) {
+            var myNum = input.inputMyNumber()
+        }
+
     }
 
 
