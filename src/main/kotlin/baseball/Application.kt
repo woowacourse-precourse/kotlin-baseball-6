@@ -12,8 +12,6 @@ fun gameStart() {
     var computerNumber: ArrayList<Int> = answerNumber()
     while (true) {
         val myNumber: ArrayList<Int> = input()
-        println(myNumber)
-        println(computerNumber)
         if (comparisonNumber(myNumber, computerNumber)) {
             if (!reGame()) {
                 break
