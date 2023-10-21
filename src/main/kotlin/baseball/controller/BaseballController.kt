@@ -1,9 +1,14 @@
-package baseball.view
+package baseball.controller
 
+import baseball.view.BaseballView
 import camp.nextstep.edu.missionutils.Console
-import baseball.view.OutputView
 
-class InputView {
+class BaseballController {
+
+    fun playGame() {
+        BaseballView().printStartGameMessage()
+    }
+
     fun inputNumber(): String {
         val inputNumber = Console.readLine()
         checkLength(inputNumber)
