@@ -19,23 +19,13 @@ fun main() {
         //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
         if (regex.matches(userInput) && (userInput.length == userInput.toSet().size)) {
             val userInputList: List<String> = userInput.chunked(1)
-            //난수와 사용자 입력 비교
-            var strike = 0
-            var ball = 0
-            var nothing = 0
 
-            for (i in userInputList.indices) {
-                if (userInputList[i] == randomNumList[i]) {
-                    //각 자릿 수 모두 일치
-                    strike++
-                } else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) {
-                    //같은 숫자가 다른 자리에 존재
-                    ball++
-                }
-            }
-            if (ball == 0 && strike == 0) {
-                nothing = 1
-            }
+            //난수와 사용자 입력 비교 분리
+            val result = getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
+
+            val strike = result.first
+            val ball = result.second
+            val nothing = result.third
 
             if (strike == 3) {
                 println("3스트라이크")
@@ -82,4 +72,17 @@ fun makeRandomNumList(): MutableList<String> {
         }
     }
     return randomNumList
+}
+
+//게임 결과를 도출하는 함수
+fun getGameResult(userInputList: List<String>, randomNumList: MutableList<String>): Triple<Int, Int, Int> {
+    var strike = 0
+    var ball = 0
+    var nothing = 0
+    for (i in userInputList.indices) {
+        if (userInputList[i] == randomNumList[i]) strike++
+        else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) ball++
+    }
+    if (ball + strike == 0) nothing = 1
+    return Triple(strike, ball, nothing)
 }
