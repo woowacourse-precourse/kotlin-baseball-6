@@ -6,5 +6,6 @@ object GameValue {
     const val GAME_NUMBER_LENGTH = 3
     const val RESTART_COMMAND = "1"
     const val STOP_COMMAND = "2"
-    const val GAME_COMPLATE_STRIKE = "3"
+    const val GAME_COMPLETE_STRIKE = 3
+    const val GAME_INIT_VALUE = 0
 }

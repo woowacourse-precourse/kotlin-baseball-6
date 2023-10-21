@@ -1,5 +1,6 @@
 package baseball.util
 
+import baseball.util.GameValue.GAME_NUMBER_LENGTH
 import baseball.util.GameValue.PLAYER_MAX_NUMBER
 import baseball.util.GameValue.PLAYER_NIM_NUMBER
 
@@ -18,7 +19,7 @@ object Validator {
     }
 
     private fun lengthCheck(value: String) {
-        if (value.length != GameValue.GAME_NUMBER_LENGTH) {
+        if (value.length != GAME_NUMBER_LENGTH) {
             throw IllegalArgumentException()
         }
         formatCheck(value)

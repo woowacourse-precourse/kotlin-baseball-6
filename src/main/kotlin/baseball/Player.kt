@@ -14,7 +14,6 @@ object Player {
         input.forEach {
             number.add(it - '0')
         }
-
         return number.toList()
     }
 }
