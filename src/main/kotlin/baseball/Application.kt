@@ -14,7 +14,7 @@ fun gameStart() {
         val myNumber: ArrayList<Int> = input()
         println(myNumber)
         println(computerNumber)
-        if (!comparisonNumber(myNumber, computerNumber)) {
+        if (comparisonNumber(myNumber, computerNumber)) {
             if (!reGame()) {
                 break
             } else {
@@ -25,21 +25,23 @@ fun gameStart() {
 }
 
 fun input(): ArrayList<Int> {
-
     print("숫자를 입력해주세요 : ")
     val userNumber = Console.readLine().trim()
     val numberList: ArrayList<Int> = arrayListOf()
-    if (userNumber.length != 3) {
-        throw IllegalArgumentException("잘못된 입력입니다. 3개의 숫자를 입력하세요")
+    require(!userNumber.contains("0")) {
+        "1에서 9사이의 숫자를 입력하세요."
     }
-    try {
-        for (i in 0..2) {
+    require(userNumber.length == 3) {
+        "잘못된 입력입니다. 3개의 숫자를 입력하세요"
+    }
+    for (i in 0..2) {
+        try {
             numberList.add(userNumber[i].digitToInt())
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException("잘못된 입력입니다. 숫자를 입력하세요.")
         }
-        return numberList
-    } catch (e: IllegalArgumentException) {
-        throw e
     }
+    return numberList
 }
 
 fun answerNumber(): ArrayList<Int> {
@@ -68,33 +70,16 @@ fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): 
 }
 
 fun printResult(ball: Int, strike: Int): Boolean {
-    when {
-        strike == 3 -> {
-            println("3스트라이크")
-            println("3개의 숫자를 모두 맞히였습니다! 게임 종료")
-            return false
-        }
-
-        strike + ball == 0 -> {
-            println("낫싱")
-            return true
-        }
-
-        strike == 0 -> {
-            println("${ball}볼")
-            return true
-        }
-
-        ball == 0 -> {
-            println("${strike}스트라이크")
-            return true
-        }
-
-        else -> {
-            println("${ball}볼 ${strike}스트라이크")
-            return true
-        }
+    val message = when {
+        strike == 3 -> "3스트라이크\n3개의 숫자를 모두 맞혔습니다! 게임 종료"
+        strike == 0 && ball == 0 -> "낫싱"
+        strike == 0 -> "${ball}볼"
+        ball == 0 -> "${strike}스트라이크"
+        else -> "${ball}볼 ${strike}스트라이크"
     }
+
+    println(message)
+    return strike == 3
 }
 
 fun reGame(): Boolean {
