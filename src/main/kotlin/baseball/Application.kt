@@ -5,11 +5,11 @@ fun main(){
     var keepPlaying: Boolean
     do {
         println("숫자 야구 게임을 시작합니다.")
-        val cN = randNumber()
+        val computerNumber = randNumber()
         var strikeCount = 0
 
         while (strikeCount != 3) {
-            strikeCount = compareNumber(cN)
+            strikeCount = compareNumber(computerNumber)
         }
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -20,7 +20,7 @@ fun main(){
 
     println("게임을 종료합니다.")
 }
-fun randNumber(): List<Int> {
+fun randNumber(): List<Int> {                               // 3자리 숫자 뽑는 함수
     var computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -30,25 +30,25 @@ fun randNumber(): List<Int> {
     }
     return computer
 }
-fun inputNumber(): List<Int> {
+fun inputNumber(): List<Int> {                              // 입력값 설정
     var input = readLine()!!.toString()
     if(input.contains('0')
         || input.length !=3
         || ((input[0] == input[1]) || (input[1] == input[2]) || (input[2] == input[0]))) {
         throw IllegalArgumentException()
     }
-    return input.map { it.toString().toInt() }
+    return input.map {it.toString().toInt()}
 }
 
-fun compareNumber(cN : List<Int>): Int {
+fun compareNumber(computerNumber: List<Int>): Int {         // 숫자 비교하기
     print("숫자를 입력해주세요 : ")
     val userNumbers = inputNumber()
     var strikeCount: Int = 0
     var ballCount: Int = 0
-    for (i in 0..2) {
-        if (userNumbers[i] == cN[i]) {
+    for (i in 0..2) { 
+        if (userNumbers[i] == computerNumber[i]) {
             strikeCount++
-        } else if (cN.contains(userNumbers[i])) {
+        } else if (computerNumber.contains(userNumbers[i])) {
             ballCount++
         }
     }
