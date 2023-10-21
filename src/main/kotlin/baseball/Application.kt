@@ -9,6 +9,7 @@ fun main() {
     val computerNum = createRandomNum()
     println("computerNum $computerNum")
     val userNum = getUserInputNum()
+    compareNum(computerNum, userNum)
 
 }
 
@@ -42,6 +43,25 @@ fun checkIsValidNum(inputNum: List<Int>) {
         else if (num < 1 || num > 9)
             throw IllegalArgumentException("각각 1~9 사이의 숫자를 입력해주세요")
     }
+}
+
+fun compareNum(computerNum: List<Int>, userNum: List<Int>) {
+
+    val strike = howManyStrike(computerNum, userNum)
+    val ball = howManyBall(computerNum, userNum, strike)
+
+    if (ball == 0 && strike == 0) {
+        print("낫싱")
+    } else if (strike == 3) {
+        println("${strike}스트라이크")
+    } else if (ball == 0) {
+        println("${strike}스트라이크")
+    } else if (strike == 0) {
+        println("${ball}볼")
+    } else {
+        print("${ball}볼 ${strike}스트라이크")
+    }
+
 }
 
 fun howManyStrike(computerNum: List<Int>, userNum: List<Int>): Int {
