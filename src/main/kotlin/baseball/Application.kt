@@ -16,7 +16,7 @@ fun Answer.asList(): List<Int> {
 data class Info(var Amount:Int, var out:Int, var bool:Int, var strike:Int)
 data class result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
 
-fun Problem(seed : Int): Answer { //문제를 시드에 따라 생성
+fun Problem(seed : Int = System.currentTimeMillis().toInt()): Answer { //문제를 시드에 따라 생성
     val random = Random(seed)
     val a = random.nextInt(1, 9) // 1부터 9 사이의 정수
     val b = random.nextInt(1,9)
@@ -25,6 +25,7 @@ fun Problem(seed : Int): Answer { //문제를 시드에 따라 생성
 }
 
 fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면 에러
+    print("숫자를 입력해주세요 : ")
     val base = readln()
     if (base.length != 3) {
         throw IllegalArgumentException()
@@ -35,8 +36,8 @@ fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면
 fun case_check(case:Answer, answer:Answer):Info {
     val info = Info(0,0,0,0)
     //strike체크, bool체크, out으로 감
-    val check = listOf(answer)
-    for ((idx, elem) in listOf(case).withIndex()) {
+    val check = answer.asList()
+    for ((idx, elem) in case.asList().withIndex()) {
         if (elem == check[idx]) { //data class에서 get, set인 인덱스 접근에 해당하는 함수를 만들어 가능하게 할 수 있음
             info.strike += 1
             info.Amount += 1
@@ -71,33 +72,40 @@ fun display(show:Info){
     }
     println()
 }
-//
-//fun start_Game(user:Boolean = true){
-//    val infoList = mutableListOf<Info>() //정보 저장용
-//    val case = Problem(0)
-//    while (true) {
-//        if (user == true) {
-//            val answer = User_response()
-//            val tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
-//             display(tmp)// 그 결과를 변환해서 안내메세지를 출력
-//        }
+
+fun start_Game(user:Boolean = true){
+    val infoList = mutableListOf<result>() //정보 저장용
+    val case = Problem(0)
+    while (true) {
+        var answer : Answer
+        var tmp = Info(0,0,0,0)
+        if (user == true) {
+            answer = User_response()
+            tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
+            display(tmp)// 그 결과를 변환해서 안내메세지를 출력
+            infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
+        }
 //        elif (user == false) { //ai로 돌림
-//            val answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
-//            val tmp = case_check(case, answer) //info형태로 결과를 반환
+//            answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
+//            tmp = case_check(case, answer) //info형태로 결과를 반환
 //            display(tmp)
+//            infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
 //        }
-//        infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
-//
-//        if (tmp == Info(3, 0, 0, 3)) {
-//            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-//            break
-//        }
-//    }
-//}
+
+        if (tmp == Info(3, 0, 0, 3)) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
+    }
+}
 
 fun main() {
-//    start_Game(user=true)
-    display(Info(2,1,2,0))
-    display(Info(2,1,1,1))
-    display(Info(2,1,0,2))
+    var restart_Flag : Int = 1
+    println("숫자 야구 게임을 시작합니다.")
+    while (restart_Flag == 1) {
+        start_Game(user = true)
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        restart_Flag = readln().toString().toInt()
+    }
 }
+
