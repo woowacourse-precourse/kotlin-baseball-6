@@ -57,11 +57,9 @@ fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): 
     var strike = 0
     var ball = 0
     repeat(3) { index ->
-        repeat(3) {
-            if (computerNumber[index] == myNumber[it] && index == it) {
-                strike++
-            } else if (computerNumber[index] == myNumber[it] && index != it)
-                ball++
+        when {
+            myNumber[index] == computerNumber[index] -> strike++
+            myNumber[index] in computerNumber -> ball++
         }
     }
     return printResult(ball, strike)
