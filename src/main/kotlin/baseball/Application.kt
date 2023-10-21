@@ -27,9 +27,16 @@ fun main() {
             val ball = result.second
             val nothing = result.third
 
+            val resultText = when {
+                strike > 0 && ball == 0 -> "${strike}스트라이크"
+                strike < 0 && ball > 0 -> "${ball}볼"
+                nothing > 0 -> "낫싱"
+                else -> "${ball}볼 ${strike}스트라이크"
+            }
+            println(resultText)
+
             if (strike == 3) {
-                println("3스트라이크")
-                print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
                 val restart = Console.readLine()
@@ -42,16 +49,6 @@ fun main() {
                     throw IllegalArgumentException("1 또는 2를 입력해야 합니다.")
                 }
 
-            } else if (nothing == 1) {
-                println("낫싱")
-            } else {
-                if (strike == 0) {
-                    println("${ball}볼")
-                } else if (ball == 0) {
-                    println("${strike}스트라이크")
-                } else {
-                    println("${ball}볼 ${strike}스트라이크")
-                }
             }
 
         } else {
