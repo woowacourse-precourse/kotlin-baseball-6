@@ -39,4 +39,14 @@ object Validator {
     fun isBlankInput(input: String): Boolean {
         return input.isBlank()
     }
+
+    fun validateInput(input: String) {
+        if (Validator.isInvalidNumericInput(input)) {
+            throw IllegalArgumentException("숫자로만 입력해주세요.")
+        }
+
+        if (Validator.isBlankInput(input)) {
+            throw IllegalArgumentException("입력이 잘못되었습니다.")
+        }
+    }
 }

@@ -13,13 +13,7 @@ class User : Player<List<Int>> {
      * @throws IllegalArgumentException 유효성 검사 실패 시 발생
      */
     override fun generateNumbers(input: String, testNumbers: List<Int>): List<Int> {
-        if (Validator.isInvalidNumericInput(input)) {
-            throw IllegalArgumentException("숫자로만 입력해주세요.")
-        }
-
-        if (Validator.isBlankInput(input)) {
-            throw IllegalArgumentException("입력이 잘못되었습니다.")
-        }
+        Validator.validateInput(input)
 
         val numbers = input.map { it.toString().toInt() }
         Validator.validateNumbers(numbers)
