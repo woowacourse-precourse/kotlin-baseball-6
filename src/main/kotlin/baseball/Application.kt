@@ -32,6 +32,8 @@ fun getNumberFromPlayer(): List<String> {
     val randomNumbers = arrayListOf<String>()
     val inputNumber = Console.readLine()
 
+    checkNumberOfPlayer(inputNumber)
+
     inputNumber.forEach {
         if (randomNumbers.size < 3) {
             val number = it.toString()
@@ -44,4 +46,14 @@ fun getNumberFromPlayer(): List<String> {
     Console.close()
 
     return randomNumbers
+}
+
+fun checkNumberOfPlayer(numbers: String) {
+    numbers.forEach {
+        val number = it.code
+
+        if (number < 49 || number > 57) {
+            throw IllegalArgumentException()
+        }
+    }
 }
