@@ -1,0 +1,7 @@
+<type>(<scope>): <subject> - Subject line
+
+<body>
+- Message body
+
+<footer>
+- Message footer
