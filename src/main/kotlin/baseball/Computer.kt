@@ -67,8 +67,13 @@ object Computer {
 
     private fun getUserInput(): List<Int> =
         Console.readLine()!!.map {
-            it.toString().toInt()
+            try {
+                it.toString().toInt()
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+            }
         }
+
 
     private fun checkRematch(userInput: Any?): Boolean =
         when (userInput) {
