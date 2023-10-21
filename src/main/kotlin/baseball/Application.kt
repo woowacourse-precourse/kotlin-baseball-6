@@ -1,5 +1,7 @@
 package baseball
 
-fun main() {
+import baseball.view.Guide
 
+fun main() {
+    Guide().start()
 }
