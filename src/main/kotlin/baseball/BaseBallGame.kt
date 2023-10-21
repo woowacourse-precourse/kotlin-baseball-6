@@ -7,7 +7,7 @@ class BaseBallGame {
     }
 
     private fun startGame() {
-
+        val computerNumbers = Computer().createComputerBallNumbers()
     }
 
 }
