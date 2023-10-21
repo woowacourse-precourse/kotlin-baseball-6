@@ -34,6 +34,14 @@ class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  
     var ball = 0
 
 
+
+    private fun isMatchNumber(): String {
+        return when (userNum == gameNum) {
+            true -> COMPLETE
+            else -> CONTINUE
+        }
+    }
+
     private fun checkStrike() {
         for (i in 0..userNum.size) {
             if (userNum[i] == gameNum[i]) {
