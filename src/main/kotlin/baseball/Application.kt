@@ -30,6 +30,30 @@ class User(){
 
 
 class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  //입력한 값을 파라미터로 받는다
+    var strike = 0
+    var ball = 0
+
+
+
+    private fun checkStrike() {
+        for (i in 0..userNum.size) {
+            if (userNum[i] == gameNum[i]) {
+                strike++
+            }
+        }
+    }
+
+    private fun checkBall() {
+        for (i in 0..userNum.size) {
+            for (game in 0..gameNum.size) {
+                if (userNum[i] == gameNum[game]) {
+                    ball++
+                }
+            }
+        }
+    }
+
+
 
 }
 
