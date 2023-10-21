@@ -6,6 +6,7 @@ import baseball.constants.EXCEPTION_RANGE
 import baseball.constants.EXCEPTION_SIZE
 import baseball.io.printBallAndStrike
 import baseball.util.pickBaseBallNumber
+import baseball.util.toDigitList
 import baseball.util.validateInputBaseBall
 import baseball.util.validateInputExit
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
@@ -13,6 +14,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
@@ -191,6 +193,24 @@ class ApplicationTest : NsTest() {
         assertThat(result1).isEqualTo(false)
         assertThat(result2).isEqualTo(false)
         assertThat(result3).isEqualTo(true)
+    }
+
+    @Test
+    fun `toDigitList() 테스트`() {
+        // given
+        val case1 = "123"
+        val case2 = "1"
+        val case3 = "563"
+
+        // when
+        val result1 = case1.toDigitList()
+        val result2 = case2.toDigitList()
+        val result3 = case3.toDigitList()
+
+        // then
+        assertThat(result1).isEqualTo(listOf(1, 2, 3))
+        assertThat(result2).isEqualTo(listOf(1))
+        assertThat(result3).isEqualTo(listOf(5, 6, 3))
     }
 
     override fun runMain() {
