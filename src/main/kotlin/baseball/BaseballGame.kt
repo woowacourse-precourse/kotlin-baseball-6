@@ -1,7 +1,6 @@
 package baseball
 
-import java.lang.IllegalArgumentException
-import java.lang.NumberFormatException
+import baseball.BaseballResult.*
 
 class BaseballGame {
 
@@ -12,9 +11,17 @@ class BaseballGame {
         BaseballEngine()
     }
 
+    private lateinit var computer: BaseballNum
+
     fun start() {
-        val computer = initialize()
+        computer = initialize()
         val userInput = getUserInput()
+        produceResult(computer, userInput)
+    }
+
+    private fun restart() {
+        val userInput = getUserInput()
+        produceResult(computer, userInput)
     }
 
     /** TODO
@@ -28,11 +35,11 @@ class BaseballGame {
         return engine.generateRandomNumber()
     }
 
-    private fun getUserInput(): String {
+    private fun getUserInput(): BaseballNum {
         val userInput = console.getInput()
         val isValid = verifyUserInput(userInput)
         if (isValid) {
-            return userInput!!
+            return userInput?.toBaseballNum() ?: throw IllegalArgumentException()
         } else {
             throw IllegalArgumentException()
         }
@@ -53,5 +60,21 @@ class BaseballGame {
                 }
             }
         }
+    }
+
+    private fun produceResult(computer: BaseballNum, userInput: BaseballNum) {
+        val result = engine.compare(computer, userInput)
+        console.printResult(result)
+
+        if (result is Strike && result.num == 3) {
+            end()
+        } else {
+            restart()
+        }
+    }
+
+    private fun end() {
+        console.printEndMessage()
+        console.getEndFlag()
     }
 }
