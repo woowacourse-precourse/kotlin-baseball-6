@@ -117,17 +117,21 @@ class ApplicationTest : NsTest() {
 
         // when, then
         assertThatCode { validateInputBaseBall(case1) }
+                .`as`("조건에 맞게 입력한 경우")
                 .doesNotThrowAnyException()
 
         assertThatThrownBy { validateInputBaseBall(case2) }
+                .`as`("3개의 수를 입력했는지 확인")
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage(EXCEPTION_SIZE)
 
         assertThatThrownBy { validateInputBaseBall(case3) }
+                .`as`("중복된 수를 입력했는지 확인")
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage(EXCEPTION_DUPLICATION)
 
         assertThatThrownBy { validateInputBaseBall(case4) }
+                .`as`("1~9 범위 내의 수를 입력했는지 확인")
                 .isInstanceOf(IllegalArgumentException::class.java)
                 .hasMessage(EXCEPTION_RANGE)
     }
