@@ -1,8 +1,8 @@
 package baseball
 
 class BaseBallGameMessage {
-    private val startMessage: String = "숫자 야구 게임을 시작합니다."
-    private val personInputMessage: String = "숫자를 입력해주세요 : "
+    private val startMessage = "숫자 야구 게임을 시작합니다."
+    private val personInputMessage = "숫자를 입력해주세요 : "
     private val nothingMessage = "낫싱"
     private val strikeMessage = "%d스트라이크"
     private val ballMessage = "%d볼"
