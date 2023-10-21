@@ -10,7 +10,7 @@ fun computerNum() : MutableList<Int> {
             computer.add(randomNumber) // 겹치는 숫자 없이 추가한다.
         }
     }
-    return computer
+    return computer //예외테스트 2: 게임 종료 후 재시작
 }
 
 fun playerNum() : MutableList<Int> {
@@ -38,7 +38,7 @@ fun compare(computer: MutableList<Int>, player: MutableList<Int>) : Pair<Int, In
             if(i == index){ //위치가 같으면 스트라이크
                 strike += 1
             }
-            else{
+            else{ //예외테스트 1: 예외 테스트
                 ball += 1 //위치가 같지 않으면 볼
             }
         }
