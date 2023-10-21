@@ -34,6 +34,12 @@ fun main() {
     }
     if (b == 0 && s == 0) {
         println("낫싱")
+    } else if (b > 0 && s > 0) {
+        println("${b}볼 ${s}스트라이크")
+    } else if (s > 0) {
+        println("${s}스트라이크")
+    } else if (b > 0) {
+        println("${b}볼")
     }
 
     println(computer)
