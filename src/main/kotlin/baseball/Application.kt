@@ -1,6 +1,6 @@
 package baseball
 
-val gameManager : GameManager by lazy {
+val gameManager: GameManager by lazy {
     GameManager()
 }
 fun main() {
