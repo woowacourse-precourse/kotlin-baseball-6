@@ -3,21 +3,18 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 /** [2&4]. 사용자 입력 */
-fun inputVaildator(digit: Int, range: CharRange): IntArray {
-    inputMessage(digit)
-    var inputData = Console.readLine() ?: ""
-    val inputDataIA = stringToUniqueIntArray(inputData)
-
+fun inputValidator(digit: Int, range: CharRange): IntArray {
+    printInputPrompt(digit)
+    val inputData = Console.readLine() ?: ""
     checkDigitRange(inputData, digit, range)
-    // 메뉴 선택의 경우 1자리로 중복 검사가 필요 없음.
-    if (digit == BASEBALL_DIGITS) {
-        checkDuplicate(inputDataIA, digit)
-    }
-    return inputDataIA
+
+    val inputDataArray = inputData.toUniqueIntArray()
+    checkDuplicate(inputDataArray, digit)
+    return inputDataArray
 }
 
 /** [2&4]. 0) 입력을 위한 안내 문구 출력 */
-fun inputMessage(digit: Int) {
+fun printInputPrompt(digit: Int) {
     if (digit == BASEBALL_DIGITS) {
         print("숫자를 입력해주세요 : ")
     } else if (digit == MENU_DIGITS) {
@@ -34,14 +31,16 @@ fun checkDigitRange(
     // 입력된 데이터 모두가 range에 속하는지 체크
     val rangeCheck = inputData.map { it }.all { it in range }
 
-    if (inputData.length != digit || rangeCheck == false) {
-        throw IllegalArgumentException() // 오류 발생시키는 법 : throw Exception()
+    if (inputData.length != digit) {
+        throw IllegalArgumentException("입력된 숫자는 3자리가 아닙니다.")
+    } else if (rangeCheck == false) {
+        throw IllegalArgumentException("입력된 숫자 중에 1~9 범위를 벗어난 수가 있습니다.")
     }
 }
 
 /** [2]. 3) 숫자 중복 체크 */
-fun checkDuplicate(inputDataIA: IntArray, digit: Int) {
-    if (inputDataIA.size < digit) {
-        throw IllegalArgumentException()
+fun checkDuplicate(inputDataArray: IntArray, digit: Int) {
+    if (inputDataArray.size < digit) {
+        throw IllegalArgumentException("입력된 숫자에 중복이 있습니다.")
     }
 }
