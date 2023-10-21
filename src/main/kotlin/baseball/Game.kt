@@ -11,17 +11,17 @@ abstract class Game {
 
     fun result(playerNumber: List<Int>, computerNumber: List<Int>) {
         valueInit()
-        computerNumber.forEachIndexed { index, i ->
-            playerNumber.forEachIndexed { playerIndex, num ->
-                if (index != playerIndex && i == num) ballPlus()
-                if (index == playerIndex && i == num) strikePlus()
+        computerNumber.forEachIndexed { computerIndex, targetNumber ->
+            playerNumber.forEachIndexed { playerIndex, playerNumber ->
+                if (computerIndex != playerIndex && targetNumber == playerNumber) ballPlus()
+                if (computerIndex == playerIndex && targetNumber == playerNumber) strikePlus()
             }
         }
         resultPrint()
     }
 
     private fun resultPrint() {
-        if (ball == GAME_INIT_VALUE && strike == GAME_INIT_VALUE){
+        if (ball == GAME_INIT_VALUE && strike == GAME_INIT_VALUE) {
             print(MATCHING_ZERO_MESSAGE)
         }
         if (ball != GAME_INIT_VALUE) {
