@@ -30,60 +30,52 @@ fun printResult(ball: Int, strike : Int){
 }
 
 fun main() {
-
     var play = true
     print("숫자 야구 게임을 시작합니다.\n")
 
-    while(play){
+    while (play) {
         val computer = makeRandomNumber()
 
-        while(true){
+        while (true) {
             print("숫자를 입력해주세요 : ")
             val userInput = readLine()
-            val userInputList = mutableListOf<Int>()
 
-            if (!userInput.isNullOrBlank()) {
-                for (char in userInput) {
-                    val digit = Character.getNumericValue(char)
-                    if (digit in 0..9) {
-                        userInputList.add(digit)
+            if (userInput != null && userInput.matches(Regex("^[0-9]*$"))) {
+                val userInputList = userInput.map { it.toString().toInt() }
+
+                if (userInputList.size != 3 || userInputList.distinct().size != 3) {
+                    throw IllegalArgumentException("서로 다른 3자리 숫자를 입력해야 합니다.")
+                }
+
+                var ball = 0
+                var strike = 0
+
+                for (num in userInputList) {
+                    if (num in computer) {
+                        val computerNum = computer.indexOf(num)
+                        val myNum = userInputList.indexOf(num)
+                        if (myNum == computerNum) {
+                            strike += 1
+                        } else {
+                            ball += 1
+                        }
                     }
                 }
-            }
 
-            if (userInputList.size != 3 || userInputList.distinct().size != 3) {
-                throw IllegalArgumentException("서로 다른 3자리 숫자를 입력해야 합니다.")
-            }
+                printResult(ball, strike)
 
-            var ball = 0
-            var strike = 0
-
-            for (num in userInputList){
-                if (num in computer){
-                    val computerNum = computer.indexOf(num)
-                    val myNum = userInputList.indexOf(num)
-                    if (myNum == computerNum){
-                        strike +=1
+                if (strike == 3) {
+                    print("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n")
+                    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n")
+                    val tryagain = readLine()
+                    if (tryagain == "2") {
+                        play = false
                     }
-                    else{
-                        ball +=1
-                    }
+                    break
                 }
-            }
-
-            printResult(ball,strike)
-
-            if(strike==3){
-                print("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n")
-                print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n")
-                val tryagain = readLine()
-                if (tryagain == "2"){
-                    play = false
-                }
-                break
+            } else {
+                throw IllegalArgumentException("숫자 이외의 문자가 입력되었습니다.")
             }
         }
     }
-
-
 }
