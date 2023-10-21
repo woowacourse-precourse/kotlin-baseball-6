@@ -7,9 +7,10 @@ class BaseballController {
 
     fun playGame() {
         BaseballView().printStartGameMessage()
+        inputNumber()
     }
 
-    fun inputNumber(): String {
+    private fun inputNumber(): String {
         val inputNumber = Console.readLine()
         checkLength(inputNumber)
         checkIsDigit(inputNumber)
@@ -18,21 +19,21 @@ class BaseballController {
         return inputNumber
     }
 
-    fun callException(): Nothing = throw IllegalArgumentException("잘못")
+    private fun callException(): Nothing = throw IllegalArgumentException("잘못")
 
-    fun checkLength(inputNumber: String) {
+    private fun checkLength(inputNumber: String) {
         if (inputNumber.length != 3) {
             callException()
         }
     }
 
-    fun checkDifferentNumber(inputNumber: String) {
+    private fun checkDifferentNumber(inputNumber: String) {
         if (inputNumber[0] == inputNumber[1] || inputNumber[0] == inputNumber[2] || inputNumber[1] == inputNumber[2]) {
             callException()
         }
     }
 
-    fun checkIsDigit(inputNumber: String) {
+    private fun checkIsDigit(inputNumber: String) {
         inputNumber.forEach {
             if (49 > it.code || 57 < it.code) callException()
         }
