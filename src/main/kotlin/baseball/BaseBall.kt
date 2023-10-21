@@ -2,7 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 
-enum class GameStatus{
+enum class GameStatus {
     ONGOING,
     STOP
 }
@@ -22,28 +22,28 @@ class BaseBall(computerList: List<Int>) {
         }
     }
 
-    private fun printScore(computerList: List<Int>):GameStatus {
+    private fun printScore(computerList: List<Int>): GameStatus {
         val strike = countStrike(computerList)
         val ball = countBall(computerList)
 
-        if(strike == 3){
+        return if (strike == 3) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            return GameStatus.STOP
-        }else if(strike ==0 && ball ==0){
+            GameStatus.STOP
+        } else if (strike == 0 && ball == 0) {
             println("낫싱")
-            return GameStatus.ONGOING
+            GameStatus.ONGOING
         } else {
             println("${ball}볼 ${strike}스트라이크")
-            return GameStatus.ONGOING
+            GameStatus.ONGOING
         }
     }
 
     private fun countBall(computerList: List<Int>): Int {
-        var ball =0
-        computerList.forEach { item->
-            if(item in userList){
-                ball +=1
+        var ball = 0
+        computerList.forEach { item ->
+            if (item in userList) {
+                ball += 1
             }
         }
         return ball
@@ -52,8 +52,8 @@ class BaseBall(computerList: List<Int>) {
     private fun countStrike(computerList: List<Int>): Int {
         var strike = 0
         computerList.forEachIndexed { index, item ->
-            if(item==userList[index]){
-                strike+=1
+            if (item == userList[index]) {
+                strike += 1
             }
         }
         return strike
