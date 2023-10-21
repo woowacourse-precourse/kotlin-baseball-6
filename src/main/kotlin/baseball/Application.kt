@@ -38,11 +38,29 @@ fun compare(computer: MutableList<Int>, player: MutableList<Int>) : Pair<Int, In
     }
     return Pair(strike, ball)
 }
+fun result_message(strike:Int, ball:Int){
+    if(strike == 0 && ball == 0) {
+        println("낫싱")
+    }
+    else if(strike == 3){
+        println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    }
+    else if(strike == 0){
+        println(ball.toString() + "볼")
+    }
+    else if(ball == 0){
+        println(strike.toString() + "스트라이크")
+    }
+    else{
+        println(ball.toString() + "볼 " + strike.toString() + "스트라이크")
+    }
+
+}
 fun main() {
      /*TODO("프로그램 구현")*/
     val c_number = computerNum() // 컴퓨터의 랜덤 숫자
     val p_number = playerNum() // 플레이어의 숫자
     val (strike, ball) = compare(c_number, p_number) //스트라이크, 볼 비교
-    println(strike)
-    println(ball)
+    result_message(strike, ball)
 }
