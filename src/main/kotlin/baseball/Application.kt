@@ -52,31 +52,52 @@ fun case_check(case:Answer, answer:Answer):Info {
     return info
 }
 
-
-
-fun start_Game(user:Boolean = true){
-    val infoList = mutableListOf<Info>() //정보 저장용
-    val case = Problem(0)
-    while (true) {
-        if (user == true) {
-            val answer = User_response()
-            val tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
-             display(tmp)// 그 결과를 변환해서 안내메세지를 출력
-        }
-        elif (user == false) { //ai로 돌림
-            val answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
-            val tmp = case_check(case, answer) //info형태로 결과를 반환
-            display(tmp)
-        }
-        infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
-
-        if (tmp == Info(3, 0, 0, 3)) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            break
-        }
+fun display(show:Info){
+    if (show.Amount == 0) {
+        println("낫싱")
+        return
     }
+    if (show.bool > 0) {
+        print("${show.bool}볼")
+    }
+
+    //아래의 if문은 리스트로 공간을 만들고 출력하는 형태로 처리할 수 있음
+    if (show.bool != 0 && show.bool != show.Amount) { //정보 양과 같으면 아직 안끝난 것
+        print(" ")
+    }
+
+    if (show.strike > 0) {
+        print("${show.strike}스트라이크")
+    }
+    println()
 }
+//
+//fun start_Game(user:Boolean = true){
+//    val infoList = mutableListOf<Info>() //정보 저장용
+//    val case = Problem(0)
+//    while (true) {
+//        if (user == true) {
+//            val answer = User_response()
+//            val tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
+//             display(tmp)// 그 결과를 변환해서 안내메세지를 출력
+//        }
+//        elif (user == false) { //ai로 돌림
+//            val answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
+//            val tmp = case_check(case, answer) //info형태로 결과를 반환
+//            display(tmp)
+//        }
+//        infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
+//
+//        if (tmp == Info(3, 0, 0, 3)) {
+//            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+//            break
+//        }
+//    }
+//}
 
 fun main() {
-    start_Game(user=true)
+//    start_Game(user=true)
+    display(Info(2,1,2,0))
+    display(Info(2,1,1,1))
+    display(Info(2,1,0,2))
 }
