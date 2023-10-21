@@ -94,6 +94,14 @@ fun printResult(result: Result): Int {
             println("${result.strike}스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             return setStopFlag()
+        } else {
+            if (result.strike == 0) {
+                println("${result.ball}볼")
+            } else if (result.ball == 0) {
+                println("${result.strike}스트라이크")
+            } else {
+                println("${result.ball}볼 ${result.strike}스트라이크")
+            }
         }
     }
 
