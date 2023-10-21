@@ -19,9 +19,13 @@ fun main() {
 
         println("숫자 야구 게임을 시작합니다.")
 
-        print("숫자를 입력해주세요 : ")
-        val input = Console.readLine().trim()
-        checkValidInput(input)
+        while(true) {
+            print("숫자를 입력해주세요 : ")
+            val input = Console.readLine().trim()
+            checkValidInput(input)
+            val inputList = mutableListOf<Int>()
+            input.forEach { inputList.add(it-'0') }
+        }
     }
 
 }
@@ -32,4 +36,12 @@ fun checkValidInput(input : String) {
         if(input[i] !in '1' .. '9') throw IllegalArgumentException()
         if(input[i] == input[(i+1)%3] || input[i] == input[(i+2)%3]) throw IllegalArgumentException()
     }
+}
+
+fun checkStrikes(random : MutableList<Int>, input : MutableList<Int>) : Int {
+    var strikes = 0
+    for(i in 0 until 3) {
+        if(random[i] == input[i]) strikes++
+    }
+    return strikes
 }
