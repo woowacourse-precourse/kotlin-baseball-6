@@ -37,8 +37,6 @@ fun processInputWithException(input: String): List<Int> {
 
 fun baseballGame(user: List<Int>, computer: List<Int>): Pair<Int, Int> {
 
-    println("computer: $computer")
-
     val strike = computer.zip(user).count { (c, u) -> c == u }
     val ball = computer.intersect(user.toSet()).size - strike
 
@@ -67,7 +65,7 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    loop@ do {
+    do {
 
         // TODO("1. computer 랜덤수 생성")
         val computer = generateRandomNumber()
