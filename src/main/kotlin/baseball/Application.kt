@@ -76,7 +76,7 @@ class NumberBaseball {
 
     fun readInputNumber(): String {
         print("숫자를 입력해주세요: ")
-        val userInput = Console.readLine().toString()
+        val userInput = readLine().toString()
         var userNumber = mutableListOf<Char>()
         inputException(userNumber, userInput)
         return userNumber.joinToString("")
