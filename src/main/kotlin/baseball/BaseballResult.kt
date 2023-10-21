@@ -25,4 +25,10 @@ sealed class BaseballResult {
             return "$ball $strike"
         }
     }
+
+    data class Success(val strike: Strike) : BaseballResult() {
+        override fun toString(): String {
+            return strike.toString()
+        }
+    }
 }

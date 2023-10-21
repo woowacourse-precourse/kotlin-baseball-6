@@ -47,7 +47,12 @@ class BaseballEngine {
         return if (ball + strike == 0) {
             Nothing
         } else if (ball == 0) {
-            Strike(strike)
+            val result = Strike(strike)
+            if (strike == 3) {
+                Success(result)
+            } else {
+                result
+            }
         } else if (strike == 0) {
             Ball(ball)
         } else {
