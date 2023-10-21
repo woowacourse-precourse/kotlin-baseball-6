@@ -14,10 +14,10 @@ class BaseBallGame {
     private val guide = Guide()
     private val result = Result()
     private val userInput = UserInput()
-    fun start(){
+    fun start() {
         var processNum = CONTINUE_NUM
         guide.start()
-        while (processNum == CONTINUE_NUM){
+        while (processNum == CONTINUE_NUM) {
             getStrikeNumber()
             getUserNumber()
         }
@@ -34,24 +34,27 @@ class BaseBallGame {
         userNumber = UserNumber(tempUserNumber)
     }
 
-    fun countStrike():Int{
+    fun countStrike(): Int {
         var strikeCnt = 0
-        strikeNumber.numbers.forEachIndexed { idx,num ->
-            if(userNumber.numbers[idx] == num) strikeCnt++
+        strikeNumber.numbers.forEachIndexed { idx, num ->
+            if (userNumber.numbers[idx] == num) strikeCnt++
         }
         return strikeCnt
     }
 
-
-    fun countBall():Int{
+    fun countBall(): Int {
         var ballCnt = 0
-        strikeNumber.numbers.forEachIndexed { idx,num ->
-            if(userNumber.numbers[idx] != num && userNumber.numbers.contains(num) ) ballCnt++
+        strikeNumber.numbers.forEachIndexed { idx, num ->
+            if (userNumber.numbers[idx] != num && userNumber.numbers.contains(num)) ballCnt++
         }
         return ballCnt
     }
 
-    companion object{
+    fun getStrikeResult()= "${countStrike()}스트라이크"
+
+    fun getBallResult() = "${countBall()}볼"
+
+    companion object {
         const val CONTINUE_NUM = 1
         const val EXIT_NUM = 2
     }
