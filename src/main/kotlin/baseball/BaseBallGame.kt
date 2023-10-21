@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.Constant.Companion.RESTART
+
 class BaseBallGame {
     init {
         println("숫자 야구 게임을 시작합니다.")
@@ -9,6 +11,7 @@ class BaseBallGame {
     private fun startGame() {
         val computerNumbers = Computer().createComputerBallNumbers()
         runGameLoopUntilCorrectAnswer(computerNumbers)
+        checkHasGameEnded()
     }
 
     private fun runGameLoopUntilCorrectAnswer(targetNumbers: List<Int>) {
@@ -20,6 +23,14 @@ class BaseBallGame {
             playerNumbers = Player().createComputerBallNumbers()
             isAnswerCorrect = targetNumbers == playerNumbers
         }
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    }
+
+    private fun checkHasGameEnded() {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val userInput = Player().getRestartOrEndDecisionResult()
+        if (userInput == RESTART) startGame()
     }
 
 }
