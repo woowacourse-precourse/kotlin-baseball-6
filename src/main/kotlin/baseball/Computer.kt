@@ -56,9 +56,10 @@ class Computer {
         return BallCount(strikeCount, ballCount)
     }
 
-    private fun checkBallCount(userBall: Int): Int = baseballNumberList.count { _computerBall ->
-        _computerBall == userBall
-    }
+    private fun checkBallCount(userBall: Int): Int =
+        baseballNumberList.count { _computerBall ->
+            _computerBall == userBall
+        }
 
     private fun getUserInput(): List<Int> =
         Console.readLine()!!.map {
