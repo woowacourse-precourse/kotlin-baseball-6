@@ -1,8 +1,9 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-fun main() {
+fun main(){
     printStart()
     baseball()
 }
@@ -37,22 +38,19 @@ fun getComputerNumber(): List<Int>{
             computer.add(randomNumber)
         }
     }
-
     return computer
 }
 
 /* 플레이어 입력 처리 function : getPlayerNumber */
-fun getPlayerNumber(): List<Int> {
+fun getPlayerNumber(): List<Int>{
     val player = mutableListOf<Int>()
-
     print("숫자를 입력해주세요 : ")
-    val testNumber = readLine()
+    val testNumber = Console.readLine()
     val verifiedNumber = checkNumber(testNumber)
     for (char in verifiedNumber) {
         val digit = char.toString().toInt()
         player.add(digit)
     }
-
     return player
 }
 
@@ -75,14 +73,12 @@ fun checkNumber(testNumber: String?): String{
     if (uniqueDigits.size != testNumber.length) {
         throw IllegalArgumentException("잘못된 입력입니다, 중복된 숫자가 존재합니다.")
     }
-
     return testNumber
 }
 
 /* 라운드 조건 검사 function : compareList */
 fun compareList(computer: List<Int>, player: List<Int>): Round{
     val roundResult = Round()
-
     for (i in computer.indices) {
         for (j in player.indices) {
             if (computer[i] == player[j]) {
@@ -110,9 +106,9 @@ fun printHint(roundResult: Round){
 }
 
 /* 라운드 조건 검사 결과 출력 function : printHint*/
-fun askRetry(): Boolean {
+fun askRetry(): Boolean{
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val retryAnswer = readLine()
+    val retryAnswer = Console.readLine()
     return when (retryAnswer) {
         "1" -> true
         "2" -> false
