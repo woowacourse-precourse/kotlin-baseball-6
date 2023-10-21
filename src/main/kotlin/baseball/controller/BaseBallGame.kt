@@ -15,17 +15,48 @@ class BaseBallGame {
     private val result = Result()
     private val userInput = UserInput()
     fun start() {
-        var processNum = CONTINUE_NUM
         guide.start()
+        var processNum = CONTINUE_NUM
         while (processNum == CONTINUE_NUM) {
             getStrikeNumber()
-            getUserNumber()
+            var strikeCnt = 0
+            var ballCnt: Int
+            while (strikeCnt != 3) {
+                guide.inputUserNumber()
+                getUserNumber()
+                strikeCnt = countStrike()
+                ballCnt = countBall()
+                val curResult = "${getBallResult(ballCnt)}${getStrikeResult(strikeCnt)}"
+                if (curResult == "") {
+                    println("낫싱")
+                } else {
+                    result.baseballGame((curResult))
+                }
+            }
+            guide.restart()
+            processNum = userInput.getRetryNum().toInt()
         }
+        println("게임 종료")
+
+    }
+    fun process(){
+
+    }
+
+    fun retry(){
+
+    }
+
+    fun exit(){
 
     }
 
     fun getStrikeNumber() {
-        val tempStrikeNumber = UserInput().getBaseBallNum().map { num -> num.digitToInt() }
+        val tempStrikeNumber = mutableListOf<Int>()
+        while(tempStrikeNumber.size < 3){
+            val randomNum = Randoms.pickNumberInRange(1,9)
+            if (!tempStrikeNumber.contains(randomNum)) tempStrikeNumber.add(randomNum)
+        }
         strikeNumber = StrikeNumber(tempStrikeNumber)
     }
 
@@ -50,9 +81,9 @@ class BaseBallGame {
         return ballCnt
     }
 
-    fun getStrikeResult()= "${countStrike()}스트라이크"
+    fun getStrikeResult(strikeCnt: Int) = if (strikeCnt == 0) "" else "${strikeCnt}스트라이크"
 
-    fun getBallResult() = "${countBall()}볼"
+    fun getBallResult(ballCnt: Int) = if (ballCnt == 0) "" else "${ballCnt}볼 "
 
     companion object {
         const val CONTINUE_NUM = 1
