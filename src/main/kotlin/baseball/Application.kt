@@ -1,8 +1,5 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
-
 //리팩토링-> 작은 덩어리로 쪼개기
 fun main() {
     val system = System()
@@ -34,11 +31,9 @@ fun main() {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
-            val restart = Console.readLine()
-            system. setRestartFlag(restart).let {
-                if (it) randomNumList = computer.makeRandomNumList()
-                else finish = true
-            }
+            if (system.endGame()) finish = true
+            else randomNumList = computer.makeRandomNumList()
+
         }
     }
 }

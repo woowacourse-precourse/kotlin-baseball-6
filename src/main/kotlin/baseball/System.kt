@@ -8,11 +8,12 @@ class System {
         return Console.readLine() //플레이어 입력
     }
 
-    //재시작 여부를 설정하는 함수
-    fun setRestartFlag(userInput: String): Boolean {
+    //재시작 여부를 받는 함수
+    fun endGame(): Boolean {
+        val userInput = Console.readLine()
         return when (userInput) {
-            "1" -> true //재시작 O
-            "2" -> false //재시작 X
+            "1" -> false //종료 O, 재시작 X
+            "2" -> true //종료 X , 재시작 O
             else -> throw IllegalArgumentException()
         }
     }
