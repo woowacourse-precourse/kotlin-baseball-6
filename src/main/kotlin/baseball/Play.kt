@@ -25,5 +25,15 @@ class Play constructor(collect: List<Int>, userAnswer: List<Int>) {
         return Pair(strike, ball)
     }
 
+    fun compare() {
+        val strike = this.calulateState().first
+        val ball = this.calulateState().second
+
+        when {
+            strike == 3 -> this.gameOver()
+            else -> this.newInput(strike, ball)
+        }
+    }
+
 }
 
