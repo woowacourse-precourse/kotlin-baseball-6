@@ -19,6 +19,10 @@ object Validator {
     }
 
     fun isInvalidNumericInput(input: String): Boolean {
-        return !input.all { it.isDigit() } or input.isBlank()
+        return !input.all { it.isDigit() }
+    }
+
+    fun isBlankInput(input: String): Boolean {
+        return input.isBlank()
     }
 }
