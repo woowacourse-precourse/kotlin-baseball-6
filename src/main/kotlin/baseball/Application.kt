@@ -36,10 +36,11 @@ fun restart()
 {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val input = inputNumber()
-    if(input != 1 && input != 2) throw IllegalArgumentException()
-
-    if(input == 1) uiState = GameUiState.Loading
-    if(input == 2) uiState = GameUiState.Ending
+    when(input){
+        1-> uiState = GameUiState.Loading
+        2-> uiState = GameUiState.Ending
+        else-> throw IllegalArgumentException()
+    }
 }
 fun init():List<Int>
 {
