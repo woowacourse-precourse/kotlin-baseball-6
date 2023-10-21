@@ -5,12 +5,30 @@ import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     startGame()
-    println("게임을 종료합니다.")
 }
 
 fun startGame() {
     println("숫자 야구 게임을 시작합니다.")
-    readUserNumber(createRandomNumber())
+    while (true) {
+        try {
+            val randomNumbers = createRandomNumber()
+            while (true) {
+                print("숫자를 입력해주세요 : ")
+                val inputtedNumbers = readUserNumber()
+                val compareResult = compareNumbers(randomNumbers, inputtedNumbers)
+                if (compareResult) break
+            }
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val userInput = Console.readLine()
+            val userChoice = chooseRestart(userInput)
+            if (userChoice) {
+                println("게임 종료")
+                return
+            }
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException(e.message)
+        }
+    }
 }
 
 
@@ -28,37 +46,31 @@ fun createRandomNumber(): MutableList<Int> {
 }
 
 //사용자의 입력을 받는 함수
-fun readUserNumber(randomNumbers: MutableList<Int>){
+fun readUserNumber(): MutableList<Int> {
 //    println(randomNumbers)
-    while(true) {
-        print("숫자를 입력해주세요 : ")
-        val userInput = Console.readLine()
-        try {
-            var userNumber = userInput.toInt()
-            if (userNumber >= 1000 || userNumber < 100) {
-                throw IllegalArgumentException("범위 외 입력!")
-            } else {
-                val userNumbers = mutableListOf<Int>()
-                val last = userNumber % 10
-                if(last == 0) throw IllegalArgumentException("0 입력 오류!")
-                userNumbers.add(last)
-                userNumber /= 10
+    val userInput = Console.readLine()
+    var userNumber = userInput.toInt()
+    if (userNumber >= 1000 ||
+        userNumber < 100
+    ) {
+        throw IllegalArgumentException("범위 외 입력!")
+    } else {
+        val userNumbers = mutableListOf<Int>()
+        val lastNumber = userNumber % 10
+        if (lastNumber == 0) throw IllegalArgumentException("0 입력 오류!")
+        userNumbers.add(lastNumber)
+        userNumber /= 10
 
-                val middle = userNumber % 10
-                if(middle == 0) throw IllegalArgumentException("0 입력 오류!")
-                userNumbers.add(0, middle)
-                userNumber /= 10
+        val middleNumber = userNumber % 10
+        if (middleNumber == 0) throw IllegalArgumentException("0 입력 오류!")
+        userNumbers.add(0, middleNumber)
+        userNumber /= 10
 
-                val first = userNumber % 10
-                userNumbers.add(0, first)
-                val inputResult = compareNumbers(randomNumbers, userNumbers)
-                if(inputResult) break
-            }
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException(e.message)
-        }
+        val firstNumber = userNumber % 10
+        userNumbers.add(0, firstNumber)
+        return userNumbers
+
     }
-    restartGame()
 }
 
 fun compareNumbers(randomNumbers: MutableList<Int>, userNumbers: MutableList<Int>): Boolean {
@@ -77,18 +89,20 @@ fun compareNumbers(randomNumbers: MutableList<Int>, userNumbers: MutableList<Int
 }
 
 fun printResult(strikes: Int, balls: Int): Boolean {
-    if(strikes == 3) {
+    if (strikes == 3) {
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         return true
     } else {
-        if(strikes == 0 && balls == 0) {
+        if (strikes == 0 &&
+            balls == 0
+        ) {
             println("낫싱")
         } else {
-            if(balls != 0) {
+            if (balls != 0) {
                 print("${balls}볼 ")
             }
-            if(strikes != 0) {
+            if (strikes != 0) {
                 println("${strikes}스트라이크")
             } else {
                 println()
@@ -98,19 +112,16 @@ fun printResult(strikes: Int, balls: Int): Boolean {
     }
 }
 
-fun restartGame() {
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val userInput = Console.readLine()
-    try {
-        val userChoise = userInput.toInt()
-        when(userChoise) {
-            1-> { readUserNumber(createRandomNumber())}
-            2 -> {return}
-            else -> {}
+fun chooseRestart(userInput: String): Boolean {
+    val userChoice = userInput.toInt()
+    return when (userChoice) {
+        1 -> false
+        2 -> true
+        else -> {
+            throw IllegalArgumentException("선택지 오류!")
         }
-    } catch (e: IllegalArgumentException) {
-        e.printStackTrace()
-        return
     }
 }
+
+
 
