@@ -7,7 +7,7 @@ import java.lang.StringBuilder
 class OutputView {
 
     fun printGameStartMessage() = println(GameMessage.GAME_START_MESSAGE)
-    fun printGameInputMessage() = println(GameMessage.GAME_INPUT_NUMBER_MESSAGE)
+    fun printGameInputMessage() = print(GameMessage.GAME_INPUT_NUMBER_MESSAGE)
     fun printGameSuccessMessage() = println(GameMessage.GAME_SUCCESS_MESSAGE+" "+GameMessage.GAME_OVER_MESSAGE)
     fun printGameEndMessage() = println(GameMessage.GAME_END_MESSAGE)
     fun printGameScoreMessage(score: Score){
