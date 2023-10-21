@@ -53,6 +53,27 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `null 입력 시`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException(null) }
+        }
+    }
+
+    @Test
+    fun `tab 입력 시`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("\t") }
+        }
+    }
+
+    @Test
+    fun `enter 입력 시`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("\n") }
+        }
+    }
+
     override fun runMain() {
         main()
     }

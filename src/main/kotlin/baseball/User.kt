@@ -7,20 +7,25 @@ class User {
     fun inputNumber(): MutableList<Int> {
         val inputNumber = Console.readLine()
         val userNumber = mutableListOf<Int>()
-        checkInputNumber(inputNumber)
+        checkBlank(inputNumber)
+        checkInputThree(inputNumber)
         for (char in inputNumber) {
             val num = char.toString().toIntOrNull()
-            userNumber.add(checkDuplicate(userNumber,checkNull(num)))
+            userNumber.add(checkDuplicate(userNumber,checkIsNumber(num)))
         }
         return userNumber
     }
 
-    private fun checkInputNumber(inputNumber: String) {
+    private fun checkInputThree(inputNumber: String) {
         if (inputNumber.length != 3)
             throw IllegalArgumentException()
     }
+    private fun checkBlank(inputNumber: String?) {
+        if (inputNumber!!.isBlank())
+            throw IllegalArgumentException()
+    }
 
-    private fun checkNull(inputNumber: Int?) : Int {
+    private fun checkIsNumber(inputNumber: Int?) : Int {
         if (inputNumber==null)
             throw IllegalArgumentException()
         return inputNumber
