@@ -12,8 +12,7 @@ fun main() {
     var randomNumList = makeRandomNumList()
     while (!finish) {
 
-        print("숫자를 입력해주세요 : ")
-        val userInput = Console.readLine() //플레이어 입력
+    val userInput =  getUserInput()
 
         val regex = "[1-9]{3}".toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
 
@@ -91,4 +90,10 @@ fun setRestartFlag(userInput: String): Boolean {
         "2" -> false //재시작 X
         else -> throw IllegalArgumentException()
     }
+}
+
+//사용자 입력 받는 함수
+fun getUserInput():String{
+    print("숫자를 입력해주세요 : ")
+    return Console.readLine() //플레이어 입력
 }
