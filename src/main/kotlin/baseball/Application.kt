@@ -12,7 +12,7 @@ fun main() {
 
 fun startBaseballGame() {
     val answer = creatRandomNumberList()
-    println(answer)
+//    println(answer) // 랜덤 생성된 정답 미리보기
     while (true) {
         val user = getUserInput()
         if (user == answer) {
@@ -35,7 +35,9 @@ fun creatRandomNumberList(): MutableList<Int> {
 
 fun getUserInput(): MutableList<Int> {
     print("숫자를 입력해주세요 : ")
-    var userNumber = Console.readLine().toInt()
+    val userInput = Console.readLine()
+    isUserNumberInputValid(userInput)
+    var userNumber = userInput.toInt()
     val userNumberList = mutableListOf<Int>()
     repeat(3) {
         userNumberList.add(0, userNumber % 10)
@@ -61,4 +63,11 @@ fun countScore(answer: List<Int>, user: List<Int>) {
     val ballMessage = if (0 < ballCount) "${ballCount}볼 " else ""
     val finalMessage = if (strikeCount == 0 && ballCount == 0) "낫싱" else "$ballMessage$strikeMessage"
     println(finalMessage)
+}
+
+fun isUserNumberInputValid(userInput: String) {
+
+    if (!userInput.all { it.isDigit() }) throw IllegalArgumentException("숫자만 입력하세요")
+    if (userInput.length != 3) throw IllegalArgumentException("3자리 수를 입력하세요")
+    if (userInput.toSet().size != userInput.length) throw IllegalArgumentException("각기 다른 3개의 숫자를 입력하세요")
 }
