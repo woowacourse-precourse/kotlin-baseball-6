@@ -25,7 +25,7 @@
 
 ## feature
 
-- 🟩 1. 컴퓨터의 숫자 생성
+- ✅ 1. 컴퓨터의 숫자 생성
   - `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용하여 1 ~ 9까지 서로 다른 임의의 수 3개 선택
 - 🟩 2. 사용자가 3개의 숫자 입력
   - 입력에 대한 유효성 검사
