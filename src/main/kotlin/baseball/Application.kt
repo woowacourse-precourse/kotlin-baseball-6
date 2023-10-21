@@ -4,24 +4,15 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-
     val resultMap = mutableMapOf<String, Int>()
     val BALL = "볼"
     val STRIKE = "스트라이크"
     var finishSignal = "1"
     println("숫자 야구 게임을 시작합니다.")
+    val baseBallCreator = BaseBallCreator()
     while (true) {
-        // 상대방
-        val ansList = mutableListOf<Int>().apply {
-            while (size < 3) {
-                val randomNumber = Randoms.pickNumberInRange(1, 9)
-                if (!contains(randomNumber)) {
-                    add(randomNumber)
-                }
-            }
-        }.toList()
+        val answerBaseBalls = baseBallCreator.createAnswerBalls()
 
-//        println(ansList)
         do {
             print("숫자를 입력해주세요 : ")
 
@@ -38,11 +29,11 @@ fun main() {
             // 이제 숫자 비교
             input.indices.forEach { idx ->
                 val num = input[idx]
-                if (ansList[idx] == num) {
+                if (answerBaseBalls[idx] == num) {
                     resultMap += STRIKE to resultMap.getOrDefault(STRIKE, 0) + 1
                     return@forEach
                 }
-                if (num in ansList) {
+                if (num in answerBaseBalls) {
                     resultMap += BALL to resultMap.getOrDefault(BALL, 0) + 1
                 }
             }
@@ -60,7 +51,7 @@ fun main() {
             }
             println(res)
             resultMap.clear()
-        } while (ansList != input)
+        } while (answerBaseBalls != input)
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         finishSignal = runCatching {
