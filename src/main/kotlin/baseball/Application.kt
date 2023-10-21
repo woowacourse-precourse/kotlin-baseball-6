@@ -4,13 +4,14 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 //리팩토링-> 작은 덩어리로 쪼개기
-
 fun main() {
     var finish = false
     println("숫자 야구 게임을 시작합니다.")
     //난수 생성
+
     var randomNumList = makeRandomNumList()
     while (!finish) {
+
         print("숫자를 입력해주세요 : ")
         val userInput = Console.readLine() //플레이어 입력
 
@@ -34,17 +35,11 @@ fun main() {
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
                 val restart = Console.readLine()
-                if (restart == "1") {
-                    finish = false
-                    randomNumList = makeRandomNumList()
-                } else if (restart == "2") {
-                    finish = true
-                } else {
-                    throw IllegalArgumentException("1 또는 2를 입력해야 합니다.")
+                setRestartFlag(restart).let {
+                    if (it) randomNumList = makeRandomNumList()
+                    else finish = true
                 }
-
             }
-
         } else {
             throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
         }
@@ -79,7 +74,7 @@ fun getGameResult(userInputList: List<String>, randomNumList: MutableList<String
 }
 
 //게임 결과를 출력하는 함수
-fun printGameResult(strike:Int,ball:Int,nothing: Int){
+fun printGameResult(strike: Int, ball: Int, nothing: Int) {
     val resultText = when {
         strike > 0 && ball == 0 -> "${strike}스트라이크"
         strike < 0 && ball > 0 -> "${ball}볼"
@@ -89,3 +84,11 @@ fun printGameResult(strike:Int,ball:Int,nothing: Int){
     println(resultText)
 }
 
+//재시작 여부를 설정하는 함수
+fun setRestartFlag(userInput: String): Boolean {
+    return when (userInput) {
+        "1" -> true //재시작 O
+        "2" -> false //재시작 X
+        else -> throw IllegalArgumentException()
+    }
+}
