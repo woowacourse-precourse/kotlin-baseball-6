@@ -45,7 +45,6 @@ class Game {
     private fun checkNum(computerNumber: String, userNumber: String): String {
         var strikes = 0
         var balls = 0
-
         for (i in computerNumber.indices) {
             if (computerNumber[i] == userNumber[i]) { //computerNumber[i]의 값이랑 userNumber[i]의 값이 같을때
                 strikes++ // strikes up
@@ -53,7 +52,6 @@ class Game {
                 balls++ //balls up
             }
         }
-
         return when {
             strikes == 3 -> "3스트라이크"
             strikes > 0 || balls > 0 -> "$balls" + "볼 " + "$strikes" + "스트라이크"
