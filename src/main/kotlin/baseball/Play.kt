@@ -24,6 +24,18 @@ class Play constructor(collect: List<Int>, userAnswer: List<Int>) {
         }
         return Pair(strike, ball)
     }
+    fun newInput(strike: Int, ball: Int) {
+        when {
+            ball != 0 && strike != 0 -> println("${ball}볼 ${strike}스트라이크")
+            ball != 0 -> println("${ball}볼")
+            strike != 0 -> println("${strike}스트라이크")
+            else -> println("낫띵")
+        }
+        this.user = userInput()
+        return compare()
+
+    }
+
 
     fun compare() {
         val strike = this.calulateState().first
