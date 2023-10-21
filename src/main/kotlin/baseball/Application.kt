@@ -16,36 +16,46 @@ const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
 fun main() {
-    println("숫자 야구 게임을 시작합니다.")
     var isStay = true
-    var answer = answerSelect()
-    var inputData: IntArray
+    println("숫자 야구 게임을 시작합니다.")
+    Answer.newGenerator()
 
     do {
         // TODO For Debuging
-        println("정답 : ${answer.contentToString()}")
+        // println("정답 : ${Answer.value.contentToString()}")
 
-        // 2. 숫자 입력 받기 : 1 ~ 9 3자리
-        inputData = inputVaildator(
-            digit = BASEBALL_DIGITS,
-            range = CharRange('1', '9')
-        )
-        if (inputData.size == BASEBALL_DIGITS) {
-            val isAnswer = calculateBallAndStrike(inputData, answer)
-            if (isAnswer == false) continue
+        if (inputBaseball(Answer.number) == false) {
+            continue
         }
 
-        // 4. 메뉴 입력 받기 : 1 or 2
-        inputData = inputVaildator(
-            digit = MENU_DIGITS,
-            range = CharRange('1', '2')
-        )
-        if (inputData[0] == 1) {
-            isStay = true
-            answer = answerSelect()
-        } else if (inputData[0] == 2) {
-            println("게임 종료")
-            isStay = false
-        }
+        var selectMenu = inputRestart()
+        isStay = true.takeIf { selectMenu == 1 } ?: false
+
     } while (isStay)
+}
+
+/** [2]. 숫자 입력 받기 : 1 ~ 9 3자리
+ * [3]. Ball, Strike 검증 함수 호출
+ * */
+fun inputBaseball(answer: IntArray): Boolean {
+    var inputData = inputVaildator(
+        digit = BASEBALL_DIGITS,
+        range = CharRange('1', '9')
+    )
+
+    return calculateBallAndStrike(inputData, answer)
+}
+
+/** [4]. 메뉴 입력 받기 : 1 or 2 */
+fun inputRestart(): Int {
+    var inputData = inputVaildator(
+        digit = MENU_DIGITS,
+        range = CharRange('1', '2')
+    ).first()
+    if (inputData == 1) {
+        Answer.newGenerator()
+    } else if (inputData == 2) {
+        println("게임 종료") // 아래에서 하면 됨
+    }
+    return inputData
 }

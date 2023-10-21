@@ -1,13 +1,8 @@
 package baseball
 
-fun Char.charToInt(): Int {
-    return this
-        .toString()
-        .toInt()
-}
-
-fun IntArray.intArrayToInt(): Int {
-    return this
-        .toString()
-        .toInt()
+fun stringToUniqueIntArray(inputData: String): IntArray {
+    return inputData
+        .map { it.toString().toInt() }
+        .toSet()
+        .toIntArray()
 }

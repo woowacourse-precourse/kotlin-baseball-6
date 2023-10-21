@@ -10,13 +10,10 @@ fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
         i == answer[index] // Strike
     }.size
 
-    // TODO For Debuging
-    // println(calculateResult)
-
+    // println(calculateResult) // TODO For Debuging
     calculateResultPrint(calculateResult)
-    if (calculateResult == "0, ${BASEBALL_DIGITS}")
-        return true
-    return false
+    val isAllStrike = "0, ${BASEBALL_DIGITS}" == calculateResult
+    return if (isAllStrike) true else false
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 */
@@ -26,13 +23,11 @@ fun calculateResultPrint(calculateResult: String) {
     if (strike == "${BASEBALL_DIGITS}") {
         println("${BASEBALL_DIGITS}스트라이크")
         println("${BASEBALL_DIGITS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    } else if (strike != "0" && ball != "0") {
-        println("${ball}볼 ${strike}스트라이크")
     } else if (strike == "0" && ball == "0") {
         println("낫싱")
-    } else if (ball == "0") {
-        println("${strike}스트라이크")
-    } else if (strike == "0") {
-        println("${ball}볼")
+    } else if (strike != "0" || ball != "0") {
+        var calculateResult = "${ball}볼".takeIf { ball != "0" } ?: ""
+        calculateResult += " ${strike}스트라이크".takeIf { strike != "0" } ?: ""
+        println(calculateResult.trim()) // 스트라이크만 출력 시 앞에 공백 제거
     }
 }
