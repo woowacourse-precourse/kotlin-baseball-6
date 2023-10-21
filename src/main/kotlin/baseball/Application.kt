@@ -3,18 +3,13 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+//리팩토링-> 작은 덩어리로 쪼개기
+
 fun main() {
     var finish = false
     println("숫자 야구 게임을 시작합니다.")
     //난수 생성
-    var temp = ""
-    var randomNumList = mutableListOf<String>()
-    while (randomNumList.size < 3) {
-        temp = Randoms.pickNumberInRange(1, 9).toString()
-        if (!randomNumList.contains(temp)) {
-            randomNumList.add(temp)
-        }
-    }
+    var randomNumList = makeRandomNumList()
     while (!finish) {
         print("숫자를 입력해주세요 : ")
         val userInput = Console.readLine() //플레이어 입력
@@ -50,14 +45,7 @@ fun main() {
                 val restart = Console.readLine()
                 if (restart == "1") {
                     finish = false
-                    temp = ""
-                    randomNumList = mutableListOf<String>()
-                    while (randomNumList.size < 3) {
-                        temp = Randoms.pickNumberInRange(1, 9).toString()
-                        if (!randomNumList.contains(temp)) {
-                            randomNumList.add(temp)
-                        }
-                    }
+                    randomNumList = makeRandomNumList()
                 } else if (restart == "2") {
                     finish = true
                 } else {
@@ -81,6 +69,17 @@ fun main() {
         }
 
     }
+}
 
-
+//난수를 생성하는 함수
+fun makeRandomNumList(): MutableList<String> {
+    var temp = ""
+    val randomNumList = mutableListOf<String>()
+    while (randomNumList.size < 3) {
+        temp = Randoms.pickNumberInRange(1, 9).toString()
+        if (!randomNumList.contains(temp)) {
+            randomNumList.add(temp)
+        }
+    }
+    return randomNumList
 }
