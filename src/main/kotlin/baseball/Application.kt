@@ -27,13 +27,7 @@ fun main() {
             val ball = result.second
             val nothing = result.third
 
-            val resultText = when {
-                strike > 0 && ball == 0 -> "${strike}스트라이크"
-                strike < 0 && ball > 0 -> "${ball}볼"
-                nothing > 0 -> "낫싱"
-                else -> "${ball}볼 ${strike}스트라이크"
-            }
-            println(resultText)
+            printGameResult(strike, ball, nothing)
 
             if (strike == 3) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -83,3 +77,15 @@ fun getGameResult(userInputList: List<String>, randomNumList: MutableList<String
     if (ball + strike == 0) nothing = 1
     return Triple(strike, ball, nothing)
 }
+
+//게임 결과를 출력하는 함수
+fun printGameResult(strike:Int,ball:Int,nothing: Int){
+    val resultText = when {
+        strike > 0 && ball == 0 -> "${strike}스트라이크"
+        strike < 0 && ball > 0 -> "${ball}볼"
+        nothing > 0 -> "낫싱"
+        else -> "${ball}볼 ${strike}스트라이크"
+    }
+    println(resultText)
+}
+
