@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 
 class Person {
     private val _inputList = mutableListOf<Int>()
-    val inputList : MutableList<Int>
-        get() = _inputList
 
     fun inputNumber() {
         _inputList.clear()
@@ -13,5 +11,9 @@ class Person {
         for(i: Int in 0..<input.length) {
             _inputList.add(input[i] - '0')
         }
+    }
+
+    fun getInputList() : MutableList<Int> {
+        return _inputList
     }
 }

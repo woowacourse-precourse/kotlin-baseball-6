@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
     private val _numberList = mutableListOf<Int>()
-    val numberList : MutableList<Int>
-        get() = _numberList
 
     fun makeComputerNumber() {
         _numberList.clear()
@@ -15,5 +13,8 @@ class Computer {
                 _numberList.add(randomNumber)
             }
         }
+    }
+    fun getNumberList() : MutableList<Int> {
+        return _numberList
     }
 }
