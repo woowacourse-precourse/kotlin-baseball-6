@@ -19,6 +19,7 @@ class BaseBallGame {
             }
             val(strike, ball) = calCount(person.getInputList(), computer.getNumberList())
             baseBallGameMessage.printCountMessage(strike, ball)
+            if(!askForRestart(strike, ball)) break
         }
     }
 
@@ -38,5 +39,24 @@ class BaseBallGame {
             }
         }
         return Pair(strike, ball)
+    }
+
+    private fun askForRestart(strike: Int, ball: Int): Boolean{
+        if(strike == 3 && ball == 0) {
+            baseBallGameMessage.printRestartAndExitMessage()
+            person.inputNumber()
+            if(isRestart(person.getInputList())) {
+                computer.makeComputerNumber()
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun isRestart(inputList: MutableList<Int>): Boolean {
+        return inputList.size == 1 && inputList[0] == 1
     }
 }
