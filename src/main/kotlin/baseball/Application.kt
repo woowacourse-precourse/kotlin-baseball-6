@@ -40,12 +40,12 @@ fun gameStart() {
 
 fun input(): ArrayList<Int> {
     print("숫자를 입력해주세요 : ")
+    val number = readln()
+    val numberList: ArrayList<Int> = arrayListOf()
+    if (number.length != 3) {
+        throw IllegalArgumentException("잘못된 입력입니다. 3개의 숫자를 입력하세요")
+    }
     try {
-        val number = readln()
-        if (number.length != 3) {
-            throw IllegalArgumentException()
-        }
-        val numberList: ArrayList<Int> = arrayListOf()
         for (i in 0..2) {
             numberList.add(number[i].digitToInt())
         }
@@ -66,14 +66,82 @@ fun answerNumber(): ArrayList<Int> {
     return computer
 }
 fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): Boolean {
-    return if (!myNumber.containsAll(computerNumber)) {
-        true
-    } else {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        false
+    var strike: Int = 0
+    var ball: Int = 0
+    repeat(3) { index ->
+        repeat(3) {
+            if (computerNumber[index] == myNumber[it] && index == it) {
+                strike++
+            } else if (computerNumber[index] == myNumber[it] && index != it)
+                ball++
+        }
     }
-}
+    when {
+        strike == 3 -> {
+            println("3스트라이크")
+            return false
+        }
 
+        strike + ball == 0 -> {
+            println("낫싱")
+            return true
+        }
+
+        strike == 0 -> {
+            println("${ball}볼")
+            return true
+        }
+
+        ball == 0 -> {
+            println("${strike}스트라이크")
+            return true
+        }
+
+        else -> {
+            println("${ball}볼 ${strike}스트라이크")
+            return true
+        }
+    }
+//    return if (!myNumber.containsAll(computerNumber)) {
+//        repeat(3) { index ->
+//            repeat(3) {
+//                if (computerNumber[index] == myNumber[it] && index == it) {
+//                    strike++
+//                }
+//                else if (computerNumber[index] == myNumber[it] && index != it)
+//                    ball++
+//            }
+//        }
+//        when {
+//            strike == 3 -> {
+//                println("3스트라이크")
+//                return false
+//            }
+//
+//            strike + ball == 0 -> {
+//                println("낫싱")
+//                return true
+//            }
+//            strike == 0 -> {
+//                println("${ball}볼")
+//                return true
+//            }
+//            ball == 0 -> {
+//                println("${strike}스트라이크")
+//                return true
+//            }
+//            else -> {
+//                println("${ball}볼 ${strike}스트라이크")
+//            }
+//        }
+//
+//        true
+//    } else {
+//        println("3스트라이크")
+//        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+//        false
+//    }
+}
 fun reGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val choice = readln().toInt()
@@ -81,7 +149,7 @@ fun reGame(): Boolean {
         1 -> true
         2 -> false
         else -> {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("잘못된 입력입니다.")
         }
     }
 }
