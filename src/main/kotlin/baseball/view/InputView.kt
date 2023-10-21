@@ -10,4 +10,5 @@ class InputView {
         InputValidator.validateInputDuplicate(input)
         return input
     }
+    fun getRestartOption() = Console.readLine().toInt()
 }
