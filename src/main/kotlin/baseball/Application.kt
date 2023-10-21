@@ -82,6 +82,7 @@ fun printResult(ball: Int, strike: Int): Boolean {
     when {
         strike == 3 -> {
             println("3스트라이크")
+            println("3개의 숫자를 모두 맞히였습니다! 게임 종료")
             return false
         }
 
