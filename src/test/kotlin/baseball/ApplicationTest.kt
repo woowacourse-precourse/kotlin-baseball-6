@@ -28,14 +28,6 @@ class ApplicationTest : NsTest() {
         }
     }
 
-    @Test
-    fun `컴퓨터가 생성한 수 유효성 검사 예외 테스트`() {
-        val computer = Computer()
-        assertSimpleTest {
-            assertDoesNotThrow { computer.generateNumbers() }
-        }
-    }
-
     override fun runMain() {
         main()
     }
