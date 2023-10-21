@@ -35,7 +35,7 @@ private fun validateInputBaseBallDuplication(inputBaseBallNumber: List<Int>) {
 }
 
 private fun validateInputBaseBallRange(inputBaseBallNumber: List<Int>) {
-    val rangeBaseBallNumber = inputBaseBallNumber.filter { it in 1..8 }
+    val rangeBaseBallNumber = inputBaseBallNumber.filter { it in 1..9 }
     if (rangeBaseBallNumber.size != BASEBALL_SIZE) {
         throw IllegalArgumentException(EXCEPTION_RANGE)
     }
