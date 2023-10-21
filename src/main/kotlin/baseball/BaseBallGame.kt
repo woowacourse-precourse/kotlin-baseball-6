@@ -25,7 +25,8 @@ class BaseBallGame {
     }
 
     private fun isBall(inputBaseBallIdx: Int, inputBaseBallNumber: Int, computerBaseBallList: List<Int>): Boolean {
-        return computerBaseBallList.indexOf(inputBaseBallNumber) != inputBaseBallIdx
+        val computerBaseBallIndex = computerBaseBallList.indexOf(inputBaseBallNumber)
+        return computerBaseBallIndex != -1 && inputBaseBallIdx != computerBaseBallIndex
     }
 
     private fun isStrike(inputBaseBallIdx: Int, inputBaseBallNumber: Int, computerBaseBallList: List<Int>): Boolean {
