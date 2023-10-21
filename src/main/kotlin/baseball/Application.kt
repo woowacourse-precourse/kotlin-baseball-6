@@ -20,6 +20,7 @@ fun startGame(numberOfComputer: List<String>) {
     do {
         val numberOfPlayer = getNumberFromPlayer()
         val gameResult = compareNumbers(numberOfComputer, numberOfPlayer)
+        printResult(gameResult)
     } while (stopFlag == 1)
 }
 
@@ -82,4 +83,10 @@ fun compareNumbers(numberOfComputer: List<String>, numberOfPlayer: List<String>)
     }
 
     return result
+}
+
+fun printResult(result: Result) {
+    if (result.sumResult() == 0) {
+        println("낫싱")
+    }
 }
