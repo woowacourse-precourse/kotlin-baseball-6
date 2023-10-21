@@ -52,3 +52,12 @@ fun howManyStrike(computerNum: List<Int>, userNum: List<Int>): Int {
     }
     return strikeNum
 }
+
+fun howManyBall(computerNum: List<Int>, userNum: List<Int>, strikeNum: Int): Int {
+    var ballNum = 0
+    for (num in computerNum) {
+        if (userNum.contains(num)) ballNum++
+    }
+
+    return ballNum - strikeNum
+}
