@@ -88,5 +88,10 @@ fun compareNumbers(numberOfComputer: List<String>, numberOfPlayer: List<String>)
 fun printResult(result: Result) {
     if (result.sumResult() == 0) {
         println("낫싱")
+    } else {
+        if (result.strike == 3) {
+            println("${result.strike}스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        }
     }
 }
