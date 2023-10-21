@@ -66,8 +66,8 @@ fun answerNumber(): ArrayList<Int> {
     return computer
 }
 fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): Boolean {
-    var strike: Int = 0
-    var ball: Int = 0
+    var strike = 0
+    var ball = 0
     repeat(3) { index ->
         repeat(3) {
             if (computerNumber[index] == myNumber[it] && index == it) {
@@ -76,6 +76,9 @@ fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): 
                 ball++
         }
     }
+    return printResult(ball, strike)
+}
+fun printResult(ball: Int, strike: Int): Boolean {
     when {
         strike == 3 -> {
             println("3스트라이크")
@@ -102,46 +105,8 @@ fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): 
             return true
         }
     }
-//    return if (!myNumber.containsAll(computerNumber)) {
-//        repeat(3) { index ->
-//            repeat(3) {
-//                if (computerNumber[index] == myNumber[it] && index == it) {
-//                    strike++
-//                }
-//                else if (computerNumber[index] == myNumber[it] && index != it)
-//                    ball++
-//            }
-//        }
-//        when {
-//            strike == 3 -> {
-//                println("3스트라이크")
-//                return false
-//            }
-//
-//            strike + ball == 0 -> {
-//                println("낫싱")
-//                return true
-//            }
-//            strike == 0 -> {
-//                println("${ball}볼")
-//                return true
-//            }
-//            ball == 0 -> {
-//                println("${strike}스트라이크")
-//                return true
-//            }
-//            else -> {
-//                println("${ball}볼 ${strike}스트라이크")
-//            }
-//        }
-//
-//        true
-//    } else {
-//        println("3스트라이크")
-//        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-//        false
-//    }
 }
+
 fun reGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val choice = readln().toInt()
