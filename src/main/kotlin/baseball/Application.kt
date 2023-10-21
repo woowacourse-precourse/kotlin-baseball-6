@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import java.lang.NumberFormatException
 
 var uiState :GameUiState = GameUiState.Loading
 fun main() {
@@ -34,7 +35,7 @@ fun main() {
 fun restart()
 {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val input = readln().toInt()
+    val input = inputNumber()
     if(input != 1 && input != 2) throw IllegalArgumentException()
 
     if(input == 1) uiState = GameUiState.Loading
@@ -57,7 +58,7 @@ fun gamePlay(computer:List<Int>)
     while(true)
     {
         print("숫자를 입력해 주세요 : ")
-        var input = readln().toInt()
+        var input = inputNumber()
 
         myNumber.clear()
         while(input>0)
@@ -96,7 +97,17 @@ fun gamePlay(computer:List<Int>)
         }
     }
 }
-
+fun inputNumber():Int
+{
+    var num: Int
+    try {
+        num = readln().toInt()
+    }catch (e:NumberFormatException)
+    {
+        throw IllegalArgumentException()
+    }
+    return num
+}
 sealed interface GameUiState{
     object Playing : GameUiState
     object Loading : GameUiState
