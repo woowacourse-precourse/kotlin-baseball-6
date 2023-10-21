@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.data.GameNumDeck
 import baseball.data.InputType
 import camp.nextstep.edu.missionutils.Console
 
@@ -29,7 +30,7 @@ class IOHandler {
     private fun checkInputValidWhileGame(input: String): Boolean {
         return input.filter {
             it in validInputWhileGame
-        }.toSet().size == input.length
+        }.toSet().size == GameNumDeck.DIGIT
     }
 
     private fun checkInputValidAfterGame(input: String) = input in validInputAfterGame

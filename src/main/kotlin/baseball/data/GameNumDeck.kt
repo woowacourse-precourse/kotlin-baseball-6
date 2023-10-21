@@ -6,7 +6,7 @@ data class GameNumDeck(
     val nums: List<Int>,
 ) {
     companion object {
-        private const val DIGIT = 3
+        const val DIGIT = 3
 
         fun generateRandomDeck(): GameNumDeck {
             val tempNumSet = mutableSetOf<Int>()
