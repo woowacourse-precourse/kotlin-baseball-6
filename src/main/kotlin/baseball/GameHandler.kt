@@ -39,7 +39,7 @@ class GameHandler(private val io: IOHandler) {
     }
 
     private fun checkInputIsCorrect(inputString: String): Boolean {
-        val nums = changeStringToIntList(inputString)
+        val nums = splitInputToNumber(inputString)
         strikeCount = 0
         ballCount = 0
 
@@ -62,7 +62,7 @@ class GameHandler(private val io: IOHandler) {
         return strikeCount == 3
     }
 
-    private fun changeStringToIntList(inputString: String): List<Int> {
+    private fun splitInputToNumber(inputString: String): List<Int> {
         return inputString.map {
             it.code - ASCII_0_CODE
         }
