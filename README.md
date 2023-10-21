@@ -146,6 +146,7 @@ while (computer.size() < 3) {
 ---
 
 ## 구현 기능 목록
+- 숫자 야구 시작 메세지
 - 상대방(Computer) 랜덤 수 생성 //`pickNumberInRange()`를 활용
   - 중복되지 않는 1부터 9까지의 3자리 정수
 - 플레이어(Player) 입력 처리 //`readLine()`을 활용
