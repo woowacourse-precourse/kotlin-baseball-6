@@ -21,24 +21,6 @@ fun playGame() {
     } while (strikeCount != 3)
 }
 
-fun askReplay(): Boolean {
-    val playerInputForReplay = getPlayerInputForReplay()
-    return continueOrExit(playerInputForReplay)
-}
-
-fun getPlayerInputForReplay() : String{
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    return Console.readLine()
-}
-
-fun continueOrExit(playerInput: String) : Boolean{
-    return when (playerInput) {
-        "1" -> true
-        "2" -> false
-        else -> throw IllegalArgumentException("입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요.")
-    }
-}
-
 fun generateComputerNumbers(): List<Int> {
     val computerNumbers = mutableSetOf<Int>()
     while (computerNumbers.size < 3) {
@@ -77,5 +59,23 @@ fun printResult(strikeCount: Int, ballCount: Int) {
         ballCount > 0 -> println("${ballCount}볼")
         strikeCount > 0 -> println("${strikeCount}스트라이크")
         else -> println("낫싱")
+    }
+}
+
+fun askReplay(): Boolean {
+    val playerInputForReplay = getPlayerInputForReplay()
+    return continueOrExit(playerInputForReplay)
+}
+
+fun getPlayerInputForReplay() : String{
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return Console.readLine()
+}
+
+fun continueOrExit(playerInput: String) : Boolean{
+    return when (playerInput) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요.")
     }
 }
