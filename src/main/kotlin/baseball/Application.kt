@@ -5,6 +5,8 @@ fun main() {
     val SIZE = 3 // 리스트의 길이
     val computer = mutableListOf<String>()
     val user = mutableListOf<String>()
+    var s = 0
+    var b = 0
 
     while (computer.size < SIZE) {
         val randomNumber = Randoms.pickNumberInRange(1, 9).toString() // 랜덤 수 생성
@@ -18,6 +20,22 @@ fun main() {
     for (i in 0 until SIZE) {
         user.add(userNumber[i].toString())
     }
+
+    for (i in 0 until SIZE) {
+        for (j in 0 until SIZE) {
+            if (computer[i] == user[j]) {
+                if (i == j) {
+                    s++
+                } else {
+                    b++
+                }
+            }
+        }
+    }
+    if (b == 0 && s == 0) {
+        println("낫싱")
+    }
+
     println(computer)
     println(user)
 }
