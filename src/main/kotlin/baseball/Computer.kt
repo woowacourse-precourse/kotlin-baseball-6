@@ -7,10 +7,9 @@ class Computer : Player<Unit> {
 
     /**
      * @param input 사용자로부터의 입력 문자열 (선택적)
-
      * @throws IllegalArgumentException 유효성 검사 실패 시 발생
      */
-    override fun generateNumbers(input: String, testNumbers: List<Int>) {
+    override fun generateNumbers(input: String) {
         val generatedNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT)
         Validator.validateNumbers(generatedNumbers)
         numbers = generatedNumbers
