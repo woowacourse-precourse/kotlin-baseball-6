@@ -1,13 +1,20 @@
 package baseball.controller
 
+import baseball.model.BaseballModel
 import baseball.view.BaseballView
 import camp.nextstep.edu.missionutils.Console
 
-class BaseballController {
+class BaseballController() {
 
     fun playGame() {
         BaseballView().printStartGameMessage()
-        inputNumber()
+        while (true) {
+            BaseballView().printInputNumberMessage()
+            val userNumber = inputNumber()
+            val answerNumber = BaseballModel().createRandomNumber()
+            val baseballResult = BaseballModel().calculateHint(answerNumber, userNumber)
+            BaseballView().printHintMessage(baseballResult)
+        }
     }
 
     private fun inputNumber(): String {
