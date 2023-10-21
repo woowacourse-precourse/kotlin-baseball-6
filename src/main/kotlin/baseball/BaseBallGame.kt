@@ -18,6 +18,7 @@ class BaseBallGame {
                 break
             }
             val(strike, ball) = calCount(person.getInputList(), computer.getNumberList())
+            baseBallGameMessage.printCountMessage(strike, ball)
         }
     }
 
@@ -29,8 +30,8 @@ class BaseBallGame {
     ) : Pair<Int, Int> {
         var strike = 0
         var ball = 0
-        for(i: Int in 0..<LENGTH - 1) {
-            for(j: Int in 0..<LENGTH - 1) {
+        for(i: Int in 0..< LENGTH) {
+            for(j: Int in 0..< LENGTH) {
                 if(inputList[i] == numberList[j]) {
                     if(i != j) ball += 1 else strike += 1
                 }
