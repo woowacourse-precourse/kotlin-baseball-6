@@ -2,9 +2,10 @@ package baseball
 
 class BaseBallGame {
     private val LENGTH = 3
-    private val computer: Computer = Computer()
-    private val person: Person = Person()
-    private val baseBallGameMessage : BaseBallGameMessage = BaseBallGameMessage()
+    private val computer = Computer()
+    private val person = Person()
+    private val baseBallGameMessage = BaseBallGameMessage()
+    private val inputValidator = InputValidator()
 
     fun gamePlay() {
         computer.makeComputerNumber()
@@ -13,7 +14,7 @@ class BaseBallGame {
             baseBallGameMessage.printPersonInputMessage()
             person.inputNumber()
             try {
-                isValidInput(person.getInputList())
+                inputValidator.isValidInput(person.getInputList())
             } catch (e: IllegalArgumentException) {
                 break
             }
@@ -22,8 +23,6 @@ class BaseBallGame {
             if(!askForRestart(strike, ball)) break
         }
     }
-
-    private fun isValidInput(inputList: MutableList<Int>) {}
 
     private fun calCount(
         inputList: MutableList<Int>,
@@ -45,7 +44,7 @@ class BaseBallGame {
         if(strike == 3 && ball == 0) {
             baseBallGameMessage.printRestartAndExitMessage()
             person.inputNumber()
-            if(isRestart(person.getInputList())) {
+            if(inputValidator.isRestart(person.getInputList())) {
                 computer.makeComputerNumber()
                 return true
             }
@@ -54,9 +53,5 @@ class BaseBallGame {
             }
         }
         return true
-    }
-
-    fun isRestart(inputList: MutableList<Int>): Boolean {
-        return inputList.size == 1 && inputList[0] == 1
     }
 }
