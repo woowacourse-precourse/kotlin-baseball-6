@@ -1,5 +1,7 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Randoms
+
 /*
 기능명세
 컴퓨터 : 랜덤 수 3개를 뽑는다 - 사용자가 맞추기 전까지 바뀌지 않음
@@ -18,6 +20,19 @@ package baseball
 fun main() {
 
 
+}
+
+class Computer() {
+
+    private fun randomNum() {
+        val computer = mutableListOf<Int>()
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+    }
 }
 
 class User() {
