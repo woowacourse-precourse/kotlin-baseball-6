@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
@@ -24,15 +25,16 @@ fun gameStart() {
 }
 
 fun input(): ArrayList<Int> {
+
     print("숫자를 입력해주세요 : ")
-    val number = readln()
+    val userNumber = Console.readLine().trim()
     val numberList: ArrayList<Int> = arrayListOf()
-    if (number.length != 3) {
+    if (userNumber.length != 3) {
         throw IllegalArgumentException("잘못된 입력입니다. 3개의 숫자를 입력하세요")
     }
     try {
         for (i in 0..2) {
-            numberList.add(number[i].digitToInt())
+            numberList.add(userNumber[i].digitToInt())
         }
         return numberList
     } catch (e: IllegalArgumentException) {
@@ -97,7 +99,7 @@ fun printResult(ball: Int, strike: Int): Boolean {
 
 fun reGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val choice = readln().toInt()
+    val choice = Console.readLine().toInt()
     return when (choice) {
         1 -> true
         2 -> false
