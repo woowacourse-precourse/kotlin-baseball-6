@@ -10,10 +10,10 @@ package baseball
 
 import kotlin.random.Random
 data class Answer(val a: Int, val b: Int, val c: Int)
-data class Info(val Amount:Int, val out:Int, val bool:Int, val strike:Int)
+data class Info(var Amount:Int, var out:Int, var bool:Int, var strike:Int)
 data class result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
 
-fun problem(seed : Int): Answer { //문제를 시드에 따라 생성
+fun Problem(seed : Int): Answer { //문제를 시드에 따라 생성
     val random = Random(seed)
     val a = random.nextInt(1, 9) // 1부터 9 사이의 정수
     val b = random.nextInt(1,9)
@@ -21,7 +21,7 @@ fun problem(seed : Int): Answer { //문제를 시드에 따라 생성
     return Answer(a,b,c)
 }
 
-fun User_response():Answer { //User용 입력
+fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면 에러
     val base = readln()
     if (base.length != 3) {
         throw IllegalArgumentException()
@@ -29,9 +29,31 @@ fun User_response():Answer { //User용 입력
     return Answer(base[0].toString().toInt(), base[1].toString().toInt(), base[2].toString().toInt()) //toInt로 하면 아스키 코드 값으로 변환됨
 }
 
-fun start_Game(user:Boolean == true){
+fun case_check(case:Answer, answer:Answer):Info {
+    val info = Info(0,0,0,0)
+    //strike체크, bool체크, out으로 감
+    val check = listOf(answer.a, answer.b, answer.c)
+    //listOf(answer)는 answer객체 하나로 만들어짐... //리스트로 변환하여 순차적으로 접근할 수 있게 함 //data class에서 get, set인 인덱스 접근에 해당하는 함수를 만들어 가능하게 할 수 있음
+    // 데이터 클래스를 각 컴포넌트를 가지는 리스트로 자동 변환은 아직 못찾음
+    for ((idx, elem) in listOf(case.a, case.b, case.c).withIndex()) {
+        if (elem == check[idx]) {
+            info.strike += 1
+            info.Amount += 1
+        }
+        else if (elem in check) {
+            info.bool += 1
+            info.Amount +=1
+        }
+        else {
+            info.out += 1
+        }
+    }
+    return info
+}
+
+fun start_Game(user:Boolean = true){
     val infoList = mutableListOf<Info>() //정보 저장용
-    val Answer case = problem()
+    val Answer case = Problem(0)
     while (true): {
         if (user == true) {
             val answer = User_response()
@@ -43,7 +65,7 @@ fun start_Game(user:Boolean == true){
             val tmp = case_check(case, answer) //info형태로 결과를 반환
             display(tmp)
         }
-        infoList.add(answer, tmp) //이 형태의 값을 넣음
+        infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
 
         if (tmp == Info(3, 0, 0, 3)) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -52,6 +74,6 @@ fun start_Game(user:Boolean == true){
     }
 }
 
-fun main() :
+fun main() {
     start_Game(user=true)
 }
