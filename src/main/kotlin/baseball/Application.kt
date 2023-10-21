@@ -3,6 +3,8 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+const val SIZE = 3
+
 fun main() {
     gameStart()
 }
@@ -29,10 +31,10 @@ fun input(): ArrayList<Int> {
     require(!userNumber.contains("0")) {
         "1에서 9사이의 숫자를 입력하세요."
     }
-    require(userNumber.length == 3) {
+    require(userNumber.length == SIZE) {
         "잘못된 입력입니다. 3개의 숫자를 입력하세요"
     }
-    for (i in 0..2) {
+    for (i in 0..< SIZE) {
         try {
             numberList.add(userNumber[i].digitToInt())
         } catch (e: IllegalArgumentException) {
@@ -44,7 +46,7 @@ fun input(): ArrayList<Int> {
 
 fun answerNumber(): ArrayList<Int> {
     val computer: ArrayList<Int> = arrayListOf()
-    while (computer.size < 3) {
+    while (computer.size < SIZE) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
             computer.add(randomNumber)
@@ -56,7 +58,7 @@ fun answerNumber(): ArrayList<Int> {
 fun comparisonNumber(myNumber: ArrayList<Int>, computerNumber: ArrayList<Int>): Boolean {
     var strike = 0
     var ball = 0
-    repeat(3) { index ->
+    repeat(SIZE) { index ->
         when {
             myNumber[index] == computerNumber[index] -> strike++
             myNumber[index] in computerNumber -> ball++
