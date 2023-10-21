@@ -15,10 +15,7 @@ fun main() {
             println(e.message)
             return
         }
-        println(collectNumber)
-        println(userAnswer)
         val play = Play(collectNumber, userAnswer)
-        var result: Boolean
         play.compare()
     } while (play.result)
 
