@@ -24,6 +24,26 @@
     <br>
     볼/스트라이크 여부는 같은 인덱스에 있는지도 확인을 해야->이터레이터가 있는 맵같은 것을 사용하는 게 더 좋을까?
 
+# ✏️ 수정사항 정리
+- [ ] 오류 관련
+  <br>
+    사이즈가 3이 아닐 떄 오류 출력->1또는 2입력 시 문제가 생길 수도
+  <br>
+- indices와 length()의 차이
+    <pre>
+<code>
+   for (index in inputNumber.indices) {
+            userNumber.add(inputNumber[index])
+        }
+</code>
+  </pre>
+    이 부분을 length로 처음 썼을 때는 잘 작동하지 않음
+    <br>
+    원인:전체 문자열의 길이가 아닌 각 문자열의 길이를 알아야하기 때문
+    <br>
+    length:전체 문자열 길이를 반환/indices:각자 문자열의 길이 반환
+
+
 
 # ✏️ 새로 배운 사항 및 리팩토링 시 고려해볼 사안
 
