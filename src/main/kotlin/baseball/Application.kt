@@ -24,7 +24,7 @@ fun baseball(){
             printHint(roundResult)
             if(roundResult.strike == 3) break
         }
-        //if(!(askRetry())) break
+        if(!(askRetry())) break
     }
 }
 
@@ -109,7 +109,13 @@ fun printHint(roundResult: Round){
     if(roundResult.strike == 3) println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
-/*
+/* 라운드 조건 검사 결과 출력 function : printHint*/
 fun askRetry(): Boolean {
-
-}*/
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val retryAnswer = readLine()
+    return when (retryAnswer) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("잘못된 입력입니다, 올바른 숫자가 아닙니다.")
+    }
+}
