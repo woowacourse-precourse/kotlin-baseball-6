@@ -16,12 +16,36 @@ const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
 fun main() {
-    val answer = answerSelect()
     println("숫자 야구 게임을 시작합니다.")
+    var isStay = true
+    var answer = answerSelect()
+    var inputData: IntArray
 
-    inputNumber(
-        digit = BASEBALL_DIGITS,
-        range = CharRange('1', '9')
-    )
+    do {
+        // TODO For Debuging
+        println("정답 : ${answer.contentToString()}")
+
+        // 2. 숫자 입력 받기 : 1 ~ 9 3자리
+        inputData = inputVaildator(
+            digit = BASEBALL_DIGITS,
+            range = CharRange('1', '9')
+        )
+        if (inputData.size == BASEBALL_DIGITS) {
+            val isAnswer = calculateBallAndStrike(inputData, answer)
+            if (isAnswer == false) continue
+        }
+
+        // 4. 메뉴 입력 받기 : 1 or 2
+        inputData = inputVaildator(
+            digit = MENU_DIGITS,
+            range = CharRange('1', '2')
+        )
+        if (inputData[0] == 1) {
+            isStay = true
+            answer = answerSelect()
+        } else if (inputData[0] == 2) {
+            println("게임 종료")
+            isStay = false
+        }
+    } while (isStay)
 }
-

@@ -8,17 +8,26 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
-//    @Test
-//    fun `게임종료 후 재시작`() {
-//        assertRandomNumberInRangeTest(
-//            {
-//                run("246", "135", "1", "597", "589", "2")
-//                assertThat(output())
-//                    .contains("낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료")
-//            },
-//            1, 3, 5, 5, 8, 9
-//        )
-//    }
+    @Test
+    fun `게임종료 후 재시작`() {
+        assertRandomNumberInRangeTest(
+            {
+                run("246", "135", "1", "597", "589", "2")
+                assertThat(output())
+                    .contains("낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료")
+            },
+            1, 3, 5, 5, 8, 9
+        )
+
+        assertRandomNumberInRangeTest(
+            {
+                run("456", "231", "132", "123", "2")
+                assertThat(output())
+                    .contains("낫싱", "3볼", "2볼 1스트라이크", "3스트라이크", "게임 종료")
+            },
+            1, 2, 3
+        )
+    }
 
     @Test
     fun `사용자 입력 예외 테스트(digit = NUMBER_OF_DIGITS)`() {
