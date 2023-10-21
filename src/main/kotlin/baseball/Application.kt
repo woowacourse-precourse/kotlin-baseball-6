@@ -12,39 +12,37 @@ fun main() {
     var randomNumList = makeRandomNumList()
     while (!finish) {
 
-    val userInput =  getUserInput()
+        val userInput = getUserInput()
 
         val regex = "[1-9]{3}".toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
 
         //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
-        if (regex.matches(userInput) && (userInput.length == userInput.toSet().size)) {
-            val userInputList: List<String> = userInput.chunked(1)
+        checkUserInputValid(userInput)
 
-            //난수와 사용자 입력 비교 분리
-            val result = getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
+        val userInputList: List<String> = userInput.chunked(1)
 
-            val strike = result.first
-            val ball = result.second
-            val nothing = result.third
+        //난수와 사용자 입력 비교 분리
+        val result = getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
 
-            printGameResult(strike, ball, nothing)
+        val strike = result.first
+        val ball = result.second
+        val nothing = result.third
 
-            if (strike == 3) {
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        printGameResult(strike, ball, nothing)
 
-                val restart = Console.readLine()
-                setRestartFlag(restart).let {
-                    if (it) randomNumList = makeRandomNumList()
-                    else finish = true
-                }
+        if (strike == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+            val restart = Console.readLine()
+            setRestartFlag(restart).let {
+                if (it) randomNumList = makeRandomNumList()
+                else finish = true
             }
-        } else {
-            throw IllegalArgumentException("It is not a triple digit composed of different numbers between 1 and 9 :$userInput")
         }
-
     }
 }
+
 
 //난수를 생성하는 함수
 fun makeRandomNumList(): MutableList<String> {
@@ -93,7 +91,15 @@ fun setRestartFlag(userInput: String): Boolean {
 }
 
 //사용자 입력 받는 함수
-fun getUserInput():String{
+fun getUserInput(): String {
     print("숫자를 입력해주세요 : ")
     return Console.readLine() //플레이어 입력
+}
+
+//사용자 입력값  유효성 검사 함수
+fun checkUserInputValid(userInput: String) {
+    val regex = "[1-9]{3}".toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
+    //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
+    if ((regex.matches(userInput) && (userInput.length == userInput.toSet().size))) {
+    } else throw IllegalArgumentException()
 }
