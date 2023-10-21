@@ -12,9 +12,14 @@ fun main() {
 
 fun startBaseballGame() {
     val answer = creatRandomNumberList()
-    var user = getUserInput()
-    if (user == answer) {
-        println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println(answer)
+    while (true) {
+        val user = getUserInput()
+        if (user == answer) {
+            println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
+        countScore(answer, user)
     }
 }
 
@@ -43,4 +48,17 @@ fun isRestartable(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val restartChar = Console.readLine()
     return ("1" == restartChar)
+}
+
+fun countScore(answer: List<Int>, user: List<Int>) {
+    var strikeCount = 0
+    var ballCount = 0
+    repeat(3) {
+        if (user[it] == answer[it]) strikeCount++
+        else if (answer.contains(user[it])) ballCount++
+    }
+    val strikeMessage = if (0 < strikeCount) "${strikeCount}스트라이크" else ""
+    val ballMessage = if (0 < ballCount) "${ballCount}볼 " else ""
+    val finalMessage = if (strikeCount == 0 && ballCount == 0) "낫싱" else "$ballMessage$strikeMessage"
+    println(finalMessage)
 }
