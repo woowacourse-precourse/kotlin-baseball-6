@@ -15,4 +15,21 @@ fun main() {
             computer.add(randomNumber)
         }
     }
+
+    // 사용자 숫자 입력받기
+    print("숫자를 입력해주세요 : ")
+    val userInput = mutableListOf<Int>()
+    try {
+        readLine()?.map { userInput.add(it.toString().toInt()) }
+
+        if (userInput.size != 3 ||
+            userInput.toSet().size != 3 ||
+            userInput.none { it in 1..9 }
+        ) {
+            throw Exception()
+        }
+
+    } catch (e: Exception) {
+        throw IllegalArgumentException()
+    }
 }
