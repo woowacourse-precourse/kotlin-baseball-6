@@ -26,7 +26,7 @@ fun checkRestart(): Boolean {
 fun main() {
     while (true) {
         val computerList = createComputerList()
-        val baseBall = BaseBall(computerList)
+        val baseBall = BaseBall()
         baseBall.startGame(computerList)
         if (!checkRestart()) {
             break

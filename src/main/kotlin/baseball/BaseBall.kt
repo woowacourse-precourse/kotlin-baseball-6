@@ -7,7 +7,7 @@ enum class GameStatus {
     STOP
 }
 
-class BaseBall(computerList: List<Int>) {
+class BaseBall() {
     private val regex = Regex("^([1-9])(?!\\1)([1-9])(?!\\1|\\2)([1-9])\$")
     private lateinit var userList: List<Int>
     private var gameStatus = GameStatus.ONGOING
@@ -40,23 +40,23 @@ class BaseBall(computerList: List<Int>) {
         }
     }
 
-    private fun countScore(computerList: List<Int>): Pair<Int,Int> {
-        var strike =0
+    private fun countScore(computerList: List<Int>): Pair<Int, Int> {
+        var strike = 0
         var ball = 0
         computerList.forEachIndexed { index, item ->
             if (item == userList[index]) {
                 strike += 1
-            }else if( item in userList){
-                ball +=1
+            } else if (item in userList) {
+                ball += 1
             }
         }
-        return Pair(strike,ball)
+        return Pair(strike, ball)
     }
 
     private fun insertUserList(input: String) {
         regex.matchEntire(input)?.let { result ->
             setUserList(result.groupValues)
-        }?:run {
+        } ?: run {
             throw IllegalArgumentException("입력이 잘못되었습니다.")
         }
     }
