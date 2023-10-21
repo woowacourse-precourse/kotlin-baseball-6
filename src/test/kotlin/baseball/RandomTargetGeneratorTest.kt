@@ -25,10 +25,9 @@ class RandomTargetGeneratorTest{
         val randomTargetGenerator = RandomTargetGenerator()
 
         //when
-        val actual = randomTargetGenerator.generateRandomTarget()
+        val actual = randomTargetGenerator.generateRandomTarget().toSet().size
 
         //then
-        val actual = actual.toSet().size
         val expected = 3
         assertThat(actual).isEqualTo(expected)
     }
