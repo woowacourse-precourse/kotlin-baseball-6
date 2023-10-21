@@ -1,8 +1,10 @@
 package baseball
 
 class BaseBallsValidator {
-    fun validate(balls: List<Int>): Boolean =
-        isThreeBall(balls) && isBallNumberInRange(balls) && isBallNotDuplicated(balls)
+    fun validate(balls: List<Int>) {
+        if (isThreeBall(balls) && isBallNumberInRange(balls) && isBallNotDuplicated(balls)) return
+        throw IllegalArgumentException()
+    }
 
     private fun isThreeBall(balls: List<Int>): Boolean {
         return balls.size == 3
