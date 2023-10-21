@@ -41,7 +41,9 @@ fun getPlayerInputNumbers(): List<Char> {
 }
 
 fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
-    if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() } || playerInputNumbers.contains('0')) {
+    if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() } || playerInputNumbers.contains(
+            '0'
+        )) {
         throw IllegalArgumentException("입력값이 올바르지 않습니다. 서로 다른 숫자 3개를 입력해주세요.")
     }
 }
@@ -67,12 +69,12 @@ fun askReplay(): Boolean {
     return continueOrExit(playerInputForReplay)
 }
 
-fun getPlayerInputForReplay() : String{
+fun getPlayerInputForReplay(): String {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     return Console.readLine()
 }
 
-fun continueOrExit(playerInputForReplay: String) : Boolean {
+fun continueOrExit(playerInputForReplay: String): Boolean {
     return when (playerInputForReplay) {
         "1" -> true
         "2" -> false
