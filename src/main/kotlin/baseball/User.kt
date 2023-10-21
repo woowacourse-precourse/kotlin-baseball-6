@@ -1,30 +1,32 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
-class Computer : Player<Unit> {
-    private lateinit var numbers: List<Int>
+class User : Player<List<Int>> {
+    fun inputNumber(): String {
+        return Console.readLine()
+    }
 
     /**
      * @param input 사용자로부터의 입력 문자열 (선택적)
      * @param testNumbers testNumbers 테스트 목적으로 제공된 정수 리스트 (선택적)
      * @throws IllegalArgumentException 유효성 검사 실패 시 발생
      */
-    override fun generateNumbers(input: String, testNumbers: List<Int>) {
-        val generatedNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT)
+    override fun generateNumbers(input: String, testNumbers: List<Int>): List<Int> {
+        val numbers = input.map { it.toString().toInt() }
 
-        if (Validator.areInvalidCountNumbers(generatedNumbers)) {
+        if (Validator.areInvalidCountNumbers(numbers)) {
             throw IllegalArgumentException("수의 개수가 올바르지 않습니다.")
         }
 
-        if (Validator.areOutOfRangeNumbers(generatedNumbers)) {
+        if (Validator.areOutOfRangeNumbers(numbers)) {
             throw IllegalArgumentException("수의 범위가 잘못되었습니다.")
         }
 
-        if (Validator.areDuplicateNumbers(generatedNumbers)) {
+        if (Validator.areDuplicateNumbers(numbers)) {
             throw IllegalArgumentException("중복된 수가 있습니다.")
         }
 
-        numbers = generatedNumbers
+        return numbers
     }
 }
