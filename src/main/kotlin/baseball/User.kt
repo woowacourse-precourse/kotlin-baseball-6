@@ -10,7 +10,7 @@ class User {
         checkInputNumber(inputNumber)
         for (char in inputNumber) {
             val num = char.toString().toIntOrNull()
-            userNumber.add(checkNull(num))
+            userNumber.add(checkDuplicate(userNumber,checkNull(num)))
         }
         return userNumber
     }
@@ -22,6 +22,12 @@ class User {
 
     private fun checkNull(inputNumber: Int?) : Int {
         if (inputNumber==null)
+            throw IllegalArgumentException()
+        return inputNumber
+    }
+
+    private fun checkDuplicate(userNumber:MutableList<Int>,inputNumber: Int):Int{
+        if (userNumber.contains(inputNumber))
             throw IllegalArgumentException()
         return inputNumber
     }
