@@ -21,24 +21,24 @@ class NumberBaseball {
     }
 
     fun createComputerNumber(): String {
-        val ComputerNumber = mutableListOf<String>()
-        while (ComputerNumber.size < 3) {
+        val newComputerNumber = mutableListOf<String>()
+        while (newComputerNumber.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9).toString()
-            if (!ComputerNumber.contains(randomNumber)) {
-                ComputerNumber.add(randomNumber)
+            if (!newComputerNumber.contains(randomNumber)) {
+                newComputerNumber.add(randomNumber)
             }
         }
-        return ComputerNumber.joinToString("")
+        return newComputerNumber.joinToString("")
     }
 
-    fun seekAnswer(ComputerNumber: String, userNumber: String) {
+    fun seekAnswer(newComputerNumber: String, userNumber: String) {
         var strikeCount: Int = 0
         var ballCount: Int = 0
 
         for (index in userNumber.indices) {
-            if (userNumber[index] == ComputerNumber[index]) {
+            if (userNumber[index] == newComputerNumber[index]) {
                 strikeCount++
-            } else if (ComputerNumber.contains(userNumber[index])) {
+            } else if (newComputerNumber.contains(userNumber[index])) {
                 ballCount++
             }
         }
@@ -76,7 +76,7 @@ class NumberBaseball {
 
     fun readInputNumber(): String {
         print("숫자를 입력해주세요: ")
-        val userInput = readLine().toString()
+        val userInput = Console.readLine().toString()
         var userNumber = mutableListOf<Char>()
         inputException(userNumber, userInput)
         return userNumber.joinToString("")
@@ -92,9 +92,9 @@ class NumberBaseball {
 
     fun main() {
         gameStart()
-       do{
-           playing()
-       }while(resetGame())
+        do {
+            playing()
+        } while (resetGame())
     }
 }
 
