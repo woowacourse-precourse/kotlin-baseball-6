@@ -25,7 +25,7 @@ fun main() {
             if (userInput == null ||
                 userInput.size != 3 ||
                 userInput.toSet().size != 3 ||
-                userInput.none { it in 1..9 }
+                userInput.any { it !in 1..9 }
             ) {
                 throw IllegalArgumentException()
             }
@@ -58,7 +58,7 @@ fun main() {
         when (readLine()?.toIntOrNull()) {
             1 -> continue
             2 -> break
-            null -> throw IllegalArgumentException()
+            else -> throw IllegalArgumentException()
         }
     }
 }
