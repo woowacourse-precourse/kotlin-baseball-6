@@ -1,14 +1,13 @@
 package baseball.io
 
+import baseball.util.toDigitList
 import baseball.util.validateInputBaseBall
 import baseball.util.validateInputExit
 import camp.nextstep.edu.missionutils.Console
 
 fun inputBaseBallNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
-    val inputBaseBallNumber = Console.readLine().map {
-        it.code - '0'.code
-    }
+    val inputBaseBallNumber = Console.readLine().toDigitList()
 
     validateInputBaseBall(inputBaseBallNumber)
     return inputBaseBallNumber

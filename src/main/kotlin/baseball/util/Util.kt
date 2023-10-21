@@ -46,3 +46,7 @@ fun validateInputExit(inputExitGame: String) {
         throw IllegalArgumentException(EXCEPTION_EXIT)
     }
 }
+
+fun String.toDigitList() = this.map {
+    it.code - '0'.code
+}
