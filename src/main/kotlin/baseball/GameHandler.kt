@@ -1,11 +1,11 @@
 package baseball
 
+import baseball.data.GameNumDeck
 import baseball.data.InputType
-import camp.nextstep.edu.missionutils.Randoms
 
 class GameHandler(private val io: IOHandler) {
 
-    private val answer: MutableList<Int> = mutableListOf()
+    private lateinit var answer: GameNumDeck
     private var strikeCount = 0
     private var ballCount = 0
 
@@ -23,14 +23,7 @@ class GameHandler(private val io: IOHandler) {
     }
 
     private fun reset() {
-        answer.clear()
-
-        val tempNumSet = mutableSetOf<Int>()
-        while (tempNumSet.size < DIGIT) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            tempNumSet.add(randomNumber)
-        }
-        answer.addAll(tempNumSet)
+        answer = GameNumDeck.generateRandomDeck()
     }
 
     private fun playGame() {
@@ -76,7 +69,7 @@ class GameHandler(private val io: IOHandler) {
     }
 
     private fun checkIsStrikeOrBall(index: Int, num: Int) {
-        val numIndexAtAnswer = answer.indexOf(num)
+        val numIndexAtAnswer = answer.nums.indexOf(num)
         if (numIndexAtAnswer == index) {
             strikeCount++
         } else if (numIndexAtAnswer != -1) {
@@ -85,7 +78,6 @@ class GameHandler(private val io: IOHandler) {
     }
 
     companion object {
-        private const val DIGIT = 3
         private const val ASCII_0_CODE = 48
         private const val SENTENCE_FOR_START = "숫자 야구 게임을 시작합니다.\n"
         private const val SENTENCE_FOR_INPUT = "숫자를 입력해주세요 : "
