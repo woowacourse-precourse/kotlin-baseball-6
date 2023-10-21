@@ -45,15 +45,13 @@ class BaseballGame {
     }
 
     fun generateRandomNumbers(): List<Int> {
-        val randomNumbers = mutableListOf<Int>()
+        val randomNumbers = mutableSetOf<Int>()
 
         while (randomNumbers.size < NUMBERS_LENGTH) {
             val number = Randoms.pickNumberInRange(NUMBER_START_RANGE, NUMBER_END_RANGE)
-            if (!randomNumbers.contains(number)) {
-                randomNumbers.add(number)
-            }
+            randomNumbers.add(number)
         }
-        return randomNumbers
+        return randomNumbers.toList()
     }
 
     private fun getUserNumbers() : List<Int> {
