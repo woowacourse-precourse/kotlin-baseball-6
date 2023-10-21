@@ -7,6 +7,7 @@ import java.lang.IllegalArgumentException
 fun main() {
     gameStartMessage()
     val computerNum = createRandomNum()
+    println("computerNum $computerNum")
     val userNum = getUserInputNum()
 
 }
@@ -43,3 +44,11 @@ fun checkIsValidNum(inputNum: List<Int>) {
     }
 }
 
+fun howManyStrike(computerNum: List<Int>, userNum: List<Int>): Int {
+    var strikeNum = 0
+    for (idx in 0..2) {
+        if (computerNum[idx] == userNum[idx])
+            strikeNum += 1
+    }
+    return strikeNum
+}
