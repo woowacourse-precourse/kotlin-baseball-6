@@ -1,6 +1,6 @@
 package baseball
 
-import baseball.System.Companion.finish
+import baseball.System.Companion.isFinished
 
 //리팩토링-> 작은 덩어리로 쪼개기
 fun main() {
@@ -9,7 +9,7 @@ fun main() {
 
     //난수 생성
     var randomNumList = computer.makeRandomNumList()
-    while (!finish) {
+    while (!isFinished) {
         val userInput = system.getUserInput()
         //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
         system.checkUserInputValid(userInput)
@@ -29,7 +29,7 @@ fun main() {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
-            if (system.endGame()) finish = true
+            if (system.endGame()) isFinished = true
             else randomNumList = computer.makeRandomNumList()
 
         }

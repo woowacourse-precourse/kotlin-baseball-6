@@ -8,7 +8,7 @@ class System {
         println("숫자 야구 게임을 시작합니다.")
     }
     companion object {
-        var finish = false
+        var isFinished = false
     }
     fun getUserInput(): String {
         print("숫자를 입력해주세요 : ")
