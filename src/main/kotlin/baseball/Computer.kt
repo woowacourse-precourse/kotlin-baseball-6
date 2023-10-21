@@ -7,21 +7,27 @@ class Computer {
     private lateinit var computerNumber: MutableList<Int>
     private val user = User()
     fun playGame() {
-            println("숫자 야구 게임을 시작합니다.")
-            setRandomNumber()
+        println("숫자 야구 게임을 시작합니다.")
+        setRandomNumber()
+        try {
             playInning()
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             user.playAgain()
+        } catch (e: IllegalArgumentException){
+            throw e
+        }
     }
-    private fun playInning(){
+
+    private fun playInning() {
         print("숫자를 입력해주세요 :")
         val input = user.inputNumber()
         val strike = countStrike(input)
         val ball = countBall(input) - strike
         println(resultString(strike, ball))
-        if(strike!=3)
+        if (strike != 3)
             playInning()
     }
+
     private fun setRandomNumber() {
         computerNumber = mutableListOf()
         while (computerNumber.size < 3) {
