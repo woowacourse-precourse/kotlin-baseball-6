@@ -22,9 +22,27 @@ fun playerNum() : MutableList<Int> {
     }
     return player
 }
+fun compare(computer: MutableList<Int>, player: MutableList<Int>) : Pair<Int, Int>{
+    var strike = 0
+    var ball = 0
+    for(i in 0..<player.size){
+        if(computer.contains(player[i])){ //컴퓨터에 값이 포함되었는지
+            val index = computer.indexOf(player[i]) //포함되면 인덱스 가져와서
+            if(i == index){ //위치가 같으면 스트라이크
+                strike += 1
+            }
+            else{
+                ball += 1 //위치가 같지 않으면 볼
+            }
+        }
+    }
+    return Pair(strike, ball)
+}
 fun main() {
      /*TODO("프로그램 구현")*/
     val c_number = computerNum() // 컴퓨터의 랜덤 숫자
     val p_number = playerNum() // 플레이어의 숫자
-    print(p_number)
+    val (strike, ball) = compare(c_number, p_number) //스트라이크, 볼 비교
+    println(strike)
+    println(ball)
 }
