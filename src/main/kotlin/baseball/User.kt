@@ -9,8 +9,8 @@ class User {
         val userNumber = mutableListOf<Int>()
         checkInputNumber(inputNumber)
         for (char in inputNumber) {
-            val digit = char.toString().toIntOrNull() ?: throw IllegalArgumentException()
-            userNumber.add(digit)
+            val num = char.toString().toIntOrNull()
+            userNumber.add(checkNull(num))
         }
         return userNumber
     }
@@ -18,6 +18,12 @@ class User {
     private fun checkInputNumber(inputNumber: String) {
         if (inputNumber.length != 3)
             throw IllegalArgumentException()
+    }
+
+    private fun checkNull(inputNumber: Int?) : Int {
+        if (inputNumber==null)
+            throw IllegalArgumentException()
+        return inputNumber
     }
     fun playAgain() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
