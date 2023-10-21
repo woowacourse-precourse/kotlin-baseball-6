@@ -1,5 +1,5 @@
 package baseball
 
 fun main() {
-    Computer().startGame()
+    Computer.startGame()
 }

@@ -3,7 +3,11 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-class Computer {
+object Computer {
+    private const val REMATCH = 1
+    private const val FINISH = 2
+    private const val ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "잘못된 값을 입력했습니다."
+
     private lateinit var baseballNumberList: MutableList<Int>
 
     fun startGame() {
@@ -72,10 +76,4 @@ class Computer {
             FINISH -> false
             else -> throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
         }
-
-    companion object {
-        private const val REMATCH = 1
-        private const val FINISH = 2
-        private const val ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "잘못된 값을 입력했습니다."
-    }
 }
