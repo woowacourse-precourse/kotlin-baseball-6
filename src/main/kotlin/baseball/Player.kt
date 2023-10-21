@@ -8,7 +8,7 @@ object Player {
     fun inputNumber(): List<Int> {
         print(NUMBER_INPUT_MESSAGE)
         val input = Console.readLine()
-        Validator.check(input)
+        Validator.checkValidity(input)
 
         val number = mutableListOf<Int>()
         input.forEach {

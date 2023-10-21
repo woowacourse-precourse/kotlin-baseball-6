@@ -5,7 +5,7 @@ import baseball.util.GameValue.PLAYER_MAX_NUMBER
 import baseball.util.GameValue.PLAYER_NIM_NUMBER
 
 object Validator {
-    fun check(value: String) {
+    fun checkValidity(value: String) {
         duplicatesCheck(value)
     }
 
