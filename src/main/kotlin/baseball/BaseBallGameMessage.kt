@@ -3,6 +3,10 @@ package baseball
 class BaseBallGameMessage {
     private val startMessage: String = "숫자 야구 게임을 시작합니다."
     private val personInputMessage: String = "숫자를 입력해주세요 : "
+    private val nothingMessage = "낫싱"
+    private val strikeMessage = "%d스트라이크"
+    private val ballMessage = "%d볼"
+    private val restartAndExitMessage = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 
     fun printStartMessage() {
         println(startMessage)
@@ -12,18 +16,22 @@ class BaseBallGameMessage {
         print(personInputMessage)
     }
 
+    fun printRestartAndExitMessage() {
+        println(restartAndExitMessage)
+    }
+
     fun printCountMessage(strike: Int, ball: Int) {
         when {
             strike == 0 && ball == 0
-                -> println("낫싱")
+                -> println(nothingMessage)
             strike == 0
-                -> println("${ball}볼")
+                -> println(ballMessage.format(ball))
             ball == 0
-                -> println("${strike}스트라이크")
+                -> println(strikeMessage.format(strike))
             strike == 3
-                -> println("${strike}스트라이크")
+                -> println(strikeMessage.format(strike))
             else
-                -> println("${ball}볼 ${strike}스트라이크")
+                -> println("${ballMessage.format(ball)} ${strikeMessage.format(strike)}")
         }
     }
 
