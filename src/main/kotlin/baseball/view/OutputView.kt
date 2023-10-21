@@ -1,6 +1,6 @@
 package baseball.view
 
-import baseball.model.score
+import baseball.model.Score
 import baseball.util.GameMessage
 import java.lang.StringBuilder
 
@@ -10,7 +10,7 @@ class OutputView {
     fun printGameInputMessage() = println(GameMessage.GAME_INPUT_NUMBER_MESSAGE)
     fun printGameSuccessMessage() = println(GameMessage.GAME_SUCCESS_MESSAGE+" "+GameMessage.GAME_OVER_MESSAGE)
     fun printGameEndMessage() = println(GameMessage.GAME_END_MESSAGE)
-    fun printGameScoreMessage(score: score){
+    fun printGameScoreMessage(score: Score){
         val str = StringBuilder()
         if(score.out)
             str.append("낫싱")
