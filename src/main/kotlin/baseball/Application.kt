@@ -10,6 +10,9 @@ package baseball
 
 import kotlin.random.Random
 data class Answer(val a: Int, val b: Int, val c: Int)
+fun Answer.asList(): List<Int> {
+    return listOf(a, b, c)
+}
 data class Info(var Amount:Int, var out:Int, var bool:Int, var strike:Int)
 data class result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
 
@@ -32,11 +35,9 @@ fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면
 fun case_check(case:Answer, answer:Answer):Info {
     val info = Info(0,0,0,0)
     //strike체크, bool체크, out으로 감
-    val check = listOf(answer.a, answer.b, answer.c)
-    //listOf(answer)는 answer객체 하나로 만들어짐... //리스트로 변환하여 순차적으로 접근할 수 있게 함 //data class에서 get, set인 인덱스 접근에 해당하는 함수를 만들어 가능하게 할 수 있음
-    // 데이터 클래스를 각 컴포넌트를 가지는 리스트로 자동 변환은 아직 못찾음
-    for ((idx, elem) in listOf(case.a, case.b, case.c).withIndex()) {
-        if (elem == check[idx]) {
+    val check = listOf(answer)
+    for ((idx, elem) in listOf(case).withIndex()) {
+        if (elem == check[idx]) { //data class에서 get, set인 인덱스 접근에 해당하는 함수를 만들어 가능하게 할 수 있음
             info.strike += 1
             info.Amount += 1
         }
@@ -51,10 +52,12 @@ fun case_check(case:Answer, answer:Answer):Info {
     return info
 }
 
+
+
 fun start_Game(user:Boolean = true){
     val infoList = mutableListOf<Info>() //정보 저장용
-    val Answer case = Problem(0)
-    while (true): {
+    val case = Problem(0)
+    while (true) {
         if (user == true) {
             val answer = User_response()
             val tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
