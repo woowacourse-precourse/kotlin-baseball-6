@@ -9,20 +9,20 @@ fun main() {
 /* 플레이어의 라운드 기록 구조체 Round */
 data class Round(var strike: Int = 0, var ball: Int = 0)
 
-/* 숫자 야구 시작 선언 Function : printStart */
+/* 숫자 야구 시작 선언 function : printStart */
 fun printStart(){
     println("숫자 야구 게임을 시작합니다.")
 }
 
-/* 숫자 야구 진행 Function : baseball */
+/* 숫자 야구 진행 function : baseball */
 fun baseball(){
     while(true){
         val computer = getComputerNumber()
         while(true){
             val player = getPlayerNumber()
             val roundResult: Round = compareList(computer, player)
-            //printHint(roundResult)
-            //if(roundResult.strike == 3) break
+            printHint(roundResult)
+            if(roundResult.strike == 3) break
         }
         //if(!(askRetry())) break
     }
@@ -97,15 +97,20 @@ fun compareList(computer: List<Int>, player: List<Int>): Round{
     }
     return roundResult
 }
-/*
+
+/* 라운드 조건 검사 결과 출력 function : printHint*/
 fun printHint(roundResult: Round){
-
+    when {
+        roundResult.strike == 3 -> println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        roundResult.strike == 0 && roundResult.ball == 0 -> println("낫싱")
+        else -> println("${roundResult.ball}볼 ${roundResult.strike}스트라이크")
+    }
 }
-
+/*
 fun askRetry(): Boolean{
 
-}
- */
+}*/
+
 
 
 
