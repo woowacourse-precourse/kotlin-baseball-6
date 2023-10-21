@@ -17,4 +17,8 @@ object Validator {
         val distinctNumbers = numbers.toSet()
         return numbers.size != distinctNumbers.size
     }
+
+    fun isInvalidNumericInput(input: String): Boolean {
+        return !input.all { it.isDigit() } or input.isBlank()
+    }
 }
