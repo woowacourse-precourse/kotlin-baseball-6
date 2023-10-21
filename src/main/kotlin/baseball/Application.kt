@@ -19,8 +19,7 @@ fun startGame(numberOfComputer: List<String>) {
 
     do {
         val numberOfPlayer = getNumberFromPlayer()
-
-        stopFlag = 0
+        val gameResult = compareNumbers(numberOfComputer, numberOfPlayer)
     } while (stopFlag == 1)
 }
 
@@ -67,4 +66,20 @@ fun checkNumberOfPlayer(numbers: String) {
             throw IllegalArgumentException()
         }
     }
+}
+
+fun compareNumbers(numberOfComputer: List<String>, numberOfPlayer: List<String>): Result {
+    val result = Result()
+
+    numberOfPlayer.forEachIndexed { index, number ->
+        if (numberOfComputer.contains(number)) {
+            if (numberOfComputer.indexOf(number) == index) {
+                result.strike++
+            } else {
+                result.ball++
+            }
+        }
+    }
+
+    return result
 }
