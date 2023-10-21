@@ -1,7 +1,5 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
-
 /*
 기능명세
 컴퓨터 : 랜덤 수 3개를 뽑는다 - 사용자가 맞추기 전까지 바뀌지 않음
@@ -21,7 +19,8 @@ fun main() {
 
 
 }
-class User(){
+
+class User() {
     /*
     입력한 값이 이상한 경우
     자릿수가 3개가 아닌경우, 0~9가 아닌경우, 숫자가 아닌경, 중복된 숫자가 들어가있는 경우
@@ -33,7 +32,11 @@ class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  
     var strike = 0
     var ball = 0
 
-
+    private fun startBaseBall() {
+        checkStrike()
+        checkBall()
+        printBallNum()
+    }
 
     private fun isMatchNumber(): String {
         return when (userNum == gameNum) {
