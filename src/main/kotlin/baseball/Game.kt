@@ -11,7 +11,22 @@ class Game {
         println("숫자 야구 게임을 시작합니다.")
     }
 
-    fun setComputerNumber(): MutableList<Int> {
+    fun gameStart() {
+        val computerNumber = setComputerNumber()
+        println(computerNumber)
+
+        while (gameFlag) {
+            val userNumber = inputUserNumber()
+            compareAndPrintHint(computerNumber, userNumber)
+
+            if (!gameFlag) {
+                printGameEndMessage()
+                decideGame()
+            }
+        }
+    }
+
+    private fun setComputerNumber(): MutableList<Int> {
         val computer = mutableListOf<Int>()
 
         while (computer.size < 3) {
@@ -24,7 +39,7 @@ class Game {
         return computer
     }
 
-    fun inputUserNumber(): MutableList<Int> {
+    private fun inputUserNumber(): MutableList<Int> {
         print("숫자를 입력해주세요 : ")
         val userNumber = Console.readLine()
         checkValidNumber(userNumber)
@@ -32,7 +47,7 @@ class Game {
         return userNumber.map { it.digitToInt() }.toMutableList()
     }
 
-    fun checkValidNumber(number: String) {
+    private fun checkValidNumber(number: String) {
         //사용자의 입력이 3자리인지 확인
         if (number.length != 3) {
             throw IllegalArgumentException("3자리의 입력이 아닙니다.")
@@ -62,7 +77,7 @@ class Game {
         }
     }
 
-    fun countStrikeAndBall(computer: MutableList<Int>, user: MutableList<Int>): Pair<Int, Int> {
+    private fun countStrikeAndBall(computer: MutableList<Int>, user: MutableList<Int>): Pair<Int, Int> {
         var strike = 0
         var ball = 0
 
@@ -86,7 +101,7 @@ class Game {
         return Pair(strike, ball)
     }
 
-    fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
+    private fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
         val (strike, ball) = countStrikeAndBall(computer, user)
         val hint = when {
             strike == 0 && ball == 0 -> "낫싱"
@@ -94,16 +109,16 @@ class Game {
             strike == 0 && ball > 0 -> "${ball}볼"
             else -> "${ball}볼 ${strike}스트라이크"
         }
-        
+
         println(hint)
     }
 
-    fun printGameEndMessage() {
+    private fun printGameEndMessage() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
 
-    fun decideGame() {
+    private fun decideGame() {
         val userInput = Console.readLine()
         checkValidInput(userInput)
 
@@ -113,26 +128,11 @@ class Game {
         }
     }
 
-    fun checkValidInput(input: String) {
+    private fun checkValidInput(input: String) {
         if (input == "1" || input == "2") {
             return
         }
 
         throw IllegalArgumentException("입력이 1 또는 2가 아닙니다.")
-    }
-
-    fun gameStart() {
-        val computerNumber = setComputerNumber()
-        println(computerNumber)
-
-        while (gameFlag) {
-            val userNumber = inputUserNumber()
-            compareAndPrintHint(computerNumber, userNumber)
-
-            if (!gameFlag) {
-                printGameEndMessage()
-                decideGame()
-            }
-        }
     }
 }
