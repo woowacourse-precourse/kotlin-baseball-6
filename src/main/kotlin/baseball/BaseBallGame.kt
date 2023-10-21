@@ -20,7 +20,7 @@ class BaseBallGame {
 
         while (!isAnswerCorrect) {
             print("숫자를 입력해주세요 : ")
-            playerNumbers = Player().createComputerBallNumbers()
+            playerNumbers = Player().createPlayerBallNumbers()
             isAnswerCorrect = targetNumbers == playerNumbers
         }
 
