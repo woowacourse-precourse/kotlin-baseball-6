@@ -23,6 +23,8 @@ fun startGame(numberOfComputer: List<String>) {
 
         stopFlag = printResult(gameResult)
     } while (stopFlag == 1)
+
+    Console.close()
 }
 
 fun getNumberFromComputer(): List<String> {
@@ -54,8 +56,6 @@ fun getNumberFromPlayer(): List<String> {
             }
         }
     }
-
-    Console.close()
 
     return randomNumbers
 }
