@@ -16,8 +16,7 @@ fun createComputerList(): List<Int> {
 
 fun checkRestart(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val input = Console.readLine()
-    return when (input) {
+    return when (Console.readLine()) {
         "1" -> true
         "2" -> false
         else -> throw IllegalArgumentException("잘못된 입력입니다.")
