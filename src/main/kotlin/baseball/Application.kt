@@ -8,7 +8,6 @@ fun main() {
     val computer = Computer()
 
     //난수 생성
-    var randomNumList = computer.makeRandomNumList()
     while (!isFinished) {
         val userInput = system.getUserInput()
         //regex와 일치하면서 set을 이용해 중복된 수가 있는지 확인
@@ -17,7 +16,7 @@ fun main() {
         val userInputList: List<String> = userInput.chunked(1)
 
         //난수와 사용자 입력 비교 분리
-        val result = computer.getGameResult(userInputList, randomNumList) //result = Triple(strike, ball, nothing))
+        val result = computer.getGameResult(userInputList) //result = Triple(strike, ball, nothing))
 
         val strike = result.first
         val ball = result.second
@@ -30,7 +29,7 @@ fun main() {
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
             if (system.endGame()) isFinished = true
-            else randomNumList = computer.makeRandomNumList()
+            else   computer.makeRandomNumList()
 
         }
     }
