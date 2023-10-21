@@ -7,29 +7,41 @@ import baseball.view.OutputView
 
 class BaseballGameService() {
 
-    val inputView: InputView by lazy { InputView() }
-    val outputView: OutputView by lazy { OutputView() }
+    private val inputView: InputView by lazy { InputView() }
+    private val outputView: OutputView by lazy { OutputView() }
 
     fun start() {
         val baseballGame = BaseballGame()
+        outputView.printGameStartMessage()
         while (baseballGame.state != GameState.EXIT) {
             when (baseballGame.state) {
                 GameState.START -> {
-                    //TODO 게임시작 메시지 출력
-                    //TODO 컴퓨터 난수 생성
-                    //TODO Game Run
+                    baseballGame.computer.makeRandomNumbers()
+                    baseballGame.state = GameState.RUN
                 }
+
                 GameState.RUN -> {
-                    //TODO 숫자 입력 메시지 출력
-                    //TODO User 숫자 입력
-                    //TODO User 숫자, Computer 숫자 비교
-                    //TODO 3스트라이크일경우 문구 출력 , Game End
+                    outputView.printGameInputMessage()
+                    baseballGame.user.setNumber(inputView.getInputNumber())
+                    val score = baseballGame.compareNumbers()
+                    outputView.printGameScoreMessage(score)
+                    if (score.strike == 3) {
+                        outputView.printGameSuccessMessage()
+                        baseballGame.state = GameState.END
+                    }
                 }
 
                 GameState.END -> {
-                    //TODO 게임 종료 문구 출력
-                    //TODO 재시작 옵션 입력
-                    //TODO 옵션에 따라 Game 상태 변경
+                    outputView.printGameEndMessage()
+                    when (inputView.getRestartOption()) {
+                        1 -> {
+                            baseballGame.state = GameState.START
+                        }
+
+                        2 -> {
+                            baseballGame.state = GameState.EXIT
+                        }
+                    }
                 }
                 else -> break
             }
