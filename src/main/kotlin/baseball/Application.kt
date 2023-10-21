@@ -29,3 +29,7 @@ class User(){
 }
 
 
+class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  //입력한 값을 파라미터로 받는다
+
+}
+
