@@ -1,7 +1,7 @@
-package baseball
+package baseball.controller
 
 import baseball.config.GameNumberConfig.DIGIT_NUMBER
-import baseball.domain.NumberValidator
+import baseball.service.NumberValidator
 import baseball.model.Computer
 import baseball.view.InputCmdView
 import baseball.view.InputNumberView
@@ -10,6 +10,7 @@ import baseball.view.OutputResultView
 
 class GameController {
 
+    // service
     private val numberValidator = NumberValidator()
 
     // model

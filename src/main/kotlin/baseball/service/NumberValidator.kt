@@ -1,4 +1,4 @@
-package baseball.domain
+package baseball.service
 
 import baseball.config.GameNumberConfig.DIGIT_NUMBER
 import baseball.config.GameNumberConfig.END_INCLUSIVE
