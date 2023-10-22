@@ -7,14 +7,14 @@ class User {
     fun inputUserNumber(): MutableList<Int> {
         print("숫자를 입력해주세요 : ")
         val userNumber = Console.readLine()
-        checkValidNumber(userNumber)
+        checkValidUserNumber(userNumber)
 
         return userNumber.map { it.digitToInt() }.toMutableList()
     }
 
     fun decideGame(): Boolean {
         val userInput = Console.readLine()
-        checkValidInput(userInput)
+        checkValidRestartNumber(userInput)
 
         if (userInput == "1") {
             return true
@@ -23,7 +23,7 @@ class User {
         return false
     }
 
-    private fun checkValidNumber(number: String) {
+    private fun checkValidUserNumber(number: String) {
         //사용자의 입력이 3자리인지 확인
         if (number.length != 3) {
             throw IllegalArgumentException("3자리의 입력이 아닙니다.")
@@ -53,7 +53,7 @@ class User {
         }
     }
 
-    private fun checkValidInput(input: String) {
+    private fun checkValidRestartNumber(input: String) {
         if (input == "1" || input == "2") {
             return
         }
