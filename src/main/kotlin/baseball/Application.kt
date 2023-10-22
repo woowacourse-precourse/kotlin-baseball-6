@@ -1,5 +1,24 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Randoms
+
 fun main() {
-    TODO("프로그램 구현")
+    runBaseballGame()
+}
+
+// 게임 매니져 메서드
+fun runBaseballGame(){
+    val computerNumber = generateRandomNumber()
+}
+
+// 컴퓨터의 랜덤한 숫자 생성
+fun generateRandomNumber(): ArrayList<Int>{
+    val computerNumber = ArrayList<Int>()
+    while (computerNumber.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computerNumber.contains(randomNumber)) {
+            computerNumber.add(randomNumber)
+        }
+    }
+    return computerNumber
 }
