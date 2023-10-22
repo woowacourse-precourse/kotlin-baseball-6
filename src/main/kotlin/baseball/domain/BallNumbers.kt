@@ -11,7 +11,7 @@ abstract class BallNumbers(protected val numbers: List<BallNumber>) {
 
     companion object {
 
-        private const val BALL_COUNT = 3
+        const val BALL_COUNT = 3
 
         private fun validateNumbersLength(numbers: List<BallNumber>) {
             if (numbers.size != BALL_COUNT) {
