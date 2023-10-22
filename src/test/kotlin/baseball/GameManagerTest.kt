@@ -145,7 +145,7 @@ class GameManagerTest {
         gameManager.setGameState(GameManager.GameState.ENDED)
 
         //when
-        gameManager.handlePlayerChoice(1)
+        gameManager.handlePlayerChoice("1")
 
         //then
         val actual = gameManager.gameState
@@ -160,7 +160,7 @@ class GameManagerTest {
         gameManager.setGameState(GameManager.GameState.ENDED)
 
         //when
-        gameManager.handlePlayerChoice(2)
+        gameManager.handlePlayerChoice("2")
 
         //then
         val actual = gameManager.gameState

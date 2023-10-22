@@ -6,6 +6,11 @@ class GameManager {
         INIT, INPROGRESS, ENDED
     }
 
+    enum class GameAction(val value: Int) {
+        RESTART(1),
+        EXIT(2)
+    }
+
     init {
         println("숫자 야구 게임을 시작합니다.")
     }
@@ -26,11 +31,11 @@ class GameManager {
     }
 
     fun calculateStrikeBall(playerInput: List<Int>) {
+        clearScore()
         calculateStrike(playerInput)
         calculateBall(playerInput)
         printStrikeBallNothing()
         endGameIfThreeStrikes()
-        clearScore()
     }
 
     private fun calculateStrike(playerInput: List<Int>) {
@@ -67,6 +72,23 @@ class GameManager {
         setGameState(GameState.ENDED)
     }
 
+    fun handlePlayerChoice(playerChoice: String) {
+        validatePlayerChoice(playerChoice)
+        when (playerChoice.toInt()) {
+            GameAction.RESTART.value -> setGameState(GameState.INPROGRESS)
+            GameAction.EXIT.value -> setGameState(GameState.ENDED)
+        }
+    }
+
+    private fun validatePlayerChoice(playerChoice: String) {
+        requireNotNull(playerChoice.toIntOrNull()) {
+            "숫자만 입력하실 수 있습니다."
+        }
+        require(playerChoice.toInt() == 1 || playerChoice.toInt() == 2) {
+            "1 혹은 2만 입력하실 수 있습니다."
+        }
+    }
+
     fun setGameState(gameState: GameState) {
         this.gameState = gameState
     }
@@ -75,7 +97,7 @@ class GameManager {
         return hashMapOf("strike" to scoreBoard["strike"]!!, "ball" to scoreBoard["ball"]!!)
     }
 
-    private fun endGameIfThreeStrikes(){
+    private fun endGameIfThreeStrikes() {
         if (scoreBoard["strike"] == 3) {
             endGame()
         }
