@@ -1,9 +1,5 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
-import camp.nextstep.edu.missionutils.Console
-import java.lang.IllegalArgumentException
-
 class Game {
     private val user = User()
     private val computer = Computer()
