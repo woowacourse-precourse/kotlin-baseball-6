@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGame {
-    companion object {
+    companion object Constants{
         private const val NUMBERS_LENGTH = 3
         private const val NUMBER_START_RANGE = 1
         private const val NUMBER_END_RANGE = 9
@@ -13,7 +13,7 @@ class BaseballGame {
         private const val PROGRAM_START_MESSAGE = "숫자 야구 게임을 시작합니다."
         private const val INPUT_USER_NUMBERS_MESSAGE = "숫자를 입력해주세요 : "
         private const val INPUT_USER_ANSWER_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
-        private const val GAME_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        private const val GAME_END_MESSAGE = "${NUMBERS_LENGTH}개의 숫자를 모두 맞히셨습니다! 게임 종료"
 
         private const val NOTHING_MESSAGE = "낫싱"
         private const val BALL_MESSAGE = "볼"
@@ -22,7 +22,7 @@ class BaseballGame {
 
         private const val USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE = "1 또는 2를 입력해야 합니다."
         private const val USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE = "숫자가 아닌 다른 형식을 입력할 수 없습니다."
-        private const val USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE = "3개의 숫자를 입력해야 합니다."
+        private const val USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE = "${NUMBERS_LENGTH}개의 숫자를 입력해야 합니다."
         private const val USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE = "중복된 숫자를 입력할 수 없습니다."
     }
 
