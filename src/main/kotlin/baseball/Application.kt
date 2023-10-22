@@ -27,15 +27,23 @@ fun main() {
             user.clear()
             print("숫자를 입력해주세요 : ")
 
-            val userNumber = readLine() ?: throw IllegalArgumentException("입력값이 NULL")// 사용자에게 입력받기
+            // 예외처리: 사용자가 입력한 숫자가 다 달라야함, 다 숫자여야함(문자는 안됨), 0이 아닌 숫자여야함
+            val userNumber = readLine()
             if (userNumber.length != 3) {
                 throw IllegalArgumentException("입력값이 3자리 숫자가 아닙니다.")
-
             }
             for (i in 0 until SIZE) {
-                user.add(userNumber[i].toString())
+                if (userNumber[i] < '1' || userNumber[i] > '9') {
+                    throw IllegalArgumentException("모든 입력값은 0부터 9까지의 숫자여야 합니다.")
+                }
             }
 
+            for (i in 0 until SIZE) {
+                user.add(userNumber[i].toString())
+                if (user.count { it == userNumber[i].toString() } > 1) {
+                    throw IllegalArgumentException("3개의 숫자는 서로 달라야 합니다.")
+                }
+            }
 
             for (i in 0 until SIZE) {
                 for (j in 0 until SIZE) {
