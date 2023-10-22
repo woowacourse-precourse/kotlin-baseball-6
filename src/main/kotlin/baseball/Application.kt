@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.model.Answer
+
 /*  명령어 학습(C : Ctrl, A: Alt, S:Shift)
     1. CA + l : 자동 정렬
     2. CA + o : import 정리

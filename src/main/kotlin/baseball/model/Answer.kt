@@ -1,4 +1,6 @@
-package baseball
+package baseball.model
+
+import baseball.answerSelect
 
 // TODO : newGenerator()를 일부에서만 접근할 수 있는 방법 학습하고 적용
 class Answer {
