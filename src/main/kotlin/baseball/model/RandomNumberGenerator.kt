@@ -1,8 +1,9 @@
-package baseball
+package baseball.model
 
+import baseball.BASEBALL_DIGITS
 import camp.nextstep.edu.missionutils.Randoms
 
-/** [1]. 1..9에서 서로 다른 N개의 수 뽑기 */
+/** [1]. 1..9에서 서로 다른 N개의 수 뽑기 (Model) */
 fun answerSelect(): IntArray {
     val computer = mutableListOf<Int>()
 

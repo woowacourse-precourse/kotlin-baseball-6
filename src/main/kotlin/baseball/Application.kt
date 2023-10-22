@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.config.Config
 import baseball.model.Answer
 
 /*  명령어 학습(C : Ctrl, A: Alt, S:Shift)
@@ -17,7 +18,7 @@ import baseball.model.Answer
 const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
-// TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용
+// TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용 - MVC 패턴 적용중
 fun main() {
     var isStay = true
     val answer = Answer()
@@ -35,20 +36,32 @@ fun main() {
 }
 
 /** [2]. 숫자 입력 받기 : 1 ~ 9 3자리
- * [3]. Ball, Strike 검증 함수 호출
+ * [3]. Ball, Strike 검증 함수 호출 (Controller)
  * */
 fun inputBaseball(answer: IntArray): Boolean {
-    val inputData = inputValidator(BASEBALL_DIGITS, CharRange('1', '9'))
+    val inputData = inputValidator(
+        digit = Config.BASEBALL_DIGITS,
+        range = Config.BASEBALL_RANGE,
+        answer = null
+    )
 
-    return calculateBallAndStrike(inputData, answer)
+    val calculateResult = calculateBallAndStrike(inputData, answer)
+    val (ball, strike) = calculateResult.first
+        .split(", ")
+        .map { it.toInt() }
+    val isAllStrike = calculateResult.second
+
+    calculateResultPrint(ball, strike)
+    return isAllStrike
 }
 
-/** [4]. 메뉴 입력 받기 : 1 or 2 */
+/** [4]. 메뉴 입력 받기 : 1 or 2 (Controller) */
 fun inputRestart(answer: Answer): Int {
-    val selectedMenu = inputValidator(MENU_DIGITS, CharRange('1', '2')).first()
+    val selectedMenu = inputValidator(
+        digit = Config.MENU_DIGITS,
+        range = Config.MENU_RANGE,
+        answer = answer,
+    ).first()
 
-    if (selectedMenu == 1) {
-        answer.newGenerator()
-    }
     return selectedMenu
 }
