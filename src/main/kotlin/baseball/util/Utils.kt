@@ -2,6 +2,7 @@ package baseball.util
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.system.exitProcess
 
 /**
  * 작성자 : 추민수
@@ -34,12 +35,16 @@ object Utils {
      */
     fun inputNum(): List<Int> {
         println("연속된 3자리의 숫자를 입력해주세요:")
-
-        var inputString = Console.readLine()
-        while (inputString == null || !isValidInput(inputString)) {
-            println("유효하지 않은 입력입니다. 연속된 3자리의 숫자를 입력하세요:")
-            inputString = Console.readLine()
+        val inputString = Console.readLine()
+        try {
+            while (inputString == null || !isValidInput(inputString)) {
+                throw IllegalArgumentException("유효하지 않은 입력입니다. 시스템이 종료됩니다.")
+            }
+        }catch (e:IllegalArgumentException){
+            println(e.message)
+            exitProcess(1)
         }
+
         // 문자열을 한글자씩 나눠 리스트에 나눠 전송
         return inputString.chunked(1).map { it.toInt() }
     }
@@ -82,7 +87,9 @@ object Utils {
                 }
                 "$balls" + "볼 " + "$strikes" + "스트라이크"
             }
+
             else -> "낫싱"
         }
     }
+
 }
