@@ -17,4 +17,18 @@ class BallCountTest {
 
         assertThat(ballCount.isNothing()).isFalse()
     }
+
+    @Test
+    fun `비교결과가 3스트라이크이다`() {
+        val ballCount = BallCount(3, 0)
+
+        assertThat(ballCount.isThreeStrike()).isTrue()
+    }
+
+    @Test
+    fun `비교결과가 3스트라이크가 아니다`() {
+        val ballCount = BallCount(2, 0)
+
+        assertThat(ballCount.isThreeStrike()).isFalse()
+    }
 }
