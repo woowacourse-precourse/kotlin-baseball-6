@@ -92,9 +92,14 @@ fun gameOver(){
 
 fun chooseRestartAndExit(): Boolean {
     val flag: Int = Console.readLine().toInt()
+    validateRestartAndExit(flag)
     if(flag==1){
         return true
     }
     println("종료합니다.")
     return false
+}
+
+fun validateRestartAndExit(flag: Int) {
+    require(flag in setOf(1, 2)) { "1이나 2가 아닌 다른 입력 값입니다." }
 }
