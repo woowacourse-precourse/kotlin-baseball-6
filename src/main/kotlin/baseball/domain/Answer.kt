@@ -3,16 +3,18 @@ package baseball.domain
 class Answer(numbers: List<BallNumber>) : BallNumbers(numbers) {
 
     // BaseballGame으로부터 가져온 play 메소드. 이름만 compareTo로 변경
-    fun compareTo(guess: Guess) =
-        BallResult(
+    fun compareTo(guess: Guess): BallResult {
+        println(strikeCount(guess))
+        return BallResult(
             strikeCount(guess),
             ballCount(guess),
         )
+    }
 
     // BaseballGame으로부터 가져온 메소드
     private fun strikeCount(guess: Guess): Int {
         var strikeCount = 0
-        for (i in BallNumber.MIN_BALL_NUMBER..BallNumber.MAX_BALL_NUMBER) {
+        for (i in 0..<BALL_COUNT) {
             if (isStrikeAt(i, guess)) {
                 strikeCount++
             }
@@ -23,7 +25,7 @@ class Answer(numbers: List<BallNumber>) : BallNumbers(numbers) {
     // BaseballGame으로부터 가져온 메소드
     private fun ballCount(guess: Guess): Int {
         var ballCount = 0
-        for (i in BallNumber.MIN_BALL_NUMBER..BallNumber.MAX_BALL_NUMBER) {
+        for (i in 0..<BALL_COUNT) {
             if (isBallAt(i, guess)) {
                 ballCount++
             }
