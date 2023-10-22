@@ -20,10 +20,9 @@ fun runBaseballGame(){
         } else{
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            when(Console.readLine().toString().toInt()){
+            when(getUserDecision()){
                 1 -> runBaseballGame()
                 2 -> return
-                else -> throw IllegalArgumentException("잘 못 된 숫자 입력")
             }
         }
     }
@@ -104,4 +103,22 @@ fun calculateResult(computerNumber: ArrayList<Int>, userInput: ArrayList<Int>): 
         3 -> true
         else -> false
     }
+}
+
+fun getUserDecision(): Int{
+    val userInputString = Console.readLine()
+    val userInputList = ArrayList<Int>()
+
+    for(element in userInputString){
+        userInputList.add(element.toString().toInt())
+    }
+
+    if(userInputList.size != 1){
+        throw IllegalArgumentException("잘 못 된 길이의 숫자 입력")
+    }
+    if(userInputList[0] != 1 && userInputList[0] != 2){
+        throw IllegalArgumentException("잘 못 된 범위의 숫자 입력")
+    }
+
+    return userInputList[0]
 }
