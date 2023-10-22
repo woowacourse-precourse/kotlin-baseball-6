@@ -1,5 +1,8 @@
 package baseball
 
+import baseball.controller.BaseBall
+
 fun main() {
-    TODO("프로그램 구현")
+    val baseBall = BaseBall()
+    baseBall.playGame()
 }
