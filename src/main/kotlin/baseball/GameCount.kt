@@ -18,4 +18,9 @@ object GameCount {
     fun getStrikeCount() : Int{
         return strikeCount
     }
+
+    fun resetCount() {
+        ballCount = 0
+        strikeCount = 0
+    }
 }
