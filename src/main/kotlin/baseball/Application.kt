@@ -1,18 +1,25 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 const val START_MESSAGE = "숫자 야구 게임을 시작합니다."
+const val USER_INPUT_MESSAGE = "숫자를 입력해주세요 : "
 const val NUMBER_LENGTH = 3
 const val MIN_NUMBER = 1
 const val MAX_NUMBER = 9
 
+
+var isAllNumberGuessed = false
 var playingGame = true
 
 fun main() {
     println(START_MESSAGE)
     while (playingGame) {
         val randomNum = createRandomNumber()
+        while (!isAllNumberGuessed) {
+            guessingNumber(randomNum)
+        }
     }
 }
 
@@ -25,4 +32,65 @@ private fun createRandomNumber(): List<Int> {
         }
     }
     return computer
+}
+
+private fun getUserInput(): String {
+    print(USER_INPUT_MESSAGE)
+    return Console.readLine()
+}
+
+private fun guessingNumber(computer: List<Int>) {
+    getUserInput().let { userInput ->
+        if (validateUserInput(userInput))
+            println(checkResult(computer, userInput))
+    }
+}
+
+private fun validateUserInput(user: String): Boolean {
+    when {
+        user.toIntOrNull() == null -> throw IllegalArgumentException(Error.NOT_NUMBER.errorMessage)
+        user.length != NUMBER_LENGTH -> throw IllegalArgumentException(Error.NOT_CORRECT_LENGTH.errorMessage)
+        user.toSet().size != NUMBER_LENGTH -> throw IllegalArgumentException(Error.NOT_EACH_OTHER_NUMBER.errorMessage)
+        user.map { it.toString().toInt() }.minOf { it } < MIN_NUMBER ||
+                user.map { it.toString().toInt() }.maxOf { it } > MAX_NUMBER ->
+            throw IllegalArgumentException(Error.NOT_RANGED_NUMBER.errorMessage)
+
+        else -> return true
+    }
+}
+
+private fun checkResult(computer: List<Int>, user: String): String {
+    val userInput = user.map { it.toString().toInt() }
+    var strike = 0
+    var ball = 0
+    for (i in computer.indices) {
+        if (computer[i] == userInput[i]) {
+            strike++
+        } else if (computer.contains(userInput[i])) {
+            ball++
+        }
+    }
+    return when {
+        strike == NUMBER_LENGTH -> {
+            isAllNumberGuessed = true
+            "$NUMBER_LENGTH${State.STRIKE.stateName}"
+        }
+
+        strike == 0 && ball == 0 -> State.NOTHING.stateName
+        else -> "${ball}${State.BALL.stateName} ${strike}${State.STRIKE.stateName}"
+    }
+}
+
+enum class Error(val errorMessage: String) {
+    NOT_NUMBER("숫자를 입력해주세요."),
+    NOT_CORRECT_LENGTH("${NUMBER_LENGTH}자리 수를 입력해주세요"),
+    NOT_EACH_OTHER_NUMBER("각 자리의 숫자는 서로 달라야합니다."),
+    NOT_RANGED_NUMBER("${MIN_NUMBER}에서 $MAX_NUMBER 사이의 숫자를 입력해주세요."),
+    COMMON("잘못된 입력입니다.")
+}
+
+enum class State(val stateName: String) {
+    STRIKE("스트라이크"),
+    BALL("볼"),
+    NOTHING("낫싱")
 }
