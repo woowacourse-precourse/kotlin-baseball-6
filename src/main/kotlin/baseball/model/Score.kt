@@ -1,3 +1,3 @@
 package baseball.model
 
-class Score (val ball: Int, val strike: Int)
+class Score(val ball: Int, val strike: Int)
