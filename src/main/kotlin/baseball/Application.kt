@@ -19,8 +19,10 @@ fun gameRun() {
     while(true) {
         val userNumber = inputUserNumber()
         val score = compareWithNumber(answer, userNumber)
+        printHint(score.first, score.second)
         if(score.first == 3){
             gameOver()
+            return
         }
     }
 }
@@ -56,7 +58,7 @@ fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
             ball++
         }
     }
-    printHint(strike, ball)
+
     return Pair(strike, ball)
 }
 
@@ -85,5 +87,6 @@ fun chooseRestartAndExit(): Boolean {
     if(flag==1){
         return true
     }
+    println("종료합니다.")
     return false
 }
