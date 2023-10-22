@@ -1,18 +1,13 @@
 package baseball.domain
 
 
-class BallNumbers(private val numbers: List<BallNumber>) {
+// BallNumbers를 상속 받을 Guess, Answer에서 모두 필요
+// BallNumbers의 자식에서만 호출할 것이기 때문에 protected
+abstract class BallNumbers(protected val numbers: List<BallNumber>) {
 
     init {
         validateNumbersLength(numbers)
     }
-
-    fun isStrikeAt(index: Int, other: BallNumbers) =
-            numbers[index] == other.numbers[index]
-
-    fun isBallAt(index: Int, other: BallNumbers) =
-            !isStrikeAt(index, other) &&
-                    numbers.any { it == other.numbers[index] }
 
     companion object {
 

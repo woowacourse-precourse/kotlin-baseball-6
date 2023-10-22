@@ -1,19 +1,21 @@
 package baseball.view
 
+import baseball.domain.BallNumber
 import baseball.domain.GameStatus
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
 
-    fun inputBallNumbers(): List<Int> {
+    fun inputBallNumbers(): List<BallNumber> {
         if (executionCount++ == 0) {
             println("숫자 야구 게임을 시작합니다.")
         }
         println("숫자를 입력해주세요 : ")
 
         return readLine()
-                .split("")
-                .map { it.toInt() }
+            .split("")
+            .map { it.toInt() }
+            .map { BallNumber(it) }
     }
 
     fun inputNextGameStatus(): GameStatus {
@@ -35,7 +37,7 @@ class InputView {
     }
 
     private fun readLine() =
-            Console.readLine().trim()
+        Console.readLine().trim()
 
     companion object {
         private var executionCount = 0

@@ -3,8 +3,8 @@ package baseball.domain
 data class BallNumber(val ballNumber: Int) {
 
     companion object {
-        private const val MIN_BALL_NUMBER = 1
-        private const val MAX_BALL_NUMBER = 9
+        const val MIN_BALL_NUMBER = 1
+        const val MAX_BALL_NUMBER = 9
     }
 
     init {
