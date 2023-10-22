@@ -65,6 +65,6 @@ fun gameOver(): Int{
 }
 
 fun chooseRestartAndExit(): Int {
-    val flag:Int = Console.readLine().toInt()
+    val flag: Int = Console.readLine().toInt()
     return flag
 }
