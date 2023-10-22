@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 /*
@@ -14,11 +15,10 @@ import camp.nextstep.edu.missionutils.Randoms
     2. 볼    - 다른 자리에 있으면
     3. 낫싱인경우    - 같은 수가 전혀 없으면
 
-사람 : 0~9까지의 숫자 중에서 3개를 입력받는다
-
+사람 : 0~9까지의 숫자 중에서 3개를 입력받는다.
  */
-fun main() {
 
+fun main() {
 
 }
 
@@ -36,10 +36,37 @@ class Computer() {
 }
 
 class User() {
+
     /*
-    입력한 값이 이상한 경우
+    입력한 값이 이상한 경우 Illegal반환
     자릿수가 3개가 아닌경우, 0~9가 아닌경우, 숫자가 아닌경, 중복된 숫자가 들어가있는 경우
      */
+    private fun userInputNum(): List<Int> {
+        val userNum = Console.readLine().map { it.digitToInt() }
+        checkNumLength(userNum)
+        checkInt(userNum)
+        checkOverlap(userNum)
+
+        return userNum
+    }
+
+    private fun checkNumLength(userNum: List<Int>) {
+        if (userNum.size != 3) IllegalArgumentException(INPUT_LENGTH_ERROR)
+    }
+
+    private fun checkInt(userNum: List<Int>) {
+        if (userNum.contains(0)) throw IllegalArgumentException(INPUT_RANGE_ERROR)
+    }
+
+    private fun checkOverlap(userNum: List<Int>) {
+        if (userNum.distinct().size != 3) IllegalArgumentException(INPUT_NUMBER_DUPLICATE)
+    }
+
+    companion object {
+        const val INPUT_LENGTH_ERROR = "숫자3자리를 입력해주세요."
+        const val INPUT_RANGE_ERROR = "0~9사이 값이 아닙니다."
+        const val INPUT_NUMBER_DUPLICATE = "중복된 숫자가 있습니다."
+    }
 }
 
 
