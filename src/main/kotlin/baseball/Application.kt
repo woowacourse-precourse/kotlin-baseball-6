@@ -15,8 +15,19 @@ fun main() {
         } while (fail)
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        startOrExit = Console.readLine()
+        startOrExit = validStartOrExit()
     }
+}
+
+fun validStartOrExit(): String {
+    val startOrExit = Console.readLine()
+    if (startOrExit.length != 1)
+        throw IllegalArgumentException("1자리 숫자를 입력하세요.")
+    startOrExit.forEach {
+        if (it !in '1'..'2')
+            throw IllegalArgumentException("숫자 1 혹은 2 를 입력하세요.")
+    }
+    return startOrExit
 }
 
 fun validInputNumbers(): String {
