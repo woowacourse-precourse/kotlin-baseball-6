@@ -1,11 +1,22 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+
 class Game {
-    private var computer: String = ""
-    private var user: String = ""
-    private var check: String = ""
-    private var checkNumResult: String = ""
+
+
+    private var computer: String
+    private var user: String
+    private var check: String
+    private var checkNumResult: String
+
+    init {
+        computer = ""
+        user = ""
+        check = ""
+        checkNumResult = ""
+    }
+
     fun play(){
         println("숫자 야구 게임을 시작합니다.")
         computer = randomNum()
@@ -44,10 +55,10 @@ class Game {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return Console.readLine()
     }
-    private fun checkNum(computerNumber: String, userNumber: String) {
+    private fun checkNum(computerNumber: String, userNumber: String){
         var strikes = 0
         var balls = 0
-        for (i in computerNumber.indices) {
+        for (i in computerNumber.indices){
             if (computerNumber[i] == userNumber[i]) { //computerNumber[i]의 값이랑 userNumber[i]의 값이 같을때
                 strikes++ // strikes up
             } else if (computerNumber.contains(userNumber[i])) { //computerNumber 리스트 안에 userNumber[i]가 포함되면
@@ -61,7 +72,7 @@ class Game {
         }
     }
     private fun validateUser(user: String) {
-        if (user.length != 3 || user.toSet().size != 3 || user.any { it !in '1'..'9' }) {
+        if (user.length != 3 || user.toSet().size != 3 || user.any { it !in '1'..'9' }){
             throw IllegalArgumentException()
         }
     }
