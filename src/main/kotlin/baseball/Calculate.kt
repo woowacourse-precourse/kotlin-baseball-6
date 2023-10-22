@@ -13,7 +13,7 @@ fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Boolean {
     // println(calculateResult) // TODO For Debuging
     calculateResultPrint(calculateResult)
     val isAllStrike = "0, ${BASEBALL_DIGITS}" == calculateResult
-    return if (isAllStrike) true else false
+    return isAllStrike
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 */

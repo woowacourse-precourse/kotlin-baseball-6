@@ -15,47 +15,38 @@ package baseball
 const val BASEBALL_DIGITS = 3
 const val MENU_DIGITS = 1
 
+// TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용
 fun main() {
     var isStay = true
+    val answer = Answer()
     println("숫자 야구 게임을 시작합니다.")
-    Answer.newGenerator()
 
     do {
-        // TODO For Debuging
-        // println("정답 : ${Answer.value.contentToString()}")
-
-        if (inputBaseball(Answer.number) == false) {
+        if (inputBaseball(answer.number) == false) {
             continue
         }
 
-        var selectMenu = inputRestart()
-        isStay = true.takeIf { selectMenu == 1 } ?: false
+        val selectedMenu = inputRestart(answer)
+        isStay = true.takeIf { selectedMenu == 1 } ?: false
 
-    } while (isStay)
+    } while (isStay == true)
 }
 
 /** [2]. 숫자 입력 받기 : 1 ~ 9 3자리
  * [3]. Ball, Strike 검증 함수 호출
  * */
 fun inputBaseball(answer: IntArray): Boolean {
-    var inputData = inputVaildator(
-        digit = BASEBALL_DIGITS,
-        range = CharRange('1', '9')
-    )
+    val inputData = inputValidator(BASEBALL_DIGITS, CharRange('1', '9'))
 
     return calculateBallAndStrike(inputData, answer)
 }
 
 /** [4]. 메뉴 입력 받기 : 1 or 2 */
-fun inputRestart(): Int {
-    var inputData = inputVaildator(
-        digit = MENU_DIGITS,
-        range = CharRange('1', '2')
-    ).first()
-    if (inputData == 1) {
-        Answer.newGenerator()
-    } else if (inputData == 2) {
-        println("게임 종료") // 아래에서 하면 됨
+fun inputRestart(answer: Answer): Int {
+    val selectedMenu = inputValidator(MENU_DIGITS, CharRange('1', '2')).first()
+
+    if (selectedMenu == 1) {
+        answer.newGenerator()
     }
-    return inputData
+    return selectedMenu
 }
