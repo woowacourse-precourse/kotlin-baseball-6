@@ -4,10 +4,14 @@ import baseball.model.NumberPicker
 import baseball.model.Referee
 import baseball.model.UserNumber
 
-class Controller {
+class Controller(private val view: View) {
 
     private val keepPlaying = true
+    private val numberPicker = NumberPicker()
+    private val referee = Referee()
+
     fun startGame() {
+        view.printStartMessage()
         while (keepPlaying) {
             playGame()
             // todo 계속할 것인지 여부 묻기
@@ -15,10 +19,10 @@ class Controller {
     }
 
     private fun playGame() {
-        val answer = NumberPicker().pickRandomNumber()
+        val answer = numberPicker.pickRandomNumber()
         while (true) {
-            val userNumber = UserNumber(listOf(1, 2, 3)) // todo 입력 받기
-            val isCorrect: Boolean = Referee().judge(userNumber, answer)
+            val userNumber = UserNumber(view.inputUserNumber())
+            val isCorrect: Boolean = referee.judge(userNumber, answer)
             if (isCorrect) break
         }
     }

@@ -1,5 +1,5 @@
 package baseball
 
 fun main() {
-    Controller().startGame()
+    Controller(View()).startGame()
 }
