@@ -8,6 +8,7 @@
     1. `do-while`문을 활용하여 `computer!=user`일 때 반복
     2. user의 길이가 3이 아닐 때 `IllegalArgumentException` 발생
     3. user가 숫자가 아닐 때(`NumberFormatException`) `IllegalArgumentException` 발생
+   4. user가 범위에 해당하는 숫자가 아닐 때 `IllegalArgumentException` 발생
 
 3. computer와 user의 값을 비교하여 ball과 strike를 계산한다
     1. computer의 값을 `forEachIndexed`를 이용하여 computer[index]와 user[index]가 같으면 strike++
