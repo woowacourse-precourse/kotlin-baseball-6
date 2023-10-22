@@ -116,6 +116,7 @@ class BaseBall(val userNum: List<Int>, val gameNum: MutableList<Int>) {  //입�
         for (i in userNum.indices) {
             if (userNum[i] == gameNum[i]) {
                 strike++
+                ball--
             }
         }
     }
@@ -132,16 +133,11 @@ class BaseBall(val userNum: List<Int>, val gameNum: MutableList<Int>) {  //입�
 
 
     private fun printBallNum() {
-        if (strike == 3) {
-            println("${strike}스트라이크")
-        } else if ((ball > 0 && strike > 0)) {
-            println("${ball}볼 ${strike}스트라이크")
-        } else if (ball == 0 && strike > 0) {
-            println("${strike}스트라이크")
-        } else if (ball > 0 && strike == 0) {
-            println("${ball}볼")
-        } else {
-            println("낫싱")
+        when {
+            strike == 3 || (ball == 0 && strike > 0) -> println("${strike}스트라이크")
+            strike > 0 && ball > 0 -> println("${ball}볼 ${strike}스트라이크")
+            (strike == 0 && ball > 0) -> println("${ball}볼")
+            else -> println("낫싱")
         }
     }
 
