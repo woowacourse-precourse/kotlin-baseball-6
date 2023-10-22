@@ -11,14 +11,14 @@ fun main() {
         do {
             print("숫자를 입력해주세요 : ")
             val inputNumbers = Console.readLine()
-            printResult(answerNumbers, inputNumbers)
-        } while (false)
+            val fail = printResult(answerNumbers, inputNumbers)
+        } while (fail)
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         startOrExit = Console.readLine()
     }
 }
 
-fun printResult(answerNumbers: String, inputNumbers: String) {
+fun printResult(answerNumbers: String, inputNumbers: String): Boolean {
     val strike = strikeCount(answerNumbers, inputNumbers)
     val ball = ballCount(answerNumbers, inputNumbers, strike)
     if (strike == 0 && ball == 0) {
@@ -30,6 +30,10 @@ fun printResult(answerNumbers: String, inputNumbers: String) {
         println("${strike}스트라이크")
     } else {
         println("${ball}볼")
+    }
+    return when (strike) {
+        3 -> false
+        else -> true
     }
 }
 
