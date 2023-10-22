@@ -4,9 +4,21 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-
+    gameRun()
 }
 
+fun gameRun() {
+    var FLAG = 1
+    val answer = pickComputerNumber()
+    while(FLAG == 1) {
+        val userNumber = inputUserNumber()
+        val score = compareWithNumber(answer, userNumber)
+        if(score.first == 3){
+            FLAG = gameOver()
+        }
+    }
+    print("게임 종료")
+}
 
 fun pickComputerNumber(): String {
     val computer:MutableList<Int> = mutableListOf<Int>()
