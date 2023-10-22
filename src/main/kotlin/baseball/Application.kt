@@ -4,11 +4,14 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 const val START_MESSAGE = "숫자 야구 게임을 시작합니다."
+const val FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" +
+        "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 const val USER_INPUT_MESSAGE = "숫자를 입력해주세요 : "
 const val NUMBER_LENGTH = 3
 const val MIN_NUMBER = 1
 const val MAX_NUMBER = 9
-
+const val RESTART = "1"
+const val END_GAME = "2"
 
 var isAllNumberGuessed = false
 var playingGame = true
@@ -20,6 +23,7 @@ fun main() {
         while (!isAllNumberGuessed) {
             guessingNumber(randomNum)
         }
+        askReplayGame()
     }
 }
 
@@ -78,6 +82,15 @@ private fun checkResult(computer: List<Int>, user: String): String {
 
         strike == 0 && ball == 0 -> State.NOTHING.stateName
         else -> "${ball}${State.BALL.stateName} ${strike}${State.STRIKE.stateName}"
+    }
+}
+
+private fun askReplayGame() {
+    println(FINISH_MESSAGE)
+    when (Console.readLine()) {
+        RESTART -> isAllNumberGuessed = false
+        END_GAME -> playingGame = false
+        else -> throw IllegalArgumentException(Error.COMMON.errorMessage)
     }
 }
 
