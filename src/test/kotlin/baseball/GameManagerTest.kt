@@ -18,7 +18,7 @@ class GameManagerTest {
 
         //then
         val actual = gameManager.targetNumber
-        assertTrue(actual is List<Int> && actual.size == 3)
+        assertTrue(actual is List<Int> && actual.toSet().size == 3)
     }
 
     @Test
@@ -80,7 +80,7 @@ class GameManagerTest {
 
         //then
         val actual = gameManager.gameState
-        val expected = GameState.Ended
+        val expected = GameManager.GameState.ENDED
         assertThat(actual).isEqualTo(expected)
     }
 
