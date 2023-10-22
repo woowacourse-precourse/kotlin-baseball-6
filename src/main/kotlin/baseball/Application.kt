@@ -41,9 +41,20 @@ fun pickComputerNumber(): String {
 fun inputUserNumber(): String {
     print("수를 입력하세요: ")
     val user: String = Console.readLine()
-
+    validationinputUserNumber(user)
     return user
 }
+
+fun validationinputUserNumber(userNumber: String) {
+    if(userNumber.length > 3) {
+        throw IllegalArgumentException("3자리가 아닌 입력값입니다.")
+    }
+
+    if(!userNumber.all { String -> String.isDigit() }){
+        throw IllegalArgumentException("숫자가 아닌 입력값이 포험되었습니다.")
+    }
+}
+
 
 fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
     var strike = 0
