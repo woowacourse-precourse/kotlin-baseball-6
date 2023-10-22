@@ -1,10 +1,17 @@
 package baseball
 
+import baseball.C.BALL_STRING
+import baseball.C.GAME_END_STRING
+import baseball.C.GET_INPUT_STRING
+import baseball.C.GAME_RESTART_STRING
+import baseball.C.GAME_START_STRING
+import baseball.C.INPUT_REGEX
+import baseball.C.NOTHING
+import baseball.C.STRIKE_STRING
 import camp.nextstep.edu.missionutils.Console
 
 class System {
-    //string 분리하기 (하드코딩된 거)
-    
+
     private var userInputList: List<String> = listOf()
     private var userInput: String = ""
     private var isFinished = false
@@ -33,7 +40,7 @@ class System {
 
     //플레이어 입력을 받는 함수
     private fun getUserInput() {
-        print("숫자를 입력해주세요 : ")
+        print(GET_INPUT_STRING)
         userInput = Console.readLine().toString() //플레이어 입력
     }
     //재시작 여부를 받는 함수
@@ -58,7 +65,7 @@ class System {
     }
     //정규표현식과 일치하는 지 확인하는 함수
     private fun checkRegexMatch(userInput: String): Boolean {
-        val regex = "[1-9]{3}".toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
+        val regex = INPUT_REGEX.toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
         return regex.matches(userInput)
     }
     //중복된 숫자가 없는 지 확인하는 함수
@@ -66,22 +73,22 @@ class System {
 
     //게임 시작을 출력하는 함수
     private fun printGameStart() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(GAME_START_STRING)
     }
     //게임 결과를 출력하는 함수
     private fun printGameResult(result: Pair<Int, Int>) {
         val (strike, ball) = result
         val resultText = when {
-            strike > 0 && ball == 0 -> "${strike}스트라이크"
-            strike == 0 && ball > 0 -> "${ball}볼"
-            strike == 0 && ball == 0 -> "낫싱"
-            else -> "${ball}볼 ${strike}스트라이크"
+            strike > 0 && ball == 0 -> "$strike$STRIKE_STRING"
+            strike == 0 && ball > 0 -> "$ball$BALL_STRING"
+            strike == 0 && ball == 0 -> NOTHING
+            else -> "$ball$BALL_STRING $strike$STRIKE_STRING"
         }
         println(resultText)
     }
     //게임 종료를 출력하는 함수
     private fun printGameEnded() {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println(GAME_END_STRING)
+        println(GAME_RESTART_STRING)
     }
 }

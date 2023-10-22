@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.C.RANDOM_SIZE
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
@@ -9,7 +10,7 @@ class Computer {
     fun makeRandomNumList() {
         var temp = ""
         randomNumList = mutableListOf<String>()
-        while (randomNumList.size < 3) {
+        while (randomNumList.size < RANDOM_SIZE) {
             temp = Randoms.pickNumberInRange(1, 9).toString()
             if (!randomNumList.contains(temp)) {
                 randomNumList.add(temp)
