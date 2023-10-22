@@ -17,6 +17,21 @@ private fun inputUserNumber(): List<Int> {
     return checkUserInput(user)
 }
 
+private fun calculateScore(computer: List<Int>, user: List<Int>) {
+    var strike = 0
+    var ball = 0
+
+    computer.forEachIndexed { index, s ->
+        if (computer[index] == user[index]) {
+            strike++
+        } else if (s in user) {
+            ball++
+        }
+    }
+
+    printScore(strike, ball)
+}
+
 private fun printScore(strike: Int, ball: Int) {
     when {
         strike == 3 -> {
