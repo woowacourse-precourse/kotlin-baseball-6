@@ -1,6 +1,6 @@
 package baseball.domain
 
 data class BallResult(
-        val ballCount: Int,
-        val strikeCount: Int,
+    val strikeCount: Int,
+    val ballCount: Int,
 )
