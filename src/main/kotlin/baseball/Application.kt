@@ -1,12 +1,7 @@
-// 문자열 길이가 3인지 확인
-// 문자열이 정규식 [1-9]를 만족하는 지 확인
-// 세 개의 숫자가 모두 다른지 확인 (9P3개)
-// 각 자리 수가 일치하는지 확인
-// 각 자리 수가 일치하지 않는다면 교집합이 몇 개인지 확인
-// 결과를 템플릿에 맞춰 출력하기
-// 게임 루프 시키는 로직 만들기
+// 야구 숫자 데이터 타입 wrapping?
 
-import java.util.*
+import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 const val REPLAY = 1
 const val GAME_OVER = 2
@@ -60,7 +55,13 @@ fun findExactDigitMatch(queryCode: List<Int>, answerCode: List<Int>): Int {
 }
 
 fun generateRandomNumberString(): String {
-    val pickNumber = (1..9).shuffled().take(3)
+    val numberList = IntRange(1, 9).toMutableList()
+    val pickNumber = ArrayList<Int>(0)
+    for (i in 1 until VALID_LENGTH) {
+        val currentPick = Randoms.pickNumberInRange(0, 9 - i)
+        pickNumber.add(numberList[currentPick])
+        numberList.removeAt(currentPick)
+    }
     return pickNumber.joinToString("")
 }
 
@@ -74,9 +75,9 @@ fun formatResult(strikes: Int, balls: Int): String {
     }
 }
 
-fun gameTurn(answer: String): Int = with(Scanner(System.`in`)) {
+fun gameTurn(answer: String): Int {
     print(TURN_PROMPT)
-    val query = nextLine()
+    val query = Console.readLine()
     val (strikes, balls) = judgeResult(query, answer)
     println(formatResult(strikes, balls))
     return strikes
@@ -91,12 +92,12 @@ fun gameplay() {
     }
 }
 
-fun main() = with(Scanner(System.`in`)) {
+fun main() {
     var replayStatus = REPLAY
     while (replayStatus == REPLAY) {
         gameplay()
         println(REPLAY_PROMPT)
-        replayStatus = nextInt()
+        replayStatus = Console.readLine().toInt()
     }
     require(replayStatus == GAME_OVER) { "Invalid query." }
 }
