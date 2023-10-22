@@ -33,7 +33,7 @@ object Utils {
      * 사용자가 입력한 연속된 3자리의 문자열을 받아 한글자씩 나눠 리스트의 형태로 return
      */
     fun inputNum(): List<Int> {
-        println("연속된 3자리의 숫자를 입력하세요:")
+        println("연속된 3자리의 숫자를 입력해주세요:")
 
         var inputString = Console.readLine()
         while (inputString == null || !isValidInput(inputString)) {
@@ -56,18 +56,18 @@ object Utils {
     /**
      * compareResult()
      * 사용자가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교하여 결과를 계산
-     * @param userNumbers 사용자가 입력한 숫자 리스트
-     * @param computerNumbers 컴퓨터가 선택한 숫자 리스트
+     * @param userList 사용자가 입력한 숫자 리스트
+     * @param computerList 컴퓨터가 선택한 숫자 리스트
      * @return 결과 문자열 (스트라이크, 볼, 낫싱)
      */
-    fun compareResult(userNumbers: List<Int>, computerNumbers: List<Int>): String {
+    fun compareResult(userList: List<Int>, computerList: List<Int>): String {
         var strikes = 0
         var balls = 0
 
-        for (i in userNumbers.indices) {
-            if (userNumbers[i] == computerNumbers[i]) {
+        for (i in userList.indices) {
+            if (userList[i] == computerList[i]) {
                 strikes++
-            } else if (computerNumbers.contains(userNumbers[i])) {
+            } else if (computerList.contains(userList[i])) {
                 balls++
             }
         }
