@@ -15,8 +15,9 @@ class BaseballGame {
         println("게임 종료")
     }
 
+
     private fun resetGame() {
-        computerNumbers.clear()
+        computerNumbers = mutableListOf()
         generateComputer()
     }
 
@@ -42,11 +43,11 @@ class BaseballGame {
             }
 
             if (strikes > 0 && balls > 0) {
-                println("$balls 볼 $strikes 스트라이크")
+                println("${balls}볼 ${strikes}스트라이크")
             } else if (strikes > 0) {
-                println("$strikes 스트라이크")
+                println("${strikes}스트라이크")
             } else if (balls > 0) {
-                println("$balls 볼")
+                println("${balls}볼")
             } else {
                 println("낫싱")
             }
@@ -54,11 +55,23 @@ class BaseballGame {
     }
 
     private fun countStrikes(userInput: List<Int>): Int {
-        return userInput.zip(computerNumbers).count { (user, computer) -> user == computer }
+        var strikeCount = 0
+        for (i in 0..2) {
+            if (computerNumbers[i] == userInput[i]) {
+                strikeCount++
+            }
+        }
+        return strikeCount
     }
 
     private fun countBalls(userInput: List<Int>): Int {
-        return userInput.count { it in computerNumbers } - countStrikes(userInput)
+        var ballCount = 0
+        for (i in 0..2) {
+            if (userInput[i] in computerNumbers && userInput[i] != computerNumbers[i]) {
+                ballCount++
+            }
+        }
+        return ballCount
     }
 
     private fun restart(): Boolean {
@@ -83,12 +96,14 @@ class BaseballGame {
         return checkUserInput(input)
     }
 
+
     private fun checkUserInput(input: String): List<Int> {
         if (!isValid(input)) {
             throw IllegalArgumentException("잘못된 입력값입니다.")
         }
         return input.map { it.toString().toInt() }
     }
+
 
     private fun isValid(input: String): Boolean {
         return input.length == 3 &&
