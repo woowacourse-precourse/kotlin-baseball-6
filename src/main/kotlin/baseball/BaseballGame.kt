@@ -16,7 +16,7 @@ class BaseballGame {
     }
 
     private fun gameRun() {
-        val answer = pickComputerNumber()
+        val answer = generateRandomNumber()
         while (true) {
             val userNumber = inputUserNumber()
             val score = compareWithNumber(answer, userNumber)
@@ -28,7 +28,7 @@ class BaseballGame {
         }
     }
 
-    private fun pickComputerNumber(): String {
+    private fun generateRandomNumber(): String {
         val computer = mutableListOf<Int>()
 
         while (computer.size < 3) {
