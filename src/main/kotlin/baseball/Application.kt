@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 private const val START = 1
@@ -8,6 +9,12 @@ private const val LENGTH = 3
 
 fun main() {
 
+}
+
+private fun inputUserNumber(): List<Int> {
+    print("숫자를 입력해주세요 : ")
+    val user = Console.readLine()
+    return checkUserInput(user)
 }
 
 private fun generateRandomNumberList(): List<Int> {
