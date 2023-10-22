@@ -1,9 +1,9 @@
 package baseball
 
 class BaseBallGame {
-    private val LENGTH = 3
     private val computer = Computer()
     private val person = Person()
+    private val baseBallGameCounter = BaseBallGameCounter()
     private val baseBallGameMessage = BaseBallGameMessage()
     private val inputValidator = InputValidator()
 
@@ -14,26 +14,10 @@ class BaseBallGame {
             baseBallGameMessage.printPersonInputMessage()
             person.inputNumber()
             inputValidator.isValidInput(person.getInputList())
-            val(strike, ball) = calCount(person.getInputList(), computer.getNumberList())
+            val(strike, ball) = baseBallGameCounter.calCount(person.getInputList(), computer.getNumberList())
             baseBallGameMessage.printCountMessage(strike, ball)
             if(!askForRestart(strike, ball)) break
         }
-    }
-
-    private fun calCount(
-        inputList: MutableList<Int>,
-        numberList: MutableList<Int>
-    ) : Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
-        for(i: Int in 0..< LENGTH) {
-            for(j: Int in 0..< LENGTH) {
-                if(inputList[i] == numberList[j]) {
-                    if(i != j) ball += 1 else strike += 1
-                }
-            }
-        }
-        return Pair(strike, ball)
     }
 
     private fun askForRestart(strike: Int, ball: Int): Boolean{
