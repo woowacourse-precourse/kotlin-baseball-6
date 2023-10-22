@@ -41,6 +41,7 @@ fun pickComputerNumber(): String {
 fun inputUserNumber(): String {
     print("수를 입력하세요: ")
     val user: String = Console.readLine()
+
     validationInputUserNumber(user)
     return user
 }
@@ -50,7 +51,7 @@ fun validationInputUserNumber(userNumber: String) {
         throw IllegalArgumentException("3자리가 아닌 입력값입니다.")
     }
 
-    if(!userNumber.all { String -> String.isDigit() }){
+    if((!userNumber.all { String -> String.isDigit() }) || (userNumber.contains("0"))) {
         throw IllegalArgumentException("숫자가 아닌 입력값이 포함되었습니다.")
     }
 }
