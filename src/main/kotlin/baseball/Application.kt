@@ -8,6 +8,7 @@ class BaseballGame {
     private var computerNumbers = mutableListOf<Int>()
 
     fun startGame() {
+        println("숫자 야구 게임을 시작합니다.")
         do {
             resetGame()
             playGame()
@@ -102,7 +103,5 @@ class BaseballGame {
 
 fun main() {
     val baseballGame = BaseballGame()
-
-    println("숫자 야구 게임을 시작합니다.")
     baseballGame.startGame()
 }
