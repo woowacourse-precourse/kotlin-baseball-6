@@ -38,37 +38,38 @@ fun getUserInputNum(): List<Int> {
 fun checkIsValidNum(inputNum: List<Int>) {
     if (inputNum.size != 3) throw IllegalArgumentException("3자리의 수를 입력해주세요")
     for (num in inputNum) {
-        if (inputNum.count { (it == num) } > 1)
-            throw IllegalArgumentException("서로 다른 숫자를 입력해주세요")
-        else if (num < 1 || num > 9)
-            throw IllegalArgumentException("각각 1~9 사이의 숫자를 입력해주세요")
+        if (inputNum.count { (it == num) } > 1) throw IllegalArgumentException("서로 다른 숫자를 입력해주세요")
+        else if (num < 1 || num > 9) throw IllegalArgumentException("각각 1~9 사이의 숫자를 입력해주세요")
     }
 }
 
-fun compareNum(computerNum: List<Int>, userNum: List<Int>) {
+fun compareNum(computerNum: List<Int>, userNum: List<Int>): STATE {
 
     val strike = howManyStrike(computerNum, userNum)
     val ball = howManyBall(computerNum, userNum, strike)
 
     if (ball == 0 && strike == 0) {
         print("낫싱")
+        return STATE.GAMING
     } else if (strike == 3) {
         println("${strike}스트라이크")
+        return gameOver()
     } else if (ball == 0) {
         println("${strike}스트라이크")
+        return STATE.GAMING
     } else if (strike == 0) {
         println("${ball}볼")
+        return STATE.GAMING
     } else {
         print("${ball}볼 ${strike}스트라이크")
+        return STATE.GAMING
     }
-
 }
 
 fun howManyStrike(computerNum: List<Int>, userNum: List<Int>): Int {
     var strikeNum = 0
     for (idx in 0..2) {
-        if (computerNum[idx] == userNum[idx])
-            strikeNum += 1
+        if (computerNum[idx] == userNum[idx]) strikeNum += 1
     }
     return strikeNum
 }
@@ -95,7 +96,5 @@ fun gameOver(): STATE {
 
 
 enum class STATE {
-    GAMING,
-    RESTART,
-    END,
+    GAMING, RESTART, END,
 }
