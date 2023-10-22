@@ -4,17 +4,20 @@ import baseball.domain.BallNumber
 import baseball.domain.GameStatus
 import camp.nextstep.edu.missionutils.Console
 
-class InputView {
+class InputView(private val inputValidator: InputValidator) {
 
     fun inputBallNumbers(): List<BallNumber> {
         if (executionCount++ == 0) {
             println("숫자 야구 게임을 시작합니다.")
         }
-        println("숫자를 입력해주세요 : ")
+        print("숫자를 입력해주세요 : ")
 
-        return readLine()
-            .split("")
-            .map { it.toInt() }
+        val input = readLine()
+        // 입력 받은 값이 null이 아니며 숫자로 이루어진 문자열인지 검증
+        inputValidator.validateNumbersInput(input)
+
+        return input
+            .map { it.toString().toInt() }
             .map { BallNumber(it) }
     }
 
