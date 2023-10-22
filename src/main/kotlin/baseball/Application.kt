@@ -44,18 +44,13 @@ fun inputUserNumber(): String {
     print("수를 입력하세요: ")
     val user: String = Console.readLine()
 
-    validationInputUserNumber(user)
+    validateInputUserNumber(user)
     return user
 }
 
-fun validationInputUserNumber(userNumber: String) {
-    if(userNumber.length != 3) {
-        throw IllegalArgumentException("3자리가 아닌 입력값입니다.")
-    }
-
-    if((!userNumber.all { String -> String.isDigit() }) || (userNumber.contains("0"))) {
-        throw IllegalArgumentException("숫자가 아닌 입력값이 포함되었습니다.")
-    }
+fun validateInputUserNumber(userNumber: String) {
+    require(userNumber.length == 3) { "3자리가 아닌 입력값입니다." }
+    require(userNumber.all { it.isDigit() } && !userNumber.contains("0")) { "숫자가 아닌 입력값이 포함되었습니다." }
 }
 
 
