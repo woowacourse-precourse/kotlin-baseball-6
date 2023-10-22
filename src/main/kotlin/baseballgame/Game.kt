@@ -1,6 +1,5 @@
 package baseballgame
 
-
 import constant.Constant
 import constant.StringError
 import camp.nextstep.edu.missionutils.Console
@@ -52,25 +51,46 @@ class Game {
         do{
             print("숫자를 입력해주세요: ")
             val userNumber = Console.readLine()
-            print(userNumber)
+            println(userNumber)
         } while (!checkStrike(userNumber)) // 3스트라이크가 나올때까지
     }
 
     private fun checkStrike(input: String): Boolean {
-        var inputArray = changeStringToIntArray(input)
-        val strike = 0
-        var ball = 0
+        val inputArray = changeStringToIntArray(input)
+        val strike = countStrike(inputArray)
+        var ball = countBall(inputArray)
 
-        if(strike == 3){
+        if(strike == 3) {
             return true
         } else {
             return false
         }
     }
 
+    private fun countStrike(inputNumber: IntArray): Int {
+        var strike = 0
+        for (i in inputNumber.indices) {
+            if (inputNumber[i] == comNumber[i]) {
+                strike++
+            }
+        }
+        return strike
+    }
+
+    private fun countBall(inputNumber: IntArray): Int {
+        var ball = 0
+        for (i in inputNumber.indices) {
+            if (comNumber.contains(inputNumber[i])) {
+                ball++
+            }
+        }
+        return ball
+    }
+
     // 사용자에게 입력받은 문자열을 정수 배열로 변환
     private fun changeStringToIntArray(inputString: String): IntArray {
         val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
+        // string 길이가 3인지 확인해야함
         val intArray = IntArray(3)
         stringArray.indices.forEach{ intArray[it] = stringArray[it].toInt()}
         return intArray
