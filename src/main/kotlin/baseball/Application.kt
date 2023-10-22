@@ -5,9 +5,18 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGame {
 
-    private val computerNumbers = mutableListOf<Int>()
+    private var computerNumbers = mutableListOf<Int>()
 
-    init {
+    fun startGame() {
+        do {
+            resetGame()
+            play()
+        } while (restart())
+        println("게임을 종료합니다.")
+    }
+
+    private fun resetGame() {
+        computerNumbers = mutableListOf()
         generateComputer()
     }
 
@@ -25,6 +34,12 @@ class BaseballGame {
             val userInput = getUserInput()
             val strikes = countStrikes(userInput)
             val balls = countBalls(userInput)
+
+            if (strikes == 3) {
+                println("3스트라이크")
+                println("정답입니다!")
+                break
+            }
 
             if (strikes > 0 && balls > 0) {
                 println("${balls}볼 ${strikes}스트라이크")
@@ -58,6 +73,18 @@ class BaseballGame {
         return ballCount
     }
 
+    private fun restart(): Boolean {
+        while (true) {
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ")
+            val input = Console.readLine()
+            when (input) {
+                "1" -> return true
+                "2" -> return false
+                else -> println("잘못된 입력입니다. 다시 입력해주세요.")
+            }
+        }
+    }
+
     private fun getUserInput(): List<Int> {
         while (true) {
             try {
@@ -88,5 +115,5 @@ fun main() {
     val baseballGame = BaseballGame()
 
     println("숫자 야구 게임을 시작합니다.")
-    baseballGame.play()
+    baseballGame.startGame()
 }
