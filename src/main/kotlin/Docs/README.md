@@ -33,13 +33,11 @@
     문제 해결: 1 또는 2가 단독으로 입력 시 에러 검사하는 함수를 호출하지 않고 게임의 종료인지 시작인지를 체크한 뒤 각자에게 맞는 함수를 실행
   <br>
 - indices와 length()의 차이
-    <pre>
 <code>
    for (index in inputNumber.indices) {
             userNumber.add(inputNumber[index])
         }
 </code>
-  </pre>
     이 부분을 length로 처음 썼을 때는 잘 작동하지 않음
     <br>
     원인:전체 문자열의 길이가 아닌 각 문자열의 길이를 알아야하기 때문
@@ -55,4 +53,7 @@
 # ✏️ 새로 배운 사항 및 리팩토링 시 고려해볼 사안
 
 -코틀린의 readline은 string()으로 받는 형태인듯-> 처음 사용하는 list도 string으로 통일해주는 것이 가독성이 좋을까
+<br>
+-앞으로는 깃 커밋 메시지 컨벤션도 잘 지키자->다른 사람들과 소통 시 '나'의 방식대로만 작성하면 소통에 문제 생길 수도
+[git 커밋 메시지 컨벤션](https://velog.io/@dkdlel102/Git-%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
