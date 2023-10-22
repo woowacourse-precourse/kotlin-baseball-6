@@ -17,12 +17,14 @@ fun playerNum() : MutableList<Int> {
     var player = mutableListOf<Int>()
     print("숫자를 입력해주세요 : ")
     val counter = Console.readLine() // 문자열로 받음
-    if(counter == null || counter.length < 3){
+    if(counter == null || counter.length < 3 || counter.length > 3){
+        println("게임 종료")
         throw IllegalArgumentException()
     }
     for(char in counter){ // 각 문자별로 뽑아서
         val number = Character.digit(char,10)
         if(number <= 0) {
+            println("게임 종료")
             throw IllegalArgumentException()
         }
         player.add(number) // 숫자로 변환해 리스트에 추가
@@ -45,7 +47,7 @@ fun compare(computer: MutableList<Int>, player: MutableList<Int>) : Pair<Int, In
     }
     return Pair(strike, ball)
 }
-fun result_message(strike:Int, ball:Int){
+fun resultMessage(strike:Int, ball:Int){
     if(strike == 0 && ball == 0) {
         println("낫싱")
     }
@@ -69,14 +71,21 @@ fun main() {
     println("숫자 야구 게임을 시작합니다.")
     while(true) {
         val c_number = computerNum() // 컴퓨터의 랜덤 숫자
-        val p_number = playerNum() // 플레이어의 숫자
-        val (strike, ball) = compare(c_number, p_number) //스트라이크, 볼 비교
-        result_message(strike, ball)
-        if(strike == 3){
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            val answer = Console.readLine()
-            if(answer == "1") continue
-            else break
+        var playing = true
+        while (playing) {
+            val p_number = playerNum() // 플레이어의 숫자
+            val (strike, ball) = compare(c_number, p_number) //스트라이크, 볼 비교
+            resultMessage(strike, ball)
+            if (strike == 3) {
+                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+                val answer = Console.readLine()
+                if (answer == "1") {
+                    playing = false
+                } else if (answer == "2") {
+                    println("게임 종료")
+                    return
+                } else throw IllegalArgumentException()
+            }
         }
     }
 }
