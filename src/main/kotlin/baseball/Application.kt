@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
+
 }
 
 
@@ -38,5 +39,23 @@ fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
             ball++
         }
     }
+    printHint(strike, ball)
     return Pair(strike, ball)
 }
+
+fun printHint(strike:Int, ball:Int) {
+    var hint = ""
+
+    if(ball != 0){
+        hint += "${ball}볼 "
+    }
+    if(strike != 0){
+        hint += "${strike}스트라이크"
+    }
+    if(strike==0 && ball==0) {
+     hint = "낫싱"
+    }
+
+    println(hint)
+}
+
