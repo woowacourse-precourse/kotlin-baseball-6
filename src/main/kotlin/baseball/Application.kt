@@ -12,7 +12,6 @@ fun playBaseBallGame() {
 
     while (gameManager.gameState != GameManager.GameState.ENDED) {
         gameManager.startGame()
-        println("타겟 넘버 : ${gameManager.targetNumber}")
 
         while (gameManager.gameState == GameManager.GameState.INPROGRESS) {
             print("숫자를 입력해주세요 : ")
