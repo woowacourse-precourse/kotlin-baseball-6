@@ -21,6 +21,10 @@ class Output {
         println("${strike}스트라이크")
     }
 
+    fun printNothing() {
+        println("낫싱")
+    }
+
     fun printSuccessMessage() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         printRetryMessage()

@@ -12,6 +12,8 @@ class ComputerNumberGenerator {
                 computer.add(randomNumber)
             }
         }
+
         return computer
+
     }
 }

@@ -2,9 +2,16 @@ package baseball.gamemachine
 
 import baseball.io.Output
 
-class GameMachine(printer: Output =Output()) {
+class GameMachine(
+    private val printer: Output = Output(),
+    private val baseballGame: BaseballGame = BaseballGame()
+) {
     init {
         printer.printStartMessage()
+    }
+
+    fun startGame() {
+        baseballGame.game()
     }
 
 }
