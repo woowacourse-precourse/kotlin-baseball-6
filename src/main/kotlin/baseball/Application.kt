@@ -71,19 +71,18 @@ fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
     return Pair(strike, ball)
 }
 
-fun printHint(strike:Int, ball:Int) {
-    var hint = ""
-
-    if(ball != 0){
-        hint += "${ball}볼 "
-    }
-    if(strike != 0){
-        hint += "${strike}스트라이크"
-    }
-    if(strike==0 && ball==0) {
-        hint = "낫싱"
-    }
+fun printHint(strike: Int, ball: Int) {
+    val hint = buildHint(strike, ball)
     println(hint)
+}
+
+fun buildHint(strike: Int, ball: Int): String {
+    return when {
+        ball != 0 && strike != 0 -> "${ball}볼 ${strike}스트라이크"
+        ball != 0 -> "${ball}볼"
+        strike != 0 -> "${strike}스트라이크"
+        else -> "낫싱"
+    }
 }
 
 fun gameOver(){
