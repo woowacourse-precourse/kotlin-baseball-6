@@ -1,5 +1,7 @@
 package baseball
 
+import java.lang.IllegalArgumentException
+
 class GameManager {
 
     enum class GameState {
@@ -76,9 +78,19 @@ class GameManager {
 
     fun handlePlayerChoice(playerChoice: String) {
         validatePlayerChoice(playerChoice)
+
         when (playerChoice.toInt()) {
-            GameAction.RESTART.value -> gameState = GameState.INPROGRESS
-            GameAction.EXIT.value -> gameState = GameState.ENDED
+            GameAction.RESTART.value -> {
+                gameState = GameState.INPROGRESS
+            }
+
+            GameAction.EXIT.value -> {
+                gameState = GameState.ENDED
+            }
+
+            else -> {
+                throw IllegalArgumentException("알 수 없는 오류 입니다.")
+            }
         }
     }
 

@@ -3,6 +3,10 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
+    playBaseBallGame()
+}
+
+fun playBaseBallGame() {
     val player = Player()
     val gameManager = GameManager()
 
