@@ -7,15 +7,17 @@ class User : Player<List<Int>> {
     fun requestInputGameState(): Int {
         val input = Console.readLine()
         Validator.validateInputGameState(input)
-        Console.close()
 
         return input.toInt()
+    }
+
+    fun requestEndInput() {
+        Console.close()
     }
 
     fun requestInputNumbers(): String {
         val input = Console.readLine()
         Validator.validateInput(input)
-        Console.close()
 
         return input
     }
