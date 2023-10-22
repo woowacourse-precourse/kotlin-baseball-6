@@ -61,11 +61,17 @@ fun getNumberFromPlayer(): List<String> {
 }
 
 fun checkNumberOfPlayer(numbers: String) {
-    numbers.forEach {
-        val number = it.code
+    if (numbers.length != 3 ||
+        numbers.distinctString().length != 3
+    ) {
+        throw IllegalArgumentException()
+    } else {
+        numbers.forEach {
+            val number = it.code
 
-        if (number < 49 || number > 57) {
-            throw IllegalArgumentException()
+            if (number < 49 || number > 57) {
+                throw IllegalArgumentException()
+            }
         }
     }
 }
