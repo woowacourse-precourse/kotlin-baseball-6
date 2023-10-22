@@ -6,4 +6,8 @@ class Player {
     fun guessGameNumbers(): GameNumbers {
         return GameNumbers(Console.readLine())
     }
+
+    fun askReplayOption(): ReplayOption {
+        return ReplayOption.from(Console.readLine())
+    }
 }
