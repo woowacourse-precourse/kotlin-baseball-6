@@ -1,11 +1,5 @@
 package baseball
 
-const val START_NUMBER = 1
-const val END_NUMBER = 9
-const val NUMBER_COUNT = 3
-const val START_GAME = 1
-const val END_GAME = 2
-
 object Validator {
     fun isInvalidNumericInput(input: String): Boolean {
         return !input.all { it.isDigit() }
@@ -26,7 +20,7 @@ object Validator {
     }
 
     fun isNotGameState(gameState: Int): Boolean {
-        return gameState == START_GAME || gameState == END_GAME
+        return !(gameState == START_GAME || gameState == END_GAME)
     }
 
     fun validateInputGameState(input: String) {
