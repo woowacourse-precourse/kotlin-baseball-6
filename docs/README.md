@@ -9,17 +9,14 @@
 - countBall() : 볼의 개수를 구하는 기능
 - countStrike() : 스트라이크 개수를 구하는 기능
 - isEndGame() : 게임이 종료되었는지 판별하는 기능
-
-
+<br><br/>
 ### 입력과 관련된 기능들
 - inputBaseBallNumber() : 서로 다른 3개의 숫자 입력받는 기능
 - inputExitGame() : 게임을 새로 시작할 건지의 여부를 입력받는 기능
-
-
+<br><br/>
 ### 출력과 관련된 기능들
 - printBallAndStrike() : 볼과 스트라이크 개수를 형식에 맞게 출력하는 기능
-
-
+<br><br/>
 ### 공통적으로 사용되는 기능들
 - pickBaseBallNumber() : 서로 다른 3개의 숫자 선택하는 기능
 - validateInputBaseBall() : 입력받은 3개의 숫자의 예외 처리 기능
