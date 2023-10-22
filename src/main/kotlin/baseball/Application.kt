@@ -51,7 +51,7 @@ fun validationInputUserNumber(userNumber: String) {
     }
 
     if(!userNumber.all { String -> String.isDigit() }){
-        throw IllegalArgumentException("숫자가 아닌 입력값이 포험되었습니다.")
+        throw IllegalArgumentException("숫자가 아닌 입력값이 포함되었습니다.")
     }
 }
 
