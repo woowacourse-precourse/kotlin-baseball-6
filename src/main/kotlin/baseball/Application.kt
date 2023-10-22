@@ -1,6 +1,8 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console.readLine
+
 
 // 프로그램의 시작점
 fun main() {
@@ -9,6 +11,9 @@ fun main() {
 
     // 컴퓨터 숫자를 생성한다.
     println(createComputerNumber())
+
+    // 플레이어 숫자를 입력 받는다.
+    println(getPlayerNumber())
 }
 
 fun startGame() {
@@ -26,4 +31,13 @@ fun createComputerNumber(): MutableList<Int> {
     }
 
     return computer
+}
+
+fun getPlayerNumber(): String {
+
+    print("숫자를 입력해주세요 : ")
+
+    val player = readLine()
+
+    return player
 }
