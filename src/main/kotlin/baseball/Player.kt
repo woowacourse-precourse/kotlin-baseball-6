@@ -18,10 +18,8 @@ object Player {
         }
     }
 
-    fun getNum() {
-        for(i in playerNumbers.indices) {
-            println(playerNumbers[i])
-        }
+    fun getNumber() : List<Int> {
+        return playerNumbers
     }
 
 }
