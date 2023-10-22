@@ -2,12 +2,10 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseballGame {
+object BaseballGame {
 
-    companion object {
-        private const val NUMBER_MATCH_COUNT = 3
-        private const val GAME_OVER_MSG = "${NUMBER_MATCH_COUNT}스트라이크\n${NUMBER_MATCH_COUNT}개의 숫자를 모두 맞히셨습니다! 게임 종료"
-    }
+    private const val NUMBER_MATCH_COUNT = 3
+    private const val GAME_OVER_MSG = "${NUMBER_MATCH_COUNT}스트라이크\n${NUMBER_MATCH_COUNT}개의 숫자를 모두 맞히셨습니다! 게임 종료"
 
     fun startGame() {
         val computerNumber = generateComputerNumber()
