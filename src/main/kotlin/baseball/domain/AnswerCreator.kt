@@ -3,7 +3,7 @@ package baseball.domain
 import camp.nextstep.edu.missionutils.Randoms
 
 class AnswerCreator {
-    fun create(): BallNumbers {
+    fun create(): Answer {
         // 자동으로 중복 제거해주는 Set
         val set = mutableSetOf<BallNumber>()
 
