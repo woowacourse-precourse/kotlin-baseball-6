@@ -40,9 +40,13 @@
     - 1이 입력되었을 경우 ReplayOption.REPLAY를 반환한다.
     - 2가 입력되었을 경우 ReplayOption.QUIT를 반환한다.
 
-## 랜덤 숫자 생성 - Computer
+## 랜덤 숫자 생성 - RandomNumbersGenerator
 
-- 1부터 9까지 서로 다른 수로 이루어진 세 자리의 수를 생성한다.
+- 1부터 9까지 서로 다른 수로 이루어진 세 자리 수를 생성한다.
+
+## GameNumbers 변경 - Computer
+
+- GameNumbers를 변경한다.
 
 ## 비교 - Umpire
 
