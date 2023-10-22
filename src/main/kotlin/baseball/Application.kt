@@ -1,6 +1,7 @@
 package baseball
 
 fun main() {
-    NumberBaseball.initRandomNumbers()
-        .test()
+    NumberBaseball
+        .initRandomNumbers()
+        .getUserInput()
 }
