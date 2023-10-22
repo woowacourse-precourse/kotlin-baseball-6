@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 fun main() {
 
-    val numberSet: MutableSet<Int> = mutableSetOf()
+    val numberSet: MutableSet<String> = mutableSetOf()
     var playGame = true
 
     println("숫자 야구 게임을 시작합니다.")
@@ -17,7 +17,7 @@ fun main() {
             val result = checkGame(input, numberSet)
             println(result)
 
-            if (result == "3 스트라이크") {
+            if (result == "3스트라이크") {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
             }
@@ -26,25 +26,21 @@ fun main() {
     }
 }
 
-fun getRandomNumber(numberSet: MutableSet<Int>) {
+fun getRandomNumber(numberSet: MutableSet<String>) {
     numberSet.clear()
     while (numberSet.size < 3) {
         val number = pickNumberInRange(1, 9)
-        if (number !in numberSet) {
-            numberSet.add(number)
+        if (number.toString() !in numberSet) {
+            numberSet.add(number.toString())
         }
     }
 }
 
-fun getUserNumber(): Int {
+fun getUserNumber(): String {
     while (true) {
         val input = Console.readLine()
         if (input.length == 3) {
-            try {
-                return input.toInt()
-            } catch (e: NumberFormatException) {
-                println("숫자가 아닌 입력입니다. 다시 시도하세요.")
-            }
+            return input
         } else {
             throw IllegalArgumentException("잘못된 입력값입니다.")
         }
@@ -57,14 +53,14 @@ fun getUserChoice(): Boolean {
     return choice == 1
 }
 
-fun checkGame(input: Int, numberSet: MutableSet<Int>): String {
-    val inputIndex = input.toString().toList().map { it.toString().toInt() }
+fun checkGame(input: String, numberSet: MutableSet<String>): String {
+    val inputIndex = input.toList().map { it.toString() }
     val strike = inputIndex.zip(numberSet).count { (inputIndex, targetIndex) -> inputIndex == targetIndex }
     val ball = inputIndex.count { it in numberSet } - strike
 
     return when {
-        strike == 3 -> "3 스트라이크"
-        strike > 0 || ball > 0 -> "$strike 스트라이크 $ball 볼"
+        strike == 3 -> "3스트라이크"
+        strike > 0 || ball > 0 -> "${ball}볼 ${strike}스트라이크"
         else -> "낫싱"
     }
 }
