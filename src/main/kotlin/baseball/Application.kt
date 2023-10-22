@@ -17,3 +17,10 @@ fun pickComputerNumber(): String {
     }
     return computer.joinToString("")
 }
+
+fun inputUserNumber(): String {
+    print("수를 입력하세요: ")
+    val user: String = Console.readLine()
+
+    return user
+}
