@@ -93,10 +93,7 @@ class BaseballGame {
     private fun chooseRestartAndExit(): Boolean {
         val flag: Int = Console.readLine().toInt()
         validateRestartAndExit(flag)
-        if (flag == 1) {
-            return true
-        }
-        return false
+        return flag == 1
     }
 
     private fun validateRestartAndExit(flag: Int) {
