@@ -11,6 +11,7 @@ class Computer {
                 randomNumberList.add(randomNumber)
             }
         }
+        println(randomNumberList)
         return randomNumberList
     }
 }
