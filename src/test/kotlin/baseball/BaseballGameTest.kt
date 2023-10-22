@@ -55,7 +55,7 @@ class BaseballGameTest {
         fun `컴퓨터와 사용자의 숫자를 비교하여 결과 확인 - 낫싱`() {
             val computerNumbers = listOf(1,2,3)
             val userNumbers = listOf(4,5,6)
-            val result = listOf(0,0)
+            val result = Pair(0,0)
             assertThat(result).isEqualTo(game.compareNumbers(computerNumbers,userNumbers))
         }
 
@@ -63,7 +63,7 @@ class BaseballGameTest {
         fun `컴퓨터와 사용자의 숫자를 비교하여 결과 확인 - 3스트라이크`() {
             val computerNumbers = listOf(1,2,3)
             val userNumbers = listOf(1,2,3)
-            val result = listOf(0,3)
+            val result = Pair(0,3)
             assertThat(result).isEqualTo(game.compareNumbers(computerNumbers,userNumbers))
         }
 
@@ -71,7 +71,7 @@ class BaseballGameTest {
         fun `컴퓨터와 사용자의 숫자를 비교하여 결과 확인 - 2볼`() {
             val computerNumbers = listOf(1,2,3)
             val userNumbers = listOf(2,3,4)
-            val result = listOf(2,0)
+            val result = Pair(2,0)
             assertThat(result).isEqualTo(game.compareNumbers(computerNumbers,userNumbers))
         }
     }
