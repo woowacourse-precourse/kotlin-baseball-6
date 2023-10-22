@@ -24,17 +24,12 @@ object ExceptionCheck {
 
     private fun checkPlayerInputIsDifferent(number : String) {
         val numberList = arrayListOf<Int>()
-
         number.forEach {
             numberList.add(Character.getNumericValue(it))
         }
-
-        for(i in 0 until numberList.size-1) {
-            for(j in i+1 until numberList.size) {
-                if(numberList[i] == numberList[j]) {
-                    throw IllegalArgumentException("서로 다른 수가 아닙니다!")
-                }
-            }
+        val numberSet = numberList.toSet()
+        if(numberSet.size != 3) {
+            throw IllegalArgumentException("서로 다른 수가 아닙니다!")
         }
     }
 }
