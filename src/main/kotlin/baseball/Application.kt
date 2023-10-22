@@ -19,12 +19,12 @@ import camp.nextstep.edu.missionutils.Randoms
  */
 
 fun main() {
-
+    Game().gameStart()
 }
 
 class Computer() {
 
-    private fun randomNum() {
+    fun randomNum(): MutableList<Int> {
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -32,6 +32,7 @@ class Computer() {
                 computer.add(randomNumber)
             }
         }
+        return computer
     }
 }
 
@@ -39,9 +40,10 @@ class User() {
 
     /*
     입력한 값이 이상한 경우 Illegal반환
-    자릿수가 3개가 아닌경우, 0~9가 아닌경우, 숫자가 아닌경, 중복된 숫자가 들어가있는 경우
+    자릿수가 3개가 아닌경우, 1~9가 아닌경우, 숫자가 아닌경, 중복된 숫자가 들어가있는 경우
      */
-    private fun userInputNum(): List<Int> {
+    fun userInputNum(): List<Int> {
+        println("숫자를 입력해주세요 : ")
         val userNum = Console.readLine().map { it.digitToInt() }
         checkNumLength(userNum)
         checkInt(userNum)
@@ -64,23 +66,45 @@ class User() {
 
     companion object {
         const val INPUT_LENGTH_ERROR = "숫자3자리를 입력해주세요."
-        const val INPUT_RANGE_ERROR = "0~9사이 값이 아닙니다."
+        const val INPUT_RANGE_ERROR = "1~9사이 값이 아닙니다."
         const val INPUT_NUMBER_DUPLICATE = "중복된 숫자가 있습니다."
     }
 }
 
+class Game() {
+    fun gameStart() {
+        val computerNum = Computer().randomNum()
+        println(computerNum)
 
-class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  //입력한 값을 파라미터로 받는다
-    var strike = 0
-    var ball = 0
+        while (true) {
+            val userNum = User().userInputNum()
+            BaseBall(userNum, computerNum).startBaseBall()
+            if (BaseBall(userNum, computerNum).isMatchNumber() == BaseBall.COMPLETE) {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+                val playGame = readLine()!!.toInt()
+                return when (playGame) {
+                    1 -> gameStart()
+                    2 -> break
+                    else -> throw IllegalArgumentException("1,2값이 아닙니다.")
+                }
+            }
+        }
+    }
+}
 
-    private fun startBaseBall() {
+
+class BaseBall(val userNum: List<Int>, val gameNum: MutableList<Int>) {  //입력한 값을 파라미터로 받는다
+    private var strike = 0
+    private var ball = 0
+
+    fun startBaseBall() {
         checkStrike()
         checkBall()
         printBallNum()
     }
 
-    private fun isMatchNumber(): String {
+    fun isMatchNumber(): String {
         return when (userNum == gameNum) {
             true -> COMPLETE
             else -> CONTINUE
@@ -88,7 +112,7 @@ class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  
     }
 
     private fun checkStrike() {
-        for (i in 0..userNum.size) {
+        for (i in userNum.indices) {
             if (userNum[i] == gameNum[i]) {
                 strike++
             }
@@ -96,8 +120,8 @@ class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  
     }
 
     private fun checkBall() {
-        for (i in 0..userNum.size) {
-            for (game in 0..gameNum.size) {
+        for (i in userNum.indices) {
+            for (game in gameNum.indices) {
                 if (userNum[i] == gameNum[game]) {
                     ball++
                 }
@@ -110,9 +134,11 @@ class BaseBall(val userNum: MutableList<Int>, val gameNum: MutableList<Int>) {  
         if (ball == 0 && strike > 0) {
             println("{$strike}스트라이크")
         } else if (ball > 0 && strike == 0) {
-            println("{$ball}볼")
+            println("${ball}볼")
         } else if (ball > 0 && strike > 0) {
-            println("{$ball}볼 {$strike}스트라이크")
+            println("${ball}볼 ${strike}스트라이크")
+        } else if (userNum == gameNum) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         } else {
             println("낫싱")
         }
