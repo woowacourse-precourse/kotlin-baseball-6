@@ -3,6 +3,7 @@ package baseball
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
@@ -166,5 +167,44 @@ class GameManagerTest {
         val actual = gameManager.gameState
         val expected = GameManager.GameState.ENDED
         assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `재시작 여부 입력에 문자열을 입력할 수 없다`(){
+        //given
+        val gameManager = GameManager()
+
+        //when
+
+        //then
+        assertThrows<IllegalArgumentException> {
+            gameManager.handlePlayerChoice("가나다")
+        }
+    }
+
+    @Test
+    fun `재시작 여부 입력에 2개의 값을 입력받을 수 없다`(){
+        //given
+        val gameManager = GameManager()
+
+        //when
+
+        //then
+        assertThrows<IllegalArgumentException> {
+            gameManager.handlePlayerChoice("12")
+        }
+    }
+
+    @Test
+    fun `재시작 여부 입력에 1과 2 이외의 숫자는 입력받을 수 없다`(){
+        //given
+        val gameManager = GameManager()
+
+        //when
+
+        //then
+        assertThrows<IllegalArgumentException> {
+           gameManager.handlePlayerChoice("3")
+        }
     }
 }
