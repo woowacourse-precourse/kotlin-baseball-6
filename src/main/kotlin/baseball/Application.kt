@@ -41,11 +41,11 @@ fun pickComputerNumber(): String {
 fun inputUserNumber(): String {
     print("수를 입력하세요: ")
     val user: String = Console.readLine()
-    validationinputUserNumber(user)
+    validationInputUserNumber(user)
     return user
 }
 
-fun validationinputUserNumber(userNumber: String) {
+fun validationInputUserNumber(userNumber: String) {
     if(userNumber.length > 3) {
         throw IllegalArgumentException("3자리가 아닌 입력값입니다.")
     }
