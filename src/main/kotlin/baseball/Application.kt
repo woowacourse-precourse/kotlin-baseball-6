@@ -1,13 +1,27 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
+
 fun main() {
+    playBaseBallGame()
+}
 
-    println("숫자 야구 게임을 시작합니다.")
-    val randomTargetGenerator = RandomTargetGenerator()
+fun playBaseBallGame() {
     val player = Player()
-    val targetNumber = randomTargetGenerator.generateRandomTarget()
+    val gameManager = GameManager()
 
-    print("숫자를 입력해주세요 : ")
-    val userInput = readLine()
-    player.setGuessNumber(userInput!!)
+    while (gameManager.gameState != GameManager.GameState.ENDED) {
+        gameManager.startGame()
+
+        while (gameManager.gameState == GameManager.GameState.INPROGRESS) {
+            print("숫자를 입력해주세요 : ")
+            val playerInput = Console.readLine()
+            player.setGuessNumber(playerInput)
+            gameManager.calculateStrikeBall(player.guessNumber)
+        }
+
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val playerChoice = Console.readLine()
+        gameManager.handlePlayerChoiceAfterGame(playerChoice)
+    }
 }

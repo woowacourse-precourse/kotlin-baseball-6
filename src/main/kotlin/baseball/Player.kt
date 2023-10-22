@@ -2,31 +2,31 @@ package baseball
 
 class Player {
     companion object{
-        const val REQUIRED_INPUT_LENGTH = 3
+        private const val REQUIRED_INPUT_LENGTH = 3
     }
 
-    var guessNumber : List<Int>? = null
+    lateinit var guessNumber : List<Int>
         private set
 
-    fun setGuessNumber(userInput : String){
-        validateUserInput(userInput)
+    fun setGuessNumber(playerInput : String){
+        validatePlayerInput(playerInput)
 
-        guessNumber = userInput.toList().map{
+        guessNumber = playerInput.toList().map{
             it.toString().toInt()
         }
     }
 
-    private fun validateUserInput(userInput : String){
-        requireNotNull(userInput.toIntOrNull()){
+    private fun validatePlayerInput(playerInput : String){
+        requireNotNull(playerInput.toIntOrNull()){
             "숫자만 입력하실 수 있습니다."
         }
-        require(userInput.length == REQUIRED_INPUT_LENGTH){
+        require(playerInput.length == REQUIRED_INPUT_LENGTH){
             "세 자리 숫자만 입력하실 수 있습니다."
         }
-        require(!userInput.contains("0")){
+        require(!playerInput.contains("0")){
             "숫자에 0은 포함될 수 없습니다."
         }
-        require(userInput.length == userInput.toSet().size){
+        require(playerInput.length == playerInput.toSet().size){
             "중복되는 숫자는 입력될 수 없습니다."
         }
     }
