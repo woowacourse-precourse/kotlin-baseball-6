@@ -10,7 +10,12 @@ class BaseballGame {
     fun startGame() {
         do {
             resetGame()
-            play()
+            try {
+                play()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                return
+            }
         } while (restart())
         println("게임을 종료합니다.")
     }
@@ -86,15 +91,9 @@ class BaseballGame {
     }
 
     private fun getUserInput(): List<Int> {
-        while (true) {
-            try {
-                print("숫자를 입력해 주세요 : ")
-                val input = Console.readLine()
-                return checkUserInput(input)
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-        }
+        print("숫자를 입력해 주세요 : ")
+        val input = Console.readLine()
+        return checkUserInput(input)
     }
 
     private fun checkUserInput(input: String): List<Int> {
