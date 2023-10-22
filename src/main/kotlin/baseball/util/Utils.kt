@@ -1,10 +1,11 @@
 package baseball.util
+
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 /**
  * 작성자 : 추민수
- * 설명 : 숫자 랜덤 생성, 사용자 입력 등
+ * 설명 : 숫자 랜덤 생성, 사용자 입력 등 Util
  */
 object Utils {
 
@@ -49,5 +50,39 @@ object Utils {
      */
     fun isValidInput(input: String): Boolean {
         return input.length == 3 && input.all { it.isDigit() }
+    }
+
+
+    /**
+     * compareResult()
+     * 사용자가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교하여 결과를 계산
+     * @param userNumbers 사용자가 입력한 숫자 리스트
+     * @param computerNumbers 컴퓨터가 선택한 숫자 리스트
+     * @return 결과 문자열 (스트라이크, 볼, 낫싱)
+     */
+    fun compareResult(userNumbers: List<Int>, computerNumbers: List<Int>): String {
+        var strikes = 0
+        var balls = 0
+
+        for (i in userNumbers.indices) {
+            if (userNumbers[i] == computerNumbers[i]) {
+                strikes++
+            } else if (computerNumbers.contains(userNumbers[i])) {
+                balls++
+            }
+        }
+
+        return when {
+            strikes == 3 -> "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+            strikes > 0 || balls > 0 -> {
+                if (strikes == 0) {
+                    "$balls" + "볼"
+                } else if (balls == 0) {
+                    "$strikes" + "스트라이크"
+                }
+                "$balls" + "볼 " + "$strikes" + "스트라이크"
+            }
+            else -> "낫싱"
+        }
     }
 }
