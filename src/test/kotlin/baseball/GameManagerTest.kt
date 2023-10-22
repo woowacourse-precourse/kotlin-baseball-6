@@ -14,7 +14,7 @@ class GameManagerTest {
         val gameManager = GameManager()
 
         //when
-        gameManager.gameStart()
+        gameManager.startGame()
 
         //then
         val actual = gameManager.targetNumber
@@ -25,7 +25,7 @@ class GameManagerTest {
     fun `타겟 넘버와 사용자의 입력 값을 비교하였을 때, 겹치는 숫자가 있고, 그 숫자의 위치까지 일치할 경우 스트라이크가 1 올라간다`() {
         //given
         val gameManager = GameManager()
-        gameManager.gameStart()
+        gameManager.startGame()
         val targetNumber = gameManager.targetNumber
 
         //when
@@ -48,7 +48,7 @@ class GameManagerTest {
     fun `타겟 넘버와 사용자의 입력 값을 비교하였을 때, 겹치는 숫자가 있지만 숫자의 위치가 다를 경우 볼이 1 올라간다`() {
         //given
         val gameManager = GameManager()
-        gameManager.gameStart()
+        gameManager.startGame()
         val targetNumber = gameManager.targetNumber
 
         //when
@@ -71,7 +71,7 @@ class GameManagerTest {
     fun `타겟 넘버와 사용자의 입력 값을 비교하였을 때, 스트라이크가 3개일 경우 게임을 종료한다`() {
         //given
         val gameManager = GameManager()
-        gameManager.gameStart()
+        gameManager.startGame()
 
         //when
         //3 스트라이크
@@ -88,7 +88,7 @@ class GameManagerTest {
     fun `타겟 넘버와 사용자의 입력 값을 비교하였을 때, 숫자가 하나도 겹치지 않을 경우 낫싱을 출력한다`() {
         //given
         val gameManager = GameManager()
-        gameManager.gameStart()
+        gameManager.startGame()
         val outputStream = ByteArrayOutputStream()
         System.setOut(PrintStream(outputStream))
 
@@ -114,7 +114,7 @@ class GameManagerTest {
     fun `타겟 넘버와 사용자의 입력 값을 비교하였을 때, 낫싱이 아닌 경우에는 볼과 스트라이크 수를 출력한다`() {
         //given
         val gameManager = GameManager()
-        gameManager.gameStart()
+        gameManager.startGame()
         val targetNumber = gameManager.targetNumber
 
         val outputStream = ByteArrayOutputStream()

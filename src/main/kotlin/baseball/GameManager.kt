@@ -17,7 +17,7 @@ class GameManager {
     val scoreBoard: HashMap<String, Int> = hashMapOf(Pair("strike", 0), Pair("ball", 0))
 
 
-    fun gameStart() {
+    fun startGame() {
         setGameState(GameState.INPROGRESS)
         targetNumber = randomTargetGenerator.generateRandomTarget()
     }
