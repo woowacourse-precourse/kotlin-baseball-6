@@ -11,7 +11,7 @@ object InputValidator {
     }
 
     fun validateInputNumber(input: String) {
-        if (input.toIntOrNull() == null)
+        if (input.toIntOrNull() == null || input.contains("0"))
             throw IllegalArgumentException(GameMessage.GAME_ERROR_INPUT_NUMBER)
     }
 
