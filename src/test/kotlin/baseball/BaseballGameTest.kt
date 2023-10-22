@@ -80,28 +80,28 @@ class BaseballGameTest {
     inner class HintMessageTest {
         @Test
         fun `낫싱 테스트`() {
-            val result = listOf(0,0)
+            val result = Pair(0,0)
             val hintMessage = "낫싱"
             assertThat(hintMessage).isEqualTo(game.provideHintMessage(result))
         }
 
         @Test
         fun `볼 테스트`() {
-            val result = listOf(2,0)
+            val result = Pair(2,0)
             val hintMessage = "2볼"
             assertThat(hintMessage).isEqualTo(game.provideHintMessage(result))
         }
 
         @Test
         fun `스트라이크 테스트`() {
-            val result = listOf(0,2)
+            val result = Pair(0,2)
             val hintMessage = "2스트라이크"
             assertThat(hintMessage).isEqualTo(game.provideHintMessage(result))
         }
 
         @Test
         fun `볼과 스트라이크 테스트`() {
-            val result = listOf(2,1)
+            val result = Pair(2,1)
             val hintMessage = "2볼 1스트라이크"
             assertThat(hintMessage).isEqualTo(game.provideHintMessage(result))
         }
