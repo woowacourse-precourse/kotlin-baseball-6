@@ -108,21 +108,18 @@ class BaseballGame {
     fun provideHintMessage(result: Pair<Int,Int>) : String {
         val ball = result.first
         val strike = result.second
-        var resultMessage = ""
+        val resultMessage = mutableListOf<String>()
 
-        if (ball + strike == 0) {
-            resultMessage += NOTHING_MESSAGE
+        if (ball == 0 && strike == 0) {
+            resultMessage.add(NOTHING_MESSAGE)
         }
         if (ball > 0) {
-            resultMessage += "$ball$BALL_MESSAGE"
+            resultMessage.add("$ball$BALL_MESSAGE")
         }
-        if (strike > 0 && ball == 0) {
-            resultMessage += "$strike$STRIKE_MESSAGE"
-        }
-        else if (strike > 0 && ball > 0) {
-            resultMessage += " $strike$STRIKE_MESSAGE"
+        if (strike > 0) {
+            resultMessage.add("$strike$STRIKE_MESSAGE")
         }
 
-        return resultMessage
+        return resultMessage.joinToString(" ")
     }
 }
