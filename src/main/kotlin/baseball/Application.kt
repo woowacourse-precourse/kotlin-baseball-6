@@ -24,3 +24,19 @@ fun inputUserNumber(): String {
 
     return user
 }
+
+fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
+    var strike: Int = 0
+    var ball: Int = 0
+
+    for (idx in userNumber.indices) {
+        if (userNumber[idx] == answer[idx]) {
+            strike++
+            continue
+        }
+        if (userNumber.contains(answer[idx])) {
+            ball++
+        }
+    }
+    return Pair(strike, ball)
+}
