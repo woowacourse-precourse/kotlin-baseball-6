@@ -23,7 +23,7 @@ class Game {
             if (!computer.gameFlag) {
                 printGameEndMessage()
                 val restartGame = user.decideGame()
-                if(restartGame){
+                if (restartGame) {
                     computer.gameFlag = true
                     gameStart()
                 }
