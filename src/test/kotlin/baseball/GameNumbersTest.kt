@@ -48,4 +48,14 @@ class GameNumbersTest {
 
         assertThat(count).isEqualTo(1)
     }
+
+    @Test
+    fun `두 GameNumbers 간의 같은 위치에 같은 값을 가지는 개수를 구한다`() {
+        val gameNumbers = GameNumbers("123")
+        val otherGameNumbers = GameNumbers("124")
+
+        val count = gameNumbers.countSameNumberAndPosition(otherGameNumbers)
+
+        assertThat(count).isEqualTo(2)
+    }
 }

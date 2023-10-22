@@ -18,6 +18,11 @@ class GameNumbers(value: String?) {
         return numbers.count { other.numbers.contains(it) }
     }
 
+    fun countSameNumberAndPosition(other: GameNumbers): Int {
+        return numbers.zip(other.numbers).count { it.first == it.second }
+    }
+
+
     companion object {
         private const val SIZE = 3
     }
