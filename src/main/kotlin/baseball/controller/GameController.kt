@@ -3,6 +3,7 @@ package baseball.controller
 import baseball.domain.AnswerCreator
 import baseball.domain.BallNumbers
 import baseball.domain.BaseballGame
+import baseball.domain.GameStatus
 import baseball.view.InputView
 import baseball.view.OutputView
 
@@ -18,11 +19,8 @@ class GameController(
         // 2. 게임 실행(정답 맞출 때까지)
         playRecursive(game)
 
-        // 3. 재실행 여부 입력
-        val willReplay = inputView.inputWillReplay()
-
-        // 4. "1"을 입력 받았다면 재실행, 아니면 그대로 종료
-        if (willReplay) {
+        // 3.재실행 여부 입력 및 재실행 or 종료 결정
+        if (GameStatus.REPLAY == inputView.inputNextGameStatus()) {
             run()
         }
     }
