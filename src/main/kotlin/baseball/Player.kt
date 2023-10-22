@@ -12,6 +12,7 @@ object Player {
     }
 
     private fun setNumber(inputNum : String) {
+        playerNumbers.clear()
         inputNum.forEach { number ->
             playerNumbers.add(Character.getNumericValue(number))
         }
