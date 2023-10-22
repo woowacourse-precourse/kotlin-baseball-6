@@ -1,9 +1,7 @@
 package baseball
 
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.anyInt
 
 class GameManagerTest{
 
@@ -16,8 +14,7 @@ class GameManagerTest{
         gameManager.gameStart()
 
         //then
-        val actual = gameManager.targetNumber()
-        val expected = listOf(anyInt(),anyInt(),anyInt())
-        assertThat(actual).isEqualTo(expected)
+        val actual = gameManager.targetNumber
+        assertTrue(actual is List<Int> && actual.size == 3)
     }
 }
