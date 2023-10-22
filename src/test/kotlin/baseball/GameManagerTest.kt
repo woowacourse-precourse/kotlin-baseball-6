@@ -143,7 +143,7 @@ class GameManagerTest {
     fun `게임이 종료된 뒤, 사용자가 1을 입력했을 경우, 게임을 계속 진행한다`(){
         //given
         val gameManager = GameManager()
-        gameManager.setGameState(GameManager.GameState.ENDED)
+        gameManager.gameState = GameManager.GameState.ENDED
 
         //when
         gameManager.handlePlayerChoice("1")
@@ -158,7 +158,7 @@ class GameManagerTest {
     fun `게임이 종료된 뒤, 사용자가 2를 입력했을 경우, 게임을 종료한다`(){
         //given
         val gameManager = GameManager()
-        gameManager.setGameState(GameManager.GameState.ENDED)
+        gameManager.gameState = GameManager.GameState.ENDED
 
         //when
         gameManager.handlePlayerChoice("2")

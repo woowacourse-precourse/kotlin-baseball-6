@@ -16,7 +16,6 @@ class GameManager {
     }
 
     var gameState: GameState = GameState.INIT
-        private set
 
     private val randomTargetGenerator: RandomTargetGenerator by lazy { RandomTargetGenerator() }
 
@@ -26,7 +25,7 @@ class GameManager {
     private val scoreBoard: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0)
 
     fun startGame() {
-        setGameState(GameState.INPROGRESS)
+        gameState = GameState.INPROGRESS
         targetNumber = randomTargetGenerator.generateRandomTarget()
     }
 
@@ -55,28 +54,31 @@ class GameManager {
     }
 
     private fun printStrikeBallNothing() {
-        if (scoreBoard["strike"]!! == 0 && scoreBoard["ball"]!! == 0) {
+        val strikeCount = scoreBoard["strike"]
+        val ballCount = scoreBoard["ball"]
+
+        if (strikeCount == 0 && ballCount == 0) {
             print("낫싱")
         }
-        if (scoreBoard["ball"]!! >= 1) {
-            print("${scoreBoard["ball"].toString()}볼 ")
+        if (ballCount != 0) {
+            print("${ballCount.toString()}볼 ")
         }
-        if (scoreBoard["strike"]!! >= 1) {
-            print("${scoreBoard["strike"].toString()}스트라이크")
+        if (strikeCount != 0) {
+            print("${strikeCount.toString()}스트라이크")
         }
         println()
     }
 
     private fun endGame() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        setGameState(GameState.ENDED)
+        gameState = GameState.ENDED
     }
 
     fun handlePlayerChoice(playerChoice: String) {
         validatePlayerChoice(playerChoice)
         when (playerChoice.toInt()) {
-            GameAction.RESTART.value -> setGameState(GameState.INPROGRESS)
-            GameAction.EXIT.value -> setGameState(GameState.ENDED)
+            GameAction.RESTART.value -> gameState = GameState.INPROGRESS
+            GameAction.EXIT.value -> gameState = GameState.ENDED
         }
     }
 
@@ -87,10 +89,6 @@ class GameManager {
         require(playerChoice.toInt() == 1 || playerChoice.toInt() == 2) {
             "1 혹은 2만 입력하실 수 있습니다."
         }
-    }
-
-    fun setGameState(gameState: GameState) {
-        this.gameState = gameState
     }
 
     fun getScoreBoard(): HashMap<String, Int> {
