@@ -5,11 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 fun main() {
 
-    val numberSet: MutableList<Int> = mutableListOf()
+    val numberSet: MutableSet<Int> = mutableSetOf()
     var playGame = true
 
     println("숫자 야구 게임을 시작합니다.")
-
     while (playGame) {
         getRandomNumber(numberSet)
         while (true) {
@@ -31,10 +30,13 @@ fun main() {
     }
 }
 
-fun getRandomNumber(numberSet: MutableList<Int>) {
+fun getRandomNumber(numberSet: MutableSet<Int>) {
+    numberSet.clear()
     while (numberSet.size < 3) {
         val number = pickNumberInRange(1, 9)
-        numberSet.add(number)
+        if (number !in numberSet) {
+            numberSet.add(number)
+        }
     }
 }
 
@@ -53,7 +55,7 @@ fun getUserNumber(): Int {
     }
 }
 
-fun checkGame(input: Int, numberSet: MutableList<Int>): String {
+fun checkGame(input: Int, numberSet: MutableSet<Int>): String {
     val inputIndex = input.toString().toList().map { it.toString().toInt() }
     val strike = inputIndex.zip(numberSet).count { (inputIndex, targetIndex) -> inputIndex == targetIndex }
     val ball = inputIndex.count { it in numberSet } - strike
