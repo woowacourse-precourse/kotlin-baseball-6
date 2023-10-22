@@ -20,6 +20,7 @@
 
     println("숫자 야구 게임을 시작합니다.")
 
+'PrintStartMessage.kt' 파일을 생성하여, 해당 문구를 출력하는 함수 `printStartMessage()`를 선언하였다. 
 <br>
 
 ### 서로 다른 임의의 3자리 숫자 생성
@@ -34,12 +35,16 @@
 * 명시된 라이브러리 : `camp.nextstep.edu.missionutils`
 * 사용 예제
   ```kotlin
-  val computer = mutableListOf()
-  while (computer.size() < 3) {
+  import camp.nextstep.edu.missionutils.Randoms
+  /*...*/
+  val computer = mutableListOf<Int>()
+  while (computer.size < 3) {
       val randomNumber = Randoms.pickNumberInRange(1, 9)
           if (!computer.contains(randomNumber)) {
               computer.add(randomNumber)
     }
   }
   ```
+
+라이브러리와 API에 대한 자세한 내용은 명시된 외부 라이브러리의 코드를 참고하였다.   
 
