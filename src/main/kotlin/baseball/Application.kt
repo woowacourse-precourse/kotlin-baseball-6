@@ -67,9 +67,18 @@ fun main() {
             //check strike == 3
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val temp = Console.readLine()
-        if(temp == "2")
-            flag = false
+        while(true) {
+            val temp = Console.readLine()
+            if(temp == "1") {
+                flag = true
+                break
+            }
+            else if(temp == "2") {
+                flag = false
+                break
+            }
+            else println("다시 입력해주세요")
+        }
         //restart game
     }
 }
