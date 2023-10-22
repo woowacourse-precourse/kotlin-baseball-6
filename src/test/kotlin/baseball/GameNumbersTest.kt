@@ -1,5 +1,6 @@
 package baseball
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -36,5 +37,15 @@ class GameNumbersTest {
             { assertDoesNotThrow { GameNumbers("456") } },
             { assertDoesNotThrow { GameNumbers("789") } },
         )
+    }
+
+    @Test
+    fun `두 GameNumbers 간의 동일한 숫자의 개수를 구한다`() {
+        val gameNumbers = GameNumbers("123")
+        val otherGameNumbers = GameNumbers("345")
+
+        val count = gameNumbers.countSameNumbers(otherGameNumbers)
+
+        assertThat(count).isEqualTo(1)
     }
 }

@@ -8,6 +8,19 @@ class GameNumber(value: Char) {
         number = value.digitToInt()
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as GameNumber
+
+        return number == other.number
+    }
+
+    override fun hashCode(): Int {
+        return number
+    }
+
     companion object {
         private const val MIN_VALUE = '1'
         private const val MAX_VALUE = '9'

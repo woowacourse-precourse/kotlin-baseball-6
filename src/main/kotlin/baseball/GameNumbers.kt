@@ -14,6 +14,10 @@ class GameNumbers(value: String?) {
         require(value.toSet().size == SIZE) { "입력값에 중복되는 문자가 있습니다." }
     }
 
+    fun countSameNumbers(other: GameNumbers): Int {
+        return numbers.count { other.numbers.contains(it) }
+    }
+
     companion object {
         private const val SIZE = 3
     }
