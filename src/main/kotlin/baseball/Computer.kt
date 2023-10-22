@@ -5,10 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms
 class Computer {
     private var randomNumList: MutableList<String> = mutableListOf()
 
-    init {
-        makeRandomNumList()
-    }
-
     //난수를 생성하는 함수
     fun makeRandomNumList() {
         var temp = ""
@@ -23,14 +19,12 @@ class Computer {
 
     //게임 결과를 도출하는 함수
     fun getGameResult(userInputList: List<String>): Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
+        var (strike,ball) = Pair(0,0)
         for (i in userInputList.indices) {
             if (userInputList[i] == randomNumList[i]) strike++
             else if ((userInputList[i] != randomNumList[i]) && randomNumList.contains(userInputList[i])) ball++
         }
         return Pair(strike, ball)
     }
-
 
 }
