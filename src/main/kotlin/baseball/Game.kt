@@ -6,74 +6,25 @@ import java.lang.IllegalArgumentException
 
 class Game {
     private val user = User()
-    private var gameFlag = true
+    private val computer = Computer()
 
     fun printGameStartMessage() {
         println("숫자 야구 게임을 시작합니다.")
     }
 
     fun gameStart() {
-        val computerNumber = setComputerNumber()
+        val computerNumber = computer.setComputerNumber()
         println(computerNumber)
 
-        while (gameFlag) {
+        while (computer.gameFlag) {
             val userNumber = user.inputUserNumber()
-            compareAndPrintHint(computerNumber, userNumber)
+            computer.compareAndPrintHint(computerNumber, userNumber)
 
-            if (!gameFlag) {
+            if (!computer.gameFlag) {
                 printGameEndMessage()
                 decideGame()
             }
         }
-    }
-
-    private fun setComputerNumber(): MutableList<Int> {
-        val computer = mutableListOf<Int>()
-
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
-
-        return computer
-    }
-
-    private fun countStrikeAndBall(computer: MutableList<Int>, user: MutableList<Int>): Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
-
-        user.forEach {
-            if (computer.contains(it)) {
-                ball++
-            }
-        }
-
-        for (i in user.indices) {
-            if (user[i] == computer[i]) {
-                strike++
-                ball--
-            }
-        }
-
-        if (strike == 3) {
-            gameFlag = false
-        }
-
-        return Pair(strike, ball)
-    }
-
-    private fun compareAndPrintHint(computer: MutableList<Int>, user: MutableList<Int>) {
-        val (strike, ball) = countStrikeAndBall(computer, user)
-        val hint = when {
-            strike == 0 && ball == 0 -> "낫싱"
-            strike > 0 && ball == 0 -> "${strike}스트라이크"
-            strike == 0 && ball > 0 -> "${ball}볼"
-            else -> "${ball}볼 ${strike}스트라이크"
-        }
-
-        println(hint)
     }
 
     private fun printGameEndMessage() {
@@ -86,7 +37,7 @@ class Game {
         checkValidInput(userInput)
 
         if (userInput == "1") {
-            gameFlag = true
+            computer.gameFlag = true
             gameStart()
         }
     }
