@@ -12,6 +12,17 @@ class User {
         return userNumber.map { it.digitToInt() }.toMutableList()
     }
 
+    fun decideGame(): Boolean {
+        val userInput = Console.readLine()
+        checkValidInput(userInput)
+
+        if (userInput == "1") {
+            return true
+        }
+
+        return false
+    }
+
     private fun checkValidNumber(number: String) {
         //사용자의 입력이 3자리인지 확인
         if (number.length != 3) {
@@ -40,5 +51,13 @@ class User {
                 throw IllegalArgumentException("사용자의 입력이 1부터 9까지의 숫자가 아닙니다.")
             }
         }
+    }
+
+    private fun checkValidInput(input: String) {
+        if (input == "1" || input == "2") {
+            return
+        }
+
+        throw IllegalArgumentException("입력이 1 또는 2가 아닙니다.")
     }
 }

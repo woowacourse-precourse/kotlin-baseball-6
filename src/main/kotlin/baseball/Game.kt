@@ -22,7 +22,11 @@ class Game {
 
             if (!computer.gameFlag) {
                 printGameEndMessage()
-                decideGame()
+                val restartGame = user.decideGame()
+                if(restartGame){
+                    computer.gameFlag = true
+                    gameStart()
+                }
             }
         }
     }
@@ -30,23 +34,5 @@ class Game {
     private fun printGameEndMessage() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    }
-
-    private fun decideGame() {
-        val userInput = Console.readLine()
-        checkValidInput(userInput)
-
-        if (userInput == "1") {
-            computer.gameFlag = true
-            gameStart()
-        }
-    }
-
-    private fun checkValidInput(input: String) {
-        if (input == "1" || input == "2") {
-            return
-        }
-
-        throw IllegalArgumentException("입력이 1 또는 2가 아닙니다.")
     }
 }
