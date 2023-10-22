@@ -20,7 +20,13 @@
 
     println("숫자 야구 게임을 시작합니다.")
 
-'PrintStartMessage.kt' 파일을 생성하여, 해당 문구를 출력하는 함수 `printStartMessage()`를 선언하였다. 
+문구를 출력 하는 함수를 생성하여 관리하기 위해,   
+'PrintStartMessage.kt' 파일을 생성하고 해당 문구를 출력하는 함수 `printStartMessage()`를 선언하였다. 
+```kotlin
+fun printStartMessage(){
+    println("숫자 야구 게임을 시작합니다.\n")
+}
+```
 <br>
 
 ### 서로 다른 임의의 3자리 숫자 생성
@@ -47,4 +53,22 @@
   ```
 
 라이브러리와 API에 대한 자세한 내용은 명시된 외부 라이브러리의 코드를 참고하였다.   
+
+해당 기능 역시 따로 함수로 선언하였다. 'GenerateRandomNumber.kt' 파일 내에 `generateRandomNumber()` 라는 이름으로 생성하였다.   
+mutableList를 생성하여 서로 다른 난수 3개를 리스트에 add하고 반환한다.
+```kotlin
+import camp.nextstep.edu.missionutils.Randoms
+
+// 서로 다른 3자리의 난수 리스트를 생성하여 반환
+fun generateRandomNumber(): MutableList<Int> {
+    val computer = mutableListOf<Int>()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+    return computer
+}
+```
 
