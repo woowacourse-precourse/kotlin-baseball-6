@@ -6,6 +6,14 @@ class Player {
         private set
 
     fun setGuessNumber(userInput : String){
+        validateUserInput(userInput)
+
+        guessNumber = userInput.toList().map{
+            it.toString().toInt()
+        }
+    }
+    
+    private fun validateUserInput(userInput : String){
         requireNotNull(userInput.toIntOrNull()){
             "숫자만 입력하실 수 있습니다."
         }
@@ -17,10 +25,6 @@ class Player {
         }
         require(userInput.length == userInput.toSet().size){
             "중복되는 숫자는 입력될 수 없습니다."
-        }
-
-        guessNumber = userInput.toList().map{
-            it.toString().toInt()
         }
     }
 }
