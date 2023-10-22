@@ -24,9 +24,11 @@ class BaseballGame(
             play()
             gameState = user.requestInputGameState()
         }
+
+        user.requestEndInput()
     }
 
-    fun play() {
+    private fun play() {
 
     }
 }
