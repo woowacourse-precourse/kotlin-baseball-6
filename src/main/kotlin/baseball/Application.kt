@@ -44,8 +44,8 @@ fun inputUserNumber(): String {
 }
 
 fun compareWithNumber(answer:String, userNumber: String): Pair<Int, Int> {
-    var strike: Int = 0
-    var ball: Int = 0
+    var strike = 0
+    var ball = 0
 
     for (idx in userNumber.indices) {
         if (userNumber[idx] == answer[idx]) {
