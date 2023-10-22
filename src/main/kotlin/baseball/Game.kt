@@ -8,20 +8,20 @@ object Game {
         startBaseballGame()
     }
 
-    fun startBaseballGame() {
+    private fun startBaseballGame() {
         Computer.setNumber()
         val computerNumber = Computer.getNumber()
 
-        while(true) {
+        while (true) {
             print("숫자를 입력해주세요 : ")
             Player.inputNumber()
             val playerNumber = Player.getNumber()
             val hint = Hint.compareNumber(playerNumber, computerNumber)
 
-            when(hint) {
+            when (hint) {
                 false -> println("낫싱")
                 else -> {
-                    if(GameCount.getStrikeCount() == 3) {
+                    if (GameCount.getStrikeCount() == 3) {
                         println("3스트라이크")
                         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                         break
@@ -37,7 +37,7 @@ object Game {
         ExceptionCheck.checkPlayerInputRestartOrFinish(inputRestartOrFinish)
         when(inputRestartOrFinish) {
             1 -> reStart()
-            2 -> {}
+            2 -> print("게임 종료")
         }
     }
 

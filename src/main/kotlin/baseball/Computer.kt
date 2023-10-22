@@ -7,13 +7,11 @@ object Computer {
 
     fun setNumber() {
         computerNumbers.clear()
-        while(computerNumbers.size < 3) {
-            val selectNumber = Randoms.pickNumberInRange(1,9)
+        while (computerNumbers.size < 3) {
+            val selectNumber = Randoms.pickNumberInRange(1, 9)
             computerNumbers.add(selectNumber)
         }
     }
 
-    fun getNumber() : List<Int> {
-        return computerNumbers.toList()
-    }
+    fun getNumber() = computerNumbers.toList()
 }

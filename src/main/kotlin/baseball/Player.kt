@@ -18,8 +18,6 @@ object Player {
         }
     }
 
-    fun getNumber() : List<Int> {
-        return playerNumbers
-    }
+    fun getNumber() = playerNumbers
 
 }
