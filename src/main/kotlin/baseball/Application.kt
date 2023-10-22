@@ -10,7 +10,7 @@ fun main() {
         print("숫자를 입력해주세요: ")
         var numberBall = Console.readLine()
 
-        if (isAvaliableInput(numberBall)) {
+        if (isAvailableInput(numberBall)) {
             val result = computer.judgeNumberBall(numberBall)
             println(result)
 
@@ -33,7 +33,7 @@ fun main() {
     }
 }
 
-fun isAvaliableInput(numberBall: String?): Boolean {
+fun isAvailableInput(numberBall: String?): Boolean {
     try {
         if (numberBall != null && numberBall.length == 3) {
 

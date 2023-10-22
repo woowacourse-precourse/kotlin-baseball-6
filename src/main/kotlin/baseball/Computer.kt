@@ -45,10 +45,10 @@ class Computer {
             return "낫싱"
         }
         else if(ball == 0){
-            return "${strike}스크라이크"
+            return "${strike}스트라이크"
         }
         else{
-            return "${ball}볼 ${strike}스크라이크"
+            return "${ball}볼 ${strike}스트라이크"
         }
     }
 
