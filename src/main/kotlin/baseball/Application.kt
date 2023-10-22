@@ -55,23 +55,11 @@ class BaseballGame {
     }
 
     private fun countStrikes(userInput: List<Int>): Int {
-        var strikeCount = 0
-        for (i in 0..2) {
-            if (computerNumbers[i] == userInput[i]) {
-                strikeCount++
-            }
-        }
-        return strikeCount
+        return userInput.zip(computerNumbers).count { (user, computer) -> user == computer }
     }
 
     private fun countBalls(userInput: List<Int>): Int {
-        var ballCount = 0
-        for (i in 0..2) {
-            if (userInput[i] in computerNumbers && userInput[i] != computerNumbers[i]) {
-                ballCount++
-            }
-        }
-        return ballCount
+        return userInput.count { it in computerNumbers } - countStrikes(userInput)
     }
 
     private fun restart(): Boolean {
