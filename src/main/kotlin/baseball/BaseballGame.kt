@@ -3,6 +3,8 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+const val BALL_SIZE = 3
+
 class BaseballGame {
     fun playGame() {
         printStartGameMessage()
@@ -21,7 +23,7 @@ class BaseballGame {
             val userNumber = inputUserNumber()
             val score = compareWithNumber(answer, userNumber)
             printHint(score.first, score.second)
-            if (score.first == 3) {
+            if (score.first == BALL_SIZE) {
                 gameOver()
                 return
             }
@@ -31,7 +33,7 @@ class BaseballGame {
     private fun generateRandomNumber(): String {
         val computer = mutableListOf<Int>()
 
-        while (computer.size < 3) {
+        while (computer.size < BALL_SIZE) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (randomNumber !in computer) {
                 computer.add(randomNumber)
@@ -43,14 +45,15 @@ class BaseballGame {
 
     private fun inputUserNumber(): String {
         print("수를 입력하세요: ")
-        val user: String = Console.readLine()
 
+        val user: String = Console.readLine()
         validateInputUserNumber(user)
+
         return user
     }
 
     private fun validateInputUserNumber(userNumber: String) {
-        require(userNumber.length == 3) { "3자리가 아닌 입력값입니다." }
+        require(userNumber.length == BALL_SIZE) { "${BALL_SIZE}자리가 아닌 입력값입니다." }
         require(userNumber.all { it.isDigit() } && !userNumber.contains("0")) { "숫자가 아닌 입력값이 포함되었습니다." }
         for (x in userNumber) {
             require(userNumber.count { it == x } <= 1) { "중복된 숫자가 있습니다." }
@@ -90,7 +93,7 @@ private fun buildHint(strike: Int, ball: Int): String {
 }
 
 private fun gameOver() {
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("${BALL_SIZE}개의 숫자를 모두 맞히셨습니다! 게임 종료")
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 }
 
