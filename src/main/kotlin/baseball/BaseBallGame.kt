@@ -8,7 +8,7 @@ class BaseballGame {
         private const val NUMBERS_LENGTH = 3
         private const val NUMBER_START_RANGE = 1
         private const val NUMBER_END_RANGE = 9
-        private const val GAME_END_USER_ANSWER = 2
+        private const val RESTART_GAME_USER_ANSWER = 1
 
         private const val PROGRAM_START_MESSAGE = "숫자 야구 게임을 시작합니다."
         private const val INPUT_USER_NUMBERS_MESSAGE = "숫자를 입력해주세요 : "
@@ -30,7 +30,7 @@ class BaseballGame {
         println(PROGRAM_START_MESSAGE)
         do {
             playRound()
-        } while (getUserAnswer() != GAME_END_USER_ANSWER)
+        } while (getUserAnswer() == RESTART_GAME_USER_ANSWER)
     }
 
     private fun playRound() {
@@ -52,6 +52,11 @@ class BaseballGame {
             randomNumbers.add(number)
         }
         return randomNumbers.toList()
+    }
+
+    private fun readUserInput() : String {
+        val userInput = Console.readLine()
+        return userInput.trim()
     }
 
     private fun getUserNumbers() : List<Int> {
