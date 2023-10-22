@@ -22,11 +22,7 @@ fun main() {
                 break
             }
         }
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val choice = Console.readLine()!!.toInt()
-        if (choice != 1) {
-            playGame = false
-        }
+        playGame = getUserChoice()
     }
 }
 
@@ -53,6 +49,12 @@ fun getUserNumber(): Int {
             throw IllegalArgumentException("잘못된 입력값입니다.")
         }
     }
+}
+
+fun getUserChoice(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val choice = Console.readLine().toInt()
+    return choice == 1
 }
 
 fun checkGame(input: Int, numberSet: MutableSet<Int>): String {
