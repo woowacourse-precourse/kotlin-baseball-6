@@ -3,8 +3,6 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
-    var gameFlag = true
-
     fun setComputerNumber(): MutableList<Int> {
         val computer = mutableListOf<Int>()
 
@@ -35,10 +33,13 @@ class Computer {
             }
         }
 
-        if (strike == 3) {
-            gameFlag = false
-        }
-
         return Pair(strike, ball)
+    }
+
+    fun checkGameState(strike: Int): Boolean {
+        if (strike == 3) {
+            return false
+        }
+        return true
     }
 }
