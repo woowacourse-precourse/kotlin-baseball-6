@@ -49,8 +49,11 @@ fun getUserNumber(): String {
 
 fun getUserChoice(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val choice = Console.readLine().toInt()
-    return choice == 1
+    return when (Console.readLine()) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("잘못된 입력값입니다.")
+    }
 }
 
 fun checkGame(input: String, numberSet: MutableSet<String>): String {
