@@ -6,6 +6,10 @@ class GameManager {
         INIT, INPROGRESS, ENDED
     }
 
+    init {
+        println("숫자 야구 게임을 시작합니다.")
+    }
+
     var gameState: GameState = GameState.INIT
         private set
 
@@ -21,18 +25,12 @@ class GameManager {
         targetNumber = randomTargetGenerator.generateRandomTarget()
     }
 
-    private fun endGame() {
-        setGameState(GameState.ENDED)
-    }
-
     fun calculateStrikeBall(playerInput: List<Int>) {
         calculateStrike(playerInput)
         calculateBall(playerInput)
         printStrikeBallNothing()
-
-        if (scoreBoard["strike"] == 3) {
-            endGame()
-        }
+        endGameIfThreeStrikes()
+        clearScore()
     }
 
     private fun calculateStrike(playerInput: List<Int>) {
@@ -56,11 +54,17 @@ class GameManager {
             print("낫싱")
         }
         if (scoreBoard["ball"]!! >= 1) {
-            print("${scoreBoard["ball"].toString()}볼")
+            print("${scoreBoard["ball"].toString()}볼 ")
         }
         if (scoreBoard["strike"]!! >= 1) {
-            print(" ${scoreBoard["strike"].toString()}스트라이크")
+            print("${scoreBoard["strike"].toString()}스트라이크")
         }
+        println()
+    }
+
+    private fun endGame() {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        setGameState(GameState.ENDED)
     }
 
     private fun setGameState(gameState: GameState) {
@@ -69,5 +73,16 @@ class GameManager {
 
     fun getScoreBoard(): HashMap<String, Int> {
         return hashMapOf("strike" to scoreBoard["strike"]!!, "ball" to scoreBoard["ball"]!!)
+    }
+
+    private fun endGameIfThreeStrikes(){
+        if (scoreBoard["strike"] == 3) {
+            endGame()
+        }
+    }
+
+    private fun clearScore() {
+        scoreBoard["strike"] = 0
+        scoreBoard["ball"] = 0
     }
 }

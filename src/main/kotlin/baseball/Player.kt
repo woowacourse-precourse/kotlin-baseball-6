@@ -5,7 +5,7 @@ class Player {
         const val REQUIRED_INPUT_LENGTH = 3
     }
 
-    var guessNumber : List<Int>? = null
+    lateinit var guessNumber : List<Int>
         private set
 
     fun setGuessNumber(playerInput : String){
