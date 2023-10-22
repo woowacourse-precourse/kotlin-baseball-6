@@ -81,7 +81,7 @@ class GameManager {
         gameState = GameState.ENDED
     }
 
-    fun handlePlayerChoice(playerChoice: String) {
+    fun handlePlayerChoiceAfterGame(playerChoice: String) {
         validatePlayerChoice(playerChoice)
 
         when (playerChoice.toInt()) {

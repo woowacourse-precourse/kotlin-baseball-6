@@ -146,7 +146,7 @@ class GameManagerTest {
         gameManager.gameState = GameManager.GameState.ENDED
 
         //when
-        gameManager.handlePlayerChoice("1")
+        gameManager.handlePlayerChoiceAfterGame("1")
 
         //then
         val actual = gameManager.gameState
@@ -161,7 +161,7 @@ class GameManagerTest {
         gameManager.gameState = GameManager.GameState.ENDED
 
         //when
-        gameManager.handlePlayerChoice("2")
+        gameManager.handlePlayerChoiceAfterGame("2")
 
         //then
         val actual = gameManager.gameState
@@ -178,7 +178,7 @@ class GameManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            gameManager.handlePlayerChoice("가나다")
+            gameManager.handlePlayerChoiceAfterGame("가나다")
         }
     }
 
@@ -191,7 +191,7 @@ class GameManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-            gameManager.handlePlayerChoice("12")
+            gameManager.handlePlayerChoiceAfterGame("12")
         }
     }
 
@@ -204,7 +204,7 @@ class GameManagerTest {
 
         //then
         assertThrows<IllegalArgumentException> {
-           gameManager.handlePlayerChoice("3")
+           gameManager.handlePlayerChoiceAfterGame("3")
         }
     }
 }
