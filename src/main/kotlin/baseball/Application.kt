@@ -47,7 +47,7 @@ fun inputUserNumber(): String {
 }
 
 fun validationInputUserNumber(userNumber: String) {
-    if(userNumber.length > 3) {
+    if(userNumber.length != 3) {
         throw IllegalArgumentException("3자리가 아닌 입력값입니다.")
     }
 
