@@ -19,6 +19,7 @@ import camp.nextstep.edu.missionutils.Randoms
  */
 
 fun main() {
+    println("숫자 야구 게임을 시작합니다.")
     Game().gameStart()
 }
 
@@ -45,7 +46,6 @@ class User() {
     fun userInputNum(): List<Int> {
         println("숫자를 입력해주세요 : ")
         val userNum = Console.readLine().map { it.digitToInt() }
-        println(userNum)
         checkNumLength(userNum)
         checkInt(userNum)
         checkOverlap(userNum)
@@ -83,10 +83,10 @@ class Game() {
             if (BaseBall(userNum, computerNum).isMatchNumber() == BaseBall.COMPLETE) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-                val playGame = readLine()?.toInt()
-                return when (playGame) {
-                    1 -> gameStart()
-                    2 -> break
+
+                return when (Console.readLine()) {
+                    "1" -> gameStart()
+                    "2" -> break
                     else -> throw IllegalArgumentException("1,2값이 아닙니다.")
                 }
             }
@@ -132,14 +132,14 @@ class BaseBall(val userNum: List<Int>, val gameNum: MutableList<Int>) {  //입�
 
 
     private fun printBallNum() {
-        if (ball == 0 && strike > 0) {
-            println("{$strike}스트라이크")
+        if (strike == 3) {
+            println("${strike}스트라이크")
+        } else if ((ball > 0 && strike > 0)) {
+            println("${ball}볼 ${strike}스트라이크")
+        } else if (ball == 0 && strike > 0) {
+            println("${strike}스트라이크")
         } else if (ball > 0 && strike == 0) {
             println("${ball}볼")
-        } else if (ball > 0 && strike > 0) {
-            println("${ball}볼 ${strike}스트라이크")
-        } else if (userNum == gameNum) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         } else {
             println("낫싱")
         }
