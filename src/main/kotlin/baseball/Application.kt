@@ -38,6 +38,8 @@ private fun inputUserNumber(): List<Int> {
     return checkUserInput(user)
 }
 
+private fun readLine(): String = Console.readLine() ?: ""
+
 private fun calculateScore(computer: List<Int>, user: List<Int>) {
     var strike = 0
     var ball = 0
