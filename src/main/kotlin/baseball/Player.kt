@@ -1,6 +1,9 @@
 package baseball
 
 class Player {
+    companion object{
+        const val REQUIRED_INPUT_LENGTH = 3
+    }
 
     var guessNumber : List<Int>? = null
         private set
@@ -12,12 +15,12 @@ class Player {
             it.toString().toInt()
         }
     }
-    
+
     private fun validateUserInput(userInput : String){
         requireNotNull(userInput.toIntOrNull()){
             "숫자만 입력하실 수 있습니다."
         }
-        require(userInput.length == 3){
+        require(userInput.length == REQUIRED_INPUT_LENGTH){
             "세 자리 숫자만 입력하실 수 있습니다."
         }
         require(!userInput.contains("0")){
