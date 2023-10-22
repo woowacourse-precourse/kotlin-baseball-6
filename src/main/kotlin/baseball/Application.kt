@@ -34,7 +34,7 @@ private fun isRestart(): Boolean {
 
 private fun inputUserNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
-    val user = readLine()
+    val user = readLine().map { it.toString().toInt() }
     return checkUserInput(user)
 }
 
@@ -78,11 +78,11 @@ private fun generateRandomNumberList(): List<Int> {
     return numberSet.toList()
 }
 
-private fun checkUserInput(userInput: String): List<Int> {
+private fun checkUserInput(userInput: List<Int>): List<Int> {
     try {
         validateNumberLength(userInput)
         validateNumberInRange(userInput)
-        return userInput.map { it.toString().toInt() }
+        return userInput
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("숫자가 아닙니다.")
     } catch (e: IllegalArgumentException) {
@@ -90,16 +90,16 @@ private fun checkUserInput(userInput: String): List<Int> {
     }
 }
 
-private fun validateNumberInRange(userInput: String) {
+private fun validateNumberInRange(userInput: List<Int>) {
     userInput.forEach { number ->
-        if (number.toString().toInt() < START || number.toString().toInt() > END) {
+        if (number < START || number > END) {
             throw IllegalArgumentException("범위에 속하지 않은 숫자입니다.")
         }
     }
 }
 
-private fun validateNumberLength(userInput: String) {
-    if (userInput.length != LENGTH) {
+private fun validateNumberLength(userInput: List<Int>) {
+    if (userInput.size != LENGTH) {
         throw IllegalArgumentException("세 자리가 아닙니다.")
     }
 }
