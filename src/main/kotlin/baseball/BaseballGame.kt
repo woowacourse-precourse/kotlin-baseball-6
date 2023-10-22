@@ -27,6 +27,9 @@ fun baseBallGame() {
         // 정답 여부 확인 및 메시지 출력
         isAnswer = outputNumber(inputList, answer)
     }
+
+    // 재시작 여부 확인
+    resetGame()
 }
 
 // 입력 숫자 예외 규칙 검사 함수
@@ -72,4 +75,18 @@ fun outputNumber(input: List<Int>, answer: List<Int>): Boolean {
     if (strike == 3) print(Messages.correct)
 
     return strike == 3
+}
+
+// 재시작 확인 함수
+fun resetGame() {
+    println(Messages.reset)
+    Console.readLine().also {
+        if (it.toInt() == 1) {
+            baseBallGame()
+        } else if (it.toInt() == 2) {
+            println(Messages.endGame)
+        } else {
+            throw IllegalArgumentException(Messages.resetInputError)
+        }
+    }
 }
