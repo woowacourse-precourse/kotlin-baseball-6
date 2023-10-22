@@ -32,9 +32,9 @@ fun checkDigitRange(
     val rangeCheck = inputData.map { it }.all { it in range }
 
     if (inputData.length != digit) {
-        throw IllegalArgumentException("입력된 숫자는 3자리가 아닙니다.")
+        throw IllegalArgumentException("입력된 값은 ${digit}자리가 아닙니다.")
     } else if (rangeCheck == false) {
-        throw IllegalArgumentException("입력된 숫자 중에 1~9 범위를 벗어난 수가 있습니다.")
+        throw IllegalArgumentException("입력된 값 중에 ${range.first}~${range.last} 범위를 벗어난 수가 있습니다.")
     }
 }
 
