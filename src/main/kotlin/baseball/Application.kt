@@ -17,12 +17,12 @@ fun main() {
     }
 }
 
-fun makeRandomNumbers(): MutableList<String> {
-    val randomNumbers = mutableListOf<String>()
-    while (randomNumbers.size < 3) {
+fun makeRandomNumbers(): String {
+    var randomNumbers = ""
+    while (randomNumbers.length < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9).toString()
         if (!randomNumbers.contains(randomNumber)) {
-            randomNumbers.add(randomNumber)
+            randomNumbers += randomNumber
         }
     }
     return randomNumbers
