@@ -46,3 +46,33 @@
     * 게임에서 입력할 숫자의 자리수를 설정해줌.
     * 게임에서 입력할 숫자의 시작 범위와 끝 범위를 설정해줌.
     * 나중에 숫자 자리수와 범위가 변경되면 이 파일만 변경해주면 됨.
+
+# 2차 리팩토링 설계 (MVC 패턴)
+
+![img.png](refactoring_ver2.png)
+
+* **Model**
+    * `Computer`
+        * 세 자리수 입력과 정답을 프로퍼티로 가짐.
+        * 무작위 정답을 생성.
+        * 볼과 스트라이크를 Controller 에게 전달.
+    * `NumberComparator`
+        * 세 자리수 입력과 정답을 비교해서 결과를 리턴.
+    * `BallAndStrike`
+        * `ball` 과 `strike` 를 가짐.
+        * `toString` 을 오버라이드 해서 출력시 형식에 맞춰주는 역할
+* **View**
+    * `InputNumberView`
+        * 세자리 수 입력
+    * `InputCmdView`
+        * 재시작, 종료 커맨드 입력
+    * `OutputGuideView`
+        * 게임 시작 메시지 출력
+    * `OutputResultView`
+        * 각 Turn 의 결과 출력
+* **Controller**
+    * `GameController`
+        * 여러 역할을 담당하는 것들을 사용하는 컨트롤러
+* **Service**
+    * `NumberValidator`
+        * 입력한 세자리 수를 검증해주는 역할 담당
