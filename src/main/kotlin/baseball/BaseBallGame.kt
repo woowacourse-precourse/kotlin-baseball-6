@@ -14,20 +14,32 @@ class BaseBallGame(
         gameGuide.show(GameInstruction.GAME_START)
         var restartOption = GameRestartOption.INIT
         while (restartOption != GameRestartOption.EXIT) {
-            val answerBaseBalls = baseBallCreator.createAnswerBalls()
-
-            do {
-                gameGuide.show(GameInstruction.ENTER_NUMBER)
-                val numbers = player.selectNumbers()
-                val baseBalls = BaseBallConvertor().convert(numbers)
-                val gameResult = referee.determineGameResult(answerBaseBalls, baseBalls)
-                gameGuide.show(gameResult)
-            } while (answerBaseBalls != baseBalls)
-
-            gameGuide.show(GameResult.WIN)
-            gameGuide.show(GameInstruction.RESTART_OR_FINISH)
-
-            restartOption = player.determineRestart()
+            cycleRound(answerBaseBalls = baseBallCreator.createAnswerBalls())
+            restartOption = determineRestart()
         }
+    }
+
+    private fun cycleRound(answerBaseBalls: List<Int>) {
+        do {
+            val result = Round(
+                player = player,
+                referee = referee,
+                answerBaseBalls = answerBaseBalls
+            ).run()
+        } while (isWin(result).not())
+        gameGuide.show(GameResult.WIN)
+    }
+
+    private fun determineRestart(): GameRestartOption {
+        gameGuide.show(GameInstruction.RESTART_OR_FINISH)
+        return player.determineRestart()
+    }
+
+    private fun isWin(result: String): Boolean {
+        return result == WIN_RESULT
+    }
+
+    companion object {
+        private const val WIN_RESULT = "3스트라이크"
     }
 }
