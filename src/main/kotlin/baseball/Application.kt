@@ -10,15 +10,11 @@ class BaseballGame {
     fun startGame() {
         do {
             resetGame()
-            try {
-                play()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-                return
-            }
+            playGame()
         } while (restart())
-        println("게임을 종료합니다.")
+        println("게임 종료")
     }
+
 
     private fun resetGame() {
         computerNumbers = mutableListOf()
@@ -34,7 +30,7 @@ class BaseballGame {
         }
     }
 
-    fun play() {
+    private fun playGame() {
         while (true) {
             val userInput = getUserInput()
             val strikes = countStrikes(userInput)
@@ -42,7 +38,7 @@ class BaseballGame {
 
             if (strikes == 3) {
                 println("3스트라이크")
-                println("정답입니다!")
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
             }
 
@@ -81,11 +77,10 @@ class BaseballGame {
     private fun restart(): Boolean {
         while (true) {
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ")
-            val input = Console.readLine()
-            when (input) {
-                "1" -> return true
-                "2" -> return false
-                else -> println("잘못된 입력입니다. 다시 입력해주세요.")
+            return when (Console.readLine()) {
+                "1" -> true
+                "2" -> false
+                else -> throw IllegalArgumentException("잘못된 입력값입니다.")
             }
         }
     }
@@ -93,15 +88,22 @@ class BaseballGame {
     private fun getUserInput(): List<Int> {
         print("숫자를 입력해 주세요 : ")
         val input = Console.readLine()
+
+        if (!isValid(input)) {
+            throw IllegalArgumentException("잘못된 입력값입니다.")
+        }
+
         return checkUserInput(input)
     }
 
+
     private fun checkUserInput(input: String): List<Int> {
         if (!isValid(input)) {
-            throw IllegalArgumentException("잘못된 입력입니다. 1에서 9까지 서로 다른 수 3개를 입력해 주세요.")
+            throw IllegalArgumentException("잘못된 입력값입니다.")
         }
         return input.map { it.toString().toInt() }
     }
+
 
     private fun isValid(input: String): Boolean {
         return input.length == 3 &&
