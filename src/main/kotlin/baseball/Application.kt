@@ -26,7 +26,7 @@ fun main() {
             continue
         }
 
-        val selectedMenu = inputRestart(answer = answer)
+        val selectedMenu = inputRestart(answer)
         isStay = true.takeIf { selectedMenu == 1 } ?: false
 
     } while (isStay == true)
