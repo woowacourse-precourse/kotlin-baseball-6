@@ -1,7 +1,9 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console.readLine
 
 fun main() {
+    //TODO("프로그램 구현")
     val SIZE = 3 // 리스트의 길이
     val computer = mutableListOf<String>()
     val user = mutableListOf<String>()
@@ -19,16 +21,21 @@ fun main() {
                 computer.add(randomNumber)
             }
         }
-
         while (s != 3) {
             s = 0
             b = 0
             user.clear()
             print("숫자를 입력해주세요 : ")
+
             val userNumber = readLine() ?: throw IllegalArgumentException("입력값이 NULL")// 사용자에게 입력받기
+            if (userNumber.length != 3) {
+                throw IllegalArgumentException("입력값이 3자리 숫자가 아닙니다.")
+
+            }
             for (i in 0 until SIZE) {
                 user.add(userNumber[i].toString())
             }
+
 
             for (i in 0 until SIZE) {
                 for (j in 0 until SIZE) {
@@ -55,6 +62,10 @@ fun main() {
             } else if (b > 0) {
                 println("${b}볼")
             }
+
+            //println(computer)
+            //println(user)
+
         }
     } while (keep == 1)
     println("게임 종료")
