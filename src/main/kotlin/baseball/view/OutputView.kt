@@ -8,10 +8,10 @@ class OutputView {
             print("낫싱")
         }
         if (result.ballCount > 0) {
-            System.out.printf("%d볼", result.ballCount)
+            print("${result.ballCount}볼 ")
         }
         if (result.strikeCount > 0) {
-            System.out.printf("%d스트라이크", result.strikeCount)
+            print("${result.strikeCount}스트라이크")
         }
         println()
     }
