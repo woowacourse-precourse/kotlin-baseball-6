@@ -20,7 +20,9 @@ object Computer {
         with(baseballNumberList) {
             while (size < 3) {
                 val randomNumber = Randoms.pickNumberInRange(1, 9)
-                if (!contains(randomNumber)) add(randomNumber)
+                if (!contains(randomNumber)) {
+                    add(randomNumber)
+                }
             }
         }
     }
@@ -28,7 +30,9 @@ object Computer {
     private fun playGame() {
         println("숫자 야구 게임을 시작합니다.\n숫자를 입력해주세요 : ")
         while (true) {
-            if (checkGameEnd(getUserInput())) break
+            if (checkGameEnd(getUserInput())) {
+                break
+            }
         }
     }
 
@@ -54,8 +58,11 @@ object Computer {
         var strikeCount = 0
         var ballCount = 0
         userInput.forEachIndexed { _index, _ball ->
-            if (_ball == baseballNumberList[_index]) strikeCount++
-            else ballCount += checkBallCount(_ball)
+            if (_ball == baseballNumberList[_index]) {
+                strikeCount++
+            } else {
+                ballCount += checkBallCount(_ball)
+            }
         }
         return BallCount(strikeCount, ballCount)
     }
@@ -74,7 +81,10 @@ object Computer {
             }
         }
 
-        if (userInput.toSet().size < 3) throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+        if (userInput.toSet().size < 3) {
+            throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+        }
+
         return userInput
     }
 
