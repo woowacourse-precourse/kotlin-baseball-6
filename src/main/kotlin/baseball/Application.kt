@@ -1,7 +1,11 @@
 package baseball
 
 fun main() {
-    NumberBaseball
-        .initRandomNumbers()
-        .getUserInput()
+    try {
+        NumberBaseball
+            .initRandomNumbers()
+            .playBaseball()
+    } catch (e: IllegalArgumentException) {
+        println("[ERROR] 잘못된 입력 값입니다.")
+    }
 }

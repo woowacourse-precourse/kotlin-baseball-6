@@ -6,29 +6,38 @@ import camp.nextstep.edu.missionutils.Randoms
 object NumberBaseball {
     private const val NUM_LENGTH = 3
 
-    private val numList: ArrayList<Int> = arrayListOf()
+    private val comNumList: ArrayList<Int> = arrayListOf()
     private var userNumList: ArrayList<Int> = arrayListOf()
 
+    private var strikeCount = 0
+    private var ballCount = 0
+
     fun initRandomNumbers(): NumberBaseball {
-        while (numList.size < NUM_LENGTH) {
+        while (comNumList.size < NUM_LENGTH) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!numList.contains(randomNumber)) numList.add(randomNumber)
+            if (!comNumList.contains(randomNumber)) comNumList.add(randomNumber)
         }
+        println(comNumList)
+        println("숫자 야구 게임을 시작합니다.")
 
         return this
     }
 
-    fun getUserInput(): NumberBaseball {
-        try {
-            userNumList = Console.readLine()
-                .convertInputToNumbers()
-        } catch (e: IllegalArgumentException) {
-            println("[ERROR] 잘못된 입력 값입니다.")
+    fun playBaseball(): NumberBaseball {
+        while (strikeCount < NUM_LENGTH) {
+            getUserInput()
+            calculateBallCounts()
         }
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 
         return this
     }
 
+    private fun getUserInput() {
+        print("숫자를 입력해 주세요 : ")
+        userNumList = Console.readLine()
+            .convertInputToNumbers()
+    }
 
     // 사용자의 입력을 Int로 바꿔 ArrayList에 담는다.
     private fun String.convertInputToNumbers(): ArrayList<Int> {
@@ -45,4 +54,49 @@ object NumberBaseball {
         return tempList
     }
 
+    private fun calculateBallCounts() {
+        ballCount = 0
+        strikeCount = 0
+
+        userNumList.forEachIndexed { index, value ->
+            isStrikeOrBall(index, value)
+        }
+        printBallCounts(ballCount, strikeCount)
+    }
+
+    private fun isStrikeOrBall(index: Int, value: Int) {
+        if (comNumList.contains(value)) {
+            if (index == comNumList.indexOf(value)) {
+                strikeCount++
+                return
+            }
+            ballCount++
+            return
+        }
+    }
+
+    private fun printBallCounts(ball: Int, strike: Int) {
+        var strCall: String = ""
+
+        if (ball == 0 && strike == 0) {
+            strCall += "낫싱"
+            println(strCall)
+
+            return
+        }
+
+        when (ball) {
+            1 -> strCall += "1볼 "
+            2 -> strCall += "2볼 "
+            3 -> strCall += "3볼 "
+        }
+
+        when (strike) {
+            1 -> strCall += "1스트라이크"
+            2 -> strCall += "2스트라이크"
+            3 -> strCall += "3스트라이크"
+        }
+
+        println(strCall)
+    }
 }
