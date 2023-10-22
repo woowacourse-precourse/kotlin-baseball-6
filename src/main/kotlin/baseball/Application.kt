@@ -7,35 +7,47 @@ import java.lang.IllegalArgumentException
 fun main() {
     println(GAME_START_MENTION)
     while(true) {
-        val computer = mutableListOf<Int>()
-        while (computer.size < NUMBER_SIZE) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
-
-        var number = ""
-        for(i in 0 until computer.size){
-            number += computer[i].toString()
-        }
-
-        while(true) {
-            print(INPUT_NUMBER_MENTION)
-            val input = Console.readLine().trim()
-            checkValidInput(input)
-            val score = getScores(number, input)
-            if(score == 0) print(NOTHING)
-            if(score % 10 != 0) print("${score%10}" + BALL)
-            if(score / 10 != 0) print("${score/10}" + STRIKE)
-            print('\n')
-            if(score == 3*10) break
-        }
+        val computer = getRandomList()
+        val number = listToString(computer)
+        gameOneSet(number)
         println(GAME_ENDING_MENTION)
         println(GAME_RESTART_MENTION)
         val reGame = Console.readLine()
         if(reGame != "1" && reGame != "2") throw IllegalArgumentException()
         if(reGame == "2") break
+    }
+}
+
+fun getRandomList() : MutableList<Int> {
+    val res = mutableListOf<Int>()
+    while (res.size < NUMBER_SIZE) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!res.contains(randomNumber)) {
+            res.add(randomNumber)
+        }
+    }
+    return res
+}
+
+fun listToString(list : MutableList<Int>) : String {
+    var res = ""
+    for(i in 0 until list.size){
+        res += list[i].toString()
+    }
+    return res
+}
+
+fun gameOneSet(number : String) {
+    while(true) {
+        print(INPUT_NUMBER_MENTION)
+        val input = Console.readLine().trim()
+        checkValidInput(input)
+        val score = getScores(number, input)
+        if(score == 0) print(NOTHING)
+        if(score % 10 != 0) print("${score%10}" + BALL)
+        if(score / 10 != 0) print("${score/10}" + STRIKE)
+        print('\n')
+        if(score == 3*10) break
     }
 }
 
