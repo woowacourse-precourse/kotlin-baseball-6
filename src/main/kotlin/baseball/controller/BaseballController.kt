@@ -1,7 +1,10 @@
 package baseball.controller
 
 import baseball.model.BaseballGameStatus
-import baseball.model.BaseballGameStatus.*
+import baseball.model.BaseballGameStatus.GAME_END
+import baseball.model.BaseballGameStatus.GAME_START
+import baseball.model.BaseballGameStatus.GAME_PLAYING
+import baseball.model.BaseballGameStatus.GAME_RESTART
 import baseball.model.BaseballModel
 import baseball.view.BaseballView
 import camp.nextstep.edu.missionutils.Console
@@ -17,7 +20,6 @@ class BaseballController() {
                 GAME_START -> {
                     answerNumber = BaseballModel().createRandomNumber()
                     gameStatus = GAME_PLAYING
-                    println(answerNumber)
                 }
 
                 GAME_PLAYING -> {
@@ -29,7 +31,6 @@ class BaseballController() {
                 }
 
                 GAME_END -> {
-                    println("게임 끝")
                     break
                 }
             }
