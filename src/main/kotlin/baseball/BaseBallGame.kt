@@ -19,11 +19,6 @@ class BaseballGame {
         private const val BALL_MESSAGE = "볼"
         private const val STRIKE_MESSAGE = "스트라이크"
         private const val ANSWER_HINT_MESSAGE = "3스트라이크"
-
-        private const val USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE = "1 또는 2를 입력해야 합니다."
-        private const val USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE = "숫자가 아닌 다른 형식을 입력할 수 없습니다."
-        private const val USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE = "${NUMBERS_LENGTH}개의 숫자를 입력해야 합니다."
-        private const val USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE = "중복된 숫자를 입력할 수 없습니다."
     }
 
     fun startGame() {
@@ -63,29 +58,7 @@ class BaseballGame {
         print(INPUT_USER_NUMBERS_MESSAGE)
         val userInput = readUserInput()
         validateUserNumbers(userInput)
-        val userNumbers = mutableListOf<Int>()
-
-        for (number in userInput) {
-            userNumbers.add(number.digitToInt())
-        }
-        return userNumbers
-    }
-
-    private fun readUserInput() : String {
-        val userInput = Console.readLine()
-        return userInput.trim()
-    }
-
-    fun validateUserNumbers(userInput: String) {
-        if (!userInput.all { it.isDigit() }) {
-            throw IllegalArgumentException(USER_NUMBER_IS_NOT_NUMERIC_FORMATTED_ERROR_MESSAGE)
-        }
-        if (userInput.length != NUMBERS_LENGTH) {
-            throw IllegalArgumentException(USER_NUMBER_IS_INVALID_LENGTH_ERROR_MESSAGE)
-        }
-        if (userInput.toSet().size != NUMBERS_LENGTH) {
-            throw IllegalArgumentException(USER_NUMBER_IS_DUPLICATED_ERROR_MESSAGE)
-        }
+        return userInput.map { it.toString().toInt() }
     }
 
     private fun getUserAnswer() : Int {
@@ -94,12 +67,6 @@ class BaseballGame {
         validateUserAnswer(userInput)
 
         return userInput.toInt()
-    }
-
-    fun validateUserAnswer(userInput: String) {
-        if (!(userInput == "1" || userInput == "2")) {
-            throw IllegalArgumentException(USER_ANSWER_OUT_OF_RANGE_ERROR_MESSAGE)
-        }
     }
 
     fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : Pair<Int,Int> {
