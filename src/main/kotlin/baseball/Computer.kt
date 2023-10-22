@@ -14,4 +14,18 @@ class Computer : Player<Unit> {
         Validator.validateNumbers(generatedNumbers)
         numbers = generatedNumbers
     }
+
+    fun calculateStrikeAndBall(playerNumbers: List<Int>): StrikeAndBallCounts {
+        val numbersZip = numbers.zip(playerNumbers)
+        val playerNumbersSet = playerNumbers.toSet()
+
+        val strikeCount = numbersZip.count { (computerNumber, playerNumber) ->
+            computerNumber == playerNumber
+        }
+        val ballCount = numbersZip.count { (computerNumber, playerNumber) ->
+            computerNumber != playerNumber && computerNumber in playerNumbersSet
+        }
+
+        return StrikeAndBallCounts(strikeCount, ballCount)
+    }
 }
