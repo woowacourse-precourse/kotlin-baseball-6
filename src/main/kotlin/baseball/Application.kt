@@ -82,11 +82,18 @@ private fun checkUserInput(userInput: List<Int>): List<Int> {
     try {
         validateNumberLength(userInput)
         validateNumberInRange(userInput)
+        validateNumberDuplicate(userInput)
         return userInput
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("숫자가 아닙니다.")
     } catch (e: IllegalArgumentException) {
         throw e
+    }
+}
+
+private fun validateNumberDuplicate(userInput: List<Int>) {
+    if (userInput.size != userInput.toSet().size) {
+        throw IllegalArgumentException("중복된 숫자가 있습니다.")
     }
 }
 
