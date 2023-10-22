@@ -18,14 +18,15 @@ const val MENU_DIGITS = 1
 // TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용
 fun main() {
     var isStay = true
+    val answer = Answer()
     println("숫자 야구 게임을 시작합니다.")
 
     do {
-        if (inputBaseball(Answer.number) == false) {
+        if (inputBaseball(answer.number) == false) {
             continue
         }
 
-        val selectedMenu = inputRestart()
+        val selectedMenu = inputRestart(answer = answer)
         isStay = true.takeIf { selectedMenu == 1 } ?: false
 
     } while (isStay == true)
@@ -41,11 +42,11 @@ fun inputBaseball(answer: IntArray): Boolean {
 }
 
 /** [4]. 메뉴 입력 받기 : 1 or 2 */
-fun inputRestart(): Int {
+fun inputRestart(answer: Answer): Int {
     val selectedMenu = inputValidator(MENU_DIGITS, CharRange('1', '2')).first()
 
     if (selectedMenu == 1) {
-        Answer.newGenerator()
+        answer.newGenerator()
     }
     return selectedMenu
 }
