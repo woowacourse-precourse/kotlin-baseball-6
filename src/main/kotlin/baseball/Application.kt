@@ -29,12 +29,14 @@ fun gameRun() {
 
 fun pickComputerNumber(): String {
     val computer = mutableListOf<Int>()
+
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
+        if (randomNumber !in computer) {
             computer.add(randomNumber)
         }
     }
+
     return computer.joinToString("")
 }
 
