@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
 fun main() {
+    println("숫자 야구 게임을 시작합니다.")
     while(true) {
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
@@ -18,8 +19,6 @@ fun main() {
         for(i in 0 until computer.size){
             number += computer[i].toString()
         }
-
-        println("숫자 야구 게임을 시작합니다.")
 
         while(true) {
             print("숫자를 입력해주세요 : ")
