@@ -28,4 +28,12 @@ class Computer : Player<Unit> {
 
         return StrikeAndBallCounts(strikeCount, ballCount)
     }
+
+    /**
+     * calculateStrikeAndBall 메서드의 단위 테스트 목적으로 numbers 프로퍼티에 특정 숫자를 설정
+     * @param testNumbers 테스트용 숫자 리스트
+     */
+    fun setNumbersForTesting(testNumbers: List<Int>) {
+        numbers = testNumbers
+    }
 }
