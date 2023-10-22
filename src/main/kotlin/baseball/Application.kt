@@ -12,10 +12,23 @@ fun main() {
             print("숫자를 입력해주세요 : ")
             val inputNumbers = Console.readLine()
             val strike = strikeCount(answerNumbers, inputNumbers)
+            val ball = ballCount(answerNumbers, inputNumbers, strike)
         } while (false)
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         startOrExit = Console.readLine()
     }
+}
+
+fun ballCount(answerNumbers: String, inputNumbers: String, strike: Int): Int {
+    var numberOfBall = 0
+    answerNumbers.forEach { answerNumber ->
+        inputNumbers.forEach {
+            if (answerNumber == it)
+                numberOfBall++
+        }
+    }
+    numberOfBall -= strike
+    return numberOfBall
 }
 
 fun strikeCount(answerNumbers: String, inputNumbers: String): Int {
