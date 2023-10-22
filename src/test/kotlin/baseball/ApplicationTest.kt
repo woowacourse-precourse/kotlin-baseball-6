@@ -58,6 +58,18 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `난수에 대한 볼,스트라이크 출력 테스트`(){
+        assertRandomNumberInRangeTest(
+                {
+                    run("123", "456", "789", "147","2")
+                    assertThat(output())
+                            .contains("1스트라이크", "1볼", "1볼", "3스트라이크","게임 종료")
+                },
+                1,4,7
+        )
+    }
+
     override fun runMain() {
         main()
     }
