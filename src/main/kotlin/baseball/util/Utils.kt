@@ -92,4 +92,23 @@ object Utils {
         }
     }
 
+    /**
+     * restartGame()
+     * 사용자로부터 게임 재시작 또는 종료를 입력받는 함수
+     * @return 게임을 재시작하면 true, 게임을 종료하면 false를 반환
+     */
+    fun restartGame(): Boolean {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        var input = Console.readLine()
+        while (input != "1" && input != "2") {
+            println("유효하지 않은 입력입니다.")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            input = Console.readLine()
+        }
+        return when (input) {
+            "1" -> true
+            "2" -> false
+            else -> false
+        }
+    }
 }
