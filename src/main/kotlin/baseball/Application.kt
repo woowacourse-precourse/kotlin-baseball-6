@@ -78,13 +78,11 @@ fun main() {
     var userArray = ArrayList<Int>(3)
     var ifCon:Int
 
-    print("숫자 야구 게임을 시작합니다.")
+    print("숫자 야구 게임을 시작합니다.\n")
 
     while(true){
 
         ansArray=makeNum()
-
-//        println(ansArray)
 
         do{
             print("숫자를 입력해주세요 : ")
@@ -93,11 +91,13 @@ fun main() {
 
             try {
                 user = userString.toInt()
-            }catch(e:NumberFormatException){ exitProcess(1) }
+            }catch(e:NumberFormatException){ return }
 
             try{
                 getUser(user)
-            } catch(e:IllegalArgumentException){exitProcess(1)}
+            } catch(e:IllegalArgumentException) {
+                throw IllegalArgumentException()
+                return}
 
             userArray = getUser(user)
 
@@ -123,14 +123,14 @@ fun main() {
 
         }while(ansArray!=userArray)
 
-        kotlin.io.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        kotlin.io.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
         try{
         ifCon = readLine().toInt()
-        }catch(e:NumberFormatException) { exitProcess(1) }
+        }catch(e:NumberFormatException) { return  }
 
-        if(ifCon==2) exitProcess(0)
+        if(ifCon==2) return
 
         }
 
