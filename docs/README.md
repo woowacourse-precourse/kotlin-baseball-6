@@ -18,15 +18,8 @@
 게임 시작 시 문구를 출력시키는 것부터 구현해본다.   
 콘솔 창에 '숫자 야구 게임을 시작합니다.' 라는 문자열을 출력한다.
 
-    println("숫자 야구 게임을 시작합니다.")
-
-코드를 모듈화하여 관리하기 위해 시작 문구를 출력 하는 함수로서 따로 구현하였다.   
-'PrintStartMessage.kt' 파일을 생성하고 해당 문구를 출력하는 함수 `printStartMessage()`를 선언하였다. 
-```kotlin
-fun printStartMessage(){
-    println("숫자 야구 게임을 시작합니다.\n")
-}
-```
+코드를 모듈화하여 관리하기 위해 시작 문구를 출력 하는 함수로서 따로 구현한다.   
+'PrintStartMessage.kt' 파일을 생성하고 해당 문구를 출력하는 함수 `printStartMessage()`를 선언한다.
 <br>
 
 ### 서로 다른 임의의 3자리 숫자 생성
@@ -36,7 +29,7 @@ fun printStartMessage(){
 라이브러리를 활용하여 난수를 생성하고 변수에 저장하도록 구현하면 될 것이다.
 
 과제를 설명하는 README.md의 **프로그래밍 요구 사항**을 살펴보면 사용해야할 라이브러리가 명시되어 있고, 
-난수를 생성하는 함수도 적혀있다.
+난수를 생성하는 함수도 예시로 설명되어있다.
 
 * 명시된 라이브러리 : `camp.nextstep.edu.missionutils.Randoms`
 * 사용 예제
@@ -52,25 +45,10 @@ fun printStartMessage(){
   }
   ```
 
-라이브러리와 API에 대한 자세한 내용은 명시된 외부 라이브러리의 코드를 참고하였다.   
+라이브러리와 API에 대한 자세한 내용은 명시된 외부 라이브러리의 코드를 참고한다.   
 
-해당 기능 역시 따로 함수로 선언하였다. 'GenerateRandomNumber.kt' 파일 내에 `generateRandomNumber()` 라는 이름으로 생성하였다.   
+해당 기능 역시 따로 함수로 선언하였다. 'GenerateRandomNumber.kt' 파일 내에 `generateRandomNumber()` 라는 이름으로 생성한다.   
 mutableList를 생성하여 서로 다른 난수 3개를 리스트에 add하고 반환한다.
-```kotlin
-import camp.nextstep.edu.missionutils.Randoms
-
-// 서로 다른 3자리의 난수 리스트를 생성하여 반환
-fun generateRandomNumber(): MutableList<Int> {
-    val computer = mutableListOf<Int>()
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
-    return computer
-}
-```
 
 ### 사용자로부터 3자리 숫자를 입력받기
 사용자로부터 3자리 숫자를 입력받는다. 입력 값이 올바르지 않을 경우, 예외 처리 후 게임을 종료시킨다.   
