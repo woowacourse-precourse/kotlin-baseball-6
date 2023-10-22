@@ -4,6 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun isCheck(s: String): Boolean {
+    var flag:Boolean = false
+    for(i in 0..2) {
+        for(j in i+1..2) {
+            if(s[i] == s[j]) flag = true
+        }
+    }
+    if(flag) throw IllegalArgumentException()
     if(s.length != 3) throw IllegalArgumentException()
     return try {
         s.toInt()
@@ -35,20 +42,15 @@ fun main() {
             isCheck(input)
             //check isNum and length == 3
             for(i in 0..2) {
-                if(Character.getNumericValue(input[i]) == computer[i]) {
-                    strike++
-                }
-                //check strike
-                else {
-                    for(j in 0..2) {
-                        if(i == j) continue
-                        if(Character.getNumericValue(input[i]) == computer[j]) {
-                            ball++
-                        }
+                for(j in 0..2) {
+                    if(computer[i] == Character.getNumericValue(input[j])) {
+                        if(i == j) strike++
+                        else ball++
                     }
                 }
-                //check ball
             }
+            //check strike or ball
+
             if(strike == 0 && ball == 0)
                 println("낫싱")
             else if(strike == 3) {
