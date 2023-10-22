@@ -17,6 +17,20 @@ private fun inputUserNumber(): List<Int> {
     return checkUserInput(user)
 }
 
+private fun printScore(strike: Int, ball: Int) {
+    when {
+        strike == 3 -> {
+            println("3스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        }
+
+        strike > 0 && ball > 0 -> println("${ball}볼 ${strike}스트라이크")
+        strike > 0 -> println("${strike}스트라이크")
+        ball > 0 -> println("${ball}볼")
+        else -> println("낫싱")
+    }
+}
+
 private fun generateRandomNumberList(): List<Int> {
     val numberSet = mutableSetOf<Int>()
 
