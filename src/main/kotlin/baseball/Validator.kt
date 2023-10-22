@@ -3,8 +3,40 @@ package baseball
 const val START_NUMBER = 1
 const val END_NUMBER = 9
 const val NUMBER_COUNT = 3
+const val START_GAME = 1
+const val END_GAME = 2
 
 object Validator {
+    fun isInvalidNumericInput(input: String): Boolean {
+        return !input.all { it.isDigit() }
+    }
+
+    fun isBlankInput(input: String): Boolean {
+        return input.isBlank()
+    }
+
+    fun validateInput(input: String) {
+        if (isBlankInput(input)) {
+            throw IllegalArgumentException("입력이 잘못되었습니다.")
+        }
+
+        if (isInvalidNumericInput(input)) {
+            throw IllegalArgumentException("숫자로만 입력해주세요.")
+        }
+    }
+
+    fun isNotGameState(gameState: Int): Boolean {
+        return gameState == START_GAME || gameState == END_GAME
+    }
+
+    fun validateInputGameState(input: String) {
+        validateInput(input)
+
+        if (isNotGameState(input.toInt())) {
+            throw IllegalArgumentException("게임 진행은 1과 2 둘 중에 하나만 입력해주세요.")
+        }
+    }
+
     fun areInvalidCountNumbers(numbers: List<Int>): Boolean {
         return numbers.size != NUMBER_COUNT
     }
@@ -29,24 +61,6 @@ object Validator {
 
         if (areDuplicateNumbers(numbers)) {
             throw IllegalArgumentException("중복된 수가 있습니다.")
-        }
-    }
-
-    fun isInvalidNumericInput(input: String): Boolean {
-        return !input.all { it.isDigit() }
-    }
-
-    fun isBlankInput(input: String): Boolean {
-        return input.isBlank()
-    }
-
-    fun validateInput(input: String) {
-        if (isInvalidNumericInput(input)) {
-            throw IllegalArgumentException("숫자로만 입력해주세요.")
-        }
-
-        if (isBlankInput(input)) {
-            throw IllegalArgumentException("입력이 잘못되었습니다.")
         }
     }
 }
