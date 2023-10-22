@@ -1,4 +1,4 @@
-package baseball.presentation
+package baseball.ui
 
 import baseball.util.GameUtils
 
@@ -10,7 +10,6 @@ import baseball.util.GameUtils
  * @param repository 숫자 야구 게임에 필요한 데이터를 관리하는 리포지토리
  */
 class BaseBallGameViewModel(private val repository: BaseBallGameRepository) {
-
     /**
      * setComputerList()
      * 컴퓨터가 선택한 숫자 리스트를 랜덤하게 생성하여 Repository에 설정한다.
