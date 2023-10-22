@@ -22,43 +22,43 @@ ___
 ```
 
 1. 게임 시작을 위한 세팅
-    * 1~9 사이의 서로 다른 임의의 수 3개 선택 -> `Answer: IntArray`
-    * 게임 시작 문구 출력 - `"숫자 야구 게임을 시작합니다."`<br><br>
+   * 1~9 사이의 서로 다른 임의의 수 3개 선택 -> `Answer: IntArray`
+   * 게임 시작 문구 출력 - `"숫자 야구 게임을 시작합니다."`<br><br>
 
 2. 사용자 입력 (4번에서 메서드 재활용 가능하게 할 것!)
-    * `"숫자를 입력해주세요 : "` -> 사용자 입력 받고, String 타입 변수에 저장
-    * 잘못된 값일 경우, IllegalArgumentException 발생 시키고 종료
+   * `"숫자를 입력해주세요 : "` -> 사용자 입력 받고, String 타입 변수에 저장
+   * 잘못된 값일 경우, IllegalArgumentException 발생 시키고 종료
 
-      ```kotlin
-      inputValidator(digit: Int, range: CharRange): IntArray
-      1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우
-      2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증)
-      3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)
-      ```
-      <br>
+     ```kotlin
+     inputValidator(digit: Int, range: CharRange): IntArray
+     1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우
+     2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증)
+     3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)
+     ```
+     <br>
 
 3. Ball, Strike 검증 및 결과 출력
-    * Ball, Strike 검증
-      ```kotlin
-      1. inputValidator에서 반환된 IntArray를 Answer과 인덱스 비교 => Strike
-      2. inputValidator에서 반환된 IntArray를 Answer과 !인덱스 비교 => Ball
-      ```
-    * 입력한 수에 대한 검증 결과 출력<br><br>
+   * Ball, Strike 검증
+     ```kotlin
+     1. inputValidator에서 반환된 IntArray를 Answer과 인덱스 비교 => Strike
+     2. inputValidator에서 반환된 IntArray를 Answer과 !인덱스 비교 => Ball
+     ```
+   * 입력한 수에 대한 검증 결과 출력<br><br>
 
 4. 3S -> 게임 종료 및 재시작 or 종료 입력받기
-    * `"3개의 숫자를 모두 맞히셨습니다! 게임 종료"` 출력
-    * `"게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."` 재시작 또는 종료 입력 받기
-    * 잘못된 값일 경우, `IllegalArgumentException` 발생 시키고 종료
+   * `"3개의 숫자를 모두 맞히셨습니다! 게임 종료"` 출력
+   * `"게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."` 재시작 또는 종료 입력 받기
+   * 잘못된 값일 경우, `IllegalArgumentException` 발생 시키고 종료
 
-      ```kotlin
-      inputValidator(digit: Int, range: CharRange): IntArray
-      1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우
-      2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증)
-      3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)<br><br>
-      ``` 
-    * 메뉴 입력 받기
-        * 입력 받은 데이터가 1인 경우 -> 정답 재생성 <br>
-        * 입력 받은 데이터가 2인 경우 -> 게임 종료 <br><br><br>
+     ```kotlin
+     inputValidator(digit: Int, range: CharRange): IntArray
+     1. if) 입력된 문자의 길이가 digit 자리가 아닌 경우
+     2. else if) `range` 범위의 숫자가 아닌 경우 (all로 검증)
+     3. else if) 중복된 숫자가 들어온 경우 (set 으로 변환한 뒤 요소의 수 검증)<br><br>
+     ``` 
+   * 메뉴 입력 받기
+      * 입력 받은 데이터가 1인 경우 -> 정답 재생성 <br>
+      * 입력 받은 데이터가 2인 경우 -> 게임 종료 <br><br><br>
 
 > 원래 습관대로 구현한 뒤, 목표에 맞게 수정하면서 바뀌는 부분을 보며 피드백하기<br>
 
@@ -70,10 +70,28 @@ ___
 |4차|MVC 패턴 학습 후 적용할 것 + Role|진행중||
 |5차|클린 코드 13가지 규칙에 맞게 수정 + Role|-||
 * Role : 테스트 코드 추가 작성 및 오류 체크, 디버깅
-  <br><br>
+  <br><br><br>
 
+### 4. MVC 패턴 학습후 적용을 위한 분석
+___
+>완벽히 이해는 못했지만, 이해한 내용을 바탕으로 구현한 뒤, 생각한 부분과 다른 점을 분석하며 학습할 것
+1. 게임 시작을 위한 세팅
+   1. 1~9 사이의 서로 다른 임의의 수 3개 선택 : Controller → **Model**
+   2. 게임 시작 문구 출력 : View
+2. 사용자 입력
+   1. “숫자를 입력해주세요” : View
+   2. 잘못된 값 검증 : Controller(~~View~~) → **Model**
+3. Ball, Strike 검증
+   1. ball-strike 계산 및 결과 출력 : Controller → **Model** → Controller → **View**
+4. 3스트라이크 재시작 입력 받기
+   1. 3스트라이크 판단? : Controller → **Model**
+   2. 3스트라이크 결과 출력 : Controller → **Model** -> Controller → **View**
+   3. “게임을 새로 ~ 1, 종료 ~ 2” 출력 : Controller → **View**
+   4. 메뉴 입력 받기 : View
+   5. 잘못된 값 검증 : Controller(~~View~~) → **Model**
+      <br><br><br>
 
-### 클린 코드 13가지 규칙에 맞게 수정 (진행상황) - [체크리스크 읽기]([https://automation-slave.tistory.com/27])
+### 5. 클린 코드 13가지 규칙에 맞게 수정 (진행상황) - [체크리스크 읽기]([https://automation-slave.tistory.com/27])
 ___
 ```
 - [X] 1. 한 함수(메서드)에 최소한의 들여쓰기(indent)만 허용했는가?최대 depth : 2 까지만 허용
