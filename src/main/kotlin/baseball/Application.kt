@@ -10,13 +10,26 @@ fun main() {
         val answerNumbers = makeRandomNumbers()
         do {
             print("숫자를 입력해주세요 : ")
-            val inputNumbers = Console.readLine()
+            val inputNumbers = validInputNumbers()
             val fail = printResult(answerNumbers, inputNumbers)
         } while (fail)
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         startOrExit = Console.readLine()
     }
+}
+
+fun validInputNumbers(): String {
+    val inputNumbers = Console.readLine()
+    if (inputNumbers.length != 3)
+        throw IllegalArgumentException("3자리 숫자를 입력하세요.")
+    inputNumbers.forEach {
+        if (it !in '1'..'9')
+            throw IllegalArgumentException("1 ~ 9 범위의 숫자를 입력하세요.")
+    }
+    if (inputNumbers.length != inputNumbers.toList().distinct().size)
+        throw IllegalArgumentException("서로 다른 숫자를 입력하세요.")
+    return inputNumbers
 }
 
 fun printResult(answerNumbers: String, inputNumbers: String): Boolean {
