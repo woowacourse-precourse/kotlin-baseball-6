@@ -1,5 +1,6 @@
 package baseball.controller
 
+import baseball.model.BaseballGameStatus
 import baseball.model.BaseballModel
 import baseball.view.BaseballView
 import camp.nextstep.edu.missionutils.Console
@@ -7,16 +8,36 @@ import camp.nextstep.edu.missionutils.Console
 class BaseballController() {
 
     fun playGame() {
+        var answerNumber = ""
         BaseballView().printStartGameMessage()
-        while (true) {
-            BaseballView().printInputNumberMessage()
-            val userNumber = inputNumber()
-            val answerNumber = BaseballModel().createRandomNumber()
-            val baseballResult = BaseballModel().calculateHint(answerNumber, userNumber)
-            BaseballView().printHintMessage(baseballResult)
+        var gameStatus = BaseballGameStatus.GAME_START
+        while (gameStatus != BaseballGameStatus.GAME_END) {
+            when (gameStatus) {
+                BaseballGameStatus.GAME_START -> {
+                    answerNumber = BaseballModel().createRandomNumber()
+                    gameStatus = BaseballGameStatus.GAME_PLAYING
+                    println(answerNumber)
+                }
+
+                BaseballGameStatus.GAME_PLAYING -> {
+                    gamePlaying(answerNumber)
+                }
+
+                BaseballGameStatus.GAME_END -> {
+
+                }
+            }
         }
     }
-
+    private fun gamePlaying(answerNumber: String) {
+        BaseballView().printInputNumberMessage()
+        val userNumber = inputNumber()
+        val hint = BaseballModel().calculateHint(answerNumber, userNumber)
+        BaseballView().printHintMessage(hint)
+        if (hint.strikes == 3) {
+            gameStatus = BaseballGameStatus.GAME_END
+        }
+    }
     private fun inputNumber(): String {
         val inputNumber = Console.readLine()
         checkLength(inputNumber)
