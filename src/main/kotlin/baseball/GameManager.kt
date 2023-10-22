@@ -67,7 +67,7 @@ class GameManager {
         setGameState(GameState.ENDED)
     }
 
-    private fun setGameState(gameState: GameState) {
+    fun setGameState(gameState: GameState) {
         this.gameState = gameState
     }
 
