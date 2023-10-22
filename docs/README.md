@@ -30,3 +30,5 @@ return 값은 볼의 개수
 8. in 을 쓰기 위해 IntArray를 전부 ArrayList 로 변경
 
 9. get_user 에서 기능 에러 수정
+
+10. 예외 값 처리 함수 

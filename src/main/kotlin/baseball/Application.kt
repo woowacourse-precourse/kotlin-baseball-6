@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms
 import java.lang.System.exit
 import java.sql.DriverManager.println
 import kotlin.collections.ArrayList
+import kotlin.system.exitProcess
+import kotlin.IllegalArgumentException as IllegalArgumentException1
 
 fun main() {
 
@@ -34,6 +36,8 @@ fun main() {
         var userNum = ArrayList<Int>(3)
         var ans : Int = a
 
+        if(ans<=0 || ans>999) throw IllegalArgumentException()
+
         userNum.add(a/100)
         ans -= 100 * userNum[0]
 
@@ -43,9 +47,7 @@ fun main() {
         userNum.add(ans)
 
         return userNum
-    }
-
-//    var a:ArrayList<Int> = getUser(104)
+    } //유저의 입력 값을 ArayList로 자료형 변환
 
     fun numBall(a:ArrayList<Int>, b: ArrayList<Int>): Int {
         var ballNum: Int =0
@@ -70,18 +72,6 @@ fun main() {
         return strikeNum
     } //스트라이크의 개수를 알려주는 함수
 
-//    var a =ArrayList<Int>(3)
-//    var b =ArrayList<Int>(3)
-//
-//    a.add(1)
-//    a.add(2)
-//    a.add(3)
-//    b.add(4)
-//    b.add(2)
-//    b.add(3)
-//
-//    var c: Int = numStrike(a,b)
-//    println(c)
 
     var ball:Int
     var strike:Int
@@ -103,14 +93,16 @@ fun main() {
             print("숫자를 입력해주세요 : ")
             userString = readLine()
             user = userString.toInt()
+
+            try{
+                getUser(user)
+            } catch(e:IllegalArgumentException){exitProcess(0)}
+
             userArray = getUser(user)
 
             ball = numBall(ansArray, userArray)
             strike = numStrike(ansArray, userArray)
 
-//            println(ansArray)
-//            println(ball)
-//            println(strike)
 
             if(ball > 0){
                 print(ball)
@@ -135,7 +127,7 @@ fun main() {
 
         ifCon = readLine().toInt()
 
-        if(ifCon==2) exit(0)
+        if(ifCon==2) exitProcess(0)
 
         }
 
