@@ -1,8 +1,8 @@
 package baseball
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class PlayerTest{
 
@@ -82,7 +82,7 @@ class PlayerTest{
 
         //then
         val actual = player.guessNumber
-        val expected = "123"
+        val expected = listOf(1,2,3)
         assertThat(actual).isEqualTo(expected)
     }
 }
