@@ -15,4 +15,10 @@ object User {
 
         require(toSet().size == 3)
     }
+
+    fun String.userChoiceValidation() {
+        map {
+            require(it == '1' || it == '2')
+        }
+    }
 }
