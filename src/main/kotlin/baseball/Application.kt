@@ -45,20 +45,23 @@ private fun getUserInput(): String {
 
 private fun guessingNumber(computer: List<Int>) {
     getUserInput().let { userInput ->
-        if (validateUserInput(userInput))
-            println(checkResult(computer, userInput))
+        if (validateUserInput(userInput)) {
+            val result = checkResult(computer, userInput)
+            println(result)
+        }
     }
 }
 
 private fun validateUserInput(user: String): Boolean {
+    val isNumeric = user.toIntOrNull() != null
+    val isCorrectLength = user.length == NUMBER_LENGTH
+    val isUniqueDigits = user.toSet().size == NUMBER_LENGTH
+    val isInRange = user.all { it.toString().toInt() in MIN_NUMBER..MAX_NUMBER }
     when {
-        user.toIntOrNull() == null -> throw IllegalArgumentException(Error.NOT_NUMBER.errorMessage)
-        user.length != NUMBER_LENGTH -> throw IllegalArgumentException(Error.NOT_CORRECT_LENGTH.errorMessage)
-        user.toSet().size != NUMBER_LENGTH -> throw IllegalArgumentException(Error.NOT_EACH_OTHER_NUMBER.errorMessage)
-        user.map { it.toString().toInt() }.minOf { it } < MIN_NUMBER ||
-                user.map { it.toString().toInt() }.maxOf { it } > MAX_NUMBER ->
-            throw IllegalArgumentException(Error.NOT_RANGED_NUMBER.errorMessage)
-
+        !isNumeric -> throw IllegalArgumentException(Error.NOT_NUMBERIC.errorMessage)
+        !isCorrectLength -> throw IllegalArgumentException(Error.NOT_CORRECT_LENGTH.errorMessage)
+        !isUniqueDigits -> throw IllegalArgumentException(Error.NOT_UNIQUE_DIGITS.errorMessage)
+        !isInRange -> throw IllegalArgumentException(Error.NOT_IN_RANGE.errorMessage)
         else -> return true
     }
 }
@@ -95,10 +98,10 @@ private fun askReplayGame() {
 }
 
 enum class Error(val errorMessage: String) {
-    NOT_NUMBER("숫자를 입력해주세요."),
+    NOT_NUMBERIC("숫자를 입력해주세요."),
     NOT_CORRECT_LENGTH("${NUMBER_LENGTH}자리 수를 입력해주세요"),
-    NOT_EACH_OTHER_NUMBER("각 자리의 숫자는 서로 달라야합니다."),
-    NOT_RANGED_NUMBER("${MIN_NUMBER}에서 $MAX_NUMBER 사이의 숫자를 입력해주세요."),
+    NOT_UNIQUE_DIGITS("각 자리의 숫자는 서로 달라야합니다."),
+    NOT_IN_RANGE("${MIN_NUMBER}에서 $MAX_NUMBER 사이의 숫자를 입력해주세요."),
     COMMON("잘못된 입력입니다.")
 }
 
