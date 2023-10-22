@@ -96,7 +96,6 @@ class BaseballGame {
         if (flag == 1) {
             return true
         }
-        println("종료합니다.")
         return false
     }
 
