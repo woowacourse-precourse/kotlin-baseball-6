@@ -35,13 +35,11 @@ fun main() {
 fun isAvaliableInput(numberBall: String?): Boolean {
     try {
         if (numberBall != null && numberBall.length == 3) {
-            for (i in 0..2) {
-                var number = numberBall[i].code - 48
-                if (number !in 1..9) {
-                    throw IllegalArgumentException()
-                }
+
+            if (isInProperRange(numberBall) && isAllDifferentNumber(numberBall)) {
+                return true
             }
-            return true
+            throw IllegalArgumentException()
         } else {
             throw IllegalArgumentException()
         }
@@ -49,6 +47,24 @@ fun isAvaliableInput(numberBall: String?): Boolean {
         return false
     }
 
+}
+
+fun isInProperRange(numberBall: String): Boolean {
+    for (i in 0..2) {
+        var number = numberBall[i].code - 48
+        if (number !in 1..9) {
+            return false
+        }
+    }
+    return true
+}
+
+fun isAllDifferentNumber(numberBall: String): Boolean {
+    if (!numberBall.substring(1).contains(numberBall[0]) && !numberBall.substring(0, 1).contains(numberBall[2])) {
+        return true
+    } else {
+        return false
+    }
 }
 
 
