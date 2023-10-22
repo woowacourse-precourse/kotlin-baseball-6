@@ -8,7 +8,7 @@ class AnswerCreator {
         val set = mutableSetOf<BallNumber>()
 
         // Set에 숫자 3개가 들어갈 때까지
-        while (set.size < 3) {
+        while (set.size < BallNumbers.BALL_COUNT) {
             set.add(BallNumber(pickRandomNumber()))
         }
 
