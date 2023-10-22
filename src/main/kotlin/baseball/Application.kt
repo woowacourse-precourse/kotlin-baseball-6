@@ -5,12 +5,22 @@ import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
 
 fun main() {
+    var state = STATE.GAMING
+    while (state!=STATE.END){
+        state = baseballGame()
+    }
+
+}
+
+fun baseballGame(): STATE {
     gameStartMessage()
     val computerNum = createRandomNum()
-    println("computerNum $computerNum")
-    val userNum = getUserInputNum()
-    compareNum(computerNum, userNum)
-
+    var state = STATE.GAMING
+    while (state == STATE.GAMING) {
+        val userNum = getUserInputNum()
+        state = compareNum(computerNum, userNum)
+    }
+    return state
 }
 
 fun gameStartMessage() {
