@@ -27,6 +27,7 @@ fun main() {
                 }
             }
         } else {
+            throw IllegalArgumentException()
             break
         }
     }
@@ -39,11 +40,11 @@ fun isAvaliableInput(numberBall: String?): Boolean {
             if (isInProperRange(numberBall) && isAllDifferentNumber(numberBall)) {
                 return true
             }
-            throw IllegalArgumentException()
+            throw Error()
         } else {
-            throw IllegalArgumentException()
+            throw Error()
         }
-    } catch (e: IllegalArgumentException) {
+    } catch (e: Error) {
         return false
     }
 
