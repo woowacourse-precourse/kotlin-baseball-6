@@ -9,7 +9,7 @@ class Game {
     }
 
     fun gameStart() {
-        val computerNumber = computer.setComputerNumber()
+        var computerNumber = computer.setComputerNumber()
         println(computerNumber)
 
         while (computer.gameFlag) {
@@ -22,7 +22,7 @@ class Game {
                 val restartGame = user.decideGame()
                 if (restartGame) {
                     computer.gameFlag = true
-                    gameStart()
+                    computerNumber = computer.setComputerNumber()
                 }
             }
         }
