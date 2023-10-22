@@ -2,13 +2,12 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 
-class User {
-    fun selectNumbers(): String {
-        val numbers = try {
+class Reader {
+    fun read(): String {
+        return try {
             Console.readLine()
         } catch (e: Exception) {
             throw IllegalArgumentException()
         }
-        return numbers
     }
 }
