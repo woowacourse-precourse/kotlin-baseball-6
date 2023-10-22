@@ -3,11 +3,8 @@ package baseball
 import kotlin.*
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
-import java.lang.System.exit
-import java.sql.DriverManager.println
 import kotlin.collections.ArrayList
 import kotlin.system.exitProcess
-import kotlin.IllegalArgumentException as IllegalArgumentException1
 
 fun main() {
 
@@ -36,7 +33,7 @@ fun main() {
         var userNum = ArrayList<Int>(3)
         var ans : Int = a
 
-        if(ans<=0 || ans>999) throw IllegalArgumentException()
+        if(ans<111 || ans>999) throw IllegalArgumentException()
 
         userNum.add(a/100)
         ans -= 100 * userNum[0]
@@ -77,7 +74,7 @@ fun main() {
     var strike:Int
     var ansArray = ArrayList<Int>(3)
     var userString: String
-    var user: Int =0
+    var user: Int
     var userArray = ArrayList<Int>(3)
     var ifCon:Int
 
@@ -91,12 +88,16 @@ fun main() {
 
         do{
             print("숫자를 입력해주세요 : ")
+
             userString = readLine()
-            user = userString.toInt()
+
+            try {
+                user = userString.toInt()
+            }catch(e:NumberFormatException){ exitProcess(1) }
 
             try{
                 getUser(user)
-            } catch(e:IllegalArgumentException){exitProcess(0)}
+            } catch(e:IllegalArgumentException){exitProcess(1)}
 
             userArray = getUser(user)
 
@@ -125,7 +126,9 @@ fun main() {
         kotlin.io.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         kotlin.io.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
+        try{
         ifCon = readLine().toInt()
+        }catch(e:NumberFormatException) { exitProcess(1) }
 
         if(ifCon==2) exitProcess(0)
 
