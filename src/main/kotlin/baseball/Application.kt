@@ -50,9 +50,18 @@ fun main() {
 
                 if (ball > 0 || strike > 0) {
                     // 만약 ball이랑 strike가 1 이상일 경우, 공백도 포함하여 출력한다.
-                    println(
-                        (if (ball > 0) "${ball}볼" else "") + (if (ball > 0 && strike > 0) " " else "") + (if (strike > 0) "${strike}스트라이크" else "")
-                    )
+                    var result = ""
+                    if (ball > 0) {
+                        result += "${ball}볼"
+                    }
+                    if (ball > 0 && strike > 0) {
+                        result += " "
+                    }
+                    if (strike > 0) {
+                        result += "${strike}스트라이크"
+                    }
+                    println(result)
+
                     // 만약 strike가 baseballLength 값과 같다면 게임을 종료한다.
                     if (strike == baseballLength) {
                         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
