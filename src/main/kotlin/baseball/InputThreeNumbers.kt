@@ -14,3 +14,12 @@ fun inputThreeNumbers(): MutableList<Int>{
 
     return inputList
 }
+
+
+fun isNumber(s: String): Boolean {
+    return when(s.toIntOrNull())
+    {
+        null -> false
+        else -> true
+    }
+}
