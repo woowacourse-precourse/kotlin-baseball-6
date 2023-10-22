@@ -31,3 +31,30 @@
 (3) 사용자의 입력은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
 (4) 프로그램 종료 시 System.exit()를 호출하지 않는다.
 ```
+
+
+<br><br>
+
+# 구조
+```
+Application.kt, User.class, Computer.class, Game.class 총 4개로 구성되어있음.
+
+∙ Application.kt : Game.class를 호출하여 게임시작
+
+∙ User.class
+	◦ inputUserNumber() : 사용자의 입력을 받고, 유효성 검사를 하는 함수
+	◦ decideGame() : 사용자의 입력을 받고, 유효성을 검사한 뒤, 재시작/종료 여부를 반환하는 함수.
+	◦ checkValidNumber() : 사용자의 입력의 유효성을 검사하는 함수(3자리인지, 숫자인지, 중복된 수가 없는지)
+	◦ checkValidInput() : 사용자의 입력의 유효성을 검사하는 함수(1 또는 2의 숫자인지)
+
+∙ Computer.class
+	◦ setComputerNumber() : 컴퓨터의 숫자를 랜덤하게 정하는 함수
+	◦ countStrikeAndBall() : 스트라이크와 볼의 수를 확인하는 함수
+	◦ checkGameState() : 스트라이크가 3인지 확인하여 게임종료 여부를 확인하는 함수
+
+∙ Game.class
+	◦ printGameStartMessage() : 게임시작 문구를 출력하는 함수
+	◦ gameStart() : 숫자야구 게임 로직을 수행하는 함수
+	◦ printHint() : 힌트(볼, 스트라이크의 수)를 출력하는 함수
+	◦ printGameEndMessage() : 게임종료 문구를 출력하는 함수
+```
