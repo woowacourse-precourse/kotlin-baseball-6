@@ -35,7 +35,10 @@
     - 문자열에 같은 문자가 중복되는 경우 IllegalArgumentException을 발생시킨다.
     - 문자열이 1부터 9까지의 수가 아닌 다른 문자가 포함될 경우 IllegalArgumentException을 발생시킨다.
 - 1 또는 2가 입력되었는지 검증한다. - ReplayOption
-    - 1 또는 2가 아닌 다른 수가 입력되었을 경우 IllegalArgumentException을 발생시킨다.
+    - 문자열이 null이면 IllegalArgumentException을 발생시킨다.
+    - 문자열이 1 또는 2가 아닐 경우 IllegalArgumentException을 발생시킨다.
+    - 1이 입력되었을 경우 ReplayOption.REPLAY를 반환한다.
+    - 2가 입력되었을 경우 ReplayOption.QUIT를 반환한다.
 
 ## 랜덤 숫자 생성 - Computer
 
