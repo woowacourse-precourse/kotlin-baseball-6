@@ -5,17 +5,19 @@ class Game {
     private var computer: String = ""
     private var user: String = ""
     private var check: String = ""
+    private var checkNumResult: String = ""
     fun play(){
+        println("숫자 야구 게임을 시작합니다.")
         computer = randomNum()
         while (true){
             user = getUserNum()
             validateUser(user)
             try {
-                val result = checkNum(computer,user)
-                println(result)
-                if (result == "3스트라이크"){
+                checkNum(computer,user)
+                println(checkNumResult)
+                if (checkNumResult == "3스트라이크"){
                     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                    check= reStart()
+                    check = reStart()
                     if (check == "2"){break} else {computer = randomNum()}
                 }
             } catch (e:IllegalArgumentException){
@@ -23,6 +25,7 @@ class Game {
             }
         }
     }
+
     private fun randomNum(): String {
         val number = mutableListOf<Int>()
         while (number.size < 3) {
@@ -31,8 +34,7 @@ class Game {
                 number.add(randomNumber)
             }
         }
-        val computer = number.joinToString("")
-        return computer
+        return number.joinToString("")
     }
     private fun getUserNum(): String {
         print("숫자를 입력해주세요 : ")
@@ -42,7 +44,7 @@ class Game {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return Console.readLine()
     }
-    private fun checkNum(computerNumber: String, userNumber: String): String {
+    private fun checkNum(computerNumber: String, userNumber: String) {
         var strikes = 0
         var balls = 0
         for (i in computerNumber.indices) {
@@ -53,9 +55,9 @@ class Game {
             }
         }
         return when {
-            strikes == 3 -> "3스트라이크"
-            strikes > 0 || balls > 0 -> "$balls" + "볼 " + "$strikes" + "스트라이크"
-            else -> "낫싱"
+            strikes == 3 -> checkNumResult = "3스트라이크"
+            strikes > 0 || balls > 0 -> checkNumResult = "$balls" + "볼 " + "$strikes" + "스트라이크"
+            else ->  checkNumResult = "낫싱"
         }
     }
     private fun validateUser(user: String) {
@@ -67,6 +69,5 @@ class Game {
 }
 fun main() {
     val baseballGame = Game()
-    println("숫자 야구 게임을 시작합니다.")
     baseballGame.play()
 }
