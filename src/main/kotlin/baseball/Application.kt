@@ -10,8 +10,8 @@ fun main() {
         var numberBall = Console.readLine()
         //판정하기
         if (isAvaliableInput(numberBall)) {
-            //TODO(" computer.judgeNumberBall(numberBall!!) 이런 식으로 판정하기")
-        }else{
+            println(computer.judgeNumberBall(numberBall))
+        } else {
             break
         }
     }
@@ -27,8 +27,7 @@ fun isAvaliableInput(numberBall: String?): Boolean {
                 }
             }
             return true
-        }
-        else{
+        } else {
             throw IllegalArgumentException()
         }
     } catch (e: IllegalArgumentException) {
