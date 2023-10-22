@@ -3,20 +3,24 @@ package baseball
 class GameManager {
 
     enum class GameState {
-        WAITING, INPROGRESS, ENDED
+        INIT, INPROGRESS, ENDED
     }
 
-    lateinit var targetNumber: List<Int>
-        private set
-
-    var gameState: GameState = GameState.WAITING
+    var gameState: GameState = GameState.INIT
         private set
 
     private val randomTargetGenerator: RandomTargetGenerator by lazy { RandomTargetGenerator() }
 
+    lateinit var targetNumber: List<Int>
+        private set
+
     fun gameStart() {
         setGameState(GameState.INPROGRESS)
         targetNumber = randomTargetGenerator.generateRandomTarget()
+    }
+
+    fun calculateStrikeBall(playerInput : List<Int>){
+
     }
 
     private fun setGameState(gameState : GameState){
