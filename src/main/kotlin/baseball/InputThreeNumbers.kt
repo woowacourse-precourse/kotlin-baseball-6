@@ -15,9 +15,16 @@ fun inputThreeNumbers(): MutableList<Int>{
     return inputList
 }
 
+fun isLengthThree(inputString: String): Boolean{
+    return if(inputString.length == 3){
+        true
+    } else{
+        false
+    }
+}
 
-fun isNumber(s: String): Boolean {
-    return when(s.toIntOrNull())
+fun isNumber(inputString: String): Boolean {
+    return when(inputString.toIntOrNull())
     {
         null -> false
         else -> true
