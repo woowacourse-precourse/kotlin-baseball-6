@@ -82,6 +82,18 @@ fun howManyBall(computerNum: List<Int>, userNum: List<Int>, strikeNum: Int): Int
     return ballNum - strikeNum
 }
 
+fun gameOver(): STATE {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+    return when (Console.readLine().toString().toInt()) {
+        1 -> STATE.RESTART
+        2 -> STATE.END
+        else -> throw IllegalArgumentException("1 혹은 2만 입력하세요")
+    }
+}
+
+
 enum class STATE {
     GAMING,
     RESTART,
