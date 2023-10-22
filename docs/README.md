@@ -20,7 +20,7 @@
 
     println("숫자 야구 게임을 시작합니다.")
 
-문구를 출력 하는 함수를 생성하여 관리하기 위해,   
+코드를 모듈화하여 관리하기 위해 시작 문구를 출력 하는 함수로서 따로 구현하였다.   
 'PrintStartMessage.kt' 파일을 생성하고 해당 문구를 출력하는 함수 `printStartMessage()`를 선언하였다. 
 ```kotlin
 fun printStartMessage(){
@@ -38,7 +38,7 @@ fun printStartMessage(){
 과제를 설명하는 README.md의 **프로그래밍 요구 사항**을 살펴보면 사용해야할 라이브러리가 명시되어 있고, 
 난수를 생성하는 함수도 적혀있다.
 
-* 명시된 라이브러리 : `camp.nextstep.edu.missionutils`
+* 명시된 라이브러리 : `camp.nextstep.edu.missionutils.Randoms`
 * 사용 예제
   ```kotlin
   import camp.nextstep.edu.missionutils.Randoms
@@ -71,4 +71,14 @@ fun generateRandomNumber(): MutableList<Int> {
     return computer
 }
 ```
+
+### 사용자로부터 3자리 숫자를 입력받기
+사용자로부터 3자리 숫자를 입력받는다. 입력 값이 올바르지 않을 경우, 예외 처리 후 게임을 종료시킨다.   
+
+프로그래밍 요구 사항을 살펴보면 사용할 라이브러리와 함수가 명시되어있다. 입력은 제공된 라이브러리의 `readLine()`을 활용한다.
+* 명시된 라이브러리 : `camp.nextstep.edu.missionutils.Console`
+
+입력 값이 올바르지 않는 경우는 아래와 같다.
+* 정수가 아닌 경우 - 정수가 아닌 문자열이거나 문자열이 포함된 경우
+* 입력 길이가 3이 아닌 경우 - 3자리 이상의 문자를 입력받은 경우
 
