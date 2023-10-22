@@ -91,15 +91,16 @@ fun main() {
     var userArray = ArrayList<Int>(3)
     var ifCon:Int
 
-    kotlin.io.println("숫자 야구 게임을 시작합니다.")
+    print("숫자 야구 게임을 시작합니다.")
 
     while(true){
 
         ansArray=makeNum()
 
-        println(ansArray)
+//        println(ansArray)
 
         do{
+            print("숫자를 입력해주세요 : ")
             userString = readLine()
             user = userString.toInt()
             userArray = getUser(user)
@@ -121,11 +122,11 @@ fun main() {
                 print("스트라이크")
             }
 
-            print("\n")
-
             if((ball == 0)&&(strike == 0)){
-                print("낫싱\n")
+                print("낫싱")
             }
+
+            print("\n")
 
         }while(ansArray!=userArray)
 
@@ -134,7 +135,7 @@ fun main() {
 
         ifCon = readLine().toInt()
 
-        if(ifCon==1) exit(0)
+        if(ifCon==2) exit(0)
 
         }
 
