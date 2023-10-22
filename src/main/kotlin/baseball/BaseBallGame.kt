@@ -97,23 +97,17 @@ class BaseballGame {
         }
     }
 
-    fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : List<Int> {
-        var ball = 0
-        var strike = 0
+    fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : Pair<Int,Int> {
+        val total = userNumbers.count {computerNumbers.contains(it)}
+        val strike = userNumbers.count {userNumbers.indexOf(it) == computerNumbers.indexOf((it))}
+        val ball = total - strike;
 
-        for (i in userNumbers.indices) {
-            if (userNumbers[i] == computerNumbers[i]) {
-                strike++
-            } else if (userNumbers[i] in computerNumbers) {
-                ball++
-            }
-        }
-        return listOf(ball,strike)
+        return Pair(ball,strike)
     }
 
-    fun provideHintMessage(result: List<Int>) : String {
-        val ball = result[0]
-        val strike = result[1]
+    fun provideHintMessage(result: Pair<Int,Int>) : String {
+        val ball = result.first
+        val strike = result.second
         var resultMessage = ""
 
         if (ball + strike == 0) {
