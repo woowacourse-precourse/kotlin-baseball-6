@@ -11,6 +11,13 @@ fun main() {
 
 }
 
+private fun startGame(computer: List<Int>) {
+    do {
+        val user = inputUserNumber()
+        calculateScore(computer, user)
+    } while (computer != user)
+}
+
 private fun inputUserNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val user = Console.readLine()
