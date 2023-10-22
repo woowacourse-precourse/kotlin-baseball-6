@@ -22,6 +22,19 @@ class GameNumbers(value: String?) {
         return numbers.zip(other.numbers).count { it.first == it.second }
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as GameNumbers
+
+        return numbers == other.numbers
+    }
+
+    override fun hashCode(): Int {
+        return numbers.hashCode()
+    }
+
 
     companion object {
         private const val SIZE = 3
