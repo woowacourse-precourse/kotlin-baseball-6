@@ -1,5 +1,8 @@
 package baseball
 
+import baseball.resources.Messages
+
 fun main() {
-    TODO("프로그램 구현")
+    // 게임 시작 메시지
+    println(Messages.welcome)
 }
