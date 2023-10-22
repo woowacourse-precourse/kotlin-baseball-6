@@ -45,6 +45,7 @@ class User() {
     fun userInputNum(): List<Int> {
         println("숫자를 입력해주세요 : ")
         val userNum = Console.readLine().map { it.digitToInt() }
+        println(userNum)
         checkNumLength(userNum)
         checkInt(userNum)
         checkOverlap(userNum)
@@ -53,7 +54,7 @@ class User() {
     }
 
     private fun checkNumLength(userNum: List<Int>) {
-        if (userNum.size != 3) IllegalArgumentException(INPUT_LENGTH_ERROR)
+        if (userNum.size != 3) throw IllegalArgumentException(INPUT_LENGTH_ERROR)
     }
 
     private fun checkInt(userNum: List<Int>) {
@@ -61,7 +62,7 @@ class User() {
     }
 
     private fun checkOverlap(userNum: List<Int>) {
-        if (userNum.distinct().size != 3) IllegalArgumentException(INPUT_NUMBER_DUPLICATE)
+        if (userNum.distinct().size != 3) throw IllegalArgumentException(INPUT_NUMBER_DUPLICATE)
     }
 
     companion object {
@@ -82,7 +83,7 @@ class Game() {
             if (BaseBall(userNum, computerNum).isMatchNumber() == BaseBall.COMPLETE) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-                val playGame = readLine()!!.toInt()
+                val playGame = readLine()?.toInt()
                 return when (playGame) {
                     1 -> gameStart()
                     2 -> break
