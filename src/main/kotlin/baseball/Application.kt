@@ -78,8 +78,8 @@ private fun generateRandomNumberList(): List<Int> {
 
 private fun checkUserInput(userInput: String): List<Int> {
     try {
-        validateUserLength(userInput)
-        validateUserInRange(userInput)
+        validateNumberLength(userInput)
+        validateNumberInRange(userInput)
         return userInput.map { it.toString().toInt() }
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException("숫자가 아닙니다.")
@@ -88,7 +88,7 @@ private fun checkUserInput(userInput: String): List<Int> {
     }
 }
 
-private fun validateUserInRange(userInput: String) {
+private fun validateNumberInRange(userInput: String) {
     userInput.forEach { number ->
         if (number.toString().toInt() < START || number.toString().toInt() > END) {
             throw IllegalArgumentException("범위에 속하지 않은 숫자입니다.")
@@ -96,7 +96,7 @@ private fun validateUserInRange(userInput: String) {
     }
 }
 
-private fun validateUserLength(userInput: String) {
+private fun validateNumberLength(userInput: String) {
     if (userInput.length != LENGTH) {
         throw IllegalArgumentException("세 자리가 아닙니다.")
     }
