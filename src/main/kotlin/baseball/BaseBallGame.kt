@@ -1,8 +1,6 @@
 package baseball
 
-import baseball.constants.BASEBALL_SIZE
 import baseball.io.inputBaseBallNumber
-import baseball.io.printBallAndStrike
 import baseball.model.Score
 import baseball.util.pickBaseBallNumber
 
@@ -17,9 +15,9 @@ class BaseBallGame {
             val strike = countStrike(inputBaseBallList, computerBaseBallList)
 
             val score = Score(ball, strike)
-            printBallAndStrike(score.ball, score.strike)
+            score.printBallAndStrike()
 
-            if (isEndGame(score.strike)) {
+            if (score.isEndGame()) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 return
             }
@@ -54,7 +52,5 @@ class BaseBallGame {
 
         return strike
     }
-
-    fun isEndGame(strike: Int) = strike == BASEBALL_SIZE
 
 }

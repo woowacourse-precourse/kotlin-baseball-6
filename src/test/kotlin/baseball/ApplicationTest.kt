@@ -4,7 +4,7 @@ import baseball.constants.EXCEPTION_DUPLICATION
 import baseball.constants.EXCEPTION_EXIT
 import baseball.constants.EXCEPTION_RANGE
 import baseball.constants.EXCEPTION_SIZE
-import baseball.io.printBallAndStrike
+import baseball.model.Score
 import baseball.util.pickBaseBallNumber
 import baseball.util.toDigitList
 import baseball.util.validateInputBaseBall
@@ -139,16 +139,16 @@ class ApplicationTest : NsTest() {
     @Test
     fun `printBallAndStrike() 테스트`() {
         // given
-        val case1 = listOf(1, 1)
-        val case2 = listOf(0, 0)
-        val case3 = listOf(2, 0)
-        val case4 = listOf(0, 3)
+        val case1 = Score(1, 1)
+        val case2 = Score(0, 0)
+        val case3 = Score(2, 0)
+        val case4 = Score(0, 3)
 
         // when
-        printBallAndStrike(case1[0], case1[1])
-        printBallAndStrike(case2[0], case2[1])
-        printBallAndStrike(case3[0], case3[1])
-        printBallAndStrike(case4[0], case4[1])
+        case1.printBallAndStrike()
+        case2.printBallAndStrike()
+        case3.printBallAndStrike()
+        case4.printBallAndStrike()
 
         // then
         assertThat(output())
@@ -182,15 +182,14 @@ class ApplicationTest : NsTest() {
     @Test
     fun `isEndGame() 테스트`() {
         // given
-        val baseBallGame = BaseBallGame()
-        val case1 = 0
-        val case2 = 1
-        val case3 = 3
+        val case1 = Score(3, 0)
+        val case2 = Score(1, 1)
+        val case3 = Score(0, 3)
 
         // when
-        val result1 = baseBallGame.isEndGame(case1)
-        val result2 = baseBallGame.isEndGame(case2)
-        val result3 = baseBallGame.isEndGame(case3)
+        val result1 = case1.isEndGame()
+        val result2 = case2.isEndGame()
+        val result3 = case3.isEndGame()
 
         // then
         assertThat(result1).isEqualTo(false)
