@@ -1,9 +1,9 @@
 package baseballgame
 
-import camp.nextstep.edu.missionutils.Console
+
 import constant.Constant
 import constant.StringError
-
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.IllegalArgumentException
 
@@ -11,20 +11,13 @@ class Game {
     private val comNumber = mutableListOf<Int>()// 컴퓨터 난수 저장
 
     init {
-        while(comNumber.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1,9)
-            if (!comNumber.contains(randomNumber)){
+        while (comNumber.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!comNumber.contains(randomNumber)) {
                 comNumber.add(randomNumber)
             }
         }
         println(comNumber) // 중간 확인용
-    }
-
-    fun run() {
-        do {
-            val game = Game()
-            game.userEnter()
-        } while (game.restart())
     }
 
     private fun restart(): Boolean {
@@ -46,7 +39,16 @@ class Game {
         }
     }
 
-    private fun userEnter(){
+    companion object{
+        fun run() {
+            do {
+                val game = Game()
+                game.userEnter()
+            } while (game.restart())
+        }
+    }
+
+    private fun userEnter() {
         do{
             print("숫자를 입력해주세요: ")
             val userNumber = Console.readLine()
@@ -55,7 +57,23 @@ class Game {
     }
 
     private fun checkStrike(input: String): Boolean {
-        return true
+        var inputArray = changeStringToIntArray(input)
+        val strike = 0
+        var ball = 0
+
+        if(strike == 3){
+            return true
+        } else {
+            return false
+        }
+    }
+
+    // 사용자에게 입력받은 문자열을 정수 배열로 변환
+    private fun changeStringToIntArray(inputString: String): IntArray {
+        val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
+        val intArray = IntArray(3)
+        stringArray.indices.forEach{ intArray[it] = stringArray[it].toInt()}
+        return intArray
     }
 
     /*fun computeStrikeBall(comNumber: List<Int>, userNumber: List<Int>):Boolean{
