@@ -1,4 +1,4 @@
-package baseball.domain
+package baseball.model
 
 data class BallAndStrike(
     var ball: Int = 0,

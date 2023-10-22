@@ -1,6 +1,6 @@
 package baseball.view
 
-import baseball.domain.BallAndStrike
+import baseball.model.BallAndStrike
 
 class OutputResultView {
     fun showResult(result: BallAndStrike) {

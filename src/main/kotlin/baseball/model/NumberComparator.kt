@@ -1,13 +1,11 @@
-package baseball.domain
+package baseball.model
 
 import baseball.config.GameNumberConfig
 
 class NumberComparator {
 
-    private val ballAndStrike = BallAndStrike()
-
     fun compare(input: String, answer: List<Int>): BallAndStrike {
-        initBallAndStrike()
+        val ballAndStrike = BallAndStrike()
         for (i in 0 until GameNumberConfig.DIGIT_NUMBER) {
             if (answer.contains(input[i] - '0')) {
                 ballAndStrike.ball++
@@ -18,11 +16,6 @@ class NumberComparator {
         }
         ballAndStrike.ball -= ballAndStrike.strike
         return ballAndStrike
-    }
-
-    private fun initBallAndStrike() {
-        ballAndStrike.ball = 0
-        ballAndStrike.strike = 0
     }
 
 }
