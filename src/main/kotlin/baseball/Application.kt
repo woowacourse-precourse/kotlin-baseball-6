@@ -3,22 +3,32 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
-
 fun main() {
     do {
+        println("숫자 야구 게임을 시작합니다.")
         game()
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     } while (restart())
 }
 
-fun game() {
-    println("숫자 야구 게임을 시작합니다.")
-    val computerNumber = makeComputerNumber()
+object Count {
     var strike = 0
-    while (strike != 3) {
-        val myNumber = chooseMyNumber()
-        strike = compareNumber(myNumber, computerNumber)
+    var ball = 0
+    fun init() {
+        strike = 0
+        ball = 0
     }
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+}
+
+fun game() {
+    val computerNumber = makeComputerNumber()
+    do {
+        Count.init()
+        val myNumber = chooseMyNumber()
+        errorCheckMyNumber(myNumber)
+        compareEachNumber(myNumber, computerNumber)
+        printResult()
+    } while (Count.strike != 3)
 }
 
 fun makeComputerNumber(): List<Char> {
@@ -34,66 +44,51 @@ fun makeComputerNumber(): List<Char> {
 
 fun chooseMyNumber(): String {
     print("숫자를 입력해주세요 : ")
-    var inputNumber = Console.readLine()
-    checkMyNumber(inputNumber)
-    return inputNumber
+    return Console.readLine()
 }
 
-fun checkMyNumber(inputNumber: String) {
-
+fun errorCheckMyNumber(inputNumber: String) {
     val checkSet = mutableSetOf<Char>()
     if (inputNumber.length != 3) {
         throw IllegalArgumentException("숫자의 길이가 틀립니다")
     }
-    for (i in inputNumber) {
-        if (i > '9' || i < '0') {
+    for (i in inputNumber.indices) {
+        if (inputNumber[i] > '9' || inputNumber[i] < '0') {
             throw IllegalArgumentException("숫자가 아닙니다")
         }
-        checkSet.add(i)
+        checkSet.add(inputNumber[i])
     }
-    if (checkSet.size != 3) {
-        throw IllegalArgumentException("중복된 수가 있습니다")
+    if (checkSet.size < 3) {
+        throw IllegalArgumentException("중복값이 있습니다")
     }
 }
 
-
-fun compareNumber(myNumber: String, computerNumber: List<Char>): Int {
-    var ball = 0
-    var strike = 0
-    var out = 0
-    var index = 0
-    for (i in myNumber) {
-        if (computerNumber.contains(i)) {
-            if (computerNumber[index] == i) {
-                strike++;
-            } else {
-                ball++;
-            }
-        } else {
-            out++;
+fun compareEachNumber(myNumber: String, computerNumber: List<Char>) {
+    for (i in myNumber.indices) {
+        if (myNumber[i] == computerNumber[i]) {
+            Count.strike++
+            continue
         }
-        index++;
+        if (computerNumber.contains(myNumber[i])) {
+            Count.ball++
+        }
     }
-    printResult(strike,ball,out)
-    return strike
 }
 
-fun printResult(strike : Int , ball:Int , out :Int){
-    if (ball != 0) {
-        print("${ball}볼 ")
+fun printResult() {
+    if (Count.ball != 0) {
+        print("${Count.ball}볼 ")
     }
-    if (strike != 0) {
-        print("${strike}스트라이크")
+    if (Count.strike != 0) {
+        print("${Count.strike}스트라이크")
     }
-    if (out == 3) {
+    if (Count.strike == 0 && Count.ball == 0) {
         print("낫싱")
     }
-    print('\n')
+    println()
 }
 
-
 fun restart(): Boolean {
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val restartNumber = Console.readLine()
     return when (restartNumber) {
         '1'.toString() -> {
