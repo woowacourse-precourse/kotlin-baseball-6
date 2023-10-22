@@ -84,4 +84,35 @@ fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>) {
     println(computer)
     println(player)
 
+    var strike = 0
+
+    for (i in 0..2) {
+        if (player[i] == computer[i]) {
+            strike++
+        }
+    }
+
+    var ball = 0
+
+    for (i in 0..2) {
+        for (j in 0..2) {
+            if (player[i] == computer[j]) {
+                ball++
+            }
+        }
+    }
+
+    ball = ball - strike
+
+    var nothing = 0
+
+    if (strike == 0 && ball == 0) {
+        nothing++
+    }
+
+    println("$strike $ball $nothing")
+}
+
+fun printPlayerScore() {
+
 }
