@@ -11,7 +11,7 @@ class Game {
     private var checkNumResult: String
 
     init {
-        computer = ""
+        computer = randomNum()
         user = ""
         check = ""
         checkNumResult = ""
@@ -19,7 +19,6 @@ class Game {
 
     fun play(){
         println("숫자 야구 게임을 시작합니다.")
-        computer = randomNum()
         while (true){
             user = getUserNum()
             validateUser(user)
