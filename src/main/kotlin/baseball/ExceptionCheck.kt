@@ -33,7 +33,7 @@ object ExceptionCheck {
         }
     }
 
-    fun checkPlayerInputRestartOrEnd(number : Int) {
+    fun checkPlayerInputRestartOrFinish(number : Int) {
         when(number) {
             1,2 -> {}
             else -> throw IllegalArgumentException("1또는 2가 입력되지 않았습니다!")
