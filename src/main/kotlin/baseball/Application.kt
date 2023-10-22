@@ -8,6 +8,7 @@ fun main() {
     // GameStart
     println("숫자 야구 게임을 시작합니다.")
 
+
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -32,6 +33,28 @@ fun main() {
         if (userNumbers.toSet().size != userNumbers.size) {
             throw IllegalArgumentException("중복된 숫자가 포함되어 있습니다.")
         }
+
+        // 결과 계산
+        var strikes = 0
+        var balls = 0
+
+        for (i in 0 until 3) {
+            if (computer[i] == userNumbers[i]) {
+                strikes++
+            } else if (computer.contains(userNumbers[i])) {
+                balls++
+            }
+        }
+
+        // 결과 출력
+        if (strikes == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        } else if (strikes == 0 && balls == 0) {
+            println("낫싱")
+        } else {
+            println("$balls 볼 $strikes 스트라이크")
+        }
     }
+
 
 }
