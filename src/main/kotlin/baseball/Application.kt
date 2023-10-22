@@ -18,6 +18,15 @@ private fun startGame(computer: List<Int>) {
     } while (computer != user)
 }
 
+private fun isRestart(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (Console.readLine()) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("1 또는 2가 아닙니다")
+    }
+}
+
 private fun inputUserNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val user = Console.readLine()
