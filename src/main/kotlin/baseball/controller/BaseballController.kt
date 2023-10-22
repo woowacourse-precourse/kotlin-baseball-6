@@ -20,24 +20,27 @@ class BaseballController() {
                 }
 
                 BaseballGameStatus.GAME_PLAYING -> {
-                    gamePlaying(answerNumber)
+                    gameStatus = gamePlaying(answerNumber, gameStatus)
                 }
 
-                BaseballGameStatus.GAME_END -> {
+                BaseballGameStatus.GAME_RESTART -> {
 
                 }
             }
         }
     }
-    private fun gamePlaying(answerNumber: String) {
+
+    private fun gamePlaying(answerNumber: String, gameStatus: BaseballGameStatus): BaseballGameStatus {
         BaseballView().printInputNumberMessage()
         val userNumber = inputNumber()
         val hint = BaseballModel().calculateHint(answerNumber, userNumber)
         BaseballView().printHintMessage(hint)
         if (hint.strikes == 3) {
-            gameStatus = BaseballGameStatus.GAME_END
+            return BaseballGameStatus.GAME_RESTART
         }
+        return gameStatus
     }
+
     private fun inputNumber(): String {
         val inputNumber = Console.readLine()
         checkLength(inputNumber)
