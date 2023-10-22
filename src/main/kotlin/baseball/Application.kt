@@ -22,7 +22,8 @@ fun runBaseballGame(){
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             when(Console.readLine().toString().toInt()){
                 1 -> runBaseballGame()
-                2 -> break
+                2 -> return
+                else -> throw IllegalArgumentException("잘 못 된 숫자 입력")
             }
         }
     }
@@ -47,8 +48,20 @@ fun getUserInput(): ArrayList<Int>{
     val userInputString = Console.readLine()
     val userInputList = ArrayList<Int>()
 
-    for(i in 0..2){
-        userInputList.add(userInputString[i].toString().toInt())
+    for(element in userInputString){
+        userInputList.add(element.toString().toInt())
+    }
+
+    if(userInputList.size != 3){
+        throw IllegalArgumentException("잘 못 된 길이의 숫자 입력")
+    }
+    if(userInputList.contains(0)){
+        throw IllegalArgumentException("잘 못 된 범위의 숫자 입력")
+    }
+    for(element in userInputList){
+        if(userInputList.count{it == element} != 1){
+            throw IllegalArgumentException("중복된 숫자 입력")
+        }
     }
 
     return userInputList
