@@ -53,9 +53,8 @@ fun printHint(strike:Int, ball:Int) {
         hint += "${strike}스트라이크"
     }
     if(strike==0 && ball==0) {
-     hint = "낫싱"
+        hint = "낫싱"
     }
-
     println(hint)
 }
 
