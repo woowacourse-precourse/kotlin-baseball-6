@@ -12,12 +12,13 @@ class BaseBallGame {
         val computerBaseBallList = pickBaseBallNumber()
         while (true) {
             val inputBaseBallList = inputBaseBallNumber()
+
             val ball = countBall(inputBaseBallList, computerBaseBallList)
             val strike = countStrike(inputBaseBallList, computerBaseBallList)
 
             val score = Score(ball, strike)
-
             printBallAndStrike(score.ball, score.strike)
+
             if (isEndGame(score.strike)) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 return
