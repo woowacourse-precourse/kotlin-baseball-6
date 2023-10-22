@@ -1,6 +1,7 @@
 package baseball.controller
 
 import baseball.model.BaseballGameStatus
+import baseball.model.BaseballGameStatus.*
 import baseball.model.BaseballModel
 import baseball.view.BaseballView
 import camp.nextstep.edu.missionutils.Console
@@ -10,33 +11,50 @@ class BaseballController() {
     fun playGame() {
         var answerNumber = ""
         BaseballView().printStartGameMessage()
-        var gameStatus = BaseballGameStatus.GAME_START
-        while (gameStatus != BaseballGameStatus.GAME_END) {
+        var gameStatus = GAME_START
+        while (true) {
             when (gameStatus) {
-                BaseballGameStatus.GAME_START -> {
+                GAME_START -> {
                     answerNumber = BaseballModel().createRandomNumber()
-                    gameStatus = BaseballGameStatus.GAME_PLAYING
+                    gameStatus = GAME_PLAYING
                     println(answerNumber)
                 }
 
-                BaseballGameStatus.GAME_PLAYING -> {
+                GAME_PLAYING -> {
                     gameStatus = gamePlaying(answerNumber, gameStatus)
                 }
 
-                BaseballGameStatus.GAME_RESTART -> {
+                GAME_RESTART -> {
+                    gameStatus = gameRestart()
+                }
 
+                GAME_END -> {
+                    println("게임 끝")
+                    break
                 }
             }
         }
     }
 
+    private fun gameRestart(): BaseballGameStatus {
+        val inputRestart = Console.readLine()
+        return when (inputRestart) {
+            "1" -> GAME_START
+            "2" -> GAME_END
+            else -> {
+                callException()
+            }
+        }
+    }
     private fun gamePlaying(answerNumber: String, gameStatus: BaseballGameStatus): BaseballGameStatus {
         BaseballView().printInputNumberMessage()
         val userNumber = inputNumber()
         val hint = BaseballModel().calculateHint(answerNumber, userNumber)
         BaseballView().printHintMessage(hint)
         if (hint.strikes == 3) {
-            return BaseballGameStatus.GAME_RESTART
+            BaseballView().printEndGameMessage()
+            BaseballView().printRestartGameMessage()
+            return GAME_RESTART
         }
         return gameStatus
     }
