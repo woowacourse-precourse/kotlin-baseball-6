@@ -39,7 +39,7 @@ class GameManagerTest {
         gameManager.calculateStrikeBall(playerInput.toList())
 
         //then
-        val actual = gameManager.scoreBoard
+        val actual = gameManager.getScoreBoard()
         val expected = hashMapOf(Pair("strike", 1), Pair("ball", 0))
         assertThat(actual).isEqualTo(expected)
     }
@@ -62,7 +62,7 @@ class GameManagerTest {
         gameManager.calculateStrikeBall(playerInput.toList())
 
         //then
-        val actual = gameManager.scoreBoard
+        val actual = gameManager.getScoreBoard()
         val expected = hashMapOf(Pair("strike", 0), Pair("ball", 1))
         assertThat(actual).isEqualTo(expected)
     }
@@ -106,7 +106,7 @@ class GameManagerTest {
 
         //then
         val actual = outputStream.toString().trim()
-        val expected = "1볼 1스트라이크"
+        val expected = "낫싱"
         assertThat(actual).isEqualTo(expected)
     }
 
@@ -134,7 +134,7 @@ class GameManagerTest {
 
         //then
         val actual = outputStream.toString().trim()
-        val expected = "낫싱"
+        val expected = "1볼 1스트라이크"
         assertThat(actual).isEqualTo(expected)
     }
 }
