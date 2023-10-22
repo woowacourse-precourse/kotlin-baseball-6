@@ -2,7 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class RandomNumberGenerator {
+object RandomNumberGenerator {
 
     fun generateRandomNumber() :  String {
         val computer = mutableListOf<Int>()
