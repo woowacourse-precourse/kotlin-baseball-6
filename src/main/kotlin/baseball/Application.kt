@@ -81,3 +81,9 @@ fun howManyBall(computerNum: List<Int>, userNum: List<Int>, strikeNum: Int): Int
 
     return ballNum - strikeNum
 }
+
+enum class STATE {
+    GAMING,
+    RESTART,
+    END,
+}
