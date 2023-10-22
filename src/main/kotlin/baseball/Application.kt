@@ -21,9 +21,21 @@ class BaseballGame {
     }
 
     fun play() {
-        val userInput = getUserInput()
-        val strikeCount = countStrikes(userInput)
-        println("${strikeCount}스트라이크")
+        while (true) {
+            val userInput = getUserInput()
+            val strikes = countStrikes(userInput)
+            val balls = countBalls(userInput)
+
+            if (strikes > 0 && balls > 0) {
+                println("${balls}볼 ${strikes}스트라이크")
+            } else if (strikes > 0) {
+                println("${strikes}스트라이크")
+            } else if (balls > 0) {
+                println("${balls}볼")
+            } else {
+                println("낫싱")
+            }
+        }
     }
 
     private fun countStrikes(userInput: List<Int>): Int {
@@ -36,7 +48,17 @@ class BaseballGame {
         return strikeCount
     }
 
-    fun getUserInput(): List<Int> {
+    private fun countBalls(userInput: List<Int>): Int {
+        var ballCount = 0
+        for (i in 0..2) {
+            if (userInput[i] in computerNumbers && userInput[i] != computerNumbers[i]) {
+                ballCount++
+            }
+        }
+        return ballCount
+    }
+
+    private fun getUserInput(): List<Int> {
         while (true) {
             try {
                 print("숫자를 입력해 주세요 : ")
