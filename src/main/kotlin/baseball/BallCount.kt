@@ -1,7 +1,7 @@
 package baseball
 
 data class BallCount(val strike: Int, val ball: Int) {
-    fun isNothing() = (strike + ball) == 0
+    private fun isNothing() = (strike + ball) == 0
     fun isStrikeOut() = strike == 3
     override fun toString(): String =
         if (isNothing()) {
