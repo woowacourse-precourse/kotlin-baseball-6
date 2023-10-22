@@ -1,4 +1,4 @@
-package baseball.ui
+package baseball.presentation
 
 /**
  * BaseBallGameRepository

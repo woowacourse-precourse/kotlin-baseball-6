@@ -1,6 +1,6 @@
 package baseball.data.repository
 
-import baseball.presentation.BaseBallGameRepository
+import baseball.ui.BaseBallGameRepository
 
 /**
  * BaseBallGameRepositoryImpl
