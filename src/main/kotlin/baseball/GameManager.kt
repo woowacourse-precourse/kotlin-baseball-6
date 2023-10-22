@@ -4,6 +4,11 @@ import java.lang.IllegalArgumentException
 
 class GameManager {
 
+    companion object{
+        private const val INITIAL_SCORE = 0
+        private const val MAX_STRIKES = 3
+    }
+
     enum class GameState {
         INIT, INPROGRESS, ENDED
     }
@@ -24,7 +29,7 @@ class GameManager {
     lateinit var targetNumber: List<Int>
         private set
 
-    private val scoreBoard: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0)
+    private val scoreBoard: HashMap<String, Int> = hashMapOf("strike" to INITIAL_SCORE, "ball" to INITIAL_SCORE)
 
     fun startGame() {
         gameState = GameState.INPROGRESS
@@ -59,13 +64,13 @@ class GameManager {
         val strikeCount = scoreBoard["strike"]
         val ballCount = scoreBoard["ball"]
 
-        if (strikeCount == 0 && ballCount == 0) {
+        if (strikeCount == INITIAL_SCORE && ballCount == INITIAL_SCORE) {
             print("낫싱")
         }
-        if (ballCount != 0) {
+        if (ballCount != INITIAL_SCORE) {
             print("${ballCount.toString()}볼 ")
         }
-        if (strikeCount != 0) {
+        if (strikeCount != INITIAL_SCORE) {
             print("${strikeCount.toString()}스트라이크")
         }
         println()
@@ -98,7 +103,7 @@ class GameManager {
         requireNotNull(playerChoice.toIntOrNull()) {
             "숫자만 입력하실 수 있습니다."
         }
-        require(playerChoice.toInt() == 1 || playerChoice.toInt() == 2) {
+        require(playerChoice.toInt() == GameAction.RESTART.value || playerChoice.toInt() == GameAction.EXIT.value) {
             "1 혹은 2만 입력하실 수 있습니다."
         }
     }
@@ -108,13 +113,13 @@ class GameManager {
     }
 
     private fun endGameIfThreeStrikes() {
-        if (scoreBoard["strike"] == 3) {
+        if (scoreBoard["strike"] == MAX_STRIKES) {
             endGame()
         }
     }
 
     private fun clearScore() {
-        scoreBoard["strike"] = 0
-        scoreBoard["ball"] = 0
+        scoreBoard["strike"] = INITIAL_SCORE
+        scoreBoard["ball"] = INITIAL_SCORE
     }
 }

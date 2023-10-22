@@ -2,7 +2,7 @@ package baseball
 
 class Player {
     companion object{
-        const val REQUIRED_INPUT_LENGTH = 3
+        private const val REQUIRED_INPUT_LENGTH = 3
     }
 
     lateinit var guessNumber : List<Int>
