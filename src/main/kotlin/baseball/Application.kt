@@ -7,7 +7,11 @@ class BaseballGame {
 
     private val computerNumbers = mutableListOf<Int>()
 
-    fun generateComputer() {
+    init {
+        generateComputer()
+    }
+
+    private fun generateComputer() {
         while (computerNumbers.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (randomNumber !in computerNumbers) {
@@ -16,7 +20,21 @@ class BaseballGame {
         }
     }
 
-    fun getComputer(): List<Int> = computerNumbers
+    fun play() {
+        val userInput = getUserInput()
+        val strikeCount = countStrikes(userInput)
+        println("${strikeCount}스트라이크")
+    }
+
+    private fun countStrikes(userInput: List<Int>): Int {
+        var strikeCount = 0
+        for (i in 0..2) {
+            if (computerNumbers[i] == userInput[i]) {
+                strikeCount++
+            }
+        }
+        return strikeCount
+    }
 
     fun getUserInput(): List<Int> {
         while (true) {
@@ -48,5 +66,5 @@ fun main() {
     val baseballGame = BaseballGame()
 
     println("숫자 야구 게임을 시작합니다.")
-    val userInput = baseballGame.getUserInput()
+    baseballGame.play()
 }
