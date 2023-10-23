@@ -42,23 +42,39 @@ object NumberBaseball {
 
     private fun getUserInput() {
         print("숫자를 입력해 주세요 : ")
-        userNumList = Console.readLine()
-            .convertInputToNumbers()
-        if (userNumList.size != NUM_LENGTH) throw IllegalArgumentException()
+        val userInput = Console.readLine()
+        checkValidateInput(userInput)
+        userNumList = userInputToNumbers(userInput)
     }
 
-    // 사용자의 입력을 Int로 바꿔 ArrayList에 담는다.
-    private fun String.convertInputToNumbers(): ArrayList<Int> {
-        val tempList = arrayListOf<Int>()
-        this.forEach {
-            if ((it in '1'..'9') && !tempList.contains(it.digitToInt())) { // 중복된 숫자를 허용하지 않는다.
-                tempList.add(it.digitToInt())
-                return@forEach
+    private fun checkValidateInput(input: String) {
+        val tempNumList = arrayListOf<Int>()
+        input.forEach {
+            if (it !in '1'..'9') {
+                throw IllegalArgumentException("입력은 1에서 9 사이의 숫자여야 합니다.")
             }
-            if (it != ' ' && it != '\t') throw IllegalArgumentException() // 공백과 탭 문자는 무시한다.
+            val digit = it.digitToInt()
+            if (tempNumList.contains(digit)) {
+                throw IllegalArgumentException("중복된 숫자($digit)가 입력되었습니다.")
+            }
+            tempNumList.add(digit)
         }
-        return tempList
+        if (input.length != NUM_LENGTH) throw IllegalArgumentException()
+
     }
+
+    private fun userInputToNumbers(input: String): ArrayList<Int> {
+        val tempNumList = arrayListOf<Int>()
+        input.forEach {
+            if (tempNumList.contains(it.digitToInt())) throw IllegalArgumentException()
+            tempNumList.add(it.digitToInt())
+        }
+        return tempNumList
+    }
+
+
+
+
 
     private fun calculateBallCounts() {
         ballCount = 0
