@@ -6,6 +6,7 @@
 - [x] 사용자가 잘못된 값 입력 시 `IllegalArgumentException` 예외 발생 후 종료시키기
 - [x] `pickNumberInRange` 사용하여 컴퓨터 입력값 구현
 - [x] 사용자 입력 함수 구현
+- [x] 재시작 여부 입력 구현
 
 ## 🚀 기능 요구 사항
 
