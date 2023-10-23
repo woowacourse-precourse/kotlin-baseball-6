@@ -5,10 +5,9 @@ import baseball.Constant.Companion.RESTART
 class BaseBallGame {
     init {
         println("숫자 야구 게임을 시작합니다.")
-        startGame()
     }
 
-    private fun startGame() {
+    fun startGame() {
         val computerNumbers = Computer().createComputerBallNumbers()
         runGameLoopUntilCorrectAnswer(computerNumbers)
         checkHasGameEnded()
