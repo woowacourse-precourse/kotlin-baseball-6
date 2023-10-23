@@ -11,11 +11,11 @@ object Validator {
 
     fun validateInput(input: String) {
         if (isBlankInput(input)) {
-            throw IllegalArgumentException("입력이 잘못되었습니다.")
+            throw IllegalArgumentException("입력이 올바르지 않아요.")
         }
 
         if (isInvalidNumericInput(input)) {
-            throw IllegalArgumentException("숫자로만 입력해주세요.")
+            throw IllegalArgumentException("숫자를 입력해주세요.")
         }
     }
 
@@ -23,11 +23,9 @@ object Validator {
         return !(gameState == START_GAME || gameState == END_GAME)
     }
 
-    fun validateInputGameState(input: String) {
-        validateInput(input)
-
-        if (isNotGameState(input.toInt())) {
-            throw IllegalArgumentException("게임 진행은 1과 2 둘 중에 하나만 입력해주세요.")
+    fun validateInputGameState(gameState: Int) {
+        if (isNotGameState(gameState)) {
+            throw IllegalArgumentException("게임 진행은 1과 2 둘 중 하나만 입력해주세요.")
         }
     }
 

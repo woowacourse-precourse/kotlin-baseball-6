@@ -6,13 +6,10 @@ class User : Player<List<Int>> {
 
     fun requestInputGameState(): Int {
         val input = Console.readLine()
-        Validator.validateInputGameState(input)
+        Validator.validateInput(input)
+        Validator.validateInputGameState(input.toInt())
 
         return input.toInt()
-    }
-
-    fun requestEndInput() {
-        Console.close()
     }
 
     fun requestInputNumbers(): String {
@@ -20,6 +17,10 @@ class User : Player<List<Int>> {
         Validator.validateInput(input)
 
         return input
+    }
+
+    fun requestEndInput() {
+        Console.close()
     }
 
     /**
