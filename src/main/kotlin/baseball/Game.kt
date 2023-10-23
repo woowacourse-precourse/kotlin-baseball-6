@@ -14,7 +14,7 @@ abstract class Game {
         answer = Computer.makeNumber()
     }
 
-    fun resultCheck(playerNumber: List<Int>) {
+    protected fun resultCheck(playerNumber: List<Int>) {
         valueInit()
         getBallCount(playerNumber)
         getStrikeCount(playerNumber)
