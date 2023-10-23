@@ -11,13 +11,29 @@
 클래스와 메서드
 
 
-BaseballGame: startGame(), playRound(), playAgain()
+BaseballGame
+
+startGame() : 게임 시작
+
+playRound() : 게임 진행
+
+playAgain() : 게임 재시작 또는 종료
 
 
-Player: getUserInput(), isInputValid(userInput: String)
+Player:
+
+getUserInput() : 사용자에게 숫자를 입력받기
+
+isInputValid(userInput: String) : 사용자가 입력한 값이 유효한지 검사
 
 
-Computer: generateRandomNumbers(),  checkUserInput(userInput: String, randomNumber: List<Int>),  calculateStrikeAndBall(userInput: String, randomNumber: List<Int>)
+Computer
+
+generateRandomNumbers() :  컴퓨터가 랜덤으로 숫자를 생성
+
+checkUserInput(userInput: String, randomNumber: List<Int>) : 사용자가 입력한 값과 컴퓨터가 생성한 값을 비교
+
+calculateStrikeAndBall(userInput: String, randomNumber: List<Int>) : 스트라이크와 볼을 계산
 
 
 
