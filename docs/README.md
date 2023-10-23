@@ -1,13 +1,13 @@
 # 구현 기능 목록
 
 ### 컴퓨터 랜덤 숫자 생성
-- [ ] generateRandomComputerNumber 메서드
-  - [ ] pickNumberInRange() 사용해 1부터 9 사이 랜덤한 숫자 추출하기
-  - [ ] 추출한 숫자가 이미 computer 리스트에 존재하는지 검사하기
-  - [ ] computer 리스트에 없으면 해당 랜덤 숫자 추가하기
+- [x] generateRandomComputerNumber 메서드
+  - [x] pickNumberInRange() 사용해 1부터 9 사이 랜덤한 숫자 추출하기
+  - [x] 추출한 숫자가 이미 computer 리스트에 존재하는지 검사하기
+  - [x] computer 리스트에 없으면 해당 랜덤 숫자 추가하기
 
 ### 게임 시작 문구 출력
-- [ ] 게임 시작 문구 출력하기
+- [x] 게임 시작 문구 출력하기
 
 ### 플레이어 숫자 입력받기
 - [ ] readLine() 사용해 플레이어의 숫자 입력받기
