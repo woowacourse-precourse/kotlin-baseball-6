@@ -89,7 +89,7 @@ fun getUserNumber(): Int = runCatching {
 
 
 fun validateNumber(number: Int) {
-    require(number <= 999)
+    require(number in 100..999)
 
     var numberVar = number
     var digit = MAX_DIGIT
