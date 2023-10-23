@@ -8,11 +8,32 @@ fun main() {
 
     //실행 중 여부 판단을 위한 변수
     var isRunning = true
-    val randomNum = createRandomNum()
+    var inGame = true
 
-    while (isRunning) {
-        print("숫자를 입력해주세요 : ")
-        val userInput = Console.readLine()
+    while(isRunning) {
+        var randomNum = createRandomNum()
+
+        while (inGame) {
+            print("숫자를 입력해주세요 : ")
+            val userInput = Console.readLine()
+
+            val result = compareNum(userInput, randomNum)
+            println(result)
+
+            if (result == "3스트라이크") {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+                val finishCode = Console.readLine()
+
+                if (finishCode == "1") {
+                    break
+                } else if (finishCode == "2") {
+                    inGame = false
+                }
+
+            }
+
+        }
     }
 }
 
@@ -28,13 +49,14 @@ fun createRandomNum() : String {
     return numList.joinToString("")
 }
 
+//랜덤 숫자와 입력 숫자를 비교
 fun compareNum(userNum : String, randomNum : String) : String {
     var strike : Int = 0
     var ball : Int = 0
 
     var answer : String = ""
 
-    for (i in 1..3) {
+    for (i in 0..2) {
         if(userNum[i] == randomNum[i]) {
             strike++
         }
