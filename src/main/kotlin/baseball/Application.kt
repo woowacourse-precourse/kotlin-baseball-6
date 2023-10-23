@@ -17,11 +17,19 @@ fun main() {
     val getPlayer = getPlayerNumber()
     println(getPlayer)
 
-    // 플레이어 숫자를 검사한다.
+    // 플레이어 숫자를 검사하고, 예외를 처리한다.
     try {
+        // 플레이어 숫자를 검사한다.
         val player = validatePlayerNumber(getPlayer)
-        comparePlayerAndComputer(computer, player)
+
+        // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
+        val playerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
+
+        // 플레이어의 점수를 출력한다.
+        printPlayerScore(playerScore)
+
     } catch (e: IllegalArgumentException) {
+        // 예외가 있으면
         println(e.message)
     }
 
@@ -80,39 +88,37 @@ fun validatePlayerNumber(player: String): List<Int> {
     return playerIntOrNullList
 }
 
-fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>) {
-    println(computer)
-    println(player)
+data class PlayerScore (
+    var strike: Int = 0,
+    var ball: Int = 0,
+    var nothing: Boolean = false
+    )
 
-    var strike = 0
+fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, playerScore: PlayerScore) : PlayerScore {
 
-    for (i in 0..2) {
+    for (i in player.indices) {
         if (player[i] == computer[i]) {
-            strike++
+            playerScore.strike++
         }
     }
 
-    var ball = 0
-
-    for (i in 0..2) {
-        for (j in 0..2) {
+    for (i in player.indices) {
+        for (j in computer.indices) {
             if (player[i] == computer[j]) {
-                ball++
+                playerScore.ball++
             }
         }
     }
 
-    ball = ball - strike
+    playerScore.ball -= playerScore.strike
 
-    var nothing = 0
-
-    if (strike == 0 && ball == 0) {
-        nothing++
+    if (playerScore.strike == 0 && playerScore.ball == 0) {
+        playerScore.nothing = true
     }
 
-    println("$strike $ball $nothing")
+    return playerScore
 }
 
-fun printPlayerScore() {
-
+fun printPlayerScore(playerScore: PlayerScore) {
+    println(playerScore)
 }
