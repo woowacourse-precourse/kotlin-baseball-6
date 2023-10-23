@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
+    println("숫자 야구 게임을 시작합니다.")
     while (true) {
         playGame()
         if (!isRestart()) {
@@ -14,7 +15,6 @@ fun main() {
 
 fun playGame() {
     val answer = generateAnswer()
-    println("숫자 야구 게임을 시작합니다.")
     while (true) {
         val input = getUserAnswerInput()
         val judgeResult = judge(input, answer)
@@ -61,10 +61,16 @@ fun judge(input: String, answer: String): JudgeResult {
 }
 
 fun isRestart(): Boolean {
-    return false
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val input = Console.readLine()
+    return when (input) {
+        "1" -> true
+        "2" -> false
+        else -> wrongInput()
+    }
 }
 
-fun wrongInput() {
+fun wrongInput(): Nothing {
     throw IllegalArgumentException("잘못된 입력")
 }
 
