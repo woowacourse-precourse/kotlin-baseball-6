@@ -20,16 +20,11 @@ class Computer {
         var strike = 0
         var ball = 0
 
-        user.forEach {
-            if (computer.contains(it)) {
-                ball++
-            }
-        }
-
-        for (i in user.indices) {
-            if (user[i] == computer[i]) {
+        for(i in user.indices){
+            if(computer[i] == user[i]){
                 strike++
-                ball--
+            }else if(computer.contains(user[i])){
+                ball++
             }
         }
 
