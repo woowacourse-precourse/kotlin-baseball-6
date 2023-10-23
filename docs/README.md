@@ -44,8 +44,8 @@ Application.kt, User.class, Computer.class, Game.class 총 4개로 구성되어�
 ∙ User.class
 	◦ inputUserNumber() : 사용자의 입력을 받고, 유효성 검사를 하는 함수
 	◦ decideGame() : 사용자의 입력을 받고, 유효성을 검사한 뒤, 재시작/종료 여부를 반환하는 함수.
-	◦ checkValidNumber() : 사용자의 입력의 유효성을 검사하는 함수(3자리인지, 숫자인지, 중복된 수가 없는지)
-	◦ checkValidInput() : 사용자의 입력의 유효성을 검사하는 함수(1 또는 2의 숫자인지)
+	◦ checkValidUserNumber() : 사용자의 입력의 유효성을 검사하는 함수(3자리인지, 숫자인지, 중복된 수가 없는지)
+	◦ checkValidRestartNumber() : 사용자의 입력의 유효성을 검사하는 함수(1 또는 2의 숫자인지)
 
 ∙ Computer.class
 	◦ setComputerNumber() : 컴퓨터의 숫자를 랜덤하게 정하는 함수
