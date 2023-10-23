@@ -1,7 +1,5 @@
 package baseball
 
-import baseball.Constant.Companion.END
-import baseball.Constant.Companion.RESTART
 
 class Player {
 
@@ -10,11 +8,7 @@ class Player {
     }
 
     fun getGameEndDecision(): String {
-        return when (readPlayerGameEndDecisionInput()) {
-            "1" -> RESTART
-            "2" -> END
-            else -> ""
-        }
+        return readPlayerGameEndDecisionInput()
     }
 
     // TODO 예외처리
