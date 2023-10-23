@@ -5,14 +5,12 @@ import java.lang.IllegalArgumentException
 
 class BaseBallGame() {
     private val answer = RandomNumberGenerator.generateRandomNumber()
-
     init {
         startGame()
 
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
-
     private fun startGame(){
         do {
             print("숫자를 입력해주세요 : ")
@@ -22,7 +20,7 @@ class BaseBallGame() {
             }
 
         }
-        while (!isCorrect(input))
+        while (!isScoreCorrect(input))
     }
     private fun checkInput(input : String) : Boolean{
 
@@ -49,7 +47,7 @@ class BaseBallGame() {
     }
 
 
-    private fun isCorrect(input : String): Boolean {
+    private fun isScoreCorrect(input : String): Boolean {
         val inputSet = input.toSet()
 
         return if (answer == input) {
@@ -57,6 +55,7 @@ class BaseBallGame() {
         } else {
             var strikeCount = 0
             var ballCount = 0
+
             answer.forEachIndexed { index, it ->
                 if (inputSet.contains(it)){
                     if (index == input.indexOf(it)){
