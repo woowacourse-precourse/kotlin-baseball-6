@@ -23,13 +23,13 @@ class BaseBallGame {
             playerNumbers = Player().createPlayerBallNumbers()
             isAnswerCorrect = targetNumbers == playerNumbers
 
-            printMatchesBallInfo(targetNumbers, playerNumbers)
+            printMatchedBallInfo(targetNumbers, playerNumbers)
         }
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
-    private fun printMatchesBallInfo(targetNumbers: List<Int>, playerNumbers: List<Int>) {
+    private fun printMatchedBallInfo(targetNumbers: List<Int>, playerNumbers: List<Int>) {
         val strikeCount = getStrikeCount(targetNumbers, playerNumbers)
         val ballCount = getBallCount(targetNumbers, playerNumbers)
         when {
