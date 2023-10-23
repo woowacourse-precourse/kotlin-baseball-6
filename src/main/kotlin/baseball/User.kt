@@ -16,11 +16,7 @@ class User {
         val userInput = Console.readLine()
         checkValidRestartNumber(userInput)
 
-        if (userInput == "1") {
-            return true
-        }
-
-        return false
+        return userInput == "1"
     }
 
     private fun checkValidUserNumber(number: String) {
