@@ -63,11 +63,9 @@ private fun countBall(
     player: MutableList<Int>
 ): Int {
     var ball = 0
-    for (computerElem in computer) {
-        if (player.contains(computerElem)) {
-            if (player.indexOf(computerElem) != computer.indexOf(computerElem)) {
-                ball++
-            }
+    for(index in 0 until 3){
+        if(computer[index] != player[index] && player.contains(computer[index])){
+            ball++
         }
     }
     return ball
