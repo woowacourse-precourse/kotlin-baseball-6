@@ -20,11 +20,15 @@ playRound() : 게임 진행
 playAgain() : 게임 재시작 또는 종료
 
 
+
+
 Player
 
 getUserInput() : 사용자에게 숫자를 입력받기
 
 isInputValid(userInput: String) : 사용자가 입력한 값이 유효한지 검사
+
+
 
 
 Computer
