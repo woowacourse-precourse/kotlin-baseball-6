@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 private const val START_INCLUSIVE = 1    // 1부터
 private const val END_INCLUSIVE = 9    // 9까지
-private const val COUNT = 3    // 3자리 수를 맞추는 게임
+const val COUNT = 3    // 3자리 수를 맞추는 게임
 
 val answer = IntArray(COUNT) // 정답 저장할 배열
 
@@ -23,8 +23,12 @@ private fun setGame() {
     for(i in 0 until COUNT) { answer[i] = Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE) }
 }
 
-private fun playGame(){
-    val userInput: IntArray = getUserNumber()
+private fun playGame() {
+    do {
+        val userInput = getUserNumber()    // 수 입력 받기
+        val (strike, ball) = answerCheck(answer, userInput)    // 입력 받은 수 검사
+    } while (strike != COUNT)    // strike수가 COUNT와 같으면 반복문 탈출
+    println("${COUNT}개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
 private fun getUserNumber(): IntArray {
