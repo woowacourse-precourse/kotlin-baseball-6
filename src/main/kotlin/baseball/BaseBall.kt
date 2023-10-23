@@ -1,30 +1,47 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 enum class GameStatus {
     ONGOING,
     STOP
 }
+private const val RANDOM_START = 1
+private const val RANDOM_END = 9
+const val INPUT_NUMBER_COUNT = 3
+const val WRONG_INPUT_MESSAGE = "잘못된 입력입니다."
 
 class BaseBall() {
     private val checkInputRegex = Regex("^(?!.*(.).*\\1)[1-9]{$INPUT_NUMBER_COUNT}\$")
     private val findNumberRegex = Regex("([1-9])")
     private lateinit var userList: List<Int>
+    private lateinit var computerList: List<Int>
     private var gameStatus = GameStatus.ONGOING
 
-    fun startGame(computerList: List<Int>) {
+    fun startGame() {
         println("숫자 야구 게임을 시작합니다.")
+        createComputerList()
         while (gameStatus == GameStatus.ONGOING) {
             print("숫자를 입력해주세요 : ")
             val input = Console.readLine()
             checkInput(input)
             insertUserList(input)
-            gameStatus = printScore(computerList)
+            gameStatus = printScore()
         }
     }
 
-    private fun printScore(computerList: List<Int>): GameStatus {
+    private fun createComputerList() {
+        val tempComputerList = mutableListOf<Int>()
+        while (tempComputerList.size < INPUT_NUMBER_COUNT) {
+            val randomNumber = Randoms.pickNumberInRange(RANDOM_START, RANDOM_END)
+            if (randomNumber !in tempComputerList) {
+                tempComputerList.add(randomNumber)
+            }
+        }
+        computerList = tempComputerList
+    }
+    private fun printScore(): GameStatus {
         val countScore = countScore(computerList)
         val strike = countScore.first
         val ball = countScore.second
