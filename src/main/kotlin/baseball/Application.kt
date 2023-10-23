@@ -73,6 +73,7 @@ fun main() {
     while(true){
         val secretNumber = makeSecretNumber()
         while(true) {
+            print("숫자를 입력해주세요 : ")
             val guessNumber = Console.readLine()
             if (!isValidGuessNumber(guessNumber)) {
                 throw IllegalArgumentException("Wrong guessNumber $guessNumber")
