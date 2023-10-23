@@ -7,9 +7,7 @@ class BaseBallConvertor(private val ballsValidator: BaseBallsValidator = BaseBal
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException()
         }
-
         ballsValidator.validate(baseBalls)
-
         return baseBalls
     }
 }

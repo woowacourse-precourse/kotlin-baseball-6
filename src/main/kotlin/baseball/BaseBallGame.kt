@@ -8,7 +8,7 @@ class BaseBallGame(
     private val gameGuide: GameGuide = GameGuide(),
     private val baseBallCreator: BaseBallCreator = BaseBallCreator(),
     private val player: Player = Player(),
-    private val referee: Referee = Referee()
+    private val referee: Referee = Referee(),
 ) {
     fun play() {
         gameGuide.show(GameInstruction.GAME_START)
@@ -24,7 +24,7 @@ class BaseBallGame(
             val result = Round(
                 player = player,
                 referee = referee,
-                answerBaseBalls = answerBaseBalls
+                answerBaseBalls = answerBaseBalls,
             ).run()
         } while (isWin(result).not())
         gameGuide.show(GameResult.WIN)
