@@ -1,17 +1,21 @@
 package baseball
 
-/** [3]. 1) 매개변수 2개를 이용하여 "S, B" 형태로 변환 (Model) */
-fun calculateBallAndStrike(inputData: IntArray, answer: IntArray): Pair<String, Boolean> {
-    var calculateResult = "" + inputData.filterIndexed { index, i ->
-        i in answer.filter { it != answer[index] } // Ball
-    }.size
+import baseball.model.UserInput
+import camp.nextstep.edu.missionutils.Console
 
-    calculateResult += ", " + inputData.filterIndexed { index, i ->
-        i == answer[index] // Strike
-    }.size
+fun gameStartPrompt() {
+    println("숫자 야구 게임을 시작합니다.")
+}
 
-    val isAllStrike = "0, ${BASEBALL_DIGITS}" == calculateResult
-    return Pair(calculateResult, isAllStrike)
+/** [2&4]. 0) 입력을 위한 안내 문구 출력 (View) */
+fun printInputPrompt(digit: Int, userInput: UserInput) {
+    if (digit == BASEBALL_DIGITS) {
+        print("숫자를 입력해주세요 : ")
+    } else if (digit == MENU_DIGITS) {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    }
+    val content = Console.readLine() ?: ""
+    userInput.setData(content)
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 (View) */

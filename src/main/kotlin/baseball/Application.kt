@@ -1,7 +1,7 @@
 package baseball
 
-import baseball.config.Config
 import baseball.model.Answer
+import baseball.model.UserInput
 
 /*  명령어 학습(C : Ctrl, A: Alt, S:Shift)
     1. CA + l : 자동 정렬
@@ -16,52 +16,28 @@ import baseball.model.Answer
 */
 
 const val BASEBALL_DIGITS = 3
+val BASEBALL_RANGE = CharRange('1', '9')
+
 const val MENU_DIGITS = 1
+val MENU_RANGE = CharRange('1', '9')
 
-// TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용 - MVC 패턴 적용중
-fun main() {
-    var isStay = true
-    val answer = Answer()
-    println("숫자 야구 게임을 시작합니다.")
+class BaseballGame(private val answer: Answer, private val userInput: UserInput) {
+    fun play() {
+        var isStay = true
+        gameStartPrompt()
 
-    do {
-        if (inputBaseball(answer.number) == false) {
-            continue
+        while (isStay) {
+            if (!inputBaseball(answer.number, userInput)) {
+                continue
+            }
+
+            val selectedMenu = inputRestart(answer, userInput)
+            isStay = (selectedMenu == 1)
         }
-
-        val selectedMenu = inputRestart(answer)
-        isStay = true.takeIf { selectedMenu == 1 } ?: false
-
-    } while (isStay == true)
+    }
 }
 
-/** [2]. 숫자 입력 받기 : 1 ~ 9 3자리
- * [3]. Ball, Strike 검증 함수 호출 (Controller)
- * */
-fun inputBaseball(answer: IntArray): Boolean {
-    val inputData = inputValidator(
-        digit = Config.BASEBALL_DIGITS,
-        range = Config.BASEBALL_RANGE,
-        answer = null
-    )
-
-    val calculateResult = calculateBallAndStrike(inputData, answer)
-    val (ball, strike) = calculateResult.first
-        .split(", ")
-        .map { it.toInt() }
-    val isAllStrike = calculateResult.second
-
-    calculateResultPrint(ball, strike)
-    return isAllStrike
-}
-
-/** [4]. 메뉴 입력 받기 : 1 or 2 (Controller) */
-fun inputRestart(answer: Answer): Int {
-    val selectedMenu = inputValidator(
-        digit = Config.MENU_DIGITS,
-        range = Config.MENU_RANGE,
-        answer = answer,
-    ).first()
-
-    return selectedMenu
+fun main() {
+    val game = BaseballGame(Answer(), UserInput())
+    game.play()
 }
