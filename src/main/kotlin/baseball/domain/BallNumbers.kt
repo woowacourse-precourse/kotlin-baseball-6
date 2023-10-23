@@ -7,6 +7,7 @@ abstract class BallNumbers(protected val numbers: List<BallNumber>) {
 
     init {
         validateNumbersLength(numbers)
+        validateDuplicateNumbers(numbers)
     }
 
     companion object {
@@ -16,6 +17,12 @@ abstract class BallNumbers(protected val numbers: List<BallNumber>) {
         private fun validateNumbersLength(numbers: List<BallNumber>) {
             if (numbers.size != BALL_COUNT) {
                 throw IllegalArgumentException("BallNumbers는 3자리로 이루어진 숫자여야 합니다.")
+            }
+        }
+
+        private fun validateDuplicateNumbers(numbers: List<BallNumber>) {
+            if (HashSet(numbers).size != BALL_COUNT) {
+                throw IllegalArgumentException("BallNumbers에 중복 숫자가 존재하면 안 됩니다.")
             }
         }
     }
