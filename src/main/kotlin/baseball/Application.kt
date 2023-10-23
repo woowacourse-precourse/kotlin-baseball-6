@@ -2,6 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.lang.Exception
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -11,12 +12,19 @@ fun main() {
     var inGame = true
 
     while(isRunning) {
+        //랜덤 숫자 지정
         var randomNum = createRandomNum()
 
         while (inGame) {
             print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine()
 
+            //답변의 유효성 확인
+            if (userInput.length != 3 || userInput.toIntOrNull() == null) {
+                throwException()
+            }
+
+            //숫자 비교
             val result = compareNum(userInput, randomNum)
             println(result)
 
@@ -25,10 +33,16 @@ fun main() {
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
                 val finishCode = Console.readLine()
 
+                //랜덤 숫자 재생성, 게임 종료
                 if (finishCode == "1") {
                     break
-                } else if (finishCode == "2") {
-                    inGame = false
+                }
+                else if (finishCode == "2") {
+                    isRunning = false
+                }
+                //답변 유효성 확인
+                else {
+                    throwException()
                 }
 
             }
@@ -51,10 +65,8 @@ fun createRandomNum() : String {
 
 //랜덤 숫자와 입력 숫자를 비교
 fun compareNum(userNum : String, randomNum : String) : String {
-    var strike : Int = 0
-    var ball : Int = 0
-
-    var answer : String = ""
+    var strike= 0
+    var ball= 0
 
     for (i in 0..2) {
         if(userNum[i] == randomNum[i]) {
@@ -65,6 +77,8 @@ fun compareNum(userNum : String, randomNum : String) : String {
         }
     }
 
+    var answer= ""
+
     when {
         strike > 0 && ball > 0 -> answer = "${ball}볼 ${strike}스트라이크"
         strike == 0 && ball > 0 -> answer = "${ball}볼"
@@ -72,4 +86,8 @@ fun compareNum(userNum : String, randomNum : String) : String {
         strike == 0 && ball == 0 -> answer = "낫싱"
     }
     return answer
+}
+
+fun throwException() {
+    throw Exception("IllegalArgumentException")
 }
