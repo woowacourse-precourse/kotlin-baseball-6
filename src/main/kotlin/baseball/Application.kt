@@ -1,6 +1,5 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 data class GuessResult(
@@ -15,7 +14,7 @@ fun makeSecretNumber(): String {
         .substring(0, 3)
 }
 
-fun isValidInput(input: String): Boolean {
+fun isValidGuessNumber(input: String): Boolean {
     return input.toSet().size == 3 && input.all { isNumber(it) } && input.length == 3
 }
 
@@ -67,8 +66,8 @@ fun main() {
             val secretNumber = makeSecretNumber()
             println(secretNumber)
             val guessNumber = Console.readLine()
-            if (!isValidInput(guessNumber)) {
-                throw IllegalArgumentException("Wrong Input")
+            if (!isValidGuessNumber(guessNumber)) {
+                throw IllegalArgumentException("Wrong guessNumber")
             }
             println(guessNumber)
             val guessResult = getGuessResult(secretNumber, guessNumber)
