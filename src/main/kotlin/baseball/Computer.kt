@@ -15,7 +15,7 @@ class Computer {
         return randomNumberList
     }
 
-    private fun convertInputNumberToList(): List<Int> {
+    fun convertInputNumberToList(): List<Int> {
         var inputNumber = Player().inputNumber()
         val inputNumberList = mutableListOf<Int>()
         var eachNumber: Int
@@ -30,16 +30,14 @@ class Computer {
         return inputNumberList
     }
 
-    fun validateInputNumber() {
-        val convertInputNumberList = convertInputNumberToList()
-
-        if (convertInputNumberList.size != 3) {
+    fun validateInputNumber(inputNumberList: List<Int>) {
+        if (inputNumberList.size != 3) {
             throw IllegalArgumentException(ERROR_INPUT_THREE_DIGITS_ONLY)
         }
-        if (convertInputNumberList.distinct().size != convertInputNumberList.size) {
+        if (inputNumberList.distinct().size != inputNumberList.size) {
             throw IllegalArgumentException(ERROR_NUMBER_DUPLICATION)
         }
-        if (convertInputNumberList.any { it < 1 || it > 9 }) {
+        if (inputNumberList.any { it < 1 || it > 9 }) {
             throw IllegalArgumentException(ERROR_INPUT_ONE_TO_NINE_ONLY)
         }
     }

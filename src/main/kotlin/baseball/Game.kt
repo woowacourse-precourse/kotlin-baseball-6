@@ -9,7 +9,8 @@ class Game {
         computer.createRandomNumber()
         while (true) {
             host.printNumberInputRequest()
-            computer.validateInputNumber()
+            val playerInputNumber = computer.convertInputNumberToList()
+            computer.validateInputNumber(playerInputNumber)
         }
     }
 }
