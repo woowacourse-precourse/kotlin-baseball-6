@@ -22,8 +22,7 @@ fun playGame() {
     val computerNumbers = generateComputerNumbers()
     do {
         val playerNumbers = getValidPlayerNumbers()
-        val strikeCount = calculateStrikeCount(computerNumbers, playerNumbers)
-        val ballCount = calculateBallCount(computerNumbers, playerNumbers)
+        val (strikeCount,ballCount) = calculateStrikeAndBallCounts(computerNumbers,playerNumbers)
         printResult(strikeCount, ballCount)
     } while (strikeCount != STRIKE_COUNT_TO_WIN)
 }
@@ -53,6 +52,12 @@ fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
         )) {
         throw IllegalArgumentException(INVALID_INPUT_NUMBERS_EXCEPTION)
     }
+}
+
+fun calculateStrikeAndBallCounts(computerNumbers: List<Int>, playerNumbers: List<Int>): Pair<Int, Int> {
+    val strikeCount = calculateStrikeCount(computerNumbers,playerNumbers)
+    val ballCount = calculateBallCount(computerNumbers,playerNumbers)
+    return Pair(strikeCount, ballCount)
 }
 
 fun calculateStrikeCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
