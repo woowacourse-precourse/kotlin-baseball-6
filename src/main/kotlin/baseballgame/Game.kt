@@ -19,6 +19,15 @@ class Game {
         println(comNumber) // 중간 확인용
     }
 
+    companion object {
+        fun run() {
+            do {
+                val game = Game()
+                game.userEnter()
+            } while (game.restart())
+        }
+    }
+
     private fun restart(): Boolean {
         print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ")
         val select = Console.readLine()
@@ -37,20 +46,11 @@ class Game {
         }
     }
 
-    companion object {
-        fun run() {
-            do {
-                val game = Game()
-                game.userEnter()
-            } while (game.restart())
-        }
-    }
 
     private fun userEnter() {
         do {
             print("숫자를 입력해주세요: ")
             val userNumber = Console.readLine()
-            println(userNumber)
         } while (!checkStrike(userNumber)) // 3스트라이크가 나올때까지
     }
 
@@ -65,6 +65,15 @@ class Game {
         } else {
             return false
         }
+    }
+
+    // 사용자에게 입력받은 문자열을 정수 배열로 변환
+    private fun changeStringToIntArray(inputString: String): IntArray {
+        val intArray = IntArray(3)
+        val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
+        checkInputLength(stringArray)
+        checkInputValue(stringArray, intArray)
+        return intArray
     }
 
     private fun countStrike(inputNumber: IntArray): Int {
@@ -87,13 +96,14 @@ class Game {
         return ball
     }
 
-    // 사용자에게 입력받은 문자열을 정수 배열로 변환
-    private fun changeStringToIntArray(inputString: String): IntArray {
-        val intArray = IntArray(3)
-        val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
+
+    private fun checkInputLength(stringArray: Array<String>) {
         if (stringArray.size != 3) {
             throw IllegalArgumentException("사용자 입력에서 잘못된 길이로 인한 오류 발생")
         }
+    }
+
+    private fun checkInputValue(stringArray: Array<String>, intArray: IntArray) {
         for (i in 0 until 3) {
             if ((stringArray[i].toInt() < 0) or (stringArray[i].toInt() > 9)) {
                 throw IllegalArgumentException("사용자 입력에서 잘못된 입력으로 인한 오류 발생")
@@ -104,7 +114,6 @@ class Game {
                 intArray[i] = stringArray[i].toInt()
             }
         }
-        return intArray
     }
 
     private fun printResult(strike: Int, ball: Int) {
