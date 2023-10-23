@@ -36,10 +36,11 @@ fun getRandomNum(): List<Int> {
 }
 
 fun setUserNum(input: String): List<Int> {
+    val invalidInputException = IllegalArgumentException("잘못된 입력값입니다.")
     val inputNum = try {
         input.toInt()
     } catch (e: NumberFormatException) {
-        throw IllegalArgumentException("잘못된 입력값입니다.")
+        throw invalidInputException
     }
     val numList: MutableList<Int> = mutableListOf()
     var remainingNumber = inputNum
@@ -47,14 +48,14 @@ fun setUserNum(input: String): List<Int> {
     while (remainingNumber > 0) {
         val num = remainingNumber % 10
         if ((num !in 1..9) || numList.contains(num)) {
-            throw IllegalArgumentException("잘못된 입력값입니다.")
+            throw invalidInputException
         } else {
             numList.add(num)
         }
         remainingNumber /= 10
     }
     if (numList.size != 3) {
-        throw IllegalArgumentException("잘못된 입력값입니다.")
+        throw invalidInputException
     }
     return numList.reversed().toList()
 }
