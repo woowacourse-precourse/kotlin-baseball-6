@@ -38,7 +38,7 @@ abstract class Game {
             print(MATCHING_ZERO_MESSAGE)
         }
         if (ball != GAME_INIT_VALUE) {
-            print("${ball}$BALL ")
+            print("${ball}$BALL")
         }
         if (strike != GAME_INIT_VALUE) {
             print("${strike}$STRIKE")
