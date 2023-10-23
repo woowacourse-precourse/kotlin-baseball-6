@@ -37,12 +37,12 @@ fun inputAndValidate(): List<Int> {
 
 fun validate(input: String): List<Int> {
     if(input.length > 3) {
-        IllegalArgumentException("3자리 이상을 입력하였습니다.")
+        throw IllegalArgumentException("3자리 이상을 입력하였습니다.")
     }
     val numbers = input.toList().map { Character.getNumericValue(it) }
     for (number in numbers) {
         if (number !in (1..9)) {
-            IllegalArgumentException("수를 잘못 입력하였습니다.")
+            throw IllegalArgumentException("수를 잘못 입력하였습니다.")
         }
     }
     return numbers
