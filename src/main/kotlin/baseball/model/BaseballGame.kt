@@ -3,17 +3,15 @@ package baseball.model
 class BaseballGame(val computer: Computer = Computer(), val user: User = User()) {
 
     var state: GameState = GameState.START
-
     fun getScore(): Score {
-        val computerNumbers = computer.getNumber()
         val userNumbers = user.getNumber()
-        val ball = getBall(computerNumbers, userNumbers)
-        val strike = getStrike(computerNumbers, userNumbers)
+        val ball = getBall(computer.numbers, userNumbers)
+        val strike = getStrike(computer.numbers, userNumbers)
         val out = (ball == 0 && strike == 0)
         return Score(ball, strike, out)
     }
 
-    private fun getStrike(computerNumbers: MutableList<Int>, userNumbers: String): Int {
+    private fun getStrike(computerNumbers: List<Int>, userNumbers: String): Int {
         var strike = 0
         userNumbers.forEachIndexed { index, c ->
             val userNumber = Character.getNumericValue(c)
@@ -24,7 +22,7 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
         return strike
     }
 
-    private fun getBall(computerNumbers: MutableList<Int>, userNumbers: String): Int {
+    private fun getBall(computerNumbers: List<Int>, userNumbers: String): Int {
         var ball = 0
         userNumbers.forEachIndexed { index, c ->
             val userNumber = Character.getNumericValue(c)

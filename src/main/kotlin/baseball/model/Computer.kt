@@ -3,15 +3,15 @@ package baseball.model
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
-    private lateinit var  numbers : MutableList<Int>
+    private val  _numbers : ArrayList<Int> = arrayListOf()
+    val numbers : List<Int> get() = _numbers
     fun makeRandomNumbers() {
-        numbers = mutableListOf()
-        while (numbers.size < 3) {
+        _numbers.clear()
+        while (_numbers.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if(!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber)
+            if(!_numbers.contains(randomNumber)) {
+                _numbers.add(randomNumber)
             }
         }
     }
-    fun getNumber() = numbers
 }
