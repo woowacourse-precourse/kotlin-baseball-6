@@ -23,8 +23,10 @@ open class UserInput {
         _inputDataArray = inputData.toIntArray()
     }
 
+    // Q. validate를 자식에서 각각 오버라이드 해서
+    // Baseball은 중복 검증을 추가로 수행하게 하는 게 맞을까?
     /** Baseball, Menu 공통. 1, 2) 입력된 문자열의 길이 및 범위 체크  (Model) */
-    open fun validate(digit: Int, range: CharRange) {
+    fun validate(digit: Int, range: CharRange) {
         // 입력된 데이터 모두가 range에 속하는지 체크
         val rangeCheck = inputData.map { it }.all { it in range }
 

@@ -5,7 +5,7 @@ import baseball.model.BaseballInput
 import baseball.model.MenuInput
 import baseball.model.UserInput
 
-/** [2, 4 공통]. 사용자 입력 baseball-menu 공통 처리 (Controller) */
+/** [2, 4] 2) 사용자 입력 검증 : baseball, menu 공통 처리 (Controller) */
 fun inputValidator(
     userInput: UserInput,
     digit: Int,
@@ -17,8 +17,7 @@ fun inputValidator(
     userInput.setArray() // inputDataArray 생성
 }
 
-/** [2]. 숫자 입력 받기 : 1 ~ 9 3자리 (Controller)
- * */
+/** [2]. 1) 숫자야구 입력 받기 : 1 ~ 9 3자리 (Controller) */
 fun inputBaseball(baseballInput: BaseballInput) {
     inputValidator(
         userInput = baseballInput,
