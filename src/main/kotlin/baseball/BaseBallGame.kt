@@ -14,7 +14,6 @@ class BaseBallGame() {
     }
 
     private fun startGame(){
-
         do {
             print("숫자를 입력해주세요 : ")
             val input = Console.readLine()
@@ -24,7 +23,6 @@ class BaseBallGame() {
 
         }
         while (!isCorrect(input))
-
     }
     private fun checkInput(input : String) : Boolean{
 
@@ -46,16 +44,8 @@ class BaseBallGame() {
         } catch (e : NumberFormatException){
             return false
         }
-        //입력 길이 확인
-        if (input.length != 3 ){
-            return false
-        }
-        //중복된 숫자 입력 확인
-        if (hasDuplicateCharacters(input)){
-            return false
-        }
 
-        return true
+        return input.length == 3 && !hasDuplicateCharacters(input)
     }
 
 
@@ -64,8 +54,7 @@ class BaseBallGame() {
 
         return if (answer == input) {
             true
-        }
-        else {
+        } else {
             var strikeCount = 0
             var ballCount = 0
             answer.forEachIndexed { index, it ->
