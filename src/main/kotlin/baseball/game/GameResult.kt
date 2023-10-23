@@ -38,4 +38,8 @@ class GameResult(
             else -> println("${ball}볼 ${strike}스트라이크")
         }
     }
+
+    fun getBallAndStrike(): Pair<Int, Int> {
+        return Pair(ball, strike)
+    }
 }

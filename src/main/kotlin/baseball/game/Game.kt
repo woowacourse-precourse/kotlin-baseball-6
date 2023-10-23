@@ -2,6 +2,9 @@ package baseball.game
 
 import baseball.model.Computer
 import baseball.model.Player
+import baseball.util.Constants.LENGTH_NUMBER
+import baseball.util.Constants.NO_BALL
+import baseball.util.Constants.TEXT_ALL_CORRECT
 import baseball.util.Constants.TEXT_START_GAME
 
 class Game {
@@ -15,10 +18,20 @@ class Game {
     private fun startGame() {
         val computer = Computer.getRandomNum()
 
-        val player = Player.inputNumber()
+        do {
+            val player = Player.inputNumber()
 
-        val result = GameResult(computer, player)
+            val result = GameResult(computer, player)
 
-        result.print()
+            result.print()
+
+            val (ball, strike) = result.getBallAndStrike()
+        } while (!isCorrect(ball, strike))
+
+        println(TEXT_ALL_CORRECT)
+    }
+
+    private fun isCorrect(ball: Int, strike: Int): Boolean {
+        return ball == NO_BALL && strike == LENGTH_NUMBER
     }
 }
