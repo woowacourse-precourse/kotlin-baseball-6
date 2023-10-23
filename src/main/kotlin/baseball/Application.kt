@@ -36,7 +36,7 @@ fun main() {
     }
 }
 
-fun generateRandomNumber(): List<Int> {
+fun generateRandomNumber(): List<Int> {  //랜덤 뽑기
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -47,7 +47,7 @@ fun generateRandomNumber(): List<Int> {
     return computer
 }
 
-fun getUserInput(): List<Int> {
+fun getUserInput(): List<Int> { //입력 받기
     println("숫자를 입력해주세요: ")
     val input = Console.readLine()
     val inputArray = input.toCharArray().map { it.toString().toIntOrNull() }
@@ -55,7 +55,7 @@ fun getUserInput(): List<Int> {
     return inputArray.requireValidInput()
 }
 
-fun compare(inputArray: List<Int>, computer: List<Int>): Pair<Int, Int> {
+fun compare(inputArray: List<Int>, computer: List<Int>): Pair<Int, Int> { //인덱스 비교
     var st = 0
     var ball = 0
 
@@ -70,7 +70,7 @@ fun compare(inputArray: List<Int>, computer: List<Int>): Pair<Int, Int> {
     return st to ball
 }
 
-fun List<Int?>.requireValidInput(): List<Int> {
+fun List<Int?>.requireValidInput(): List<Int> { // 숫자 예외 찾기
     val validInput = this.filterNotNull()
     if (validInput.size == 3 && validInput.all { it in 1..9 } && validInput.toSet().size == 3) {
         return validInput.mapNotNull { it }
@@ -78,7 +78,7 @@ fun List<Int?>.requireValidInput(): List<Int> {
     throw IllegalArgumentException("1부터 9 사이의 서로 다른 숫자 3개를 입력하세요.")
 }
 
-fun printScore(st: Int, ball: Int) {
+fun printScore(st: Int, ball: Int) { //점수 세기
     if (ball > 0 && st > 0) {
         print(ball.toString() + "볼 " + st.toString() + "스트라이크")
     } else if (ball > 0) {
