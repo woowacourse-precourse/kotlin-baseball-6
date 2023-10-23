@@ -6,6 +6,7 @@ class Player {
         println("숫자를 입력해주세요 : ")
         return readLine() ?: ""
     }
+
     //사용자가 입력한 값이 유효한지 검사
     fun isInputValid(userInput: String): Boolean {
         val inputLength = 3
