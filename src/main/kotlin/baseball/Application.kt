@@ -1,5 +1,10 @@
 package baseball
 
+import baseball.app.BaseballGame
+import baseball.controller.GameController
+import baseball.view.ScreenView
+
 fun main() {
-    TODO("프로그램 구현")
+    val game = BaseballGame()
+    game.run()
 }
