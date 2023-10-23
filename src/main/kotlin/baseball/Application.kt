@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     val computer = mutableListOf<Int>()
+    var result: Int = 1
+
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
@@ -13,9 +15,19 @@ fun main() {
         }
     }
 
-    print("숫자를 입력해주세요 : ")
-    val you = inputAndValidate()
-    printResult(check(computer, you)
+    while(result == 1){
+        print("숫자를 입력해주세요 : ")
+
+        var you = inputAndValidate()
+
+        if(printResult(check(computer, you))) {
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            result = readln().toInt()
+            if(result == 2) {
+                break
+            }
+        }
+    }
 }
 
 fun inputAndValidate(): List<Int> {
