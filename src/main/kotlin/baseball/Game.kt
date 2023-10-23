@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms
 private const val START_INCLUSIVE = 1    // 1부터
 private const val END_INCLUSIVE = 9    // 9까지
 const val COUNT = 3    // 3자리 수를 맞추는 게임
+private const val RESTART = "1"    // 재시작 상수
+private const val TERMINATION = "2"    // 종료 상수
 
 val answer = IntArray(COUNT) // 정답 저장할 배열
 
@@ -13,6 +15,7 @@ fun run() {
     try {
         setGame()
         playGame()
+        askRestart()
     } catch (e: IllegalArgumentException){
         throw IllegalArgumentException("올바르지 않은 입력값입니다.", e)
     }
@@ -44,5 +47,15 @@ private fun printResult(strike: Int, ball: Int) {
         strike > 0 && ball == 0 -> println("${strike}스트라이크")    // 스트라이크만 있는 경우
         ball > 0 && strike == 0 -> println("${ball}볼")    // 볼만 있는 경우
         else -> println("${ball}볼 ${strike}스트라이크")    // 볼과 스트라이크가 같이 있는 경우
+    }
+}
+
+private fun askRestart() {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val userInput = Console.readLine()
+    when(userInput) {
+        RESTART -> run()    // 사용자가 "1"을 입력했으면 게임 재시작
+        TERMINATION -> return    // 사용자가 "2"를 입력했으면 함수 종료 (게임 종료)
+        else -> throw IllegalArgumentException("올바르지 않은 입력값입니다.")
     }
 }
