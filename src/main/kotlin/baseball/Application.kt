@@ -58,7 +58,7 @@ fun inputThreeAnswerNumber(): List<Int> {
     }
 
     for (input in inputList) {
-        val number = input.code - '0'.code
+        val number = Character.getNumericValue(input)
         answerList.add(number)
     }
 
@@ -81,7 +81,7 @@ fun checkValidation(checkList: String): Boolean {
     }
 
     for (check in checkList) {
-        val number = check.code - '0'.code
+        val number = Character.getNumericValue(check)
 
         if (number !in 1..9) {
             isValid = false
