@@ -3,18 +3,11 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 class Player {
-    fun inputNumber(): List<Int> {
-        var inputNumber = Console.readLine().toInt()
-        val inputNumberList = mutableListOf<Int>()
-        var eachNumber: Int
-
-        while (inputNumber > 0) {
-            eachNumber = inputNumber % 10
-            inputNumberList.add(eachNumber)
-            inputNumber /= 10
+    fun inputNumber(): Int {
+        return try {
+            Console.readLine().toInt()
+        } catch (e: Exception) {
+            throw IllegalArgumentException(ERROR_INPUT_NUMBER_ONLY)
         }
-        inputNumberList.reverse()
-
-        return inputNumberList
     }
 }
