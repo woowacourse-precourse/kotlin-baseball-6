@@ -8,9 +8,13 @@ import baseball.util.GameValue.GAME_INIT_VALUE
 abstract class Game {
     protected var strike = GAME_INIT_VALUE
     private var ball = GAME_INIT_VALUE
-    protected lateinit var answer: List<Int>
+    private lateinit var answer: List<Int>
 
-    fun result(playerNumber: List<Int>) {
+    protected fun setGameResult() {
+        answer = Computer.makeNumber()
+    }
+
+    fun resultCheck(playerNumber: List<Int>) {
         valueInit()
         getBallCount(playerNumber)
         getStrikeCount(playerNumber)

@@ -10,20 +10,17 @@ import camp.nextstep.edu.missionutils.Console
 
 class GameManager : Game() {
 
-    private lateinit var playerNumber: List<Int>
-
     fun gameMaking() {
         println(GAME_START_MESSAGE)
         do {
-            answer = Computer.makeNumber()
+            setGameResult()
             gameStart()
         } while (restartQuestion())
     }
 
     private fun gameStart() {
         do {
-            playerNumber = Player.inputNumber()
-            result(playerNumber)
+            resultCheck(Player.inputNumber())
         } while (isFinish())
     }
 
