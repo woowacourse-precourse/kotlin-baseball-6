@@ -15,23 +15,27 @@ class BaseBallGame {
     }
 
     private fun runGameLoopUntilCorrectAnswer(targetNumbers: List<Int>) {
-        var isAnswerCorrect = false
+        var isAnswerCorrect: Boolean
         var playerNumbers: List<Int>
-
-        while (!isAnswerCorrect) {
+        do {
             print("숫자를 입력해주세요 : ")
             playerNumbers = Player().createPlayerBallNumbers()
-            isAnswerCorrect = targetNumbers == playerNumbers
-
-            printMatchedBallInfo(targetNumbers, playerNumbers)
-        }
+            isAnswerCorrect = checkAnswer(targetNumbers, playerNumbers)
+        } while (!isAnswerCorrect)
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
+    private fun checkAnswer(targetNumbers: List<Int>, playerNumbers: List<Int>): Boolean {
+        printMatchedBallInfo(targetNumbers, playerNumbers)
+        return targetNumbers == playerNumbers
+    }
+
     private fun printMatchedBallInfo(targetNumbers: List<Int>, playerNumbers: List<Int>) {
-        val strikeCount = playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) == targetNumbers.indexOf(it) }
-        val ballCount = playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) != targetNumbers.indexOf(it) }
+        val strikeCount =
+            playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) == targetNumbers.indexOf(it) }
+        val ballCount =
+            playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) != targetNumbers.indexOf(it) }
 
         val result = when {
             strikeCount == 0 && ballCount == 0 -> "낫싱"
