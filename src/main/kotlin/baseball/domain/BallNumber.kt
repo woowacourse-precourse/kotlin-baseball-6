@@ -16,4 +16,5 @@ data class BallNumber(val ballNumber: Int) {
             throw IllegalArgumentException("BallNumber는 1~9 사이의 숫자만 가능합니다.")
         }
     }
+
 }
