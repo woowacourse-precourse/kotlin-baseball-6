@@ -3,8 +3,6 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import values.*
-import java.lang.StringBuilder
-import kotlin.math.E
 
 
 fun main() {
@@ -12,10 +10,8 @@ fun main() {
     generateMission(computer)
     while (true) {
         print(INPUT_MESSAGE)
-        val input = Console.readLine()
-        inputCheck(input)
-        val res = scoreMission(computer = computer, user = input)
-        when (res) {
+        val input = inputCheck()
+        when (scoreMission(computer = computer, user = input)) {
             CONTINUE -> {
                 continue
             }
@@ -47,39 +43,40 @@ private fun generateMission(computer: MutableList<Int>) {
     println(GAME_START)
 }
 
-private fun inputCheck(input: String) {
+private fun inputCheck(): String {
+    val input = Console.readLine()
     if (input.length != INPUT_RULE || input.toSet().size != INPUT_RULE) {
         throw IllegalArgumentException(INPUT_EXCEPTION)
+    } else {
+        return input
     }
 }
 
 private fun scoreMission(computer: MutableList<Int>, user: String): Int {
-    val userInput = user.toCharArray().map { Character.getNumericValue(it) }
+    val userInput = user.map { it.toString().toInt() }
     var strike = 0
     var ball = 0
-    var nothing = 0
+
     for (userItem in userInput) {
         if (computer.contains(userItem)) ball++
     }
+
     for ((userItem, testItem) in computer.withIndex()) {
         if (userInput[userItem] == testItem) {
             strike++
             ball--
         }
     }
-    if (strike == 0 && ball == 0) nothing = 1
-    val sb = StringBuilder()
-    if (nothing == 1) {
-        sb.append(NOTHING)
-    } else {
-        if (ball != 0) {
-            sb.append(ball).append(BALL)
-        }
-        if (strike != 0) {
-            sb.append(strike).append(STRIKE)
-        }
-    }
-    println(sb)
+
+    val result = if (strike > 0 || ball > 0) {
+        val sb = StringBuilder()
+        if (ball > 0) sb.append(ball).append(BALL)
+        if (strike > 0) sb.append(strike).append(STRIKE)
+        sb.toString()
+    } else NOTHING
+
+    println(result)
+
     return if (strike == 3) {
         println(CORRECT)
         println(CORRECT_MESSAGE)
