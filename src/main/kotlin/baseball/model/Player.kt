@@ -1,6 +1,7 @@
 package baseball.model
 
 import baseball.util.Constants.TEXT_INPUT_NUMBER
+import baseball.util.Validation.validateDigit
 import camp.nextstep.edu.missionutils.Console
 
 object Player {
@@ -11,7 +12,7 @@ object Player {
         val input = Console.readLine()
 
         input.forEach {
-            number.add(Character.getNumericValue(it))
+            number.add(validateDigit(it))
         }
 
         return number
