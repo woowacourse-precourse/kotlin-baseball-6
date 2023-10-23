@@ -2,34 +2,35 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import values.*
 import java.lang.StringBuilder
+import kotlin.math.E
 
 
-const val INPUT_RULE = 3
 fun main() {
     val computer = mutableListOf<Int>()
     generateMission(computer)
     while (true) {
-        print("숫자를 입력해주세요 : ")
+        print(INPUT_MESSAGE)
         val input = Console.readLine()
         inputCheck(input)
         val res = scoreMission(computer = computer, user = input)
         when (res) {
-            0 -> {
+            CONTINUE -> {
                 continue
             }
 
-            1 -> {
+            RESTART -> {
                 computer.clear()
                 generateMission(computer)
             }
 
-            2 -> {
+            EXIT -> {
                 break
             }
 
             else -> {
-                throw IllegalArgumentException("잘못된 입력입니다.")
+                throw IllegalArgumentException(INPUT_EXCEPTION)
             }
         }
     }
@@ -43,13 +44,12 @@ private fun generateMission(computer: MutableList<Int>) {
             computer.add(randomNumber)
         }
     }
-    println("숫자 야구 게임을 시작합니다.")
+    println(GAME_START)
 }
 
 private fun inputCheck(input: String) {
-    when {
-        input.length != INPUT_RULE -> throw IllegalArgumentException("잘못된 입력입니다.")
-        input.toSet().size != INPUT_RULE -> throw IllegalArgumentException("잘못된 입력입니다.")
+    if (input.length != INPUT_RULE || input.toSet().size != INPUT_RULE) {
+        throw IllegalArgumentException(INPUT_EXCEPTION)
     }
 }
 
@@ -70,21 +70,21 @@ private fun scoreMission(computer: MutableList<Int>, user: String): Int {
     if (strike == 0 && ball == 0) nothing = 1
     val sb = StringBuilder()
     if (nothing == 1) {
-        sb.append("낫싱")
+        sb.append(NOTHING)
     } else {
         if (ball != 0) {
-            sb.append(ball).append("볼 ")
+            sb.append(ball).append(BALL)
         }
         if (strike != 0) {
-            sb.append(strike).append("스트라이크 ")
+            sb.append(strike).append(STRIKE)
         }
     }
     println(sb)
     return if (strike == 3) {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println(CORRECT)
+        println(CORRECT_MESSAGE)
         Console.readLine().toInt()
     } else {
-        0
+        CONTINUE
     }
 }
