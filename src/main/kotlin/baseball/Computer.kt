@@ -32,9 +32,6 @@ class Computer {
     }
 
     fun checkGameState(strike: Int): Boolean {
-        if (strike == 3) {
-            return false
-        }
-        return true
+        return strike == 3
     }
 }
