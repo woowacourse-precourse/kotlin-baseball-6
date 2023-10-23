@@ -48,19 +48,10 @@ object NumberBaseball {
     }
 
     private fun checkValidateInput(input: String) {
-        val tempNumList = arrayListOf<Int>()
-        input.forEach {
-            if (it !in '1'..'9') {
-                throw IllegalArgumentException("입력은 1에서 9 사이의 숫자여야 합니다.")
-            }
-            val digit = it.digitToInt()
-            if (tempNumList.contains(digit)) {
-                throw IllegalArgumentException("중복된 숫자($digit)가 입력되었습니다.")
-            }
-            tempNumList.add(digit)
-        }
         if (input.length != NUM_LENGTH) throw IllegalArgumentException()
-
+        input.forEach {
+            if (it !in '1'..'9') throw IllegalArgumentException()
+        }
     }
 
     private fun userInputToNumbers(input: String): ArrayList<Int> {
