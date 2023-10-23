@@ -18,6 +18,10 @@ fun isValidGuessNumber(input: String): Boolean {
     return input.toSet().size == 3 && input.all { isNumber(it) } && input.length == 3
 }
 
+fun isValidContinueNumber(input: String): Boolean {
+    return input.length == 1 && input[0] in '1'..'2'
+}
+
 fun isNumber(input: Char) = input in '0'..'9'
 
 fun getGuessResult(secretNumber: String, guessNumber: String): GuessResult {
@@ -60,10 +64,11 @@ fun printGuessResult(result: GuessResult) {
     }
 }
 
+
 fun main() {
     while(true){
+        val secretNumber = makeSecretNumber()
         while(true) {
-            val secretNumber = makeSecretNumber()
             println(secretNumber)
             val guessNumber = Console.readLine()
             if (!isValidGuessNumber(guessNumber)) {
@@ -72,12 +77,18 @@ fun main() {
             println(guessNumber)
             val guessResult = getGuessResult(secretNumber, guessNumber)
             printGuessResult(guessResult)
-            if(guessResult.strikeNumber == 3){
+            if (guessResult.strikeNumber == 3) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
             }
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val continueGame = readLine()
+        val continueNumber = Console.readLine()
+        if (!isValidContinueNumber(continueNumber)) {
+            throw IllegalArgumentException("Wrong continueNumber")
+        }
+        if (continueNumber[0] == '2') {
+            break
+        }
     }
 }
