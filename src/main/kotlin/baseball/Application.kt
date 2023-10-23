@@ -7,8 +7,8 @@ const val STRIKE_COUNT_TO_WIN = 3
 const val REPLAY = "1"
 const val EXIT = "2"
 
-const val INVALID_NUMBERS_INPUT_EXCEPTION = "입력값이 올바르지 않습니다. 서로 다른 숫자 3개를 입력해주세요."
-const val INVALID_REPLAY_INPUT_EXCEPTION = "입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요."
+const val INVALID_INPUT_NUMBERS_EXCEPTION = "입력값이 올바르지 않습니다. 서로 다른 숫자 3개를 입력해주세요."
+const val INVALID_INPUT_REPLAY_EXCEPTION = "입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요."
 
 
 fun main() {
@@ -51,7 +51,7 @@ fun validatePlayerInputNumbers(playerInputNumbers: List<Char>) {
     if (playerInputNumbers.size != 3 || playerInputNumbers.toSet().size != 3 || !playerInputNumbers.all { it.isDigit() } || playerInputNumbers.contains(
             '0'
         )) {
-        throw IllegalArgumentException(INVALID_NUMBERS_INPUT_EXCEPTION)
+        throw IllegalArgumentException(INVALID_INPUT_NUMBERS_EXCEPTION)
     }
 }
 
@@ -85,6 +85,6 @@ fun continueOrExit(playerInputForReplay: String): Boolean {
     return when (playerInputForReplay) {
         REPLAY -> true
         EXIT -> false
-        else -> throw IllegalArgumentException(INVALID_REPLAY_INPUT_EXCEPTION)
+        else -> throw IllegalArgumentException(INVALID_INPUT_REPLAY_EXCEPTION)
     }
 }
