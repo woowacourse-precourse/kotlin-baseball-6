@@ -7,6 +7,7 @@ object Constants {
 
     // EXCEPTION
     const val EXCEPTION_WRONG_FORMAT = "잘못된 입력 형식입니다."
+    const val EXCEPTION_WRONG_RANGE = "입력값이 잘못된 범위에 속합니다."
 
     // VALUE
     const val LENGTH_NUMBER = 3
