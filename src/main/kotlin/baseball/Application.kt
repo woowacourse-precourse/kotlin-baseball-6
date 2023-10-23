@@ -9,8 +9,62 @@ fun main() {
     val computer = mutableListOf<Int>()
     generateRandomNumber(computer)
 
-    val player = mutableListOf<Int>()
-    getPlayerNumber(player)
+    do {
+        val player = mutableListOf<Int>()
+        getPlayerNumber(player)
+
+        var strike = countStrike(computer, player)
+        var ball = countBall(computer, player)
+        printHint(ball, strike)
+    } while (strike < 3)
+}
+
+private fun printHint(ball: Int, strike: Int) {
+    when {
+        ball == 0 && strike == 0 -> {
+            println("낫싱")
+        }
+
+        ball == 0 && strike != 0 -> {
+            println("${strike}스트라이크")
+        }
+
+        ball != 0 && strike == 0 -> {
+            println("${ball}볼")
+        }
+
+        else -> {
+            println("${ball}볼 ${strike}스트라이크")
+        }
+    }
+}
+
+private fun countBall(
+    computer: MutableList<Int>,
+    player: MutableList<Int>
+): Int {
+    var ball = 0
+    for (computerElem in computer) {
+        if (player.contains(computerElem)) {
+            if (player.indexOf(computerElem) != computer.indexOf(computerElem)) {
+                ball++
+            }
+        }
+    }
+    return ball
+}
+
+private fun countStrike(
+    computer: MutableList<Int>,
+    player: MutableList<Int>
+): Int {
+    var strike = 0
+    for (index in 0 until 3) {
+        if (computer[index] == player[index]) {
+            strike++
+        }
+    }
+    return strike
 }
 
 private fun getPlayerNumber(player: MutableList<Int>) {
