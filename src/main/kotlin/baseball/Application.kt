@@ -33,14 +33,14 @@ fun userInput(): List<Int> {
     if(userNumber.size != 3) {
         throw IllegalArgumentException("3자리 수를 입력해주세요")
     }
-    if(userNumber.) {
-        throw IllegalArgumentException("중복 되지 않는 숫자를 입력해주세요")
-    }
+    //if(userNumber.) {
+    //    throw IllegalArgumentException("중복 되지 않는 숫자를 입력해주세요")
+    //}
 
     return userNumber
 }
 
-fun game(computer: List<Int>, userNumber: List<Int>): MutableList<Int>{
+fun game(computer: List<Int>, userNumber: List<Int>): List<Int>{
     var ballCount: Int = 0
     var strikeCount: Int = 0
 
