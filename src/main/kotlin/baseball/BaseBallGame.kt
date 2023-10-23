@@ -10,12 +10,12 @@ class BaseBallGame {
     fun playGame() {
         println("숫자 야구 게임을 시작합니다.")
         computerNumber = computer.createRandomNumber()
-        println(computerNumber)
         while (result.strike != 3) {
             userInput = user.getNumberInput()
             result = judgeResult()
             println(result.toString())
         }
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
     private fun judgeResult(): Result {
