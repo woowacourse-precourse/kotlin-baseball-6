@@ -30,22 +30,17 @@ class BaseBallGame {
     }
 
     private fun printMatchedBallInfo(targetNumbers: List<Int>, playerNumbers: List<Int>) {
-        val strikeCount = getStrikeCount(targetNumbers, playerNumbers)
-        val ballCount = getBallCount(targetNumbers, playerNumbers)
-        when {
-            strikeCount == 0 && ballCount == 0 -> println("낫싱")
-            ballCount == 0 -> println("${strikeCount}스트라이크")
-            strikeCount == 0 -> println("${ballCount}볼")
-            else -> println("${ballCount}볼 ${strikeCount}스트라이크")
+        val strikeCount = playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) == targetNumbers.indexOf(it) }
+        val ballCount = playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) != targetNumbers.indexOf(it) }
+
+        val result = when {
+            strikeCount == 0 && ballCount == 0 -> "낫싱"
+            ballCount == 0 -> "$strikeCount 스트라이크"
+            strikeCount == 0 -> "$ballCount 볼"
+            else -> "$ballCount 볼 $strikeCount 스트라이크"
         }
-    }
 
-    private fun getStrikeCount(targetNumbers: List<Int>, playerNumbers: List<Int>): Int {
-        return playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) == targetNumbers.indexOf(it) }
-    }
-
-    private fun getBallCount(targetNumbers: List<Int>, playerNumbers: List<Int>): Int {
-        return playerNumbers.count { it in targetNumbers && playerNumbers.indexOf(it) != targetNumbers.indexOf(it) }
+        println(result)
     }
 
     private fun checkHasGameEnded() {
