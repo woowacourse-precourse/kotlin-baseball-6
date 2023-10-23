@@ -9,9 +9,12 @@ class Player {
         return readPlayerInputNumbers().map { it.toString().toInt() }
     }
 
-    fun getRestartOrEndDecisionResult(): String {
-        return if (readPlayerRestartOrEndDecisionInput() == "1") RESTART
-        else END
+    fun getGameEndDecision(): String {
+        return when (readPlayerGameEndDecisionInput()) {
+            "1" -> RESTART
+            "2" -> END
+            else -> ""
+        }
     }
 
     // TODO 예외처리
@@ -20,7 +23,7 @@ class Player {
     }
 
     // TODO 예외처리
-    private fun readPlayerRestartOrEndDecisionInput(): String {
+    private fun readPlayerGameEndDecisionInput(): String {
         return readln()
     }
 

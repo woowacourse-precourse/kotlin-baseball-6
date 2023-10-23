@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.Constant.Companion.END
 import baseball.Constant.Companion.RESTART
 
 class BaseBallGame {
@@ -49,8 +50,10 @@ class BaseBallGame {
 
     private fun checkHasGameEnded() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val userInput = Player().getRestartOrEndDecisionResult()
-        if (userInput == RESTART) startGame()
+        when (Player().getGameEndDecision()) {
+            RESTART -> startGame()
+            END -> return
+        }
     }
 
 }
