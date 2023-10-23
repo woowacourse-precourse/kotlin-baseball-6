@@ -17,11 +17,6 @@ class BaseballGameView(private val validate: BaseballGameValidate) {
         return user
     }
 
-    fun gameOver() {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    }
-
     fun printHint(strike: Int, ball: Int) {
         val hint = buildHint(strike, ball)
         println(hint)
@@ -34,6 +29,11 @@ class BaseballGameView(private val validate: BaseballGameValidate) {
             strike != 0 -> "${strike}스트라이크"
             else -> "낫싱"
         }
+    }
+
+    fun gameOver() {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
 
     fun chooseRestartAndExit(): Boolean {
