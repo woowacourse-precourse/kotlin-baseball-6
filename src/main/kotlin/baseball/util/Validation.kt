@@ -4,9 +4,12 @@ import baseball.util.Constants.EXCEPTION_DUPLICATE_NUMBER
 import baseball.util.Constants.EXCEPTION_WRONG_FORMAT
 import baseball.util.Constants.EXCEPTION_WRONG_LENGTH
 import baseball.util.Constants.EXCEPTION_WRONG_RANGE
+import baseball.util.Constants.EXCEPTION_WRONG_VALUE
 import baseball.util.Constants.LENGTH_NUMBER
 import baseball.util.Constants.MAX_DIGIT
 import baseball.util.Constants.MIN_DIGIT
+import baseball.util.Constants.RESTART
+import baseball.util.Constants.END
 
 object Validation {
 
@@ -31,6 +34,12 @@ object Validation {
     fun validateDuplicate(number: MutableList<Int>) {
         if (number.toSet().size != LENGTH_NUMBER) {
             throw IllegalArgumentException(EXCEPTION_DUPLICATE_NUMBER)
+        }
+    }
+
+    fun validateRestartFlag(flag: String) {
+        if (flag != RESTART && flag != END) {
+            throw IllegalArgumentException(EXCEPTION_WRONG_VALUE)
         }
     }
 }
