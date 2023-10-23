@@ -1,6 +1,8 @@
 package baseball.data.repository
 
 import baseball.ui.BaseBallGameRepository
+import baseball.ui.model.GameModel
+import baseball.util.GameUtils
 
 /**
  * BaseBallGameRepositoryImpl
@@ -10,16 +12,17 @@ class BaseBallGameRepositoryImpl : BaseBallGameRepository {
     private lateinit var computerList: List<Int>
     private lateinit var userList: List<Int>
 
-    override fun setComputerList(list: List<Int>) {
-        computerList = list
+    override fun setComputerList() {
+        computerList = GameUtils.getRandomList()
     }
 
-    override fun setUserList(list: List<Int>) {
-        userList = list
+    override fun setUserList() {
+        userList = GameUtils.inputNum()
     }
 
-    override fun getComputerList(): List<Int> = computerList
-
-    override fun getUserList(): List<Int> = userList
+    override fun compareList(): GameModel = GameUtils.compareResult(
+        computerList = computerList,
+        userList = userList
+    )
 
 }

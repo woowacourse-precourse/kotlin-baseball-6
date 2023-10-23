@@ -6,7 +6,6 @@ import baseball.data.repository.BaseBallGameRepositoryImpl
  * 숫자 야구 게임의 플로우를 제어하는 클래스
  */
 class BaseBallGame {
-
     init {
         var reStartGame = true
         val repository: BaseBallGameRepository = BaseBallGameRepositoryImpl()

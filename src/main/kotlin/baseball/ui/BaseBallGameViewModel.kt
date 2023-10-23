@@ -1,5 +1,6 @@
 package baseball.ui
 
+import baseball.ui.model.GameModel
 import baseball.util.GameUtils
 
 /**
@@ -15,28 +16,21 @@ class BaseBallGameViewModel(private val repository: BaseBallGameRepository) {
      * setComputerList()
      * 컴퓨터가 선택한 숫자 리스트를 랜덤하게 생성하여 Repository에 설정한다.
      */
-    fun setComputerList() {
-        repository.setComputerList(GameUtils.getRandomList())
-    }
+    fun setComputerList() = repository.setComputerList()
 
     /**
      * setUserList()
      * 사용자로부터 입력한 숫자를 받아 Repository에 설정한다.
      */
-    fun setUserList() {
-        repository.setUserList(GameUtils.inputNum())
-
-    }
+    fun setUserList() = repository.setUserList()
 
     /**
      * compareList()
      * 사용자가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교하여 결과를 반환한다.
      * @return 게임 결과를 나타내는 GameModel 객체
      */
-    fun compareList() = GameUtils.compareResult(
-        userList = repository.getUserList(),
-        computerList = repository.getComputerList()
-    )
+    fun compareList(): GameModel = repository.compareList()
+
 
     /**
      * exitOrRestartGame()
@@ -44,5 +38,4 @@ class BaseBallGameViewModel(private val repository: BaseBallGameRepository) {
      * @return 게임을 재시작하면 true, 게임을 종료하면 false를 반환
      */
     fun exitOrRestartGame(): Boolean = GameUtils.restartGame()
-
 }
