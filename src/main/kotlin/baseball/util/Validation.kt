@@ -1,5 +1,6 @@
 package baseball.util
 
+import baseball.util.Constants.EXCEPTION_DUPLICATE_NUMBER
 import baseball.util.Constants.EXCEPTION_WRONG_FORMAT
 import baseball.util.Constants.EXCEPTION_WRONG_LENGTH
 import baseball.util.Constants.EXCEPTION_WRONG_RANGE
@@ -24,6 +25,12 @@ object Validation {
     fun validateLength(number: MutableList<Int>) {
         if (number.size != LENGTH_NUMBER) {
             throw IllegalArgumentException(EXCEPTION_WRONG_LENGTH)
+        }
+    }
+
+    fun validateDuplicate(number: MutableList<Int>) {
+        if (number.toSet().size != LENGTH_NUMBER) {
+            throw IllegalArgumentException(EXCEPTION_DUPLICATE_NUMBER)
         }
     }
 }
