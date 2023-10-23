@@ -2,7 +2,6 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import java.util.Stack
 
 
 class NumberBaseball {
@@ -11,9 +10,6 @@ class NumberBaseball {
         fun inputException(userNumber: MutableList<Char>, inputNumber: String) {
             if (inputNumber.length != 3) {
                 throw IllegalArgumentException("입력된 숫자가 3자리가 아닙니다.")
-            }
-            if (!inputNumber.matches(Regex("\\d+"))||inputNumber.matches(Regex(".*0.*"))){
-                throw IllegalArgumentException("숫자가 아닌 문자 또는 0이 포함되어있습니다.")
             }
             if (inputNumber.toSet().size != inputNumber.length) {
                 throw IllegalArgumentException("중복된 숫자가 존재합니다.")
@@ -67,7 +63,7 @@ class NumberBaseball {
                 println("${scoreResult[0]}스트라이크")
                 endGame()
             } else {
-                println("${scoreResult[0]}볼 ${scoreResult[1]}스트라이크")
+                println("${scoreResult[1]}볼 ${scoreResult[0]}스트라이크")
             }
         }
 
