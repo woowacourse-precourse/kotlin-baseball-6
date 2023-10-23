@@ -20,6 +20,23 @@ fun playGame() {
     }
 }
 
+fun getUserAnswerInput(): String {
+    print("숫자를 입력해주세요 : ")
+    val rawInput = Console.readLine()
+    val digits = mutableSetOf<Int>()
+    try {
+        rawInput.forEach { char ->
+            digits.add(char.digitToInt())
+        }
+    } catch (e: Exception) {
+        wrongInput()
+    }
+
+    if (digits.size != 3 || digits.contains(0)) {
+        wrongInput()
+    }
+    return rawInput
+}
 
 fun isRestart(): Boolean {
     return false
