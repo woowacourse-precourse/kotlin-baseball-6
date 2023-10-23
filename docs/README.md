@@ -1,8 +1,9 @@
 # 기능 구현 목록
 
 ## 구현 사항
+
 	- [x] 1. 게임 시작 문구 출력
-    - [ ] 2. 정답 생성
+    - [x] 2. 정답 생성
     - [ ] 3. 입력 받기
     - [ ] 4. 게임 진행 중 사용자 입력 처리
     - [ ] 5. 게임 종료 후 재시작 입력 처리
@@ -11,8 +12,8 @@
 
 **정답 생성**
 
-	- [ ] camp.nextstep.edu.missionutils 에서 제공하는 Randoms.pickNumberInRange() 활용하여 random 값 추출.
-	- [ ] 서로 다른 임의의 1~9 범위의 수 3 개를 랜덤으로 생성한다.
+	- [x] camp.nextstep.edu.missionutils 에서 제공하는 Randoms.pickNumberInRange() 활용하여 random 값 추출.
+	- [x] 서로 다른 임의의 1~9 범위의 수 3 개를 랜덤으로 생성한다.
 
 **입력 받기**
 
