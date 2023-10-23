@@ -19,7 +19,6 @@ object NumberBaseball {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!comNumList.contains(randomNumber)) comNumList.add(randomNumber)
         }
-        println(comNumList)
         return this
     }
 
@@ -58,7 +57,6 @@ object NumberBaseball {
             }
             if (it != ' ' && it != '\t') throw IllegalArgumentException() // 공백과 탭 문자는 무시한다.
         }
-
         return tempList
     }
 
@@ -104,7 +102,6 @@ object NumberBaseball {
             2 -> strCall += "2스트라이크"
             3 -> strCall += "3스트라이크"
         }
-
         println(strCall)
     }
 
@@ -117,5 +114,4 @@ object NumberBaseball {
         if (temp == "1") setDefault()
         if (temp == "2") isPlaying = false
     }
-
 }
