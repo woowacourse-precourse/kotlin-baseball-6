@@ -57,6 +57,10 @@ fun main() {
             // 입력한 문자열이 정수 변환이 되는지와 숫자로만 이루어져 있는지 확인
             if (userInput.length == 3 && userInput.toIntOrNull() != null)
                 Input = checkNums(computerInput, userInput.map { it.toString().toInt() })
+            else {
+                throw IllegalArgumentException()
+                break;
+            }
         }
         // 프로그램 종료 부분
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
