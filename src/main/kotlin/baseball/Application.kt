@@ -3,9 +3,16 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    //TODO("프로그램 구현")
-    val computer = makeRandomNumber()
-    print(computer) //Debug
+    val computer: MutableList<Int> = makeRandomNumber()
+    val restart: Boolean = false
+
+    println(computer) //Debug
+    println("숫자 야구 게임을 시작합니다.")
+
+    while (restart == false){
+        print("숫자를 입력해주세요 : ")
+        var userNumver = checkUserNumber()
+    }
 }
 
 fun makeRandomNumber() : MutableList<Int> {
@@ -17,4 +24,15 @@ fun makeRandomNumber() : MutableList<Int> {
         }
     }
     return computer
+}
+
+fun checkUserNumber() : Int {
+    var userString = readLine()
+    var userNumber = userString?.toInt()
+
+    if (userNumber in 100..999 && userNumber != null){
+        return userNumber
+    }else{
+        throw IllegalArgumentException()
+    }
 }
