@@ -20,7 +20,7 @@ playRound() : 게임 진행
 playAgain() : 게임 재시작 또는 종료
 
 
-Player:
+Player
 
 getUserInput() : 사용자에게 숫자를 입력받기
 
