@@ -1,5 +1,8 @@
 package baseball
 
-fun main() {
-    TODO("프로그램 구현")
+import baseball.Controller.GameController
+
+fun main()
+{
+    GameController().gameStarter()
 }
