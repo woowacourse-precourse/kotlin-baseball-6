@@ -38,7 +38,7 @@ object Computer {
 
     private fun checkGameEnd(userInput: List<Int>): Boolean {
         if (userInput.size == 3) {
-            val ballCounts = checkUserInput(userInput)
+            val ballCounts = BallCountChecker.checkUserInput(userInput, baseballNumberList)
             println(ballCounts)
             executeIsStrikeOut(ballCounts.isStrikeOut())?.let {_executeIsStrikeOut ->
                 return _executeIsStrikeOut
@@ -62,24 +62,6 @@ object Computer {
         }
         return null
     }
-
-    private fun checkUserInput(userInput: List<Int>): BallCount {
-        var strikeCount = 0
-        var ballCount = 0
-        userInput.forEachIndexed { _index, _ball ->
-            if (_ball == baseballNumberList[_index]) {
-                strikeCount++
-            } else {
-                ballCount += checkBallCount(_ball)
-            }
-        }
-        return BallCount(strikeCount, ballCount)
-    }
-
-    private fun checkBallCount(userBall: Int): Int =
-        baseballNumberList.count { _computerBall ->
-            _computerBall == userBall
-        }
 
     private fun getUserInput(): List<Int> {
         val userInput = Console.readLine()!!.map {
