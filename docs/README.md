@@ -110,9 +110,9 @@ BUILD SUCCESSFUL in 0s
 - `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-  - 
-```
-## ✏️<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Kotlin</title><path d="M24 24H0V0h24L12 12Z"/></svg> 구현된 기능 목록 
+  -
+---
+## ✏️ 구현된 기능 목록 
 - 입력될 숫자를 저장할 리스트 생성하기
 - 컴퓨터 숫자 3개 자동 생성하기
 - 사용자 숫자 3개 입력하기
