@@ -3,76 +3,72 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-fun main() {
-    fun createRandomNum(): String {
-        val computer: MutableList<Int> = mutableListOf()
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
+
+fun createRandomNum(): String {
+    val computer: MutableList<Int> = mutableListOf()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
         }
-        return computer.joinToString("")
     }
+    return computer.joinToString("")
+}
 
-    println("숫자 야구 게임을 시작합니다.")
+fun enterNum(): String {
+    val InputNum = Console.readLine()
+    return InputNum
+}
+fun printResult(result : Pair<Int, Int>){
+    val strike = result.first
+    val ball = result.second
 
-    fun enterNum(): String {
-        val InputNum = Console.readLine()
-        return InputNum
+    if(strike > 0 && ball == 0){
+        println("${strike}스트라이크")
+        return
     }
-
-    val comNum = createRandomNum()
-
-    fun printResult(result : Pair<Int, Int>){
-        val strike = result.first
-        val ball = result.second
-
-        if(strike > 0 && ball == 0){
-            println("${strike}스트라이크")
-            return
-        }
-        if(strike == 0 && ball > 0){
-            println("${ball}볼")
-            return
-        }
-        if(strike == 0 && ball == 0){
-            println("낫싱")
-            return
-        }
-
-        println("${ball}볼 ${strike}스트라이크")
+    if(strike == 0 && ball > 0){
+        println("${ball}볼")
+        return
+    }
+    if(strike == 0 && ball == 0){
+        println("낫싱")
         return
     }
 
-    fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
-        var comNum = "123"
-        for (index in playerNum.indices) {
-            if (playerNum[index] == comNum[index]) {
-                strike++
-                continue
-            }
-            if (comNum.contains(playerNum[index])) {
-                ball++
-            }
+    println("${ball}볼 ${strike}스트라이크")
+    return
+}
+fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
+    var strike = 0
+    var ball = 0
+    var comNum = "123"
+    for (index in playerNum.indices) {
+        if (playerNum[index] == comNum[index]) {
+            strike++
+            continue
         }
-        return Pair(strike, ball)
+        if (comNum.contains(playerNum[index])) {
+            ball++
+        }
     }
+    return Pair(strike, ball)
+}
+fun main() {
+    println("숫자 야구 게임을 시작합니다.")
+    val comNum = createRandomNum()
+//    var result = compareNum(comNum, "0")
+//    while (result.first != 3 ) {
+//        print("숫자를 입력해주세요 : ")
+//        result = compareNum(comNum, enterNum())
+//        printResult(result)
+//    }
 
-   // var result = compareNum(comNum, InputNum)
-    //println("stike : ${result.first} ball : ${result.second}")
-    var result = compareNum(comNum, "0")
-    while (result.first != 3 ) {
-
+    do {
         print("숫자를 입력해주세요 : ")
-        result = compareNum(comNum, enterNum())
+        var result = compareNum(comNum, enterNum())
         printResult(result)
-        //println("stike : ${result.first} ball : ${result.second}")
-
-
-    }
+    }while (result.first != 3 )
 
     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
