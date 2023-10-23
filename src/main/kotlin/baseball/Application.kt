@@ -5,27 +5,27 @@ import camp.nextstep.edu.missionutils.Console
 
 // 스트라이크와 볼 판정 함수
 fun checkNums(comNums: List<Int>, userNums: List<Int>): Boolean {
-    var sVal = 0; // 스트라이크 개수 초기화
-    var bVal = 0; // 볼 개수 초기화
+    var strike = 0; // 스트라이크 개수 초기화
+    var ball = 0; // 볼 개수 초기화
     // 사용자 숫자와 컴퓨터가 제시한 숫자를 인덱스 별로 비교
     for (i in 0..2) {
         if (userNums[i] == comNums[i]) { // 숫자와 인덱스 모두 같은 경우
-            sVal++ // 스트라이크 개수 + 1
+            strike++ // 스트라이크 개수 + 1
         } else if (comNums.contains(userNums[i])) { // 숫자는 같지만 인덱스 다른 경우
-            bVal++ // 볼 개수 + 1
+            ball++ // 볼 개수 + 1
         }
     }
     // 볼과 스트라이크 되는 경우
-    if (bVal > 0 && sVal > 0)  // 같은 숫자가 존재하고 같은 인덱스에 있는 경우
-        println("$bVal 볼 $sVal 스트라이크")
-    else if (sVal > 0) // 같은 숫자가 같은 인덱스에 있는 경우
-        println("$sVal 스트라이크")
-    else if (bVal > 0) // 인덱스는 다르지만 같은 숫자만 있는 경우
-        println("$bVal 볼")
+    if (strike > 0 && ball > 0)  // 같은 숫자가 존재하고 같은 인덱스에 있는 경우
+        println("$ball 볼 $strike 스트라이크")
+    else if (strike > 0) // 같은 숫자가 같은 인덱스에 있는 경우
+        println("$strike 스트라이크")
+    else if (ball > 0) // 인덱스는 다르지만 같은 숫자만 있는 경우
+        println("$ball 볼")
     else // 모두 다른 숫자인 경우
         println("낫싱")
     // 스트라이크 3개면 게임 종료
-    if (sVal == 3) {
+    if (strike == 3) {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         return true
     }
@@ -34,20 +34,19 @@ fun checkNums(comNums: List<Int>, userNums: List<Int>): Boolean {
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    var start = true // 게임 시작
+    var playBall = true // 게임 시작
 
     var computerInput = mutableListOf<Int>() // 컴퓨터 입력 변수
     val nums = mutableListOf<Int>() // 무작위 숫자 저장할 변수 선언
     while (nums.size < 3) {
         // 숫자 무작위로 1부터 9까지 선택
         val randomNum = Randoms.pickNumberInRange(0, 9) + 1
-        if (!nums.contains(randomNum)) { // 숫자가 nums 리스트에 없다면
+        if (!nums.contains(randomNum))  // 숫자가 nums 리스트에 없다면
             nums.add(randomNum) // 해당 숫자를 nums 리스트에 추가 -> 중복 X
-        }
     }
     computerInput = nums; // 저장된 nums 리스트를 computerInput 리스트에 저장
 
-    while (start) {
+    while (playBall) {
         // 사용자 입력 부분
         var Input = false // 입력이 안된 경우, 거짓(null)
         while (!Input) { // Input이 참이면 계속 반복
@@ -62,9 +61,8 @@ fun main() {
         // 프로그램 종료 부분
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         when (Console.readLine()) {
-            "1" -> start = true // 1 입력하면 게임 새로 시작
-            "2" -> start = false // 2 입력하면 게임 종료
+            "1" -> playBall = true // 1 입력하면 게임 새로 시작
+            "2" -> playBall = false // 2 입력하면 게임 종료
         }
-
     }
 }
