@@ -1,5 +1,6 @@
 package baseball.game
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 class BaseballGame(val digits: Int = 3) {
@@ -7,6 +8,8 @@ class BaseballGame(val digits: Int = 3) {
     fun start() {
         println("${name}을 시작합니다.")
         val answer: List<Int> = generateRandomAnswer(digits)
+        print("숫자를 입력해주세요 : ")
+        val userAnswer: String = Console.readLine()
     }
 
     private fun generateRandomAnswer(digits: Int): List<Int> {

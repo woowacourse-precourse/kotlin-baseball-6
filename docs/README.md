@@ -4,7 +4,7 @@
 
 	- [x] 1. 게임 시작 문구 출력
     - [x] 2. 정답 생성
-    - [ ] 3. 입력 받기
+    - [x] 3. 입력 받기
     - [ ] 4. 게임 진행 중 사용자 입력 처리
     - [ ] 5. 게임 종료 후 재시작 입력 처리
 
@@ -17,7 +17,7 @@
 
 **입력 받기**
 
-    - [ ] camp.nextstep.edu.missionutils 에서 제공하는 Console.readLine() 을 활용하여 사용자 입력 받기
+    - [x] camp.nextstep.edu.missionutils 에서 제공하는 Console.readLine() 을 활용하여 사용자 입력 받기
 
 **게임 진행 중 사용자 입력 처리**
 
