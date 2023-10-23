@@ -44,12 +44,15 @@ class Baseball {
     }
 
     fun printGameResult(strike: Int, ball: Int) {
-        when {
-            strike == INPUT_SIZE -> println("${strike}스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            strike == 0 && ball == 0 -> println("낫싱")
-            strike > 0 && ball == 0 -> println("${strike}스트라이크")
-            strike == 0 && ball > 0 -> println("${ball}볼")
-            else -> println("${ball}볼 ${strike}스트라이크")
-        }
+        println(
+            when {
+                strike == INPUT_SIZE -> "${strike}스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+                strike == 0 && ball == 0 -> "낫싱"
+                strike > 0 && ball == 0 -> "${strike}스트라이크"
+                strike == 0 && ball > 0 -> "${ball}볼"
+                else -> "${ball}볼 ${strike}스트라이크"
+            }
+        )
+
     }
 }
