@@ -1,4 +1,4 @@
-package baseball
+package baseball.utils
 
 object Comment {
     const val STARTING_COMMENT = "숫자 야구 게임을 시작합니다."
@@ -6,6 +6,7 @@ object Comment {
     const val GAME_STOP_COMMENT = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
     const val ENTER_NUMBER_COMMENT = "숫자를 입력해주세요 : "
     const val SPACE = " "
+    const val BR = "\n"
 }
 
 object BaseBallComment {
@@ -22,4 +23,10 @@ object UserChoice {
 
 object Number {
     const val ZERO = 0
+
+    const val ONE = 1
+    const val THREE = 3
+    const val NINE = 9
+
+    const val MAX_NUMBER = 3
 }
