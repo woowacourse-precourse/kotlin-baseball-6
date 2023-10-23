@@ -32,14 +32,10 @@ fun main() {
 
 private fun getRestartOrNot(): Int {
     val input = readlnOrNull()
-    if (input.isNullOrBlank()) {
-        throw IllegalArgumentException()
-    }
-    try {
-        return input.toInt()
-    } catch (e: NumberFormatException) {
-        throw IllegalArgumentException()
-    }
+    val throwIAE = ThrowIAE()
+    throwIAE.checkNullOrBlank(input)
+
+    return throwIAE.checkToInt(input!!)
 }
 
 private fun printHint(ball: Int, strike: Int) {
@@ -93,26 +89,15 @@ private fun countStrike(
 private fun getPlayerNumber(player: MutableList<Int>) {
     print("숫자를 입력해주세요 : ")
     val input = readlnOrNull()
-    if (input.isNullOrBlank()) {
-        throw IllegalArgumentException()
-    }
-    if (input.length != 3) {
-        throw IllegalArgumentException()
-    }
-    var intInput = try {
-        input.toInt()
-    } catch (e: NumberFormatException) {
-        throw IllegalArgumentException()
-    }
+    val throwIAE = ThrowIAE()
+    throwIAE.checkNullOrBlank(input)
+    throwIAE.checkLength(input!!, 3)
+    var intInput = throwIAE.checkToInt(input)
 
     while (player.size < 3) {
         val currentNum = intInput % 10
-        if (currentNum == 0) {
-            throw IllegalArgumentException()
-        }
-        if (player.contains(currentNum)) {
-            throw IllegalArgumentException()
-        }
+        throwIAE.checkNumZero(currentNum)
+        throwIAE.checkElemDuplication(player, currentNum)
         player.add(currentNum)
         intInput /= 10
     }
