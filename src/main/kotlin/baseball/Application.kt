@@ -73,12 +73,12 @@ fun main() {
     while(true){
         val secretNumber = makeSecretNumber()
         while(true) {
-            println(secretNumber)
             val guessNumber = Console.readLine()
             if (!isValidGuessNumber(guessNumber)) {
                 throw IllegalArgumentException("Wrong guessNumber $guessNumber")
             }
             val guessResult = getGuessResult(secretNumber, guessNumber)
+            printGuessResult(guessResult)
             if (guessResult.strikeNumber == 3) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
