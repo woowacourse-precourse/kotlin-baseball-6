@@ -3,6 +3,10 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+const val STRIKE_COUNT_TO_WIN = 3
+const val REPLAY = "1"
+const val EXIT = "2"
+
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     do {
@@ -12,13 +16,12 @@ fun main() {
 
 fun playGame() {
     val computerNumbers = generateComputerNumbers()
-//    println(computerNumbers)
     do {
         val playerNumbers = getValidPlayerNumbers()
         val strikeCount = calculateStrikeCount(computerNumbers, playerNumbers)
         val ballCount = calculateBallCount(computerNumbers, playerNumbers)
         printResult(strikeCount, ballCount)
-    } while (strikeCount != 3)
+    } while (strikeCount != STRIKE_COUNT_TO_WIN)
 }
 
 fun generateComputerNumbers(): List<Int> {
@@ -56,7 +59,7 @@ fun calculateBallCount(computerNumbers: List<Int>, playerNumbers: List<Int>) =
 
 fun printResult(strikeCount: Int, ballCount: Int) {
     when {
-        strikeCount == 3 -> println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        strikeCount == STRIKE_COUNT_TO_WIN -> println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         ballCount > 0 && strikeCount > 0 -> println("${ballCount}볼 ${strikeCount}스트라이크")
         ballCount > 0 -> println("${ballCount}볼")
         strikeCount > 0 -> println("${strikeCount}스트라이크")
@@ -76,8 +79,8 @@ fun getPlayerInputForReplay(): String {
 
 fun continueOrExit(playerInputForReplay: String): Boolean {
     return when (playerInputForReplay) {
-        "1" -> true
-        "2" -> false
+        REPLAY -> true
+        EXIT -> false
         else -> throw IllegalArgumentException("입력값이 올바르지 않습니다. 1 또는 2를 입력해주세요.")
     }
 }
