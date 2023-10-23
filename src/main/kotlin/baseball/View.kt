@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.model.Result
+
 class View {
 
     fun printStartMessage() = println("숫자 야구 게임을 시작합니다.")
@@ -11,11 +13,25 @@ class View {
         return input.map { it.toString().toInt() }
     }
 
+    fun printResult(result: Result) {
+        var output = ""
+        if (result.strike > 0) {
+            output += "${result.strike}스트라이크 "
+        }
+        if (result.ball > 0) {
+            output += "${result.ball}볼"
+        }
+        if (result.strike == 0 && result.ball == 0) {
+            output = "낫싱"
+        }
+        println(output)
+    }
+
     fun printCorrectMessage() = println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 
     fun questPlayingGame(): Boolean {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        return when(readln()) {
+        return when (readln()) {
             "1" -> true
             "2" -> false
             else -> throw IllegalArgumentException()

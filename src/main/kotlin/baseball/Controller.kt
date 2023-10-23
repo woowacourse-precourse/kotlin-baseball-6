@@ -22,10 +22,12 @@ class Controller(private val view: View) {
         val answer = numberPicker.pickRandomNumber()
         while (true) {
             val userNumber = UserNumber(view.inputUserNumber())
-            val isCorrect: Boolean = referee.judge(userNumber, answer)
-            if (isCorrect) {
+            val judgeResult = referee.judge(userNumber, answer)
+            if (judgeResult.strike == 3) {
                 view.printCorrectMessage()
                 break
+            } else {
+                view.printResult(judgeResult)
             }
         }
     }
