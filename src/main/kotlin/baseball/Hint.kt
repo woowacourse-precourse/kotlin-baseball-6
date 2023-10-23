@@ -2,24 +2,13 @@ package baseball
 
 object Hint {
     fun compareNumber(computer: List<Int>, player: List<Int>) {
-        isStrike(computer, player)
-        isBall(computer, player)
-    }
-
-    private fun isStrike(computer: List<Int>, player: List<Int>) {
-        for (i in 0 until 3) {
-            if (computer[i] == player[i]) {
+        for (index in 0 until 3) {
+            // 스트라이크 판별
+            if (computer[index] == player[index]) {
                 GameCount.plusStrikeCount()
-            }
-        }
-    }
-
-    private fun isBall(computer: List<Int>, player: List<Int>) {
-        for (i in 0 until 3) {
-            for (j in 0 until 3) {
-                if (i != j && computer[i] == player[j]) {
-                    GameCount.plusBallCount()
-                }
+                // 볼 판별
+            } else if (player.contains(computer[index])) {
+                GameCount.plusBallCount()
             }
         }
     }
