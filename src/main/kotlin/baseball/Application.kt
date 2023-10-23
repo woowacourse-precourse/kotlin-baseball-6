@@ -12,7 +12,7 @@ fun main() {
     do {
         val computer = generateRandomNumberList()
         startGame(computer)
-    } while (isRestart())
+    } while (isGameRestart())
     return
 }
 
@@ -23,7 +23,7 @@ private fun startGame(computer: List<Int>) {
     } while (computer != user)
 }
 
-private fun isRestart(): Boolean {
+private fun isGameRestart(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     return when (readLine()) {
         "1" -> true
