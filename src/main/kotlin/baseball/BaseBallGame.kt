@@ -39,9 +39,9 @@ class BaseBallGame {
 
         val result = when {
             strikeCount == 0 && ballCount == 0 -> "낫싱"
-            ballCount == 0 -> "$strikeCount 스트라이크"
-            strikeCount == 0 -> "$ballCount 볼"
-            else -> "$ballCount 볼 $strikeCount 스트라이크"
+            ballCount == 0 -> "${strikeCount}스트라이크"
+            strikeCount == 0 -> "${ballCount}볼"
+            else -> "${ballCount}볼 ${strikeCount}스트라이크"
         }
 
         println(result)
