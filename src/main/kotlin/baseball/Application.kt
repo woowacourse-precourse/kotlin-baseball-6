@@ -5,13 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    val answerNumbers: List<Int> = createAnswerNumber()
 
-    // 맞힐때까지 반복
+    //게임 재시작시 반복
     do {
-        val playerNumbers: List<Int> = getPlayerNumber()
+        val answerNumbers: List<Int> = createAnswerNumber()
 
-    } while (!checkAnswer(answerNumbers, playerNumbers))
+        // 맞힐때까지 반복
+        do {
+            val playerNumbers: List<Int> = getPlayerNumber()
+
+        } while (!checkAnswer(answerNumbers, playerNumbers))
+    } while (restartGame())
 }
 
 fun createAnswerNumber(): List<Int> {
@@ -27,7 +31,7 @@ fun createAnswerNumber(): List<Int> {
 
 fun getPlayerNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
-    val receiveValue = Console.readLine().trim()
+    val receiveValue = Console.readLine()
 
     if(receiveValue.length != 3) {
         throw IllegalArgumentException("3자리 숫자를 입력해 주세요")
@@ -68,4 +72,14 @@ fun checkAnswer(answerNumbers: List<Int>, playerNumbers: List<Int>): Boolean {
     if(ballCount + strikeCount == 0) println("낫싱")
         else println("${ballCount}볼 ${strikeCount}스트라이크")
     return false
+}
+
+fun restartGame(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+    return when(Console.readLine()) {
+        "1" -> true
+        "2" -> false
+        else -> {throw IllegalArgumentException("1 또는 2의 숫자만 입력해주세요")}
+    }
 }
