@@ -3,61 +3,6 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-
-fun createRandomNum(): String { //컴퓨터 서로다른 3자리 숫자 난수 생성
-    val computer: MutableList<Int> = mutableListOf()
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
-    return computer.joinToString("")
-}
-
-fun enterNum(): String {    //사용자 입력 받기
-    val InputNum = Console.readLine()
-    enterNumException(InputNum)
-    return InputNum
-}
-
-fun printResult(result: Pair<Int, Int>) {   //스트라이크 볼 개수로 결과 출력
-    val strike = result.first
-    val ball = result.second
-
-    if (strike > 0 && ball == 0) {
-        println("${strike}스트라이크")
-        return
-    }
-    if (strike == 0 && ball > 0) {
-        println("${ball}볼")
-        return
-    }
-    if (strike == 0 && ball == 0) {
-        println("낫싱")
-        return
-    }
-
-    println("${ball}볼 ${strike}스트라이크")
-    return
-}
-
-fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
-    var strike = 0
-    var ball = 0
-    //var comNum = "123"
-    for (index in playerNum.indices) {
-        if (playerNum[index] == comNum[index]) {
-            strike++
-            continue
-        }
-        if (comNum.contains(playerNum[index])) {
-            ball++
-        }
-    }
-    return Pair(strike, ball)
-}
-
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     val comNum = createRandomNum()
@@ -74,55 +19,89 @@ fun main() {
     } while (gameContinueOrQuit())
 }
 
-fun gameContinueOrQuit(): Boolean {
-    var restart = Console.readLine().toInt()
-    restartOrQuitException(restart)
-    //사용자 1또는 2 입력 안할시 예외처리
-    if (restart == 1) {
-        return true
-    }
-    return false
-}
 
-fun enterNumException(enterNum: String) {
-    val uniqueDigits = enterNum.toSet()
-    if (enterNum.length != 3) {
-        throw IllegalArgumentException("3개의 숫자를 입력해주세요.")
-    }
-    if (enterNum.toIntOrNull() == null) {
-        throw IllegalArgumentException("숫자를 입력해주세요.")
-    }
-    if(enterNum.length != uniqueDigits.size){
-        throw IllegalArgumentException("중복되지 않은 숫자를 입력해주세요.")
-    }
-}
-fun restartOrQuitException(restartNumber: Int) {
-    if (restartNumber != 1 && restartNumber != 2) {
-        throw IllegalArgumentException("1 또는 2를 입력해주세요")
-    }
-}
+
+
+
 
 class Computer {
-    //숫자 생성
-//    fun createRandomNum():MutableList<Int>{
-//        val computer : MutableList<Int> = mutableListOf()
-//        while (computer.size < 3) {
-//            val randomNumber = Randoms.pickNumberInRange(1, 9)
-//            if (!computer.contains(randomNumber)) {
-//                computer.add(randomNumber)
-//            }
-//        }
-//        return computer
-//    }
-    //숫자비교 및 출력
+    fun createRandomNum(): String { //컴퓨터 서로다른 3자리 숫자 난수 생성
+        val computer: MutableList<Int> = mutableListOf()
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+        return computer.joinToString("")
+    }
+    fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
+        var strike = 0
+        var ball = 0
+        //var comNum = "123"
+        for (index in playerNum.indices) {
+            if (playerNum[index] == comNum[index]) {
+                strike++
+                continue
+            }
+            if (comNum.contains(playerNum[index])) {
+                ball++
+            }
+        }
+        return Pair(strike, ball)
+    }
+    fun printResult(result: Pair<Int, Int>) {   //스트라이크 볼 개수로 결과 출력
+        val strike = result.first
+        val ball = result.second
 
+        if (strike > 0 && ball == 0) {
+            println("${strike}스트라이크")
+            return
+        }
+        if (strike == 0 && ball > 0) {
+            println("${ball}볼")
+            return
+        }
+        if (strike == 0 && ball == 0) {
+            println("낫싱")
+            return
+        }
 
+        println("${ball}볼 ${strike}스트라이크")
+        return
+    }
 }
 
 class Player {
-//    //숫자입력 - 예외처리
-//    fun enterNum()= Console.readLine()
-//
-//    //게임 종료 , 재시작여부
-
+    fun enterNum(): String {    //사용자 입력 받기
+        val InputNum = Console.readLine()
+        enterNumException(InputNum)
+        return InputNum
+    }
+    fun restartOrQuitException(restartNumber: Int) {
+        if (restartNumber != 1 && restartNumber != 2) {
+            throw IllegalArgumentException("1 또는 2를 입력해주세요")
+        }
+    }
+    fun enterNumException(enterNum: String) {
+        val uniqueDigits = enterNum.toSet()
+        if (enterNum.length != 3) {
+            throw IllegalArgumentException("3개의 숫자를 입력해주세요.")
+        }
+        if (enterNum.toIntOrNull() == null) {
+            throw IllegalArgumentException("숫자를 입력해주세요.")
+        }
+        if(enterNum.length != uniqueDigits.size){
+            throw IllegalArgumentException("중복되지 않은 숫자를 입력해주세요.")
+        }
+    }
+    fun gameContinueOrQuit(): Boolean {
+        var restart = Console.readLine().toInt()
+        restartOrQuitException(restart)
+        //사용자 1또는 2 입력 안할시 예외처리
+        if (restart == 1) {
+            return true
+        }
+        return false
+    }
 }
