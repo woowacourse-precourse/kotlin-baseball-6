@@ -22,13 +22,9 @@ class ReadUserRestartChoiceView : ReadUserInputView() {
 
     override fun isCorrectRangeNumber(userNumber: Int): Boolean {
         return when (userNumber) {
-            in RESTART_GAME..EXIT_GAME -> {
-                true
-            }
+            in RESTART_GAME..EXIT_GAME -> true
 
-            else -> {
-                false
-            }
+            else -> false
         }
     }
 }

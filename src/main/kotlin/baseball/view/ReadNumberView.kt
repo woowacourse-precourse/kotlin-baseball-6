@@ -8,7 +8,6 @@ private const val MAX_VALUE = 999
 class ReadNumberView : ReadUserInputView() {
 
     override fun readUserInput(): Int {
-        println("숫자 야구 게임을 시작합니다.")
         print("숫자를 입력해주세요 : ")
         val userInput = Console.readLine()
         validateNumberFormat(userInput)
