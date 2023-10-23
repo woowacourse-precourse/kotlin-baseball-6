@@ -8,7 +8,11 @@ class BaseBallGame {
     private var result = Result()
 
     fun controlGame() {
-        playGame()
+        while (true) {
+            playGame()
+            if (user.getRestartAnswerInput() == 2)
+                break
+        }
     }
 
     private fun playGame() {
