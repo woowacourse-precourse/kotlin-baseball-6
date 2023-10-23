@@ -10,6 +10,9 @@
 
 클래스와 메서드
 BaseballGame: startGame(), playRound(), playAgain()
+
 Player: getUserInput(), isInputValid(userInput: String)
+
 Computer: generateRandomNumbers(),  checkUserInput(userInput: String, randomNumber: List<Int>),  calculateStrikeAndBall(userInput: String, randomNumber: List<Int>)
+
 
