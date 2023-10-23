@@ -9,10 +9,16 @@
 8. 사용자가 잘못된 값을 입력할경우 IllegalArgumentException을 발생시킨 후  애플리케이션 종료
 
 클래스와 메서드
+
+
 BaseballGame: startGame(), playRound(), playAgain()
+
 
 Player: getUserInput(), isInputValid(userInput: String)
 
+
 Computer: generateRandomNumbers(),  checkUserInput(userInput: String, randomNumber: List<Int>),  calculateStrikeAndBall(userInput: String, randomNumber: List<Int>)
+
+
 
 
