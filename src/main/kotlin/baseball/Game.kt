@@ -8,16 +8,29 @@ import baseball.util.GameValue.GAME_INIT_VALUE
 abstract class Game {
     protected var strike = GAME_INIT_VALUE
     private var ball = GAME_INIT_VALUE
+    protected lateinit var answer: List<Int>
 
-    fun result(playerNumber: List<Int>, computerNumber: List<Int>) {
+    fun result(playerNumber: List<Int>) {
         valueInit()
-        computerNumber.forEachIndexed { computerIndex, targetNumber ->
-            playerNumber.forEachIndexed { playerIndex, playerNumber ->
-                if (computerIndex != playerIndex && targetNumber == playerNumber) ballPlus()
-                if (computerIndex == playerIndex && targetNumber == playerNumber) strikePlus()
+        getBallCount(playerNumber)
+        getStrikeCount(playerNumber)
+        resultPrint()
+    }
+
+    private fun getBallCount(playerNumber: List<Int>) {
+        answer.forEachIndexed { index, i ->
+            if (playerNumber[index] != i && playerNumber.contains(i)) {
+                ballPlus()
             }
         }
-        resultPrint()
+    }
+
+    private fun getStrikeCount(playerNumber: List<Int>) {
+        answer.forEachIndexed { index, i ->
+            if (playerNumber[index] == i) {
+                strikePlus()
+            }
+        }
     }
 
     private fun resultPrint() {
