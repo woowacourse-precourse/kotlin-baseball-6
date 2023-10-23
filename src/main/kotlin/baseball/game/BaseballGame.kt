@@ -8,9 +8,15 @@ class BaseballGame(val digits: Int = 3) {
     fun start() {
         println("${name}을 시작합니다.")
         val answer: List<Int> = generateRandomAnswer(digits)
-        print("숫자를 입력해주세요 : ")
-        val userInput: String = Console.readLine().trim()
-        val userAnswer: List<Int> = validate(userInput)
+        println(answer)
+        var result = ""
+        while (result != "GameClear") {
+            print("숫자를 입력해주세요 : ")
+            val userInput: String = Console.readLine().trim()
+            val userAnswer: List<Int> = validate(userInput)
+            result = resultString(answer, userAnswer)
+            println(result)
+        }
     }
 
     private fun generateRandomAnswer(digits: Int): List<Int> {
@@ -43,5 +49,20 @@ class BaseballGame(val digits: Int = 3) {
         if (validAnswer.toSet().size != validAnswer.size) throw IllegalArgumentException("서로 다른 수 입력 필요")
 
         return validAnswer
+    }
+
+    private fun resultString(answer: List<Int>, userAnswer: List<Int>): String {
+        var strikeCount = 0
+        var ballCount = 0
+        var nothingCount = 0
+        for (num in userAnswer) {
+            if (num in answer) {
+                if (userAnswer.indexOf(num) == answer.indexOf(num)) strikeCount++
+                else ballCount++
+            } else nothingCount++
+        }
+        if (strikeCount == 3) return "GameClear"
+        if (nothingCount == 3) return "낫싱"
+        return "${ballCount}볼 ${strikeCount}스트라이크"
     }
 }
