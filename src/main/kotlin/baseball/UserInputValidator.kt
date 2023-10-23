@@ -23,14 +23,14 @@ fun validateUserAnswer(userInput: String) {
     }
 }
 
-private fun isNumericFormatted(userInput: String) : Boolean {
+private fun isNumericFormatted(userInput: String): Boolean {
     return userInput.all { it.isDigit() }
 }
 
-private fun isCorrectNumberOfDigits(userInput: String) : Boolean {
+private fun isCorrectNumberOfDigits(userInput: String): Boolean {
     return (userInput.length == 3)
 }
 
-private fun hasDuplicateDigits(userInput: String) : Boolean {
+private fun hasDuplicateDigits(userInput: String): Boolean {
     return (userInput.toSet().size == 3)
 }

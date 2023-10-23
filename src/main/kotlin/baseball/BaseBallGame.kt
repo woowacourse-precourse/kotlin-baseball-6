@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGame {
-    companion object Constants{
+    companion object Constants {
         private const val NUMBERS_LENGTH = 3
         private const val NUMBER_START_RANGE = 1
         private const val NUMBER_END_RANGE = 9
@@ -49,19 +49,19 @@ class BaseballGame {
         return randomNumbers.toList()
     }
 
-    private fun readUserInput() : String {
+    private fun readUserInput(): String {
         val userInput = Console.readLine()
         return userInput.trim()
     }
 
-    private fun getUserNumbers() : List<Int> {
+    private fun getUserNumbers(): List<Int> {
         print(INPUT_USER_NUMBERS_MESSAGE)
         val userInput = readUserInput()
         validateUserNumbers(userInput)
         return userInput.map { it.toString().toInt() }
     }
 
-    private fun getUserAnswer() : Int {
+    private fun getUserAnswer(): Int {
         println(INPUT_USER_ANSWER_MESSAGE)
         val userInput = readUserInput()
         validateUserAnswer(userInput)
@@ -69,15 +69,15 @@ class BaseballGame {
         return userInput.toInt()
     }
 
-    fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>) : Pair<Int,Int> {
-        val total = userNumbers.count {computerNumbers.contains(it)}
-        val strike = userNumbers.count {userNumbers.indexOf(it) == computerNumbers.indexOf((it))}
+    fun compareNumbers(computerNumbers: List<Int>, userNumbers: List<Int>): Pair<Int, Int> {
+        val total = userNumbers.count { computerNumbers.contains(it) }
+        val strike = userNumbers.count { userNumbers.indexOf(it) == computerNumbers.indexOf((it)) }
         val ball = total - strike;
 
-        return Pair(ball,strike)
+        return Pair(ball, strike)
     }
 
-    fun provideHintMessage(result: Pair<Int,Int>) : String {
+    fun provideHintMessage(result: Pair<Int, Int>): String {
         val ball = result.first
         val strike = result.second
         val resultMessage = mutableListOf<String>()
@@ -91,7 +91,6 @@ class BaseballGame {
         if (strike > 0) {
             resultMessage.add("$strike$STRIKE_MESSAGE")
         }
-
         return resultMessage.joinToString(" ")
     }
 }
