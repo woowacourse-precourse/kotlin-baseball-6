@@ -6,17 +6,40 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
-    val computer = mutableListOf<Int>()
-    generateRandomNumber(computer)
+    while (true) {
+        val computer = mutableListOf<Int>()
+        generateRandomNumber(computer)
 
-    do {
-        val player = mutableListOf<Int>()
-        getPlayerNumber(player)
+        do {
+            val player = mutableListOf<Int>()
+            getPlayerNumber(player)
 
-        var strike = countStrike(computer, player)
-        var ball = countBall(computer, player)
-        printHint(ball, strike)
-    } while (strike < 3)
+            var strike = countStrike(computer, player)
+            var ball = countBall(computer, player)
+            printHint(ball, strike)
+        } while (strike < 3)
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+        when (getRestartOrNot()) {
+            1 -> continue
+            2 -> break
+            else -> throw IllegalArgumentException()
+        }
+    }
+}
+
+private fun getRestartOrNot(): Int {
+    val input = readlnOrNull()
+    if (input.isNullOrBlank()) {
+        throw IllegalArgumentException()
+    }
+    try {
+        return input.toInt()
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException()
+    }
 }
 
 private fun printHint(ball: Int, strike: Int) {
