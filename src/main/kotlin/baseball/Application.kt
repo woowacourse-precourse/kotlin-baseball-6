@@ -4,13 +4,23 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    println("숫자 야구 게임을 시작합니다.")
-    val computerNum = getRandomNum()
-    do {
-        print("숫자를 입력해주세요 : ")
-        val input = Console.readLine().toInt()
-        val inputNum = setUserNum(input)
-    } while (compareNumbers(computerNum, inputNum))
+    while (true) {
+        println("숫자 야구 게임을 시작합니다.")
+        val computerNum = getRandomNum()
+
+        do {
+            print("숫자를 입력해주세요 : ")
+            val input = Console.readLine().toInt()
+            val inputNum = setUserNum(input)
+        } while (compareNumbers(computerNum, inputNum))
+
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        if (Console.readLine().toInt() == 2) {
+            println("게임을 종료합니다!")
+            break
+        }
+    }
+
 }
 
 fun getRandomNum(): List<Int> {
@@ -59,9 +69,9 @@ fun printHint(strike: Int, ball: Int) {
         if (ball > 0) {
             print("${ball}볼 ")
         }
-        if (strike > 0){
+        if (strike > 0) {
             print("${strike}스트라이크 ")
-            if (strike == 3){
+            if (strike == 3) {
                 print("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             }
         }
