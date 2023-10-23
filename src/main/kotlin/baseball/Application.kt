@@ -17,6 +17,7 @@ fun createRandomNum(): String {
 
 fun enterNum(): String {
     val InputNum = Console.readLine()
+    enterNumException(InputNum)
     return InputNum
 }
 
@@ -85,6 +86,19 @@ fun gameContinueOrQuit(): Boolean {
         return true
     }
     return false
+}
+
+fun enterNumException(enterNum: String) {
+    val uniqueDigits = enterNum.toSet()
+    if (enterNum.length != 3) {
+        throw IllegalArgumentException("3개의 숫자를 입력해주세요.")
+    }
+    if (enterNum.toIntOrNull() == null) {
+        throw IllegalArgumentException("숫자를 입력해주세요.")
+    }
+    if(enterNum.length != uniqueDigits.size){
+        throw IllegalArgumentException("중복되지 않은 숫자를 입력해주세요.")
+    }
 }
 
 class Computer {
