@@ -15,11 +15,11 @@ private const val RESTART = "1"
 private const val EXIT = "2"
 
 fun main() {
-    println("숫자 야구 게임을 시작합니다.")
     startBaseballGame()
 }
 
 private fun startBaseballGame() {
+    println("숫자 야구 게임을 시작합니다.")
     var randomBaseballNumbers: MutableList<Int> = getRandomNumbers()
     while (true) {
         print("숫자를 입력해주세요 : ")
@@ -27,10 +27,9 @@ private fun startBaseballGame() {
         val baseballResult: Boolean = isAnswer(randomBaseballNumbers, userBaseballNumbers)
 
         if (baseballResult) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             val input: String = restartOrExitInput(readLine())
-            if (input == EXIT) break
+            if (input == EXIT) return
             randomBaseballNumbers = getRandomNumbers()
         }
     }
@@ -65,8 +64,10 @@ private fun isAnswer(
         .map { it.toString().toInt() }
 
     randomBaseballNumbers.forEachIndexed { index, number ->
-        if(userBaseballNumberList[index] == number) strike++
-        if(randomBaseballNumbers.contains(userBaseballNumberList[index])) ball++
+        when {
+            userBaseballNumberList[index] == number -> strike++
+            randomBaseballNumbers.contains(userBaseballNumberList[index]) -> ball++
+        }
     }
 
     when {
@@ -75,5 +76,6 @@ private fun isAnswer(
         ball == 0 -> println("${strike}스트라이크")
         else -> println("${ball}볼 ${strike}스트라이크")
     }
+
     return strike == BASEBALL_NUMBER_COUNT
 }
