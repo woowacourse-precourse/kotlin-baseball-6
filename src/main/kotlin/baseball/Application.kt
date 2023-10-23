@@ -2,6 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+import java.lang.NumberFormatException
 
 fun main() {
     while (true) {
@@ -10,7 +11,7 @@ fun main() {
 
         do {
             print("숫자를 입력해주세요 : ")
-            val input = Console.readLine().toInt()
+            val input = Console.readLine()
             val inputNum = setUserNum(input)
         } while (compareNumbers(computerNum, inputNum))
 
@@ -34,12 +35,26 @@ fun getRandomNum(): List<Int> {
     return numList.toList()
 }
 
-fun setUserNum(inputNum: Int): List<Int> {
+fun setUserNum(input: String): List<Int> {
+    val inputNum = try {
+        input.toInt()
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException("잘못된 입력값입니다.")
+    }
     val numList: MutableList<Int> = mutableListOf()
-    var num = inputNum
-    while (num > 0) {
-        numList.add(num % 10)
-        num /= 10
+    var remainingNumber = inputNum
+
+    while (remainingNumber > 0) {
+        val num = remainingNumber % 10
+        if ((num !in 1..9) || numList.contains(num)) {
+            throw IllegalArgumentException("잘못된 입력값입니다.")
+        } else {
+            numList.add(num)
+        }
+        remainingNumber /= 10
+    }
+    if (numList.size != 3) {
+        throw IllegalArgumentException("잘못된 입력값입니다.")
     }
     return numList.reversed().toList()
 }
