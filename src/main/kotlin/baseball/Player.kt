@@ -1,5 +1,10 @@
 package baseball
 
+import baseball.Constant.Companion.END
+import baseball.Constant.Companion.MAX_BALL_NUMBER
+import baseball.Constant.Companion.MIN_BALL_NUMBER
+import baseball.Constant.Companion.RESTART
+
 
 class Player {
 
@@ -15,7 +20,6 @@ class Player {
         return userInput
     }
 
-    // TODO 로또 번호 유효성 체크
     private fun checkBallNumbersValidity(numbersInput: String) {
         checkIsNumberCountThree(numbersInput)
         checkIsUniqueThreeNumber(numbersInput)
@@ -23,11 +27,14 @@ class Player {
         checkHasCorrectNumRange(numbersInput)
     }
 
-    // TODO 종료 입력 유효성 체크
     private fun checkPlayerDecisionValidity(userInput: String) {
-        // (1) 1자리수인가
-        // (2) 숫자 외에 다른 값이 들어왔나
-        // (3) 1,2 이외의 다른 값이 들어왔나
+        checkIsNumberCountOne(userInput)
+        checkIsNumber(userInput)
+        checkIsCorrectNumber(userInput)
+    }
+
+    private fun checkIsNumberCountOne(input: String) {
+        require(input.length == 1) { "입력 숫자는 1자리 숫자여야 합니다." }
     }
 
     private fun checkIsNumberCountThree(input: String) {
@@ -43,12 +50,11 @@ class Player {
     }
 
     private fun checkHasCorrectNumRange(input: String) {
-        require(input.all { it in MIN_BALL_NUMBER..MAX_BALL_NUMBER }) { "1~9 이외의 숫자는 입력될 수 없습니다." }
+        require(input.all { it.toString() in MIN_BALL_NUMBER..MAX_BALL_NUMBER }) { "1~9 이외의 숫자는 입력될 수 없습니다." }
     }
 
-    companion object {
-        const val MIN_BALL_NUMBER = '1'
-        const val MAX_BALL_NUMBER = '9'
+    private fun checkIsCorrectNumber(input: String) {
+        require(input == RESTART || input == END) { "1과 2 이외의 숫자는 입력될 수 없습니다." }
     }
 
 }
