@@ -57,5 +57,4 @@ class BaseballGameViewModel(private val model: BaseballGameModel, private val vi
 
         return Pair(strike, ball)
     }
-
 }
