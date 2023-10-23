@@ -15,18 +15,18 @@ class Computer : Player<Unit> {
         numbers = generatedNumbers
     }
 
-    fun calculateStrikeAndBall(playerNumbers: List<Int>): StrikeAndBallCounts {
-        val numbersZip = numbers.zip(playerNumbers)
-        val playerNumbersSet = playerNumbers.toSet()
+    fun calculateBallAndStrike(userNumbers: List<Int>): BallAndStrikeCounts {
+        val numbersZip = numbers.zip(userNumbers)
+        val playerNumbersSet = userNumbers.toSet()
 
-        val strikeCount = numbersZip.count { (computerNumber, playerNumber) ->
-            computerNumber == playerNumber
-        }
         val ballCount = numbersZip.count { (computerNumber, playerNumber) ->
             computerNumber != playerNumber && computerNumber in playerNumbersSet
         }
+        val strikeCount = numbersZip.count { (computerNumber, playerNumber) ->
+            computerNumber == playerNumber
+        }
 
-        return StrikeAndBallCounts(strikeCount, ballCount)
+        return BallAndStrikeCounts(ballCount, strikeCount)
     }
 
     /**
