@@ -23,7 +23,7 @@ fun generateRandomNumber(): MutableList<Int> {
     return computer
 }
 
-fun userInput(): MutableList<Int> {
+fun userInput(): List<Int> {
     println(INPUT_NUMBER_MESSAGE)
     val userNumber = Console.readLine().map {it.digitToInt()}
 
@@ -37,5 +37,21 @@ fun userInput(): MutableList<Int> {
         throw IllegalArgumentException("중복 되지 않는 숫자를 입력해주세요")
     }
 
-    return TODO("Provide the return value")
+    return userNumber
+}
+
+fun game(computer: List<Int>, userNumber: List<Int>): MutableList<Int>{
+    var ballCount: Int = 0
+    var strikeCount: Int = 0
+
+    for (i in computer.indices) {
+        if (computer[i] == userNumber[i]) {
+            strikeCount++
+        }
+        else{ // if (computer.contains(userNumber))
+            ballCount++
+        }
+    }
+
+    return (game(ballCount,strikeCount))
 }
