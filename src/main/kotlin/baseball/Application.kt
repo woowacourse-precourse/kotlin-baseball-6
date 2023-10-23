@@ -45,6 +45,16 @@ fun checkNums(comNums: List<Int>, userNums: List<Int>): Boolean {
             bVal++ // 볼 개수 + 1
         }
     }
+    // 볼과 스트라이크 되는 경우
+    if (bVal > 0 && sVal > 0) {  // 같은 숫자가 존재하고 같은 인덱스에 있는 경우
+        println("${bVal}볼 {sVal}스트라이크")
+    } else if (bVal > 0) { // 같은 숫자가 같은 인덱스에 있는 경우
+        println("{$sVal}스트라이크")
+    } else if (sVal > 0) { // 인덱스는 다르지만 같은 숫자만 있는 경우
+        println("{$bVal}볼")
+    } else // 모두 다른 숫자인 경우
+        println("낫싱")
+
     return true;
 }
 
