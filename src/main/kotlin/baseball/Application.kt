@@ -4,7 +4,9 @@ fun main() {
     var gameCoin = 1
     while(gameCoin == 1) {
         val baseballGame = BaseballOperate()
-        baseballGame.BaseballPlay()
+        if(!baseballGame.BaseballPlay()) {
+            return
+        }
 
         print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         gameCoin = readLine()!!.toInt()
