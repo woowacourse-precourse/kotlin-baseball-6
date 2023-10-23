@@ -31,15 +31,15 @@ class Computer {
     }
 
     fun validateInputNumber() {
-        val inputNumberList = convertInputNumberToList()
+        val convertInputNumberList = convertInputNumberToList()
 
-        if (inputNumberList.size != 3) {
+        if (convertInputNumberList.size != 3) {
             throw IllegalArgumentException(ERROR_INPUT_THREE_DIGITS_ONLY)
         }
-        if (inputNumberList.distinct().size != inputNumberList.size) {
+        if (convertInputNumberList.distinct().size != convertInputNumberList.size) {
             throw IllegalArgumentException(ERROR_NUMBER_DUPLICATION)
         }
-        if (inputNumberList.any { it < 1 || it > 9 }) {
+        if (convertInputNumberList.any { it < 1 || it > 9 }) {
             throw IllegalArgumentException(ERROR_INPUT_ONE_TO_NINE_ONLY)
         }
     }
