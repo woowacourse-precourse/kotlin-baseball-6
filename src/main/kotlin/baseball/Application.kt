@@ -32,9 +32,12 @@ fun getGuessResult(secretNumber: String, guessNumber: String): GuessResult {
 
 fun countBall(secretNumber: String, guessNumber: String): Int {
     var ball = 0
-    for (secretIt in secretNumber) {
-        for (guessIt in guessNumber) {
+    for (secretIt in 0 until 3) {
+        for (guessIt in 0 until 3) {
             if (secretIt == guessIt) {
+                continue
+            }
+            if (secretNumber[secretIt] == guessNumber[guessIt]) {
                 ball++
             }
         }
