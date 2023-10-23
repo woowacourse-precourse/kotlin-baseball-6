@@ -68,7 +68,7 @@ fun judgeResult(query: BaseballNumber, answer: BaseballNumber): ArrayList<Int> {
 fun generateRandomBaseballNumber(): BaseballNumber {
     val numberList = IntRange(1, 9).toMutableList()
     val pickNumber = ArrayList<Int>(0)
-    for (i in 1 until BaseballNumberValidity.VALID_LENGTH) {
+    for (i in 1..BaseballNumberValidity.VALID_LENGTH) {
         val currentPick = Randoms.pickNumberInRange(0, 9 - i)
         pickNumber.add(numberList[currentPick])
         numberList.removeAt(currentPick)
@@ -88,7 +88,8 @@ fun formatResult(strikes: Int, balls: Int): String {
 
 fun gameTurn(answer: BaseballNumber): Int {
     print(BaseballTurnStatus.TURN_PROMPT)
-    val query = BaseballNumber(Console.readLine())
+    val queryString = Console.readLine()
+    val query = BaseballNumber(queryString)
     val (strikes, balls) = judgeResult(query, answer)
     println(formatResult(strikes, balls))
     return strikes
