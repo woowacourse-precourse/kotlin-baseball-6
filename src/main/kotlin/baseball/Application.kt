@@ -1,6 +1,6 @@
 package baseball
 
 fun main() {
-    val game = BaseballGame()
-    game.playGame()
+    val game = BaseballGameViewModel(BaseballGameModel(), BaseballGameView(BaseballGameValidate()))
+    game.gameRun()
 }
