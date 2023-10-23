@@ -9,6 +9,8 @@ private const val RANDOM_MAX_VALUE = 9
 private const val INPUT_MIN_VALUE = 111
 private const val INPUT_MAX_VALUE = 999
 
+private const val BASEBALL_NUMBER_COUNT = 3
+
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     startBaseballGame()
@@ -17,7 +19,7 @@ fun main() {
 private fun startBaseballGame() {
     print("숫자를 입력해주세요 : ")
 
-    val randomBaseballNumbers = getRandomNumbers()
+    val randomBaseballNumbers: MutableList<Int> = getRandomNumbers()
 
     try {
         val inputBaseballNumbers = validateInput(readLine().toInt())
@@ -30,15 +32,21 @@ private fun startBaseballGame() {
     }
 }
 
-private fun validateInput(input: Int) {
+private fun validateInput(input: Int): Int {
     if (input !in INPUT_MIN_VALUE..INPUT_MAX_VALUE) {
         throw IllegalStateException()
+    } else {
+        return input
     }
 }
 
-private fun getRandomNumbers(): List<Int> {
-    return pickNumberInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE)
-        .toString()
-        .split("")
-        .map { it.toInt() }
+private fun getRandomNumbers(): MutableList<Int>{
+    val numberList = mutableListOf<Int>()
+    while(numberList.size < BASEBALL_NUMBER_COUNT) {
+        val randomNumber =  pickNumberInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE)
+        if(!numberList.contains(randomNumber)) {
+            numberList.add(randomNumber)
+        }
+    }
+    return numberList
 }
