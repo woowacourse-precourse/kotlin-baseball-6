@@ -17,10 +17,10 @@ class BaseballGame(
     private var playState = NOT_PLAYING
 
     fun start() {
+        println("숫자 야구 게임을 시작합니다.")
         gameState = START_GAME
 
         while (gameState == START_GAME) {
-            println("숫자 야구 게임을 시작합니다.")
             play()
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             gameState = user.requestInputGameState()
@@ -34,15 +34,37 @@ class BaseballGame(
         computer.generateNumbers()
 
         do {
-            print("숫자를 입력해주세요 : ")
+            println("숫자를 입력해주세요 : ")
             val userNumbers = user.generateNumbers(user.requestInputNumbers())
-            val strikeAndBallCounts = computer.calculateStrikeAndBall(userNumbers)
+            val ballAndStrikeCounts = computer.calculateStrikeAndBall(userNumbers)
 
-            if (strikeAndBallCounts.strike == NUMBER_COUNT) {
+            showPlayMessage(ballAndStrikeCounts.ball, ballAndStrikeCounts.strike)
+
+            if (ballAndStrikeCounts.strike == NUMBER_COUNT) {
                 playState = NOT_PLAYING
             }
-
-            println("${strikeAndBallCounts.ball}볼 ${strikeAndBallCounts.strike}스트라이크")
         } while (playState == PLAYING)
+    }
+
+    private fun showPlayMessage(ballCount: Int, strikeCount: Int) {
+        val message = mutableListOf<String>()
+
+        if (ballCount == 0 && strikeCount == 0) {
+            message.add("낫싱")
+        }
+
+        if (ballCount > 0) {
+            message.add("${ballCount}볼")
+        }
+
+        if (strikeCount > 0) {
+            message.add("${strikeCount}스트라이크")
+        }
+
+        println(message.joinToString(" "))
+
+        if (strikeCount == NUMBER_COUNT) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        }
     }
 }
