@@ -54,13 +54,20 @@ fun printGuessResult(result: GuessResult) {
 }
 
 fun main() {
-    val secretNumber = makeSecretNumber()
-    println(secretNumber)
-    val guessNumber = Console.readLine()
-    if (!isValidInput(guessNumber)) {
-        throw IllegalArgumentException("Wrong Input")
+    while(true){
+        while(true) {
+            val secretNumber = makeSecretNumber()
+            println(secretNumber)
+            val guessNumber = Console.readLine()
+            if (!isValidInput(guessNumber)) {
+                throw IllegalArgumentException("Wrong Input")
+            }
+            println(guessNumber)
+            val guessResult = getGuessResult(secretNumber, guessNumber)
+            printGuessResult(guessResult)
+            if(guessResult.strikeNumber == 3){
+                break
+            }
+        }
     }
-    println(guessNumber)
-    val guessResult = getGuessResult(secretNumber, guessNumber)
-    printGuessResult(guessResult)
 }
