@@ -35,8 +35,6 @@ class Controller {
 
     //replay 요청
     private fun askReplay() {
-        gameMessage.requestReplay()
-
         val replay = gameService.getReplay()
 
         when (replay) {
