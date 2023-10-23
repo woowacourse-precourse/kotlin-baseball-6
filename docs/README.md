@@ -17,9 +17,9 @@
 - [x] 3개의 숫자가 모두 다른 숫자인지 확인하고 user 리스트에 추가
 
 ### 스트라이크 개수 계산
-- [ ] countStrike 메서드
-  - [ ] computer와 user 리스트를 배교해 같은 위치에 있는 숫자가 같으면 count 변수 값 1 증가
-  - [ ] count 값 반환
+- [x] countStrike 메서드
+  - [x] computer와 user 리스트를 비교해 같은 위치에 있는 숫자가 같으면 count 변수 값 1 증가
+  - [x] count 값 반환
 
 ### 볼 계수 계산
 - [ ] countBall 메서드

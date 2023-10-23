@@ -14,4 +14,12 @@ class Baseball {
         val userNumber = readLine()
         return Utils().checkInput(userNumber!!)
     }
+
+    fun countStrike(computer: List<Int>, user: List<Int>) : Int {
+        var count = 0
+        for (i in 0..INPUT_SIZE-1) {
+            if (computer[i] == user[i]) count++
+        }
+        return count
+    }
 }
