@@ -8,15 +8,15 @@ class Referee {
     private val strikeCount get() = resultMap.getOrDefault(GameResult.STRIKE, 0)
 
     fun determineGameResult(answerBaseBalls: List<Int>, baseBalls: List<Int>): String {
-        isWin(answerBaseBalls, baseBalls)
-        countResult(answerBaseBalls, baseBalls)
-        if (isNothing()) return GameResult.NOTHING.message
+        if (isWin(answerBaseBalls, baseBalls)) return THREE_STRIKE
+        increaseBallCount(answerBaseBalls, baseBalls)
+        if (isNothing()) return NOTHING
         val result = mergeResult(ballCount, strikeCount)
         resultMap.clear()
         return result
     }
 
-    private fun countResult(answerBaseBalls: List<Int>, baseBalls: List<Int>) {
+    private fun increaseBallCount(answerBaseBalls: List<Int>, baseBalls: List<Int>) {
         for (idx in baseBalls.indices) {
             val num = baseBalls[idx]
             if (isStrike(answerBaseBalls[idx], num)) {
@@ -55,5 +55,7 @@ class Referee {
 
     companion object {
         private const val EMPTY_SPACE = " "
+        private const val THREE_STRIKE = "3스트라이크"
+        private const val NOTHING = "낫싱"
     }
 }
