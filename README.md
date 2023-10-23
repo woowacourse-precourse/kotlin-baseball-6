@@ -7,3 +7,9 @@
 6. 사용자가  랜덤 숫자를 맞출떄까지 반복
 7. 게임 종료 후 게임을 다시시작하거나 완전히 종료하는 기능
 8. 사용자가 잘못된 값을 입력할경우 IllegalArgumentException을 발생시킨 후  애플리케이션 종료
+
+클래스와 메서드
+BaseballGame: startGame(), playRound(), playAgain()
+Player: getUserInput(), isInputValid(userInput: String)
+Computer: generateRandomNumbers(),  checkUserInput(userInput: String, randomNumber: List<Int>),  calculateStrikeAndBall(userInput: String, randomNumber: List<Int>)
+
