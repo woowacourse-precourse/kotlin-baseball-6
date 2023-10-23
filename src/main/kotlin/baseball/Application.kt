@@ -4,28 +4,37 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    var restartGame = true
+    var restartGame = false
     do {
+        print(Dialogues.startGameMessage)
+
         var computerNum = generateRandomNum()
 
 
 
     } while (restartGame)
+
 }
 
-fun getUserGuessNum():HashMap<Int, Int> {
-    var userNum = Console.readLine()
-    var userNumHashMap = HashMap<Int, Int>()
-    require(checkCorrectNum(userNum)){
-        "서로 다른 세 자리 숫자를 입력해주세요."
+fun solveBaseBallGame():Boolean{
+    while(true) {
+        print(Dialogues.requestEnterNumMessage)
+        var enterUserNum = Console.readLine()
+        print(enterUserNum)
+        require(checkCorrectNum(enterUserNum)) {
+            "서로 다른 세 자리 숫자를 입력해주세요."
+        }
     }
-    userNum.forEachIndexed{ index, char ->
-        userNumHashMap[char.code] = index
-    }
-
-    return userNumHashMap
+    return true
 }
 
+fun changeToHashMap(num: String):HashMap<Int, Int>{
+    var hashMap = HashMap<Int, Int>()
+    num.forEachIndexed{ index, char ->
+        hashMap[char.code] = index
+    }
+    return hashMap
+}
 fun checkCorrectNum(num:String):Boolean{
     if (num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3) {
         return true
@@ -41,16 +50,15 @@ fun generateRandomNum(): HashMap<Int, Int> {
             computerNum.add(randomNumber)
         }
     }
-    var computerHashMap = HashMap<Int, Int>()
+    var computerNumHashMap = HashMap<Int, Int>()
 
     computerNum.forEachIndexed{ index, char ->
-        computerHashMap[char] = index
+        computerNumHashMap[char] = index
     }
 
-    return computerHashMap
+    return computerNumHashMap
 }
 
-fun compareNums() {
-
+fun compareNums(computerNum: HashMap<Int, Int>, userNum: HashMap<Int, Int>) {
 
 }
