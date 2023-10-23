@@ -1,7 +1,7 @@
 ## 기능목록
 1. computer에 1~9 서로 다른 임의의 수 3개를 리스트에 저장한다.
    1. 랜덤 숫자를 생성한다
-   2. computer 리스트에 저장된 값과 일치하지 않을 때 저장한다
+   2. computer 리스트에 저장된 값과 일치하지 않을 때 저장한다 (set을 활용한다)
    3. computer size는 3이 되도록 한다
 
 2. 사용자가 입력한 user 3자리를 리스트로 저장한다
@@ -9,6 +9,7 @@
     2. user의 길이가 3이 아닐 때 `IllegalArgumentException` 발생
     3. user가 숫자가 아닐 때(`NumberFormatException`) `IllegalArgumentException` 발생
    4. user가 범위에 해당하는 숫자가 아닐 때 `IllegalArgumentException` 발생
+   5. 입력한 값이 중복된 숫자일 경우 `IllegalArgumentException` 발생
 
 3. computer와 user의 값을 비교하여 ball과 strike를 계산한다
     1. computer의 값을 `forEachIndexed`를 이용하여 computer[index]와 user[index]가 같으면 strike++
