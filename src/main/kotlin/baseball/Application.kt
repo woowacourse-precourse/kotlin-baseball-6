@@ -68,9 +68,8 @@ fun inputThreeAnswerNumber(): List<Int> {
 /*
     기능2-1. 입력한 정답 유효성 검사
     : 예외1. 입력 길이가 3이 아니다.
-      예외2. 숫자0을 입력했다.
+      예외2. 숫자 1~9사이의 값이 아니다.
       예외3. 입력 숫자가 중복된다.
-      예외4. 숫자가 아닌 값을 입력했다.
  */
 fun checkValidation(checkList: String): Boolean {
     val duplicateCheckList = mutableListOf<Int>()
