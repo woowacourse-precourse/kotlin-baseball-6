@@ -1,5 +1,5 @@
 package baseball
 
 fun main() {
-     BaseBallGame().playGame()
+     BaseBallGame().controlGame()
 }

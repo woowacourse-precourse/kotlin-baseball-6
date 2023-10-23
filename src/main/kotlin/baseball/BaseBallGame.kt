@@ -7,7 +7,11 @@ class BaseBallGame {
     private val user = User()
     private var result = Result()
 
-    fun playGame() {
+    fun controlGame() {
+        playGame()
+    }
+
+    private fun playGame() {
         println("숫자 야구 게임을 시작합니다.")
         computerNumber = computer.createRandomNumber()
         while (result.strike != 3) {
