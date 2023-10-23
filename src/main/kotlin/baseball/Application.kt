@@ -66,7 +66,7 @@ fun printGuessResult(result: GuessResult) {
         println("${result.strikeNumber}스트라이크")
     }else if(result.ballNumber != 0 && result.strikeNumber == 0) {
         println("${result.ballNumber}볼")
-    }else if(result.ballNumber == 0 && result.strikeNumber == 0){
+    }else if(result.ballNumber == 0) {
         println("낫싱")
     }else {
         println("${result.ballNumber}볼 ${result.strikeNumber}스트라이크")
