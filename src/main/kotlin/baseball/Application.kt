@@ -13,13 +13,17 @@ fun main() {
     } while (restartGame)
 }
 
-fun getUserGuessNum() {
+fun getUserGuessNum():HashMap<Int, Int> {
     var userNum = Console.readLine()
+    var userNumHashMap = HashMap<Int, Int>()
     require(checkCorrectNum(userNum)){
         "서로 다른 세 자리 숫자를 입력해주세요."
     }
+    userNum.forEachIndexed{ index, char ->
+        userNumHashMap[char.code] = index
+    }
 
-
+    return userNumHashMap
 }
 
 fun checkCorrectNum(num:String):Boolean{
@@ -30,20 +34,23 @@ fun checkCorrectNum(num:String):Boolean{
 }
 
 fun generateRandomNum(): HashMap<Int, Int> {
-    var computer: MutableList<Int> = mutableListOf()
-    while (computer.size < 3) {
+    var computerNum: MutableList<Int> = mutableListOf()
+    while (computerNum.size < 3) {
         val randomNumber: Int = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
+        if (!computerNum.contains(randomNumber)) {
+            computerNum.add(randomNumber)
         }
     }
     var computerHashMap = HashMap<Int, Int>()
-    for (i in 0 until computer.size) {
-        computerHashMap.put(computer[i], i)
+
+    computerNum.forEachIndexed{ index, char ->
+        computerHashMap[char] = index
     }
+
     return computerHashMap
 }
 
 fun compareNums() {
+
 
 }
