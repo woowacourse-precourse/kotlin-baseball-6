@@ -20,10 +20,11 @@ fun main() {
  */
 fun gameStart() {
     println("숫자 야구 게임을 시작합니다.")
-    var computerNumber: ArrayList<Int> = answerNumber()
+    var computerNumber: List<Int> = answerNumber()
 
     while (true) {
-        val myNumber: ArrayList<Int> = input()
+        val myNumber: List<Int> = input()
+        println(computerNumber)
         if (comparisonNumber(myNumber, computerNumber)) {
             if (!reGame()) {
                 break
@@ -37,35 +38,34 @@ fun gameStart() {
 /**
  * 사용자에게 숫자를 입력 받는 함수
  */
-fun input(): ArrayList<Int> {
+fun input(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val userNumber = Console.readLine().trim()
-    val numberList: ArrayList<Int> = arrayListOf()
+    val numberList = mutableListOf<Int>()
 
-    require(!userNumber.contains("0")) {
-        "1에서 9사이의 숫자를 입력하세요."
+    require(userNumber.matches(Regex("[1-9]{3}"))) {
+        "1에서 9 사이의 3개의 숫자를 입력하세요."
     }
 
-    require(userNumber.length == SIZE) {
-        "잘못된 입력입니다. 3개의 숫자를 입력하세요"
-    }
-
-    repeat(SIZE) { index ->
-        try {
-            numberList.add(userNumber[index].digitToInt())
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("잘못된 입력입니다. 숫자를 입력하세요.")
-        }
-    }
+    addNumberToList(userNumber, numberList)
 
     return numberList
 }
 
 /**
- * 정담 숫자를 생성하는 함수
+ * 입력 받은 숫자를 List로 add 하는 함수
  */
-fun answerNumber(): ArrayList<Int> {
-    val computer: ArrayList<Int> = arrayListOf()
+fun addNumberToList(number: String, numberList: MutableList<Int>) {
+    repeat(SIZE) { index ->
+        numberList.add(number[index].digitToInt())
+    }
+}
+
+/**
+ * 정답 숫자를 생성하는 함수
+ */
+fun answerNumber(): List<Int> {
+    val computer = mutableListOf<Int>()
 
     while (computer.size < SIZE) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -80,7 +80,7 @@ fun answerNumber(): ArrayList<Int> {
 /**
  * 입력 숫자와 정답 숫자를 비교하는 함수
  */
-fun comparisonNumber(myNumberList: ArrayList<Int>, computerNumberList: ArrayList<Int>): Boolean {
+fun comparisonNumber(myNumberList: List<Int>, computerNumberList: List<Int>): Boolean {
     var strike = 0
     var ball = 0
 
