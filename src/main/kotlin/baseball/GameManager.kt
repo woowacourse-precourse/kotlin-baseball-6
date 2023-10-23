@@ -10,14 +10,12 @@ import camp.nextstep.edu.missionutils.Console
 
 class GameManager : Game() {
 
-    private lateinit var computerNumber: List<Int>
     private lateinit var playerNumber: List<Int>
 
     fun gameMaking() {
         println(GAME_START_MESSAGE)
         do {
-            computerNumber = Computer.makeNumber()
-            println(computerNumber)
+            answer = Computer.makeNumber()
             gameStart()
         } while (restartQuestion())
     }
@@ -25,16 +23,16 @@ class GameManager : Game() {
     private fun gameStart() {
         do {
             playerNumber = Player.inputNumber()
-            result(playerNumber, computerNumber)
-        } while (isResult())
+            result(playerNumber)
+        } while (isFinish())
     }
 
-    private fun isResult(): Boolean {
-        if (strike != GAME_COMPLETE_STRIKE) {
-            return true
+    private fun isFinish(): Boolean {
+        if (strike == GAME_COMPLETE_STRIKE) {
+            println(MATCHING_ALL_MESSAGE)
+            return false
         }
-        println(MATCHING_ALL_MESSAGE)
-        return false
+        return true
     }
 
     private fun restartQuestion(): Boolean {
