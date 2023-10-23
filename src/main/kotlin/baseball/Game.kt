@@ -6,11 +6,21 @@ class Game {
 
     fun startGame() {
         host.printGameStart()
-        computer.createRandomNumber()
+        val computerRandomNumber = computer.createRandomNumber()
         while (true) {
-            host.printNumberInputRequest()
-            val playerInputNumber = computer.convertInputNumberToList()
-            computer.validateInputNumber(playerInputNumber)
+            val playerInputNumber = getPlayerInputNumber()
+            val strikeCount = computer.checkNumberAndPrintResult(computerRandomNumber, playerInputNumber)
+            if (strikeCount == 3) {
+                host.printGameContinueOrNot()
+                break
+            }
         }
+    }
+
+    private fun getPlayerInputNumber(): List<Int> {
+        host.printNumberInputRequest()
+        val playerInputNumber = computer.convertInputNumberToList()
+        computer.validateInputNumber(playerInputNumber)
+        return playerInputNumber
     }
 }

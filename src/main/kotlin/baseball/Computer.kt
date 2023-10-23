@@ -41,4 +41,31 @@ class Computer {
             throw IllegalArgumentException(ERROR_INPUT_ONE_TO_NINE_ONLY)
         }
     }
+
+    fun checkNumberAndPrintResult(computerRandomNumber: List<Int>, playerInputNumber: List<Int>): Int {
+        var strike = 0
+        var ball = 0
+
+        for (i in playerInputNumber.indices) {
+            if (computerRandomNumber[i] == playerInputNumber[i]) {
+                strike++
+            } else if (computerRandomNumber.contains(playerInputNumber[i])) {
+                ball++
+            }
+        }
+        printResult(strike, ball)
+
+        return strike
+    }
+
+    private fun printResult(strike: Int, ball: Int) {
+        val result = when {
+            strike == 3 -> "$strike$STRIKE\n$END_GAME"
+            strike != 0 && ball != 0 -> "$ball$BALL $strike$STRIKE"
+            strike == 0 && ball != 0 -> "$ball$BALL"
+            strike != 0 -> "$strike$STRIKE"
+            else -> NOTHING
+        }
+        println(result)
+    }
 }
