@@ -8,8 +8,8 @@ class BaseballController(private val numbers:MutableList<Int>) {
     private val judgmentView = JudgmentView()
 
     fun judgment(userNumbers:MutableList<Int>):String{
-        val judgment = getStrikeResult(userNumbers)+getBallResult(userNumbers)
-        val result = if (judgment == "") "낫씽" else judgment
+        val judgment = getBallResult(userNumbers)+ getStrikeResult(userNumbers)
+        val result = if (judgment == BLANK) NOTHING else judgment
         judgmentView.result(result)
         return result
     }
@@ -20,7 +20,7 @@ class BaseballController(private val numbers:MutableList<Int>) {
         baseballModel.getNumbers().forEachIndexed { idx, num ->
             if (userNumbers[idx] == num) strikeCnt++
         }
-        return if (strikeCnt==0) "" else "${strikeCnt}스트라이크"
+        return if (strikeCnt==0) BLANK else "$strikeCnt$STRIKE"
     }
 
     fun getBallResult(userNumbers:MutableList<Int>): String {
@@ -28,7 +28,15 @@ class BaseballController(private val numbers:MutableList<Int>) {
         baseballModel.getNumbers().forEachIndexed { idx, num ->
             if (userNumbers[idx] != num && userNumbers.contains(num)) ballCnt++
         }
-        return if (ballCnt==0) "" else "${ballCnt}볼 "
+        return if (ballCnt==0) BLANK else "$ballCnt$BALL$SPACING"
+    }
+
+    companion object{
+        const val STRIKE = "스트라이크"
+        const val BALL = "볼"
+        const val NOTHING = "낫싱"
+        const val BLANK = ""
+        const val SPACING = " "
     }
 
 }

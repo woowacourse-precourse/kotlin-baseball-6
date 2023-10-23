@@ -8,11 +8,12 @@ class BaseBallGame {
     private val noticeView = NoticeView()
     private val userInputView = UserInputView()
     private val baseBallNumberGenerator = BaseBallNumbersGenerator()
-    private var baseballController = BaseballController(baseBallNumberGenerator.generate())
 
     private var isContinue = false
 
     fun play() {
+        start()
+        progress()
     }
 
     private fun start() {
@@ -20,21 +21,25 @@ class BaseBallGame {
     }
 
     private fun progress() {
+        val baseballController = BaseballController(baseBallNumberGenerator.generate())
         var isWin = false
         while (!isWin) {
-            noticeView.succeed()
-            isWin = isWin()
+            noticeView.inputUserNumber()
+            isWin = isWin(baseballController)
         }
-        noticeView.end()
+        noticeView.succeed()
+        retry()
     }
 
     private fun retry() {
         noticeView.restart()
         val isRetry = userInputView.getRetryNum()
-        isContinue = isRetry == RETRY_NUM
+        if(isRetry == RETRY_NUM){
+            progress()
+        }
     }
 
-    private fun isWin(): Boolean {
+    private fun isWin(baseballController:BaseballController): Boolean {
         val userNumber = UserNumbersGenerator(userInputView.getBaseBallNum()).generate()
         val userModel = UserModel(userNumber)
         val judgment = baseballController.judgment(userModel.getNumbers())
@@ -44,6 +49,5 @@ class BaseBallGame {
     companion object {
         const val WIN_JUDGMENT = "3스트라이크"
         const val RETRY_NUM = "1"
-        const val END_NUM = "2"
     }
 }
