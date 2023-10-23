@@ -12,25 +12,15 @@ import baseball.util.GameUtils
  */
 class BaseBallGameViewModel(private val repository: BaseBallGameRepository) {
 
-    /**
-     * setComputerList()
-     * 컴퓨터가 선택한 숫자 리스트를 랜덤하게 생성하여 Repository에 설정한다.
-     */
+
+    // repository 의 setComputerList() 호출
     fun setComputerList() = repository.setComputerList()
 
-    /**
-     * setUserList()
-     * 사용자로부터 입력한 숫자를 받아 Repository에 설정한다.
-     */
+    // repository 의 setUserList() 호출
     fun setUserList() = repository.setUserList()
 
-    /**
-     * compareList()
-     * 사용자가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교하여 결과를 반환한다.
-     * @return 게임 결과를 나타내는 GameModel 객체
-     */
+    // repository 의 compareList() 호출
     fun compareList(): GameModel = repository.compareList()
-
 
     /**
      * exitOrRestartGame()
