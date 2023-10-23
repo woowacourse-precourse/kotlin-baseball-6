@@ -22,4 +22,15 @@ class User {
             )
         }
     }
+
+    fun getRestartAnswerInput(): Int {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val userInput = Console.readLine()
+        return when {
+            userInput.length != 1 -> throw IllegalArgumentException()
+            userInput.toIntOrNull() == null -> throw IllegalArgumentException()
+            userInput.toInt() !in 1..2 -> throw IllegalArgumentException()
+            else -> userInput.toInt()
+        }
+    }
 }
