@@ -5,19 +5,31 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
     var state: GameState = GameState.START
 
     fun getScore(): Score {
-        val computerNumber = computer.getNumber()
+        val computerNumbers = computer.getNumber()
+        val userNumbers = user.getNumber()
+        val ball = getBall(computerNumbers, userNumbers)
+        val strike = getStrike(computerNumbers, userNumbers)
+        val out = (ball == 0 && strike == 0)
+        return Score(ball, strike, out)
+    }
+
+    private fun getStrike(computerNumbers: MutableList<Int>, userNumbers: String): Int {
         var strike = 0
-        var ball = 0
-        user.getNumber().forEachIndexed { index, c ->
-            val userNum = Character.getNumericValue(c)
-            if (computerNumber.contains(userNum) && computerNumber[index] == userNum)
+        userNumbers.forEachIndexed { index, c ->
+            val userNumber = Character.getNumericValue(c)
+            if (computerNumbers[index] == userNumber)
                 strike++
-            else if (computerNumber.contains(userNum))
+        }
+        return strike
+    }
+
+    private fun getBall(computerNumbers: MutableList<Int>, userNumbers: String): Int {
+        var ball = 0
+        userNumbers.forEachIndexed { index, c ->
+            val userNumber = Character.getNumericValue(c)
+            if (computerNumbers.contains(userNumber) && computerNumbers.indexOf(userNumber)!=index)
                 ball++
         }
-        if (strike == 0 && ball == 0)
-            return Score(0, 0, true)
-
-        return Score(ball, strike, false)
+        return ball
     }
 }
