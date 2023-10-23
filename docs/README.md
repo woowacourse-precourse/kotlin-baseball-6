@@ -21,12 +21,12 @@
   - [x] computer와 user 리스트를 비교해 같은 위치에 있는 숫자가 같으면 count 변수 값 1 증가
   - [x] count 값 반환
 
-### 볼 계수 계산
-- [ ] countBall 메서드
-  - [ ] user 리스트에 있는 숫자가 computer 리스트에 있는지 확인
-  - [ ] 해당 숫자가 user 리스트에서와 computer 리스트에서의 위치가 다른지 확인
-  - [ ] 다르면 count 변수 값 1 증가
-  - [ ] count 값 반환
+### 볼 개수 계산
+- [x] countBall 메서드
+  - [x] user 리스트에 있는 숫자가 computer 리스트에 있는지 확인
+  - [x] 해당 숫자가 user 리스트에서와 computer 리스트에서의 위치가 다른지 확인
+  - [x] 다르면 count 변수 값 1 증가
+  - [x] count 값 반환
 
 ### 플레이어가 입력한 숫자에 대한 결과 출력
 - [ ] printGameResult 메서드

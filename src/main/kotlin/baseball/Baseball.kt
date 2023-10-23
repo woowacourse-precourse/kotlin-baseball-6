@@ -22,4 +22,20 @@ class Baseball {
         }
         return count
     }
+
+    fun countBall(computer: List<Int>, user: List<Int>) : Int {
+        var count = 0
+        for (i in 0..INPUT_SIZE-1) {
+            if(checkBallNumberSame(computer, user, i)) count++
+        }
+        return count
+    }
+
+    fun checkBallNumberSame(computer: List<Int>, user: List<Int>, index: Int) : Boolean {
+        for (i in 0..INPUT_SIZE-1) {
+            if(index == i) continue
+            if(computer[index] == user[i]) return true
+        }
+        return false
+    }
 }
