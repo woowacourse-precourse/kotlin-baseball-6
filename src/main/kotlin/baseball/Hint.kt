@@ -24,4 +24,15 @@ object Hint {
         }
     }
 
+    fun printHint(count: Pair<Int, Int>) {
+        val (ball, strike) = count
+        when {
+            // 볼만 있는경우, 스트라이크만 있는 경우, 볼, 스트라이크 다 있는경우, 낫싱
+            ball > 0 && strike == 0 -> println("${ball}볼")
+            ball == 0 && strike > 0 -> println("${strike}스트라이크")
+            ball > 0 && strike > 0 -> println("${ball}볼 ${strike}스트라이크")
+            ball == 0 && strike == 0 -> println("낫싱")
+        }
+    }
 }
+
