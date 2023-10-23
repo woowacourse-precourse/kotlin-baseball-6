@@ -40,18 +40,27 @@ object Computer {
         if (userInput.size == 3) {
             val ballCounts = checkUserInput(userInput)
             println(ballCounts)
-            if (ballCounts.isStrikeOut()) {
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-                if (checkRematch(Console.readLine()!!.toInt())) {
-                    startGame()
-                    return true
-                }
-                println("게임 종료")
-                return true
+            executeIsStrikeOut(ballCounts.isStrikeOut())?.let {_executeIsStrikeOut ->
+                return _executeIsStrikeOut
             }
-        } else throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+        } else {
+            throw IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE)
+        }
 
         return false
+    }
+
+    private fun executeIsStrikeOut(isStrikeOut: Boolean): Boolean? {
+        if (isStrikeOut) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            if (checkRematch(Console.readLine()!!.toInt())) {
+                startGame()
+                return true
+            }
+            println("게임 종료")
+            return true
+        }
+        return null
     }
 
     private fun checkUserInput(userInput: List<Int>): BallCount {
