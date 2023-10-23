@@ -23,10 +23,10 @@ fun main() {
         val player = validatePlayerNumber(getPlayer)
 
         // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
-        val playerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
+        val calculatePlayerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
 
         // 플레이어의 점수를 출력한다.
-        printPlayerScore(playerScore)
+        printPlayerScore(calculatePlayerScore)
 
     } catch (e: IllegalArgumentException) {
         // 예외가 있으면
@@ -119,6 +119,31 @@ fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, play
     return playerScore
 }
 
-fun printPlayerScore(playerScore: PlayerScore) {
-    println(playerScore)
+fun printPlayerScore(calculatePlayerScore: PlayerScore) {
+
+    var result = ""
+
+    // 하나도 없는 경우
+    if (calculatePlayerScore.nothing) {
+        result = "낫싱"
+        return println(result)
+    }
+
+    // 3개의 숫자를 모두 맞힐 경우
+    if (calculatePlayerScore.strike == 3) {
+        result = "${calculatePlayerScore.strike}스트라이크"
+        return println(result)
+    }
+
+    // 입력한 수에 대한 볼 개수 출력
+    if (calculatePlayerScore.ball > 0) {
+        result += "${calculatePlayerScore.ball}볼 "
+    }
+
+    // 입력한 수에 대한 스트라이크 개수 출력
+    if (calculatePlayerScore.strike > 0) {
+        result += "${calculatePlayerScore.strike}스트라이크"
+    }
+
+    return println(result.trim())
 }
