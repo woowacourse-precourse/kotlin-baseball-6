@@ -19,19 +19,20 @@ fun enterNum(): String {
     val InputNum = Console.readLine()
     return InputNum
 }
-fun printResult(result : Pair<Int, Int>){
+
+fun printResult(result: Pair<Int, Int>) {
     val strike = result.first
     val ball = result.second
 
-    if(strike > 0 && ball == 0){
+    if (strike > 0 && ball == 0) {
         println("${strike}스트라이크")
         return
     }
-    if(strike == 0 && ball > 0){
+    if (strike == 0 && ball > 0) {
         println("${ball}볼")
         return
     }
-    if(strike == 0 && ball == 0){
+    if (strike == 0 && ball == 0) {
         println("낫싱")
         return
     }
@@ -39,6 +40,7 @@ fun printResult(result : Pair<Int, Int>){
     println("${ball}볼 ${strike}스트라이크")
     return
 }
+
 fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
     var strike = 0
     var ball = 0
@@ -54,6 +56,7 @@ fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
     }
     return Pair(strike, ball)
 }
+
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     val comNum = createRandomNum()
@@ -63,14 +66,25 @@ fun main() {
 //        result = compareNum(comNum, enterNum())
 //        printResult(result)
 //    }
-
     do {
-        print("숫자를 입력해주세요 : ")
-        var result = compareNum(comNum, enterNum())
-        printResult(result)
-    }while (result.first != 3 )
+        do {
+            print("숫자를 입력해주세요 : ")
+            var result = compareNum(comNum, enterNum())
+            printResult(result)
+        } while (result.first != 3)
 
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    } while (gameContinueOrQuit())
+}
+
+fun gameContinueOrQuit(): Boolean {
+    var restart = Console.readLine()
+    //사용자 1또는 2 입력 안할시 예외처리
+    if (restart == "1") {
+        return true
+    }
+    return false
 }
 
 class Computer {
