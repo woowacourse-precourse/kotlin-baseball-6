@@ -2,7 +2,6 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
-
 class Computer() {
 
     fun randomNum(): MutableList<Int> {
