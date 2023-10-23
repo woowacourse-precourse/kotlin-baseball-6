@@ -25,7 +25,7 @@ private fun startBaseballGame() {
         while (true) {
             print("숫자를 입력해주세요 : ")
             val userBaseballNumbers: Int = validateInput(readLine().toInt())
-            val baseballResult: Boolean= isAnswer(randomBaseballNumbers, userBaseballNumbers)
+            val baseballResult: Boolean = isAnswer(randomBaseballNumbers, userBaseballNumbers)
 
             if (baseballResult) {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -46,28 +46,18 @@ private fun startBaseballGame() {
 }
 
 private fun validateInput(input: Int): Int {
-    if (input !in INPUT_MIN_VALUE..INPUT_MAX_VALUE) {
-        throw IllegalStateException()
-    } else {
-        return input
-    }
+    if (input in INPUT_MIN_VALUE..INPUT_MAX_VALUE) return input else throw IllegalStateException()
 }
 
 private fun restartOrExitInput(input: String): String {
-    if (!(input == RESTART || input == EXIT)) {
-        throw IllegalStateException()
-    } else {
-        return input
-    }
+    if (input == RESTART || input == EXIT) return input else throw IllegalStateException()
 }
 
 private fun getRandomNumbers(): MutableList<Int> {
-    val numberList = mutableListOf<Int>()
+    val numberList: MutableList<Int> = mutableListOf()
     while (numberList.size < BASEBALL_NUMBER_COUNT) {
         val randomNumber = pickNumberInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE)
-        if (!numberList.contains(randomNumber)) {
-            numberList.add(randomNumber)
-        }
+        if (!numberList.contains(randomNumber)) numberList.add(randomNumber)
     }
     return numberList
 }
@@ -84,10 +74,8 @@ private fun isAnswer(
         .map { it.toString().toInt() }
 
     randomBaseballNumbers.forEachIndexed { index, number ->
-        when {
-            userBaseballNumberList[index] == number -> strike++
-            randomBaseballNumbers.contains(userBaseballNumberList[index]) -> ball++
-        }
+        if(userBaseballNumberList[index] == number) strike++
+        if(randomBaseballNumbers.contains(userBaseballNumberList[index])) ball++
     }
 
     when {
@@ -96,6 +84,5 @@ private fun isAnswer(
         ball == 0 -> println("${strike}스트라이크")
         else -> println("${ball}볼${strike}스트라이크")
     }
-
     return strike == BASEBALL_NUMBER_COUNT
 }
