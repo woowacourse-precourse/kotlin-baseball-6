@@ -51,11 +51,16 @@ fun countStrike(secretNumber: String, guessNumber: String): Int {
     return strike
 }
 
+fun printGuessResult(result: GuessResult) {
+    println("${result.ballNumber} 볼 ${result.strikeNumber} 스트라이크")
+}
+
 fun main() {
     val secretNumber = makeSecretNumber()
+    println(secretNumber)
     val guessNumber = Console.readLine()
     if (!isValidInput(guessNumber)) {
         throw IllegalArgumentException("Wrong Input")
     }
-
+    val guessResult = getGuessResult(secretNumber, guessNumber)
 }
