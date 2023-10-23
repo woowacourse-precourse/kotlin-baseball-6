@@ -4,9 +4,8 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
 
     var state: GameState = GameState.START
     fun getScore(): Score {
-        val userNumbers = user.getNumber()
-        val ball = getBall(computer.numbers, userNumbers)
-        val strike = getStrike(computer.numbers, userNumbers)
+        val ball = getBall(computer.numbers, user.numbers)
+        val strike = getStrike(computer.numbers, user.numbers)
         val out = (ball == 0 && strike == 0)
         return Score(ball, strike, out)
     }

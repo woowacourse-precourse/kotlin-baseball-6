@@ -1,10 +1,9 @@
 package baseball.model
 
 class User {
-    private lateinit var numbers : String
-
+    private lateinit var _numbers : String
+    val numbers get () = _numbers
     fun setNumber(input:String) {
-        numbers=input
+        _numbers=input
     }
-    fun getNumber() = numbers
 }
