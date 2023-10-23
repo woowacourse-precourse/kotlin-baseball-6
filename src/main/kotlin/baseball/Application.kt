@@ -48,6 +48,23 @@ fun compareNumbers(computerList: List<Int>, userList: List<Int>): Boolean {
             }
         }
     }
-    println("$strike strike, $ball ball")
+    printHint(strike, ball)
     return strike != 3
+}
+
+fun printHint(strike: Int, ball: Int) {
+    if (strike == 0 && ball == 0) {
+        println("낫싱")
+    } else {
+        if (ball > 0) {
+            print("${ball}볼 ")
+        }
+        if (strike > 0){
+            print("${strike}스트라이크 ")
+            if (strike == 3){
+                print("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            }
+        }
+        println()
+    }
 }
