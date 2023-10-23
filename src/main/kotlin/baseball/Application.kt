@@ -9,16 +9,14 @@ data class GuessResult(
 )
 
 fun makeSecretNumber(): String {
-    val stringBuilder = StringBuilder()
-    repeat(3) {
-        val randomNumber = Randoms.pickNumberInRange(0, 9)
-        stringBuilder.append(randomNumber)
-    }
-    return stringBuilder.toString()
+    return MutableList(10) { it }
+        .shuffled()
+        .joinToString("")
+        .substring(0, 3)
 }
 
 fun isValidInput(input: String): Boolean {
-    return input.all { isNumber(it) } && input.length == 3
+    return input.toSet().size == 3 && input.all { isNumber(it) } && input.length == 3
 }
 
 fun isNumber(input: Char) = input in '0'..'9'
@@ -62,5 +60,7 @@ fun main() {
     if (!isValidInput(guessNumber)) {
         throw IllegalArgumentException("Wrong Input")
     }
+    println(guessNumber)
     val guessResult = getGuessResult(secretNumber, guessNumber)
+    printGuessResult(guessResult)
 }
