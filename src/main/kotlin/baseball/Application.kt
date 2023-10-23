@@ -12,11 +12,12 @@ fun main() {
 
     while (isRunning) {
         print("숫자를 입력해주세요 : ")
+        val userInput = Console.readLine()
     }
 }
 
 //서로 다른 세 수를 뽑는 Function
-fun createRandomNum() : List<Int> {
+fun createRandomNum() : String {
     val numList = ArrayList<Int>()
     for(index in 1..3) {
         val num = Randoms.pickNumberInRange(1,9)
@@ -24,5 +25,29 @@ fun createRandomNum() : List<Int> {
             numList.add(num)
         }
     }
-    return numList
+    return numList.joinToString("")
+}
+
+fun compareNum(userNum : String, randomNum : String) : String {
+    var strike : Int = 0
+    var ball : Int = 0
+
+    var answer : String = ""
+
+    for (i in 1..3) {
+        if(userNum[i] == randomNum[i]) {
+            strike++
+        }
+        else if(userNum[i] in randomNum) {
+            ball++
+        }
+    }
+
+    when {
+        strike > 0 && ball > 0 -> answer = "${ball}볼 ${strike}스트라이크"
+        strike == 0 && ball > 0 -> answer = "${ball}볼"
+        strike > 0 && ball == 0 -> answer = "${strike}스트라이크"
+        strike == 0 && ball == 0 -> answer = "낫싱"
+    }
+    return answer
 }
