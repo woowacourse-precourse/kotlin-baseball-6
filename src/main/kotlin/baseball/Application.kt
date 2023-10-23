@@ -35,8 +35,8 @@ fun checkNums(comNums: List<Int>, userNums: List<Int>): Boolean {
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     var playBall = true // 게임 시작
-
     var computerInput = mutableListOf<Int>() // 컴퓨터 입력 변수
+
     val nums = mutableListOf<Int>() // 무작위 숫자 저장할 변수 선언
     while (nums.size < 3) {
         // 숫자 무작위로 1부터 9까지 선택

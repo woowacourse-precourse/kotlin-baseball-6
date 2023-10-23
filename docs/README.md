@@ -110,7 +110,6 @@ BUILD SUCCESSFUL in 0s
 - `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-  -
 ---
 ## ✏️ 구현된 기능 목록 
 - 입력될 숫자를 저장할 리스트 생성하기
@@ -119,6 +118,8 @@ BUILD SUCCESSFUL in 0s
 - 숫자 3개 모두 일치하기 전까지 반복하기
 - 숫자가 3개 몸두 일치한 경우, 반복 끝내고 "새로 시작: 1, 종료: 2" 출력하기
 - 숫자가 존재하고 인덱스 위치가 다르면 "볼", 같으면 "스트라이크" 출력하기
-- Random 메소드 사용해서 무작위로 숫자 3개를 생성한 리스트에 저장
+- Random 메소드에서 **pickNumberInRange()** 무작위로 숫자 3개를 생성한 리스트에 저장
+- 사용자가 잘못된 값을 입력한 경우, **IllegalArgumentException**을 발생시킨 후 애플리케이션 종료
+- 사용자 입력 부분은 **readLine()** 을 활용하기
 
 ---
