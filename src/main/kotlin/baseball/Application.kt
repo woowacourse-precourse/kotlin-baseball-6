@@ -1,5 +1,9 @@
 package baseball
 
+import baseball.model.Answer
+import baseball.model.BaseballInput
+import baseball.model.MenuInput
+
 /*  명령어 학습(C : Ctrl, A: Alt, S:Shift)
     1. CA + l : 자동 정렬
     2. CA + o : import 정리
@@ -13,40 +17,40 @@ package baseball
 */
 
 const val BASEBALL_DIGITS = 3
+val BASEBALL_RANGE = CharRange('1', '9')
 const val MENU_DIGITS = 1
+val MENU_RANGE = CharRange('1', '2')
 
-// TODO : 폴더 및 파일 구조 분류하는 방법 학습하고 적용
-fun main() {
-    var isStay = true
-    val answer = Answer()
-    println("숫자 야구 게임을 시작합니다.")
+class BaseballGame(
+    private val answer: Answer,
+    private val baseballInput: BaseballInput,
+    private val menuInput: MenuInput,
+) {
+    fun play() {
+        var isStay = true
+        gameStartPrompt()
 
-    do {
-        if (inputBaseball(answer.number) == false) {
-            continue
+        while (isStay) {
+            inputBaseball(baseballInput)
+            val isAllStrike = calculate(baseballInput, answer)
+            if (isAllStrike == false) {
+                continue
+            }
+
+            inputMenu(menuInput)
+            if (menuInput.selectedMenu == 1) {
+                answer.newGenerator() // [4]. 4) 메뉴 입력에 따른 정답 재생성
+            }
+            isStay = (menuInput.selectedMenu == 1)
         }
-
-        val selectedMenu = inputRestart(answer)
-        isStay = true.takeIf { selectedMenu == 1 } ?: false
-
-    } while (isStay == true)
-}
-
-/** [2]. 숫자 입력 받기 : 1 ~ 9 3자리
- * [3]. Ball, Strike 검증 함수 호출
- * */
-fun inputBaseball(answer: IntArray): Boolean {
-    val inputData = inputValidator(BASEBALL_DIGITS, CharRange('1', '9'))
-
-    return calculateBallAndStrike(inputData, answer)
-}
-
-/** [4]. 메뉴 입력 받기 : 1 or 2 */
-fun inputRestart(answer: Answer): Int {
-    val selectedMenu = inputValidator(MENU_DIGITS, CharRange('1', '2')).first()
-
-    if (selectedMenu == 1) {
-        answer.newGenerator()
     }
-    return selectedMenu
+}
+
+fun main() {
+    val game = BaseballGame(
+        Answer(),
+        BaseballInput(),
+        MenuInput()
+    )
+    game.play()
 }
