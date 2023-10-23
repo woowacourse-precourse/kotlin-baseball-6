@@ -1,35 +1,61 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.IllegalArgumentException
 
 class BaseBallGame() {
-    private val answer by lazy { RandomNumberGenerator.generateRandomNumber() }
+    private val answer = RandomNumberGenerator.generateRandomNumber()
 
     init {
-        answer
-
-        do {
-            print("숫자를 입력해주세요 : ")
-            val inputData = Console.readLine()
-
-            try {
-                inputData.toInt()
-            } catch (e : NumberFormatException){
-                throw IllegalArgumentException("")
-            }
-            if (inputData.length != 3 ){
-                throw IllegalArgumentException("")
-            }
-        }
-        while (!isCorrect(inputData))
+        startGame()
 
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
-
     private fun startGame(){
-        
+
+        do {
+            print("숫자를 입력해주세요 : ")
+            val input = Console.readLine()
+            if (!checkInput(input)){
+                throw IllegalArgumentException("")
+            }
+
+        }
+        while (!isCorrect(input))
+
+    }
+    private fun checkInput(input : String) : Boolean{
+
+        fun hasDuplicateCharacters(input: String): Boolean {
+            val charSet = mutableSetOf<Char>()
+
+            for (char in input) {
+                if (charSet.contains(char)) {
+                    return true
+                }
+                charSet.add(char)
+            }
+            return false
+        }
+
+        //숫자 확인
+        try {
+            input.toInt()
+        } catch (e : NumberFormatException){
+            return false
+        }
+        //입력 길이 확인
+        if (input.length != 3 ){
+            return false
+        }
+        //중복된 숫자 입력 확인
+        if (hasDuplicateCharacters(input)){
+            return false
+        }
+
+        return true
     }
 
 
