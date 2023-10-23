@@ -15,7 +15,7 @@ fun main() {
 
     print("숫자를 입력해주세요 : ")
     val you = inputAndValidate()
-
+    printResult(check(computer, you)
 }
 
 fun inputAndValidate(): List<Int> {
@@ -34,4 +34,43 @@ fun validate(input: String): List<Int> {
         }
     }
     return numbers
+}
+
+fun check(computer: MutableList<Int>, you: List<Int>): Pair<Int, Int> {
+    var strike = 0
+    var ball = 0
+    for ((index, value) in you.withIndex()) {
+        for ((index2, value2) in computer.withIndex()) {
+            if(value == value2) {
+                if(index==index2) {
+                    strike++
+                    continue
+                }
+                ball++
+            }
+        }
+    }
+    return Pair(strike, ball)
+}
+
+fun printResult(check: Pair<Int, Int>) : Boolean {
+    val (strike, ball) = check
+    if(strike == 3) {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        return true
+    }
+    if(strike == 0) {
+        if(ball == 0) {
+            println("낫싱")
+            return false
+        }
+        println("$ball 볼")
+        return false
+    }
+    if(ball == 0) {
+        println("$strike 스트라이크")
+        return false
+    }
+    println("$ball 볼 $strike 스트라이크")
+    return false
 }
