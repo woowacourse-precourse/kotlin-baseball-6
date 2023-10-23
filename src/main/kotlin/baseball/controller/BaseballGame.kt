@@ -1,16 +1,13 @@
 package baseball.controller
 
-import baseball.model.BaseBallNumberGenerator
-import baseball.model.BaseballModel
-import baseball.model.UserModel
-import baseball.model.UserNumberGenerator
+import baseball.model.*
 import baseball.view.NoticeView
 import baseball.view.UserInputView
 
 class BaseBallGame {
     private val noticeView = NoticeView()
     private val userInputView = UserInputView()
-    private val baseBallNumberGenerator = BaseBallNumberGenerator()
+    private val baseBallNumberGenerator = BaseBallNumbersGenerator()
     private var baseballController = BaseballController(baseBallNumberGenerator.generate())
 
     private var isContinue = false
@@ -38,7 +35,7 @@ class BaseBallGame {
     }
 
     private fun isWin(): Boolean {
-        val userNumber = UserNumberGenerator(userInputView.getBaseBallNum()).generate()
+        val userNumber = UserNumbersGenerator(userInputView.getBaseBallNum()).generate()
         val userModel = UserModel(userNumber)
         val judgment = baseballController.judgment(userModel.getNumbers())
         return judgment == WIN_JUDGMENT

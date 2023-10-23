@@ -1,7 +1,6 @@
 package baseball.model
 
 import camp.nextstep.edu.missionutils.Randoms
-import java.io.Console
 
 class BaseBallNumbersGenerator:NumbersGenerator {
     override fun generate(): MutableList<Int> {
