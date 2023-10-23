@@ -14,8 +14,8 @@ fun main() {
             val player = mutableListOf<Int>()
             getPlayerNumber(player)
 
-            var strike = countStrike(computer, player)
-            var ball = countBall(computer, player)
+            val strike = countStrike(computer, player)
+            val ball = countBall(computer, player)
             printHint(ball, strike)
         } while (strike < 3)
 
