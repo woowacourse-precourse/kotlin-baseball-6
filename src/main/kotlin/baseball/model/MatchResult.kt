@@ -1,5 +1,8 @@
 package baseball.model
 
-enum class MatchResult {
-    SUCCEED, FAIL
+sealed interface MatchResult {
+
+    data class Success(val comment: String): MatchResult
+
+    data class Fail(val comment: String): MatchResult
 }
