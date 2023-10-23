@@ -1,6 +1,8 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
+import kotlin.collections.mutableListOf
 
 data class GuessResult(
     val ballNumber: Int,
@@ -8,14 +10,18 @@ data class GuessResult(
 )
 
 fun makeSecretNumber(): String {
-    return MutableList(10) { it }
-        .shuffled()
-        .joinToString("")
-        .substring(0, 3)
+    val computer: MutableList<Int> = mutableListOf()
+    for (it in 0 until 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+    return computer.joinToString("")
 }
 
 fun isValidGuessNumber(input: String): Boolean {
-    return input.toSet().size == 3 && input.all { isNumber(it) } && input.length == 3
+    return input.length == 3 && input.toSet().size == 3 && input.all { isNumber(it) }
 }
 
 fun isValidContinueNumber(input: String): Boolean {
