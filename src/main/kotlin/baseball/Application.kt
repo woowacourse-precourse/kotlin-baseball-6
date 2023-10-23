@@ -15,7 +15,7 @@ fun runGame() {
     while (continueGame) {//종료전까지 반복 실행
         val target = generateTarget()
         var guess: String
-        var result: Pair<Int, Int> = Pair(0, 0)
+        var result: Pair<Int, Int>
 
         do {
             println("숫자를 입력해주세요: ")
@@ -44,7 +44,6 @@ fun runGame() {
             }
             else -> {
                 throw IllegalArgumentException("잘못된 선택입니다. 게임을 종료합니다.")
-                continueGame = false
             }
         }
     }
