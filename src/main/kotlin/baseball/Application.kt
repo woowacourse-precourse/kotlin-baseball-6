@@ -2,6 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.util.Stack
 
 
 class NumberBaseball {
@@ -32,6 +33,7 @@ class NumberBaseball {
             }
             return newComputerNumber.joinToString("")
             //joinTostring을 사용하면 컬렉션의 요소를 문자열로 결합하기 때문에 각각 따로 사용할 떄 보다 관리가 용이하다고 판단
+            //이전에도 문자열을 개별로 관리하였더니 공백이나 예외사항 처리 시 joinTostring을 사용했을 때 관리가 어려웠음.
         }
 
         fun readInputNumber(): String {
@@ -44,26 +46,31 @@ class NumberBaseball {
     }
 
     inner class Gaming() {
-        fun seekAnswer(newComputerNumber: String, userNumber: String) {
-            var strikeCount: Int = 0
-            var ballCount: Int = 0
+        fun seekAnswer(newComputerNumber: String, userNumber: String): List<Int> {
+            val scoreResult = mutableListOf(0, 0) // 초기값 설정
 
             for (index in userNumber.indices) {
-                if (userNumber[index] == newComputerNumber[index]) {
-                    strikeCount++
+                if (newComputerNumber[index] == userNumber[index]) {
+                    scoreResult[0]++ // 스트라이크 증가
                 } else if (newComputerNumber.contains(userNumber[index])) {
-                    ballCount++
+                    scoreResult[1]++ // 볼 증가
                 }
             }
-            if (strikeCount == 0 && ballCount == 0) {
+
+            return scoreResult
+        }
+
+        fun printScore(scoreResult: List<Int>) {
+            if (scoreResult[0] == 0 && scoreResult[1] == 0) {
                 println("낫싱")
-            } else if (strikeCount == 3) {
-                println("${strikeCount}스트라이크")
+            } else if (scoreResult[0] == 3) {
+                println("${scoreResult[0]}스트라이크")
                 endGame()
             } else {
-                println("${ballCount}볼 ${strikeCount}스트라이크")
+                println("${scoreResult[0]}볼 ${scoreResult[1]}스트라이크")
             }
         }
+
         fun endGame() {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
@@ -74,15 +81,16 @@ class NumberBaseball {
             var user: String
             while (true) {
                 user = input.readInputNumber()
-                seekAnswer(computer, user)
-                if(computer==user)
+                printScore(seekAnswer(computer,user))
+                if(computer==user) {
                     break
+                }
             }
         }
     }
     fun resetGame(): Boolean {
-        val inputNumber = Console.readLine()
-        if (inputNumber.toInt() == 1) {
+        val inputNumber = Console.readLine().toInt()
+        if (inputNumber == 1) {
             return true
         }
         return false
