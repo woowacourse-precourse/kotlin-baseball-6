@@ -4,7 +4,7 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
 
     var state: GameState = GameState.START
 
-    fun compareNumbers(): Score {
+    fun getScore(): Score {
         val computerNumber = computer.getNumber()
         var strike = 0
         var ball = 0
