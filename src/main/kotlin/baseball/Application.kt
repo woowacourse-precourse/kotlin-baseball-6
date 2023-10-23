@@ -14,13 +14,11 @@ fun main() {
 
 fun playGame() {
     val answer = generateAnswer()
-    println("정답: $answer")
     println("숫자 야구 게임을 시작합니다.")
     while (true) {
         val input = getUserAnswerInput()
         val judgeResult = judge(input, answer)
-        print(judgeResult)
-        if (judgeResult.strike == 3) {
+        judgeResult.print()
         if (judgeResult.isCorrect) {
             break
         }
