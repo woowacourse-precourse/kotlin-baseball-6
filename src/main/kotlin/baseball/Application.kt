@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console.readLine
 
 // 프로그램의 시작점
 fun main() {
-
     // 게임을 시작한다.
     startGame()
 
@@ -49,7 +48,7 @@ fun playerTryAnswer(computer: MutableList<Int>) : Boolean {
 }
 
 fun startGame() {
-    println("숫자 야구 게임을 시작합니다.")
+    println(Const.GAME_START)
 }
 
 fun createComputerNumber(): MutableList<Int> {
@@ -67,7 +66,7 @@ fun createComputerNumber(): MutableList<Int> {
 
 fun getPlayerNumber(): String {
 
-    print("숫자를 입력해주세요 : ")
+    print(Const.GAME_REQUEST_PLAYER_NUMBER)
 
     val getPlayer = readLine()
 
@@ -78,7 +77,7 @@ fun validatePlayerNumber(player: String): List<Int> {
 
     // 3자리 검증
     if (player.length != 3) {
-        throw IllegalArgumentException("3자리만 입력해 주세요")
+        throw IllegalArgumentException(Const.ERROR_NOT_3_DIGIT)
     }
 
     // player 타입을 String에서 List<String>으로 변환
@@ -88,14 +87,14 @@ fun validatePlayerNumber(player: String): List<Int> {
     val playerIntOrNullList = playerList.mapNotNull { it.digitToIntOrNull() }
 
     if (playerIntOrNullList.size != 3) {
-        throw IllegalArgumentException("숫자만 입력해 주세요")
+        throw IllegalArgumentException(Const.ERROR_NOT_NUMBER)
     }
 
     // playerIntORNullList에 중복된 값이 있는지 set함수로 검증
     val playerSet = playerIntOrNullList.toSet()
 
     if (playerSet.size != 3) {
-        throw IllegalArgumentException("중복된 숫자가 있어요")
+        throw IllegalArgumentException(Const.ERROR_DUPLICATE_NUMBER)
     }
 
     return playerIntOrNullList
@@ -138,13 +137,13 @@ fun printPlayerScore(calculatePlayerScore: PlayerScore) {
 
     // 하나도 없는 경우
     if (calculatePlayerScore.nothing) {
-        result = "낫싱"
+        result = Const.PLAYER_SCORE_NOTHING
         return println(result)
     }
 
     // 3개의 숫자를 모두 맞힐 경우
     if (calculatePlayerScore.strike == 3) {
-        result = "${calculatePlayerScore.strike}스트라이크"
+        result = "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
         println(result)
         endGame()
         return
@@ -152,31 +151,32 @@ fun printPlayerScore(calculatePlayerScore: PlayerScore) {
 
     // 입력한 수에 대한 볼 개수 출력
     if (calculatePlayerScore.ball > 0) {
-        result += "${calculatePlayerScore.ball}볼 "
+        result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} "
     }
 
     // 입력한 수에 대한 스트라이크 개수 출력
     if (calculatePlayerScore.strike > 0) {
-        result += "${calculatePlayerScore.strike}스트라이크"
+        result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
     }
 
     return println(result.trim())
 }
 
 fun endGame() {
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println(Const.GAME_END)
 }
 
 fun restartGameOrEndProgram() : Boolean {
 
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    println(Const.GAME_RESTART_OR_PROGRAM_END)
     val coin = readLine()
+
 
     val coinInt = coin.toIntOrNull()
 
     // 숫자 검증
     if (coinInt != 1 && coinInt != 2) {
-        throw IllegalArgumentException("1또는 2만 입력해 주세요")
+        throw IllegalArgumentException(Const.ERROR_NOT_1_OR_2)
     }
 
     if (coinInt == 1) {
