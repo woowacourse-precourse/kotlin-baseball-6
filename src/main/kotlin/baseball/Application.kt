@@ -10,23 +10,32 @@ fun main() {
         val computer = getRandomList()
         val number = listToString(computer)
         gameOneSet(number)
-        println(GAME_ENDING_MENTION)
-        println(GAME_RESTART_MENTION)
-        val reGame = Console.readLine()
-        if(reGame != "1" && reGame != "2") throw IllegalArgumentException()
-        if(reGame == "2") break
+        if(!checkRestartGame()) break
     }
+}
+
+fun checkRestartGame() : Boolean {
+    println(GAME_ENDING_MENTION)
+    println(GAME_RESTART_MENTION)
+    val reGame = Console.readLine()
+    if(reGame != "1" && reGame != "2") throw IllegalArgumentException()
+    if(reGame == "2") return false
+    return true
 }
 
 fun getRandomList() : MutableList<Int> {
     val res = mutableListOf<Int>()
     while (res.size < NUMBER_SIZE) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!res.contains(randomNumber)) {
-            res.add(randomNumber)
-        }
+        addRandomNumber(res)
     }
     return res
+}
+
+fun addRandomNumber(list : MutableList<Int>){
+    val randomNumber = Randoms.pickNumberInRange(1, 9)
+    if (!list.contains(randomNumber)) {
+        list.add(randomNumber)
+    }
 }
 
 fun listToString(list : MutableList<Int>) : String {
@@ -43,20 +52,32 @@ fun gameOneSet(number : String) {
         val input = Console.readLine().trim()
         checkValidInput(input)
         val score = getScores(number, input)
-        if(score == 0) print(NOTHING)
-        if(score % 10 != 0) print("${score%10}" + BALL)
-        if(score / 10 != 0) print("${score/10}" + STRIKE)
-        print('\n')
+        printScoreResult(score)
         if(score == 3*10) break
     }
+}
+
+fun printScoreResult(score : Int) {
+    if(score == 0) print(NOTHING)
+    if(score % 10 != 0) print("${score%10}" + BALL)
+    if(score / 10 != 0) print("${score/10}" + STRIKE)
+    print('\n')
 }
 
 fun checkValidInput(input : String) {
     if(input.length != NUMBER_SIZE) throw IllegalArgumentException()
     for(i in input.indices){
-        if(input[i] !in '1' .. '9') throw IllegalArgumentException()
-        if(input[i] == input[(i+1)%3] || input[i] == input[(i+2)%3]) throw IllegalArgumentException()
+        checkDigit(input[i])
+        checkRedundantInput(input, i, input[i])
     }
+}
+
+fun checkDigit(ch : Char) {
+    if(ch !in '1' .. '9') throw IllegalArgumentException()
+}
+
+fun checkRedundantInput(input : String, index : Int, ch : Char) {
+    if(input.indexOf(ch) != index) throw IllegalArgumentException()
 }
 
 fun getScores(random: String, input: String) : Int {
@@ -69,9 +90,14 @@ fun getScores(random: String, input: String) : Int {
 fun checkStrikes(random: String, input: String) : Int {
     var strikes = 0
     for(i in 0 until NUMBER_SIZE) {
-        if(random[i] == input[i]) strikes++
+        strikes += isStrike(random[i], input[i])
     }
     return strikes
+}
+
+fun isStrike(ch1 : Char, ch2 : Char) : Int {
+    if(ch1 == ch2) return 1
+    else return 0
 }
 
 fun checkBalls(random: String, input: String) : Int {
