@@ -4,6 +4,7 @@ import baseball.model.Computer
 import baseball.model.Player
 import baseball.util.Constants.LENGTH_NUMBER
 import baseball.util.Constants.NO_BALL
+import baseball.util.Constants.RESTART
 import baseball.util.Constants.TEXT_ALL_CORRECT
 import baseball.util.Constants.TEXT_START_GAME
 
@@ -12,7 +13,9 @@ class Game {
     fun init() {
         println(TEXT_START_GAME)
 
-        startGame()
+        do {
+            startGame()
+        } while (restart())
     }
 
     private fun startGame() {
@@ -33,5 +36,9 @@ class Game {
 
     private fun isCorrect(ball: Int, strike: Int): Boolean {
         return ball == NO_BALL && strike == LENGTH_NUMBER
+    }
+
+    private fun restart(): Boolean {
+        return Player.askRestart() == RESTART
     }
 }

@@ -5,6 +5,7 @@ object Constants {
     const val TEXT_START_GAME = "숫자 야구 게임을 시작합니다."
     const val TEXT_INPUT_NUMBER = "숫자를 입력해주세요 : "
     const val TEXT_ALL_CORRECT = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+    const val TEXT_ASK_RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 
     // EXCEPTION
     const val EXCEPTION_WRONG_FORMAT = "잘못된 입력 형식입니다."
@@ -20,4 +21,7 @@ object Constants {
 
     const val NO_STRIKE = 0
     const val NO_BALL = 0
+
+    const val RESTART = "1"
+    const val END = "2"
 }

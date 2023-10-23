@@ -1,5 +1,6 @@
 package baseball.model
 
+import baseball.util.Constants.TEXT_ASK_RESTART
 import baseball.util.Constants.TEXT_INPUT_NUMBER
 import baseball.util.Validation.validateDigit
 import baseball.util.Validation.validateDuplicate
@@ -21,5 +22,13 @@ object Player {
         validateDuplicate(number)
 
         return number
+    }
+
+    fun askRestart(): String {
+        println(TEXT_ASK_RESTART)
+
+        val restartFlag = Console.readLine()
+
+        return restartFlag
     }
 }
