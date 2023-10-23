@@ -21,36 +21,27 @@ fun main() {
 
 private fun startBaseballGame() {
     var randomBaseballNumbers: MutableList<Int> = getRandomNumbers()
-    try {
-        while (true) {
-            print("숫자를 입력해주세요 : ")
-            val userBaseballNumbers: Int = validateInput(readLine().toInt())
-            val baseballResult: Boolean = isAnswer(randomBaseballNumbers, userBaseballNumbers)
+    while (true) {
+        print("숫자를 입력해주세요 : ")
+        val userBaseballNumbers: Int = validateInput(readLine().toInt())
+        val baseballResult: Boolean = isAnswer(randomBaseballNumbers, userBaseballNumbers)
 
-            if (baseballResult) {
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-                val input: String = restartOrExitInput(readLine())
-                if (input == EXIT) break
-                randomBaseballNumbers = getRandomNumbers()
-            }
+        if (baseballResult) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val input: String = restartOrExitInput(readLine())
+            if (input == EXIT) break
+            randomBaseballNumbers = getRandomNumbers()
         }
-    } catch (exception: Exception) {
-        when (exception) {
-            is IllegalStateException -> println("잘못된 값을 입력하셨습니다.")
-            else -> println("IllegalStateException 예외가 아닙니다.")
-        }
-        return
     }
-    println("프로그램 종료.")
 }
 
 private fun validateInput(input: Int): Int {
-    if (input in INPUT_MIN_VALUE..INPUT_MAX_VALUE) return input else throw IllegalStateException()
+    if (input in INPUT_MIN_VALUE..INPUT_MAX_VALUE) return input else throw IllegalArgumentException()
 }
 
 private fun restartOrExitInput(input: String): String {
-    if (input == RESTART || input == EXIT) return input else throw IllegalStateException()
+    if (input == RESTART || input == EXIT) return input else throw IllegalArgumentException()
 }
 
 private fun getRandomNumbers(): MutableList<Int> {
@@ -82,7 +73,7 @@ private fun isAnswer(
         strike + ball == 0 -> println("낫싱")
         strike == 0 -> println("${ball}볼")
         ball == 0 -> println("${strike}스트라이크")
-        else -> println("${ball}볼${strike}스트라이크")
+        else -> println("${ball}볼 ${strike}스트라이크")
     }
     return strike == BASEBALL_NUMBER_COUNT
 }
