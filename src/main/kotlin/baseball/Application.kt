@@ -9,63 +9,41 @@ fun main() {
     // 게임을 시작한다.
     startGame()
 
-//    try {
-        // 게임 재시작 반복문
+    // 게임 재시작 반복문
+    while (true) {
+        // 컴퓨터 숫자를 생성해 computer에 담는다.
+        val computer = createComputerNumber()
+
+        // 게임 라운드 반복문
         while (true) {
-            // 컴퓨터 숫자를 생성해 computer에 담는다.
-            val computer = createComputerNumber()
-//          println(computer) // 구현용 임시 출력
-
-            // 게임 라운드 반복문
-            while (true) {
-                // 플레이어가 숫자를 입력해 정답에 시도한다.
-                if (!playerTryAnswer(computer)) break
-                // 예외 발생 시 -> false + restartGame = false
-                // 3스트라이크 -> false
-                // 나머지 -> true
-            }
-
-            // println("여긴 루프밖이야") // 구현용 임시 출력
-
-            // 게임 재시작 또는 프로그램 종료
-            if (!restartGameOrEndProgram()) break
-
+            // 플레이어가 숫자를 입력해 정답에 시도한다.
+            if (!playerTryAnswer(computer)) break
         }
 
-//    } catch (e : IllegalArgumentException) {
-////        println(e.message)
-//    }
+        // 게임 재시작 또는 프로그램 종료
+        if (!restartGameOrEndProgram()) break
 
-//    println("프로그램 종료") // 구현용 임시 출력
+    }
+
 }
 
 fun playerTryAnswer(computer: MutableList<Int>) : Boolean {
     // 플레이어 숫자를 입력 받는다.
     val getPlayer = getPlayerNumber()
-//    println(getPlayer) // 구현용 임시 출력
 
-    // 플레이어 숫자를 검사하고, 예외를 처리한다.
-//    try {
-        // 플레이어 숫자를 검사한다.
-        val player = validatePlayerNumber(getPlayer)
+    // 플레이어 숫자를 검사한다.
+    val player = validatePlayerNumber(getPlayer)
 
-        // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
-        val calculatePlayerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
+    // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
+    val calculatePlayerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
 
-        // 플레이어의 점수를 출력한다.
-        printPlayerScore(calculatePlayerScore)
+    // 플레이어의 점수를 출력한다.
+    printPlayerScore(calculatePlayerScore)
 
-        // 3스트라이크일 때 루프문을 탈출해 게임 종료
-        if (calculatePlayerScore.strike == 3) {
-            return false
-        }
-
-//    } catch (e: IllegalArgumentException) {
-//        // 예외가 있으면
-////        println(e.message) // 구현용 임시 출력
-//        // 루프문 탈출
-//        return false
-//    }
+    // 3스트라이크일 때 루프문을 탈출해 게임 종료
+    if (calculatePlayerScore.strike == 3) {
+        return false
+    }
 
     return true
 }
