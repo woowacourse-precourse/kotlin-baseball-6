@@ -21,7 +21,7 @@
 
 * 입력받은 수가 세자리가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 * 숫자가 아닌 문자가 입력에 포함된 경우 `IllegalArgumentException`을 발생시킨다.
-* 중복된 숫자가 있는 경우 'IllegalArgumentException'을 발생시킨다.
+* 중복된 숫자가 있는 경우 `IllegalArgumentException`을 발생시킨다.
 ### 재시작 결정 수 입력
 
 * 1,2가 아닌 입력에 대해 `IllegalArgumentException`을 발생시킨다.

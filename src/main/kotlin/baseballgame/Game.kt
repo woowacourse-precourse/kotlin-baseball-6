@@ -10,8 +10,8 @@ class Game {
     private val comNumber = mutableListOf<Int>()// 컴퓨터 난수 저장
 
     init {
-        while (comNumber.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
+        while (comNumber.size < Constant.CORRECT_USER_SIZE) {
+            val randomNumber = Randoms.pickNumberInRange(Constant.START_NUMBER, Constant.END_NUMBER)
             if (!comNumber.contains(randomNumber)) {
                 comNumber.add(randomNumber)
             }
@@ -19,6 +19,7 @@ class Game {
         println(comNumber) // 중간 확인용
     }
 
+    // 프로그램 실행
     companion object {
         fun run() {
             do {
@@ -28,39 +29,41 @@ class Game {
         }
     }
 
+    // 재시작 여부 확인
     private fun restart(): Boolean {
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ")
+        print(Constant.RESTART_STRING)
         val select = Console.readLine()
         return when (select) {
-            "1" -> {
+            Constant.RESTART_INPUT -> {
                 true
             }
 
-            "2" -> {
+            Constant.TERMINATE_INPUT -> {
                 false
             }
 
             else -> {
-                throw IllegalArgumentException("Game.restart()에서 잘못된 입력이 발생했습니다.")
+                throw IllegalArgumentException(StringError.RESTART_ERROR)
             }
         }
     }
 
-
+    // 사용자로부터 3자리수 입력 받기
     private fun userEnter() {
         do {
-            print("숫자를 입력해주세요: ")
+            print(Constant.INPUT_STRING)
             val userNumber = Console.readLine()
         } while (!checkStrike(userNumber)) // 3스트라이크가 나올때까지
     }
 
+    // 스트라이크 개수가 3개인지 확인
     private fun checkStrike(input: String): Boolean {
         val inputArray = changeStringToIntArray(input)
         val strike = countStrike(inputArray)
         val ball = countBall(inputArray)
         printResult(strike, ball)
 
-        if (strike == 3) {
+        if (strike == Constant.SUCCESS) {
             return true
         } else {
             return false
@@ -69,13 +72,14 @@ class Game {
 
     // 사용자에게 입력받은 문자열을 정수 배열로 변환
     private fun changeStringToIntArray(inputString: String): IntArray {
-        val intArray = IntArray(3)
+        val intArray = IntArray(Constant.CORRECT_USER_SIZE)
         val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
         checkInputLength(stringArray)
         checkInputValue(stringArray, intArray)
         return intArray
     }
 
+    // Strike 개수 카운트
     private fun countStrike(inputNumber: IntArray): Int {
         var strike = 0
         for (i in inputNumber.indices) {
@@ -86,6 +90,7 @@ class Game {
         return strike
     }
 
+    // Ball 개수 카운트
     private fun countBall(inputNumber: IntArray): Int {
         var ball = 0
         for (i in inputNumber.indices) {
@@ -96,26 +101,28 @@ class Game {
         return ball
     }
 
-
+    // Input 길이 확인
     private fun checkInputLength(stringArray: Array<String>) {
-        if (stringArray.size != 3) {
-            throw IllegalArgumentException("사용자 입력에서 잘못된 길이로 인한 오류 발생")
+        if (stringArray.size != Constant.CORRECT_USER_SIZE) {
+            throw IllegalArgumentException(StringError.INPUT_LENGTH_ERROR)
         }
     }
 
+    // Input Value 확인
     private fun checkInputValue(stringArray: Array<String>, intArray: IntArray) {
         for (i in 0 until 3) {
             if ((stringArray[i].toInt() < 0) or (stringArray[i].toInt() > 9)) {
-                throw IllegalArgumentException("사용자 입력에서 잘못된 입력으로 인한 오류 발생")
+                throw IllegalArgumentException(StringError.INPUT_VALUE_ERROR)
             }
             if (intArray.contains(stringArray[i].toInt())) {
-                throw IllegalArgumentException("사용자 입력에서 중복된 입력으로 인한 오류 발생")
+                throw IllegalArgumentException(StringError.INPUT_OVERLAP_ERROR)
             } else {
                 intArray[i] = stringArray[i].toInt()
             }
         }
     }
 
+    // 결과 출력
     private fun printResult(strike: Int, ball: Int) {
         val temp = ball - strike
         if (ball == 0) {
@@ -130,24 +137,24 @@ class Game {
     }
 
     private fun printNothing() {
-        println("낫싱")
+        println(Constant.NOTHING)
     }
 
     private fun printStrike(strike: Int) {
         if (strike != 0) {
-            print("${strike}스트라이크")
+            print("${strike}${Constant.STRIKE}")
         }
     }
 
     private fun printBall(ball: Int) {
         if (ball != 0) {
-            print("${ball}볼 ")
+            print("${ball}${Constant.BALL}")
         }
     }
 
     private fun printSuccess(strike: Int) {
-        if (strike == 3) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        if (strike == Constant.SUCCESS) {
+            println(Constant.SUCCESS_STRING)
         }
     }
 }
