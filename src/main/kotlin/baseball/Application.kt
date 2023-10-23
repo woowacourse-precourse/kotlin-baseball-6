@@ -4,22 +4,24 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    var count = 0
+    var restartNum = ""
     print(Dialogues.startGameMessage)
     do {
         var computerNum = generateRandomNum()
         try{
             solveBaseBallGame(computerNum)
         } catch (e:java.lang.IllegalArgumentException){
-            return throw IllegalArgumentException()
+            return throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
         }
-        println(Dialogues.restartMessage)
-    } while (count !=1)
+        print(Dialogues.restartMessage)
+        restartNum = Console.readLine()
+    } while (restartNum == "1")
+    print("게임 종료")
+    return
 }
 
 fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
     while(true) {
-
         var userNumHashMap = HashMap<Int, Int>()
         print(Dialogues.requestEnterNumMessage)
         var enterUserNum = Console.readLine()
@@ -34,7 +36,7 @@ fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
         /// 받아온 문자열로 결과를 확인하는 게 맞을까?
         println(result)
         if(result == "3스트라이크"){
-            println(Dialogues.gameOverMessage)
+            print(Dialogues.gameOverMessage)
             break
         }
 
