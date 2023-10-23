@@ -12,16 +12,16 @@ fun main() {
 
 fun startBaseballGame() {
     val answer = creatRandomNumberList()
-//    println(answer) // 랜덤 생성된 정답 미리보기
-    while (true) {
+    println(answer) // 랜덤 생성된 정답 미리보기
+    do {
         val user = getUserInput()
-        if (user == answer) {
-            println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            break
-        }
         countScore(answer, user)
-    }
+    } while (!isSame(answer, user))
+    println("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
+
+fun isSame(answer: List<Int>, user: List<Int>) = answer == user
+
 
 fun creatRandomNumberList(): MutableList<Int> {
     val numbers = mutableListOf<Int>()
