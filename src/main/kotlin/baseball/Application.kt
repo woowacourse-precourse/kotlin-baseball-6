@@ -13,24 +13,35 @@ fun main() {
     val computer = createComputerNumber()
     println(computer)
 
-    // 플레이어 숫자를 입력 받는다.
-    val getPlayer = getPlayerNumber()
-    println(getPlayer)
+    var continueGame = true
 
-    // 플레이어 숫자를 검사하고, 예외를 처리한다.
-    try {
-        // 플레이어 숫자를 검사한다.
-        val player = validatePlayerNumber(getPlayer)
+    while (continueGame) {
+        // 플레이어 숫자를 입력 받는다.
+        val getPlayer = getPlayerNumber()
+        println(getPlayer)
 
-        // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
-        val calculatePlayerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
+        // 플레이어 숫자를 검사하고, 예외를 처리한다.
+        try {
+            // 플레이어 숫자를 검사한다.
+            val player = validatePlayerNumber(getPlayer)
 
-        // 플레이어의 점수를 출력한다.
-        printPlayerScore(calculatePlayerScore)
+            // 예외가 없으면, 플레이어의 숫자와 컴퓨터의 숫자를 비교한다.
+            val calculatePlayerScore = comparePlayerAndComputer(computer, player, playerScore = PlayerScore())
 
-    } catch (e: IllegalArgumentException) {
-        // 예외가 있으면
-        println(e.message)
+            // 플레이어의 점수를 출력한다.
+            printPlayerScore(calculatePlayerScore)
+
+            // 3스트라이크일 때 루프문을 탈출해 게임 종료
+            if (calculatePlayerScore.strike == 3) {
+                continueGame = false
+            }
+
+        } catch (e: IllegalArgumentException) {
+            // 예외가 있으면
+            println(e.message)
+            // 루프문 탈출
+            continueGame = false
+        }
     }
 
 }
