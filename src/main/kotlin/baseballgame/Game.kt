@@ -58,7 +58,8 @@ class Game {
     private fun checkStrike(input: String): Boolean {
         val inputArray = changeStringToIntArray(input)
         val strike = countStrike(inputArray)
-        var ball = countBall(inputArray)
+        val ball = countBall(inputArray)
+        printResult(strike, ball)
 
         if(strike == 3) {
             return true
@@ -94,6 +95,41 @@ class Game {
         val intArray = IntArray(3)
         stringArray.indices.forEach{ intArray[it] = stringArray[it].toInt()}
         return intArray
+    }
+
+    private fun printResult(strike: Int, ball: Int) {
+        val temp = ball - strike
+        if (ball == 0) {
+            printNothing()
+        } else {
+            printBall(temp)
+            printStrike(strike)
+            println("")
+        }
+        printSuccess(strike)
+
+    }
+
+    private fun printNothing() {
+        println("낫싱")
+    }
+
+    private fun printStrike(strike: Int) {
+        if (strike != 0) {
+            print("${strike}스트라이크")
+        }
+    }
+
+    private fun printBall(ball: Int) {
+        if (ball != 0) {
+            print("${ball}볼")
+        }
+    }
+
+    private fun printSuccess(strike: Int) {
+        if (strike == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 죵료")
+        }
     }
 
     /*fun computeStrikeBall(comNumber: List<Int>, userNumber: List<Int>):Boolean{
