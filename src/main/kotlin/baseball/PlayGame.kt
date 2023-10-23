@@ -1,10 +1,14 @@
 package baseball
 
-import baseball.Comment.ENTER_NUMBER_COMMENT
-import baseball.User.userChoiceValidation
-import baseball.User.userNumberValidation
+import baseball.utils.Comment.ENTER_NUMBER_COMMENT
+import baseball.domain.BaseballMatch
+import baseball.domain.Computer
+import baseball.domain.User
+import baseball.domain.User.userChoiceValidation
+import baseball.domain.User.userNumberValidation
 import baseball.model.GameState
 import baseball.model.MatchResult
+import camp.nextstep.edu.missionutils.Console
 
 object PlayGame {
 
@@ -14,7 +18,10 @@ object PlayGame {
         while (true) {
             val gameState = round(baseBallMatch)
             when(gameState) {
-                GameState.RESTART -> playGame()
+                GameState.RESTART -> {
+                    playGame()
+                    return
+                }
                 GameState.EXIT -> return
                 GameState.CONTINUE -> continue
             }
@@ -23,19 +30,29 @@ object PlayGame {
 
     private fun round(baseBallMatch: BaseballMatch): GameState {
         print(ENTER_NUMBER_COMMENT)
-        val userNumber = User.enterUserNumbers()
+        val userNumber = Console.readLine()
         userNumber.userNumberValidation()
 
         val matchResult = baseBallMatch.matchComputerUserNumber(userNumber)
 
+        return gameStateResult(matchResult)
+    }
+
+    private fun gameStateResult(matchResult: MatchResult): GameState {
         return when(matchResult) {
-            MatchResult.SUCCEED -> {
-                val userChoice = User.enterUserNumbers()
+            is MatchResult.Success -> {
+                println(matchResult.comment)
+
+                val userChoice = Console.readLine()
                 userChoice.userChoiceValidation()
 
                 GameState.entries.find { it.value == userChoice }!!
             }
-            MatchResult.FAIL -> GameState.CONTINUE
+            is MatchResult.Fail -> {
+                println(matchResult.comment)
+
+                GameState.CONTINUE
+            }
         }
     }
 }
