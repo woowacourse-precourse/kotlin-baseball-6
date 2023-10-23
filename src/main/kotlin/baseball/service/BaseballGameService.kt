@@ -34,13 +34,9 @@ class BaseballGameService() {
                 GameState.END -> {
                     outputView.printGameEndMessage()
                     when (inputView.getRestartOption()) {
-                        1 -> {
-                            baseballGame.state = GameState.START
-                        }
+                        1 -> baseballGame.state = GameState.START
 
-                        2 -> {
-                            baseballGame.state = GameState.EXIT
-                        }
+                        2 -> baseballGame.state = GameState.EXIT
                     }
                 }
                 else -> break

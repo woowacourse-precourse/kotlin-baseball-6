@@ -17,8 +17,9 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
         var strike = 0
         userNumbers.forEachIndexed { index, c ->
             val userNumber = Character.getNumericValue(c)
-            if (computerNumbers[index] == userNumber)
+            if (computerNumbers[index] == userNumber) {
                 strike++
+            }
         }
         return strike
     }
@@ -27,8 +28,9 @@ class BaseballGame(val computer: Computer = Computer(), val user: User = User())
         var ball = 0
         userNumbers.forEachIndexed { index, c ->
             val userNumber = Character.getNumericValue(c)
-            if (computerNumbers.contains(userNumber) && computerNumbers.indexOf(userNumber)!=index)
+            if (computerNumbers.contains(userNumber) && computerNumbers.indexOf(userNumber)!=index) {
                 ball++
+            }
         }
         return ball
     }

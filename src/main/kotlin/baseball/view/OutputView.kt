@@ -12,12 +12,15 @@ class OutputView {
     fun printGameEndMessage() = println(GameMessage.GAME_END_MESSAGE)
     fun printGameScoreMessage(score: Score){
         val str = StringBuilder()
-        if(score.out)
+        if(score.out) {
             str.append("낫싱")
-        if(score.ball!=0)
+        }
+        if(score.ball!=0) {
             str.append("${score.ball}볼 ")
-        if(score.strike!=0)
+        }
+        if(score.strike!=0) {
             str.append("${score.strike}스트라이크")
+        }
         println(str)
     }
 }

@@ -8,8 +8,9 @@ class Computer {
         numbers = mutableListOf()
         while (numbers.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if(!numbers.contains(randomNumber))
+            if(!numbers.contains(randomNumber)) {
                 numbers.add(randomNumber)
+            }
         }
     }
     fun getNumber() = numbers
