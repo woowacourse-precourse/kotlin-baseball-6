@@ -96,7 +96,7 @@ class Game {
         }
         checkNumResult = when {
             strikes == 3 -> "3스트라이크"
-            strikes > 0 || balls > 0 -> "$balls 볼 $strikes 스트라이크"
+            strikes > 0 || balls > 0 -> "$balls"+"볼 "+"$strikes"+"스트라이크"
             else -> "낫싱"
         }
     }
@@ -120,6 +120,5 @@ fun main() {
     val baseballGame = Game()
     baseballGame.play()
 }
-
 
 
