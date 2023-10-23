@@ -7,6 +7,9 @@ class Game {
     fun startGame() {
         host.printGameStart()
         computer.createRandomNumber()
-        host.printNumberInputRequest()
+        while (true) {
+            host.printNumberInputRequest()
+            computer.validateInputNumber()
+        }
     }
 }
