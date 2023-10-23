@@ -11,40 +11,41 @@ object Game {
     private fun startBaseballGame() {
         Computer.setNumber()
         val computerNumber = Computer.getNumber()
+        do {
+            GameCount.resetCount()
 
-        while (true) {
             print("숫자를 입력해주세요 : ")
             Player.inputNumber()
             val playerNumber = Player.getNumber()
-            val hint = Hint.compareNumber(playerNumber, computerNumber)
 
-            when (hint) {
-                false -> println("낫싱")
-                else -> {
-                    if (GameCount.getStrikeCount() == 3) {
-                        println("3스트라이크")
-                        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                        break
-                    }
-                    // 3스트라이크가 아닐때만 실행됨
-                    println(GameCount.getBallCount().toString() + "볼 " + GameCount.getStrikeCount()+ "스트라이크")
-                    GameCount.resetCount()
-                }
-            }
-        }
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val inputRestartOrFinish = Console.readLine().toInt()
-        ExceptionCheck.checkPlayerInputRestartOrFinish(inputRestartOrFinish)
-        when(inputRestartOrFinish) {
-            1 -> reStart()
-            2 -> print("게임 종료")
-        }
+            Hint.compareNumber(playerNumber, computerNumber)
+            val count = GameCount.getCount()
+            Hint.printHint(count)
+        } while (!isAnswer())
+        // 정답을 맞춘 후 실행됨
+        askRestartOrFinish()
     }
 
     private fun reStart() {
-        GameCount.resetCount()
         startBaseballGame()
     }
 
+    private fun isAnswer(): Boolean {
+        val (ball, strike) = GameCount.getCount()
+        return (ball == 0 && strike == 3)
+    }
 
+    private fun askRestartOrFinish() {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val inputRestartOrFinish = Console.readLine().toInt()
+        checkRestartOrFinish(inputRestartOrFinish)
+    }
+
+    private fun checkRestartOrFinish(playerInput: Int) {
+        when (playerInput) {
+            1 -> reStart()
+            2 -> println("게임 종료")
+            else -> throw IllegalArgumentException("1또는 2가 입력되지 않았습니다!")
+        }
+    }
 }
