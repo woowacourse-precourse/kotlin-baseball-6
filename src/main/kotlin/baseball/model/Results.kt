@@ -20,7 +20,7 @@ class Results {
         } else if (isZero(balls)) {
             return "${strikes}스트라이크"
         } else {
-            return "${strikes}스트라이크 ${balls}볼"
+            return "${balls}볼 ${strikes}스트라이크 "
         }
     }
 }
