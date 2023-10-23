@@ -16,4 +16,7 @@ object Constants {
 
     const val MIN_DIGIT = 1
     const val MAX_DIGIT = 9
+
+    const val NO_STRIKE = 0
+    const val NO_BALL = 0
 }

@@ -16,5 +16,9 @@ class Game {
         val computer = Computer.getRandomNum()
 
         val player = Player.inputNumber()
+
+        val result = GameResult(computer, player)
+
+        result.print()
     }
 }
