@@ -1,6 +1,12 @@
 package baseball
 
 class Game {
+    companion object {
+        private const val NOTHING = "낫싱"
+        private const val STRIKE = "스트라이크"
+        private const val BALL = "볼"
+    }
+
     private val user = User()
     private val computer = Computer()
 
@@ -33,10 +39,10 @@ class Game {
     private fun printHint(hint: Pair<Int, Int>) {
         val (strike, ball) = hint
         val resultHint = when {
-            strike == 0 && ball == 0 -> "낫싱"
-            strike > 0 && ball == 0 -> "${strike}스트라이크"
-            strike == 0 && ball > 0 -> "${ball}볼"
-            else -> "${ball}볼 ${strike}스트라이크"
+            strike == 0 && ball == 0 -> NOTHING
+            strike > 0 && ball == 0 -> "$strike$STRIKE"
+            strike == 0 && ball > 0 -> "$ball$BALL"
+            else -> "$ball$BALL $strike$STRIKE"
         }
 
         println(resultHint)
