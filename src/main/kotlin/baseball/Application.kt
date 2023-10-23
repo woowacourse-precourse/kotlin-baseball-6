@@ -53,5 +53,5 @@ fun game(computer: List<Int>, userNumber: List<Int>): MutableList<Int>{
         }
     }
 
-    return (game(ballCount,strikeCount))
+    return listOf(ballCount,strikeCount)
 }
