@@ -1,5 +1,6 @@
 package baseball.game
 
+import baseball.model.Computer
 import baseball.util.Constants.TEXT_START_GAME
 
 class Game {
@@ -11,6 +12,6 @@ class Game {
     }
 
     private fun startGame() {
-        // 게임 시작
+        val computer = Computer.getRandomNum()
     }
 }
