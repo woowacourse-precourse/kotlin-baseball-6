@@ -112,4 +112,13 @@ BUILD SUCCESSFUL in 0s
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
   - 
 ```
+## ✏️<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Kotlin</title><path d="M24 24H0V0h24L12 12Z"/></svg> 구현된 기능 목록 
+- 입력될 숫자를 저장할 리스트 생성하기
+- 컴퓨터 숫자 3개 자동 생성하기
+- 사용자 숫자 3개 입력하기
+- 숫자 3개 모두 일치하기 전까지 반복하기
+- 숫자가 3개 몸두 일치한 경우, 반복 끝내고 "새로 시작: 1, 종료: 2" 출력하기
+- 숫자가 존재하고 인덱스 위치가 다르면 "볼", 같으면 "스트라이크" 출력하기
+- Random 메소드 사용해서 무작위로 숫자 3개를 생성한 리스트에 저장
+
 ---
