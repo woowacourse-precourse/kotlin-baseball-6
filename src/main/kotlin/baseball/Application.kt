@@ -6,6 +6,10 @@ import values.*
 
 
 fun main() {
+    gameStart()
+}
+
+private fun gameStart(){
     val computer = mutableListOf<Int>()
     generateMission(computer)
     while (true) {
@@ -30,7 +34,6 @@ fun main() {
             }
         }
     }
-
 }
 
 private fun generateMission(computer: MutableList<Int>) {
