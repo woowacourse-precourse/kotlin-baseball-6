@@ -16,20 +16,33 @@ fun main() {
     }
 
     println("숫자 야구 게임을 시작합니다.")
-   // print("숫자를 입력해주세요 : ")
+
     fun enterNum(): String {
         val InputNum = Console.readLine()
         return InputNum
     }
 
-    //val InputNum = enterNum()
     val comNum = createRandomNum()
-    //println(InputNum + "내가 입력")
-    //println(comNum+"컴퓨터 입력")
-  //  println("123" + "컴퓨터 입력")
+
     fun printResult(result : Pair<Int, Int>){
+        val strike = result.first
+        val ball = result.second
 
+        if(strike > 0 && ball == 0){
+            println("${strike}스트라이크")
+            return
+        }
+        if(strike == 0 && ball > 0){
+            println("${ball}볼")
+            return
+        }
+        if(strike == 0 && ball == 0){
+            println("낫싱")
+            return
+        }
 
+        println("${ball}볼 ${strike}스트라이크")
+        return
     }
 
     fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
@@ -55,7 +68,8 @@ fun main() {
 
         print("숫자를 입력해주세요 : ")
         result = compareNum(comNum, enterNum())
-        println("stike : ${result.first} ball : ${result.second}")
+        printResult(result)
+        //println("stike : ${result.first} ball : ${result.second}")
 
 
     }
