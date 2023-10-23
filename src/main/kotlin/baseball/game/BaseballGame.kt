@@ -9,7 +9,8 @@ class BaseballGame(val digits: Int = 3) {
         println("${name}을 시작합니다.")
         val answer: List<Int> = generateRandomAnswer(digits)
         print("숫자를 입력해주세요 : ")
-        val userAnswer: String = Console.readLine()
+        val userInput: String = Console.readLine().trim()
+        val userAnswer: List<Int> = validate(userInput)
     }
 
     private fun generateRandomAnswer(digits: Int): List<Int> {
@@ -21,5 +22,26 @@ class BaseballGame(val digits: Int = 3) {
             }
         }
         return numbers
+    }
+
+    private fun validate(userInput: String): List<Int> {
+        val validAnswer: List<Int>
+
+        if (userInput.length != digits)
+            throw IllegalArgumentException("자릿수 불일치.")
+
+        try {
+            validAnswer = userInput.map { it.toString().toInt() }
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException("숫자가 아님.")
+        }
+
+        for (num in validAnswer) {
+            if (num == 0) throw IllegalArgumentException("1 ~ 9 범위의 숫자로 구성 필요.")
+        }
+
+        if (validAnswer.toSet().size != validAnswer.size) throw IllegalArgumentException("서로 다른 수 입력 필요")
+
+        return validAnswer
     }
 }
