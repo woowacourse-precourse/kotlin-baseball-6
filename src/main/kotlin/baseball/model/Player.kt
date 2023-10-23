@@ -2,6 +2,7 @@ package baseball.model
 
 import baseball.util.Constants.TEXT_INPUT_NUMBER
 import baseball.util.Validation.validateDigit
+import baseball.util.Validation.validateLength
 import camp.nextstep.edu.missionutils.Console
 
 object Player {
@@ -14,6 +15,8 @@ object Player {
         input.forEach {
             number.add(validateDigit(it))
         }
+
+        validateLength(number)
 
         return number
     }
