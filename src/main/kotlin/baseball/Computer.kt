@@ -3,11 +3,17 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
+    companion object {
+        private const val START_NUMBER = 1
+        private const val SIZE = 3
+        private const val END_NUMBER = 9
+    }
+
     fun setComputerNumber(): MutableList<Int> {
         val computer = mutableListOf<Int>()
 
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
+        while (computer.size < SIZE) {
+            val randomNumber = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER)
             if (!computer.contains(randomNumber)) {
                 computer.add(randomNumber)
             }
@@ -32,6 +38,6 @@ class Computer {
     }
 
     fun checkGameState(strike: Int): Boolean {
-        return strike == 3
+        return strike == SIZE
     }
 }
