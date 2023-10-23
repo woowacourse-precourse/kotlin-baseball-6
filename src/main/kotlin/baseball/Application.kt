@@ -64,7 +64,7 @@ fun checkNumbers(target: List<Int>, inputString: String): List<Int> {
 fun outputResult(strike: Int, ball: Int): Unit {
     if (strike == 3) {
         println("3스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     } else if (strike == 0 && ball != 0) {
         println("${ball}볼")
     } else if (strike != 0 && ball == 0) {
@@ -77,7 +77,7 @@ fun outputResult(strike: Int, ball: Int): Unit {
 }
 
 fun inputRestart(): Boolean {
-    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ")
     val inputAfterGameOver = Console.readLine()
     if (inputAfterGameOver != "1" && inputAfterGameOver != "2") {
         throw IllegalArgumentException("1, 2 이외의 다른 입력 발생")
