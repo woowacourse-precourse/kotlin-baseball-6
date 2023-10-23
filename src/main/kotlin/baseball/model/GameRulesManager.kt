@@ -2,10 +2,17 @@ package baseball.model
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseballModel {
+/*
+김영현
+GameRulesManager는 게임의 규칙을 관리합니다.
+컴퓨터가 선택한 숫자를 생성하고, 사용자가 제시한 숫자와 비교하여 결과를 반환합니다.
+결과에 따라 스트라이크, 볼, 낫싱을 알려주며, 3스트라이크일 때 게임의 종료 여부를 알려줍니다.
+ */
+class GameRulesManager {
 
     private var computerNumbers: List<Int> = emptyList()
 
+    //컴퓨터 랜덤 숫자 선택
     fun generateComputerNumbers() {
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
@@ -17,6 +24,7 @@ class BaseballModel {
         computerNumbers = computer
     }
 
+    //사용자 숫자 예외 처리 및 결과 반환
     fun checkUserGuess(userNumbers: List<Int>): String {
         if (userNumbers.size != 3) {
             throw IllegalArgumentException("올바른 입력이 아닙니다.")

@@ -1,13 +1,13 @@
 package baseball
 
-import baseball.controllr.BaseballController
-import baseball.model.BaseballModel
-import baseball.view.BaseballView
+import baseball.controllr.GameController
+import baseball.model.GameRulesManager
+import baseball.view.GameView
 
 fun main() {
-    val model = BaseballModel()
-    val view = BaseballView()
-    val controller = BaseballController(model, view)
+    val model = GameRulesManager()
+    val view = GameView()
+    val controller = GameController(model, view)
 
     controller.startGame()
 }
