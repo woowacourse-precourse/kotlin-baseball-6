@@ -14,14 +14,14 @@ class Score(ball: Int, strike: Int) {
     override fun toString(): String {
         var message: String = ""
         if (ball != 0){
-            message += "$ball 볼 "
+            message += "${ball}볼 "
         }
         if (strike != 0){
-            message += "$strike 스트라이크 "
+            message += "${strike}스트라이크 "
         }
 
         return message.ifEmpty {
-            "낫띵"
+            "낫싱"
         }
     }
 }
