@@ -12,9 +12,7 @@ object GameCount {
         strikeCount++
     }
 
-    fun getBallCount() = ballCount
-
-    fun getStrikeCount() = strikeCount
+    fun getCount() = Pair(ballCount, strikeCount)
 
     fun resetCount() {
         ballCount = 0
