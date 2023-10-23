@@ -17,7 +17,7 @@ class Game {
         val computerNumbers = computer.getGameNumbers()
         var ballCount: BallCount
         do {
-            commentator.commentate(MessageConstants.INPUT_GAME_NUMBERS)
+            commentator.commentate(MessageConstants.INPUT_GAME_NUMBERS, false)
             val guessGameNumbers = player.guessGameNumbers()
             ballCount = umpire.judge(guessGameNumbers, computerNumbers)
             commentator.commentate(ballCount)
