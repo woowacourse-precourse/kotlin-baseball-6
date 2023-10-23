@@ -36,20 +36,10 @@ class User {
     }
 
     private fun validateNumber(number: String) {
-        for (i in 0..<number.length) {
-            val asciiCode = number[i].code
+        val regex = Regex("[1-9]{3}")
 
-            if (asciiCode !in 48..57) {
-                throw IllegalArgumentException("사용자의 입력이 숫자가 아닙니다.")
-            }
-        }
-
-        number.forEach { num ->
-            val iNum = num.digitToInt()
-
-            if (iNum !in 1..9) {
-                throw IllegalArgumentException("사용자의 입력이 1부터 9까지의 숫자가 아닙니다.")
-            }
+        if (!regex.matches(number)) {
+            throw IllegalArgumentException("사용자의 입력이 1부터 9까지의 숫자가 아닙니다.")
         }
     }
 
