@@ -1,7 +1,6 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -68,13 +67,4 @@ fun isRestart(): Boolean {
         "2" -> false
         else -> wrongInput()
     }
-}
-
-fun wrongInput(): Nothing {
-    throw IllegalArgumentException("잘못된 입력")
-}
-
-fun generateAnswer(): String {
-    val digits = Randoms.pickUniqueNumbersInRange(1, 9, 3)
-    return digits.joinToString(separator = "")
 }
