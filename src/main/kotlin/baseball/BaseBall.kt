@@ -8,9 +8,11 @@ enum class GameStatus {
 }
 
 class BaseBall() {
-    private val regex = Regex("^([1-9])(?!\\1)([1-9])(?!\\1|\\2)([1-9])\$")
+    private val checkInputRegex = Regex("^(?!.*(.).*\\1)[1-9]{$INPUT_NUMBER_COUNT}\$")
+    private val findNumberRegex = Regex("([1-9])")
     private lateinit var userList: List<Int>
     private var gameStatus = GameStatus.ONGOING
+
     fun startGame(computerList: List<Int>) {
         println("숫자 야구 게임을 시작합니다.")
         while (gameStatus == GameStatus.ONGOING) {
@@ -54,20 +56,12 @@ class BaseBall() {
     }
 
     private fun insertUserList(input: String) {
-        regex.matchEntire(input)?.let { result ->
-            setUserList(result.groupValues)
-        } ?: run {
-            throw IllegalArgumentException("입력이 잘못되었습니다.")
-        }
-    }
-
-    private fun setUserList(groupValues: List<String>) {
-        userList = listOf(groupValues[1].toInt(), groupValues[2].toInt(), groupValues[3].toInt())
+        userList = findNumberRegex.findAll(input).map { it.groupValues[1].toInt() }.toList()
     }
 
     private fun checkInput(input: String) {
-        if (!regex.matches(input)) {
-            throw IllegalArgumentException("입력이 잘못되었습니다.")
+        if (!checkInputRegex.matches(input)) {
+            throw IllegalArgumentException(WRONG_INPUT_MESSAGE)
         }
     }
 
