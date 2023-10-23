@@ -31,10 +31,7 @@ class GameNumbers(value: String?) {
         return numbers == other.numbers
     }
 
-    override fun hashCode(): Int {
-        return numbers.hashCode()
-    }
-
+    override fun hashCode(): Int = numbers.hashCode()
 
     companion object {
         private const val SIZE = 3

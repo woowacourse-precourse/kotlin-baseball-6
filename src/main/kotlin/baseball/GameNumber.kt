@@ -17,9 +17,7 @@ class GameNumber(value: Char) {
         return number == other.number
     }
 
-    override fun hashCode(): Int {
-        return number
-    }
+    override fun hashCode(): Int = number
 
     companion object {
         private const val MIN_VALUE = '1'

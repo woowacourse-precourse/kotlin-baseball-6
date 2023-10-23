@@ -8,6 +8,7 @@ class Umpire {
     }
 
     private fun countBalls(playerNumbers: GameNumbers, computerNumbers: GameNumbers): Int {
-        return playerNumbers.countSameNumbers(computerNumbers) - playerNumbers.countSameNumberAndPosition(computerNumbers)
+        return playerNumbers.countSameNumbers(computerNumbers) -
+            playerNumbers.countSameNumberAndPosition(computerNumbers)
     }
 }
