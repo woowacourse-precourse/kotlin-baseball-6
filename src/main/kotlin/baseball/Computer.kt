@@ -1,5 +1,7 @@
 package baseball
 
-fun main() {
+
+
+class Computer {
 
 }
