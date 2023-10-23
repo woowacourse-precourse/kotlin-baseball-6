@@ -55,6 +55,17 @@ fun main() {
 
     println(strike)
     println(ball)
+
+    //(컴퓨터) 비교 후, 힌트를 결과로 출력한다. (스트라이크, 볼, 낫싱)
+    if(strike > 0 && ball > 0){
+        println("${ball}볼 ${strike}스트라이크")
+    } else if (strike > 0 && ball == 0){
+        println("${strike}스트라이크")
+    } else if (strike == 0 && ball > 0){
+        println("${ball}볼")
+    } else {
+        println("낫싱")
+    }
 }
 
 
