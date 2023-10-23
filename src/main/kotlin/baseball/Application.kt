@@ -26,6 +26,7 @@ fun main() {
 
 fun getRandomNum(): List<Int> {
     val numList: MutableList<Int> = mutableListOf()
+
     while (numList.size < 3) {
         val randomNum = Randoms.pickNumberInRange(1, 9)
         if (!numList.contains(randomNum)) {
@@ -63,6 +64,7 @@ fun setUserNum(input: String): List<Int> {
 fun compareNumbers(computerList: List<Int>, userList: List<Int>): Boolean {
     var strike = 0
     var ball = 0
+
     for (userIdx in userList.indices) {
         val userNum = userList[userIdx]
         val comIdx = computerList.indexOf(userNum)
