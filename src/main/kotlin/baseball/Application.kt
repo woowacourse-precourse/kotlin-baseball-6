@@ -1,6 +1,10 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console.*
+import camp.nextstep.edu.missionutils.Randoms.*
+
+private const val RANDOM_MIN_VALUE = 1
+private const val RANDOM_MAX_VALUE = 9
 
 private const val INPUT_MIN_VALUE = 111
 private const val INPUT_MAX_VALUE = 999
@@ -12,6 +16,8 @@ fun main() {
 
 private fun startBaseballGame() {
     print("숫자를 입력해주세요 : ")
+
+    val randomBaseballNumbers = getRandomNumbers()
 
     try {
         val inputBaseballNumbers = validateInput(readLine().toInt())
@@ -28,4 +34,11 @@ private fun validateInput(input: Int) {
     if (input !in INPUT_MIN_VALUE..INPUT_MAX_VALUE) {
         throw IllegalStateException()
     }
+}
+
+private fun getRandomNumbers(): List<Int> {
+    return pickNumberInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE)
+        .toString()
+        .split("")
+        .map { it.toInt() }
 }
