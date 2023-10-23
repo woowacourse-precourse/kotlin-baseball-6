@@ -11,6 +11,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import javax.tools.Tool
 
 class ApplicationTest : NsTest() {
 
@@ -40,38 +41,42 @@ class ApplicationTest : NsTest() {
 
     @Test
     fun `사용자 Baseball 입력 예외 테스트`() {
-        val userInput = UserInput()
-        val baseballInput = BaseballInput()
-        val TestExceptionData: MutableList<String> =
-            mutableListOf(
+        val TestExceptionData: List<String> =
+            listOf(
                 "12", "1234", "012", "01", "1",  // 자리수, 숫자 0
                 "a165", "#^\$", "'", "`", "+",   // 특수 문자
                 "112", "565", "988", "0945"      // 숫자 중복
             )
-
         TestExceptionData.forEach { data ->
             assertThrows<IllegalArgumentException> {
-                userInput.setData(data)
-                userInput.validate(BASEBALL_DIGITS, BASEBALL_RANGE)
-                baseballInput.checkDuplicate(BASEBALL_DIGITS)
+                Tool(BaseballInput(), data)
             }
         }
 
         // 오류 없는지 검증
-        val TestData: MutableList<String> = mutableListOf("123", "456", "789", "498", "176")
+        val TestData: List<String> = listOf(
+            "123", "456", "789", "498", "176"
+        )
         TestData.forEach { data ->
             assertDoesNotThrow {
-                userInput.setData(data)
-                userInput.validate(BASEBALL_DIGITS, BASEBALL_RANGE)
+                Tool(BaseballInput(), data)
             }
         }
+    }
+
+    fun Tool(baseballInput: BaseballInput, data: String) {
+        println("오류 체크 : $data")
+        baseballInput.setData(data)
+        baseballInput.validate(BASEBALL_DIGITS, BASEBALL_RANGE)
+        baseballInput.setArray() // inputDataArray 초기화
+        baseballInput.checkDuplicate(BASEBALL_DIGITS)
     }
 
     @Test
     fun `사용자 Menu 입력 예외 테스트`() {
         val userInput = UserInput()
-        val TestExceptionData: MutableList<String> =
-            mutableListOf(
+        val TestExceptionData: List<String> =
+            listOf(
                 "a", "%", "12", "21", "01",
                 "3", "03", "22", "123", "10"
             )
