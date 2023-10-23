@@ -44,7 +44,7 @@ fun printResult(result: Pair<Int, Int>) {
 fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {
     var strike = 0
     var ball = 0
-    var comNum = "123"
+    //var comNum = "123"
     for (index in playerNum.indices) {
         if (playerNum[index] == comNum[index]) {
             strike++
