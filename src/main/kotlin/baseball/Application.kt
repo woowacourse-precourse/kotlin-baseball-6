@@ -81,7 +81,11 @@ class TargetNumber {
 }
 
 
-fun getUserNumber(): Int = readLine().toInt()
+fun getUserNumber(): Int = runCatching {
+    readLine().toInt()
+}.getOrElse {
+    throw IllegalArgumentException()
+}
 
 
 fun validateNumber(number: Int) {
