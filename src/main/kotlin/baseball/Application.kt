@@ -14,7 +14,7 @@ fun main() {
 
     //(게임 플레이어) 서로 다른 3개의 숫자를 입력한다.
     println("숫자 야구 게임을 시작합니다.")
-    println("숫자를 입력해주세요 : ")
+    print("숫자를 입력해주세요 : ")
     val input = readlnOrNull()
     var player: List<String> = emptyList<String>()
 
@@ -26,7 +26,7 @@ fun main() {
         throw IllegalArgumentException("null이거나 자연수가 아닙니다.")
     }
 
-    // 입력 받은 값이 서로 다른 세 자리 수인지 확인하다.
+    // 입력 받은 값이 서로 다른 세 자리 수인지 확인한다.
     if (player.size == 5){
         if (player[1] == player[2] || player[1] == player[3] || player[2] == player[3]){
             throw IllegalArgumentException("서로 다른 숫자가 아닙니다.")
@@ -35,9 +35,26 @@ fun main() {
         throw IllegalArgumentException("세 자리 숫자가 아닙니다.")
     }
 
+
     println(computer)
     println(player)
 
+    var strike: Int = 0
+    var ball: Int = 0
+
+    //(컴퓨터) 플레이어가 입력한 숫자와 자신의 숫자를 비교한다.
+    for(i: Int in 0..2)
+        if (computer[i] == player[i+1].toInt()){
+            strike++
+        }
+        else {
+            if (computer.contains(player[i+1].toInt()) && computer[i] != player[i+1].toInt()){
+                ball++
+            }
+        }
+
+    println(strike)
+    println(ball)
 }
 
 
