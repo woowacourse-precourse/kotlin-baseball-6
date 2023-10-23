@@ -3,20 +3,20 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGameViewModel(private val model: BaseballGameModel, private val view: BaseballGameView) {
-    private fun startGame() {
+    private fun initializeGame() {
         model.startNewGame()
         view.displayStartGameMessage()
         model.answer = generateRandomNumber()
     }
 
-    fun gameRun() {
+    fun runGame() {
         do {
-            playGame()
+            playBaseball()
         } while (view.chooseRestartAndExit())
     }
 
-    private fun playGame() {
-        startGame()
+    private fun playBaseball() {
+        initializeGame()
         while (model.isGameRunning) {
             val userNumber = view.inputUserNumber()
             val score = compareWithNumber(model.answer, userNumber)
