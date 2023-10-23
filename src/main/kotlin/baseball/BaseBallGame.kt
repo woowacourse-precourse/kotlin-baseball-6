@@ -52,7 +52,6 @@ class BaseBallGame {
         when (Player().getGameEndDecision()) {
             RESTART -> startGame()
             END -> return
-            else -> return // TODO 예외처리
         }
     }
 
