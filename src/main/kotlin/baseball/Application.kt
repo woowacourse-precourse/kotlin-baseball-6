@@ -13,11 +13,19 @@ fun main() {
 }
 
 fun playGame() {
+    val answer = generateAnswer()
+    println("정답: $answer")
     println("숫자 야구 게임을 시작합니다.")
     while (true) {
         val input = getUserAnswerInput()
-        println(input)
+        val judgeResult = judge(input, answer)
+        print(judgeResult)
+        if (judgeResult.strike == 3) {
+        if (judgeResult.isCorrect) {
+            break
+        }
     }
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
 fun getUserAnswerInput(): String {
@@ -36,6 +44,22 @@ fun getUserAnswerInput(): String {
         wrongInput()
     }
     return rawInput
+}
+
+fun judge(input: String, answer: String): JudgeResult {
+    var ball = 0
+    var strike = 0
+    val answerDigits = answer.map { it.digitToInt() }.toSet()
+
+    input.forEachIndexed { index, c ->
+        if (answer[index] == c) {
+            strike++
+        } else if (answerDigits.contains(c.digitToInt())) {
+            ball++
+        }
+    }
+
+    return JudgeResult(ball, strike)
 }
 
 fun isRestart(): Boolean {
