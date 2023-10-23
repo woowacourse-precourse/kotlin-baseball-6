@@ -17,12 +17,11 @@ fun main() {
 }
 
 private fun startBaseballGame() {
-    print("숫자를 입력해주세요 : ")
-
-    val randomBaseballNumbers: MutableList<Int> = getRandomNumbers()
+    var randomBaseballNumbers: MutableList<Int> = getRandomNumbers()
 
     try {
-        val inputBaseballNumbers = validateInput(readLine().toInt())
+
+
     } catch (exception: Exception) {
         when(exception) {
             is IllegalStateException -> println("잘못된 값을 입력하셨습니다.")
@@ -30,6 +29,10 @@ private fun startBaseballGame() {
         }
         return
     }
+}
+private fun inputBaseballNumbers(): Int {
+    print("숫자를 입력해주세요 : ")
+    return validateInput(readLine().toInt())
 }
 
 private fun validateInput(input: Int): Int {
