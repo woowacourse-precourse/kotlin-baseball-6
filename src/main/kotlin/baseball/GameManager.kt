@@ -6,9 +6,7 @@ object GameManager {
     private lateinit var game: BaseBallGame
 
     fun startGame(){
-        val answer = RandomNumberGenerator.generateRandomNumber()
-        game = BaseBallGame(answer)
-
+        game = BaseBallGame()
         askRetry()
     }
 

@@ -2,9 +2,12 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 
-class BaseBallGame(val answer : String) {
+class BaseBallGame() {
+    private val answer by lazy { RandomNumberGenerator.generateRandomNumber() }
 
     init {
+        answer
+
         do {
             print("숫자를 입력해주세요 : ")
             val inputData = Console.readLine()
@@ -23,6 +26,12 @@ class BaseBallGame(val answer : String) {
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
+
+
+    private fun startGame(){
+        
+    }
+
 
     private fun isCorrect(input : String): Boolean {
         val inputSet = input.toSet()
