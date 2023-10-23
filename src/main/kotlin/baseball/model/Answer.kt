@@ -5,11 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 // TODO : newGenerator()를 일부에서만 접근할 수 있는 방법 학습하고 적용
 class Answer {
-    private var _number: IntArray = intArrayOf()
-
-    init {
-        newGenerator()
-    }
+    private var _number: IntArray = answerGenerator()
 
     val number: IntArray get() = _number
 

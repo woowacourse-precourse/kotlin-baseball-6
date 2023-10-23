@@ -1,7 +1,8 @@
 package baseball
 
 import baseball.model.Answer
-import baseball.model.UserInput
+import baseball.model.BaseballInput
+import baseball.model.MenuInput
 
 /*  명령어 학습(C : Ctrl, A: Alt, S:Shift)
     1. CA + l : 자동 정렬
@@ -17,27 +18,39 @@ import baseball.model.UserInput
 
 const val BASEBALL_DIGITS = 3
 val BASEBALL_RANGE = CharRange('1', '9')
-
 const val MENU_DIGITS = 1
-val MENU_RANGE = CharRange('1', '9')
+val MENU_RANGE = CharRange('1', '2')
 
-class BaseballGame(private val answer: Answer, private val userInput: UserInput) {
+class BaseballGame(
+    private val answer: Answer,
+    private val baseballInput: BaseballInput,
+    private val menuInput: MenuInput,
+) {
     fun play() {
         var isStay = true
         gameStartPrompt()
 
         while (isStay) {
-            if (!inputBaseball(answer.number, userInput)) {
+            inputBaseball(baseballInput)
+            val isAllStrike = calculate(baseballInput, answer)
+            if (isAllStrike == false) {
                 continue
             }
 
-            val selectedMenu = inputRestart(answer, userInput)
-            isStay = (selectedMenu == 1)
+            inputMenu(menuInput)
+            if (menuInput.selectedMenu == 1) {
+                answer.newGenerator() // [4]. 4) 메뉴 입력에 따른 정답 재생성
+            }
+            isStay = (menuInput.selectedMenu == 1)
         }
     }
 }
 
 fun main() {
-    val game = BaseballGame(Answer(), UserInput())
+    val game = BaseballGame(
+        Answer(),
+        BaseballInput(),
+        MenuInput()
+    )
     game.play()
 }

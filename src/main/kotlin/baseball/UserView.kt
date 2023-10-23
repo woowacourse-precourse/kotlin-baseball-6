@@ -8,14 +8,14 @@ fun gameStartPrompt() {
 }
 
 /** [2&4]. 0) 입력을 위한 안내 문구 출력 (View) */
-fun printInputPrompt(digit: Int, userInput: UserInput) {
+fun printInputPrompt(digit: Int): String {
     if (digit == BASEBALL_DIGITS) {
         print("숫자를 입력해주세요 : ")
     } else if (digit == MENU_DIGITS) {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
-    val content = Console.readLine() ?: ""
-    userInput.setData(content)
+
+    return Console.readLine() ?: ""
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 (View) */
