@@ -14,7 +14,7 @@ object NumberBaseball {
 
     var isPlaying = true
 
-    private fun initValues(): NumberBaseball {
+    private fun initRandomNumbers(): NumberBaseball {
         while (comNumList.size < NUM_LENGTH) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!comNumList.contains(randomNumber)) comNumList.add(randomNumber)
@@ -31,7 +31,8 @@ object NumberBaseball {
     }
 
     fun playBaseball(): NumberBaseball {
-        initValues()
+        setDefault()
+        initRandomNumbers()
         while (strikeCount < NUM_LENGTH) {
             getUserInput()
             calculateBallCounts()
@@ -42,6 +43,7 @@ object NumberBaseball {
 
     private fun getUserInput() {
         print("숫자를 입력해 주세요 : ")
+        if (userNumList.size > 0) userNumList.clear()
         val userInput = Console.readLine()
         checkValidateInput(userInput)
         userNumList = userInputToNumbers(userInput)
@@ -62,11 +64,6 @@ object NumberBaseball {
         }
         return tempNumList
     }
-
-
-
-
-
     private fun calculateBallCounts() {
         ballCount = 0
         strikeCount = 0
