@@ -32,13 +32,12 @@ class Game {
             }
 
             else -> {
-                println("오류 발생")
-                false
+                throw IllegalArgumentException("Game.restart()에서 잘못된 입력이 발생했습니다.")
             }
         }
     }
 
-    companion object{
+    companion object {
         fun run() {
             do {
                 val game = Game()
@@ -48,7 +47,7 @@ class Game {
     }
 
     private fun userEnter() {
-        do{
+        do {
             print("숫자를 입력해주세요: ")
             val userNumber = Console.readLine()
             println(userNumber)
@@ -61,7 +60,7 @@ class Game {
         val ball = countBall(inputArray)
         printResult(strike, ball)
 
-        if(strike == 3) {
+        if (strike == 3) {
             return true
         } else {
             return false
@@ -90,10 +89,21 @@ class Game {
 
     // 사용자에게 입력받은 문자열을 정수 배열로 변환
     private fun changeStringToIntArray(inputString: String): IntArray {
-        val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
-        // string 길이가 3인지 확인해야함
         val intArray = IntArray(3)
-        stringArray.indices.forEach{ intArray[it] = stringArray[it].toInt()}
+        val stringArray: Array<String> = inputString.toCharArray().map { it.toString() }.toTypedArray()
+        if (stringArray.size != 3) {
+            throw IllegalArgumentException("사용자 입력에서 잘못된 길이로 인한 오류 발생")
+        }
+        for (i in 0 until 3) {
+            if ((stringArray[i].toInt() < 0) or (stringArray[i].toInt() > 9)) {
+                throw IllegalArgumentException("사용자 입력에서 잘못된 입력으로 인한 오류 발생")
+            }
+            if (intArray.contains(stringArray[i].toInt())) {
+                throw IllegalArgumentException("사용자 입력에서 중복된 입력으로 인한 오류 발생")
+            } else {
+                intArray[i] = stringArray[i].toInt()
+            }
+        }
         return intArray
     }
 
@@ -122,63 +132,13 @@ class Game {
 
     private fun printBall(ball: Int) {
         if (ball != 0) {
-            print("${ball}볼")
+            print("${ball}볼 ")
         }
     }
 
     private fun printSuccess(strike: Int) {
         if (strike == 3) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 죵료")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         }
     }
-
-    /*fun computeStrikeBall(comNumber: List<Int>, userNumber: List<Int>):Boolean{
-        var strike = 0
-        var ball = 0
-        for(i in 0..2){
-            if(userNumber[i] == comNumber[i]){
-                strike++
-            }
-            else if(userNumber[i] in comNumber){
-                ball++
-            }
-        }
-        when{
-            strike == 3 -> {
-                println("3스트라이크")
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 죵료")
-                return true
-            }
-
-            strike == 0 && ball == 0 -> println("낫싱!")
-            ball == 0 -> println("${strike}스트라이크")
-            strike == 0 -> println("${ball}볼")
-            else -> println("${ball}볼 ${strike}스트라이크 ")
-        }
-        return false
-    }*/
-    /*fun baseball() {
-        val comNumber = run()
-        println(comNumber)
-        var flag = false
-
-        while (!flag) {
-            try{
-                print("숫자를 입력해주세요: ")
-                val input = readLine() ?: ""
-                val userNumber = input.map{it.toString().toInt() }
-                print(userNumber)
-                if (userNumber.size != 3 || userNumber.any {it < 1 || it > 9}){
-                    throw IllegalArgumentException("오류 발생")
-                }
-                if (computeStrikeBall(comNumber, userNumber)){
-                    flag = true
-                }
-            } catch (e: IllegalArgumentException){
-                println(e.message)
-                return
-            }
-        }
-
-    }*/
 }
