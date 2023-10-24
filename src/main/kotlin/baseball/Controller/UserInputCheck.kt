@@ -5,8 +5,7 @@ import baseball.View.UserInput
 class UserInputCheck
 {
 
-    fun userInputValidation():MutableList<Int>
-    {
+    fun userInputValidation():MutableList<Int> {
         var userinput: String=""
         userinput= UserInput().inputUserNumber()
         val userNumbers = mutableListOf<Int>()
@@ -17,12 +16,12 @@ class UserInputCheck
             }
         }
 
-        if(!only3Number(userNumbers))
+        if(!only3Number(userNumbers)) {
             throw IllegalArgumentException("1에서9사이의 숫자 3개를입력해주세요")
-        else if (duplicateNumbers(userNumbers))
+        }
+        else if (duplicateNumbers(userNumbers)) {
             throw IllegalArgumentException("중복되지 않는 수를 입력해주세요")
-
-
+        }
         return userNumbers
     }
 
