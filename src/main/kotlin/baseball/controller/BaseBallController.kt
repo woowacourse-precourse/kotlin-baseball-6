@@ -55,6 +55,11 @@ class BaseBallController {
     private fun checkContinue(): Boolean {
         baseBallView.printContinue()
         val input = Console.readLine()
+
+        if (!(input == GAME_END_NUM || input == GAME_CONTINUE_NUM)) {
+            throw IllegalArgumentException()
+        }
+
         if (input == GAME_END_NUM) {
             return true
         }
@@ -63,5 +68,6 @@ class BaseBallController {
 
     companion object {
         const val GAME_END_NUM = "2"
+        const val GAME_CONTINUE_NUM = "1"
     }
 }
