@@ -8,13 +8,17 @@ fun printStartGameSentence() {
 }
 
 fun startGame() {
-    startGameUser(getAnswerNumber())
+    while(true) {
+        startGameUser(getAnswerNumber())
+        if(!gameEndOrRestart())
+            break
+    }
 }
 
-fun gameEndOrRestart(){
+fun gameEndOrRestart(): Boolean{
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val userEndAnswer = Console.readLine().toInt()
-    checkEndAnswer(userEndAnswer)
+    return checkEndAnswer(userEndAnswer)
 }
 
 fun checkEndAnswer(userEndAnswer: Int): Boolean{
