@@ -7,7 +7,7 @@ enum class Score {
     STRIKE, BALL, FOUL
 }
 
-fun main() {
+fun main() = try {
     var number = getRandomNumber()
 
     while (true) {
@@ -50,7 +50,8 @@ fun main() {
             }
         }
     }
-
+} catch (e: Exception) {
+    throw IllegalArgumentException()
 }
 
 fun getRandomNumber(): List<Int> {
