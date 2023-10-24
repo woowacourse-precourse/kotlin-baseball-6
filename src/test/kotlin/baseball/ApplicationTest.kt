@@ -37,6 +37,7 @@ class ApplicationTest : NsTest() {
 
     @Test
     fun `사용자 Baseball 입력 예외 테스트`() {
+        val baseballInput = BaseballInput()
         val TestExceptionData: List<String> =
             listOf(
                 "12", "1234", "012", "01", "1",  // 자리수, 숫자 0
@@ -45,7 +46,8 @@ class ApplicationTest : NsTest() {
             )
         TestExceptionData.forEach { data ->
             assertThrows<IllegalArgumentException> {
-                Tool(BaseballInput(), data)
+                println("오류 체크 : $data")
+                baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
             }
         }
 
@@ -55,14 +57,10 @@ class ApplicationTest : NsTest() {
         )
         TestData.forEach { data ->
             assertDoesNotThrow {
-                Tool(BaseballInput(), data)
+                println("오류 체크 : $data")
+                baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
             }
         }
-    }
-
-    fun Tool(baseballInput: BaseballInput, data: String) {
-        println("오류 체크 : $data")
-        baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
     }
 
     @Test
