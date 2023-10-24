@@ -16,20 +16,20 @@ class Game {
 
     fun gameStart() {
         var computerNumber = computer.setComputerNumber()
-        var gameState = true
+        var isGameEnd = false
         println(computerNumber)
 
-        while (gameState) {
+        while (!isGameEnd) {
             val userNumber = user.inputUserNumber()
             val hint = computer.countStrikeAndBall(computerNumber, userNumber)
-            gameState = computer.checkGameState(hint.first)
+            isGameEnd = computer.checkGameState(hint.first)
             printHint(hint)
 
-            if (!gameState) {
+            if (isGameEnd) {
                 printGameEndMessage()
                 val restartGame = user.decideGame()
                 if (restartGame) {
-                    gameState = true
+                    isGameEnd = false
                     computerNumber = computer.setComputerNumber()
                     println(computerNumber)
                 }
