@@ -2,7 +2,9 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+import java.io.LineNumberReader
 import java.util.*
+import kotlin.math.ceil
 
 var flag = true;
 fun main() {
@@ -10,6 +12,7 @@ fun main() {
     startGame()
 }
 
+//야구게임 시작
 fun startGame() {
     val computerNum = testComNum()
     while (flag) {
@@ -19,6 +22,7 @@ fun startGame() {
     }
 }
 
+//컴퓨터 랜덤 숫자
 fun testComNum(): MutableList<Int> {
     val computerNum = mutableListOf<Int>()
     while (computerNum.size < 3) {
@@ -30,18 +34,37 @@ fun testComNum(): MutableList<Int> {
     return computerNum
 }
 
+//사용자에게 입력 받는 함수
 fun createUserNum(): String {
     val userInput = Console.readLine()
-    if (userInput.length < 2 || userInput.length > 3 ||
-            userInput[0] == userInput[1] || userInput[0] == userInput[2] ||
-            userInput[1] == userInput[2] || userInput[0] == '0'
-    ) {
-        throw IllegalArgumentException("중복 되지 않는 1~9 3자리 숫자로 입력해 주세요")
+    if (isNum(userInput)|| isInputCheck(userInput)){
+        throw IllegalArgumentException("유효 하지 않은 형식 입니다.")
     }
     return userInput
 }
 
+//입력값이 3개 또는 앞자리가 0인 것 체크
+fun isInputCheck(string:String):Boolean{
+    var check = false
+    if(string.length!=3||string[0]==string[1]||string[1]==string[2]||string[0]==string[2]||string[0]=='0'){
+        check = true
+        return check
+    }
+    return check
+}
 
+// 1~9를 제외한 다른 값 체크
+fun isNum(string:String):Boolean{
+    var check = false
+    if(string.contains("""[^123456789]""".toRegex())){
+        check = true
+        return check
+    }else{
+        return check
+    }
+}
+
+//입력 받은 숫자 비교
 fun isCheck(com: MutableList<Int>, user: String) {
     var strike = 0
     var ball = 0
@@ -72,15 +95,19 @@ fun isCheck(com: MutableList<Int>, user: String) {
                 "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" +
                         "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
         )
-        var input = Console.readLine()
-        if (input == "1") {
-            flag = true
-            startGame()
-        } else if (input == "2") {
-            flag = false
-            print("게임종료")
-        } else{
-            throw IllegalArgumentException("입력 실수")
+        val input = Console.readLine()
+        when (input) {
+            "1" -> {
+                flag = true
+                startGame()
+            }
+            "2" -> {
+                flag = false
+                print("게임종료")
+            }
+            else -> {
+                throw IllegalArgumentException("입력 실수")
+            }
         }
     }
 }
