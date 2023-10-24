@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     implementation("com.github.woowacourse-projects:mission-utils:1.1.0")
+    implementation(kotlin("stdlib"))
 }
 
 java {
