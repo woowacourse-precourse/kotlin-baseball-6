@@ -22,6 +22,8 @@ object BaseballNumberValidatorImpl: BaseballNumberValidator {
     }
 
     override fun allThreeLettersDifferent(baseballNumber: String): Boolean {
-        TODO("Not yet implemented")
+        require(baseballNumber.toSet().size == BASEBALL_NUMBER_SIZE)
+
+        return true
     }
 }
