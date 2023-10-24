@@ -50,6 +50,19 @@ class Game {
         return Console.readLine().map { it.toString().toInt() }
     }
 
+    private fun compareNumbers(userInput: List<Int>): Pair<Int, Int> {
+        var strikes = 0
+        var balls = 0
+        for (i in userInput.indices) {
+            if (userInput[i] == computerNumbers[i]) {
+                strikes++
+            } else if (computerNumbers.contains(userInput[i])) {
+                balls++
+            }
+        }
+        return Pair(strikes, balls)
+    }
+
 
     private fun askForRestart(): Int {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
