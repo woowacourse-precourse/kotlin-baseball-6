@@ -27,9 +27,8 @@ fun main() {
                     println(result)
                 }
             }
-            //이 부분 수정해야함
             else {
-                println("올바른 형식의 숫자를 입력해주세요.")
+                throw IllegalArgumentException("잘못된 형식의 숫자가 입력되었습니다.")
             }
         }
         print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 : ")

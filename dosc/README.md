@@ -3,4 +3,4 @@
 - [x] 컴퓨터가 임의로 1-9까지 수 중 3개 선택
 - [x] 입력한 수에 대한 결과를 볼, 스트라이크 개수로 표시
 - [x] 게임을 새로 시작할지, 종료할지 여부
-- [ ] IllegalArgumentException 발생 후 종료
+- [x] IllegalArgumentException 발생 후 종료
