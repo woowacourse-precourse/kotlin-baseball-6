@@ -84,11 +84,7 @@ fun inputNumber(): MutableList<Int> {
     val myNumber = mutableListOf<Int>()
     for (i in number.indices) {
         val curNum = number[i] - '0'
-        if (!myNumber.contains(curNum)) {
-            myNumber.add(curNum)
-        } else {
-            throw IllegalArgumentException("숫자가 중복됩니다.")
-        }
+        myNumber.add(curNum)
     }
     return myNumber
 }
