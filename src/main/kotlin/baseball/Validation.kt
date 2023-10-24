@@ -1,5 +1,10 @@
 package baseball
 
+import baseball.Constant.Companion.END
+import baseball.Constant.Companion.MAX_BALL_NUMBER
+import baseball.Constant.Companion.MIN_BALL_NUMBER
+import baseball.Constant.Companion.RESTART
+
 class Validation {
 
     fun checkBallNumbersValidity(numbersInput: String) {
@@ -32,10 +37,10 @@ class Validation {
     }
 
     private fun checkHasCorrectNumRange(input: String) {
-        require(input.all { it.toString() in Constant.MIN_BALL_NUMBER..Constant.MAX_BALL_NUMBER }) { "1~9 이외의 숫자는 입력될 수 없습니다." }
+        require(input.all { it.toString() in MIN_BALL_NUMBER..MAX_BALL_NUMBER }) { "1~9 이외의 숫자는 입력될 수 없습니다." }
     }
 
     private fun checkIsCorrectNumber(input: String) {
-        require(input == Constant.RESTART || input == Constant.END) { "1과 2 이외의 숫자는 입력될 수 없습니다." }
+        require(input == RESTART || input == END) { "1과 2 이외의 숫자는 입력될 수 없습니다." }
     }
 }
