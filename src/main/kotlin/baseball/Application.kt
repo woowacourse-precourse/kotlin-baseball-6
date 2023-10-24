@@ -80,7 +80,7 @@ fun makeRandomNumber(): MutableList<Int> {
     return computer
 }
 
-fun inputNumber(): List<Int> {
+fun inputNumber(): MutableList<Int> {
     print("숫자를 입력해주세요 : ")
     val number = Console.readLine()
     checkError(number)
@@ -92,10 +92,7 @@ fun inputNumber(): List<Int> {
 }
 
 fun checkError(number: String): String {
-    if(number.length != 3){
-        throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
-    }
-    if (number.length > 3 || number.isEmpty()) {
+    if (number.length != 3 || number.toIntOrNull() == null) {
         throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
     }
     for (i in number.indices) {
