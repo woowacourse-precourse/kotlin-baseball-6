@@ -1,5 +1,6 @@
 package baseball
 
+
 fun inputNumber(): List<Int> {                              // 입력값 설정
     var input = readLine()!!.toString()
     if(input.contains('0')
@@ -9,3 +10,4 @@ fun inputNumber(): List<Int> {                              // 입력값 설정
     }
     return input.map {it.toString().toInt()}
 }
+

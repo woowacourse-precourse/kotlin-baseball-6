@@ -1,7 +1,7 @@
 package baseball
 
-fun gameRun(){
-    var keepPlaying: Boolean = true
+fun gameRun() {
+    var keepPlaying :Boolean
     do {
         println("숫자 야구 게임을 시작합니다.")
         val computerNumber = randNumber()
