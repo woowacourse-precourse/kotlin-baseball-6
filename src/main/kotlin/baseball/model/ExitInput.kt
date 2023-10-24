@@ -1,5 +1,8 @@
 package baseball.model
 
+import baseball.util.containsSign
+import java.lang.Exception
+
 class ExitInput(input: String) {
 
     private val type: Type
@@ -12,12 +15,13 @@ class ExitInput(input: String) {
 
     private fun valid(input: String): Type =
         runCatching {
+            if (input.containsSign()) throw Exception("")
             Type.get(input.toInt())
         }.getOrElse {
             throw IllegalArgumentException("1 또는 2의 숫자만 입력할 수 있습니다.")
         }
 
-    private enum class Type(val value: Int) {
+    internal enum class Type(val value: Int) {
         Restart(1), Exit(2);
 
         companion object {
