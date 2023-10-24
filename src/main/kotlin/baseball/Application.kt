@@ -37,6 +37,7 @@ fun createRandomNum(): List<Int> {
 }
 
 fun getUserInputNum(): List<Int> {
+    print("숫자를 입력해주세요 : ")
     val userInputChar = Console.readLine().toCharArray()
     val inputNum = userInputChar.map { num -> num.toString().toInt() }
     checkIsValidNum(inputNum)
