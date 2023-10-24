@@ -16,6 +16,8 @@ fun startBaseballPlay() {
     // 컴퓨터 랜덤 값 생성
     val computerRandomNum = createComputerRandomNum()
 
+    // 플레이어 입력 값
+    val playerAnswer = inputPlayerNum()
 
 }
 
@@ -32,4 +34,12 @@ fun createComputerRandomNum(): String {
     }
     // list 공백 제거하고 문자열로
     return computerNum.joinToString("")
+}
+
+fun inputPlayerNum(): String {
+
+    println("숫자를 입력해주세요 : ")
+    val inputPlayer = Console.readLine()
+
+    return inputPlayer
 }
