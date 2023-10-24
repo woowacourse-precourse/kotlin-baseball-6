@@ -1,18 +1,14 @@
 package baseball.view
 
 import baseball.controller.GameManager
-import baseball.model.RandomGenerator
+import camp.nextstep.edu.missionutils.Console
 import baseball.model.UserNumCompare
-import java.io.Console
+
 
 class InputView {
-    init {
-        UserNumInput()
-    }
-    private fun UserNumInput() {
+    fun UserNumInput(): String? {
+        val input = Console.readLine()
 
-        val input = readLine()
-
-        UserNumCompare(input,GameManager().answer)
+        return input
     }
 }

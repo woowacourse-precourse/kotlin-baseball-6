@@ -1,16 +1,15 @@
 package baseball.model
 
-class StringToInt(var input:String) {
-    init {
-        StringToIntList()
-    }
+import baseball.view.InputView
+
+class StringToInt(val input: String) {
+
 
     fun StringToIntList():List<Int>{
         val invalidInputException = IllegalArgumentException("잘못된 입력값입니다.")
         val inputNum = try {
-            input?.toInt()
+            input.toInt()
         } catch (e: NumberFormatException) {
-
             throw invalidInputException
         }
         val numList: MutableList<Int> = mutableListOf()
