@@ -41,10 +41,11 @@ fun startGameUser(answerNumber: String) {
         val userNumber = Console.readLine().toString()
         //오류가 생기면 Illegal을 발생 시킬것이고, 오류가 없으면 정상적으로 다음 코드를 보게 될 것이다.
         checkUserNumber(userNumber)
+        val compareResult = compareUserNumber(answerNumber, userNumber)
     }
 }
 
-fun compareUserNumber(answerNumber: String, userNumber: String){
+fun compareUserNumber(answerNumber: String, userNumber: String): Pair<Int, Int> {
 
     var strike=0
     var ball=0
@@ -57,6 +58,28 @@ fun compareUserNumber(answerNumber: String, userNumber: String){
         if(answerNumber.contains(userNumber[index]))
             ball++
     }
+    return Pair(strike, ball)
+}
+
+fun printGameResult(strike: Int, ball: Int): Boolean {
+    if(strike==3) {
+        println("3스트라이크")
+        return true
+    }
+    if(strike==0 && ball==0) {
+        println("낫싱")
+        return false
+    }
+    if(strike==0) {
+        println("${ball}볼")
+        return false
+    }
+    if(ball==0) {
+        println("${strike}스트라이크")
+        return false
+    }
+    println("${ball}볼 ${strike}스트라이크")
+    return false
 }
 
 fun getAnswerNumber(): String {
