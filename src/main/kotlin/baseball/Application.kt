@@ -11,8 +11,9 @@ class NumberBaseball {
             if (inputNumber.length != 3) {
               throw  IllegalArgumentException()
             }
-            if (!inputNumber.matches(Regex("\\d+"))){
-               throw  IllegalArgumentException()
+            for(index in inputNumber.indices){
+                if(!inputNumber[index].isDigit())
+                    throw IllegalArgumentException()
             }
             if (inputNumber.toSet().size != inputNumber.length) {
                throw  IllegalArgumentException()
