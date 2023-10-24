@@ -37,8 +37,8 @@ fun main() {
                 reStart = 1
             }
             2 -> {
-                gameStatus = 0
                 Console.close()
+                break
             }
             else -> {
                 throw IllegalArgumentException("1이나 2를 쓰세요.")
@@ -91,7 +91,7 @@ fun inputNumber(): MutableList<Int> {
     return myNumber
 }
 
-fun checkError(number: String): String {
+fun checkError(number: String): Boolean {
     if (number.length != 3 || number.toIntOrNull() == null) {
         throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
     }
@@ -103,6 +103,6 @@ fun checkError(number: String): String {
     if (number.toSet().size != 3) {
         throw IllegalArgumentException("중복된 수가 있습니다.")
     }
-    return number
+    return true
 
 }
