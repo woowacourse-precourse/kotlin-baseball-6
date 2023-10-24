@@ -20,7 +20,7 @@ class ReadUserInputView {
         return userRestart
     }
 
-    fun validateNumber(userInput: String): Int {
+    private fun validateNumber(userInput: String): Int {
         require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
         val userNumber = userInput.toInt()
         require(isCorrectRangeNumber(userNumber)) { "세자리 숫자여야 합니다!" }
@@ -28,7 +28,7 @@ class ReadUserInputView {
 
     }
 
-    fun validateRestart(userInput: String): ChoiceState {
+    private fun validateRestart(userInput: String): ChoiceState {
         require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
         val userChoice = userInput.toInt()
         require(isCorrectRangeChoice(userChoice)) { "1 또는 2를 입력해주세요!" }

@@ -2,8 +2,6 @@ package baseball.view
 
 import baseball.domain.BallCount
 
-private const val MAX_STRIKE_COUNT = 3
-private const val NOTHING_COUNT = 0
 
 class PrintResultView {
 
@@ -35,5 +33,10 @@ class PrintResultView {
             return
         }
         println()
+    }
+
+    companion object {
+        private const val MAX_STRIKE_COUNT = 3
+        private const val NOTHING_COUNT = 0
     }
 }
