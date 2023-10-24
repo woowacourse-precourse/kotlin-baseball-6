@@ -5,7 +5,7 @@ object GameControlValidatorImpl: GameControlValidator {
     private const val TWO = "2"
 
     override fun isValidate(oneOrTwo: String): Boolean {
-        TODO("Not yet implemented")
+        return isOneOrTwo(oneOrTwo)
     }
 
     override fun isOneOrTwo(oneOrTwo: String): Boolean {
