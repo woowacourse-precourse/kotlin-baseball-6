@@ -14,6 +14,10 @@ fun main() {
     println(computer) // 랜덤 확인 테스트
 
     print("숫자를 입력해주세요 : ")
-    val inputNum = readLine()!!.toInt()
+    val inputNum = mutableListOf<Int>()
+    val user = readLine()!!.toInt()
+    inputNum.add(user)
     println(inputNum) // 입력 확인 테스트
+
+
 }
