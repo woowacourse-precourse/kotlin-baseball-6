@@ -13,7 +13,8 @@ fun main() {
             when (selectStart) {
                 1 -> {
                     println("숫자 야구 게임을 시작합니다.")
-                    break
+                    val computer = Computer()
+                    computer.createNumbers()
                 }
 
                 2 -> {
@@ -28,6 +29,23 @@ fun main() {
         }
     } catch (e: NumberFormatException) {
         println("잘못된 입력입니다. 다시 입력해주세요.")
+    }
+}
+
+class Computer {
+    var randNums = IntArray(3)
+
+    fun createNumbers() {
+        for (computerNum in randNums.indices) {
+            while (true) {
+                val comRandom = (1..9).random()
+                if (!randNums.contains(comRandom)) {
+                    randNums[computerNum] = comRandom
+                    break
+                }
+            }
+        }
+        println("랜덤 숫자를 선택완료했습니다.")
     }
 }
 
