@@ -19,4 +19,19 @@ class User {
 
         return userNumber
     }
+
+    fun inputRestartNumber() {
+        val userInput : String = readLine()!!
+
+        restartCode = userInput
+    }
+
+    fun checkRestart() : Boolean {
+        if (restartCode == "1")
+            return true
+        else if (restartCode == "2")
+            return false
+        else
+            throw IllegalArgumentException("")
+    }
 }
