@@ -72,8 +72,11 @@ class NumberBaseball {
             println(1)
             return true
         }
-        if (inputNumber != 2) {
+        if(inputNumber==2)
+            return false
+        if (inputNumber!=1||inputNumber!=2) {
             throw IllegalArgumentException("1 또는 2를 입력하세요.")
+            return false
         }
         return false
     }
