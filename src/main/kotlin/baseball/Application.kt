@@ -2,40 +2,48 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
-import kotlin.system.exitProcess
 
-fun generateRandomNumber(): List<Int> {
-    val numbers = mutableListOf<Int>()
-    while (numbers.size < 3) {
+fun generateRandomNumber(): String {
+    val computer = mutableListOf<Int>()
+    while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!numbers.contains(randomNumber)) {
-            numbers.add(randomNumber)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
         }
     }
-    return numbers.subList(0, 3)
+    return computer.joinToString("")
 }
 
-fun getUserInput(): List<Int> {
+fun getUserNumber(): String {
     print("숫자를 입력해주세요 : ")
-    val input = Console.readLine()
-    if (input == null || input.length != 3 || input.toSet().size != 3 || !input.all { it.isDigit() }) {
-        throw IllegalArgumentException()
-    }
-    return input.map { it.toString().toInt() }
+    val userNumber = Console.readLine()
+    validateUserValue(userNumber)
+    return userNumber
 }
 
-fun calculateHint(secret: List<Int>, guess: List<Int>): Pair<Int, Int> {
-    var strikes = 0
-    var balls = 0
+fun validateUserValue(userNumber: String) {
+    if (userNumber.length != 3) throw IllegalArgumentException("3자리의 수만 입력할 수 있습니다.")
+    if (userNumber.toList().distinct().size != 3) throw IllegalArgumentException("숫자를 중복하여 쓸 수 없습니다.")
+    for (i in userNumber) {
+        if (i < '1' || i > '9') throw IllegalArgumentException("1~9사이의 숫자만 입력할 수 있습니다.")
+    }
+}
+fun calculateHint(secret: String, guess: String): Pair<Int, Int> {
+    var ball = 0
+    var strike = 0
+
     for (i in secret.indices) {
         if (secret[i] == guess[i]) {
-            strikes++
-        } else if (secret.contains(guess[i])) {
-            balls++
+            strike++
+            continue
+        }
+        if (secret.contains(guess[i])) {
+            ball++
         }
     }
-    return strikes to balls
+    return strike to ball
 }
+
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -46,40 +54,39 @@ fun main() {
         val randomNumber by lazy {
             generateRandomNumber()
         }
-        var attempts = 0
 
         while (true) {
-            try {
-                val userGuess = getUserInput()
-                val (strikes, balls) = calculateHint(randomNumber, userGuess)
+            val userGuess = getUserNumber()
+            val (strikes, balls) = calculateHint(randomNumber, userGuess)
 
-                if (strikes == 3) {
-                    println("${strikes}스트라이크")
-                    println("축하합니다! 정답을 맞추셨습니다.")
-                    break
-                } else if(strikes == 0 && balls == 0){
-                    println("낫싱")
-                } else if(strikes > 0 && balls == 0){
-                    println("${strikes}스트라이크")
-                } else if(strikes == 0 && balls > 0){
-                    println("${balls}볼")
-                } else{
-                    println("${balls}볼 ${strikes}스트라이크")
-                }
+            if (balls == 0 && strikes == 0) {
+                print("낫싱")
+            }
+            if (balls != 0) {
+                print("${balls}볼 ")
+            }
+            if (strikes != 0) {
+                print("${strikes}스트라이크 ")
+            }
+            println()
 
-                attempts++
-            } catch (e: IllegalArgumentException) {
-                return
+            if (strikes == 3) {
+                break
             }
         }
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-
-        playAgain = readLine()?.trim()?.equals("y", ignoreCase = true) ?: false
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val restartInput = Console.readLine().toInt()
+        val isRestart = validateRestartValue(restartInput)
+        if (!isRestart) return
     }
-
-    println("게임을 종료합니다. 수고하셨습니다!")
 }
 
-
+fun validateRestartValue(restartInput: Int) : Boolean {
+    if(restartInput != 1 && restartInput != 2) throw IllegalArgumentException("1이나 2만 입력해주세요.")
+    if(restartInput == 2){
+        return false
+    }
+    return true
+}
