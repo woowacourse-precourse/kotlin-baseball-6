@@ -34,3 +34,27 @@ fun makeRandomNumber(): String {
 
     return userNumber.joinToString("")
 }
+
+// 스트라이크와 볼 갯수를 카운트하고 힌트 출력
+fun countStrikeAndBallAndPrintHint(answer: String, userNumber: String) {
+    var strike = 0
+    var ball = 0
+
+    for (index in userNumber.indices) {
+        if (userNumber[index] == answer[index]) {
+            strike++
+        } else if (answer.contains(userNumber[index])) {
+            ball++
+        }
+    }
+
+    if (strike == 0 && ball == 0) {
+        println("낫싱")
+    } else if (strike == 0) {
+        println("${ball}볼")
+    } else if (ball == 0) {
+        println("${strike}스트라이크")
+    } else {
+        println("${ball}볼 ${strike}스트라이크")
+    }
+}
