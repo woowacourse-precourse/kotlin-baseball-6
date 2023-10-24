@@ -1,5 +1,6 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     TODO("프로그램 구현")
@@ -15,4 +16,21 @@ fun makeRandomNumber(): String {
         }
     }
     return computerNumber.joinToString("")
+}
+
+ //사용자로부터 숫자를 입력받기
+ fun getUserNumber(): String {
+    print("숫자를 입력해주세요: ")
+    val userInputNumber = Console.readline().toString()
+    val userNumber = mutableListOf<Char>()
+    
+    if (userInputNumber.length != 3) { //예외처리
+        throw IllegalArgumentException("숫자를 ${'"'}3개${'"'} 입력해야 합니다.")
+    }
+
+    for (char in userInputNumber) { // 입력받은 값을 userNumber에 저장
+        userNumber.add(char)
+    }
+
+    return userNumber.joinToString("")
 }
