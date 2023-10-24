@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.view.output_view
+
 fun main() {
-    println("hello!!")
+    output_view()
 }
