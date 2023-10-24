@@ -58,7 +58,7 @@ fun compareNum(computerNum: List<Int>, userNum: List<Int>): STATE {
     val ball = howManyBall(computerNum, userNum, strike)
 
     if (ball == 0 && strike == 0) {
-        print("낫싱")
+        println("낫싱")
         return STATE.GAMING
     } else if (strike == 3) {
         println("${strike}스트라이크")
@@ -70,7 +70,7 @@ fun compareNum(computerNum: List<Int>, userNum: List<Int>): STATE {
         println("${ball}볼")
         return STATE.GAMING
     } else {
-        print("${ball}볼 ${strike}스트라이크")
+        println("${ball}볼 ${strike}스트라이크")
         return STATE.GAMING
     }
 }
