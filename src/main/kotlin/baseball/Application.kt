@@ -9,13 +9,16 @@ fun main() {
 
 class NumberBaseballGame {
     private val output = OutputWriter()
+    private val computer = generateRandomNumbers()
     fun start() {
         output.printGameStart()
-        output.printReceiveNumberInput()
-        val user = inputUserNumbers()
-        val computer = generateRandomNumbers()
-        val (strike, ball) = checkGuess(user,computer)
-        output.printGuessResult(strike,ball)
+
+        while (true) {
+            output.printReceiveNumberInput()
+            val user = inputUserNumbers()
+            val (ball, strike) = checkGuess(user, computer)
+            output.printGuessResult(ball, strike)
+        }
     }
 
     //서로 다른 3자리의 수 입력
@@ -46,16 +49,15 @@ class NumberBaseballGame {
     //컴퓨터와 사용자 입력값 비교
     private fun checkGuess(user: List<Int>, computer: List<Int>): Pair<Int,Int> {
         var strike = 0
-        var ball = 0
+        var ball = user.count() {computer.contains(it)}
 
         for (i in user.indices) {
             if (user[i] == computer[i]) {
-                strike++
-            } else if (computer.contains(user[i])) {
-                ball++
+                strike +=1
+                ball -=1
             }
         }
-        return strike to ball
+        return ball to strike
     }
 }
 
