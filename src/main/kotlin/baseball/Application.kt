@@ -92,8 +92,8 @@ fun inputNumber(): List<Int> {
 }
 
 fun checkError(number: String): String {
-    if (number.length != 3) {
-        throw IllegalArgumentException("숫자가 3이 넘어갑니다.")
+    if (number.length != 3 || number.isEmpty()) {
+        throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
     }
     for (i in number.indices) {
         if (number[i] < '1' || number[i] > '9') {
