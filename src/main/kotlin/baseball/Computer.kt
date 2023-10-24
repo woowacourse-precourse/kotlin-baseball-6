@@ -3,7 +3,7 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
-    companion object{
+    companion object {
         // 서로 다른 3자리의 난수 리스트를 생성하여 반환
         fun generateRandomNumber(): MutableList<Int> {
             val computer = mutableListOf<Int>()
@@ -14,6 +14,18 @@ class Computer {
                 }
             }
             return computer
+        }
+
+        // 스트라이크의 개수를 판별
+        private fun howManyStrikes(computer: List<Int>, user: List<Int>): Int {
+            var cnt: Int = 0
+            // 숫자와 자리 모두 일치
+            for ((idx, c) in computer.withIndex()) {
+                if (c == user[idx]) {
+                    cnt++
+                }
+            }
+            return cnt
         }
     }
 }
