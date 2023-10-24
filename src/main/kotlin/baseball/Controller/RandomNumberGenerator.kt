@@ -13,6 +13,7 @@ class RandomNumberGenerator {
                 computerNumbers.add(randomNumbers)
             }
         }
+
         return computerNumbers
     }
 }

@@ -6,7 +6,6 @@ class GameController {
 
     private var computerNumber = mutableListOf<Int>()
 
-
     fun gameStarter() {
         var gameController=true
         while(gameController) {

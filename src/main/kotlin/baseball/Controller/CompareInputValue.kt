@@ -14,7 +14,6 @@ class CompareInputValue {
         countStrike(userNumbers, computerNumbers)
         countBall(userNumbers, computerNumbers)
         result()
-
         return correctValueAndPosition == 3
     }
 
