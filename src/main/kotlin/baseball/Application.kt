@@ -86,7 +86,7 @@ fun main() {
         while (true) {
             print("숫자를 입력해주세요 : ")
             val guessNumber = Console.readLine()
-            require(isValidGuessNumber(guessNumber)){
+            require(isValidGuessNumber(guessNumber)) {
                 "Wrong guessNumber $guessNumber"
             }
             val guessResult = getGuessResult(secretNumber, guessNumber)
@@ -98,7 +98,7 @@ fun main() {
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val continueNumber = Console.readLine()
-        require(isValidContinueNumber(continueNumber)){
+        require(isValidContinueNumber(continueNumber)) {
             "Wrong continueNumber $continueNumber"
         }
         if (continueNumber[0] == '2') {
