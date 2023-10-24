@@ -47,6 +47,7 @@ class NumberBaseballGame {
     private fun inputUserNumbers(): List<Int> {
         val input = Console.readLine()
 
+        //예외 처리 : 중복값을 입력할 경우, 3자리의 수가 아닐 경우
         if (input.length != 3 || input.toSet().size != 3) {
             throw IllegalArgumentException()
         }
