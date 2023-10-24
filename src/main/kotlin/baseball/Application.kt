@@ -14,13 +14,7 @@ const val NUMBER_SIZE = 3
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-
-
-    do {
-        startGame()
-
-    } while (k == 8)
-
+    startGame()
 }
 
 fun startGame() {
@@ -30,6 +24,10 @@ fun startGame() {
     while (resultStrike != 3) {
         val user = getUserNumbers()
         getHints(computer, user)
+    }
+
+    if(resultStrike == 3) {
+        QuitOrRetry()
     }
 
 }
@@ -119,5 +117,24 @@ fun getHints(computer: MutableList<Int>, user: MutableList<Int>) {
 
     println("$ball 볼 $strike 스트라이크")
 }
+
+fun QuitOrRetry() {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" +
+            "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    var userInput = Console.readLine()
+
+//    QuitOrRetryCheck(userInput)
+
+    if(userInput == "1") {
+        resultStrike = 0
+        startGame()
+    }
+
+    if(userInput == "2") {
+        return
+    }
+
+}
+
 
 
