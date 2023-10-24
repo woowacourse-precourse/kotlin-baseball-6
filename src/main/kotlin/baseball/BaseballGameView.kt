@@ -36,9 +36,9 @@ class BaseballGameView(private val validate: BaseballGameValidate) {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
 
-    fun chooseRestartAndExit(): Boolean {
+    fun chooseRestartAndExit(): Boolean { // 종료 후 재시작, 종료 선택
         val flag: Int = Console.readLine().toInt()
         validate.validateRestartAndExit(flag)
-        return flag == 1
+        return flag == 1 // true or false
     }
 }

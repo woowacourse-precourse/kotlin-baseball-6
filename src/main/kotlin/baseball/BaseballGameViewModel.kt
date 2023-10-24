@@ -46,11 +46,11 @@ class BaseballGameViewModel(private val model: BaseballGameModel, private val vi
         var ball = 0
 
         for (idx in userNumber.indices) {
-            if (userNumber[idx] == answer[idx]) {
+            if (userNumber[idx] == answer[idx]) { // 자리와 숫자 모두 동일한 경우
                 strike++
                 continue
             }
-            if (userNumber.contains(answer[idx])) {
+            if (userNumber.contains(answer[idx])) { // 숫자만 포함된 경우
                 ball++
             }
         }
