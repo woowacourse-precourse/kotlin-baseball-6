@@ -1,5 +1,7 @@
 package baseball.model.validation
 
+import baseball.util.containsSign
+
 typealias Predicate = (String) -> Boolean
 
 internal enum class InputError(val message: String) {
@@ -54,8 +56,6 @@ internal class NumberValidation : BaseValidation() {
     private fun String.isInt(): Boolean =
         runCatching { this.toInt() }.isSuccess && !containsSign()
 
-    private fun String.containsSign(): Boolean =
-        this.getOrNull(0) in listOf('+', '-')
 }
 
 internal class OutOfRangeNumberValidation : BaseValidation() {
