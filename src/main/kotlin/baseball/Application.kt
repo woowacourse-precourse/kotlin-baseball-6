@@ -21,6 +21,7 @@ fun startBaseballGame() {
     }
 }
 
+// 5) 게임 진행에 대한 입력
 fun continueOrQuit() {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val answer = Console.readLine()
