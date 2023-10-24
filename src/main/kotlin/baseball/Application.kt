@@ -1,7 +1,9 @@
 package baseball
 
-import baseball.view.output_view
+import baseball.model.RandomGenerator
+import baseball.view.OutputView
 
 fun main() {
-    output_view()
+    OutputView()
+    RandomGenerator()
 }
