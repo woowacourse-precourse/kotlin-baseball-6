@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.service.Computer
+
 fun main() {
-    TODO("프로그램 구현")
+    val computerNum = Computer.computerNum
 }
