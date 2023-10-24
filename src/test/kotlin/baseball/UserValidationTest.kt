@@ -16,6 +16,13 @@ class UserValidationTest : NsTest() {
     }
 
     @Test
+    fun `사용자가 3자리 이상 숫자 입력`() {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            "1221312432".userNumberValidation()
+        }
+    }
+
+    @Test
     fun `사용자가 1 ~ 9 이외 입력`() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             "1c3".userNumberValidation()
@@ -33,6 +40,13 @@ class UserValidationTest : NsTest() {
     fun `사용자가 1, 2가 아닌 숫자 입력`() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             "3".userChoiceValidation()
+        }
+    }
+
+    @Test
+    fun `사용자가 1, 2가 아닌 문자 입력`() {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            "가".userChoiceValidation()
         }
     }
 
