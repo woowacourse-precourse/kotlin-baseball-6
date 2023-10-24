@@ -1,8 +1,8 @@
 package baseball.domain
 
-class GameLogic(private val computer: Int, private val user: Int) {
+class GameLogic(private val computerNum: Int, private val userNum: Int) {
 
-    fun checkResult(computerNum: Int, userNum: Int): Boolean {
+    fun checkResult(): Boolean {
 
         val strikes = countStrikes(computerNum, userNum)
         val balls = countBalls(computerNum, userNum)
