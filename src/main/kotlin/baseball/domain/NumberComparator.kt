@@ -1,5 +1,8 @@
 package baseball.domain
 
+import baseball.constant.ErrorMessage
+import baseball.constant.ExtraText
+
 class NumberComparator {
 
     private val randomNumbers = mutableListOf<Int>()
@@ -41,10 +44,10 @@ class NumberComparator {
     }
 
     private fun convertNumber(userNumber: String): MutableList<String> {
-        val splitNumber = userNumber.split("").toMutableList()
-        splitNumber.remove("")
-        splitNumber.remove("")
-        if (splitNumber.contains("0")) require(true) { "0 입력 오류!" }
+        val splitNumber = userNumber.split(ExtraText.BLANK.text).toMutableList()
+        splitNumber.remove(ExtraText.BLANK.text)
+        splitNumber.remove(ExtraText.BLANK.text)
+        if (splitNumber.contains(ExtraText.ZERO.text)) require(true) { ErrorMessage.INPUT_ZERO.message }
         return splitNumber
     }
 }

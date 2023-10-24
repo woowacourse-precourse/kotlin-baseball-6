@@ -1,37 +1,46 @@
 package baseball.view
 
+import baseball.constant.PrintText
 import baseball.domain.BallCountResult
 
 class PrintOutputView {
     fun printStartGame() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(PrintText.START_GAME.text)
+    }
+
+    fun printRequireNumber() {
+        print(PrintText.INPUT_NUMBER.text)
+    }
+
+    fun printRequireRestart() {
+        println(PrintText.INPUT_RESTART.text)
     }
 
     fun printGameResult(gameResult: BallCountResult) {
-        if (gameResult.strikeCount() == MAX_STRIKE_COUNT) {
-            println("3스트라이크")
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        if (gameResult.countStrike() == MAX_STRIKE_COUNT) {
+            println(PrintText.THREE_STRIKE.text)
+            println(PrintText.GAME_FINISHED.text)
             return
         }
         printBallCount(gameResult)
     }
 
     private fun printBallCount(gameResult: BallCountResult) {
-        if (gameResult.strikeCount() == NOTHING_COUNT &&
-            gameResult.ballCount() == NOTHING_COUNT
+        if (gameResult.countStrike() == NOTHING_COUNT &&
+            gameResult.countBall() == NOTHING_COUNT
         ) {
-            println("낫싱")
+            println(PrintText.NOTHING.text)
             return
         }
         printRemainBallCount(gameResult)
     }
 
     private fun printRemainBallCount(gameResult: BallCountResult) {
-        if (gameResult.ballCount() != NOTHING_COUNT) {
-            print("${gameResult.ballCount()}볼 ")
+        if (gameResult.countBall() != NOTHING_COUNT) {
+            print("${gameResult.countBall()}" + PrintText.BALL_NUM.text)
         }
-        if (gameResult.strikeCount() != NOTHING_COUNT) {
-            println("${gameResult.strikeCount()}스트라이크")
+        if (gameResult.countStrike() != NOTHING_COUNT) {
+            println("${gameResult.countStrike()}" + PrintText.STRIKE_NUM.text)
             return
         }
         println()

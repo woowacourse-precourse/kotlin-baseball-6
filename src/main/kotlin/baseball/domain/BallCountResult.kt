@@ -1,28 +1,34 @@
 package baseball.domain
 
+import baseball.constant.BallCount
 import java.util.*
 
 class BallCountResult {
     private var ballCountResult: MutableMap<BallCount, Int> = EnumMap(BallCount::class.java)
 
     init {
-        ballCountResult[BallCount.BALL] = 0
-        ballCountResult[BallCount.STRIKE] = 0
+        ballCountResult[BallCount.BALL] = INIT_COUNT
+        ballCountResult[BallCount.STRIKE] = INIT_COUNT
     }
 
     fun addStrike() {
-        ballCountResult[BallCount.STRIKE] = ballCountResult[BallCount.STRIKE]!! + 1
+        ballCountResult[BallCount.STRIKE] = ballCountResult[BallCount.STRIKE]!! + INCREASE_COUNT
     }
 
     fun addBall() {
-        ballCountResult[BallCount.BALL] = ballCountResult[BallCount.BALL]!! + 1
+        ballCountResult[BallCount.BALL] = ballCountResult[BallCount.BALL]!! + INCREASE_COUNT
     }
 
-    fun strikeCount(): Int {
+    fun countStrike(): Int {
         return ballCountResult[BallCount.STRIKE]!!
     }
 
-    fun ballCount(): Int {
+    fun countBall(): Int {
         return ballCountResult[BallCount.BALL]!!
+    }
+
+    companion object {
+        private const val INIT_COUNT = 0
+        private const val INCREASE_COUNT = 1
     }
 }

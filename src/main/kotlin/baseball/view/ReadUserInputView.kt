@@ -1,33 +1,32 @@
 package baseball.view
 
+import baseball.constant.ErrorMessage
 import camp.nextstep.edu.missionutils.Console
 
 
 class ReadUserInputView {
     fun readUserNumberInput(): String {
-        print("숫자를 입력해주세요 : ")
         val userNumber = Console.readLine()
         validateNumber(userNumber)
         return userNumber
     }
 
     fun readUserRestartInput(): String {
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val userRestart = Console.readLine()
         validateRestart(userRestart)
         return userRestart
     }
 
     private fun validateNumber(userInput: String) {
-        require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
+        require(isNumberFormat(userInput)) { ErrorMessage.NOT_NUMBER.message }
         val userNumber = userInput.toInt()
-        require(isCorrectRangeNumber(userNumber)) { "세자리 숫자여야 합니다!" }
+        require(isCorrectRangeNumber(userNumber)) { ErrorMessage.NOT_NUMBER_RANGE.message }
     }
 
     private fun validateRestart(userInput: String) {
-        require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
+        require(isNumberFormat(userInput)) { ErrorMessage.NOT_NUMBER.message }
         val userChoice = userInput.toInt()
-        require(isCorrectRangeChoice(userChoice)) { "1 또는 2를 입력해주세요!" }
+        require(isCorrectRangeChoice(userChoice)) { ErrorMessage.NOT_RESTART_RANGE.message }
     }
 
     private fun isNumberFormat(userChoice: String): Boolean {

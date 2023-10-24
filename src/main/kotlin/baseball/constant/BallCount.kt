@@ -1,4 +1,4 @@
-package baseball.domain
+package baseball.constant
 
 enum class BallCount(val statusCode: Int) {
     STRIKE(1),

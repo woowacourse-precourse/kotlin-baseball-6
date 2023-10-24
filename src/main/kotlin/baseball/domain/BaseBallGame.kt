@@ -1,6 +1,8 @@
 package baseball.domain
 
+import baseball.constant.ChoiceState
 import baseball.repository.RandomNumberRepository
+import baseball.util.RandomNumberGenerator
 
 class BaseBallGame {
 
@@ -26,9 +28,11 @@ class BaseBallGame {
 
     private fun initRandomNumber() {
         randomNumberRepository.saveRandomNumber(RandomNumberGenerator().generate().reduce { i, j ->
-            i * 10 + j
+            i * DIGIT_UNIT + j
         })
     }
 
-
+    companion object {
+        private const val DIGIT_UNIT = 10
+    }
 }

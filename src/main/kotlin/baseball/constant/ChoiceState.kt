@@ -1,7 +1,6 @@
-package baseball.domain
+package baseball.constant
 
 enum class ChoiceState(val stateCode: Int) {
     RESTART(1),
-    EXIT(2),
-    START(3)
+    EXIT(2)
 }

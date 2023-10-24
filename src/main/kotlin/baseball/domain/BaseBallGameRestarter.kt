@@ -1,5 +1,8 @@
 package baseball.domain
 
+import baseball.constant.ChoiceState
+import baseball.constant.ErrorMessage
+
 class BaseBallGameRestarter {
     fun checkRestartChoice(userChoice: String): ChoiceState {
         val userRestartChoice = userChoice.toInt()
@@ -7,7 +10,7 @@ class BaseBallGameRestarter {
             RESTART_GAME -> ChoiceState.RESTART
             EXIT_GAME -> ChoiceState.EXIT
             else -> {
-                require(true) { "1 또는 2를 입력해주세요!" }
+                require(true) { ErrorMessage.CHOICE.message }
                 ChoiceState.EXIT
             }
         }
