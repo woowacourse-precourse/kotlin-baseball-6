@@ -44,13 +44,19 @@ class BaseballGame() {
     }
 
     private fun countingBall(computer: MutableList<Int>, input: String): Int {
-        // todo 볼 개수 확인
-        return 0
+        var count = 0
+        for (number in computer) {
+            if (input.contains(number.toString())) count++
+        }
+        return count
     }
 
     private fun countingStrike(computer: MutableList<Int>, input: String): Int {
-        // todo 스트라이크 개수 확인
-        return 0
+        var count = 0
+        for (number in 0 until computer.size) {
+            if (input.indexOf(computer[number].toString()) == number) count++
+        }
+        return count
     }
 
     private fun resultString(ball: Int, strike: Int): String {
