@@ -65,7 +65,7 @@ fun main() {
 
                     // 만약 strike가 baseballLength 값과 같다면 게임을 종료한다.
                     if (strike == baseballLength) {
-                        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                        println("${baseballLength}개의 숫자를 모두 맞히셨습니다! 게임 종료")
                         break
                     } else {
                         continue
@@ -81,12 +81,12 @@ fun main() {
 
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val regame = Console.readLine()
-        when (regame?.toInt()) {
-            1 -> {
+        when (regame) {
+            "1" -> {
                 continue
             }
 
-            2 -> {
+            "2" -> {
                 break
             }
 
