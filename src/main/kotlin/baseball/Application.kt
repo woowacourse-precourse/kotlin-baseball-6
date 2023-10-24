@@ -5,17 +5,16 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     printStartGame()
-    val numberOfComputer = getNumberFromComputer()
-
-    startGame(numberOfComputer)
+    startGame()
 }
 
 fun printStartGame() {
     println("숫자 야구 게임을 시작합니다.")
 }
 
-fun startGame(numberOfComputer: List<String>) {
+fun startGame() {
     var stopFlag = 1
+    var numberOfComputer = getNumberFromComputer()
 
     do {
         val numberOfPlayer = getNumberFromPlayer()
@@ -27,6 +26,10 @@ fun startGame(numberOfComputer: List<String>) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             stopFlag = setStopFlag()
+
+            if (stopFlag == 1) {
+                numberOfComputer = getNumberFromComputer()
+            }
         }
     } while (stopFlag == 1)
 
