@@ -1,8 +1,6 @@
 package baseball
 
 import baseball.utils.RandomNumberGenerator
-import baseball.utils.containsDuplicatedNumber
-import baseball.utils.isInt
 import baseball.utils.isRangeOf
 import camp.nextstep.edu.missionutils.Console
 
@@ -24,29 +22,18 @@ class Game {
             print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine()
             checkAnswerInput(userInput)
-            println(calculateResult(userInput, computer))
-
-            if (userInput.isAllStrike(computer)) {
+            if (isAllStrike(userInput, computer)) {
                 return
             }
         }
     }
 
-    private fun String.isAllStrike(computer: List<Int>): Boolean {
-        computer.forEachIndexed { index, value ->
-            if (value != this[index].digitToInt()) {
-                return false
-            }
-        }
-        return true
-    }
-
-    private fun calculateResult(input: String, answer: List<Int>): String {
+    private fun isAllStrike(input: String, answer: List<Int>): Boolean {
         var strike = 0
         var ball = 0
-        answer.forEachIndexed { index, value ->
-            val current = input[index].digitToInt()
-            if (current == value) {
+        for (i in 0..2) {
+            val current = input[i].digitToInt()
+            if (current == answer[i]) {
                 strike++
             } else if (current in answer) {
                 ball++
@@ -54,13 +41,13 @@ class Game {
         }
 
         if (strike == 0 && ball == 0) {
-            return "낫싱"
+            println("낫싱")
+        } else {
+            if (ball > 0) println("${ball}볼 ")
+            if (strike > 0) println("${strike}스트라이크")
         }
 
-        return buildString {
-            if (ball > 0) append(ball).append("볼 ")
-            if (strike > 0) append(strike).append("스트라이크")
-        }
+        return strike == 3
     }
 
     private fun playNextGame(): Boolean {
@@ -71,19 +58,7 @@ class Game {
     }
 
     private fun checkAnswerInput(input: String) {
-        if (input.length != 3) {
-            throwIllegalException()
-        }
-
-        if (!input.isInt(includeSign = false)) {
-            throwIllegalException()
-        }
-
-        if (input.containsDuplicatedNumber()) {
-            throwIllegalException()
-        }
-
-        if (!input.isRangeOf(1, 9)) {
+        if (input.length != 3 || !input.all { char -> char.isDigit() } || input.toSet().size != 3) {
             throwIllegalException()
         }
     }
