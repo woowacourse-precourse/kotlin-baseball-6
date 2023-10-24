@@ -8,6 +8,9 @@ enum class Score {
 
 fun main() {
     var number = getRandomNumber()
+
+    print("숫자를 입력해주세요 : ")
+    val inputInt: List<Int> = readLine()!!.toList().map { it.digitToInt() }
 }
 
 fun getRandomNumber(): List<Int> {
