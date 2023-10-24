@@ -71,13 +71,28 @@ fun generateComputerList(computerList: MutableList<Int>) {
 
 // 게임 결과 처리 함수
 fun compareList(computerList: List<Int>, playerList: List<Int>): Boolean {
-    val strikes = computerList.zip(playerList).count { (comp, player) -> comp == player }
-    val balls = playerList.count { it in computerList }
-    val result = when {
-        strikes > 0 -> "$strikes 스트라이크"
-        balls > 0 -> "$balls 볼"
-        else -> "낫싱"
+
+    var result = "" // 결과
+    var strikes = 0 // 스트라이크
+    var balls = 0 // 볼
+
+    for (i in computerList.indices) {
+        if (computerList[i] == playerList[i]) {
+            strikes++
+        } else if (computerList.contains(playerList[i])) {
+            balls++
+        }
     }
+
+    result = if (balls > 0 && strikes > 0)
+        "${balls}볼 ${strikes}스트라이크"
+    else if (balls > 0)
+        "${balls}볼"
+    else if (strikes > 0)
+        "${strikes}스트라이크"
+    else
+        "낫싱"
+
     println(result)
     return strikes == 3
 }
