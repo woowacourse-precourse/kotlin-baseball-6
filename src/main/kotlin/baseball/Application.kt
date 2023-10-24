@@ -15,7 +15,7 @@ class NumberBaseballGame {
         val user = inputUserNumbers()
         val computer = generateRandomNumbers()
         val (strike, ball) = checkGuess(user,computer)
-        print("$strike, $ball")
+        output.printGuessResult(strike,ball)
     }
 
     //서로 다른 3자리의 수 입력
@@ -62,4 +62,20 @@ class NumberBaseballGame {
 class OutputWriter {
     fun printGameStart() = println("숫자 야구 게임을 시작합니다.")
     fun printReceiveNumberInput() = print("숫자를 입력해주세요 : ")
+    fun printGuessResult(ball: Int, strike: Int) {
+        if (ball == 0 && strike == 0) {
+            printNothingResult()
+        }else if (ball >0 && strike == 0) {
+            printOnlyBalls(ball)
+        }else if (ball == 0 && strike > 0) {
+            printOnlyStrikes(strike)
+        }else {
+            printBallAndStrike(ball, strike)
+        }
+    }
+
+    private fun printNothingResult() = println("낫싱")
+    private fun printOnlyBalls(ball: Int) = println("${ball}볼")
+    private fun printOnlyStrikes(strike: Int) = println("${strike}스트라이크")
+    private fun printBallAndStrike(ball: Int, strike: Int) = println("${ball}볼 ${strike}스트라이크")
 }
