@@ -22,7 +22,6 @@ class Game {
     private fun gameStart() {
         var computerNumber = computer.setComputerNumber()
         var isGameEnd = false
-        println(computerNumber)
 
         while (!isGameEnd) {
             val userNumber = user.inputUserNumber()
@@ -36,7 +35,6 @@ class Game {
                 if (restartGame) {
                     isGameEnd = false
                     computerNumber = computer.setComputerNumber()
-                    println(computerNumber)
                 }
             }
         }
