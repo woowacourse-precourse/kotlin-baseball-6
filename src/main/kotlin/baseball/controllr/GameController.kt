@@ -30,10 +30,10 @@ class GameController(private val model: GameRulesManager, private val view: Game
 
                 if (result.contains("게임 종료")) {
                     isRoundEnd = true
-                    var restart = view.restartInputLine()
-                    isGameEnd = model.restartGame(restart)
                 }
             }
+            val restart = view.restartInputLine()
+            isGameEnd = model.restartGame(restart)
         }
         view.showEndGameMessage()
     }
