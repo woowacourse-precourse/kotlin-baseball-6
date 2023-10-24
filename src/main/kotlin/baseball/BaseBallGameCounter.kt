@@ -3,6 +3,7 @@ package baseball
 class BaseBallGameCounter {
 
     private val LENGTH = 3
+    //볼, 스트라이크 계산
      fun calCount(
         inputList: MutableList<Int>,
         numberList: MutableList<Int>

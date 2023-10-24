@@ -7,6 +7,7 @@ class BaseBallGame {
     private val baseBallGameMessage = BaseBallGameMessage()
     private val inputValidator = InputValidator()
 
+    //게임 실행 함수
     fun gamePlay() {
         computer.makeComputerNumber()
         baseBallGameMessage.printStartMessage()
@@ -20,6 +21,7 @@ class BaseBallGame {
         }
     }
 
+    //게임 재시작 여부 확인 함수
     private fun askForRestart(strike: Int, ball: Int): Boolean{
         if(strike == 3 && ball == 0) {
             baseBallGameMessage.printGameEndMessage()

@@ -2,12 +2,14 @@ package baseball
 
 class InputValidator {
 
+    //사용자 입력 판별
     fun isValidInput(inputList: MutableList<Int>) {
         if(!isCorrectLength(inputList) || isSameNumber(inputList) || !isAllNumeric(inputList)) {
             throw IllegalArgumentException()
         }
     }
 
+    // 게임 재시작 여부 입력 판별
     fun isRestart(inputList: MutableList<Int>): Boolean {
         return inputList.size == 1 && inputList[0] == 1
     }
