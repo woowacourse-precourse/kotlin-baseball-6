@@ -17,7 +17,7 @@ fun main() {
             var ball = 0
             var out = 0
 
-            for (i in 0..<number.size) {
+            for (i in number.indices) {
                 if (number[i] == computer[i]) {
                     strike++
                 } else if (computer.contains(number[i])) {
@@ -34,24 +34,27 @@ fun main() {
             }
 
         }
-        val input = Console.readLine()
-        if (input == "1") {
+        val input = Console.readLine().toInt()
+        if (input == 1) {
             reStart = 1
-        } else if (input == "2") {
+        } else if (input == 2) {
             gameStatus = 0
             Console.close()
+        } else{
+            throw IllegalArgumentException("1이나 2를 쓰세요.")
         }
     }
     Console.close()
 }
-fun startMessage(){
+
+fun startMessage() {
     println("숫자 야구 게임을 시작합니다.")
 }
 
 fun strikeMessage() {
-        println("3스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    println("3스트라이크")
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 }
 
 fun scoreMessage(strike: Int, ball: Int, out: Int) {
@@ -97,7 +100,7 @@ fun checkError(number: String): String {
             throw IllegalArgumentException("숫자가 아닙니다.")
         }
     }
-    if(number.toSet().size !=3){
+    if (number.toSet().size != 3) {
         throw IllegalArgumentException("중복된 수가 있습니다.")
     }
     return number
