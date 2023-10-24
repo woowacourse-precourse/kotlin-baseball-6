@@ -15,22 +15,19 @@ fun main() {
             val number = inputNumber()
             var strike = 0
             var ball = 0
-            var out = 0
 
             for (i in number.indices) {
                 if (number[i] == computer[i]) {
                     strike++
                 } else if (computer.contains(number[i])) {
                     ball++
-                } else {
-                    out++
                 }
             }
             if (strike == 3) {
                 strikeMessage()
                 break
             } else {
-                scoreMessage(strike, ball, out)
+                scoreMessage(strike, ball)
             }
 
         }
@@ -57,8 +54,8 @@ fun strikeMessage() {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 }
 
-fun scoreMessage(strike: Int, ball: Int, out: Int) {
-    if (out == 3) {
+fun scoreMessage(strike: Int, ball: Int) {
+    if (strike == 0 && ball == 0) {
         println("낫싱")
     } else if (strike == 0 && ball != 0) {
         println("${ball}볼")
