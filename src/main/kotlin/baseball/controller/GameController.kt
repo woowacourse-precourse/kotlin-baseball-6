@@ -20,49 +20,47 @@ class GameController {
     fun play() {
 
         startGame()
-
         ans = createNum()
 
         while (!re) {
-
             var input = inputNum()
 
+            resetCount()
             checkInput(input)
             checkCount(input)
             showResult(nothing, ball, strike)
             restartGame()
         }
     }
-    //정답 카운트 체크
-    fun checkCount(input: String) {
-        strike = 0
-        ball = 0
-        nothing = 0
 
+    private fun checkCount(input: String) {
+        
         for (i in 0 until 3) {
+            if (!ans.contains(input[i])) nothing++
 
-            if (!ans.contains(input[i])) {
-                nothing++
-            }
-            if (ans.contains(input[i]) && ans[i] != input[i]) {
-                ball++
-            }
-            if (ans.contains(input[i]) && ans[i] == input[i]) {
-                strike++
-            }
+            if (ans.contains(input[i]) && ans[i] != input[i]) ball++
+
+            if (ans.contains(input[i]) && ans[i] == input[i]) strike++
         }
     }
-    //재시작 여부 선택
-    fun restartGame() {
+
+    private fun restartGame() {
         if (strike == 3) {
             correctAns()
             val num = restart()
             checkRestart(num)
-
-            when (num) {
-                "1" -> ans = createNum()
-                "2" -> re = true
-            }
+            choiceRe(num)
         }
+    }
+
+    private fun resetCount() {
+        strike = 0
+        ball = 0
+        nothing = 0
+    }
+
+    private fun choiceRe(num : String){
+        if (num == "1") ans = createNum()
+        if (num == "2") re = true
     }
 }

@@ -9,6 +9,7 @@ const val RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 �
 const val NOTHING = "낫싱"
 const val BALL = "볼"
 const val STRIKE = "스트라이크"
+const val WRONG_INPUT = "잘못된 값 입력"
 
 fun startGame() {
     println(START_PHR)
