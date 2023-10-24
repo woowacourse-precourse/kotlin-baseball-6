@@ -5,18 +5,34 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 class BaseballGame(val digits: Int = 3) {
     val name = "숫자 야구 게임"
-    fun start() {
+
+    init {
         println("${name}을 시작합니다.")
+    }
+
+    fun start() {
         val answer: List<Int> = generateRandomAnswer(digits)
         println(answer)
         var result = ""
-        while (result != "GameClear") {
+        while (result != "3스트라이크") {
             print("숫자를 입력해주세요 : ")
             val userInput: String = Console.readLine().trim()
             val userAnswer: List<Int> = validate(userInput)
             result = resultString(answer, userAnswer)
             println(result)
         }
+        restartProcess()
+    }
+
+    fun restartProcess() {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        when (Console.readLine().trim()) {
+            "1" -> start()
+            "2" -> Unit
+            else -> restartProcess()
+        }
+
     }
 
     private fun generateRandomAnswer(digits: Int): List<Int> {
@@ -61,7 +77,7 @@ class BaseballGame(val digits: Int = 3) {
                 else ballCount++
             } else nothingCount++
         }
-        if (strikeCount == 3) return "GameClear"
+        if (strikeCount == 3) return "3스트라이크"
         if (nothingCount == 3) return "낫싱"
         return "${ballCount}볼 ${strikeCount}스트라이크"
     }
