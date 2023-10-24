@@ -7,7 +7,7 @@ object Player {
 
     fun inputNumber() {
         val inputPlayerNumber = Console.readLine()
-        ExceptionCheck.checkPlayerInput(inputPlayerNumber)
+        ExceptionHandler.checkPlayerInput(inputPlayerNumber)
         setNumber(inputPlayerNumber)
     }
 
