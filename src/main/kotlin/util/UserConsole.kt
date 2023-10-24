@@ -21,4 +21,10 @@ object UserConsole {
         if (userInput.length != 3) throw IllegalArgumentException(Constants.INVALID_LENGTH_MESSAGE)
         if (userInput.toSet().size != userInput.length) throw IllegalArgumentException(Constants.DUPLICATE_NUMBER_MESSAGE)
     }
+
+    fun getValidRestartInput(): String {
+        val userInput = Console.readLine()
+        if (userInput != "1" && userInput != "2") throw IllegalArgumentException(Constants.INVALID_RESTART_INPUT_MESSAGE)
+        return userInput
+    }
 }

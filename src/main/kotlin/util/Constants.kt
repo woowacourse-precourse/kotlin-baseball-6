@@ -8,4 +8,5 @@ object Constants {
     const val INVALID_INPUT_MESSAGE = "숫자만 입력하세요"
     const val INVALID_LENGTH_MESSAGE = "3자리 수를 입력하세요"
     const val DUPLICATE_NUMBER_MESSAGE = "각기 다른 3개의 숫자를 입력하세요"
+    const val INVALID_RESTART_INPUT_MESSAGE = "1과 2 중에서 입력하세요"
 }

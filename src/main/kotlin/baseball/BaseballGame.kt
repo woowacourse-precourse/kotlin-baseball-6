@@ -1,9 +1,9 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
 import util.Constants
 import util.RandomNumbersGenerator
 import util.UserConsole.getInput
+import util.UserConsole.getValidRestartInput
 
 class BaseballGame {
 
@@ -24,11 +24,9 @@ class BaseballGame {
         println(Constants.SUCCESS_MESSAGE)
     }
 
-
     private fun isRestartable(): Boolean {
         println(Constants.RESTART_MESSAGE)
-        val restartChar = Console.readLine()
-        return ("1" == restartChar)
+        return ("1" == getValidRestartInput())
     }
 
     private fun printScore(answerNumbers: List<Int>, userNumbers: List<Int>) {
