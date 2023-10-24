@@ -35,7 +35,7 @@ class BaseballGame(
 
         do {
             print("숫자를 입력해주세요 : ")
-            val userNumbers = user.generateNumbers(user.requestInputNumbers())
+            val userNumbers = user.requestInputNumbers()
             val ballCount = computer.calculateBallCount(userNumbers)
             val strikeCount = computer.calculateStrikeCount(userNumbers)
 
