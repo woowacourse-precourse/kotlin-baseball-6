@@ -1,6 +1,7 @@
 package baseball.model.validation
 
 import baseball.util.containsSign
+import baseball.util.isInt
 
 typealias Predicate = (String) -> Boolean
 
@@ -50,12 +51,8 @@ internal class InvalidLengthValidation : BaseValidation() {
 
 internal class NumberValidation : BaseValidation() {
 
-    override val predicate: Predicate = { s -> s.isInt() }
+    override val predicate: Predicate = { s -> s.isInt(includeSign = false) }
     override val error: InputError = InputError.NotNumber
-
-    private fun String.isInt(): Boolean =
-        runCatching { this.toInt() }.isSuccess && !containsSign()
-
 }
 
 internal class OutOfRangeNumberValidation : BaseValidation() {
