@@ -1,18 +1,26 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    val computer: MutableList<Int> = makeRandomNumber()
-    val restart: Boolean = false
+    var restart: Boolean = false
+    while(restart == false) {
+        val computer: MutableList<Int> = makeRandomNumber()
+        var strike = 0
+        println("숫자 야구 게임을 시작합니다.")
 
-    println(computer) //Debug
-    println("숫자 야구 게임을 시작합니다.")
+        while (restart == false) {
+            print("숫자를 입력해주세요 : ")
+            var userNumber = checkUserNumber()
+            strike = compareBothComputerAndUser(computer, userNumber)
 
-    while (restart == false){
-        var userNumber = checkUserNumber()
-        var result = compareBothComputerAndUser(computer, userNumber)
-        
+            if (strike == 3) {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                break
+            }
+        }
+        restart = checkToRestart()
     }
 }
 
@@ -31,7 +39,6 @@ fun checkUserNumber() : Int {
     var userString = readLine()
     var userNumber = userString?.toInt()
 
-    print("숫자를 입력해주세요 : ")
     if (userNumber in 100..999 && userNumber != null){
         return userNumber
     }else{
@@ -72,4 +79,16 @@ fun compareBothComputerAndUser(computer: MutableList<Int>, userNumber: Int) : In
     }
 
     return strike
+}
+
+fun checkToRestart(): Boolean{
+    var userChoice = "0"
+    var restart: Boolean = false
+
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요")
+    userChoice = readLine()!!
+
+    if(userChoice == "2" ){ restart = true }
+    else if(userChoice == "1" ){ restart = false }
+    return restart
 }
