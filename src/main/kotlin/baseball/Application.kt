@@ -35,7 +35,6 @@ class NumberBaseball {
         }
 
         fun readInputNumber(): String {
-            print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine().toString()
             var userNumber = mutableListOf<Char>()
             inputException(userNumber, userInput)
@@ -60,12 +59,12 @@ class NumberBaseball {
 
         fun printScore(scoreResult: List<Int>) {
             if (scoreResult[0] == 0 && scoreResult[1] == 0) {
-                println("낫싱")
+                println("\n낫싱")
             } else if (scoreResult[0] == 3) {
-                println("3스트라이크")
+                println("\n3스트라이크")
                 endGame()
             } else {
-                println("${scoreResult[1]}볼 ${scoreResult[0]}스트라이크")
+                println("\n${scoreResult[1]}볼 ${scoreResult[0]}스트라이크")
             }
         }
 
@@ -79,6 +78,7 @@ class NumberBaseball {
             var user: String
             while (true) {
                 user = input.readInputNumber()
+                print("숫자를 입력해주세요 : $user")
                 printScore(seekAnswer(computer,user))
                 if(computer==user) {
                     break
