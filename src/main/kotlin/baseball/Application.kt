@@ -49,3 +49,16 @@ fun runGame() {
     }
 }
 
+fun generateTarget(): String {//목표 숫자를 생성
+    val numbers = mutableListOf<Int>()//생성된 숫자를 저장할 리스트
+
+    while (numbers.size < 3) {//3개의 숫자를 생성한다.
+        val randomNumber = Randoms.pickNumberInRange(1, 9)//1~9랜덤값 생성
+        if (!numbers.contains(randomNumber)) {
+            numbers.add(randomNumber)
+        }
+    }
+
+    return numbers.joinToString(separator="")
+}
+
