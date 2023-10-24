@@ -21,10 +21,9 @@ class Computer {
     fun convertInputNumberToList(): List<Int> {
         var inputNumber = player.inputNumber()
         val inputNumberList = mutableListOf<Int>()
-        var eachNumber: Int
 
         while (inputNumber > MIN_INPUT_DIVIDE_BY_TEN) {
-            eachNumber = inputNumber % NUMBER_OF_INPUT_DIVIDE
+            val eachNumber = inputNumber % NUMBER_OF_INPUT_DIVIDE
             inputNumberList.add(eachNumber)
             inputNumber /= NUMBER_OF_INPUT_DIVIDE
         }
