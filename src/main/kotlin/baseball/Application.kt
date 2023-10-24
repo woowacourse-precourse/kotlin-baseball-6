@@ -11,6 +11,11 @@ fun main() {
 
     print("숫자를 입력해주세요 : ")
     val inputInt: List<Int> = readLine()!!.toList().map { it.digitToInt() }
+
+    if (inputInt.size != number.size) {
+        throw IllegalArgumentException()
+    }
+
 }
 
 fun getRandomNumber(): List<Int> {
