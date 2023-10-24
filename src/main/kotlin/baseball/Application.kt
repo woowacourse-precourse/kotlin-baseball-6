@@ -1,7 +1,6 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
-import java.lang.IllegalArgumentException
 
 fun getResult(strike : Int, ball : Int) : String {
     if (ball > 0 && strike > 0) {
