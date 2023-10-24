@@ -22,13 +22,13 @@ class Game {
             print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine()
             checkAnswerInput(userInput)
-            if (isAllStrike(userInput, computer)) {
+            if (checkStrike(userInput, computer)) {
                 return
             }
         }
     }
 
-    private fun isAllStrike(input: String, answer: List<Int>): Boolean {
+    private fun checkStrike(input: String, answer: List<Int>): Boolean {
         var strike = 0
         var ball = 0
         for (i in 0..2) {
@@ -40,14 +40,21 @@ class Game {
             }
         }
 
+        if (strike == 3) {
+            println("3스트라이크")
+            return true
+        }
+
         if (strike == 0 && ball == 0) {
             println("낫싱")
         } else {
-            if (ball > 0) println("${ball}볼 ")
-            if (strike > 0) println("${strike}스트라이크")
+            var str = ""
+            if (ball > 0) str = "${ball}볼 "
+            if (strike > 0) str += "${strike}스트라이크"
+            println(str)
         }
 
-        return strike == 3
+        return false
     }
 
     private fun playNextGame(): Boolean {
