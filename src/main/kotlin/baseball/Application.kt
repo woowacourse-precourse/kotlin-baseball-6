@@ -3,13 +3,13 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-val computer = ArrayList<Int>() //컴퓨터 숫자
-val myNumber = ArrayList<Int>() //내 숫자
+val computer = mutableListOf<Int>() //컴퓨터 숫자
+val myNumber = mutableListOf<Int>() //내 숫자
 
 fun main() {
     val msg = Message() //메시지 객체 생성
     println("숫자 야구 게임을 시작합니다.")
-    MakeRandom()
+    makeRandom()
 
     while (true) { //숫자를 다 맞추면 break
         var strike = 0
@@ -33,7 +33,7 @@ fun main() {
             msg.message("strike")
             val input = Console.readLine()
             if (input == "1") {
-                MakeRandom()
+                makeRandom()
                 continue
             } else {
                 break;
@@ -44,7 +44,7 @@ fun main() {
     }
 }
 
-fun MakeRandom() {
+fun makeRandom() {
     computer.clear()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
