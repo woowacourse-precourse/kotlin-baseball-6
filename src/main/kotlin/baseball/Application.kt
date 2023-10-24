@@ -4,13 +4,11 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
-var is3strike: Boolean = false
 
 fun main() {
-    var isRestartGame: Boolean = true
+    var isRestartGame = true
     while (isRestartGame) {
         // 3자리 랜덤 숫자 생성
-        // computer[0]은 첫번째 자리 [2]는 세번째 자리
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -18,19 +16,19 @@ fun main() {
                 computer.add(randomNumber)
             }
         }
+
+        var is3strike = false
         println("숫자 야구 게임을 시작합니다.")
         while (!is3strike) {
             print("숫자를 입력해주세요 : ")
             val num = readNumber(Console.readLine(), false)
-            evaluateGuess(num, computer)
+            is3strike = evaluateGuess(num, computer)
         }
+
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val restartNum = readNumber(Console.readLine(), true)
-
-        if (restartNum == 2){
+        if (restartNum == 2) {
             isRestartGame = false
-        } else {
-            is3strike = false
         }
     }
 }
@@ -50,14 +48,16 @@ fun readNumber(num: String, isRestart: Boolean): Int {
         return validNum
     } catch (e: Exception) {
         if (isRestart) throw IllegalArgumentException("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        else throw IllegalArgumentException("1-9까지의 서로 다른 3자리 숫자를 입력해주세요.")
+        else throw IllegalArgumentException("1-9까지의 공백 없이 서로 다른 3자리 숫자를 입력해주세요.")
     }
 }
 
-fun evaluateGuess(num: Int, computer: MutableList<Int>) {
-    val first: Int = num / 100
-    val second: Int = (num / 10) % 10
-    val third: Int = num % 10
+// 입력 점수 확인
+fun evaluateGuess(num: Int, computer: MutableList<Int>): Boolean {
+    val first = num / 100
+    val second = (num / 10) % 10
+    val third = num % 10
+
     var strike = 0
     var ball = 0
 
@@ -68,9 +68,8 @@ fun evaluateGuess(num: Int, computer: MutableList<Int>) {
     if (third == computer[2]) strike++
     else if (third == computer[1] || third == computer[0]) ball++
 
-    val output: String = when {
+    val output = when {
         strike == 3 -> {
-            is3strike = true
             "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
         }
 
@@ -81,4 +80,5 @@ fun evaluateGuess(num: Int, computer: MutableList<Int>) {
     }
 
     println(output)
+    return strike == 3
 }
