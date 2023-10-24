@@ -26,12 +26,9 @@ class GameRulesManager {
 
     //사용자 숫자 예외 처리 및 결과 반환
     fun checkUserGuess(userNumbers: List<Int>): String {
-        if (userNumbers.size != 3) {
+        // 중복되지 않은 3자리 값이 아닐 경우 예외처리
+        if (userNumbers.toSet().size != 3 ) {
             throw IllegalArgumentException("올바른 입력이 아닙니다.")
-        }
-        // 사용자 입력값이 중복된 숫자를 포함하고 있는지 확인
-        if (userNumbers.toSet().size != userNumbers.size) {
-            throw IllegalArgumentException("중복된 숫자가 포함되어 있습니다.")
         }
 
         var strikes = 0

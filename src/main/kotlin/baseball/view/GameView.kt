@@ -17,12 +17,14 @@ class GameView {
     //숫자입력
     fun getUserInput(): List<Int> {
         println("숫자를 입력해주세요 :")
-        val userInput = Console.readLine() ?: throw IllegalArgumentException("올바른 입력이 아닙니다.")
+        val userInput = Console.readLine()
 
-        // 사용자 입력값을 정수 리스트로 변환
-        val userNumbers = userInput.map { it.toString().toInt() }
+        // 사용자 입력 값이 null, 정수가 아닐 경우 예외처리
+        if (userInput == null || !userInput.all { it.isDigit() }) {
+            throw IllegalArgumentException("올바른 입력이 아닙니다.")
+        }
 
-        return userNumbers
+        return userInput.map { it.toString().toInt() }
     }
 
     //결과호출
