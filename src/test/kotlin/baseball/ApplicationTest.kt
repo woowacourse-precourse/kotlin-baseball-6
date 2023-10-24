@@ -29,9 +29,9 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `아무것도 입력하지 않은 경우`() {
+    fun `아무것도 입력하지 않은 경우(엔터 누른 경우)`() {
         assertSimpleTest{
-            assertThrows<NullPointerException> { runException("") }
+            assertThrows<NullPointerException> { runException("\n") }
         }
     }
 
