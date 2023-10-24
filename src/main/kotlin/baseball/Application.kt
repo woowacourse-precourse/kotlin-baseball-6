@@ -2,7 +2,6 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
-import java.util.*
 
 val computer = ArrayList<Int>() //컴퓨터 숫자
 val myNumber = ArrayList<Int>() //내 숫자
