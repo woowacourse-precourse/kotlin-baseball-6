@@ -1,7 +1,8 @@
 package baseball
 
+import controller.BaseballGameController
 import view.BaseballInputView
 
 fun main() {
-    // Todo 기능구현
+    BaseballGameController().GameStart()
 }
