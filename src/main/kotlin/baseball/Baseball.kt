@@ -1,17 +1,15 @@
 package baseball
 
-class Baseball {
-    private val pitcher: Pitcher
-    private val batter: Batter
-    private val referee: Referee
-    private val numberCount = 3
-    private val minNumber = 1
-    private val maxNumber = 9
+class Baseball(
+    private val numberCount: Int,
+    private val minNumber: Int,
+    private val maxNumber: Int
+) {
+    private val pitcher: Pitcher = Pitcher(numberCount, minNumber, maxNumber)
+    private val batter: Batter = Batter(numberCount, minNumber, maxNumber)
+    private val referee: Referee = Referee()
 
     init {
-        pitcher = Pitcher(numberCount, minNumber, maxNumber)
-        batter = Batter(numberCount, minNumber, maxNumber)
-        referee = Referee()
         printStartMessage()
     }
 
