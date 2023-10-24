@@ -58,3 +58,8 @@ fun countStrikeAndBallAndPrintHint(answer: String, userNumber: String) {
         println("${ball}볼 ${strike}스트라이크")
     }
 }
+
+//게임 시작 문구 출력
+fun printFirstMessage() {
+    println("숫자 야구 게임을 시작합니다.")
+}
