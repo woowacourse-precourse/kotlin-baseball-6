@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.domain.BaseballGame
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -51,6 +52,20 @@ class ApplicationTest : NsTest() {
         // then
         assertThat(randomNumber).hasSize(3)
     }
+
+    @Test
+    fun `정답에는 중복된 숫자가 포함되지 않습니다`() {
+        // given
+        val game = BaseballGame()
+
+        // when
+        val randomNumber = game.generateRandomNumber()
+
+        // then
+        val uniqueNumbers = randomNumber.toSet()
+        assertThat(uniqueNumbers).hasSize(3)
+    }
+
     override fun runMain() {
         main()
     }
