@@ -1,13 +1,18 @@
-package baseball.model
+package baseball
 
 private const val MIN_NUM = 0
 private const val MAX_MUM = 9
-class Numbers {
-    var number : MutableList<Int>
-    constructor(_number: MutableList<Int>) {
-        this.number = _number
+class NumberValidation() {
+    fun validation (number : String) {
+        if(!isNumber(number) || number.length != 3) {
+            throw IllegalArgumentException()
+        }
     }
-
+    fun validation (numList : List<Int>) {
+        if(numList.distinct().size != 3) {
+            throw IllegalArgumentException()
+        }
+    }
     fun isNumber (number : String) : Boolean {
         if(number.isBlank() || number.isEmpty()) {
             return false
