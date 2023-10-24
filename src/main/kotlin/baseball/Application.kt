@@ -81,6 +81,7 @@ fun checkGuess(m: String) {
     }
 }
 
+// 3) '컴퓨터의 숫자'와 '나의 숫자' 비교
 fun diffComputerMe(computer: List<Int>, me: List<Int>): Boolean {
     var strike: Int = 0
     var ball: Int = 0
@@ -95,7 +96,7 @@ fun diffComputerMe(computer: List<Int>, me: List<Int>): Boolean {
 
     printHint(strike, ball)
 
-    TODO("아직 진행 중~")
+    return strike != 3
 }
 
 // 4) 힌트 출력
