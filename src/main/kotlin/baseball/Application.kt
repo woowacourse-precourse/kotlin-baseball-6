@@ -11,16 +11,6 @@ fun startGame() {
     startGameUser(getAnswerNumber())
 }
 
-fun startGameUser(answerNumber: String) {
-    //비교하여 맞을 때까지 진행
-    while(true) {
-        print("숫자를 입력해주세요 : ")
-        val userNumber = Console.readLine().toString()
-        //오류가 생기면 Illegal을 발생 시킬것이고, 오류가 없으면 정상적으로 다음 코드를 보게 될 것이다.
-        checkUserNumber(userNumber)
-    }
-}
-
 fun checkUserNumber(userNumber: String) {
 
     //userNumber길이 체크
@@ -29,6 +19,7 @@ fun checkUserNumber(userNumber: String) {
     }
 
     val numDuplicateCheckArray = mutableListOf<Char>()
+
 
     for(number in userNumber) {
         //숫자가 아닐 경우 체크
@@ -42,6 +33,32 @@ fun checkUserNumber(userNumber: String) {
         numDuplicateCheckArray.add(number)
     }
 }
+
+fun startGameUser(answerNumber: String) {
+    //비교하여 맞을 때까지 진행
+    while(true) {
+        print("숫자를 입력해주세요 : ")
+        val userNumber = Console.readLine().toString()
+        //오류가 생기면 Illegal을 발생 시킬것이고, 오류가 없으면 정상적으로 다음 코드를 보게 될 것이다.
+        checkUserNumber(userNumber)
+    }
+}
+
+fun compareUserNumber(answerNumber: String, userNumber: String){
+
+    var strike=0
+    var ball=0
+
+    for(index in userNumber.indices) {
+        if(userNumber[index] == answerNumber[index]) {
+            strike++
+            continue
+        }
+        if(answerNumber.contains(userNumber[index]))
+            ball++
+    }
+}
+
 fun getAnswerNumber(): String {
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
