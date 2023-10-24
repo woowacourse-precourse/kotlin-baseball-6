@@ -19,8 +19,7 @@ fun main() {
 
 fun startGame() {
     val computer = getRandomNumbers()
-    println("컴퓨터 : $computer")
-
+    println(computer)
     while (resultStrike != 3) {
         val user = getUserNumbers()
         getHints(computer, user)
@@ -137,7 +136,7 @@ fun QuitOrRetry() {
 }
 
 fun QuitOrRetryCheck(userInput: String) {
-    if(userInput != "1" || userInput != "2")
+    if(userInput != "1" && userInput != "2")
         throw IllegalArgumentException("1과 2 둘 중 하나를 선택하세요.")
 }
 
