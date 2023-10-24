@@ -1,7 +1,8 @@
 package baseball
 
-import baseball.service.Computer
+import baseball.domain.Computer
 
 fun main() {
     val computerNum = Computer.computerNum
 }
+
