@@ -5,9 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     do {
-        println("숫자 야구 게임을 시작합니다.")
         game()
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     } while (restart())
 }
 
@@ -21,14 +19,17 @@ object Count {
 }
 
 fun game() {
+    println("숫자 야구 게임을 시작합니다.")
     val computerNumber = makeComputerNumber()
+    println(computerNumber)
     do {
         Count.init()
         val myNumber = chooseMyNumber()
-        errorCheckMyNumber(myNumber)
+        errorCheckMyNumber(myNumber.toList())
         compareEachNumber(myNumber, computerNumber)
         printResult()
     } while (Count.strike != 3)
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
 fun makeComputerNumber(): List<Char> {
@@ -47,19 +48,18 @@ fun chooseMyNumber(): String {
     return Console.readLine()
 }
 
-fun errorCheckMyNumber(inputNumber: String) {
-    val checkSet = mutableSetOf<Char>()
-    if (inputNumber.length != 3) {
-        throw IllegalArgumentException("숫자의 길이가 틀립니다")
+
+fun errorCheckMyNumber(inputNumber: List<Char>) {
+    if (inputNumber.size != 3) {
+        throw IllegalArgumentException("입력의 길이가 잘못되었습니다.")
     }
     for (i in inputNumber.indices) {
         if (inputNumber[i] > '9' || inputNumber[i] < '0') {
-            throw IllegalArgumentException("숫자가 아닙니다")
+            throw IllegalArgumentException("숫자가 아닌 값이 있습니다.")
         }
-        checkSet.add(inputNumber[i])
-    }
-    if (checkSet.size < 3) {
-        throw IllegalArgumentException("중복값이 있습니다")
+        if (inputNumber.count {
+                it == inputNumber[i]
+            } > 1) throw IllegalArgumentException("중복된 숫자가 있습니다.")
     }
 }
 
@@ -89,8 +89,8 @@ fun printResult() {
 }
 
 fun restart(): Boolean {
-    val restartNumber = Console.readLine()
-    return when (restartNumber) {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (Console.readLine()) {
         '1'.toString() -> {
             true
         }
@@ -100,7 +100,7 @@ fun restart(): Boolean {
         }
 
         else -> {
-            throw IllegalArgumentException("1또는 2로 입력안함")
+            throw IllegalArgumentException("1 또는 2로 입력하지 않았습니다.")
         }
     }
 }
