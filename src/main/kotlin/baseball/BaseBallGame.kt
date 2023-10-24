@@ -20,7 +20,7 @@ class BaseBallGame() {
             }
 
         }
-        while (!isScoreCorrect(input))
+        while (!isAnswer(input))
     }
     private fun checkInput(input : String) : Boolean{
 
@@ -43,11 +43,12 @@ class BaseBallGame() {
             return false
         }
 
+        //길이 및 중복 숫자 확인
         return input.length == 3 && !hasDuplicateCharacters(input)
     }
 
 
-    private fun isScoreCorrect(input : String): Boolean {
+    private fun isAnswer(input : String): Boolean {
         val inputSet = input.toSet()
 
         return if (answer == input) {
