@@ -3,6 +3,7 @@ package baseball
 class BaseballController {
     private var strike: Int = 0
     private var ball: Int = 0
+    private var restartOrFinish: Int? = null
 
     fun startGame() {
         var targetNumber = BaseballGame.createNumber()
