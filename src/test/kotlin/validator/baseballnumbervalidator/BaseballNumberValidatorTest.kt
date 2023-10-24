@@ -56,4 +56,12 @@ class BaseballNumberValidatorTest {
     fun `숫자가 아닌 것이 포함돼 있을 때 오류를 던지는지`(input: String) {
         Assertions.assertThrows(IllegalArgumentException::class.java) { baseballNumberValidator.isItANumber(input) }
     }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["112", "222", "121", "777"]
+    )
+    fun `같은 숫자가 있을 때 오류를 던지는지`(input: String) {
+        Assertions.assertThrows(IllegalArgumentException::class.java) { baseballNumberValidator.allThreeLettersDifferent(input) }
+    }
 }
