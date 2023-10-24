@@ -5,13 +5,19 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     startGameMessage()
+    do {
+        onGame()
+    } while (isRestart())
+}
+
+fun onGame() {
     val computerNumber = generationNumber()
     do {
         val userNumber = getUserNumber()
         val isEndGame = gameResults(computerNumber, userNumber)
     } while (!isEndGame)
-
 }
+
 
 fun generationNumber(): String {
     val computer = mutableListOf<Int>()
@@ -31,11 +37,11 @@ fun startGameMessage() {
 fun getUserNumber(): String {
     print("숫자를 입력해주세요 : ")
     val userNumber = Console.readLine()
-    validateValue(userNumber)
+    validateUserValue(userNumber)
     return userNumber
 }
 
-fun validateValue(userNumber: String) {
+fun validateUserValue(userNumber: String) {
     if (userNumber.length != 3) throw IllegalArgumentException("3자리의 수만 입력할 수 있습니다.")
     if (userNumber.toList().distinct().size != 3) throw IllegalArgumentException("숫자를 중복하여 쓸 수 없습니다.")
     for (i in userNumber) {
@@ -68,4 +74,16 @@ fun gameResults(computer: String, user: String): Boolean {
     }
     println()
     return strike == 3
+}
+
+fun isRestart(): Boolean {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val restartInput = Console.readLine().toInt()
+    validateRestartValue(restartInput)
+    return restartInput == 1
+}
+
+fun validateRestartValue(restartInput: Int) {
+    if(restartInput != 1 && restartInput != 2) throw IllegalArgumentException("1이나 2만 입력해주세요.")
 }
