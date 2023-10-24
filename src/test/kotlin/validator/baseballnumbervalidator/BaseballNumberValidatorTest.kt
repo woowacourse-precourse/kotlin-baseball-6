@@ -1,5 +1,6 @@
 package validator.baseballnumbervalidator
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
@@ -38,5 +39,13 @@ class BaseballNumberValidatorTest {
     fun `전부 숫자 일때 성공인지`(input: String) {
         val result = baseballNumberValidator.isItANumber(input)
         assertTrue(result)
+    }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["1234", "1", "12", "12345", ""]
+    )
+    fun `세 자리 수가 아닐 때 오류를 던지는지`(input: String) {
+        Assertions.assertThrows(IllegalArgumentException::class.java) { baseballNumberValidator.isThreeLetters(input) }
     }
 }
