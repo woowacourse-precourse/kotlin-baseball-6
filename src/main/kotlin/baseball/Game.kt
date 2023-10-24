@@ -13,7 +13,7 @@ class Game {
             val playerInputNumber = getPlayerInputNumber()
             val strikeCount = computer.checkNumberAndPrintResult(computerRandomNumber, playerInputNumber)
 
-            if (strikeCount == 3) {
+            if (strikeCount == MAX_STRIKE) {
                 host.printGameContinueOrNot()
                 val gameContinueOrNot = player.inputContinueGameOrNot()
                 if (gameContinueOrNot == END) {
