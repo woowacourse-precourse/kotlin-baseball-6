@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.model.Answer
 import baseball.utils.RandomNumberGenerator
 import camp.nextstep.edu.missionutils.Console
 
@@ -7,7 +8,7 @@ class Game {
     fun run() {
         println("숫자 야구 게임을 시작합니다.")
         while (true) {
-            val computer = RandomNumberGenerator.generate(1, 9, 3)
+            val computer = Answer(RandomNumberGenerator.generate(1, 9, 3))
             startGuessingAnswer(computer)
 
             if (!playNextGame()) {
@@ -16,22 +17,21 @@ class Game {
         }
     }
 
-    private fun startGuessingAnswer(computer: List<Int>) {
+    private fun startGuessingAnswer(computer: Answer) {
         while (true) {
             print("숫자를 입력해주세요 : ")
-            val userInput = Console.readLine()
-            checkAnswerInput(userInput)
-            if (checkStrike(userInput, computer)) {
+            val userAnswer = Answer(Console.readLine())
+            if (checkStrike(userAnswer, computer)) {
                 return
             }
         }
     }
 
-    private fun checkStrike(input: String, answer: List<Int>): Boolean {
+    private fun checkStrike(input: Answer, answer: Answer): Boolean {
         var strike = 0
         var ball = 0
         for (i in 0..2) {
-            val current = input[i].digitToInt()
+            val current = input[i]
             if (current == answer[i]) {
                 strike++
             } else if (current in answer) {
@@ -61,12 +61,6 @@ class Game {
         val answer = Console.readLine()
         checkNextGameAnswer(answer)
         return answer == "1"
-    }
-
-    private fun checkAnswerInput(input: String) {
-        if (input.length != 3 || !input.all { char -> char.isDigit() } || input.toSet().size != 3) {
-            throwIllegalException()
-        }
     }
 
     private fun checkNextGameAnswer(input: String) {
