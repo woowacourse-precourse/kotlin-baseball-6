@@ -12,4 +12,8 @@ fun main() {
         }
     }
     println(computer) // 랜덤 확인 테스트
+
+    print("숫자를 입력해주세요 : ")
+    val inputNum = readLine()!!.toInt()
+    println(inputNum) // 입력 확인 테스트
 }
