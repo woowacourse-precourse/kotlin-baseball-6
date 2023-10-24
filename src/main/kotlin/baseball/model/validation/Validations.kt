@@ -2,10 +2,10 @@ package baseball.model.validation
 
 private val validations by lazy {
     listOf<Validation>(
-        NumberValidation(),
+//        NumberValidation(),
         InvalidLengthValidation(),
-        OutOfRangeNumberValidation(),
-        DuplicateNumberValidation()
+//        OutOfRangeNumberValidation(),
+//        DuplicateNumberValidation()
     )
 }
 
