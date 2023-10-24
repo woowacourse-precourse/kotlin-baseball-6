@@ -2,7 +2,7 @@ package baseball
 
 import util.Constants
 import util.RandomNumbersGenerator
-import util.UserConsole.getInput
+import util.UserConsole.getValidInput
 import util.UserConsole.getValidRestartInput
 
 class BaseballGame {
@@ -18,7 +18,7 @@ class BaseballGame {
         val answerNumbers = RandomNumbersGenerator.create(3, 1, 9)
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {
-            val userNumbers = getInput()
+            val userNumbers = getValidInput()
             printScore(answerNumbers, userNumbers)
         } while (!isSame(answerNumbers, userNumbers))
         println(Constants.SUCCESS_MESSAGE)
