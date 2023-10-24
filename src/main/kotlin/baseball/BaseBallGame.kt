@@ -10,12 +10,12 @@ class BaseBallGame(
     private val player: Player = Player(),
     private val referee: Referee = Referee(),
 ) {
-    fun play() {
+    fun start() {
         gameGuide.show(GameInstruction.GAME_START)
         var restartOption = GameRestartOption.INIT
         while (restartOption != GameRestartOption.EXIT) {
             cycleRound(answerBaseBalls = baseBallCreator.createAnswerBalls())
-            restartOption = determineRestart()
+            restartOption = requireRestartOption()
         }
     }
 
@@ -30,7 +30,7 @@ class BaseBallGame(
         gameGuide.show(GameResult.WIN)
     }
 
-    private fun determineRestart(): GameRestartOption {
+    private fun requireRestartOption(): GameRestartOption {
         gameGuide.show(GameInstruction.RESTART_OR_FINISH)
         return player.determineRestart()
     }
