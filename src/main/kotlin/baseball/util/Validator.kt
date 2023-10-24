@@ -5,6 +5,13 @@ import baseball.util.GameValue.PLAYER_MAX_NUMBER
 import baseball.util.GameValue.PLAYER_NIM_NUMBER
 
 object Validator {
+
+    fun commendCheck(playerCommend: String) {
+        if (playerCommend != GameValue.RESTART_COMMAND && playerCommend != GameValue.STOP_COMMAND) {
+            throw IllegalArgumentException()
+        }
+    }
+
     fun checkValidity(value: String) {
         duplicatesCheck(value)
     }

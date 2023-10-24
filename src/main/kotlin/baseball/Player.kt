@@ -22,9 +22,7 @@ object Player {
     fun restartQuestion(): Boolean {
         println(GameState.GAME_RESTART_MESSAGE)
         val playerCommend = Console.readLine()
-        if (playerCommend != GameValue.RESTART_COMMAND && playerCommend != GameValue.STOP_COMMAND) {
-            throw IllegalArgumentException()
-        }
+        Validator.commendCheck(playerCommend)
         return playerCommend == GameValue.RESTART_COMMAND
     }
 }
