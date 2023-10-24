@@ -26,6 +26,14 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("1234") }
         }
     }
+    @Test
+    fun test1(){
+       assertSimpleTest {
+           assertThrows<IllegalArgumentException>{
+             runException("190","3","133")
+           }
+       }
+    }//사용자 입력이 1부터 9까지로 이루어지지 않았거나, 1이나 2 이외의 길이가 3이 아닌 문자가 들어온 경우 테스트+중복 테스트
 
     override fun runMain() {
         NumberBaseball().main()

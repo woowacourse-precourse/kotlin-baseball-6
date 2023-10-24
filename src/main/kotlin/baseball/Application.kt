@@ -91,6 +91,8 @@ class NumberBaseball {
         if (inputNumber == 1) {
             return true
         }
+        if(!(inputNumber==1||inputNumber==2))
+            throw IllegalArgumentException("한자리 숫자는 1,2만 입력 가능합니다.")
         return false
     }
     fun main() {
