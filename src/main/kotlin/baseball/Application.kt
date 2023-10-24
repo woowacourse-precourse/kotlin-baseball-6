@@ -148,20 +148,38 @@ fun endGame() {
 
 fun restartGameOrEndProgram(): Boolean {
 
+    // 플레이어의 게임 재진행 의사를 입력받는다.
+    val getPlayerOpinionRestartGameOrEndProgram = getPlayerNumberRestartGameOrEndProgram()
+
+    // 플레이어의 게임 재진행 의사 입력값 검사
+    val playerOpinion = validatePlayerOpinion(getPlayerOpinionRestartGameOrEndProgram)
+
+    // 예외가 없으면, 1이면 재진행 의사 true로 반환
+    if (playerOpinion == 1) {
+        return true
+    }
+
+    // 1이 아니면, 재진행 의사 false로 반환 후 프로그램 종료
+    return false
+}
+
+fun getPlayerNumberRestartGameOrEndProgram(): String {
+
     println(Const.GAME_RESTART_OR_PROGRAM_END)
 
     val coin = readLine()
 
-    val coinInt = coin.toIntOrNull()
+    return coin
+}
+
+fun validatePlayerOpinion(playerOpinion: String): Int {
+
+    val playerOpinionInt = playerOpinion.toIntOrNull()
 
     // 숫자 검증
-    if (coinInt != 1 && coinInt != 2) {
+    if (playerOpinionInt != 1 && playerOpinionInt != 2) {
         throw IllegalArgumentException(Const.ERROR_NOT_1_OR_2)
     }
 
-    if (coinInt == 1) {
-        return true
-    }
-
-    return false
+    return playerOpinionInt
 }
