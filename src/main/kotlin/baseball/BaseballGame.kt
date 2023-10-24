@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGame() {
 
@@ -26,30 +27,41 @@ class BaseballGame() {
     }
 
     private fun makeRandomBallNumber(): MutableList<Int> {
-        // todo 임의의 수 받기
+        val computer = mutableListOf<Int>()
+
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+        return computer
     }
 
     private fun reGame(): Boolean {
         // todo 재시작
+        return true
     }
 
     private fun countingBall(computer: MutableList<Int>, input: String): Int {
         // todo 볼 개수 확인
+        return 0
     }
 
     private fun countingStrike(computer: MutableList<Int>, input: String): Int {
         // todo 스트라이크 개수 확인
+        return 0
     }
 
     private fun resultString(ball: Int, strike: Int): String {
         // todo 결과 확인
+        return ""
     }
 
     private fun checkThreeStrike(computer: MutableList<Int>, input: String): Boolean {
         // todo 3스트라이크 확인
+        return true
     }
-
-
 
     private fun inputNumberException(input: String) {
         // todo 예외 처리
