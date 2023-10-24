@@ -8,33 +8,21 @@ class BaseballGame() {
     fun gameStart() {
         while (true) {
             // 랜덤 숫자 생성받기
-            val computer = makeRandomBallNumber()
+            val computer = Computer()
             println("숫자 야구 게임을 시작합니다.")
             while (true) {
                 println("숫자를 입력해주세요 : ")
-                val user = Console.readLine()
+                val user = User().readNumbers()
                 // 입력에서 예외를 확인한다
                 inputNumberException(user)
                 // 결과를 출력한다
-                println(resultString(countingBall(computer, user), countingStrike(computer, user)))
-                if (checkThreeStrike(computer, user)) break
+                println(resultString(countingBall(computer.randomBalls, user), countingStrike(computer.randomBalls, user)))
+                if (checkThreeStrike(computer.randomBalls, user)) break
             }
             // 재시작
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             if (reGame()) break
         }
-    }
-
-    private fun makeRandomBallNumber(): MutableList<Int> {
-        val computer = mutableListOf<Int>()
-
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
-        return computer
     }
 
     private fun reGame(): Boolean {
