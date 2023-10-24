@@ -95,7 +95,9 @@ object NumberBaseball {
     private fun printBallCounts(ball: Int, strike: Int) {
         var strCall = ""
 
-        if (ball == 0 && strike == 0) {
+        if (ball == 0 &&
+            strike == 0
+        ) {
             strCall += "낫싱"
             println(strCall)
             return
@@ -116,7 +118,9 @@ object NumberBaseball {
         val temp = Console.readLine().trim()
 
         if (temp.length != 1) throw IllegalArgumentException()
-        if (temp != RESTART_GAME && temp != QUIT_GAME) throw IllegalArgumentException()
+        if (temp != RESTART_GAME &&
+            temp != QUIT_GAME
+        ) throw IllegalArgumentException()
 
         if (temp == QUIT_GAME) isPlaying = false
     }
