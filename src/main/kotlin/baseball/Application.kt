@@ -51,6 +51,11 @@ class NumberBaseballGame {
             throw IllegalArgumentException()
         }
 
+        //예외 처리 : 1~9 범위가 아닌 값을 입력할 경우
+        if (!input.all { it in '1'..'9' }) {
+            throw IllegalArgumentException()
+        }
+
         val user = input.map { it.toString().toInt() }
 
         return user
@@ -71,7 +76,7 @@ class NumberBaseballGame {
     //컴퓨터와 사용자 입력값 비교
     private fun checkGuess(user: List<Int>, computer: List<Int>): Pair<Int,Int> {
         var strike = 0
-        var ball = user.count() {computer.contains(it)}
+        var ball = user.count {computer.contains(it)}
 
         for (i in user.indices) {
             if (user[i] == computer[i]) {
