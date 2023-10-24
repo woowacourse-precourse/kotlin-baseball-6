@@ -9,7 +9,7 @@ class GameManager : Game() {
     fun gameMaking() {
         println(GAME_START_MESSAGE)
         do {
-            setGameResult()
+            gameSetting()
             gameStart()
         } while (Player.restartQuestion())
     }

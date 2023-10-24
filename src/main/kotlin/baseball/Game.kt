@@ -10,7 +10,7 @@ abstract class Game {
     private var ball = GAME_INIT_VALUE
     private lateinit var answer: List<Int>
 
-    protected fun setGameResult() {
+    protected fun gameSetting() {
         answer = Computer.makeNumber()
     }
 
