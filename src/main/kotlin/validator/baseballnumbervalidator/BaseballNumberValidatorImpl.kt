@@ -6,7 +6,7 @@ object BaseballNumberValidatorImpl: BaseballNumberValidator {
     private const val BASEBALL_MAXIMUM_NUMBER = '9'
 
     override fun isValidate(baseballNumber: String): Boolean {
-        TODO("Not yet implemented")
+        return isThreeLetters(baseballNumber) && isItANumber(baseballNumber) && allThreeLettersDifferent(baseballNumber)
     }
 
     override fun isThreeLetters(baseballNumber: String): Boolean {
