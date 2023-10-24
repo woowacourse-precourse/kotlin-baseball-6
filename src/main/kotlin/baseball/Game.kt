@@ -22,7 +22,7 @@ class Game {
         while (!isGameEnd) {
             val userNumber = user.inputUserNumber()
             val hint = computer.countStrikeAndBall(computerNumber, userNumber)
-            isGameEnd = computer.checkGameState(hint.first)
+            isGameEnd = computer.checkGameEnd(hint.first)
             printHint(hint)
 
             if (isGameEnd) {
