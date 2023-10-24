@@ -77,8 +77,10 @@ class BaseballGame(val digits: Int = 3) {
                 else ballCount++
             } else nothingCount++
         }
-        if (strikeCount == 3) return "3스트라이크"
-        if (nothingCount == 3) return "낫싱"
+
+        if (strikeCount == 0 && ballCount == 0) return "낫싱"
+        else if (strikeCount == 0) return "${ballCount}볼"
+        else if (ballCount == 0) return "${strikeCount}스트라이크"
         return "${ballCount}볼 ${strikeCount}스트라이크"
     }
 }
