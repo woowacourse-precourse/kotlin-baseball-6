@@ -33,12 +33,7 @@ class BaseballGame {
         if (strike == 3) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            println("다시 시작은 0, 그만두기는 1을 입력해주세요.")
-            if (Console.readLine() == "0") {
-                startGame()
-            } else if (Console.readLine() == "1") {
-                play = false
-            } else throw IllegalArgumentException("0과 1을 입력해주세요.")
+            play = false
         } else if (ball == 0 && strike == 0){
             println("낫싱")
         } else {
