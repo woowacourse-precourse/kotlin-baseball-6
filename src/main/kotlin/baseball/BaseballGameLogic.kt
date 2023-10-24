@@ -31,7 +31,11 @@ fun getUserInput(): String {
 }
 
 fun checkCorrectNum(num: String): Boolean {
-    return num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3 && !num.contains("0")
+    var isDigit = num.all { it.isDigit() }
+    var hasThreeDistinctDigits = num.toSet().size == 3
+    var containNoZero = !num.contains("0")
+
+    return isDigit && hasThreeDistinctDigits && containNoZero
 }
 
 fun compareNum(
@@ -41,7 +45,7 @@ fun compareNum(
     var resultHashMap: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0, "nothing" to 0)
     for (value in userNum) {
         val indexOfKey = computerNum.indexOf(value)
-        if (indexOfKey!=-1) {
+        if (indexOfKey != -1) {
             if (indexOfKey == userNum.indexOf(value)) {
                 resultHashMap["strike"] = resultHashMap["strike"]!! + 1
             } else {
