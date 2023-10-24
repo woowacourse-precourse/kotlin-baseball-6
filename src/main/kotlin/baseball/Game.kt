@@ -1,10 +1,12 @@
 package baseball
 
 import baseball.model.Answer
+import baseball.model.Hint
 import baseball.utils.RandomNumberGenerator
 import camp.nextstep.edu.missionutils.Console
 
 class Game {
+
     fun run() {
         println("숫자 야구 게임을 시작합니다.")
         while (true) {
@@ -27,29 +29,20 @@ class Game {
         }
     }
 
-    private fun checkStrike(input: Answer, answer: Answer): Boolean {
-        var strike = 0
-        var ball = 0
-        for (i in 0..2) {
-            val current = input[i]
-            if (current == answer[i]) {
-                strike++
-            } else if (current in answer) {
-                ball++
-            }
-        }
+    private fun checkStrike(input: Answer, computer: Answer): Boolean {
+        val hint = Hint(computerAnswer = computer, userAnswer = input)
 
-        if (strike == 3) {
+        if (hint.isAllStrike()) {
             println("3스트라이크")
             return true
         }
 
-        if (strike == 0 && ball == 0) {
+        if (hint.strike == 0 && hint.ball == 0) {
             println("낫싱")
         } else {
             var str = ""
-            if (ball > 0) str = "${ball}볼 "
-            if (strike > 0) str += "${strike}스트라이크"
+            if (hint.ball > 0) str = "${hint.ball}볼 "
+            if (hint.strike > 0) str += "${hint.strike}스트라이크"
             println(str)
         }
 
