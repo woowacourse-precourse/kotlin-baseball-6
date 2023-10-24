@@ -3,13 +3,11 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 
-fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
-    while(true) {
-        var userNum = getUserInput()
-        var userNumHashMap = HashMap<Int, Int>()
-
-        if (checkCorrectNum(userNum)) {
-            userNumHashMap = convertStringToHashMap(userNum)
+fun solveBaseBallGame(computerNum: HashMap<Int, Int>) {
+    while (true) {
+        val userNum = getUserInput()
+        val userNumHashMap = if (checkCorrectNum(userNum)) {
+            convertStringToHashMap(userNum)
         } else {
             throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
         }
@@ -18,32 +16,29 @@ fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
         var resultMessage = calculateBaseballGameResult(result)
         println(resultMessage)
 
-        if(isGameOver(resultMessage)){
+        if (isGameOver(resultMessage)) {
             print(Dialogues.gameOverMessage)
             break
         }
     }
 }
 
-fun getUserInput():String{
+fun getUserInput(): String {
     print(Dialogues.requestEnterNumMessage)
     var userNum = Console.readLine()
     println(userNum)
-
     return userNum
 }
 
-fun checkCorrectNum(num:String):Boolean{
-    if (num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3) {
-        return true
-    }
-    return false
+fun checkCorrectNum(num: String): Boolean {
+    return num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3
 }
 
-fun compareNum(computerNum: HashMap<Int, Int>, userNum: HashMap<Int, Int>): HashMap<String, Int> {
-    var resultHashMap:HashMap<String, Int> = hashMapOf(
-        "strike" to 0, "ball" to 0, "nothing" to 0
-    )
+fun compareNum(
+    computerNum: HashMap<Int, Int>,
+    userNum: HashMap<Int, Int>
+): HashMap<String, Int> {
+    var resultHashMap: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0, "nothing" to 0)
     for ((key, value) in userNum) {
         val hasKey = computerNum.containsKey(key)
         if (hasKey) {
@@ -60,15 +55,15 @@ fun compareNum(computerNum: HashMap<Int, Int>, userNum: HashMap<Int, Int>): Hash
 }
 
 
-fun calculateBaseballGameResult(numArray:HashMap<String, Int>):String{
+fun calculateBaseballGameResult(numArray: HashMap<String, Int>): String {
     var strike = numArray["strike"]
     var ball = numArray["ball"]
     var nothing = numArray["nothing"]
-    return if(nothing==3){
+    return if (nothing == 3) {
         Dialogues.nothingMessage
-    }else if(strike==3){
+    } else if (strike == 3) {
         "3${Dialogues.strikeMessage}"
-    }else{
+    } else {
         val result = mutableListOf<String>()
 
         if (ball!! > 0) {
@@ -83,6 +78,4 @@ fun calculateBaseballGameResult(numArray:HashMap<String, Int>):String{
 }
 
 
-fun isGameOver(result: String):Boolean{
-    return result == "3스트라이크"
-}
+fun isGameOver(result: String) = result == "3스트라이크"
