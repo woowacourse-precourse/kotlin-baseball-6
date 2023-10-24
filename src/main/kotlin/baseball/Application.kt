@@ -49,12 +49,8 @@ fun getNumberFromPlayer(): List<String> {
     checkNumberOfPlayer(inputNumber)
 
     inputNumber.forEach {
-        if (randomNumbers.size < 3) {
-            val number = it.toString()
-            if (!randomNumbers.contains(number)) {
-                randomNumbers.add(number)
-            }
-        }
+        val number = it.toString()
+        randomNumbers.add(number)
     }
 
     return randomNumbers
