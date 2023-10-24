@@ -17,8 +17,6 @@ class UserInputCheck
             }
         }
 
-        println(userNumbers)
-
         if(!only3Number(userNumbers))
             throw IllegalArgumentException("1에서9사이의 숫자 3개를입력해주세요")
         else if (duplicateNumbers(userNumbers))

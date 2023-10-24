@@ -16,7 +16,7 @@ class RandomNumberGenerator()
                 computerNumbers.add(randomNumbers)
             }
         }
-        println("컴퓨터 번호 $computerNumbers")
+
         return computerNumbers
     }
 }

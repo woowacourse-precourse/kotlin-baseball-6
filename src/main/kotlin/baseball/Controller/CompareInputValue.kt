@@ -26,6 +26,7 @@ class CompareInputValue
                 correctValueOnly++
             }
         }
+
         if (correctValueOnly > 0)
         {
             print("${correctValueOnly}볼 ")
@@ -37,13 +38,14 @@ class CompareInputValue
         else if (correctValueAndPosition == 3)
         {
             println("${correctValueAndPosition}스트라이크")
-
             return true
         }
-        if (correctValueAndPosition == 0 && correctValueOnly == 0)
+        else if (correctValueAndPosition == 0 && correctValueOnly == 0)
         {
             println("낫싱")
         }
+        if (correctValueOnly > 0 && correctValueAndPosition == 0) { println() }
+
         return false
     }
 
