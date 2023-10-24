@@ -9,8 +9,21 @@ fun main() {
     do {
         val computer = generateComputerNumbers()
         playGame(computer)
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ")
-    } while (Console.readLine() == "1")
+        var validInput = false
+        do {
+            print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ")
+            when (Console.readLine()) {
+                "1" -> {
+                    validInput = true
+                }
+                "2" -> {
+                    validInput = true
+                    return
+                }
+                else -> throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
+            }
+        } while (!validInput)
+    } while (true)
 }
 
 fun generateComputerNumbers(): List<Int> {
@@ -27,8 +40,24 @@ fun generateComputerNumbers(): List<Int> {
 fun playGame(computer: List<Int>) {
     while (true) {
         print("숫자를 입력해주세요 : ")
-        val userGuess = Console.readLine().orEmpty().map { it.toString().toInt() }
-        if (userGuess.size != 3) throw IllegalArgumentException()
+        val userInput = Console.readLine().orEmpty()
+
+        // 입력값이 없는 경우
+        if (userInput.isEmpty()) {
+            throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
+        }
+
+        val userGuess = try {
+            userInput.map { it.toString().toInt() }
+        } catch (e: NumberFormatException) {
+            // 입력값이 숫자가 아닌 경우
+            throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
+        }
+
+        // 입력값의 길이, 중복, 1~9 범위 검사
+        if (userGuess.size != 3 || userGuess.toSet().size != 3 || userGuess.any { it < 1 || it > 9 }) {
+            throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
+        }
 
         val result = evaluateGuess(computer, userGuess)
         if (result == "3스트라이크") {
