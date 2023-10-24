@@ -15,6 +15,20 @@ class Validator {
         return numberList
     }
 
+    fun validateRestartNumber(inputString: String): Int{
+        if (inputString.length == 1){
+            isNumber(inputString)
+            val num: Int = inputString.toInt()
+            return if(num == 1 || num == 2){
+                num
+            } else {
+                throw IllegalArgumentException("input must be 1 or 2")
+            }
+        } else {
+            throw IllegalArgumentException("input length must be 1")
+        }
+    }
+
     private fun validateNumbers(inputList: List<Int>) {
         hasDuplicates(inputList)
         hasZero(inputList)
