@@ -1,12 +1,11 @@
 package baseball
 
+import baseball.PlayAgain.Companion.PLAY_AGAIN
+import baseball.PlayAgain.Companion.PLAY_NO_MORE
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 private const val MAX_DIGIT = 3
-
-private const val PLAY_AGAIN = "1"
-private const val PLAY_NO_MORE = "2"
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -20,12 +19,13 @@ fun main() {
 
 
 fun playGame(): PlayAgain {
-    val targetNumber = createTargetNumber()
+    val targetNumber = createRandomTargetNumber()
 
     while (true) {
-        val validInput = getValidUserInput()
+        val userNumber = getUserNumber()
+        validateNumber(number = userNumber)
 
-        val result = compareInput(input = validInput, targetNumber = targetNumber)
+        val result = compareNumbers(userNumber = userNumber, targetNumber = targetNumber)
         result.print()
 
         if (result.isCorrectGuess()) {
@@ -39,10 +39,15 @@ fun playGame(): PlayAgain {
 
 
 @JvmInline
-value class PlayAgain(val again: Boolean)
+value class PlayAgain(val again: Boolean) {
+    companion object {
+        const val PLAY_AGAIN = "1"
+        const val PLAY_NO_MORE = "2"
+    }
+}
 
 
-fun createTargetNumber(): TargetNumber {
+fun createRandomTargetNumber(): TargetNumber {
     val targetNumber = TargetNumber()
 
     targetNumber.putDigitInfo(pickNumberInRange(1, 9), 1) // first digit
@@ -76,47 +81,43 @@ class TargetNumber {
 }
 
 
-fun getValidUserInput(): Int {
+fun getUserNumber(): Int {
     print("숫자를 입력해주세요 : ")
-
-    val input = readLine().toString().toInt()
-    validateInput(input = input)
-
-    return input
+    return readLine().toInt()
 }
 
 
-fun validateInput(input: Int) {
-    require(input <= 999)
+fun validateNumber(number: Int) {
+    require(number <= 999)
 
-    var inputVar = input
+    var numberVar = number
     var digit = MAX_DIGIT
 
     with(TargetNumber()) {
         repeat(MAX_DIGIT) {
             // putDigitInfo의 경우 이미 있는 숫자를 put할 경우 false return
-            require(putDigitInfo(inputVar % 10, digit))
+            require(putDigitInfo(numberVar % 10, digit))
 
-            inputVar /= 10
+            numberVar /= 10
             digit--
         }
     }
 }
 
 
-fun compareInput(input: Int, targetNumber: TargetNumber): CompareResult {
+fun compareNumbers(userNumber: Int, targetNumber: TargetNumber): CompareResult {
     var strike = 0
     var ball = 0
 
-    var inputVar = input
+    var userNumberVar = userNumber
     var currentDigit = MAX_DIGIT
 
     repeat(MAX_DIGIT) {
-        targetNumber.getDigitInfoOrNull(number = inputVar % 10)?.let { digit ->
+        targetNumber.getDigitInfoOrNull(number = userNumberVar % 10)?.let { digit ->
             if (digit == currentDigit) strike++ else ball++
         }
 
-        inputVar /= 10
+        userNumberVar /= 10
         currentDigit--
     }
 
