@@ -118,10 +118,6 @@ fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, play
 
     playerScore.ball = intersectPlayerAndComputer.size - playerScore.strike
 
-    if (playerScore.strike == 0 && playerScore.ball == 0) {
-        playerScore.nothing = true
-    }
-
     return playerScore
 }
 
@@ -129,31 +125,21 @@ fun printPlayerScore(calculatePlayerScore: PlayerScore) {
 
     var result = ""
 
-    // 하나도 없는 경우
-    if (calculatePlayerScore.nothing) {
-        result = Const.PLAYER_SCORE_NOTHING
-        return println(result)
+    when {
+        // 볼 + 스트라이크
+        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike >= 1 -> result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} ${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
+        // 볼만
+        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike < 1 -> result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL}"
+        // 스트라이크만
+        calculatePlayerScore.ball < 1 && calculatePlayerScore.strike >= 1 -> result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
+        // 낫싱
+        calculatePlayerScore.strike == 0 && calculatePlayerScore.ball == 0 -> result += "${Const.PLAYER_SCORE_NOTHING}"
+        // 3스트라이크
+        calculatePlayerScore.strike == 3 -> result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}\n${endGame()}"
     }
 
-    // 3개의 숫자를 모두 맞힐 경우
-    if (calculatePlayerScore.strike == 3) {
-        result = "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
-        println(result)
-        endGame()
-        return
-    }
+    return println(result)
 
-    // 입력한 수에 대한 볼 개수 출력
-    if (calculatePlayerScore.ball > 0) {
-        result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} "
-    }
-
-    // 입력한 수에 대한 스트라이크 개수 출력
-    if (calculatePlayerScore.strike > 0) {
-        result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
-    }
-
-    return println(result.trim())
 }
 
 fun endGame() {
