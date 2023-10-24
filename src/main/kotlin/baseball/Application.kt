@@ -1,7 +1,6 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.*
-import java.lang.Exception
 
 
 fun main() {
@@ -12,11 +11,13 @@ fun main() {
 
 fun startBaseballGame() {
     val computer: List<Int> = randomComputer()
-    var me: List<Int> = listOf()
+    var me: List<Int>
     var wrong: Boolean = true
 
     while (wrong) {
         me = guessComputer()
+
+        wrong = diffComputerMe(computer, me)
     }
 }
 
@@ -77,5 +78,39 @@ fun checkGuess(m: String) {
         if (Character.getNumericValue(c) in 1..9) {
             throw IllegalArgumentException("1부터 9까지의 수로 이뤄져야 합니다.")
         }
+    }
+}
+
+fun diffComputerMe(computer: List<Int>, me: List<Int>): Boolean {
+    var strike: Int = 0
+    var ball: Int = 0
+
+    for (i in me.indices) {
+        if (me[i] == computer[i]) {
+            strike++
+        } else if (me[i] in computer) {
+            ball++
+        }
+    }
+
+    printHint(strike, ball)
+
+    TODO("아직 진행 중~")
+}
+
+// 4) 힌트 출력
+fun printHint(strike: Int, ball: Int) {
+    // 출력 형태 - 총 5가지
+    if (strike == 3) {
+        println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    } else if (strike == 0 && ball == 0) {
+        println("낫싱")
+    } else if (strike == 0) {
+        println("${ball}볼")
+    } else if (ball == 0) {
+        println("${strike}스트라이크")
+    } else {
+        println("${ball}볼 ${strike}스트라이크")
     }
 }
