@@ -41,7 +41,13 @@ fun startGameUser(answerNumber: String) {
         val userNumber = Console.readLine().toString()
         //오류가 생기면 Illegal을 발생 시킬것이고, 오류가 없으면 정상적으로 다음 코드를 보게 될 것이다.
         checkUserNumber(userNumber)
+
+        //srike, ball의 결과를 pair로 저장
         val compareResult = compareUserNumber(answerNumber, userNumber)
+
+        //숫자 비교 후 출력 & 게임 종료 여부 확인
+        if(printGameResult(compareResult.first, compareResult.second))
+            break
     }
 }
 
@@ -64,6 +70,7 @@ fun compareUserNumber(answerNumber: String, userNumber: String): Pair<Int, Int> 
 fun printGameResult(strike: Int, ball: Int): Boolean {
     if(strike==3) {
         println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         return true
     }
     if(strike==0 && ball==0) {
