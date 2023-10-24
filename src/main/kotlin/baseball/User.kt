@@ -50,7 +50,8 @@ class User {
     }
 
     private fun validateUnique(number: String) {
-        if (number.toList().distinct().size != SIZE) {
+        val checkDuplicateSet = number.toSet()
+        if (checkDuplicateSet.size != SIZE) {
             throw IllegalArgumentException(NOT_UNIQUE_NUMBER)
         }
     }
