@@ -7,6 +7,7 @@ class Computer {
 
     fun createRandomNumber(): List<Int> {
         val randomNumberList = mutableListOf<Int>()
+
         while (randomNumberList.size < NUMBER_LIST_SIZE) {
             val randomNumber = Randoms.pickNumberInRange(MIN_EACH_NUMBER, MAX_EACH_NUMBER)
             if (!randomNumberList.contains(randomNumber)) {
@@ -14,6 +15,7 @@ class Computer {
             }
         }
         println(randomNumberList)
+
         return randomNumberList
     }
 

@@ -29,6 +29,7 @@ class Game {
         host.printNumberInputRequest()
         val playerInputNumber = computer.convertInputNumberToList()
         computer.validateInputNumber(playerInputNumber)
+
         return playerInputNumber
     }
 }
