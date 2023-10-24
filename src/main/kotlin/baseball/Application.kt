@@ -96,9 +96,8 @@ fun main() {
             }catch(e:NullPointerException){return}
 
             if(ifInputError(userString)){
-            throw (IllegalArgumentException())
-            return
-            }
+            throw (IllegalArgumentException())}
+
 
             try {
                 user = userString.toInt()
