@@ -19,7 +19,7 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
         while (result != "3스트라이크") {
             print("숫자를 입력해주세요 : ")
             val userInput: String = Console.readLine().trim()
-            val userAnswer: List<Int> = validate(userInput)
+            val userAnswer: List<Int> = validateUserInput(userInput)
             result = resultString(answer, userAnswer)
             println(result)
         }
@@ -48,7 +48,7 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
         return numbers
     }
 
-    private fun validate(userInput: String): List<Int> {
+    private fun validateUserInput(userInput: String): List<Int> {
         val validAnswer: List<Int>
 
         if (userInput.length != digits)
