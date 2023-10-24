@@ -33,11 +33,13 @@ class Computer {
     }
 
     fun validateInputNumber(inputNumberList: List<Int>) {
+        val distinctInputNumList = inputNumberList.distinct()
+
+        if (distinctInputNumList.size != inputNumberList.size) {
+            throw IllegalArgumentException(ERROR_NUMBER_DUPLICATION)
+        }
         if (inputNumberList.size != NUMBER_LIST_SIZE) {
             throw IllegalArgumentException(ERROR_INPUT_THREE_DIGITS_ONLY)
-        }
-        if (inputNumberList.distinct().size != inputNumberList.size) {
-            throw IllegalArgumentException(ERROR_NUMBER_DUPLICATION)
         }
         if (inputNumberList.any { it < MIN_EACH_NUMBER || it > MAX_EACH_NUMBER }) {
             throw IllegalArgumentException(ERROR_INPUT_ONE_TO_NINE_ONLY)
