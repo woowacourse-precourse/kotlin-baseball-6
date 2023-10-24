@@ -9,6 +9,8 @@ class Pitcher(
 ) {
     private var numbers = listOf<Int>()
 
+    fun getNumbers() = this.numbers
+
     fun generateNumbers() {
         val numbers = mutableListOf<Int>()
 

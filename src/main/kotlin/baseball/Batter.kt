@@ -10,13 +10,15 @@ class Batter(
     private var numbers = listOf<Int>()
     private val validator = Validator()
 
-    fun enterNumbers(): List<Int> {
+    fun getNumbers(): List<Int> = this.numbers
+
+    fun enterNumbers() {
         val numbers = mutableListOf<Int>()
         val userInput = enteredInput()
 
         formatChangedNumbers(userInput).map { number -> numbers.add(number) }
 
-        return numbers
+        this.numbers = numbers
     }
 
     private fun enteredInput(): String {
