@@ -48,4 +48,12 @@ class BaseballNumberValidatorTest {
     fun `세 자리 수가 아닐 때 오류를 던지는지`(input: String) {
         Assertions.assertThrows(IllegalArgumentException::class.java) { baseballNumberValidator.isThreeLetters(input) }
     }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["반가워", "안녕1", "2T3", "12a"]
+    )
+    fun `숫자가 아닌 것이 포함돼 있을 때 오류를 던지는지`(input: String) {
+        Assertions.assertThrows(IllegalArgumentException::class.java) { baseballNumberValidator.isItANumber(input) }
+    }
 }
