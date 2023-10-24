@@ -37,7 +37,5 @@ class Computer {
         return Pair(strike, ball)
     }
 
-    fun checkGameEnd(strike: Int): Boolean {
-        return strike == SIZE
-    }
+    fun checkGameEnd(strike: Int) = strike == SIZE
 }
