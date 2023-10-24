@@ -1,6 +1,8 @@
 package baseball
 
+import baseball.util.GameState
 import baseball.util.GameState.NUMBER_INPUT_MESSAGE
+import baseball.util.GameValue
 import baseball.util.Validator
 import camp.nextstep.edu.missionutils.Console
 
@@ -15,5 +17,14 @@ object Player {
             number.add(it - '0')
         }
         return number.toList()
+    }
+
+    fun restartQuestion(): Boolean {
+        println(GameState.GAME_RESTART_MESSAGE)
+        val playerCommend = Console.readLine()
+        if (playerCommend != GameValue.RESTART_COMMAND && playerCommend != GameValue.STOP_COMMAND) {
+            throw IllegalArgumentException()
+        }
+        return playerCommend == GameValue.RESTART_COMMAND
     }
 }
