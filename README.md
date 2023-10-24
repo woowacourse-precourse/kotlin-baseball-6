@@ -191,7 +191,7 @@ while (computer.size() < 3) {
 
 ### GameControlValidator
 
-- [ ] 1이나 2인지 확인.
+- [x] 1이나 2인지 확인.
 
 ### BaseballNumberComparator
 
