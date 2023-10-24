@@ -185,9 +185,9 @@ while (computer.size() < 3) {
 
 ### BaseballNumberValidator
 
-- [ ] 세 자리 수 인지 확인
-- [ ] 서로 다른 숫자 인지 확인
-- [ ] 수인지 확인
+- [x] 세 자리 수 인지 확인
+- [x] 서로 다른 숫자 인지 확인
+- [x] 수인지 확인
 
 ### GameControlValidator
 
