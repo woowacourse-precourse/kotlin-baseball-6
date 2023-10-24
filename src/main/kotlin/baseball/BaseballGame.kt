@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Randoms
 class BaseballGame() {
 
     fun gameStart() {
-        println("숫자 야구 게임을 시작합니다.")
         while (true) {
             // 랜덤 숫자 생성받기
             val computer = makeRandomBallNumber()
@@ -39,8 +38,11 @@ class BaseballGame() {
     }
 
     private fun reGame(): Boolean {
-        // todo 재시작
-        return true
+        return when (Console.readLine()) {
+            "2" -> true
+            "1" -> false
+            else -> throw IllegalArgumentException("유효한 수가 아닙니다.")
+        }
     }
 
     private fun countingBall(computer: MutableList<Int>, input: String): Int {
