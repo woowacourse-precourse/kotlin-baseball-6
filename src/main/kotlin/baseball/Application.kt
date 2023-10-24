@@ -62,8 +62,8 @@ fun getBallAndStrike(computerNumList: MutableList<Int>, userNumList: MutableList
 }
 
 fun printResult(result: Pair<Int, Int>) {
-    val ball = result.second
-    val strike = result.first
+    val ball = result.first
+    val strike = result.second
 
     if (strike == 0 && ball == 0) {
         println("낫싱")
