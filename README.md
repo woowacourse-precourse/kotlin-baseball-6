@@ -157,8 +157,8 @@ while (computer.size() < 3) {
 
 ### InputView
 
-- [ ] 야구 숫자 입력
-- [ ] 게임 새로 시작 혹은 게임 종료 입력
+- [x] 야구 숫자 입력
+- [x] 게임 새로 시작 혹은 게임 종료 입력
 
 ### OutputView
 
