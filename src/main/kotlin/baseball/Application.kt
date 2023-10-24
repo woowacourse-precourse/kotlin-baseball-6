@@ -14,6 +14,16 @@ fun startGame() {
 fun gameEndOrRestart(){
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val userEndAnswer = Console.readLine().toInt()
+    checkEndAnswer(userEndAnswer)
+}
+
+fun checkEndAnswer(userEndAnswer: Int): Boolean{
+    if(userEndAnswer!=1 && userEndAnswer!=2) {
+        throw IllegalArgumentException("1 또는 2를 입력해주세요")
+    }
+    if(userEndAnswer==1)
+        return true
+    return false
 }
 
 fun checkUserNumber(userNumber: String) {
