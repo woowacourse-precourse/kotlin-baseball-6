@@ -31,6 +31,7 @@ class ScreenView {
     fun printEndMessage() {
         println(gameEndMessage)
     }
+
     fun printExitMessage() {
         println(gameExitMessage)
     }

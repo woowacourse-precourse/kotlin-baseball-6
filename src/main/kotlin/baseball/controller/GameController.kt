@@ -24,11 +24,11 @@ class GameController(private val view: ScreenView) {
     }
 
     fun calculateScore(userBalls: Balls, computerBalls: Balls): Score {
-        var strike: Int = 0
-        var ball: Int = 0
+        var strike = 0
+        var ball = 0
 
         for (i in 0 until Balls.MAX_BALLS) {
-            if (userBalls[i] == computerBalls[i]){
+            if (userBalls[i] == computerBalls[i]) {
                 strike++
             } else if (computerBalls.contains(userBalls[i])) {
                 ball++

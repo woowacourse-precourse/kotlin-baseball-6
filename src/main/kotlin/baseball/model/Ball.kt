@@ -12,11 +12,14 @@ class Ball(num: Int) {
         if (this === other) return true
         if (other == null || other !is Ball) return false
 
-        val otherClass = other as Ball
-        return this.num == otherClass.num
+        return this.num == other.num
     }
 
     override fun toString(): String {
         return "Ball($num)"
+    }
+
+    override fun hashCode(): Int {
+        return num
     }
 }

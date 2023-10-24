@@ -20,7 +20,7 @@ class BaseballGame {
 
     }
 
-    fun playGame() {
+    private fun playGame() {
         var isGameEnd = false
         while (!isGameEnd) {
             val userBalls: Balls = controller.inputUserBalls()
@@ -51,6 +51,7 @@ class BaseballGame {
             false
         }
     }
+
     private fun reset() {
         computerBalls = controller.getRandomBalls()
     }

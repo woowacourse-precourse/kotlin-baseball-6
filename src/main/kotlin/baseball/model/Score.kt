@@ -2,7 +2,7 @@ package baseball.model
 
 class Score(ball: Int, strike: Int) {
     val strike: Int
-    val ball: Int
+    private val ball: Int
 
     init {
         require(strike >= 0) { "strike $strike 가 양수가 아닙니다." }
@@ -12,11 +12,11 @@ class Score(ball: Int, strike: Int) {
     }
 
     override fun toString(): String {
-        var message: String = ""
-        if (ball != 0){
+        var message = ""
+        if (ball != 0) {
             message += "${ball}볼 "
         }
-        if (strike != 0){
+        if (strike != 0) {
             message += "${strike}스트라이크 "
         }
 
