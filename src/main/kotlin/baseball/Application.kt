@@ -30,7 +30,7 @@ fun main() {
             ) {
                 // 겹치지 않는 숫자 체크와 1-9 사이 체크
                 for (i in 0..<baseballLength) {
-                    if (number.count { it == number[i] } > 1 || Character.getNumericValue(number[i]) !in 1..9) {
+                    if (number.count { it == number[i] } > 1 || Character.getNumericValue(number[i]) == 0) {
                         throw IllegalArgumentException()
                     }
                 }
