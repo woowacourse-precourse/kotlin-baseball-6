@@ -66,7 +66,7 @@ internal class OutOfRangeNumberValidation : BaseValidation() {
     override val error: InputError = InputError.OutOfRangeNumber
 
     private fun String.isNumberOutOfRange(): Boolean =
-       this.all { char ->
-           validNumbers.contains(char.toString().toInt())
-       }
+        runCatching {
+            this.all { char -> validNumbers.contains(char.toString().toInt()) }
+        }.getOrDefault(false)
 }
