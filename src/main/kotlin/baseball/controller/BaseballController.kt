@@ -69,21 +69,21 @@ class BaseballController() {
         return inputNumber
     }
 
-    private fun callException(): Nothing = throw IllegalArgumentException("잘못")
+    private fun callException(): Nothing = throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
 
-    private fun checkLength(inputNumber: String) {
+    fun checkLength(inputNumber: String) {
         if (inputNumber.length != 3) {
             callException()
         }
     }
 
-    private fun checkDifferentNumber(inputNumber: String) {
+    fun checkDifferentNumber(inputNumber: String) {
         if (inputNumber[0] == inputNumber[1] || inputNumber[0] == inputNumber[2] || inputNumber[1] == inputNumber[2]) {
             callException()
         }
     }
 
-    private fun checkIsDigit(inputNumber: String) {
+    fun checkIsDigit(inputNumber: String) {
         inputNumber.forEach {
             if (49 > it.code || 57 < it.code) callException()
         }
