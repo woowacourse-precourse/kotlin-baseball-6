@@ -9,13 +9,14 @@ fun main() {
     gameStart()
 }
 
-private fun gameStart(){
+private fun gameStart() {
     val computer = mutableListOf<Int>()
     generateMission(computer)
     while (true) {
         print(INPUT_MESSAGE)
         val input = inputCheck()
-        when (scoreMission(computer = computer, user = input)) {
+        val result = scoreMission(computer = computer, user = input)
+        when (result) {
             CONTINUE -> {
                 continue
             }
@@ -50,9 +51,13 @@ private fun inputCheck(): String {
     val input = Console.readLine()
     if (input.length != INPUT_RULE || input.toSet().size != INPUT_RULE) {
         throw IllegalArgumentException(INPUT_EXCEPTION)
-    } else {
-        return input
     }
+    for(item in (input.map { it.toString().toInt() })){
+        if (item<=0){
+            throw IllegalArgumentException(INPUT_EXCEPTION)
+        }
+    }
+    return input
 }
 
 private fun scoreMission(computer: MutableList<Int>, user: String): Int {
