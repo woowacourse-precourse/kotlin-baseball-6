@@ -83,8 +83,8 @@ fun main() {
         while(true) {
             print("숫자를 입력해주세요 : ")
             val guessNumber = Console.readLine()
-            if (!isValidGuessNumber(guessNumber)) {
-                throw IllegalArgumentException("Wrong guessNumber $guessNumber")
+            require(isValidGuessNumber(guessNumber)){
+                "Wrong guessNumber $guessNumber"
             }
             val guessResult = getGuessResult(secretNumber, guessNumber)
             printGuessResult(guessResult)
@@ -95,8 +95,8 @@ fun main() {
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val continueNumber = Console.readLine()
-        if (!isValidContinueNumber(continueNumber)) {
-            throw IllegalArgumentException("Wrong continueNumber $continueNumber")
+        require(isValidContinueNumber(continueNumber)){
+            "Wrong continueNumber $continueNumber"
         }
         if (continueNumber[0] == '2') {
             break
