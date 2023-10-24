@@ -198,3 +198,62 @@ while (computer.size() < 3) {
 - [ ] 컴퓨터 랜덤 야구 숫자와 입력된 야구 숫자 비교
     - [ ] 컴퓨터가 설정한 수에 포함되면 볼 개수를 늘림
     - [ ] 컴퓨터가 설정한 수와 위치가 같으면 스트라이크 개수를 늘림
+
+## 👉 클래스 다이어 그램
+
+```mermaid
+---
+title: Baseball Game
+---
+classDiagram
+    Computer <.. Controller
+    BaseballNumberComparator <.. Controller
+    Player <.. Controller
+    InputView <.. Controller
+    OutputView <.. Controller
+    Computer <.. BaseballNumberComparator
+    Player <.. BaseballNumberComparator
+    RandomBaseballNumberGenerator <.. Computer
+    BaseballNumberValidator <.. InputView
+    GameControlValidator <.. InputView
+    class Computer {
+        -String _randomBaseballNumber
+        +String randomBaseballNumber
+        +setRandomBaseballNumber()
+    }
+    class Player {
+        -String _baseballNumber
+        +String baseballNumber
+        +setBaseballNumber()
+    }
+    class InputView {
+        +askBaseballNumber()
+        +askRestartOrTerminate()
+    }
+    class OutputView {
+        +startBaseballGame()
+        +pleaseInputBaseballNumber()
+        +guessedAllBaseballNumber()
+        +restartOrTerminate()
+        +intermediateGameResult()
+    }
+    class RandomBaseballNumberGenerator {
+        +generateRandomBaseballNumber()
+    }
+    class Controller {
+        +startGame()
+    }
+    class BaseballNumberValidator {
+        +isThreeLetters()
+        +isItANumber()
+        +allThreeLettersDifferent()
+    }
+    class GameControlValidator {
+        +isOneOrTwo()
+    }
+    class BaseballNumberComparator { 
+        +compareAnswerWithPlayerBaseballNumber
+        -checksContainingNumbers()
+        -checkNumbersAreInSamePlace()
+    }
+```
