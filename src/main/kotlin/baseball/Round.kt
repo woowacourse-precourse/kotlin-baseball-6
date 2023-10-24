@@ -7,7 +7,7 @@ class Round(
     private val player: Player,
     private val referee: Referee,
     private val answerBaseBalls: List<Int>,
-    private val baseBallConvertor: BaseBallConvertor = BaseBallConvertor()
+    private val baseBallConvertor: BaseBallConvertor = BaseBallConvertor(),
 ) {
     fun run(): String {
         gameGuide.show(GameInstruction.ENTER_NUMBER)
