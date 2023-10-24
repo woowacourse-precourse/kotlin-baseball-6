@@ -162,14 +162,14 @@ while (computer.size() < 3) {
 
 ### OutputView
 
-- [ ] 게임 시작 문구 출력
-- [ ] 숫자 입력 요구 문구 출력
-- [ ] 게임 중간 결과 문구 출력
-    - [ ] 볼이나 스트라이크가 하나도 없는 경우
-    - [ ] 볼이나 스트라이크가 하나라도 있는 경우
-    - [ ] 스트라이크가 3개일 경우
-- [ ] 모든 숫자 정답 문구 출력
-- [ ] 게임 새로 시작 혹은 게임 종료 문구 출력
+- [x] 게임 시작 문구 출력
+- [x] 숫자 입력 요구 문구 출력
+- [x] 게임 중간 결과 문구 출력
+    - [x] 볼이나 스트라이크가 하나도 없는 경우
+    - [x] 볼이나 스트라이크가 하나라도 있는 경우
+    - [x] 스트라이크가 3개일 경우
+- [x] 모든 숫자 정답 문구 출력
+- [x] 게임 새로 시작 혹은 게임 종료 문구 출력
 
 ### RandomBaseballNumberGenerator
 
@@ -234,7 +234,7 @@ classDiagram
         +startBaseballGame()
         +pleaseInputBaseballNumber()
         +guessedAllBaseballNumber()
-        +restartOrTerminate()
+        +restartOrTerminateGame()
         +intermediateGameResult()
     }
     class RandomBaseballNumberGenerator {
