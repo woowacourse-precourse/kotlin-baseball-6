@@ -8,8 +8,8 @@ object NumberBaseball {
     private const val RESTART_GAME = "1"
     private const val QUIT_GAME = "2"
 
-    private var comNumList: ArrayList<Int> = arrayListOf()
-    private var userNumList: ArrayList<Int> = arrayListOf()
+    private var comNumbers: ArrayList<Int> = arrayListOf()
+    private var userNumbers: ArrayList<Int> = arrayListOf()
 
     private var strikeCount = 0
     private var ballCount = 0
@@ -18,14 +18,14 @@ object NumberBaseball {
     private fun setDefault() {
         strikeCount = 0
         ballCount = 0
-        comNumList.clear()
-        userNumList.clear()
+        comNumbers.clear()
+        userNumbers.clear()
     }
 
     private fun initRandomNumbers(): NumberBaseball {
-        while (comNumList.size < NUM_LENGTH) {
+        while (comNumbers.size < NUM_LENGTH) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!comNumList.contains(randomNumber)) comNumList.add(randomNumber)
+            if (!comNumbers.contains(randomNumber)) comNumbers.add(randomNumber)
         }
         return this
     }
@@ -43,13 +43,14 @@ object NumberBaseball {
 
     private fun getUserInput() {
         print("숫자를 입력해 주세요 : ")
-        if (userNumList.size > 0) userNumList.clear()
+        if (userNumbers.size > 0) userNumbers.clear()
         val userInput = Console.readLine()
             .removeWhiteSpaces()
         checkValidateInput(userInput)
-        userNumList = userInputToNumbers(userInput)
+        userNumbers = userInputToNumbers(userInput)
     }
 
+    // 사용자 입력에서 공백 문자를 제거하기 위한 확장 함수
     private fun String.removeWhiteSpaces(): String {
         return this.replace(" ", "")
             .replace("\t", "")
@@ -62,6 +63,7 @@ object NumberBaseball {
         }
     }
 
+    // 사용자의 입력을 정수로 변환해 ArrayList<Int>에 담고 ArrayList<Int>를 반환합니다.
     private fun userInputToNumbers(input: String): ArrayList<Int> {
         val tempNumList = arrayListOf<Int>()
         input.forEach {
@@ -75,15 +77,15 @@ object NumberBaseball {
     private fun calculateBallCounts() {
         ballCount = 0
         strikeCount = 0
-        userNumList.forEachIndexed { index, value ->
+        userNumbers.forEachIndexed { index, value ->
             isStrikeOrBall(index, value)
         }
         printBallCounts(ballCount, strikeCount)
     }
 
     private fun isStrikeOrBall(index: Int, value: Int) {
-        if (comNumList.contains(value)) {
-            if (index == comNumList.indexOf(value)) {
+        if (comNumbers.contains(value)) {
+            if (index == comNumbers.indexOf(value)) {
                 strikeCount++
                 return
             }
@@ -93,35 +95,35 @@ object NumberBaseball {
     }
 
     private fun printBallCounts(ball: Int, strike: Int) {
-        var strCall = ""
+        var call = ""
 
         if (ball == 0 &&
             strike == 0
         ) {
-            strCall += "낫싱"
-            println(strCall)
+            call += "낫싱"
+            println(call)
             return
         }
 
         if (ball != 0) {
-            strCall += "${ball}볼"
-            if (strike != 0) strCall += " "
+            call += "${ball}볼"
+            if (strike != 0) call += " "
         }
 
-        if (strike != 0) strCall += "${strike}스트라이크"
+        if (strike != 0) call += "${strike}스트라이크"
 
-        println(strCall)
+        println(call)
     }
 
     fun askQuitOrRestart() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val temp = Console.readLine().trim()
+        val tempStr = Console.readLine().trim()
 
-        if (temp.length != 1) throw IllegalArgumentException()
-        if (temp != RESTART_GAME &&
-            temp != QUIT_GAME
+        if (tempStr.length != 1) throw IllegalArgumentException()
+        if (tempStr != RESTART_GAME &&
+            tempStr != QUIT_GAME
         ) throw IllegalArgumentException()
 
-        if (temp == QUIT_GAME) isPlaying = false
+        if (tempStr == QUIT_GAME) isPlaying = false
     }
 }
