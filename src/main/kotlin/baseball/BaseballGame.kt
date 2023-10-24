@@ -6,6 +6,13 @@ import util.Constants
 class BaseballGame {
 
     fun startBaseballGame() {
+        println(Constants.START_MESSAGE)
+        do {
+            playBaseballGame()
+        } while (isRestartable())
+    }
+
+    fun playBaseballGame() {
         val answerNumbers = creatRandomNumbers()
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {

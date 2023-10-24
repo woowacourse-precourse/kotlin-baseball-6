@@ -6,14 +6,10 @@ import util.Constants.DUPLICATE_NUMBER_MESSAGE
 import util.Constants.INPUT_MESSAGE
 import util.Constants.INVALID_INPUT_MESSAGE
 import util.Constants.INVALID_LENGTH_MESSAGE
-import util.Constants.START_MESSAGE
 
 fun main() {
     val game = BaseballGame()
-    println(START_MESSAGE)
-    do {
-        game.startBaseballGame()
-    } while (game.isRestartable())
+    game.startBaseballGame()
 }
 
 fun creatRandomNumbers(): MutableList<Int> {
