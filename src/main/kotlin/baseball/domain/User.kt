@@ -5,7 +5,6 @@ import baseball.utils.Number.NINE
 import baseball.utils.Number.ONE
 import baseball.utils.UserChoice.EXIT_VALUE
 import baseball.utils.UserChoice.RESTART_VALUE
-import camp.nextstep.edu.missionutils.Console
 
 object User {
 

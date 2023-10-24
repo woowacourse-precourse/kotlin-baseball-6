@@ -1,5 +1,6 @@
 package baseball.domain
 
+import baseball.model.MatchResult
 import baseball.utils.BaseBallComment.BALL_COMMENT
 import baseball.utils.BaseBallComment.NOTHING_COMMENT
 import baseball.utils.BaseBallComment.STRIKE_COMMENT
@@ -9,7 +10,6 @@ import baseball.utils.Comment.GAME_STOP_COMMENT
 import baseball.utils.Comment.SPACE
 import baseball.utils.Number.THREE
 import baseball.utils.Number.ZERO
-import baseball.model.MatchResult
 
 class BaseballMatch(
     private val computer: String
