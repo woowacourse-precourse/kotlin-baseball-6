@@ -20,7 +20,7 @@ private fun playBaseballGame() {
             printBaseballResultMessage()
             if(isThreeStrikes()) {
                 printBaseballGameSuccessMessage()
-                if(user.restartOrExitInput() != User.EXIT) setNewRandomNumbers() else return
+                if(user.inputRestartOrExit() != User.EXIT) setNewRandomNumbers() else return
             }
         }
     }

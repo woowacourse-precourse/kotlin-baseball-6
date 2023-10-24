@@ -14,7 +14,7 @@ class User {
         }
     }
 
-    fun restartOrExitInput(input: String = readLine()): String {
+    fun inputRestartOrExit(input: String = readLine()): String {
         if (input == RESTART || input == EXIT) return input else throw IllegalArgumentException()
     }
 
