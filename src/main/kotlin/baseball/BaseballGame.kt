@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 object BaseballGame {
@@ -32,7 +33,7 @@ object BaseballGame {
     /** 사용자 숫자 입력받기 */
     private fun getUserInput(): List<Int> {
         print("숫자를 입력해주세요 : ")
-        val userInput = readLine()?.map { it.toString().toIntOrNull() }
+        val userInput = Console.readLine()?.map { it.toString().toIntOrNull() }
 
         if (userInput == null ||
             userInput.size != NUMBER_MATCH_COUNT ||
