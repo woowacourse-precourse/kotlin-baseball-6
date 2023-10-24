@@ -27,6 +27,18 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `예외 테스트 - 부적절한 입력`() {
+        // given
+        val invalidInputs = listOf("abc", "12a", "12 3", "111")
+
+        // when & then
+        invalidInputs.forEach { input ->
+            assertThrows<IllegalArgumentException> {
+                runException(input)
+            }
+        }
+    }
     override fun runMain() {
         main()
     }
