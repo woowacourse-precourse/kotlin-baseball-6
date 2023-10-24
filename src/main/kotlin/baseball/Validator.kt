@@ -18,4 +18,9 @@ class Validator {
         if (input.map { data -> Character.getNumericValue(data) in min..max }.contains(false))
             throw IllegalArgumentException()
     }
+
+    fun checkNumberDistinction(input: String) {
+        if (input.length != input.toSet().size)
+            throw IllegalArgumentException()
+    }
 }

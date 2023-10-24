@@ -37,5 +37,6 @@ class Batter(
         validator.checkNumberCount(input, numberCount)
         validator.checkNumberFormat(input)
         validator.checkNumberRange(input, minNumber, maxNumber)
+        validator.checkNumberDistinction(input)
     }
 }
