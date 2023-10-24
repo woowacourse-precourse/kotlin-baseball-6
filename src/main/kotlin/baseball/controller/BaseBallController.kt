@@ -1,5 +1,6 @@
 package baseball.controller
 
+import baseball.BASEBALL_MAX_SIZE
 import baseball.model.BaseBall
 import baseball.model.Computer
 import baseball.model.User
@@ -9,29 +10,43 @@ import camp.nextstep.edu.missionutils.Console
 class BaseBallController {
 
     private val baseBallView = BaseBallView()
-
     fun playGame() {
         baseBallView.printPlayGame()
+        var computer = BaseBall(mutableListOf())
+        var status = START
+
         while (true) {
-            val computer = Computer().makeComputerList()
-            baseBallView.printInputUser()
-            val user = User().inputUser()
-            if (checkBaseBall(computer, user)) break
+            when (status) {
+                START -> {
+                    computer = Computer().makeComputerList()
+                    status = CONTINUE
+                }
+
+                CONTINUE -> {
+                    baseBallView.printInputUser()
+                    val user = User().inputUser()
+                    status = checkBaseBall(computer, user)
+                }
+
+                END -> {
+                    break
+                }
+            }
         }
 
     }
 
-    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall): Boolean {
+    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall): Int {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList) - strike
 
         baseBallView.printBaseBallResult(strike, ball)
-        if (strike == 3) {
+        if (strike == BASEBALL_MAX_SIZE) {
             baseBallView.printGameOver()
             return checkContinue()
         }
 
-        return false
+        return CONTINUE
     }
 
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
@@ -52,7 +67,7 @@ class BaseBallController {
         return ball
     }
 
-    private fun checkContinue(): Boolean {
+    private fun checkContinue(): Int {
         baseBallView.printContinue()
         val input = Console.readLine()
 
@@ -61,13 +76,17 @@ class BaseBallController {
         }
 
         if (input == GAME_END_NUM) {
-            return true
+            return END
         }
-        return false
+        return CONTINUE
     }
 
     companion object {
         const val GAME_END_NUM = "2"
         const val GAME_CONTINUE_NUM = "1"
+
+        const val END = 1
+        const val START = 2
+        const val CONTINUE = 3
     }
 }
