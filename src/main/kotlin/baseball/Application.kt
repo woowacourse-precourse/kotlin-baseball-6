@@ -115,9 +115,8 @@ fun compareNumbers(userNumber: Int, targetNumber: TargetNumber): CompareResult {
     var currentDigit = MAX_DIGIT
 
     repeat(MAX_DIGIT) {
-        targetNumber.getDigitInfoOrNull(number = userNumberVar % 10)?.let { digit ->
-            if (digit == currentDigit) strike++ else ball++
-        }
+        val digit = targetNumber.getDigitInfoOrNull(number = userNumberVar % 10)
+        digit?.let { if (it == currentDigit) strike++ else ball++ }
 
         userNumberVar /= 10
         currentDigit--
