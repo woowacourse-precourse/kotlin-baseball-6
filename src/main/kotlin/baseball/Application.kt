@@ -1,19 +1,13 @@
 package baseball
 
 import baseball.controller.BaseBallGameController
-import baseball.domain.CompareNumbers
-import baseball.domain.ValidateUserInput
-import baseball.view.PrintResultView
-import baseball.view.ReadNumberView
-import baseball.view.ReadUserRestartChoiceView
+import baseball.view.PrintOutputView
+import baseball.view.ReadUserInputView
 
 fun main() {
     BaseBallGameController(
-        ReadNumberView(),
-        ReadUserRestartChoiceView(),
-        PrintResultView(),
-        CompareNumbers(),
-        ValidateUserInput()
+        ReadUserInputView(),
+        PrintOutputView()
     ).play()
 }
 

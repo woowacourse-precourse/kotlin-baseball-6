@@ -1,15 +1,14 @@
 package baseball.view
 
-import baseball.domain.BallCount
-
+import baseball.domain.BallCountResult
 
 class PrintOutputView {
     fun printStartGame() {
         println("숫자 야구 게임을 시작합니다.")
     }
 
-    fun printGameResult(gameResult: Map<BallCount, Int>) {
-        if (gameResult[BallCount.STRIKE] == MAX_STRIKE_COUNT) {
+    fun printGameResult(gameResult: BallCountResult) {
+        if (gameResult.strikeCount() == MAX_STRIKE_COUNT) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             return
@@ -17,9 +16,9 @@ class PrintOutputView {
         printBallCount(gameResult)
     }
 
-    private fun printBallCount(gameResult: Map<BallCount, Int>) {
-        if (gameResult[BallCount.STRIKE] == NOTHING_COUNT &&
-            gameResult[BallCount.BALL] == NOTHING_COUNT
+    private fun printBallCount(gameResult: BallCountResult) {
+        if (gameResult.strikeCount() == NOTHING_COUNT &&
+            gameResult.ballCount() == NOTHING_COUNT
         ) {
             println("낫싱")
             return
@@ -27,12 +26,12 @@ class PrintOutputView {
         printRemainBallCount(gameResult)
     }
 
-    private fun printRemainBallCount(gameResult: Map<BallCount, Int>) {
-        if (gameResult[BallCount.BALL] != NOTHING_COUNT) {
-            print("${gameResult[BallCount.BALL]}볼 ")
+    private fun printRemainBallCount(gameResult: BallCountResult) {
+        if (gameResult.ballCount() != NOTHING_COUNT) {
+            print("${gameResult.ballCount()}볼 ")
         }
-        if (gameResult[BallCount.STRIKE] != NOTHING_COUNT) {
-            println("${gameResult[BallCount.STRIKE]}스트라이크")
+        if (gameResult.strikeCount() != NOTHING_COUNT) {
+            println("${gameResult.strikeCount()}스트라이크")
             return
         }
         println()
