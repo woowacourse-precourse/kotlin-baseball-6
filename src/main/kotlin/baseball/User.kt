@@ -11,11 +11,10 @@ class User {
         checkInput(input)
     }
 
-    fun checkInput(input: String) {
-        var currentNum = 0
+    private fun checkInput(input: String) {
         if (input.length == 3) {
             for (i in 0..2) {
-                currentNum = input[i] - '0'
+                val currentNum = input[i] - '0'
                 if (currentNum in 1..9) {
                     if (!num.contains(currentNum)) {
                         num.add(currentNum)
