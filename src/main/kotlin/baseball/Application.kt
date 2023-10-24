@@ -23,5 +23,7 @@ fun main() {
     // 생성된 난수를 출력
     println(computer)
 
+    var userInput = inputThreeNumbers()
+    println("userInput: $userInput")
 }
 
