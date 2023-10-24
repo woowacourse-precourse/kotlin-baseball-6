@@ -10,12 +10,7 @@ fun main() {
     while (true) {
         val userNum = userInputNum()
         val game = GameLogic(Computer.computerNum, userNum)
-
-        if(game.checkResult()) {
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            val command = Console.readLine().toInt()
-            if(command == 2) break
-        }
+        if(game.checkResult()) break
     }
 }
 
