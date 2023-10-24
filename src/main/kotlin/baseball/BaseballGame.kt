@@ -65,8 +65,11 @@ class BaseballGame() {
     }
 
     private fun checkThreeStrike(computer: MutableList<Int>, input: String): Boolean {
-        // todo 3스트라이크 확인
-        return true
+        if (countingStrike(computer, input) == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            return true
+        }
+        return false
     }
 
     private fun inputNumberException(input: String) {
