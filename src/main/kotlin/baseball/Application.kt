@@ -27,6 +27,14 @@ fun main() {
         }
     }
 
+    if (scores.isEmpty()) {
+        println("낫싱")
+    } else {
+        println(
+            "${removeCount(scores.count { it == BALL }, "볼")} ${removeCount(scores.count { it == STRIKE }, "스트라이크")}".trim()
+        )
+    }
+
 
 }
 
@@ -40,3 +48,10 @@ fun getRandomNumber(): List<Int> {
     }
     return computer
 }
+
+fun removeCount(count: Int, string: String) =
+    if (count == 0) {
+        ""
+    } else {
+        "$count$string"
+    }
