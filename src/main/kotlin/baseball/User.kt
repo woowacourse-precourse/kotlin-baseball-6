@@ -12,13 +12,13 @@ class User {
             listOf(
                 userInput[0],
                 userInput[1],
-                userInput[2]
+                userInput[2],
             ).distinct().size != 3 -> throw IllegalArgumentException()
 
             else -> listOf(
                 userInput[0].digitToInt(),
                 userInput[1].digitToInt(),
-                userInput[2].digitToInt()
+                userInput[2].digitToInt(),
             )
         }
     }
