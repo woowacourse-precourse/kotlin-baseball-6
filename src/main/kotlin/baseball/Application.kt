@@ -3,30 +3,31 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    val computer: MutableList<Int> = initComputer()
+    val computer: MutableList<Int> = initComputer() // 상대방(컴퓨터)의 수 랜덤 생성.
     println("숫자 야구 게임을 시작합니다.")
 
     var isGameWon = false
 
     while (!isGameWon) {
-        val playerGuess = getUserGuess()
-        if (playerGuess is IllegalArgumentException) {
+        val playerGuess = getUserGuess() // 게임 플레이어의 수 입력
+        if (playerGuess is IllegalArgumentException) { // 예외 처리
             println("${(playerGuess as IllegalArgumentException).message} 애플리케이션을 종료합니다.")
             return
         }
-        val result = evaluateGuess(playerGuess, computer)
-        println(result)
+        val result = evaluateGuess(playerGuess, computer) // 입력한 값에 따른 결과 얻기
+        println(result) g// 결과 출력
 
-        if (result == "3스트라이크") {
+        if (result == "3스트라이크") { // 상대방(컴퓨터)의 수를 모두 맞힌 경우, 게임 종료 후 다시 할 것이냐고 묻기.
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             isGameWon = true
 
-            if (playAgain()) {
+            if (playAgain()) { // 다시 시작을 원할 시
                 isGameWon = false
-                computer.clear()
-                computer.addAll(initComputer())
-            } else {
+                computer.clear()  // 해당 게임 회차의 상대방의 수를 제거한 후
+                computer.addAll(initComputer()) // 상대방(컴퓨터)의 수를 새로 랜덤 생성하여, 다시 시작한다.
+            } else { // 완전히 종료
                 println("게임을 완전히 종료합니다.")
+                return
             }
         }
     }
