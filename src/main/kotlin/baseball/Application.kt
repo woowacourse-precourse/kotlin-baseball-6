@@ -81,6 +81,7 @@ fun checkBallCount(answerNumbers: List<Int>): Boolean {
             inputInt /= 10
         }
     }
+    // 숫자가 반대로 받아지므로 reverse수행
     inputNumbers.reverse()
 
     // 정답 숫자(answerNumbers)와 입력받은 숫자(inputNumbers) 비교하기
