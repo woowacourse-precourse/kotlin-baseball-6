@@ -1,21 +1,18 @@
-package baseball.app
+package baseball.controller
 
-import baseball.controller.GameController
 import baseball.model.Balls
+import baseball.model.BaseballGameModel
 import baseball.model.Score
-import baseball.view.ScreenView
+import baseball.view.BaseballGameView
+import camp.nextstep.edu.missionutils.Randoms
 
-class BaseballGame {
-    private val view = ScreenView()
-    private val controller = GameController(view = view)
-    private var computerBalls: Balls = controller.getRandomBalls()
-    private var isExit: Boolean = false
+class BaseballGameController(private val view: BaseballGameView, private val model: BaseballGameModel) {
     fun run() {
         view.printStartMessage()
-        while (!isExit) {
+        while (!model.isExit) {
             playGame()
             val userInput = view.inputGameExit()
-            isExit = checkIsExit(userInput = userInput)
+            model.isExit = checkIsExit(userInput = userInput)
         }
 
     }
@@ -23,8 +20,8 @@ class BaseballGame {
     private fun playGame() {
         var isGameEnd = false
         while (!isGameEnd) {
-            val userBalls: Balls = controller.inputUserBalls()
-            val score: Score = controller.calculateScore(userBalls = userBalls, computerBalls = computerBalls)
+            val userBalls: Balls = view.inputUserBalls()
+            val score: Score = model.calculateScore(userBalls = userBalls)
             view.printScore(score = score)
             isGameEnd = checkIsEnd(score = score)
         }
@@ -47,12 +44,9 @@ class BaseballGame {
             view.printExitMessage()
             true
         } else {
-            reset()
+            model.reset()
             false
         }
     }
 
-    private fun reset() {
-        computerBalls = controller.getRandomBalls()
-    }
 }

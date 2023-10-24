@@ -1,8 +1,8 @@
 package baseball
 
-import baseball.app.BaseballGame
+import baseball.app.BaseballGameApp
 
 fun main() {
-    val game = BaseballGame()
+    val game = BaseballGameApp()
     game.run()
 }

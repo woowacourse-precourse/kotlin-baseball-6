@@ -1,12 +1,14 @@
-package baseball.controller
+package baseball.model
 
-import baseball.model.Balls
-import baseball.model.Score
-import baseball.view.ScreenView
 import camp.nextstep.edu.missionutils.Randoms
 
-class GameController(private val view: ScreenView) {
-    fun getRandomBalls(): Balls {
+class BaseballGameModel {
+
+
+    var computerBalls: Balls = getRandomBalls()
+    var isExit: Boolean = false
+
+    private fun getRandomBalls(): Balls {
         val numList: MutableList<Int> = mutableListOf()
         while (numList.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -17,13 +19,7 @@ class GameController(private val view: ScreenView) {
         return Balls(numList = numList)
     }
 
-    fun inputUserBalls(): Balls {
-        val userNum = view.inputUserNum()
-        val numList = userNum.toString().map { it.toString().toInt() }
-        return Balls(numList = numList)
-    }
-
-    fun calculateScore(userBalls: Balls, computerBalls: Balls): Score {
+    fun calculateScore(userBalls: Balls): Score {
         var strike = 0
         var ball = 0
 
@@ -36,4 +32,10 @@ class GameController(private val view: ScreenView) {
         }
         return Score(strike = strike, ball = ball)
     }
+
+
+    fun reset() {
+        computerBalls = getRandomBalls()
+    }
+
 }
