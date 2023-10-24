@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import baseball.Score.*
 
 enum class Score {
     STRIKE, BALL, FOUL
@@ -15,6 +16,17 @@ fun main() {
     if (inputInt.size != number.size) {
         throw IllegalArgumentException()
     }
+
+    val scores = mutableListOf<Score>()
+
+    number.forEachIndexed { index, it ->
+        if (it == inputInt[index]) {
+            scores.add(STRIKE)
+        } else if (inputInt.contains(it)) {
+            scores.add(BALL)
+        }
+    }
+
 
 }
 
