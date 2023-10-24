@@ -45,3 +45,5 @@ Ball만 있다면 'N볼'<br>
 - 입력 방법을 Console.ReadLine()으로 수정
 - 출력 메시지를 GitHub예시와 똑같이 수정
 - 게임 종료시 "게임 종료" 메시지 추가
+- 디렉토리 명이 한글이라 ApplicationTest.kt가 실행되지 않으므로 수정
+- 입력 시 숫자가 반대로 받아지므로 reverse() 수행

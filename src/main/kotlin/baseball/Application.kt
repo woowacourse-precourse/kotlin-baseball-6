@@ -81,6 +81,7 @@ fun checkBallCount(answerNumbers: List<Int>): Boolean {
             inputInt /= 10
         }
     }
+    inputNumbers.reverse()
 
     // 정답 숫자(answerNumbers)와 입력받은 숫자(inputNumbers) 비교하기
     for(i: Int in 0 until 3)
