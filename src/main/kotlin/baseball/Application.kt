@@ -89,6 +89,7 @@ class NumberBaseball {
     fun resetGame(): Boolean {
         val inputNumber = Console.readLine().toInt()
         if (inputNumber == 1) {
+            println("$inputNumber")
             return true
         }
         if(!(inputNumber==1||inputNumber==2))
