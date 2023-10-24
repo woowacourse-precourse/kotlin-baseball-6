@@ -23,6 +23,10 @@ class GameView {
         if (userInput == null || !userInput.all { it.isDigit() }) {
             throw IllegalArgumentException("올바른 입력이 아닙니다.")
         }
+        // 중복되지 않은 3자리 값이 아닐 경우 예외처리
+        if (userInput.toSet().size != 3) {
+            throw IllegalArgumentException("올바른 입력이 아닙니다.")
+        }
 
         return userInput.map { it.toString().toInt() }
     }
@@ -33,10 +37,10 @@ class GameView {
     }
 
     //게임 재시작
-    fun restartInputLine(): String{
+    fun restartInputLine(): String {
         var restart = Console.readLine()
         while (restart != "1" && restart != "2") {
-            println("잘못된 값 다시입력")
+            println("올바른 입력이 아닙니다. \n값을 다시 입력해주세요.")
             restart = Console.readLine()
         }
         return restart

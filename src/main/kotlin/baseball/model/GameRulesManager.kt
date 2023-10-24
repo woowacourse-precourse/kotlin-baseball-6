@@ -26,10 +26,6 @@ class GameRulesManager {
 
     //사용자 숫자 예외 처리 및 결과 반환
     fun checkUserGuess(userNumbers: List<Int>): String {
-        // 중복되지 않은 3자리 값이 아닐 경우 예외처리
-        if (userNumbers.toSet().size != 3 ) {
-            throw IllegalArgumentException("올바른 입력이 아닙니다.")
-        }
 
         var strikes = 0
         var balls = 0
@@ -46,9 +42,11 @@ class GameRulesManager {
             strikes == 3 -> {
                 "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
             }
+
             strikes == 0 && balls == 0 -> {
                 "낫싱"
             }
+
             else -> {
                 "${balls}볼 ${strikes}스트라이크"
             }
