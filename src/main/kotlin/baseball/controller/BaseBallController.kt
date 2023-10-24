@@ -11,10 +11,12 @@ class BaseBallController {
 
     fun playGame() {
         baseBallView.printPlayGame()
+
         val computer = Computer().makeComputerList()
         baseBallView.printInputUser()
         val user = User().inputUser()
         checkBaseBall(computer, user)
+
 
     }
 
@@ -23,6 +25,11 @@ class BaseBallController {
         val ball = checkBall(computerList, userList) - strike
 
         baseBallView.printBaseBallResult(strike, ball)
+
+        if (strike == 3) {
+            print("멈춰")
+        }
+
     }
 
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
