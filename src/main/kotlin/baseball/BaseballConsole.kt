@@ -9,36 +9,39 @@ class BaseballConsole {
 
     fun getInput(): String {
         print("숫자를 입력해주세요 : ")
-        val input = Console.readLine() ?: throw IllegalArgumentException()
-        val isValid = verifyUserInput(input)
-        if (isValid) {
-            return input
-        } else {
+        val input = Console.readLine()
+        return validateUserInput(input)
+    }
+
+    private fun validateUserInput(input: String?): String {
+        val trimInput = input?.trim()
+        return if (trimInput.isNullOrEmpty()
+            || trimInput.length != 3
+            || isDuplication(trimInput)
+            || isNumber(trimInput).not()
+        ) {
             throw IllegalArgumentException()
-        }
-    }
-
-    private fun verifyUserInput(userInput: String): Boolean {
-        return if (userInput.length != 3) {
-            false
         } else {
-            try {
-                userInput.toInt()
-                isNotDuplication(userInput)
-            } catch (nfe: NumberFormatException) {
-                false
-            }
+            trimInput
         }
     }
 
-    private fun isNotDuplication(num: String): Boolean {
-        for (i in 0..<2) {
-            for (j in i + 1..<3) {
-                if (num[i] == num[j]) return false
+    private fun isDuplication(input: String): Boolean {
+        for (i in 0..<input.lastIndex) {
+            for (j in i + 1..input.lastIndex) {
+                if (input[i] == input[j]) return true
             }
         }
-        return true
+        return false
     }
+
+    private fun isNumber(input: String): Boolean =
+        try {
+            input.toInt()
+            true
+        } catch (nfe: NumberFormatException) {
+            false
+        }
 
     fun printResult(result: BaseballResult) {
         println(result)
@@ -51,8 +54,13 @@ class BaseballConsole {
     }
 
     fun getEndFlag(): EndFlag {
-        val endFlag = Console.readLine() ?: throw IllegalArgumentException()
-        return when (endFlag) {
+        val endFlag = Console.readLine()
+        return validateEndFlag(endFlag?.trim())
+    }
+
+    private fun validateEndFlag(input: String?): EndFlag {
+        val trimInput = input?.trim()
+        return when (trimInput) {
             "1" -> EndFlag.RESTART
             "2" -> EndFlag.FINISH
             else -> throw IllegalArgumentException()
