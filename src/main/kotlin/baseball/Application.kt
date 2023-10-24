@@ -107,12 +107,6 @@ fun validatePlayerNumber(player: String): List<Int> {
     return playerIntOrNullList
 }
 
-data class PlayerScore(
-    var strike: Int = 0,
-    var ball: Int = 0,
-    var nothing: Boolean = false
-)
-
 fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, playerScore: PlayerScore): PlayerScore {
 
     for (i in player.indices) {
