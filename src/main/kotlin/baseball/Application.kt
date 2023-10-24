@@ -21,6 +21,14 @@ fun startBaseballPlay() {
 
     println(computerRandomNum)
     println(playerAnswer)
+
+    // 컴퓨터 값과 플레이어 값 비교
+    do {
+
+        // 값이 다를경우 힌트 구현 //
+
+    } while (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0)
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
 fun createComputerRandomNum(): String {
@@ -44,4 +52,12 @@ fun inputPlayerNum(): String {
     val inputPlayer = Console.readLine()
 
     return inputPlayer
+}
+
+fun compareComputerAndPlayer(computer: String, player: String): Int {
+    if (computer == player) {
+        return 1
+    } else {
+        return 0
+    }
 }
