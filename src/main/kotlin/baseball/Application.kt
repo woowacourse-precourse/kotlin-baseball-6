@@ -1,33 +1,34 @@
 package baseball
 
 //필요한 함수 목록
-//1. 문제를 난수로 생성하기, seed값이 인자로
+//1. 문제를 난수로 생성하기, seed값이 인자로 [외장 라이브러리 사용 불가능, 지정된 방식으로 랜덤 구현시 seed 값 할당하는 부분이 없음]
 //2. 사용자로 할지 ai로 할지 결정
 //3. 사용자의 경우 숫자를 3개 입력 받음
 //4. 그 입력과 문제를 비교 후에 정보 출력
 //5. 그렇게 끝나면 다시 할지 종료할 지 결정 (무한 루프로 처리하고 종료를 break 처리하자)
 //+a 강화학습을 통해서 맞추는 로직 찾기
 
-import kotlin.random.Random
+import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
+
 data class Answer(val a: Int, val b: Int, val c: Int)
 fun Answer.asList(): List<Int> {
     return listOf(a, b, c)
 }
 data class Info(var Amount:Int, var out:Int, var bool:Int, var strike:Int)
-data class result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
+data class Result(val number : Answer, val info : Info) //3자리로 표현, out,bool,strike 의미
 
-fun Problem(seed : Int = System.currentTimeMillis().toInt()): Answer { //문제를 시드에 따라 생성
-    val random = Random(seed)
-    val a = random.nextInt(1, 9) // 1부터 9 사이의 정수
-    val b = random.nextInt(1,9)
-    val c = random.nextInt(1, 9)
+fun Problem(): Answer { //데이터를 생성하려면 문제를 시드에 따라 생성해야 함 seed : Int = System.currentTimeMillis().toInt()
+    val a = Randoms.pickNumberInRange(1, 9) // 1부터 9 사이의 정수
+    val b = Randoms.pickNumberInRange(1, 9)
+    val c = Randoms.pickNumberInRange(1, 9)
     return Answer(a,b,c)
 }
 
 fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면 에러
     print("숫자를 입력해주세요 : ")
-    val base = readln()
-    if (base.length != 3) {
+    val base = Console.readLine()
+    if (base.length != 3) { //서로 다른 수인지도 체크해야 함
         throw IllegalArgumentException()
     }
     return Answer(base[0].toString().toInt(), base[1].toString().toInt(), base[2].toString().toInt()) //toInt로 하면 아스키 코드 값으로 변환됨
@@ -74,22 +75,22 @@ fun display(show:Info){
 }
 
 fun start_Game(user:Boolean = true){
-    val infoList = mutableListOf<result>() //정보 저장용
-    val case = Problem(0)
+    val infoList = mutableListOf<Result>() //정보 저장용
+    val case = Problem()
     while (true) {
         var answer : Answer
         var tmp = Info(0,0,0,0)
-        if (user == true) {
+        if (user) {
             answer = User_response()
             tmp = case_check(case, answer) //Answer형태 2개로 결과를 확인 할 수 있게
             display(tmp)// 그 결과를 변환해서 안내메세지를 출력
-            infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
+            infoList.add(Result(answer, tmp)) //이 형태의 값을 넣음
         }
 //        elif (user == false) { //ai로 돌림
 //            answer = ai_response(infoList) //ai가 뽑으려면 이전의 결과에 대한 정보가 필요
 //            tmp = case_check(case, answer) //info형태로 결과를 반환
 //            display(tmp)
-//            infoList.add(result(answer, tmp)) //이 형태의 값을 넣음
+//            infoList.add(Result(answer, tmp)) //이 형태의 값을 넣음
 //        }
 
         if (tmp == Info(3, 0, 0, 3)) {
@@ -100,12 +101,14 @@ fun start_Game(user:Boolean = true){
 }
 
 fun main() {
-    var restart_Flag : Int = 1
+    var restart_Flag = "1"
     println("숫자 야구 게임을 시작합니다.")
-    while (restart_Flag == 1) {
-        start_Game(user = true)
+    while (restart_Flag == "1") {
+        start_Game()
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        restart_Flag = readln().toString().toInt()
+        restart_Flag = Console.readLine()
+        if ((restart_Flag != "2") && (restart_Flag != "1")) {
+            throw IllegalArgumentException()
+        }
     }
 }
-
