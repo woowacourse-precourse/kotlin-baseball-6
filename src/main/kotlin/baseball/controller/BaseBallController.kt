@@ -78,7 +78,7 @@ class BaseBallController {
         if (input == GAME_END_NUM) {
             return END
         }
-        return CONTINUE
+        return START
     }
 
     companion object {
