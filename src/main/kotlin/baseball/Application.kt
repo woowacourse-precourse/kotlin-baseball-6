@@ -18,12 +18,8 @@ fun generateRandomNumber(): List<Int> {
 fun getUserInput(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val input = Console.readLine()
-    try {
-        if (input == null || input.length != 3 || input.toSet().size != 3 || !input.all { it.isDigit() }) {
-            throw IllegalArgumentException()
-        }
-    } catch (e: IllegalArgumentException) {
-        exitProcess(0)
+    if (input == null || input.length != 3 || input.toSet().size != 3 || !input.all { it.isDigit() }) {
+        throw IllegalArgumentException()
     }
     return input.map { it.toString().toInt() }
 }
@@ -73,7 +69,7 @@ fun main() {
 
                 attempts++
             } catch (e: IllegalArgumentException) {
-                println("${e.message} 다시 시도하세요.")
+                return
             }
         }
 
