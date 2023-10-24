@@ -1,4 +1,4 @@
-package baseball
+package baseball.model
 
 import baseball.model.validation.DuplicateNumberValidation
 import baseball.model.validation.InvalidLengthValidation
