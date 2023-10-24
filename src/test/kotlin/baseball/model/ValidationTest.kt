@@ -11,8 +11,8 @@ class ValidationTest {
     @ParameterizedTest
     @ValueSource(strings = ["-21", "마라탕", "+12"])
     fun `입력 값이 기호를 포함하지 않는 숫자인지`(input: String) {
-        assertEqualsThrowsMessage<IllegalArgumentException>(NotPositiveNumber.message) {
-            PositiveNumberValidation().check(input)
+        assertEqualsThrowsMessage<IllegalArgumentException>(NotNumber.message) {
+            NumberValidation().check(input)
         }
     }
 
