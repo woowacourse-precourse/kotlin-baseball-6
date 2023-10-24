@@ -36,12 +36,13 @@ class BaseballGame(
         do {
             print("숫자를 입력해주세요 : ")
             val userNumbers = user.generateNumbers(user.requestInputNumbers())
-            val ballAndStrikeCounts = computer.calculateBallAndStrike(userNumbers) // FIXME count 변수 분리
+            val ballCount = computer.calculateBallCount(userNumbers)
+            val strikeCount = computer.calculateStrikeCount(userNumbers)
 
-            showPlayMessage(ballAndStrikeCounts.ball, ballAndStrikeCounts.strike)
+            showPlayMessage(ballCount, strikeCount)
 
             // FIXME 인텐트 제거
-            if (ballAndStrikeCounts.strike == NUMBER_COUNT) {
+            if (strikeCount == NUMBER_COUNT) {
                 playState = NOT_PLAYING
             }
         } while (playState == PLAYING)

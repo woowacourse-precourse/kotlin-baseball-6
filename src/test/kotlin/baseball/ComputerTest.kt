@@ -23,9 +23,8 @@ class ComputerTest {
         expectedStrike: Int
     ) {
         computer.setNumbersForTesting(listOf(1, 2, 3))
-        val ballAndStrikeCounts = computer.calculateBallAndStrike(userNumbers)
-        val ballCount = ballAndStrikeCounts.ball
-        val strikeCount = ballAndStrikeCounts.strike
+        val ballCount= computer.calculateBallCount(userNumbers)
+        val strikeCount =computer.calculateStrikeCount(userNumbers)
 
         assert(ballCount == expectedBall)
         assert(strikeCount == expectedStrike)

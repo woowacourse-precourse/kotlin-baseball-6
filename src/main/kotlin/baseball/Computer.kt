@@ -11,6 +11,7 @@ class Computer : Player<Unit> {
     override fun generateNumbers(input: String) {
         val generatedUniqueNumbers = generateUniqueNumbers()
         Validator.validateNumbers(generatedUniqueNumbers)
+
         numbers = generatedUniqueNumbers
     }
 
@@ -24,24 +25,31 @@ class Computer : Player<Unit> {
             .toList()
     }
 
-    // FIXME 로직 분리
-    fun calculateBallAndStrike(userNumbers: List<Int>): BallAndStrikeCounts {
+    /**
+     * 전달받은 User의 숫자 리스트와 비교해 볼 개수를 반환
+     */
+    fun calculateBallCount(userNumbers: List<Int>): Int {
         val numbersZip = numbers.zip(userNumbers)
         val userNumbersSet = userNumbers.toSet()
 
-        val ballCount = numbersZip.count { (computerNumber, userNumber) ->
+        return numbersZip.count { (computerNumber, userNumber) ->
             computerNumber != userNumber && computerNumber in userNumbersSet
         }
-        val strikeCount = numbersZip.count { (computerNumber, userNumber) ->
-            computerNumber == userNumber
-        }
-
-        return BallAndStrikeCounts(ballCount, strikeCount)
     }
 
     /**
-     * calculateBallAndStrike 메서드의 단위 테스트 목적으로 numbers 프로퍼티에 테스트 숫자 리스트를 할당
-     * @param testNumbers 테스트용 숫자 리스트
+     * 전달받은 User의 숫자 리스트와 비교해 스트라이크 개수를 반환
+     */
+    fun calculateStrikeCount(userNumbers: List<Int>): Int {
+        val numbersZip = numbers.zip(userNumbers)
+
+        return numbersZip.count { (computerNumber, userNumber) ->
+            computerNumber == userNumber
+        }
+    }
+
+    /**
+     * calculateBallAndStrike 메서드의 단위 테스트 목적으로 numbers 프로퍼티에 테스트 숫자 리스트 할당
      */
     fun setNumbersForTesting(testNumbers: List<Int>) {
         numbers = testNumbers
