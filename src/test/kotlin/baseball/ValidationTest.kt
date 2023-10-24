@@ -7,12 +7,15 @@ import baseball.model.validation.OutOfRangeNumberValidation
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ValidationTest {
-    @Test
-    fun `입력 값이 숫자인지`() {
+    @ParameterizedTest
+    @ValueSource(strings = ["-21", "마라탕", "0"])
+    fun `입력 값이 양수인지`(input: String) {
         assertThrows<IllegalArgumentException> {
-            NumberValidation().check("하이")
+            NumberValidation().check(input)
         }
     }
 
