@@ -84,8 +84,8 @@ class TargetNumber {
 fun getUserNumber(): Int = runCatching {
     print("숫자를 입력해주세요 : ")
     readLine().toInt()
-}.getOrElse {
-    throw IllegalArgumentException()
+}.getOrElse { throwable ->
+    throw if (throwable is NumberFormatException) IllegalArgumentException() else throwable
 }
 
 
