@@ -21,4 +21,13 @@ class BaseballNumberValidatorTest {
         val result = baseballNumberValidator.isThreeLetters(baseballRandomNumber)
         assertTrue(result)
     }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["123", "145", "789", "235"]
+    )
+    fun `숫자가 전부 다른 숫자 일때 성공인지`(input: String) {
+        val result = baseballNumberValidator.allThreeLettersDifferent(input)
+        assertTrue(result)
+    }
 }
