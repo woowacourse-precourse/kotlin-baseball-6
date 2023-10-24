@@ -3,6 +3,8 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
+    private val player = Player()
+
     fun createRandomNumber(): List<Int> {
         val randomNumberList = mutableListOf<Int>()
         while (randomNumberList.size < 3) {
@@ -16,7 +18,7 @@ class Computer {
     }
 
     fun convertInputNumberToList(): List<Int> {
-        var inputNumber = Player().inputNumber()
+        var inputNumber = player.inputNumber()
         val inputNumberList = mutableListOf<Int>()
         var eachNumber: Int
 
