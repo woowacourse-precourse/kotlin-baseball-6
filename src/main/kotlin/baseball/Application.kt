@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     // 기본적으로 3자리로 설정한다.
@@ -22,7 +23,7 @@ fun main() {
         // 3자리 모두 맞출 때까지 무한 반복
         while (true) {
             print("숫자를 입력해주세요 : ")
-            val number = readLine()
+            val number = Console.readLine()
 
             // null, 정수, 입력 자리수 체크
             if (number != null && number.chars()
@@ -79,7 +80,7 @@ fun main() {
         }
 
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val regame = readLine()
+        val regame = Console.readLine()
         when (regame?.toInt()) {
             1 -> {
                 continue
