@@ -4,14 +4,20 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    NumberBaseballGame().start()
+    OutputWriter().printGameStart()
+    while (true) {
+        val game = NumberBaseballGame()
+        val result = game.start()
+        if (result == "2") {
+            break
+        }
+    }
 }
 
 class NumberBaseballGame {
     private val output = OutputWriter()
     private val computer = generateRandomNumbers()
-    fun start() {
-        output.printGameStart()
+    fun start(): String {
 
         while (true) {
             output.printReceiveNumberInput()
@@ -24,6 +30,17 @@ class NumberBaseballGame {
                 break
             }
         }
+        return inputGameFlowDecision()
+    }
+
+    //1(재시작)과 2(종료) 중 하나 입력
+    private fun inputGameFlowDecision(): String {
+        output.printReceiveGameFlowInput()
+        val gameDecision = Console.readLine()
+        if (gameDecision != "1" && gameDecision != "2") {
+            throw IllegalArgumentException()
+        }
+        return gameDecision
     }
 
     //서로 다른 3자리의 수 입력
@@ -70,6 +87,7 @@ class OutputWriter {
     fun printGameStart() = println("숫자 야구 게임을 시작합니다.")
     fun printGameEnd() = println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     fun printReceiveNumberInput() = print("숫자를 입력해주세요 : ")
+    fun printReceiveGameFlowInput() = println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     fun printGuessResult(ball: Int, strike: Int) {
         if (ball == 0 && strike == 0) {
             printNothingResult()
