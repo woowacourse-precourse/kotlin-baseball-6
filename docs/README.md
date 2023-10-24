@@ -1,20 +1,25 @@
 ## 구현해야 하는 기능 정리 📜
 
 ### 1. 시작 문구 출력 🌟
+https://github.com/tgyuuAn/kotlin-baseball-6/pull/1
 <br>
 
 ### 2. 컴퓨터가 서로 다른 3자리의 수를 정하는 기능 🌟
+https://github.com/tgyuuAn/kotlin-baseball-6/pull/2
 <br>
 
 ### 3. 사용자가 입력한 수에 대해 볼, 스트라이크, 낫싱 판별 🌟
 > 사용자가 잘못된 값을 입력하였을 경우, `IllegalArgumentException`을 발생시킨 후, 종료되어야 함.
+
+https://github.com/tgyuuAn/kotlin-baseball-6/pull/3
 <br>
 
 ### 4. 스트라이크가 3개일 경우, 게임에서 승리 🌟
+https://github.com/tgyuuAn/kotlin-baseball-6/pull/4
 <br>
 
 ### 5. 게임에서 승리하여 종료되었을 경우 재시작을 물어보는 기능 🌟
-
+https://github.com/tgyuuAn/kotlin-baseball-6/pull/4
 <br><br><br><br><hr>
 
 ## 🚀 기능 요구 사항
