@@ -1,7 +1,6 @@
 package baseball.utils
 
 import baseball.INPUT_SIZE
-import baseball.NO_INPUT
 import java.lang.IllegalArgumentException
 
 class Utils {
@@ -17,7 +16,6 @@ class Utils {
     fun checkInputLength(input: String) {
         when (input.length) {
             INPUT_SIZE -> return
-            NO_INPUT -> throw NullPointerException("값을 입력하지 않았습니다. 프로그램을 종료합니다.")
             else -> throw IllegalArgumentException("잘못된 값을 입력했습니다. 프로그램을 종료합니다.")
         }
     }

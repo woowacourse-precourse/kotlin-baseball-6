@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
 
 const val INPUT_SIZE = 3
-const val NO_INPUT = 0
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
