@@ -43,7 +43,7 @@ private fun letterToInt(letter: Char): Int {
 
 private fun isValidBaseballNumber(digits: List<Int>): Boolean {
     val digitValidity = digits.map { isValidDigit(it) }
-    return (isValidLength(digits)) and (digitValidity.all { it }) and (areAllDigitUnique(digits))
+    return (isValidLength(digits)) and (digitValidity.all { it })
 }
 
 private fun isValidLength(digits: List<Int>): Boolean {
