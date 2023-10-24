@@ -8,5 +8,11 @@ class BaseballGameController {
         BaseballInputView().printStartGameMessage()
         var computerNumber = ""
         computerNumber = RandomNumberCreate().createRandomNumber()
+        UserNumber()
+    }
+
+    private fun UserNumber() {
+        BaseballInputView().printInputNumberMessage()
+        var userNumber = readLine()
     }
 }
