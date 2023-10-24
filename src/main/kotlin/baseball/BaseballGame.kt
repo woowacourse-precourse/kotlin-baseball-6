@@ -60,8 +60,13 @@ class BaseballGame() {
     }
 
     private fun resultString(ball: Int, strike: Int): String {
-        // todo 결과 확인
-        return ""
+        return when {
+            strike == 0 && ball == 0 -> "낫싱"
+            strike == 3 -> "3스트라이크"
+            ball == strike -> "${strike}스트라이크"
+            strike != 0 -> "${ball - strike}볼 ${strike}스트라이크"
+            else -> "${ball}볼"
+        }
     }
 
     private fun checkThreeStrike(computer: MutableList<Int>, input: String): Boolean {
