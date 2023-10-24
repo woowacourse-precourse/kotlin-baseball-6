@@ -20,7 +20,7 @@ object BaseballGameController {
             val (newStrikes, balls) = game.play(userNumbers)
             strikes = newStrikes
 
-            OutputView.showHint(balls, newStrikes)
+            OutputView.showResult(balls, newStrikes)
         }
 
         println(Constants.GAME_END_MESSAGE)
