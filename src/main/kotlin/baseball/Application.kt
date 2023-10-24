@@ -130,7 +130,7 @@ fun printHint(strike: Int, ball: Int) {
 
 // 5) 게임 진행에 대한 입력 - 잘못된 입력에 대한 예외처리
 fun checkAnswer(answer: String) {
-    if (answer != "1" || answer != "2") {
+    if (answer != "1" && answer != "2") {
         throw IllegalArgumentException("1 또는 2를 입력해주세요.")
     }
 }
