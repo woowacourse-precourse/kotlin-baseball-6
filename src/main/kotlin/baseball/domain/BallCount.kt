@@ -1,6 +1,6 @@
 package baseball.domain
 
 enum class BallCount(val statusCode: Int) {
-    Strike(1),
-    Ball(2)
+    STRIKE(1),
+    BALL(2)
 }

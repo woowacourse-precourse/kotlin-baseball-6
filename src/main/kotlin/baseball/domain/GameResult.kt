@@ -1,6 +1,6 @@
 package baseball.domain
 
 enum class GameResult(val statusCode: Boolean) {
-    Win(true),
-    Lose(false)
+    WIN(true),
+    LOSE(false)
 }
