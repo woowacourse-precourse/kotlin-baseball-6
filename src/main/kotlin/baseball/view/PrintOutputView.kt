@@ -3,7 +3,10 @@ package baseball.view
 import baseball.domain.BallCount
 
 
-class PrintResultView {
+class PrintOutputView {
+    fun printStartGame() {
+        println("숫자 야구 게임을 시작합니다.")
+    }
 
     fun printGameResult(gameResult: Map<BallCount, Int>) {
         if (gameResult[BallCount.STRIKE] == MAX_STRIKE_COUNT) {

@@ -1,11 +1,9 @@
 package baseball.view
 
-import baseball.domain.ChoiceState
 import camp.nextstep.edu.missionutils.Console
 
 
 class ReadUserInputView {
-
     fun readUserNumberInput(): String {
         print("숫자를 입력해주세요 : ")
         val userNumber = Console.readLine()
@@ -20,26 +18,16 @@ class ReadUserInputView {
         return userRestart
     }
 
-    private fun validateNumber(userInput: String): Int {
+    private fun validateNumber(userInput: String) {
         require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
         val userNumber = userInput.toInt()
         require(isCorrectRangeNumber(userNumber)) { "세자리 숫자여야 합니다!" }
-        return userNumber
-
     }
 
-    private fun validateRestart(userInput: String): ChoiceState {
+    private fun validateRestart(userInput: String) {
         require(isNumberFormat(userInput)) { "입력값은 숫자여야 합니다!" }
         val userChoice = userInput.toInt()
         require(isCorrectRangeChoice(userChoice)) { "1 또는 2를 입력해주세요!" }
-        return when (userChoice) {
-            RESTART_GAME -> ChoiceState.RESTART
-            EXIT_GAME -> ChoiceState.EXIT
-            else -> {
-                require(true) { "1 또는 2를 입력해주세요!" }
-                ChoiceState.EXIT
-            }
-        }
     }
 
     private fun isNumberFormat(userChoice: String): Boolean {
