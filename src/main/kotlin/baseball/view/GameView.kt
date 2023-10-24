@@ -42,8 +42,7 @@ class GameView {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         var restart = Console.readLine()
         while (restart != "1" && restart != "2") {
-            println("올바른 입력이 아닙니다. \n값을 다시 입력해주세요.")
-            restart = Console.readLine()
+            throw IllegalArgumentException("올바른 입력이 아닙니다. \n값을 다시 입력해주세요.")
         }
         return restart
     }
