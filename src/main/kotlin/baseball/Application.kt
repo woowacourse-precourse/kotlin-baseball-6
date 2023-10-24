@@ -3,15 +3,15 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
-val computer = mutableListOf<Int>() //컴퓨터 숫자
-val myNumber = mutableListOf<Int>() //내 숫자
+var computer = mutableListOf<Int>() // 컴퓨터 숫자
+var myNumber = mutableListOf<Int>() // 내 숫자
 
 fun main() {
-    val msg = Message() //메시지 객체 생성
+    val msg = Message() // 메시지 객체 생성
     println("숫자 야구 게임을 시작합니다.")
     makeRandom()
 
-    while (true) { //숫자를 다 맞추면 break
+    while (true) { // 숫자를 다 맞추면 break
         var strike = 0
         var ball = 0
         var out = 0
@@ -19,7 +19,7 @@ fun main() {
 
         inputNumber()
 
-        for (i in 0..<myNumber.size) { //스트라이크,볼,아웃 검증
+        for (i in 0..<myNumber.size) { // 스트라이크,볼,아웃 검증
             if (myNumber[i] == computer[i]) {
                 strike++
             } else if (computer.contains(myNumber[i])) {
@@ -55,7 +55,7 @@ fun makeRandom() {
 }
 
 fun inputNumber() {
-    myNumber.clear() //리스트 제거
+    myNumber.clear() // 리스트 제거
     val number = Console.readLine()
     var error = CheckError()
     error.check(number)
