@@ -19,6 +19,8 @@ fun startBaseballPlay() {
     // 플레이어 입력 값
     val playerAnswer = inputPlayerNum()
 
+    println(computerRandomNum)
+    println(playerAnswer)
 }
 
 fun createComputerRandomNum(): String {
@@ -38,7 +40,7 @@ fun createComputerRandomNum(): String {
 
 fun inputPlayerNum(): String {
 
-    println("숫자를 입력해주세요 : ")
+    print("숫자를 입력해주세요 : ")
     val inputPlayer = Console.readLine()
 
     return inputPlayer
