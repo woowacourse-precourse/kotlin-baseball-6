@@ -18,7 +18,7 @@ class Baseball {
     fun getPlayerNumber() : List<Int> {
         print("숫자를 입력해주세요 : ")
         val userNumber = Console.readLine()
-        return Utils().checkInput(userNumber!!)
+        return Utils().checkInput(userNumber)
     }
 
     fun countStrike(computer: List<Int>, user: List<Int>) : Int {

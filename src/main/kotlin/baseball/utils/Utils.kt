@@ -7,10 +7,15 @@ class Utils {
     val user = mutableListOf<Int>()
 
     fun checkInput(input: String) : List<Int> {
+        checkInputNull(input)
         checkInputLength(input)
         checkInputNumber(input)
         checkInputNumberDifferent(input)
         return user
+    }
+
+    fun checkInputNull(input: String){
+        if(input.isNullOrEmpty()) throw NullPointerException("값을 입력하지 않았습니다. 프로그램을 종료합니다.")
     }
 
     fun checkInputLength(input: String) {
