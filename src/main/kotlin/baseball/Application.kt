@@ -2,20 +2,35 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
-import javax.swing.text.html.HTML.Tag.I
 
+var resultStrike = 0
 var userInput = ""
 var userNumber = 0
 var intOne = 0
 var intTwo = 0
 var intThree = 0
+var k = 0
 const val NUMBER_SIZE = 3
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    var strike = 0
-    var computer = getRandomNumbers()
-    var user = getUserNumbers()
+
+
+    do {
+        startGame()
+
+    } while (k == 8)
+
+}
+
+fun startGame() {
+    val computer = getRandomNumbers()
+    println("컴퓨터 : $computer")
+
+    while (resultStrike != 3) {
+        val user = getUserNumbers()
+        getHints(computer, user)
+    }
 
 }
 
@@ -67,6 +82,42 @@ fun userInputCheck(userInput: String) {
                 throw IllegalArgumentException("중복되지 않는 숫자를 입력하세요.")
         }
     }
+}
+
+fun getHints(computer: MutableList<Int>, user: MutableList<Int>) {
+    var strike = 0
+    var ball = 0
+
+    for(i in computer.indices) {
+        // 스트라이크 개수
+        if(computer[i] == user[i]) {
+            strike++
+            continue
+        }
+
+        // 볼 개수
+        if(computer.contains(user[i])) {
+            ball++
+        }
+    }
+
+    if(strike == 0 && ball == 0) {
+        println("낫싱")
+        return
+    }
+    if(strike == 0) {
+        println("$ball 볼")
+        return
+    }
+    if(ball == 0) {
+        println("$strike 스트라이크")
+        if(strike == 3)
+            resultStrike = 3
+
+        return
+    }
+
+    println("$ball 볼 $strike 스트라이크")
 }
 
 
