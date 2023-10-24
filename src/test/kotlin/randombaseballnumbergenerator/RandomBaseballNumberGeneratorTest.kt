@@ -28,6 +28,13 @@ class RandomBaseballNumberGeneratorTest {
         assertTrue(result)
     }
 
+    @RepeatedTest(100)
+    fun `랜덤 야구 숫자가 전부 다른 숫자인지`() {
+        val result = randomBaseballNumberGenerator.generateRandomBaseballNumber().toSet().size
+
+        assertEquals(result, BASEBALL_NUMBER_SIZE)
+    }
+
     companion object {
         const val BASEBALL_NUMBER_SIZE = 3
         const val BASEBALL_NUMBER_MINIMUM_NUMBER = '1'
