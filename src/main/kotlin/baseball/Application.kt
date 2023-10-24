@@ -87,7 +87,7 @@ fun baseballgame() {
                 }
 
             } catch (e: IllegalArgumentException) {
-                println("입력값은 숫자가 아닙니다.")
+                throw IllegalArgumentException("입력값은 숫자가 아닙니다.")
             }
         } else {
             throw IllegalArgumentException("입력값이 비어있거나 3자리 숫자가 아닙니다.")
