@@ -60,11 +60,14 @@ fun strikeMessage() {
 fun scoreMessage(strike: Int, ball: Int) {
     if (strike == 0 && ball == 0) {
         println("낫싱")
-    } else if (strike == 0 && ball != 0) {
+    }
+    if (strike == 0 && ball != 0) {
         println("${ball}볼")
-    } else if (strike != 0 && ball == 0) {
+    }
+    if (strike != 0 && ball == 0) {
         println("${strike}스트라이크")
-    } else {
+    }
+    else {
         println("${ball}볼 " + "${strike}스트라이크")
     }
 }
@@ -91,7 +94,7 @@ fun inputNumber(): MutableList<Int> {
     return myNumber
 }
 
-fun checkError(number: String): Boolean {
+fun checkError(number: String): String {
     if (number.length != 3 || number.toIntOrNull() == null) {
         throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
     }
@@ -103,6 +106,6 @@ fun checkError(number: String): Boolean {
     if (number.toSet().size != 3) {
         throw IllegalArgumentException("중복된 수가 있습니다.")
     }
-    return true
+    return number
 
 }
