@@ -13,7 +13,7 @@ fun inputThreeNumbers(): MutableList<Int> {
         for (char in inputString) {
             inputList.add(char.code - '0'.code)
         }
-        hasDuplicates(inputList)
+        validateNumbers(inputList)
         return inputList
     } else {
         throw IllegalArgumentException("input string is not validate")
@@ -36,10 +36,21 @@ fun isNumber(inputString: String): Boolean {
     }
 }
 
-fun hasDuplicates(inputList: MutableList<Int>) {
+fun hasDuplicates(inputList: List<Int>) {
     if (inputList.size != inputList.distinct().size) {
         throw IllegalArgumentException("there is duplicated number")
     }
+}
+
+fun hasZero(inputList: List<Int>) {
+    if (inputList.contains(0)){
+        throw IllegalArgumentException("input numbers must not have 0(zero)")
+    }
+}
+
+fun validateNumbers(inputList: List<Int>) {
+    hasDuplicates(inputList)
+    hasZero(inputList)
 }
 
 fun validateString(inputString: String): Boolean {
