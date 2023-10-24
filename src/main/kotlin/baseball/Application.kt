@@ -7,19 +7,9 @@ fun main() {
     // 1. 게임 시작을 위한 세팅
     val answer = answerSelect()
 //    println("answer : ${answer}")
-    println("숫자 야구 게임을 시작합니다.")
 
-    // 2. 사용자 입력
-    println("숫자를 입력해주세요 : ")
-    var inputData = Console.readLine()
-    if(inputData.length != 3){ // 입력 자리수 검증
-        throw IllegalArgumentException()
-    }
-    // 0~9 외의 숫자 검증
-    else if(!inputData.all{it in CharRange(start = '0', endInclusive = '9')}){
-        throw IllegalArgumentException()
-    }
-    println("inputData : ${inputData}")
+    play(answer)
+
 }
 
 fun answerSelect(): ArrayList<Int> {
@@ -32,6 +22,49 @@ fun answerSelect(): ArrayList<Int> {
             computer.add(randomNumber)
         }
     }
-
     return computer
+}
+
+fun inputNum(): IntArray{
+    // 2. 사용자 입력
+    print("숫자를 입력해주세요 : ")
+    var inputData = readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
+
+    if (inputData == null || inputData.size != 3 || !inputData.all { it in 0..9 } || inputData.toSet().size != 3) {
+        throw IllegalArgumentException("입력이 잘못되었습니다.")
+    }
+    return inputData
+}
+
+fun play(answer: ArrayList<Int>){
+    // 3. Ball, Strike 검증 및 결과 출력
+
+    println("숫자 야구 게임을 시작합니다.")
+
+    var strike =0
+
+    while (strike!=3){
+        strike=0
+        var ball=0
+
+        val inputData= inputNum()
+
+        for((index, i) in answer.withIndex()){
+            if(answer[index]==inputData[index]) strike++
+            if(i in inputData) ball++
+        }
+        ball -=strike
+        if(strike==0 && ball==0){
+            println("낫싱")
+        }else{
+            if(ball!=0){
+                print("${ball}볼 ")
+            }
+            if(strike!=0){
+                print("${strike}스트라이크")
+            }
+            println()
+        }
+    }
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
