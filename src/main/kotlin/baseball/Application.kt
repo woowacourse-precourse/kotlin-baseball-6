@@ -20,6 +20,7 @@ fun main() {
 }
 
 fun gameStart() {
+
     var computer: MutableList<Int> = mutableListOf()
     var userNumber: List<Int> = listOf()
 
@@ -34,6 +35,7 @@ fun gameStart() {
 }
 
 fun generateRandomNumber(): MutableList<Int> {
+
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -45,31 +47,29 @@ fun generateRandomNumber(): MutableList<Int> {
 }
 
 fun userInput(): List<Int> {
-    println(INPUT_NUMBER_MESSAGE)
-    val userNumber = Console.readLine().map {it.digitToInt()}
 
-    if(userNumber.contains(0)) {
+    val user = Console.readLine().map {it.digitToInt()}
+
+    if(user.contains(0)) {
         throw IllegalArgumentException("1~9 사이의 값을 입력해주세요")
     }
-    if(userNumber.size != 3) {
+    if(user.size != 3) {
         throw IllegalArgumentException("3자리 수를 입력해주세요")
     }
-    if(userNumber.toSet().size != userNumber.size) {
+    if(user.toSet().size != user.size) {
         throw IllegalArgumentException("중복 되지 않는 숫자를 입력해주세요")
     }
 
-    return userNumber
+    return user
 }
 
 fun game(computer: List<Int>, userNumber: List<Int>): Pair<Int,Int> {
 
-    var ballCount: Int = 0
-    var strikeCount: Int = 0
+    var ballCount = 0
+    var strikeCount = 0
 
-    for (i in computer.indices) {
-        if (computer[i] == userNumber[i]) {
-            strikeCount++
-        } else { // if (computer.contains(userNumber[i]))
+
+        if (computer.contains(userNumber[i])){
             ballCount++
         }
 
@@ -78,31 +78,59 @@ fun game(computer: List<Int>, userNumber: List<Int>): Pair<Int,Int> {
     return Pair(ballCount,strikeCount)
     }
 
+fun ballCount(computer: List<Int>, user: List<Int>) :Int {
 
-fun compareNumber(game:Pair<Int,Int>): String {
-    val ball = game.first
-    val strike = game.second
+    var ball = 0
 
-    var str = ""
+    for (i in computer.indices) {
+        if (computer.contains(user[i])) {
+            ball++
+        }
+    }
+}
 
-    if(ball == 0 && strike == 0) {
-        str = "낫싱"
-    }
-    if(ball == 0 && strike > 0) {
-        str = "${strike}스트라이크"
-    }
-    if(strike == 0 && ball > 0) {
-        str = "${ball}볼"
-    }
-    else {
-        str = "${ball}볼 ${strike}스트라이크"
-    }
-    if (strike == 3) {
-        "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
-        gameOver()
-    }
+fun strikeCount(computer: List<Int>, user: List<Int>) :Int {
 
-    return str
+    var strike = 0
+
+    for (i in computer.indices) {
+        if (computer[i] == user[i]) {
+            strike++
+        }
+    }
+}
+
+fun compareNumber(): String {
+
+    val computerNumber = generateRandomNumber()
+    val userNumber = userInput()
+
+    while(true) {
+        println(INPUT_NUMBER_MESSAGE)
+
+        ballCount (computerNumber,userNumber)
+        strikeCount (computerNumber, userNumber)
+
+        var str = ""
+
+        if (ball == 0 && strike == 0) {
+            str = "낫싱"
+        }
+        if (ball == 0 && strike > 0) {
+            str = "${strike}스트라이크"
+        }
+        if (strike == 0 && ball > 0) {
+            str = "${ball}볼"
+        } else {
+            str = "${ball}볼 ${strike}스트라이크"
+        }
+        if (strike == 3) {
+            "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
+            gameOver()
+        }
+
+        return str
+    }
 }
 
 fun gameOver(): Boolean {
