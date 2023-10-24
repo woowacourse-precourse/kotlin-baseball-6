@@ -16,7 +16,9 @@ object Const {
     const val ERROR_NOT_3_DIGIT = "3자리가 아닙니다"
     const val ERROR_NOT_NUMBER = "숫자만 입력해 주세요"
     const val ERROR_DUPLICATE_NUMBER = "중복된 숫자가 있어요"
+    const val ERROR_0 = "1~9사이의 숫자만 입력해주세요"
 
     const val ERROR_NOT_1_OR_2 = "1또는 2만 입력해 주세요"
+
 
 }

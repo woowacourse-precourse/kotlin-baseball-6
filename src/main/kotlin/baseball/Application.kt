@@ -26,7 +26,7 @@ fun main() {
 
 }
 
-fun playerTryAnswer(computer: MutableList<Int>) : Boolean {
+fun playerTryAnswer(computer: MutableList<Int>): Boolean {
     // 플레이어 숫자를 입력 받는다.
     val getPlayer = getPlayerNumber()
 
@@ -97,16 +97,23 @@ fun validatePlayerNumber(player: String): List<Int> {
         throw IllegalArgumentException(Const.ERROR_DUPLICATE_NUMBER)
     }
 
+    // 0이 있는지 확인
+    val playerZero = playerSet.contains(0)
+
+    if (playerZero) {
+        throw IllegalArgumentException(Const.ERROR_0)
+    }
+
     return playerIntOrNullList
 }
 
-data class PlayerScore (
+data class PlayerScore(
     var strike: Int = 0,
     var ball: Int = 0,
     var nothing: Boolean = false
-    )
+)
 
-fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, playerScore: PlayerScore) : PlayerScore {
+fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, playerScore: PlayerScore): PlayerScore {
 
     for (i in player.indices) {
         if (player[i] == computer[i]) {
@@ -166,7 +173,7 @@ fun endGame() {
     println(Const.GAME_END)
 }
 
-fun restartGameOrEndProgram() : Boolean {
+fun restartGameOrEndProgram(): Boolean {
 
     println(Const.GAME_RESTART_OR_PROGRAM_END)
     val coin = readLine()
