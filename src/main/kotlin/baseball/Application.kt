@@ -10,20 +10,13 @@ fun main() {
 
     // 컴퓨터가 생성하는 서로 다른 3자리 난수(함수 사용)
     val computer = Computer.generateRandomNumber()
-    /*
-    val computer = mutableListOf<Int>()
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
-    */
 
     // 생성된 난수를 출력
     println(computer)
 
-    var userInput = User.getUserNumbers()
-    println("userInput: $userInput")
+    for (i in 0..4) {
+        var user = User.getUserNumbers()
+
+    }
 }
 
