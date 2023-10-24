@@ -23,6 +23,13 @@ fun main() {
             }
             reStart = 1
         }
+
+        print("숫자를 입력해주세요 : ")
+        
+        var userNum = Console.readLine()
+        if(userNum.length != 3) {
+            throw IllegalArgumentException();  
+        }
     }
 }
 
