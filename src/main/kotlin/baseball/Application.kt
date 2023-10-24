@@ -1,17 +1,21 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     // 재시작에 사용될 변수 (초기값=1)
     var restart = 1
+
+    // 게임 시작 메시지
+    println("숫자 야구 게임을 시작합니다.")
 
     while (restart == 1) {
         // 숫자 야구 게임
         baseballGame()
 
         // 재시작 여부 입력 받기
-        print("다시 하시겠습니까? (재시작:1, 종료:2) : ")
-        var input = readLine()!!
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        var input = Console.readLine()
 
         // input이 정수가 아니면 오류 발생
         if (input.toIntOrNull() == null)
@@ -19,15 +23,13 @@ fun main() {
         else
             restart = input.toInt()
 
-        // input을 정수로 변환 한  restart가 1,2가 아니면 오류 발생
+        // input을 정수로 변환 한 restart가 1,2가 아니면 오류 발생
         if (restart >= 3 || restart <= 0)
             throw IllegalArgumentException()
     }
 }
 
 fun baseballGame() {
-    // 게임 시작 메시지
-    println("숫자 야구 게임을 시작합니다.")
 
     // 정답 숫자 생성 (사용 예시 참고)
     val answerNumbers = mutableListOf<Int>()
@@ -56,7 +58,7 @@ fun checkBallCount(answerNumbers: List<Int>): Boolean {
 
     // 숫자 입력 받기
     print("숫자를 입력해주세요 : ")
-    var input = readLine()!!
+    var input = Console.readLine()
     var inputInt: Int
 
     // input이 정수가 아니거나 3자리가 아니라면 오류 발생
