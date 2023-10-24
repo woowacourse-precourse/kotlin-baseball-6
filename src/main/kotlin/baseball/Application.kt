@@ -25,7 +25,8 @@ fun startBaseballPlay() {
     // 컴퓨터 값과 플레이어 값 비교
     do {
 
-        // 값이 다를경우 힌트 구현 //
+        // 값이 다를경우 힌트 구현
+        baseballHint(computerRandomNum, playerAnswer)
 
     } while (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0)
     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
@@ -60,4 +61,8 @@ fun compareComputerAndPlayer(computer: String, player: String): Int {
     } else {
         return 0
     }
+}
+
+fun baseballHint(computer: String, player: String) {
+
 }
