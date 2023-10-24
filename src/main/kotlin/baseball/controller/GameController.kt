@@ -17,6 +17,7 @@ class GameController {
         while (true) {
             val computerAnswer = Answer(RandomNumberGenerator.generate(1, 9, 3))
             startUserGuessing(computerAnswer)
+            outputView.printGameClear()
 
             if (ExitInput(inputView.getExitInput()).isExit()) {
                 inputView.terminated()
@@ -32,7 +33,6 @@ class GameController {
             outputView.printResult(result)
 
             if (result.isAllStrike()) {
-                outputView.printGameClear()
                 return
             }
         }
