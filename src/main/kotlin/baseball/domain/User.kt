@@ -19,8 +19,8 @@ object User {
     }
 
     fun String.userChoiceValidation() {
-        map {
-            require(it.toString() == RESTART_VALUE || it.toString() == EXIT_VALUE)
+        let { userChoice ->
+            require(userChoice == RESTART_VALUE || userChoice == EXIT_VALUE)
         }
     }
 }
