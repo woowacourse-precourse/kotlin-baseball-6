@@ -81,9 +81,11 @@ class TargetNumber {
 }
 
 
-fun getUserNumber(): Int {
+fun getUserNumber(): Int = runCatching {
     print("숫자를 입력해주세요 : ")
-    return readLine().toInt()
+    readLine().toInt()
+}.getOrElse {
+    throw IllegalArgumentException()
 }
 
 
