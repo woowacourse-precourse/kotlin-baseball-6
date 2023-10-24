@@ -1,35 +1,31 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGame() {
 
     fun gameStart() {
         while (true) {
-            // 랜덤 숫자 생성받기
             val computer = Computer()
+            val user = User()
             println("숫자 야구 게임을 시작합니다.")
-            while (true) {
-                println("숫자를 입력해주세요 : ")
-                val user = User().readNumbers()
-                // 입력에서 예외를 확인한다
-                inputNumberException(user)
-                // 결과를 출력한다
-                println(resultString(countingBall(computer.randomBalls, user), countingStrike(computer.randomBalls, user)))
-                if (checkThreeStrike(computer.randomBalls, user)) break
-            }
-            // 재시작
+            playBaseballGame(user, computer)
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            if (reGame()) break
+            if (user.reGame()) break
         }
     }
 
-    private fun reGame(): Boolean {
-        return when (Console.readLine()) {
-            "2" -> true
-            "1" -> false
-            else -> throw IllegalArgumentException("유효한 수가 아닙니다.")
+    private fun playBaseballGame(user: User, computer: Computer) {
+        while (true) {
+            println("숫자를 입력해주세요 : ")
+            val readNumber = user.readNumbers()
+            inputNumberException(readNumber)
+            val result = resultString(
+                countingBall(computer.randomBalls, readNumber),
+                countingStrike(computer.randomBalls, readNumber)
+            )
+            println(result)
+            if (checkThreeStrike(computer.randomBalls, readNumber)) break
         }
     }
 
