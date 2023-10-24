@@ -92,10 +92,8 @@ fun inputNumber(): List<Int> {
 }
 
 fun checkError(number: String): String {
-    try {
-        number.length == 3 && number.toSet().size == 3
-    }catch (e : IllegalArgumentException){
-
+    if(number.length != 3){
+        throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
     }
     if (number.length > 3 || number.isEmpty()) {
         throw IllegalArgumentException("숫자가 3이 넘어가거나 0입니다.")
@@ -104,6 +102,9 @@ fun checkError(number: String): String {
         if (number[i] < '1' || number[i] > '9') {
             throw IllegalArgumentException("숫자가 아닙니다.")
         }
+    }
+    if (number.toSet().size != 3) {
+        throw IllegalArgumentException("중복된 수가 있습니다.")
     }
     return number
 
