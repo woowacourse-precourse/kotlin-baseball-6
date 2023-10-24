@@ -7,9 +7,15 @@ class User() {
 
     fun reGame(): Boolean {
         return when (Console.readLine()) {
-            "2" -> true
-            "1" -> false
-            else -> throw IllegalArgumentException("유효한 수가 아닙니다.")
+            RE_GAME -> true
+            END_GAME -> false
+            else -> throw IllegalArgumentException(INVALID_NUMBER)
         }
+    }
+
+    companion object {
+        private const val RE_GAME = "2"
+        private const val END_GAME = "1"
+        private const val INVALID_NUMBER = "유효한 수가 아닙니다."
     }
 }

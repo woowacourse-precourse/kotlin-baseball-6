@@ -3,21 +3,22 @@ package baseball
 import baseball.validcheck.Exceptions
 
 class BaseballGame() {
+    private val messages = Messages()
 
     fun gameStart() {
         while (true) {
             val computer = Computer()
             val user = User()
-            println("숫자 야구 게임을 시작합니다.")
+            messages.printGameStartMessage()
             playBaseballGame(user, computer)
-            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            messages.printReGameMessage()
             if (user.reGame()) break
         }
     }
 
     private fun playBaseballGame(user: User, computer: Computer) {
         while (true) {
-            println("숫자를 입력해주세요 : ")
+            messages.printInputMessage()
             val readNumber = user.readNumbers()
             Exceptions().inputNumberException(readNumber)
             val result = resultString(
@@ -29,17 +30,17 @@ class BaseballGame() {
         }
     }
 
-    private fun countingBall(computer: MutableList<Int>, input: String): Int {
-        var count = 0
+    private fun countingBall(computer: List<Int>, input: String): Int {
+        var count = ZERO_COUNT
         for (number in computer) {
             if (input.contains(number.toString())) count++
         }
         return count
     }
 
-    private fun countingStrike(computer: MutableList<Int>, input: String): Int {
-        var count = 0
-        for (number in 0 until computer.size) {
+    private fun countingStrike(computer: List<Int>, input: String): Int {
+        var count = ZERO_COUNT
+        for (number in computer.indices) {
             if (input.indexOf(computer[number].toString()) == number) count++
         }
         return count
@@ -47,19 +48,29 @@ class BaseballGame() {
 
     private fun resultString(ball: Int, strike: Int): String {
         return when {
-            strike == 0 && ball == 0 -> "낫싱"
-            strike == 3 -> "3스트라이크"
-            ball == strike -> "${strike}스트라이크"
-            strike != 0 -> "${ball - strike}볼 ${strike}스트라이크"
-            else -> "${ball}볼"
+            strike == ZERO_COUNT && ball == ZERO_COUNT -> NOTHING
+            strike == FULL_COUNT -> THREE_STRIKE
+            ball == strike -> "${strike}$STRIKE"
+            strike != ZERO_COUNT -> "${ball - strike}$BALL ${strike}$STRIKE"
+            else -> "${ball}$BALL"
         }
     }
 
-    private fun checkThreeStrike(computer: MutableList<Int>, input: String): Boolean {
-        if (countingStrike(computer, input) == 3) {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    private fun checkThreeStrike(computer: List<Int>, input: String): Boolean {
+        if (countingStrike(computer, input) == FULL_COUNT) {
+            messages.printGameEndMessage()
             return true
         }
         return false
     }
+
+    companion object {
+        private const val NOTHING = "낫싱"
+        private const val THREE_STRIKE = "3스트라이크"
+        private const val STRIKE = "스트라이크"
+        private const val BALL = "볼"
+        private const val ZERO_COUNT = 0
+        private const val FULL_COUNT = 3
+    }
 }
+

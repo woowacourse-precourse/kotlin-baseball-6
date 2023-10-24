@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class Computer() {
     val randomBalls = makeRandomBallNumber()
 
-    private fun makeRandomBallNumber(): MutableList<Int> {
+    private fun makeRandomBallNumber(): List<Int> {
         val balls = mutableListOf<Int>()
 
         while (balls.size < 3) {
