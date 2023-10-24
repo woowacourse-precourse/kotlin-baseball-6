@@ -31,7 +31,7 @@ fun String.containsDuplicatedNumber(): Boolean {
 }
 
 fun String.isRangeOf(start: Int, end: Int): Boolean {
-    val range = (start..<end).toList()
+    val range = (start..end).toList()
     this.forEach { char ->
         if (char.digitToInt() !in range) {
             return false
