@@ -27,7 +27,6 @@ fun main() {
             }
         } else {
             throw IllegalArgumentException()
-            break
         }
     }
 }
