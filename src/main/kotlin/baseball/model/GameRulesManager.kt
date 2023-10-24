@@ -47,8 +47,20 @@ class GameRulesManager {
                 "낫싱"
             }
 
-            else -> {
+            strikes > 0 && balls > 0 -> {
                 "${balls}볼 ${strikes}스트라이크"
+            }
+
+            strikes >= 1 -> {
+                "${strikes}스트라이크"
+            }
+
+            balls >= 1 -> {
+                "${balls}볼"
+            }
+
+            else -> {
+                "입력이 올바르지 않습니다."
             }
         }
     }
