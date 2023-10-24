@@ -9,20 +9,16 @@ fun main() {
     startGame()
 
     // 게임 재시작 반복문
-    while (true) {
+    do {
         // 컴퓨터 숫자를 생성해 computer에 담는다.
         val computer = createComputerNumber()
 
         // 게임 라운드 반복문
-        while (true) {
-            // 플레이어가 숫자를 입력해 정답에 시도한다.
+        do {
             if (!playerTryAnswer(computer)) break
-        }
+        } while (true)
 
-        // 게임 재시작 또는 프로그램 종료
-        if (!restartGameOrEndProgram()) break
-
-    }
+    } while (restartGameOrEndProgram()) // 게임 재시작(true) 또는 프로그램(false) 종료
 
 }
 
@@ -43,7 +39,6 @@ fun playerTryAnswer(computer: MutableList<Int>): Boolean {
     if (calculatePlayerScore.strike == 3) {
         return false
     }
-
     return true
 }
 
@@ -109,21 +104,19 @@ fun validatePlayerNumber(player: String): List<Int> {
 
 fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, playerScore: PlayerScore): PlayerScore {
 
-    for (i in player.indices) {
-        if (player[i] == computer[i]) {
+    // 같은 인덱스 끼리 짝지어 pair타입으로 리스트 구성
+    val zipPlayerAndComputer = player.zip(computer)
+
+    zipPlayerAndComputer.forEach { (playerItem, computerItem) ->
+        if (playerItem == computerItem) {
             playerScore.strike++
         }
     }
 
-    for (i in player.indices) {
-        for (j in computer.indices) {
-            if (player[i] == computer[j]) {
-                playerScore.ball++
-            }
-        }
-    }
+    // 2개의 컬렉션의 교집합 set으로 반환
+    val intersectPlayerAndComputer = player.intersect(computer.toSet())
 
-    playerScore.ball -= playerScore.strike
+    playerScore.ball = intersectPlayerAndComputer.size - playerScore.strike
 
     if (playerScore.strike == 0 && playerScore.ball == 0) {
         playerScore.nothing = true
@@ -170,8 +163,8 @@ fun endGame() {
 fun restartGameOrEndProgram(): Boolean {
 
     println(Const.GAME_RESTART_OR_PROGRAM_END)
-    val coin = readLine()
 
+    val coin = readLine()
 
     val coinInt = coin.toIntOrNull()
 
