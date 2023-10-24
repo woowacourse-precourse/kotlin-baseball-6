@@ -14,7 +14,7 @@ object Game {
         do {
             GameCount.resetCount()
 
-            print("숫자를 입력해주세요 : ")
+            Computer.askNumber()
             Player.inputNumber()
             val playerNumber = Player.getNumber()
 
@@ -23,29 +23,16 @@ object Game {
             Hint.printHint(count)
         } while (!isAnswer())
         // 정답을 맞춘 후 실행됨
-        askRestartOrFinish()
+        Computer.askRestartOrFinish()
+        Player.inputRestartOrEnd()
     }
 
-    private fun reStart() {
+    fun reStart() {
         startBaseballGame()
     }
 
     private fun isAnswer(): Boolean {
         val (ball, strike) = GameCount.getCount()
         return (ball == 0 && strike == 3)
-    }
-
-    private fun askRestartOrFinish() {
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val inputRestartOrFinish = Console.readLine().toInt()
-        checkRestartOrFinish(inputRestartOrFinish)
-    }
-
-    private fun checkRestartOrFinish(playerInput: Int) {
-        when (playerInput) {
-            1 -> reStart()
-            2 -> println("게임 종료")
-            else -> throw IllegalArgumentException("1또는 2가 입력되지 않았습니다!")
-        }
     }
 }
