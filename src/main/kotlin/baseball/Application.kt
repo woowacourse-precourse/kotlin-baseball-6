@@ -10,8 +10,13 @@ fun main() {
 }
 
 fun startBaseballGame() {
-    val computer = randomComputer()
+    val computer: List<Int> = randomComputer()
+    var me: List<Int> = listOf()
+    var wrong: Boolean = true
 
+    while (wrong) {
+        me = guessComputer()
+    }
 }
 
 fun continueOrQuit() {
@@ -30,4 +35,23 @@ fun randomComputer(): List<Int> {
     }
 
     return rand
+}
+
+// 2) '나의 숫자' 입력
+fun guessComputer(): List<Int> {
+    print("숫자를 입력해주세요 : ")
+    val input = Console.readLine()
+    val result = mutableListOf<Int>()
+
+    checkGuess(input)
+
+    for (c in input) {
+        result.add(Character.getNumericValue(c))
+    }
+
+    return result
+}
+
+fun checkGuess(m: String): String {
+    TODO("Not yet implemented")
 }
