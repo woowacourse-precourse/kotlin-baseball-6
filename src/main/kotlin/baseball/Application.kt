@@ -1,9 +1,9 @@
 package baseball
 
+
 fun main() {
-    //TODO("프로그램 구현")
-    for (i in 1..5){
-        print(i)
-    }
-    print("휴 됐다!!!")
+    println("숫자 야구 게임을 시작합니다")
+    val game = BaseballGame()
+    // 게임이 끝나고 1을 입력하면 게임 다시 시작
+    while (game.baseballGame() == "1");
 }
