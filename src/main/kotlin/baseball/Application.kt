@@ -16,6 +16,7 @@ fun main() {
     var playerString: String?
 
     println("숫자 야구 게임을 시작합니다.")
+    println("정답 : ${computerList.toString()}")
 
     while (true) {
         print("숫자를 입력해주세요 : ")
@@ -35,7 +36,33 @@ fun main() {
         } ?: throw IllegalArgumentException() // null인 예외
 
 
+        // 게임 결과 분기
+        if (!compareList(computerList, playerList)) {
+            // 정답을 못찾았다. 계속해서 맞추기
+            playerList.clear()
+            continue
+        } else {
+            // 3 스트라이크. 게임 끝.
+            return
+        }
     }
 }
+
+// 게임 결과 처리 함수
+fun compareList(computerList: List<Int>, playerList: List<Int>): Boolean {
+    val strikes = computerList.zip(playerList).count { (comp, player) -> comp == player }
+    val balls = playerList.count { it in computerList }
+    val result = when {
+        strikes > 0 -> "$strikes 스트라이크"
+        balls > 0 -> "$balls 볼"
+        else -> "낫싱"
+    }
+    println(result)
+    return strikes == 3
+}
+
+
+
+
 
 
