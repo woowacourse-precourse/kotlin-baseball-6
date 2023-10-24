@@ -14,6 +14,11 @@ fun main() {
         comAnswer = pickNumberInRange(100,999).toString()
         myAnswer = readLine()!!.toString()
         checkLengthAndNumeric(myAnswer)
+
+        while(!AnswerCheck(myAnswer, comAnswer)){
+            print("숫자를 입력해주세요 : ")
+            myAnswer =  readLine()!!.toString()
+        }
     }
 
 }
@@ -34,4 +39,24 @@ fun isNumeric(s: String): Boolean {
     } catch (e: IllegalArgumentException) {
         throw IllegalArgumentException()
     }
+}
+fun AnswerCheck(myAnswer: String, comAnswer: String): Boolean{
+
+    var numOfBall: Int = 0
+    var numOfStrike: Int = 0
+
+    val comList: List<String> = comAnswer.split("").subList(1,4)
+    val myAnswerList: List<String> = myAnswer.split("").subList(1,4)
+
+    comList.forEachIndexed { index, s ->
+        if(myAnswerList.indexOf(s)!=-1){
+            if(myAnswerList.indexOf(s)==index){
+                numOfStrike++
+            }else{
+                numOfBall++
+            }
+        }
+    }
+    return myAnswer == comAnswer
+
 }
