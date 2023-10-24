@@ -70,8 +70,8 @@ fun checkBallCount(answerNumbers: List<Int>): Boolean {
 
     // 일의 자리를 List에 저장
     for(i: Int in 0 until 3) {
-        // 만약 입력받은 숫자 중 같은 숫자가 있다면 오류 발생
-        if (inputNumbers.contains(inputInt % 10))
+        // 만약 입력받은 숫자 중 같은 숫자가 있거나 0이 들어가면 오류 발생
+        if (inputNumbers.contains(inputInt % 10) || (inputInt%10) == 0)
             throw IllegalArgumentException()
         else {
             inputNumbers.add(inputInt % 10)
