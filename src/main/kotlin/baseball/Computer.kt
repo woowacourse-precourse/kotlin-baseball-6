@@ -12,4 +12,28 @@ class Computer {
             }
         }
     }
+
+    private fun checkStrikeCount(userInput: MutableList<Int>): Int {
+        var strikeCount : Int = 0
+
+        for (i in 0..2) {
+            if (userInput[i] == answer[i]) {
+                strikeCount += 1
+            }
+        }
+        return strikeCount
+    }
+
+    private fun checkBallCount(userInput: MutableList<Int>): Int {
+        var ballCount : Int = 0
+
+        for (i in 0..2) {
+            for (j in 0..2) {
+                if (userInput[i] == answer[j] && i != j) {
+                    ballCount += 1
+                }
+            }
+        }
+        return ballCount
+    }
 }
