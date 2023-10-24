@@ -1,5 +1,14 @@
 package baseball
 
 fun main() {
-    TODO("프로그램 구현")
+    //인스턴스 생성
+    val baseballGame= BaseballGame()
+    //게임 시작
+    baseballGame.playGame()
 }
+
+
+
+
+
+
