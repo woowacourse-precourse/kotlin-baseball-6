@@ -3,7 +3,7 @@ package baseball
 import System
 
 fun main() {
-    var system : System = System()
+    val system = System()
 
     system.game()
 }

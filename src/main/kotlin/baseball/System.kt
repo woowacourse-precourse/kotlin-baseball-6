@@ -1,14 +1,14 @@
 class System {
-    var computer : Computer = Computer()
-    var user : User = User()
-    var winFlag : Boolean = false
+    private var computer : Computer = Computer()
+    private var user : User = User()
+    private var winFlag : Boolean = false
 
-    fun restartGame() {
+    private fun restartGame() {
         computer.makeNewAnswer()
         winFlag = false
     }
 
-    fun askRestart() {
+    private fun askRestart() {
         println(STR_ASK_RESTART_MESSAGE)
         user.inputRestartNumber()
         if (user.checkRestart()) {

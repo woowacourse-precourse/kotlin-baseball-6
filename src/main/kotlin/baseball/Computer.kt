@@ -1,7 +1,7 @@
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
-    var answer : MutableList<Int> = mutableListOf()
+    private var answer : MutableList<Int> = mutableListOf()
 
     fun makeNewAnswer() {
         answer = mutableListOf()
@@ -14,7 +14,7 @@ class Computer {
     }
 
     private fun checkStrikeCount(userInput: MutableList<Int>): Int {
-        var strikeCount : Int = 0
+        var strikeCount = 0
 
         for (i in 0..2) {
             if (userInput[i] == answer[i]) {
@@ -25,7 +25,7 @@ class Computer {
     }
 
     private fun checkBallCount(userInput: MutableList<Int>): Int {
-        var ballCount : Int = 0
+        var ballCount = 0
 
         for (i in 0..2) {
             for (j in 0..2) {
@@ -56,8 +56,8 @@ class Computer {
         printCheck(strikeCount, ballCount)
         if (strikeCount == 3) {
             println(STR_GAME_END)
-            return true;
+            return true
         }
-        return false;
+        return false
     }
 }
