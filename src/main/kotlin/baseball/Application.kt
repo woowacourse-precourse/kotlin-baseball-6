@@ -55,11 +55,11 @@ fun errorCheckMyNumber(inputNumber: List<Char>) {
     }
     for (i in inputNumber.indices) {
         if (inputNumber[i] > '9' || inputNumber[i] < '0') {
-            throw IllegalArgumentException("숫자가 아닌 값이 있습니다.")
+            throw IllegalArgumentException("입력값에 숫자가 아닌 값이 있습니다.")
         }
         if (inputNumber.count {
                 it == inputNumber[i]
-            } > 1) throw IllegalArgumentException("중복된 숫자가 있습니다.")
+            } > 1) throw IllegalArgumentException("입력값에 중복된 숫자가 있습니다.")
     }
 }
 
