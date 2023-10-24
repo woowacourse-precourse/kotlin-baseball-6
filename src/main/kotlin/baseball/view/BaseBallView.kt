@@ -16,7 +16,8 @@ class BaseBallView {
             println("$ball$BALL_MESSAGE")
         } else if (ball != 0) {
             print("$ball$BALL_MESSAGE ")
-        } else {
+        }
+        if (strike != 0) {
             println("$strike$STRIKE_MESSAGE")
         }
     }
