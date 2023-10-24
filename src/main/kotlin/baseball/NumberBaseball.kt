@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms
 
 object NumberBaseball {
     private const val NUM_LENGTH = 3
+    private const val RESTART_GAME = "1"
+    private const val QUIT_GAME = "2"
 
     private var comNumList: ArrayList<Int> = arrayListOf()
     private var userNumList: ArrayList<Int> = arrayListOf()
@@ -13,6 +15,12 @@ object NumberBaseball {
     private var ballCount = 0
 
     var isPlaying = true
+    private fun setDefault() {
+        strikeCount = 0
+        ballCount = 0
+        comNumList.clear()
+        userNumList.clear()
+    }
 
     private fun initRandomNumbers(): NumberBaseball {
         while (comNumList.size < NUM_LENGTH) {
@@ -22,22 +30,14 @@ object NumberBaseball {
         return this
     }
 
-    private fun setDefault() {
-        strikeCount = 0
-        ballCount = 0
-        comNumList.clear()
-        userNumList.clear()
-
-    }
-
-    fun playBaseball(): NumberBaseball {
+    fun playNumberBaseball(): NumberBaseball {
         setDefault()
         initRandomNumbers()
         while (strikeCount < NUM_LENGTH) {
             getUserInput()
             calculateBallCounts()
         }
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("${NUM_LENGTH}개의 숫자를 모두 맞히셨습니다! 게임 종료")
         return this
     }
 
@@ -45,8 +45,14 @@ object NumberBaseball {
         print("숫자를 입력해 주세요 : ")
         if (userNumList.size > 0) userNumList.clear()
         val userInput = Console.readLine()
+            .removeWhiteSpaces()
         checkValidateInput(userInput)
         userNumList = userInputToNumbers(userInput)
+    }
+
+    private fun String.removeWhiteSpaces(): String {
+        return this.replace(" ", "")
+            .replace("\t", "")
     }
 
     private fun checkValidateInput(input: String) {
@@ -60,18 +66,19 @@ object NumberBaseball {
         val tempNumList = arrayListOf<Int>()
         input.forEach {
             if (tempNumList.contains(it.digitToInt())) throw IllegalArgumentException()
+
             tempNumList.add(it.digitToInt())
         }
         return tempNumList
     }
-    private fun calculateBallCounts() {
-        ballCount = 0
-        strikeCount = 0
 
+    private fun calculateBallCounts() {
         userNumList.forEachIndexed { index, value ->
             isStrikeOrBall(index, value)
         }
         printBallCounts(ballCount, strikeCount)
+        ballCount = 0
+        strikeCount = 0
     }
 
     private fun isStrikeOrBall(index: Int, value: Int) {
@@ -86,36 +93,31 @@ object NumberBaseball {
     }
 
     private fun printBallCounts(ball: Int, strike: Int) {
-        var strCall: String = ""
+        var strCall = ""
 
         if (ball == 0 && strike == 0) {
             strCall += "낫싱"
             println(strCall)
-
             return
         }
 
-        when (ball) {
-            1 -> strCall += "1볼 "
-            2 -> strCall += "2볼 "
-            3 -> strCall += "3볼 "
+        if (ball != 0) {
+            strCall += "${ball}볼"
+            if (strike != 0) strCall += " "
         }
 
-        when (strike) {
-            1 -> strCall += "1스트라이크"
-            2 -> strCall += "2스트라이크"
-            3 -> strCall += "3스트라이크"
-        }
+        if (strike != 0) strCall += "${strike}스트라이크"
+
         println(strCall)
     }
 
     fun askQuitOrRestart() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val temp = Console.readLine()
+        val temp = Console.readLine().trim()
 
         if (temp.length != 1) throw IllegalArgumentException()
-        if (temp != "1" && temp != "2") throw IllegalArgumentException()
-        if (temp == "1") setDefault()
-        if (temp == "2") isPlaying = false
+        if (temp != RESTART_GAME && temp != QUIT_GAME) throw IllegalArgumentException()
+
+        if (temp == QUIT_GAME) isPlaying = false
     }
 }
