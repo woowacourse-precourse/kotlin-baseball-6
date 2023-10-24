@@ -16,7 +16,7 @@ class GameView {
 
     //숫자입력
     fun getUserInput(): List<Int> {
-        println("숫자를 입력해주세요 :")
+        println("숫자를 입력해주세요: ")
         val userInput = Console.readLine()
 
         // 사용자 입력 값이 null, 정수가 아닐 경우 예외처리
