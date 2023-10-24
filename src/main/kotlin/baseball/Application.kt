@@ -14,7 +14,6 @@ fun main() {
     while(isRunning) {
         //랜덤 숫자 지정
         var randomNum = createRandomNum()
-        println(randomNum)
         while (inGame) {
             print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine()
@@ -24,6 +23,7 @@ fun main() {
 
             //숫자 비교
             val result = compareNum(userInput, randomNum)
+            println(result)
 
             if (result == "3스트라이크") {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
