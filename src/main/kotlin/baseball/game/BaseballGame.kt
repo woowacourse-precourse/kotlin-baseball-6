@@ -14,7 +14,6 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
 
     fun start() {
         val answer: List<Int> = generateRandomAnswer(digits)
-        println(answer)
         var result = ""
         while (result != "3스트라이크") {
             print("숫자를 입력해주세요 : ")
