@@ -9,7 +9,7 @@ fun main() {
     // println("숫자 야구 게임을 시작합니다.")
 
     // 컴퓨터가 생성하는 서로 다른 3자리 난수(함수 사용)
-    val computer = generateRandomNumber()
+    val computer = Computer.generateRandomNumber()
     /*
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
@@ -23,7 +23,7 @@ fun main() {
     // 생성된 난수를 출력
     println(computer)
 
-    var userInput = inputThreeNumbers()
+    var userInput = User.getUserNumbers()
     println("userInput: $userInput")
 }
 
