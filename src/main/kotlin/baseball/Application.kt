@@ -28,7 +28,7 @@ fun Problem(): Answer { //데이터를 생성하려면 문제를 시드에 따�
 fun User_response():Answer { //User용 입력, 여기서 입력 값이 다르면 에러
     print("숫자를 입력해주세요 : ")
     val base = Console.readLine()
-    if (base.length != 3) { //서로 다른 수인지도 체크해야 함
+    if (base.length != 3 || !base.all { it.isDigit() } || base.toSet().size != 3) { //서로 다른 수인지도 체크해야 함, 숫자인지 체크해야함
         throw IllegalArgumentException()
     }
     return Answer(base[0].toString().toInt(), base[1].toString().toInt(), base[2].toString().toInt()) //toInt로 하면 아스키 코드 값으로 변환됨
