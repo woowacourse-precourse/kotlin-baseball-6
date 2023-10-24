@@ -123,22 +123,22 @@ fun comparePlayerAndComputer(computer: MutableList<Int>, player: List<Int>, play
 
 fun printPlayerScore(calculatePlayerScore: PlayerScore) {
 
-    var result = ""
+    var resultPlayerScore = ""
 
     when {
         // 볼 + 스트라이크
-        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike >= 1 -> result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} ${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
+        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike >= 1 -> resultPlayerScore += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} ${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
         // 볼만
-        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike < 1 -> result += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL}"
+        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike < 1 -> resultPlayerScore += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL}"
         // 스트라이크만
-        calculatePlayerScore.ball < 1 && calculatePlayerScore.strike >= 1 -> result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
+        calculatePlayerScore.ball < 1 && calculatePlayerScore.strike >= 1 -> resultPlayerScore += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
         // 낫싱
-        calculatePlayerScore.strike == 0 && calculatePlayerScore.ball == 0 -> result += "${Const.PLAYER_SCORE_NOTHING}"
+        calculatePlayerScore.strike == 0 && calculatePlayerScore.ball == 0 -> resultPlayerScore += "${Const.PLAYER_SCORE_NOTHING}"
         // 3스트라이크
-        calculatePlayerScore.strike == 3 -> result += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}\n${endGame()}"
+        calculatePlayerScore.strike == 3 -> resultPlayerScore += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}\n${endGame()}"
     }
 
-    return println(result)
+    return println(resultPlayerScore)
 
 }
 
