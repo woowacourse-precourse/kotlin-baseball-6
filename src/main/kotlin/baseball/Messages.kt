@@ -4,7 +4,7 @@ class Messages {
     fun printGameStartMessage() = println(GAME_START_MESSAGE)
     fun printReGameMessage() = println(RE_GAME_MESSAGE)
     fun printGameEndMessage() = println(GAME_END_MESSAGE)
-    fun printInputMessage() = println(INPUT_MESSAGE)
+    fun printInputMessage() = print(INPUT_MESSAGE)
 
     companion object {
         const val GAME_START_MESSAGE = "숫자 야구 게임을 시작합니다."

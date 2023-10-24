@@ -5,10 +5,10 @@ class Exceptions {
     fun inputNumberException(input: String) {
         val inputSet = input.toSet()
 
-        if (inputSet.size != 3){
-            throw IllegalArgumentException()
-        } else if (isNotNumber(input)){
-            throw IllegalArgumentException()
+        when {
+            inputSet.size < 3 -> throw IllegalArgumentException()
+            input.length > 3 -> throw IllegalArgumentException()
+            isNotNumber(input) -> throw IllegalArgumentException()
         }
     }
 
