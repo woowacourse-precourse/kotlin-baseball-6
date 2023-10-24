@@ -29,6 +29,6 @@ class ApplicationTest : NsTest() {
         }
     }
     override fun runMain() {
-        NumberBaseball().main()
+        main()
     }
 }

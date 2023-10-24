@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
 import java.util.regex.Pattern
 
-class NumberBaseball {
     private fun inputException(userNumber: MutableList<Char>, inputNumber: String) {
         if (inputNumber.length != 3) {
             throw IllegalArgumentException("입력된 숫자가 3자리가 아닙니다.")
@@ -99,4 +98,3 @@ class NumberBaseball {
             wantPlaying = resetGame()
         }
     }
-}
