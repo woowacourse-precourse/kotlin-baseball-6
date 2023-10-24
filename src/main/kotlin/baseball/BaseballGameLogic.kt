@@ -3,6 +3,28 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 
+fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
+    while(true) {
+        var userNum = getUserInput()
+        var userNumHashMap = HashMap<Int, Int>()
+
+        if (checkCorrectNum(userNum)) {
+            userNumHashMap = convertStringToHashMap(userNum)
+        } else {
+            throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
+        }
+
+        var result = compareNum(computerNum, userNumHashMap)
+        var resultMessage = calculateBaseballGameResult(result)
+        println(resultMessage)
+
+        if(isGameOver(resultMessage)){
+            print(Dialogues.gameOverMessage)
+            break
+        }
+    }
+}
+
 fun getUserInput():String{
     print(Dialogues.requestEnterNumMessage)
     var userNum = Console.readLine()
@@ -38,7 +60,7 @@ fun compareNum(computerNum: HashMap<Int, Int>, userNum: HashMap<Int, Int>): Hash
 }
 
 
-fun printBaseBallGameResult(numArray:HashMap<String, Int>):String{
+fun calculateBaseballGameResult(numArray:HashMap<String, Int>):String{
     var strike = numArray["strike"]
     var ball = numArray["ball"]
     var nothing = numArray["nothing"]
