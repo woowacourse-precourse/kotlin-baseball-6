@@ -48,4 +48,16 @@ class Computer {
             println(STR_NOTHING)
         }
     }
+
+    fun checkAnswer(userInput: MutableList<Int>): Boolean {
+        val strikeCount : Int = checkStrikeCount(userInput)
+        val ballCount : Int = checkBallCount(userInput)
+
+        printCheck(strikeCount, ballCount)
+        if (strikeCount == 3) {
+            println(STR_GAME_END)
+            return true;
+        }
+        return false;
+    }
 }
