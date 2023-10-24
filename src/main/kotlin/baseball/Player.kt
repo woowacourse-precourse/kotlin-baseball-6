@@ -1,8 +1,8 @@
 package baseball
 
-import baseball.util.GameState
+import baseball.util.GameState.GAME_RESTART_MESSAGE
 import baseball.util.GameState.NUMBER_INPUT_MESSAGE
-import baseball.util.GameValue
+import baseball.util.GameValue.RESTART_COMMAND
 import baseball.util.Validator
 import camp.nextstep.edu.missionutils.Console
 
@@ -20,9 +20,9 @@ object Player {
     }
 
     fun restartQuestion(): Boolean {
-        println(GameState.GAME_RESTART_MESSAGE)
+        println(GAME_RESTART_MESSAGE)
         val playerCommend = Console.readLine()
         Validator.commendCheck(playerCommend)
-        return playerCommend == GameValue.RESTART_COMMAND
+        return playerCommend == RESTART_COMMAND
     }
 }

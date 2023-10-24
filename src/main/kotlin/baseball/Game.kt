@@ -1,10 +1,10 @@
 package baseball
 
-import baseball.util.GameState
 import baseball.util.GameState.BALL
+import baseball.util.GameState.MATCHING_ALL_MESSAGE
 import baseball.util.GameState.MATCHING_ZERO_MESSAGE
 import baseball.util.GameState.STRIKE
-import baseball.util.GameValue
+import baseball.util.GameValue.GAME_COMPLETE_STRIKE
 import baseball.util.GameValue.GAME_INIT_VALUE
 
 abstract class Game {
@@ -24,8 +24,8 @@ abstract class Game {
     }
 
     protected fun isResult(): Boolean {
-        if (strike == GameValue.GAME_COMPLETE_STRIKE) {
-            println(GameState.MATCHING_ALL_MESSAGE)
+        if (strike == GAME_COMPLETE_STRIKE) {
+            println(MATCHING_ALL_MESSAGE)
             return true
         }
         return false
