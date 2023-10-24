@@ -62,3 +62,17 @@ fun generateTarget(): String {//목표 숫자를 생성
     return numbers.joinToString(separator="")
 }
 
+fun isValidInput(input: String): Boolean {//입력받은 값에 대한 유효성 확인
+    if (input.length != 3 || input.toSet().size != input.length) {//길이가 3인지 겹치는지 확인
+        return false
+    }
+
+    for (char in input) {// 각 자리수 확인
+        val digit = char.toString().toIntOrNull()//정수값이며 1~9사이에 있어야 한다.
+        if (digit == null || digit < 1 || digit > 9) {
+            return false
+        }
+    }
+
+    return true
+}
