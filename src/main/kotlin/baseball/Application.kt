@@ -12,7 +12,11 @@ fun startGame() {
 }
 
 fun startGameUser(answerNumber: String) {
-    //answerNumber를 게임 시작 시 인자로 넘겨줌
+    //비교하여 맞을 때까지 진행
+    while(true) {
+        print("숫자를 입력해주세요 : ")
+        val userNumber = Console.readLine().toString()
+    }
 }
 
 fun getAnswerNumber(): String {
