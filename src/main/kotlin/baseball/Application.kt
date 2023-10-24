@@ -39,9 +39,10 @@ fun main() {
             reStart = 1
         } else if (input == "2") {
             gameStatus = 0
+            Console.close()
         }
     }
-
+    Console.close()
 }
 fun startMessage(){
     println("숫자 야구 게임을 시작합니다.")
