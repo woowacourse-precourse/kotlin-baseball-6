@@ -38,8 +38,8 @@ fun main() {
             } else {
                 break;
             }
-        } else{
-            msg.scoreMessage(strike,ball, out)
+        } else {
+            msg.scoreMessage(strike, ball, out)
         }
     }
 }
