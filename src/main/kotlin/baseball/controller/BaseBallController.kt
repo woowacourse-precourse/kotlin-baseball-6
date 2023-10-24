@@ -21,8 +21,11 @@ class BaseBallController {
     private fun checkBaseBall(computerList: BaseBall, userList: BaseBall) {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList) - strike
+
         println("${computerList.baseBallData}")
-        println("$strike, $ball}")
+        println("$strike, $ball")
+
+        baseBallView.printBaseBallResult(strike, ball)
     }
 
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
