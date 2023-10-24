@@ -31,7 +31,7 @@ fun main() {
 
         if (strike == 3) {
             msg.message("strike")
-            val input = readLine()
+            val input = Console.readLine()
             if (input == "1") {
                 MakeRandom()
                 continue

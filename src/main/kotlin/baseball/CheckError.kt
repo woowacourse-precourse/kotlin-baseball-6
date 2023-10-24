@@ -20,8 +20,9 @@ class CheckError {
     }
     private fun checkDuplication(number: String){
         for (i in number.indices) { //숫자가 중복되면 에러
-            if (!myNumber.contains(Character.getNumericValue(number[i]))) {
-                myNumber.add(Character.getNumericValue(number[i]))
+            val curNum = number[i]-'0'
+            if (!myNumber.contains(curNum)) {
+                myNumber.add(curNum)
             } else {
                 throw IllegalArgumentException("숫자가 중복됩니다.")
             }
