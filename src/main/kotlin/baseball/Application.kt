@@ -21,10 +21,8 @@ fun main() {
                 if (newOrder.equals("1")) {
                     computer.initializeGame()
                 } else if (newOrder.equals("2")) {
-                    break
                 } else {
                     throw IllegalArgumentException()
-                    break
                 }
             }
         } else {
