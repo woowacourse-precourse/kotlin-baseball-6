@@ -4,7 +4,7 @@ import kotlin.*
 import camp.nextstep.edu.missionutils.Console.readLine
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.ArrayList
-import kotlin.system.exitProcess
+
 
 fun main() {
 
@@ -33,8 +33,6 @@ fun main() {
         var userNum = ArrayList<Int>(3)
         var ans : Int = a
 
-        if(ans<111 || ans>999) throw IllegalArgumentException()
-
         userNum.add(a/100)
         ans -= 100 * userNum[0]
 
@@ -45,6 +43,11 @@ fun main() {
 
         return userNum
     } //유저의 입력 값을 ArayList로 자료형 변환
+
+    fun ifInputError(a:String):Boolean {
+        if(a.length!=3) return true
+        return false
+    }
 
     fun numBall(a:ArrayList<Int>, b: ArrayList<Int>): Int {
         var ballNum: Int =0
@@ -87,17 +90,20 @@ fun main() {
         do{
             print("숫자를 입력해주세요 : ")
 
-            userString = readLine()
+            try {
+                userString = readLine()
+                ifInputError(userString)
+            }catch(e:NullPointerException){return}
+
+            if(ifInputError(userString)){
+            throw (IllegalArgumentException())
+            return
+            }
 
             try {
                 user = userString.toInt()
             }catch(e:NumberFormatException){ return }
 
-            try{
-                getUser(user)
-            } catch(e:IllegalArgumentException) {
-                throw IllegalArgumentException()
-                return}
 
             userArray = getUser(user)
 
@@ -129,6 +135,7 @@ fun main() {
         try{
         ifCon = readLine().toInt()
         }catch(e:NumberFormatException) { return  }
+        catch(e:NullPointerException){return}
 
         if(ifCon==2) return
 
