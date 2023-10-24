@@ -25,28 +25,22 @@ fun getComputerNumList(): MutableList<Int> {
 fun getUserNum(): MutableList<Int> {
     print("숫자를 입력해주세요 : ")
     val userInput = Console.readLine().toString()
-
-    if (!isUserNumValid(userInput)) {
-        throw IllegalArgumentException("잘못된 값을 입력하셨습니다. 3자리의 수로 다시 입력해주세요.")
-    }
+    isUserNumValid(userInput)
     return userInput.toCharArray()
         .map { it.digitToInt() }
         .toMutableList()
 
 }
 
-fun isUserNumValid(userInput: String): Boolean{
+fun isUserNumValid(userInput: String) {
     if (userInput != null) {
         if (!userInput.trim().matches(Regex("\\d{3}"))) {
             throw IllegalArgumentException("3자리의 수 입력 요함.")
-            return false
         }
         if (userInput.toCharArray().map { it.digitToInt() }.toMutableList().distinct().size != 3) {
             throw IllegalArgumentException("중복 숫자 에러")
-            return false
         }
     }
-    return true
 }
 
 fun getBallAndStrike(computerNumList: MutableList<Int>, userNumList: MutableList<Int>): Pair<Int, Int> {
