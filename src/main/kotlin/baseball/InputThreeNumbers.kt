@@ -11,7 +11,7 @@ fun inputThreeNumbers(): MutableList<Int> {
 
     if (validateString(inputString)) {
         for (char in inputString) {
-            inputList.add(char.code)
+            inputList.add(char.code - '0'.code)
         }
         return inputList
     } else {
@@ -23,16 +23,18 @@ fun isLengthThree(inputString: String): Boolean {
     return if (inputString.length == 3) {
         true
     } else {
-        false
+//        false
+        throw IllegalArgumentException("input's length must be 3, but ${inputString.length}")
     }
 }
 
 fun isNumber(inputString: String): Boolean {
     return when (inputString.toIntOrNull()) {
-        null -> false
+        null -> throw IllegalArgumentException("input string must be integer")
         else -> true
     }
 }
+
 
 fun validateString(inputString: String): Boolean {
     return if (isNumber(inputString) && isLengthThree(inputString)) {
