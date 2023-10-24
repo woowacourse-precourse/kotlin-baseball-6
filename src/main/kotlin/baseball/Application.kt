@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.domain.BaseballController
+
 fun main() {
-    TODO("프로그램 구현")
+    BaseballController().run()
 }

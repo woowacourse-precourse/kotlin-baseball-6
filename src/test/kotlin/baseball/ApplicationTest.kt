@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.domain.BaseballGame
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -25,6 +26,44 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> { runException("1234") }
         }
+    }
+
+    @Test
+    fun `예외 테스트 - 부적절한 입력`() {
+        // given
+        val invalidInputs = listOf("abc", "12a", "12 3", "111")
+
+        // when & then
+        invalidInputs.forEach { input ->
+            assertThrows<IllegalArgumentException> {
+                runException(input)
+            }
+        }
+    }
+
+    @Test
+    fun `게임은 정답을 가지고 있습니다`() {
+        // given
+        val game = BaseballGame()
+
+        // when
+        val randomNumber = game.generateRandomNumber()
+
+        // then
+        assertThat(randomNumber).hasSize(3)
+    }
+
+    @Test
+    fun `정답에는 중복된 숫자가 포함되지 않습니다`() {
+        // given
+        val game = BaseballGame()
+
+        // when
+        val randomNumber = game.generateRandomNumber()
+
+        // then
+        val uniqueNumbers = randomNumber.toSet()
+        assertThat(uniqueNumbers).hasSize(3)
     }
 
     override fun runMain() {
