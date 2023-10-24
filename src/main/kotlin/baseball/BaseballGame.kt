@@ -3,7 +3,7 @@ package baseball
 const val START_GAME = 1
 const val END_GAME = 2
 const val PLAYING = 3
-const val NOT_PLAYING = 4
+const val NOT_PLAYING = 4 // FIXME 네이밍 변경
 
 const val START_NUMBER = 1
 const val END_NUMBER = 9
@@ -36,10 +36,11 @@ class BaseballGame(
         do {
             print("숫자를 입력해주세요 : ")
             val userNumbers = user.generateNumbers(user.requestInputNumbers())
-            val ballAndStrikeCounts = computer.calculateBallAndStrike(userNumbers)
+            val ballAndStrikeCounts = computer.calculateBallAndStrike(userNumbers) // FIXME count 변수 분리
 
             showPlayMessage(ballAndStrikeCounts.ball, ballAndStrikeCounts.strike)
 
+            // FIXME 인텐트 제거
             if (ballAndStrikeCounts.strike == NUMBER_COUNT) {
                 playState = NOT_PLAYING
             }

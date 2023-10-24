@@ -6,17 +6,25 @@ class Computer : Player<Unit> {
     private lateinit var numbers: List<Int>
 
     /**
-     * @param input 사용자로부터의 입력 문자열 (선택적)
-     * @throws IllegalArgumentException 유효성 검사 실패 시 발생
+     * 숫자 리스트의 유효성을 판단하고 올바르면 numbers 프로퍼티에 할당
      */
     override fun generateNumbers(input: String) {
-        numbers = generateSequence { Randoms.pickNumberInRange(START_NUMBER, END_NUMBER) }
+        val generatedUniqueNumbers = generateUniqueNumbers()
+        Validator.validateNumbers(generatedUniqueNumbers)
+        numbers = generatedUniqueNumbers
+    }
+
+    /**
+     * START_NUMBER ~ END_NUMBER 범위 내 NUMBER_COUNT 개수만큼 서로 다른 숫자 리스트 생성 후 반환
+     */
+    private fun generateUniqueNumbers(): List<Int> {
+        return generateSequence { Randoms.pickNumberInRange(START_NUMBER, END_NUMBER) }
             .distinct()
             .take(NUMBER_COUNT)
             .toList()
-        Validator.validateNumbers(numbers)
     }
 
+    // FIXME 로직 분리
     fun calculateBallAndStrike(userNumbers: List<Int>): BallAndStrikeCounts {
         val numbersZip = numbers.zip(userNumbers)
         val userNumbersSet = userNumbers.toSet()
