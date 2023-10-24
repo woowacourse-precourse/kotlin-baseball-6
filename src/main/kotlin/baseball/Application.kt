@@ -9,8 +9,9 @@ object BaseballGameStatus {
 
 object BaseballNumberValidity {
     const val VALID_LENGTH = 3
-    const val DIGIT_CODE_START = '1'.code
-    const val DIGIT_CODE_END = '9'.code
+    const val DIGIT_START_CODE = '0'.code
+    const val DIGIT_START = 1
+    const val DIGIT_END = 9
 }
 
 object BaseballTurnStatus {
@@ -20,26 +21,35 @@ object BaseballTurnStatus {
     const val NOTHING = "낫싱"
 }
 
-class BaseballNumber(numberString: String) {
-    val digits = numberString.map { it.code - BaseballNumberValidity.DIGIT_CODE_START + 1 }
+class BaseballNumber(numberString: String) : Iterable<Int> {
+    private val digits = numberString.map { letterToInt(it) }
 
     init {
-        require(isValidBaseballNumber(numberString)) { "Invalid query." }
+        require(isValidBaseballNumber(digits)) { "Invalid query." }
+    }
+
+    override fun iterator(): Iterator<Int> = digits.iterator()
+
+    override fun toString(): String {
+        return digits.joinToString("")
     }
 }
 
-private fun isValidBaseballNumber(query: String): Boolean {
-    val queryLetterCode = query.map { it.code }
-    val queryLetterValidity = queryLetterCode.map { isValidLetter(it) }
-    return (isValidLength(query)) and (queryLetterValidity.all { it }) and (isEveryLetterUnique(queryLetterCode))
+private fun letterToInt(letter: Char): Int {
+    return letter.code - BaseballNumberValidity.DIGIT_START_CODE
 }
 
-private fun isValidLength(query: String): Boolean {
-    return query.length == BaseballNumberValidity.VALID_LENGTH
+private fun isValidBaseballNumber(digits: List<Int>): Boolean {
+    val digitValidity = digits.map { isValidDigit(it) }
+    return (isValidLength(digits)) and (digitValidity.all { it }) and (isEveryLetterUnique(digits))
 }
 
-private fun isValidLetter(letter: Int): Boolean {
-    return (BaseballNumberValidity.DIGIT_CODE_START <= letter) and (letter <= BaseballNumberValidity.DIGIT_CODE_END)
+private fun isValidLength(digits: List<Int>): Boolean {
+    return digits.size == BaseballNumberValidity.VALID_LENGTH
+}
+
+private fun isValidDigit(digit: Int): Boolean {
+    return (BaseballNumberValidity.DIGIT_START <= digit) and (digit <= BaseballNumberValidity.DIGIT_END)
 }
 
 private fun isEveryLetterUnique(queryLetterCode: List<Int>): Boolean {
@@ -48,14 +58,13 @@ private fun isEveryLetterUnique(queryLetterCode: List<Int>): Boolean {
 }
 
 fun findDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
-    val setQueryDigit = query.digits.toSet()
-    val setAnswerDigit = answer.digits.toSet()
-    val intersect = setQueryDigit.intersect(setAnswerDigit)
-    return intersect.size
+    val setQueryDigit = query.toSet()
+    val setAnswerDigit = answer.toSet()
+    return setAnswerDigit.count { setQueryDigit.contains(it) }
 }
 
 fun findExactDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
-    val digitPair = query.digits.zip(answer.digits)
+    val digitPair = query.zip(answer)
     return digitPair.count { (queryDigit, answerDigit) -> queryDigit == answerDigit }
 }
 
@@ -69,7 +78,7 @@ fun generateRandomBaseballNumber(): BaseballNumber {
     val numberList = IntRange(1, 9).toMutableList()
     val pickNumber = ArrayList<Int>(0)
     for (i in 1..BaseballNumberValidity.VALID_LENGTH) {
-        val currentPick = Randoms.pickNumberInRange(0, 9 - i)
+        val currentPick = Randoms.pickNumberInRange(0, numberList.size - 1)
         pickNumber.add(numberList[currentPick])
         numberList.removeAt(currentPick)
     }
