@@ -22,7 +22,7 @@ class BaseballEngine(private val comparator: BaseballComparator) {
     }
 
     fun compare(computer: String, user: String): BaseballResult {
-        if (computer.length != 3 && user.length != 3) {
+        if (computer.length != 3 || user.length != 3) {
             throw IllegalArgumentException()
         }
 
