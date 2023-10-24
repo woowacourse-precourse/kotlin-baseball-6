@@ -10,6 +10,7 @@ class User {
 
         checkNumber(input)
         checkSize(input)
+        checkRepeat(input)
 
         for (i in input)
             userList.add(i.digitToInt())
@@ -30,4 +31,9 @@ class User {
         }
     }
 
+    private fun checkRepeat(input: CharArray) {
+        if (input.size != input.distinct().count()) {
+            throw IllegalArgumentException()
+        }
+    }
 }
