@@ -1,6 +1,6 @@
 package baseball
 
-import kotlin.collections.mutableListOf
+//import kotlin.collections.mutableListOf
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
@@ -22,7 +22,9 @@ fun main() {
 
             print("숫자를 입력해주세요 : ")
             val user: String = Console.readLine()
-
+            if (user.length!=3) {
+                throw IllegalArgumentException("잘못된 값을 입력하였습니다.")
+            }
 
             for (i in 0..2){
                 if (computer[i]==user[i].digitToInt()){
