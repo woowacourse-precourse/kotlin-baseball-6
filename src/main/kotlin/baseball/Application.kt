@@ -5,11 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
 
 fun main() {
-    var state = STATE.GAMING
-    while (state!=STATE.END){
-        state = baseballGame()
-    }
-
+    do {
+        var state = baseballGame()
+    } while (state != STATE.END)
 }
 
 fun baseballGame(): STATE {
