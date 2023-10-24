@@ -1,5 +1,6 @@
 package baseball.model
 
+import baseball.BASEBALL_MAX_SIZE
 import camp.nextstep.edu.missionutils.Console
 
 class User {
@@ -8,6 +9,7 @@ class User {
         val input = Console.readLine().toCharArray()
 
         checkNumber(input)
+        checkSize(input)
 
         for (i in input)
             userList.add(i.digitToInt())
@@ -21,4 +23,11 @@ class User {
             }
         }
     }
+
+    private fun checkSize(input: CharArray) {
+        if (input.size != BASEBALL_MAX_SIZE) {
+            throw IllegalArgumentException()
+        }
+    }
+
 }
