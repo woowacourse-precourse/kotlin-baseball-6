@@ -9,7 +9,9 @@ fun printStartGameSentence() {
 
 fun startGame() {
     while(true) {
+        //사용자 입력 시작
         startGameUser(getAnswerNumber())
+        //입력에 따른 게임 재시작 여부 확인
         if(!gameEndOrRestart())
             break
     }
@@ -37,27 +39,31 @@ fun checkUserNumber(userNumber: String) {
         throw IllegalArgumentException("3자리를 입력해주세요")
     }
 
-    val numDuplicateCheckArray = mutableListOf<Char>()
-
+    val numDuplicateCheckList = mutableListOf<Char>()
 
     for(number in userNumber) {
+
         //숫자가 아닐 경우 체크
         if(number < '1' || number > '9')
             throw IllegalArgumentException("숫자를 입력해주세요")
 
         //중복된 숫자 체크
-        if(numDuplicateCheckArray.contains(number))
+        if(numDuplicateCheckList.contains(number))
             throw IllegalArgumentException("숫자가 중복되지 않게 입력해주세요")
 
-        numDuplicateCheckArray.add(number)
+        //지금까지 입력 된 숫자를 저장하기 위해 list에 추가
+        numDuplicateCheckList.add(number)
     }
 }
 
 fun startGameUser(answerNumber: String) {
     //비교하여 맞을 때까지 진행
     while(true) {
+
         print("숫자를 입력해주세요 : ")
+
         val userNumber = Console.readLine().toString()
+
         //오류가 생기면 Illegal을 발생 시킬것이고, 오류가 없으면 정상적으로 다음 코드를 보게 될 것이다.
         checkUserNumber(userNumber)
 
