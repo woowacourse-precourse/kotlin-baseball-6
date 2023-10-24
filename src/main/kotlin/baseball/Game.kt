@@ -3,9 +3,12 @@ package baseball
 import baseball.model.Answer
 import baseball.model.Hint
 import baseball.utils.RandomNumberGenerator
+import baseball.view.OutputView
 import camp.nextstep.edu.missionutils.Console
 
 class Game {
+
+    private val outputView = OutputView()
 
     fun run() {
         println("숫자 야구 게임을 시작합니다.")
@@ -31,22 +34,8 @@ class Game {
 
     private fun checkStrike(input: Answer, computer: Answer): Boolean {
         val hint = Hint(computerAnswer = computer, userAnswer = input)
-
-        if (hint.isAllStrike()) {
-            println("3스트라이크")
-            return true
-        }
-
-        if (hint.strike == 0 && hint.ball == 0) {
-            println("낫싱")
-        } else {
-            var str = ""
-            if (hint.ball > 0) str = "${hint.ball}볼 "
-            if (hint.strike > 0) str += "${hint.strike}스트라이크"
-            println(str)
-        }
-
-        return false
+        outputView.printHint(hint)
+        return hint.isAllStrike()
     }
 
     private fun playNextGame(): Boolean {
