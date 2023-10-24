@@ -36,4 +36,16 @@ class Computer {
         }
         return ballCount
     }
+
+    private fun printCheck(strikeCount: Int, ballCount: Int) {
+        if (strikeCount != 0 && ballCount != 0) {
+            println("$ballCount$STR_BALL $strikeCount$STR_STRIKE")
+        } else if (strikeCount != 0) {
+            println("$strikeCount$STR_STRIKE")
+        } else if (ballCount != 0) {
+            println("$ballCount$STR_BALL")
+        } else {
+            println(STR_NOTHING)
+        }
+    }
 }
