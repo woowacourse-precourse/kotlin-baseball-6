@@ -3,16 +3,24 @@ package baseball
 class Game {
     private val host = Host()
     private val computer = Computer()
+    private val player = Player()
 
     fun startGame() {
         host.printGameStart()
-        val computerRandomNumber = computer.createRandomNumber()
+        var computerRandomNumber = computer.createRandomNumber()
+
         while (true) {
             val playerInputNumber = getPlayerInputNumber()
             val strikeCount = computer.checkNumberAndPrintResult(computerRandomNumber, playerInputNumber)
+
             if (strikeCount == 3) {
                 host.printGameContinueOrNot()
-                break
+                val gameContinueOrNot = player.inputContinueGameOrNot()
+                if (gameContinueOrNot == END) {
+                    break
+                } else if (gameContinueOrNot == CONTINUE) {
+                    computerRandomNumber = computer.createRandomNumber()
+                }
             }
         }
     }
