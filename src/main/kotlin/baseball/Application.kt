@@ -11,6 +11,11 @@ fun startGame() {
     startGameUser(getAnswerNumber())
 }
 
+fun gameEndOrRestart(){
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val userEndAnswer = Console.readLine().toInt()
+}
+
 fun checkUserNumber(userNumber: String) {
 
     //userNumber길이 체크
