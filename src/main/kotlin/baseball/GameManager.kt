@@ -4,7 +4,11 @@ class GameManager {
     companion object{
         fun start(){
             printStartMessage()
-            progressRound()
+            var keepGoing : Int
+            do {
+                progressRound()
+                keepGoing = User.getRestartInput()
+            } while (keepGoing == 1)
         }
 
         // 최초 실행 시 게임 시작 문구 출력
