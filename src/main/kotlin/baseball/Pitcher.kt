@@ -14,9 +14,9 @@ class Pitcher(
     fun generateNumbers() {
         val numbers = mutableListOf<Int>()
 
-        for (i in 0..numberCount) {
-            val number = Random.nextInt(maxNumber - 1) + minNumber
-            numbers.add(number)
+        while (numbers.size != numberCount) {
+            val number = Random.nextInt(maxNumber) + minNumber
+            if (!numbers.contains(number)) numbers.add(number)
         }
 
         this.numbers = numbers
