@@ -47,7 +47,7 @@ fun game() {
 
         //(게임 플레이어) 서로 다른 3개의 숫자를 입력한다.
         print("숫자를 입력해주세요 : ")
-        val input = readlnOrNull()
+        val input = readLine()
         var player: List<String> = emptyList<String>()
 
         // 입력 받은 값이 null인지, 자연수인지 확인한다.
