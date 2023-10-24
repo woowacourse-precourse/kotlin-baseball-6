@@ -1,5 +1,6 @@
 package baseball
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
 fun getResult(strike : Int, ball : Int) : String {
@@ -33,7 +34,7 @@ fun main() {
             var ball : Int
             ball = 0
             print("숫자를 입력해주세요 : ")
-            val input = readLine()
+            val input = Console.readLine()
             if (input!!.length != 3) {
                 throw IllegalArgumentException()
             }
@@ -65,10 +66,10 @@ fun main() {
 
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val flag = readLine()!!.toInt()
-        if (flag != 1 && flag != 2) {
+        val flag = Console.readLine()
+        if (flag != "1" && flag != "2") {
             throw IllegalArgumentException()
         }
-    } while (flag == 1)
+    } while (flag == "1")
 
 }
