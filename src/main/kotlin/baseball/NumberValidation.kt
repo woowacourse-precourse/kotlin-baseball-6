@@ -1,6 +1,6 @@
 package baseball
 
-private const val MIN_NUM = 0
+private const val MIN_NUM = 1
 private const val MAX_MUM = 9
 class NumberValidation() {
     fun validation (number : String) {
