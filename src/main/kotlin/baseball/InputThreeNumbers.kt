@@ -9,31 +9,32 @@ fun inputThreeNumbers(): MutableList<Int> {
     print("숫자를 입력해주세요 : ")
     var inputString: String = Console.readLine()
 
-    if (validateString(inputString)) {
-        for (char in inputString) {
-            inputList.add(char.code - '0'.code)
-        }
-        validateNumbers(inputList)
-        return inputList
-    } else {
-        throw IllegalArgumentException("input string is not validate")
+    validateString(inputString)
+
+    for (char in inputString) {
+        inputList.add(char.code - '0'.code)
     }
+
+    validateNumbers(inputList)
+
+    return inputList
 }
 
-fun isLengthThree(inputString: String): Boolean {
-    return if (inputString.length == 3) {
-        true
-    } else {
-//        false
+fun isLengthThree(inputString: String) {
+    if (inputString.length != 3) {
         throw IllegalArgumentException("input's length must be 3, but ${inputString.length}")
     }
 }
 
-fun isNumber(inputString: String): Boolean {
-    return when (inputString.toIntOrNull()) {
-        null -> throw IllegalArgumentException("input string must be integer")
-        else -> true
+fun isNumber(inputString: String) {
+    if (inputString.toIntOrNull() == null) {
+        throw IllegalArgumentException("input string must be integer")
     }
+}
+
+fun validateString(inputString: String) {
+    isNumber(inputString)
+    isLengthThree(inputString)
 }
 
 fun hasDuplicates(inputList: List<Int>) {
@@ -43,7 +44,7 @@ fun hasDuplicates(inputList: List<Int>) {
 }
 
 fun hasZero(inputList: List<Int>) {
-    if (inputList.contains(0)){
+    if (inputList.contains(0)) {
         throw IllegalArgumentException("input numbers must not have 0(zero)")
     }
 }
@@ -51,12 +52,4 @@ fun hasZero(inputList: List<Int>) {
 fun validateNumbers(inputList: List<Int>) {
     hasDuplicates(inputList)
     hasZero(inputList)
-}
-
-fun validateString(inputString: String): Boolean {
-    return if (isNumber(inputString) && isLengthThree(inputString)) {
-        true
-    } else {
-        false
-    }
 }
