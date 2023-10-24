@@ -2,6 +2,10 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
+enum class Score {
+    STRIKE, BALL, FOUL
+}
+
 fun main() {
     var number = getRandomNumber()
 }
