@@ -23,6 +23,7 @@ fun getComputerNumList(): MutableList<Int> {
 }
 
 fun getUserNum(): MutableList<Int> {
+    print("숫자를 입력해주세요 : ")
     val userInput = Console.readLine().toString()
 
     if (!isUserNumValid(userInput)) {
