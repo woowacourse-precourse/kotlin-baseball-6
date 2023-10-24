@@ -58,17 +58,17 @@ fun main() {
                 val (strikes, balls) = calculateHint(randomNumber, userGuess)
 
                 if (strikes == 3) {
-                    println("$strikes 스트라이크")
+                    println("${strikes}스트라이크")
                     println("축하합니다! 정답을 맞추셨습니다.")
                     break
                 } else if(strikes == 0 && balls == 0){
                     println("낫싱")
                 } else if(strikes > 0 && balls == 0){
-                    println("$strikes 스트라이크")
+                    println("${strikes}스트라이크")
                 } else if(strikes == 0 && balls > 0){
-                    println("$balls 볼")
+                    println("${balls}볼")
                 } else{
-                    println("$balls 볼 $strikes 스트라이크")
+                    println("${balls}볼 ${strikes}스트라이크")
                 }
 
                 attempts++
