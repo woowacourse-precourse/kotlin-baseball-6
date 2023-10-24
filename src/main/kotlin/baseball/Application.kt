@@ -6,12 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
 
     val computerList = mutableListOf<Int>()
-    while (computerList.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (randomNumber !in computerList) {
-            computerList.add(randomNumber)
-        }
-    }
+    generateComputerList(computerList)
 
     val playerList = mutableListOf<Int>()
     var playerString: String?
@@ -57,6 +52,19 @@ fun main() {
             // 재시작 여부 값이 올바름
 
             return
+        }
+    }
+}
+
+// 컴퓨터의 숫자 뽑기 함수
+fun generateComputerList(computerList: MutableList<Int>) {
+    // 초기화
+    computerList.clear()
+    // 생성
+    while (computerList.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (randomNumber !in computerList) {
+            computerList.add(randomNumber)
         }
     }
 }
