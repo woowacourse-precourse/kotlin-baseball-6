@@ -14,6 +14,7 @@ class GameController {
     var strike = 0
     var ball = 0
     var nothing = 0
+    var re = false
     fun play() {
         //게임시작 문구
         gamePhr.startGame()
@@ -22,16 +23,26 @@ class GameController {
         ans = gameNum.createNum()
         println(ans)
 
-        //정답 입력 및 예외체크
-        val input = gamePhr.inputNum()
-        check.checkInput(input)
+        while (!re) {
+            //정답 입력 및 예외체크
+            var input = gamePhr.inputNum()
+            check.checkInput(input)
 
-        checkCount(input)
-        showResult()
+            checkCount(input)
+            showResult()
 
-        if(strike == 3){
-            gamePhr.correctAns()
+            if (strike == 3) {
+                gamePhr.correctAns()
+                val num = gamePhr.restart()
+                check.checkRestart(num)
+
+                when (num) {
+                    "1" -> ans = gameNum.createNum()
+                    "2" -> re = true
+                }
+            }
         }
+
 
     }
 
@@ -60,7 +71,6 @@ class GameController {
     fun showResult() {
         if (nothing == 3) {
             println("낫싱")
-            return
         }
         if (ball != 0 && strike != 0) {
             println("${ball}볼 ${strike}스트라이크")
@@ -69,7 +79,7 @@ class GameController {
             println("${strike}스트라이크")
         }
         if (ball != 0 && strike == 0) {
-            println("${ball}스트라이크")
+            println("${ball}볼")
         }
 
     }
