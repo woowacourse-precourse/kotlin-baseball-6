@@ -100,7 +100,7 @@ fun diffComputerMe(computer: List<Int>, me: List<Int>): Boolean {
 
 // 4) 힌트 출력
 fun printHint(strike: Int, ball: Int) {
-    // 출력 형태 - 총 5가지
+    // 힌트의 형태 - 총 5가지
     if (strike == 3) {
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
