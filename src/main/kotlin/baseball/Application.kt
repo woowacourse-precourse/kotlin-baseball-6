@@ -27,6 +27,7 @@ fun main() {
         if (restart >= 3 || restart <= 0)
             throw IllegalArgumentException()
     }
+    println("게임 종료")
 }
 
 fun baseballGame() {
