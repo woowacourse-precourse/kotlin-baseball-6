@@ -19,6 +19,13 @@ fun main() {
             print("숫자를 입력해주세요 : ")
             myAnswer =  readLine()!!.toString()
         }
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+        oneOrTwo = readLine()!!.toInt()
+        if((oneOrTwo != 1) && (oneOrTwo != 2)){
+            throw IllegalArgumentException()
+        }
     }
 
 }
@@ -57,6 +64,17 @@ fun AnswerCheck(myAnswer: String, comAnswer: String): Boolean{
             }
         }
     }
+
+    if(numOfStrike!=0 && numOfBall!=0){
+        println("${numOfBall}볼 ${numOfStrike}스트라이크")
+    }else if(numOfStrike!=0 && numOfBall==0){
+        println("${numOfStrike}스트라이크")
+    }else if(numOfStrike==0 && numOfBall!=0){
+        println("${numOfBall}볼")
+    }else{
+        println("낫싱")
+    }
+
     return myAnswer == comAnswer
 
 }
