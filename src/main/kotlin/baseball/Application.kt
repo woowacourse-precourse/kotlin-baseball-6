@@ -6,29 +6,15 @@ import util.Constants.DUPLICATE_NUMBER_MESSAGE
 import util.Constants.INPUT_MESSAGE
 import util.Constants.INVALID_INPUT_MESSAGE
 import util.Constants.INVALID_LENGTH_MESSAGE
-import util.Constants.RESTART_MESSAGE
 import util.Constants.START_MESSAGE
-import util.Constants.SUCCESS_MESSAGE
 
 fun main() {
+    val game = BaseballGame()
     println(START_MESSAGE)
     do {
-        startBaseballGame()
-    } while (isRestartable())
+        game.startBaseballGame()
+    } while (game.isRestartable())
 }
-
-fun startBaseballGame() {
-    val answerNumbers = creatRandomNumbers()
-//    println(answerNumbers) // 랜덤 생성된 정답 미리보기
-    do {
-        val userNumbers = getUserInput()
-        printScore(answerNumbers, userNumbers)
-    } while (!isSame(answerNumbers, userNumbers))
-    println(SUCCESS_MESSAGE)
-}
-
-fun isSame(answer: List<Int>, user: List<Int>) = answer == user
-
 
 fun creatRandomNumbers(): MutableList<Int> {
     val numbers = mutableListOf<Int>()
@@ -50,25 +36,6 @@ fun getUserInput(): MutableList<Int> {
         userNumber /= 10
     }
     return userNumberList
-}
-
-fun isRestartable(): Boolean {
-    println(RESTART_MESSAGE)
-    val restartChar = Console.readLine()
-    return ("1" == restartChar)
-}
-
-fun printScore(answerNumbers: List<Int>, userNumbers: List<Int>) {
-    var strikeCount = 0
-    var ballCount = 0
-    for (i in answerNumbers.indices) {
-        if (userNumbers[i] == answerNumbers[i]) strikeCount++
-        else if (answerNumbers.contains(userNumbers[i])) ballCount++
-    }
-    val strikeMessage = if (0 < strikeCount) "${strikeCount}스트라이크" else ""
-    val ballMessage = if (0 < ballCount) "${ballCount}볼 " else ""
-    val scoreMessage = if (strikeCount == 0 && ballCount == 0) "낫싱" else "$ballMessage$strikeMessage"
-    println(scoreMessage)
 }
 
 fun isUserInputValid(userInput: String) {
