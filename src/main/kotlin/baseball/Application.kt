@@ -33,7 +33,7 @@ fun restartOrExit() : Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val inputNumber = Console.readLine()
     when (inputNumber) {
-        "" -> throw NullPointerException("값을 입력하지 않았습니다. 프로그램 종료합니다.")
+        null -> throw NullPointerException("값을 입력하지 않았습니다. 프로그램 종료합니다.")
         "1" -> return false
         "2" -> {
             println("프로그램을 종료합니다")
