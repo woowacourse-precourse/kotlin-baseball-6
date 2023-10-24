@@ -15,4 +15,15 @@ class System {
             restartGame()
         }
     }
+
+    fun game() {
+        println(STR_WELCOME_MESSAGE)
+
+        computer.makeNewAnswer()
+        while (!winFlag) {
+            winFlag = computer.checkAnswer(user.inputNumber())
+            if (winFlag)
+                askRestart()
+        }
+    }
 }
