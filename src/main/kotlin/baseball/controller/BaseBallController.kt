@@ -4,6 +4,7 @@ import baseball.model.BaseBall
 import baseball.model.Computer
 import baseball.model.User
 import baseball.view.BaseBallView
+import camp.nextstep.edu.missionutils.Console
 
 class BaseBallController {
 
@@ -11,25 +12,26 @@ class BaseBallController {
 
     fun playGame() {
         baseBallView.printPlayGame()
-
-        val computer = Computer().makeComputerList()
-        baseBallView.printInputUser()
-        val user = User().inputUser()
-        checkBaseBall(computer, user)
-
+        while (true) {
+            val computer = Computer().makeComputerList()
+            baseBallView.printInputUser()
+            val user = User().inputUser()
+            if (checkBaseBall(computer, user)) break
+        }
 
     }
 
-    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall) {
+    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall): Boolean {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList) - strike
 
         baseBallView.printBaseBallResult(strike, ball)
-
         if (strike == 3) {
-            print("멈춰")
+            baseBallView.printGameOver()
+            return checkContinue()
         }
 
+        return false
     }
 
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
@@ -48,5 +50,18 @@ class BaseBallController {
                 ball++
         }
         return ball
+    }
+
+    private fun checkContinue(): Boolean {
+        baseBallView.printContinue()
+        val input = Console.readLine()
+        if (input == GAME_END_NUM) {
+            return true
+        }
+        return false
+    }
+
+    companion object {
+        const val GAME_END_NUM = "2"
     }
 }
