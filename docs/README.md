@@ -18,9 +18,35 @@
 2. 세자리 숫자 입력 받음.
 3. 입력 받은 숫자를 한 자리 씩 mutable 리스트에 넣음.
 
-> test1
-> test2
 
+### 에러 발생
+1. 예외 처리 안됨
+```kotlin
+if (numList.size != 3 || numList.any { it < 1 })
+```
+
+예외 처리를 하는 위의 코드에서 121 같이 중복되는 숫자를 적었을 때 예외 처리가 되지 않음
+- 해결 방법
+
+  반복문으로 numList의 원소 처음부터 탐색하여, 해당 원소가 리스트 안에서 몇 개 있는지
+  numList.count를 사용하여 2개 이상이면 중복된 수라고 표시하고
+  반복문을 break 하고 예외 처리하는 if문에 or로 추가하여 해결함
+```kotlin
+var isDupli : Boolean = false
+for (n in numList) {
+  if (numList.count { it == n } > 1) {
+    isDupli = true
+    break
+  }
+}
+
+if (numList.size != 3 || numList.any { it < 1 } || isDupli)
+```
+
+
+
+
+> test1
 ```kotlin
 val name = mutableListOf<String>()
 ```
