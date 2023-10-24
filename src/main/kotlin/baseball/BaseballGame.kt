@@ -10,11 +10,11 @@ class BaseballGame {
     fun start() {
         println(Constants.START_MESSAGE)
         do {
-            play()
+            playRound()
         } while (isRestartable())
     }
 
-    private fun play() {
+    private fun playRound() {
         val answerNumbers = RandomNumbersGenerator.creatRandomNumbers()
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {
