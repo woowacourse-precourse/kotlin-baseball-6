@@ -10,6 +10,9 @@ const val INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : "
 const val THREE_STRIKE_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료"
 const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요"
 
+var strike = 0
+var ball = 0
+
 
 
 
@@ -28,7 +31,7 @@ fun gameStart() {
     println(START_MESSAGE)
 
     while(areUReady) {
-        game(computer, userNumber)
+
         areUReady = gameOver()
 
     }
@@ -63,41 +66,25 @@ fun userInput(): List<Int> {
     return user
 }
 
-fun game(computer: List<Int>, userNumber: List<Int>): Pair<Int,Int> {
-
-    var ballCount = 0
-    var strikeCount = 0
-
-
-        if (computer.contains(userNumber[i])){
-            ballCount++
-        }
-
-        }
-
-    return Pair(ballCount,strikeCount)
-    }
-
 fun ballCount(computer: List<Int>, user: List<Int>) :Int {
-
-    var ball = 0
 
     for (i in computer.indices) {
         if (computer.contains(user[i])) {
             ball++
         }
     }
+
+    return ball
 }
 
 fun strikeCount(computer: List<Int>, user: List<Int>) :Int {
-
-    var strike = 0
 
     for (i in computer.indices) {
         if (computer[i] == user[i]) {
             strike++
         }
     }
+    return strike
 }
 
 fun compareNumber(): String {
