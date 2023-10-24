@@ -25,8 +25,10 @@ object Number {
     const val ZERO = 0
 
     const val ONE = 1
+    const val ONE_CHAR = '1'
     const val THREE = 3
     const val NINE = 9
+    const val NINE_CHAR = '9'
 
     const val MAX_NUMBER = 3
 }
