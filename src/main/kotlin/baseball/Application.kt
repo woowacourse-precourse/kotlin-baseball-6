@@ -87,11 +87,6 @@ class Player {
         return inputNum
     }
 
-    private fun restartOrQuitException(restartNumber: Int) {
-        if (restartNumber != 1 && restartNumber != 2) {
-            throw IllegalArgumentException("1 또는 2를 입력해주세요")
-        }
-    }
 
     private fun enterNumException(enterNum: String) {
         val uniqueDigits = enterNum.toSet()
@@ -107,12 +102,20 @@ class Player {
     }
 
     fun gameContinueOrQuit(): Boolean {
-        var restart = Console.readLine().toInt()
-        restartOrQuitException(restart)
+        val restart = Console.readLine()
+        //restartOrQuitException(restart)
         //사용자 1또는 2 입력 안할시 예외처리
-        if (restart == 1) {
+        if (restartOrQuitException(restart) == 1) {
             return true
         }
         return false
+    }
+
+    private fun restartOrQuitException(restartNumber: String): Int {
+        val intRestartNumber = restartNumber.toIntOrNull()
+        if (intRestartNumber != 1 && intRestartNumber != 2 || restartNumber.toIntOrNull() == null) {
+            throw IllegalArgumentException("1 또는 2를 입력해주세요")
+        }
+        return intRestartNumber
     }
 }
