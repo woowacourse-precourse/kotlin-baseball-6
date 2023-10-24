@@ -5,14 +5,14 @@ import util.Constants
 
 class BaseballGame {
 
-    fun startBaseballGame() {
+    fun start() {
         println(Constants.START_MESSAGE)
         do {
-            playBaseballGame()
+            play()
         } while (isRestartable())
     }
 
-    fun playBaseballGame() {
+    private fun play() {
         val answerNumbers = creatRandomNumbers()
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {
@@ -23,13 +23,13 @@ class BaseballGame {
     }
 
 
-    fun isRestartable(): Boolean {
+    private fun isRestartable(): Boolean {
         println(Constants.RESTART_MESSAGE)
         val restartChar = Console.readLine()
         return ("1" == restartChar)
     }
 
-    fun printScore(answerNumbers: List<Int>, userNumbers: List<Int>) {
+    private fun printScore(answerNumbers: List<Int>, userNumbers: List<Int>) {
         var strikeCount = 0
         var ballCount = 0
         for (i in answerNumbers.indices) {
@@ -42,5 +42,5 @@ class BaseballGame {
         println(scoreMessage)
     }
 
-    fun isSame(answer: List<Int>, user: List<Int>) = answer == user
+    private fun isSame(answer: List<Int>, user: List<Int>) = answer == user
 }

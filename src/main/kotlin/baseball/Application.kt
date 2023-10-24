@@ -9,7 +9,7 @@ import util.Constants.INVALID_LENGTH_MESSAGE
 
 fun main() {
     val game = BaseballGame()
-    game.startBaseballGame()
+    game.start()
 }
 
 fun creatRandomNumbers(): MutableList<Int> {
