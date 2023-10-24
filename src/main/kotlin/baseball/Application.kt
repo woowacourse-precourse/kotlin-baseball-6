@@ -21,7 +21,13 @@ fun startGame(numberOfComputer: List<String>) {
         val numberOfPlayer = getNumberFromPlayer()
         val gameResult = compareNumbers(numberOfComputer, numberOfPlayer)
 
-        stopFlag = printResult(gameResult)
+        printResult(gameResult)
+
+        if (gameResult.strike == 3) {
+            println("3스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            stopFlag = setStopFlag()
+        }
     } while (stopFlag == 1)
 
     Console.close()
@@ -88,26 +94,18 @@ fun compareNumbers(numberOfComputer: List<String>, numberOfPlayer: List<String>)
     return result
 }
 
-fun printResult(result: Result): Int {
+fun printResult(result: Result) {
     if (result.sumResult() == 0) {
         println("낫싱")
     } else {
-        if (result.strike == 3) {
+        if (result.strike == 0) {
+            println("${result.ball}볼")
+        } else if (result.ball == 0 && result.strike < 3) {
             println("${result.strike}스트라이크")
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            return setStopFlag()
-        } else {
-            if (result.strike == 0) {
-                println("${result.ball}볼")
-            } else if (result.ball == 0) {
-                println("${result.strike}스트라이크")
-            } else {
-                println("${result.ball}볼 ${result.strike}스트라이크")
-            }
+        } else if (result.strike < 3 && result.ball != 0) {
+            println("${result.ball}볼 ${result.strike}스트라이크")
         }
     }
-
-    return 1
 }
 
 fun setStopFlag(): Int {
