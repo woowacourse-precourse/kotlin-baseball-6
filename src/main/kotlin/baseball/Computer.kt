@@ -17,12 +17,15 @@ class Computer {
         }
 
         // 컴퓨터의 숫자와 사용자의 숫자를 비교하여 결과 출력 및 승리 유무 반환
-        fun matchTweNumbers(computer: List<Int>, user: List<Int>): Boolean {
+        fun matchTwoNumbers(computer: List<Int>, user: List<Int>): Boolean {
+            // 스트라이크와 볼 개수 판별
             val strikeCount: Int = howManyStrikes(computer, user)
             val ballCount: Int = howManyBalls(computer, user)
 
             // 조건에 따른 힌트를 사용자에게 출력
+            printResult(strikeCount, ballCount)
 
+            // 3스트라이크라면 승리
             return (strikeCount == 3)
         }
 
@@ -48,6 +51,20 @@ class Computer {
                 }
             }
             return cnt
+        }
+
+        private fun printResult(strike: Int, ball: Int) {
+            if (ball == 0 && strike == 0) {
+                println("낫싱")
+                return
+            }
+            if (ball != 0) {
+                print("${ball}볼 ")
+            }
+            if (strike != 0) {
+                print("${strike}스트라이크")
+            }
+            println()
         }
     }
 }
