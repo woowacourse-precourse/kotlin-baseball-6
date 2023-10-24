@@ -20,7 +20,7 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
             print("숫자를 입력해주세요 : ")
             val userInput: String = Console.readLine().trim()
             val userAnswer: List<Int> = validateUserInput(userInput)
-            result = resultString(answer, userAnswer)
+            result = compareResult(answer, userAnswer)
             println(result)
         }
         restartProcess()
@@ -69,15 +69,14 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
         return validAnswer
     }
 
-    private fun resultString(answer: List<Int>, userAnswer: List<Int>): String {
+    private fun compareResult(answer: List<Int>, userAnswer: List<Int>): String {
         var strikeCount = 0
         var ballCount = 0
-        var nothingCount = 0
         for (num in userAnswer) {
             if (num in answer) {
                 if (userAnswer.indexOf(num) == answer.indexOf(num)) strikeCount++
                 else ballCount++
-            } else nothingCount++
+            }
         }
 
         if (strikeCount == 0 && ballCount == 0) return "낫싱"
