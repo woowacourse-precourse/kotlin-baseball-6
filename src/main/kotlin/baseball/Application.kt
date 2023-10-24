@@ -1,5 +1,9 @@
 package baseball
 
+import System
+
 fun main() {
-    TODO("프로그램 구현")
+    var system : System = System()
+
+    system.game()
 }
