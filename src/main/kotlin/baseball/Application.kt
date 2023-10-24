@@ -20,9 +20,7 @@ fun main() {
             val userInput = Console.readLine()
 
             //답변의 유효성 확인
-            if (userInput.length != 3 || userInput.toIntOrNull() == null) {
-                throwException()
-            }
+            checkAvailability(userInput)
 
             //숫자 비교
             val result = compareNum(userInput, randomNum)
@@ -39,6 +37,7 @@ fun main() {
                 }
                 else if (finishCode == "2") {
                     isRunning = false
+                    inGame = false
                 }
                 //답변 유효성 확인
                 else {
@@ -54,12 +53,13 @@ fun main() {
 //서로 다른 세 수를 뽑는 Function
 fun createRandomNum() : String {
     val numList = ArrayList<Int>()
-    for(index in 1..3) {
-        val num = Randoms.pickNumberInRange(1,9)
+    while (numList.size<3) {
+        val num = Randoms.pickNumberInRange(1, 9)
         if (!numList.contains(num)) {
             numList.add(num)
         }
     }
+
     return numList.joinToString("")
 }
 
@@ -86,6 +86,12 @@ fun compareNum(userNum : String, randomNum : String) : String {
         strike == 0 && ball == 0 -> answer = "낫싱"
     }
     return answer
+}
+
+fun checkAvailability(userInput : String) {
+    if (userInput.length != 3 || userInput.toIntOrNull() == null) {
+        throwException()
+    }
 }
 
 fun throwException() {
