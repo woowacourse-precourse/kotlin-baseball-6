@@ -10,11 +10,16 @@ class Game {
     private val user = User()
     private val computer = Computer()
 
-    fun printGameStartMessage() {
+    fun run() {
+        printGameStartMessage()
+        gameStart()
+    }
+
+    private fun printGameStartMessage() {
         println("숫자 야구 게임을 시작합니다.")
     }
 
-    fun gameStart() {
+    private fun gameStart() {
         var computerNumber = computer.setComputerNumber()
         var isGameEnd = false
         println(computerNumber)
