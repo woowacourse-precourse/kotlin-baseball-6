@@ -11,7 +11,7 @@ class BaseballGame() {
             // 랜덤 숫자 생성받기
             val computer = makeRandomBallNumber()
             println("숫자 야구 게임을 시작합니다.")
-            while (true){
+            while (true) {
                 println("숫자를 입력해주세요 : ")
                 val user = Console.readLine()
                 // 입력에서 예외를 확인한다
@@ -64,6 +64,13 @@ class BaseballGame() {
     }
 
     private fun inputNumberException(input: String) {
-        // todo 예외 처리
+        when {
+            input.toSet().size < 3 -> throw IllegalArgumentException("중복된 수입니다.")
+            input.length > 3 -> throw IllegalArgumentException("3자리 수만 입력해주세요")
+            isNotNumber(input) -> throw IllegalArgumentException("0을 제외한 숫자만 입력해 주세요")
+        }
     }
+
+    private fun isNotNumber(input: String) = !("[1-9]{3}".toRegex()
+        .matches(input))
 }
