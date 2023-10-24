@@ -12,7 +12,6 @@ fun main() {
 
 fun startGame() {
     val computerNumList = getComputerNumList()
-    println(computerNumList)
     while (true) {
         val userNumList = getUserNum()
         val result = getBallAndStrike(computerNumList, userNumList)
