@@ -15,7 +15,7 @@ fun main() {
             return
         }
         val result = evaluateGuess(playerGuess, computer) // 입력한 값에 따른 결과 얻기
-        println(result) g// 결과 출력
+        println(result) // 결과 출력
 
         if (result == "3스트라이크") { // 상대방(컴퓨터)의 수를 모두 맞힌 경우, 게임 종료 후 다시 할 것이냐고 묻기.
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
