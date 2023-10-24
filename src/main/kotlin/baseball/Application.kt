@@ -22,6 +22,11 @@ fun startBaseballGame() {
 }
 
 fun continueOrQuit() {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val answer = Console.readLine()
+
+    checkAnswer(answer)
+
     TODO("Not yet implemented")
 }
 
@@ -113,5 +118,12 @@ fun printHint(strike: Int, ball: Int) {
         println("${strike}스트라이크")
     } else {
         println("${ball}볼 ${strike}스트라이크")
+    }
+}
+
+// 5) 게임 진행에 대한 입력 - 잘못된 입력에 대한 예외처리
+fun checkAnswer(answer: String) {
+    if (answer != "1" || answer != "2") {
+        throw IllegalArgumentException("1 또는 2를 입력해주세요.")
     }
 }
