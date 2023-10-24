@@ -24,7 +24,6 @@ fun main() {
 
             //숫자 비교
             val result = compareNum(userInput, randomNum)
-            println(result)
 
             if (result == "3스트라이크") {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
