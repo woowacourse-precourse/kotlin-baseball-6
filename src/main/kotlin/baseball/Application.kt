@@ -96,4 +96,6 @@ fun main() {
             }
         }
     }
+
+    Console.close()
 }
