@@ -1,5 +1,106 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
+
 fun main() {
-    TODO("프로그램 구현")
+    var gameStatus = 1
+    var reStart = 1
+    startMessage()
+
+    while (gameStatus == 1) {
+        val computer = makeRandomNumber()
+
+        while (reStart == 1) {
+            val number = inputNumber()
+            var strike = 0
+            var ball = 0
+            var out = 0
+
+            for (i in 0..<number.size) {
+                if (number[i] == computer[i]) {
+                    strike++
+                } else if (computer.contains(number[i])) {
+                    ball++
+                } else {
+                    out++
+                }
+            }
+            if (strike == 3) {
+                strikeMessage()
+                break
+            } else {
+                scoreMessage(strike, ball, out)
+            }
+
+        }
+        val input = Console.readLine()
+        if (input == "1") {
+            reStart = 1
+        } else if (input == "2") {
+            gameStatus = 0
+        }
+    }
+
+}
+fun startMessage(){
+    println("숫자 야구 게임을 시작합니다.")
+}
+
+fun strikeMessage() {
+        println("3스트라이크")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+}
+
+fun scoreMessage(strike: Int, ball: Int, out: Int) {
+    if (out == 3) {
+        println("낫싱")
+    } else if (strike == 0 && ball != 0) {
+        println(ball.toString() + "볼")
+    } else if (strike != 0 && ball == 0) {
+        println(strike.toString() + "스트라이크")
+    } else {
+        println(ball.toString() + "볼 " + strike.toString() + "스트라이크")
+    }
+}
+
+fun makeRandomNumber(): MutableList<Int> {
+    val computer = mutableListOf<Int>()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+    return computer
+}
+
+fun inputNumber(): MutableList<Int> {
+    print("숫자를 입력해주세요 : ")
+    val number = Console.readLine()
+    checkError(number)
+    val myNumber = mutableListOf<Int>()
+    for (i in number.indices) {
+        val curNum = number[i] - '0'
+        if (!myNumber.contains(curNum)) {
+            myNumber.add(curNum)
+        } else {
+            throw IllegalArgumentException("숫자가 중복됩니다.")
+        }
+    }
+    return myNumber
+}
+
+fun checkError(number: String): String {
+    if (number.length != 3) {
+        throw IllegalArgumentException("숫자가 3이 넘어갑니다.")
+    }
+    for (i in number.indices) {
+        if (number[i] < '1' || number[i] > '9') {
+            throw IllegalArgumentException("숫자가 아닙니다.")
+        }
+    }
+    return number
+
 }
