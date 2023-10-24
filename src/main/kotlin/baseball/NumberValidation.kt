@@ -13,7 +13,7 @@ class NumberValidation() {
             throw IllegalArgumentException()
         }
     }
-    fun isNumber (number : String) : Boolean {
+    private fun isNumber (number : String) : Boolean {
         if(number.isBlank() || number.isEmpty()) {
             return false
         }
@@ -25,7 +25,7 @@ class NumberValidation() {
         return true
     }
 
-    fun isInRange (number : Int) : Boolean {
+    private fun isInRange (number : Int) : Boolean {
         return number in MIN_NUM..MAX_MUM
     }
 }

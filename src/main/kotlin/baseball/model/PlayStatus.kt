@@ -1,6 +1,6 @@
 package baseball.model
 
-class Playstatus {
+class PlayStatus {
     var status : Boolean = true
 
     fun gameOver() {

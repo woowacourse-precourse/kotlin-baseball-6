@@ -4,7 +4,7 @@ import baseball.model.Baseball
 
 class BaseballGame {
     fun compareNumbers(target: MutableList<Int>, compare: List<Int>): Baseball {
-        var baseball = Baseball()
+        val baseball = Baseball()
         for (i in target.indices) {
             if (target[i] == compare[i]) {
                 baseball.strikes++

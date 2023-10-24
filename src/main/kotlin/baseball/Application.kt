@@ -1,11 +1,11 @@
 package baseball
 
-import baseball.model.Playstatus
+import baseball.model.PlayStatus
 import camp.nextstep.edu.missionutils.Console
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    var playStatus = Playstatus()
+    val playStatus = PlayStatus()
     val numberGenerator = NumberGenerator()
     val baseballGame = BaseballGame()
     try {
@@ -19,7 +19,7 @@ fun main() {
     }
 }
 
-fun startGame(playStatus: Playstatus, numberGenerator: NumberGenerator, baseballGame: BaseballGame) {
+fun startGame(playStatus: PlayStatus, numberGenerator: NumberGenerator, baseballGame: BaseballGame) {
     val targetNumbers = numberGenerator.generateRandomNum()
     while (playStatus.status) {
         val guessNumbers = numberGenerator.inputGuessNum()
@@ -35,9 +35,9 @@ fun startGame(playStatus: Playstatus, numberGenerator: NumberGenerator, baseball
 fun endOrRestartGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val playStatusInput = Console.readLine().toInt();
-    when (playStatusInput) {
-        1 -> return true
-        2 -> return false
+    return when (playStatusInput) {
+        1 -> true
+        2 -> false
         else -> throw IllegalArgumentException()
     }
 }
