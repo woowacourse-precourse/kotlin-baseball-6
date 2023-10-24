@@ -34,7 +34,7 @@ private fun guessNumber() {
                 inputArray.add(digit1)
                 inputArray.add(digit2)
                 inputArray.add(digit3)
-            }else{
+            } else {
                 throw IllegalArgumentException("게임 종료")
             }
             //println(inputArray)
@@ -47,19 +47,19 @@ private fun guessNumber() {
 }
 
 private fun printResult() {
-    var strike: Int
-    var ball = 0
+    var strike = 0
+    var ball: Int
     makeRandomNumber()
-    while (ball != 3) {
+    while (strike != 3) {
         guessNumber()
         strike = 0
         ball = 0
 
         for (i in inputArray.indices) {
             if (computer[i] == inputArray[i]) {
-                ball += 1
-            } else if (computer.contains(inputArray[i])) {
                 strike += 1
+            } else if (computer.contains(inputArray[i])) {
+                ball += 1
             }
         }
 
