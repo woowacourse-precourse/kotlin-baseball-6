@@ -1,18 +1,45 @@
 package baseball.controller
 
+import baseball.model.BaseBall
 import baseball.model.Computer
 import baseball.model.User
 import baseball.view.BaseBallView
 
 class BaseBallController {
 
-    val baseBallView = BaseBallView()
+    private val baseBallView = BaseBallView()
 
-    fun playGame(){
+    fun playGame() {
         baseBallView.printPlayGame()
         val computer = Computer().makeComputerList()
         baseBallView.printInputUser()
         val user = User().inputUser()
+        checkBaseBall(computer, user)
 
+    }
+
+    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall) {
+        val strike = checkStrike(computerList, userList)
+        val ball = checkBall(computerList, userList) - strike
+        println("${computerList.baseBallData}")
+        println("$strike, $ball}")
+    }
+
+    private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
+        var strike = 0
+        for (i in 0 until userList.baseBallData.size) {
+            if (userList.baseBallData[i] == computerList.baseBallData[i])
+                strike++
+        }
+        return strike
+    }
+
+    private fun checkBall(computerList: BaseBall, userList: BaseBall): Int {
+        var ball = 0
+        userList.baseBallData.forEach {
+            if (computerList.baseBallData.contains(it))
+                ball++
+        }
+        return ball
     }
 }

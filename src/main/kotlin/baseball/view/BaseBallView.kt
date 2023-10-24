@@ -5,5 +5,5 @@ import baseball.START_MESSAGE
 
 class BaseBallView {
     fun printPlayGame() = println(START_MESSAGE)
-    fun printInputUser() = println(INPUT_USER_MESSAGE)
+    fun printInputUser() = print(INPUT_USER_MESSAGE)
 }
