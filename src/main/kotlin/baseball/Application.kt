@@ -21,7 +21,7 @@ fun runGame() {
             println("숫자를 입력해주세요: ")
             guess = Console.readLine()
             if (!isValidInput(guess)) {//예외설정
-                throw IllegalArgumentException("Invalid input. Please enter a 3-digit number with distinct digits.")
+                throw IllegalArgumentException("잘못된 입력입니다. 숫자 야구 게임을 종료합니다.")
             }
 
             result = checkGuess(guess, target)//입력값과 목표값 비교
@@ -33,7 +33,6 @@ fun runGame() {
         } while (result.first < 3)//스트라이크가 3개 미만이 될 때 까지 반복
 
         println("축하합니다! 3개의 숫자를 모두 맞추셨습니다.")
-
         println("게임을 새로 시작하려면 '1'을, 종료하려면 '2'를 입력하세요: ")
 
         when(Console.readLine()) {
