@@ -73,12 +73,12 @@ object NumberBaseball {
     }
 
     private fun calculateBallCounts() {
+        ballCount = 0
+        strikeCount = 0
         userNumList.forEachIndexed { index, value ->
             isStrikeOrBall(index, value)
         }
         printBallCounts(ballCount, strikeCount)
-        ballCount = 0
-        strikeCount = 0
     }
 
     private fun isStrikeOrBall(index: Int, value: Int) {
