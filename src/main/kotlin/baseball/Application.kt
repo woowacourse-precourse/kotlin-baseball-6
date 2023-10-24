@@ -51,7 +51,7 @@ class NumberBaseball {
                 if (newComputerNumber[index] == userNumber[index]) {
                     scoreResult[0]++ // 스트라이크 증가
                 } else if (newComputerNumber.contains(userNumber[index])) {
-                    scoreResult[1]++ // 볼 증가
+                    scoreResult[1]++
                 }
             }
 
@@ -62,7 +62,7 @@ class NumberBaseball {
             if (scoreResult[0] == 0 && scoreResult[1] == 0) {
                 println("낫싱")
             } else if (scoreResult[0] == 3) {
-                println("${scoreResult[0]}스트라이크")
+                println("3스트라이크")
                 endGame()
             } else {
                 println("${scoreResult[1]}볼 ${scoreResult[0]}스트라이크")
