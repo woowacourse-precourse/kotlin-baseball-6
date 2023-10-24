@@ -1,7 +1,7 @@
 package baseball.game
 
 import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
+import camp.nextstep.edu.missionutils.Randoms
 
 const val GAME_DIGITS = 3
 
@@ -39,7 +39,7 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
     private fun generateRandomAnswer(digits: Int): List<Int> {
         val numbers = mutableListOf<Int>()
         while (numbers.size < digits) {
-            val num = pickNumberInRange(1, 9)
+            val num = Randoms.pickNumberInRange(1, 9)
             if (num !in numbers) {
                 numbers.add(num)
             }
