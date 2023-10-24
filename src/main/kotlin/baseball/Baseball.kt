@@ -10,6 +10,7 @@ class Baseball {
             val ball = countBall(computer, user)
 
             printGameResult(strike, ball)
+            if(strike == INPUT_SIZE) break
         }
     }
 
