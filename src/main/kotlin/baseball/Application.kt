@@ -22,9 +22,16 @@ fun main() {
 
         if(printResult(check(computer, you))) {
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            result = readln().toInt()
+            result = Console.readLine().toInt()
             if(result == 2) {
                 break
+            }
+            computer.clear()
+            while (computer.size < 3) {
+                val randomNumber = Randoms.pickNumberInRange(1, 9)
+                if (!computer.contains(randomNumber)) {
+                    computer.add(randomNumber)
+                }
             }
         }
     }
@@ -67,22 +74,22 @@ fun check(computer: MutableList<Int>, you: List<Int>): Pair<Int, Int> {
 
 fun printResult(check: Pair<Int, Int>) : Boolean {
     val (strike, ball) = check
-    if(strike == 3) {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        return true
-    }
     if(strike == 0) {
         if(ball == 0) {
             println("낫싱")
             return false
         }
-        println("$ball 볼")
+        println("${ball}볼")
         return false
     }
     if(ball == 0) {
-        println("$strike 스트라이크")
+        println("${strike}스트라이크")
+        if(strike == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            return true
+        }
         return false
     }
-    println("$ball 볼 $strike 스트라이크")
+    println("${ball}볼 ${strike}스트라이크")
     return false
 }
