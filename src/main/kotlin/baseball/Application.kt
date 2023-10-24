@@ -77,14 +77,13 @@ fun makeRandomNumber(): MutableList<Int> {
     return computer
 }
 
-fun inputNumber(): MutableList<Int> {
+fun inputNumber(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val number = Console.readLine()
     checkError(number)
     val myNumber = mutableListOf<Int>()
     for (i in number.indices) {
-        val curNum = number[i] - '0'
-        myNumber.add(curNum)
+        myNumber.add(number[i].toString().toInt())
     }
     return myNumber
 }
@@ -97,6 +96,9 @@ fun checkError(number: String): String {
         if (number[i] < '1' || number[i] > '9') {
             throw IllegalArgumentException("숫자가 아닙니다.")
         }
+    }
+    if(number.toSet().size !=3){
+        throw IllegalArgumentException("중복된 수가 있습니다.")
     }
     return number
 
