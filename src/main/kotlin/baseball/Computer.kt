@@ -28,8 +28,9 @@ object Computer {
     }
 
     private fun playGame() {
-        println("숫자 야구 게임을 시작합니다.\n숫자를 입력해주세요 : ")
+        println("숫자 야구 게임을 시작합니다.")
         while (true) {
+            print("숫자를 입력해주세요 : ")
             if (checkGameEnd(getUserInput())) {
                 break
             }
