@@ -48,3 +48,21 @@ fun isUserNumValid(userInput: String): Boolean{
     }
     return true
 }
+
+fun getBallAndStrike(computerNumList: MutableList<Int>, userNumList: MutableList<Int>): Pair<Int, Int> {
+    var ballCount = 0
+    var strikeCount = 0
+
+    for (i in 0..2) {
+        if (computerNumList[i] == userNumList[i]) {
+            strikeCount++
+            continue
+        }
+        if (computerNumList[i] in userNumList) {
+            ballCount++
+        }
+    }
+
+    return Pair(ballCount, strikeCount)
+
+}
