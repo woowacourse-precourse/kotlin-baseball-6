@@ -10,30 +10,22 @@ const val INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : "
 const val THREE_STRIKE_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료"
 const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요"
 
-var strike = 0
-var ball = 0
-
-
 
 
 fun main() {
-
-    gameStart()
-
-}
-
-fun gameStart() {
-
     var computer: MutableList<Int> = mutableListOf()
-    var userNumber: List<Int> = listOf()
+    var user: List<Int> = listOf()
+    var areUReady: Boolean = true
+    var gameRestart: Boolean = true
 
-    var areUReady = true
     println(START_MESSAGE)
-
-    while(areUReady) {
-
-        areUReady = gameOver()
-
+    while(areUReady or gameRestart){
+        if(gameRestart) {
+            computer = generateRandomNumber()
+        }
+        user = userInput()
+        areUReady = game(computer,user)
+        gameRestart = gameOver(areUReady)
     }
 }
 
@@ -50,7 +42,7 @@ fun generateRandomNumber(): MutableList<Int> {
 }
 
 fun userInput(): List<Int> {
-
+    println(INPUT_NUMBER_MESSAGE)
     val user = Console.readLine().map {it.digitToInt()}
 
     if(user.contains(0)) {
@@ -66,69 +58,59 @@ fun userInput(): List<Int> {
     return user
 }
 
-fun ballCount(computer: List<Int>, user: List<Int>) :Int {
-
-    for (i in computer.indices) {
-        if (computer.contains(user[i])) {
-            ball++
-        }
-    }
-
-    return ball
-}
-
-fun strikeCount(computer: List<Int>, user: List<Int>) :Int {
+fun game(computer: List<Int>, user: List<Int>):Boolean {
+    var ball = 0
+    var strike = 0
 
     for (i in computer.indices) {
         if (computer[i] == user[i]) {
             strike++
         }
+        if (computer.contains(user[i])) {
+            ball++
+        }
     }
-    return strike
+    println(compareNumber(ball,strike))
+
+    return true
 }
 
-fun compareNumber(): String {
 
-    val computerNumber = generateRandomNumber()
-    val userNumber = userInput()
+fun compareNumber(ball:Int, strike: Int): String {
 
-    while(true) {
-        println(INPUT_NUMBER_MESSAGE)
+    var str = ""
 
-        ballCount (computerNumber,userNumber)
-        strikeCount (computerNumber, userNumber)
-
-        var str = ""
-
-        if (ball == 0 && strike == 0) {
-            str = "낫싱"
-        }
-        if (ball == 0 && strike > 0) {
-            str = "${strike}스트라이크"
-        }
-        if (strike == 0 && ball > 0) {
-            str = "${ball}볼"
-        } else {
-            str = "${ball}볼 ${strike}스트라이크"
-        }
-        if (strike == 3) {
-            "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
-            gameOver()
-        }
-
+    if (ball == 0 && strike == 0) {
+        str = "낫싱"
+    }
+    if (ball == 0 && strike > 0) {
+        str = "${strike}스트라이크"
+    }
+    if (strike == 0 && ball > 0) {
+        str = "${ball}볼"
+    }
+    else {
+        str = "${ball}볼 ${strike}스트라이크"
+    }
+    if (strike == 3) {
+        "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
+        return gameOver(areUDone)
+    }
         return str
-    }
 }
 
-fun gameOver(): Boolean {
-    val userReply = Console.readLine().toInt()
 
-    if((userReply != 1) && (userReply !=2 )){
+fun gameOver(areUDone:Boolean): Boolean {
+    val userReply : Int
+
+    if(!areUDone){
         println(RESTART_MESSAGE)
+        userReply = Console.readLine().toInt()
+        return when (userReply) {
+            1 -> true
+            2 -> false
+            else -> gameOver(areUDone)
+        }
     }
-    return when (userReply) {
-        1 -> true
-        2 -> false
-        else -> gameOver()
-    }
+    return false
 }
