@@ -7,6 +7,10 @@ fun wrongInput(): Nothing {
 }
 
 fun generateAnswer(): String {
-    val digits = Randoms.pickUniqueNumbersInRange(1, 9, 3)
+    val digits = mutableSetOf<Int>()
+    while (digits.size < 3) {
+        val digit = Randoms.pickNumberInRange(1, 9)
+        digits.add(digit)
+    }
     return digits.joinToString(separator = "")
 }
