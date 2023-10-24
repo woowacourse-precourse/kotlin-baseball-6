@@ -1,17 +1,16 @@
 package baseball
 
 import baseball.utils.RandomNumberGenerator
-import baseball.utils.isRangeOf
 import camp.nextstep.edu.missionutils.Console
 
 class Game {
     fun run() {
         println("숫자 야구 게임을 시작합니다.")
-        val computer = RandomNumberGenerator.generate(1, 9, 3)
         while (true) {
+            val computer = RandomNumberGenerator.generate(1, 9, 3)
             startGuessingAnswer(computer)
 
-            if (playNextGame()) {
+            if (!playNextGame()) {
                 break
             }
         }
