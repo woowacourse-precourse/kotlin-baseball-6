@@ -83,8 +83,8 @@ class TargetNumber {
 
 fun getUserNumber(): Int = runCatching {
     readLine().toInt()
-}.getOrElse {
-    throw IllegalArgumentException()
+}.getOrElse { throwable ->
+    throw if (throwable is NumberFormatException) IllegalArgumentException() else throwable
 }
 
 
