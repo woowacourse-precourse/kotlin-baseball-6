@@ -76,3 +76,18 @@ fun isValidInput(input: String): Boolean {//입력받은 값에 대한 유효성
 
     return true
 }
+
+fun checkGuess(guess: String, target: String): Pair<Int, Int> {//추측값과 변수를 비교하여 볼과 스트라이크 개수 계산
+    var strikes = 0
+    var balls = 0
+
+    for (i in guess.indices) {//각 자리 수에 스트라이크와 볼을 체크하는 반복문 설정
+        if (guess[i] == target[i]) {//같은 위치에 같은 숫자가 있으면 스트라이크
+            strikes++
+        } else if (target.contains(guess[i])) {//다른 위치에 같은 숫자가 있으면 볼
+            balls++
+        }
+    }
+
+    return Pair(strikes, balls) // 계산된 스트라이크와 볼 의 개수를 반환
+}
