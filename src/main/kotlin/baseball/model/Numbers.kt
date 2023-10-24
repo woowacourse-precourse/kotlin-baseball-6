@@ -8,10 +8,6 @@ class Numbers {
         this.number = _number
     }
 
-    fun strToIntList (_number: String) {
-        // TODO List 변환 함수 구현,,,
-    }
-
     fun isNumber (number : String) : Boolean {
         if(number.isBlank() || number.isEmpty()) {
             return false
