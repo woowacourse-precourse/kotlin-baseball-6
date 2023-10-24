@@ -31,8 +31,7 @@ class NumberBaseball {
                 }
             }
             return newComputerNumber.joinToString("")
-            //joinTostring을 사용하면 컬렉션의 요소를 문자열로 결합하기 때문에 각각 따로 사용할 떄 보다 관리가 용이하다고 판단
-            //이전에도 문자열을 개별로 관리하였더니 공백이나 예외사항 처리 시 joinTostring을 사용했을 때 관리가 어려웠음.
+            //joinTostring을 사용하면 컬렉션의 요소를 문자열로 결합하기 때문에 각각 따로 사용할 떄 보다 관리가 용이
         }
 
         fun readInputNumber(): String {
