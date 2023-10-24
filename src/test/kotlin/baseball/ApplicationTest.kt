@@ -20,12 +20,12 @@ class ApplicationTest : NsTest() {
     @Test
     fun `게임종료 후 재시작`() {
         assertRandomNumberInRangeTest(
-                {
-                    run("246", "135", "1", "597", "589", "2")
-                    assertThat(output())
-                            .contains("낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료")
-                },
-                1, 3, 5, 5, 8, 9
+            {
+                run("246", "135", "1", "597", "589", "2")
+                assertThat(output())
+                    .contains("낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료")
+            },
+            1, 3, 5, 5, 8, 9
         )
     }
 
@@ -45,16 +45,16 @@ class ApplicationTest : NsTest() {
 
         // then
         assertThat(result1.size)
-                .`as`("3개의 수를 선택했는지 확인")
-                .isEqualTo(3)
+            .`as`("3개의 수를 선택했는지 확인")
+            .isEqualTo(3)
 
         assertThat(result1.distinct().size)
-                .`as`("중복된 수가 없는지 확인")
-                .isEqualTo(3)
+            .`as`("중복된 수가 없는지 확인")
+            .isEqualTo(3)
 
         assertThat(result1.filter { it in 1..9 }.toList().size)
-                .`as`("1~9 사이의 수를 선택했는지 확인")
-                .isEqualTo(3)
+            .`as`("1~9 사이의 수를 선택했는지 확인")
+            .isEqualTo(3)
     }
 
     @Test
@@ -117,23 +117,23 @@ class ApplicationTest : NsTest() {
 
         // when, then
         assertThatCode { validateInputBaseBall(case1) }
-                .`as`("조건에 맞게 입력한 경우")
-                .doesNotThrowAnyException()
+            .`as`("조건에 맞게 입력한 경우")
+            .doesNotThrowAnyException()
 
         assertThatThrownBy { validateInputBaseBall(case2) }
-                .`as`("3개의 수를 입력했는지 확인")
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage(EXCEPTION_SIZE)
+            .`as`("3개의 수를 입력했는지 확인")
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(EXCEPTION_SIZE)
 
         assertThatThrownBy { validateInputBaseBall(case3) }
-                .`as`("중복된 수를 입력했는지 확인")
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage(EXCEPTION_DUPLICATION)
+            .`as`("중복된 수를 입력했는지 확인")
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(EXCEPTION_DUPLICATION)
 
         assertThatThrownBy { validateInputBaseBall(case4) }
-                .`as`("1~9 범위 내의 수를 입력했는지 확인")
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage(EXCEPTION_RANGE)
+            .`as`("1~9 범위 내의 수를 입력했는지 확인")
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(EXCEPTION_RANGE)
     }
 
     @Test
@@ -152,12 +152,12 @@ class ApplicationTest : NsTest() {
 
         // then
         assertThat(output())
-                .contains(
-                        "1볼 1스트라이크",
-                        "낫싱",
-                        "2볼",
-                        "3스트라이크"
-                )
+            .contains(
+                "1볼 1스트라이크",
+                "낫싱",
+                "2볼",
+                "3스트라이크"
+            )
     }
 
     @Test
@@ -169,14 +169,14 @@ class ApplicationTest : NsTest() {
 
         // when, then
         assertThatThrownBy { validateInputExit(case1) }
-                .isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessage(EXCEPTION_EXIT)
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage(EXCEPTION_EXIT)
 
         assertThatCode { validateInputExit(case2) }
-                .doesNotThrowAnyException()
+            .doesNotThrowAnyException()
 
         assertThatCode { validateInputExit(case3) }
-                .doesNotThrowAnyException()
+            .doesNotThrowAnyException()
     }
 
     @Test
