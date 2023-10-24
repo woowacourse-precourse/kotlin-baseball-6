@@ -11,6 +11,12 @@ class User {
             return validator.toNumberList(input)
         }
 
+        fun getRestartInput(): Int{
+            print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val input: String = Console.readLine()
+            return validator.validateRestartNumber(input)
+        }
+
         private fun inputNumberString(): String {
             print("숫자를 입력해주세요 : ")
             val input: String = Console.readLine()
