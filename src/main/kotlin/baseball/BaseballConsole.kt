@@ -32,8 +32,8 @@ class BaseballConsole {
     }
 
     private fun isNotDuplication(num: String): Boolean {
-        for (i in 0 ..< 2) {
-            for (j in i + 1 ..< 3) {
+        for (i in 0..<2) {
+            for (j in i + 1..<3) {
                 if (num[i] == num[j]) return false
             }
         }

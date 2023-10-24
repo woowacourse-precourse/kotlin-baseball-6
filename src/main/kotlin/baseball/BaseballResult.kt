@@ -1,6 +1,5 @@
 package baseball
 
-// TODO sealed class 와 sealed interface 비교
 sealed class BaseballResult {
     data object Nothing : BaseballResult() {
         override fun toString(): String {

@@ -1,12 +1,13 @@
 package baseball
 
 import baseball.BaseballResult.*
+import baseball.BaseballResult.Nothing
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseballEngine {
-    fun generateRandomNumber(): BaseballNum {
-        val numbers = getRandomList()
-        return BaseballNum(numbers[0], numbers[1], numbers[2])
+class BaseballEngine(private val comparator: BaseballComparator) {
+
+    fun generateRandomNumber(): String {
+        return getRandomList().joinToString("")
     }
 
     private fun getRandomList(): List<Int> {
@@ -20,29 +21,12 @@ class BaseballEngine {
         return computer
     }
 
-    fun compare(computer: BaseballNum, user: BaseballNum): BaseballResult {
-        val (c1, c2, c3) = computer
-        val (u1, u2, u3) = user
-        var ball = 0
-        var strike = 0
-
-        when (u1) {
-            c1 -> strike++
-            c2 -> ball++
-            c3 -> ball++
+    fun compare(computer: String, user: String): BaseballResult {
+        if (computer.length != 3 && user.length != 3) {
+            throw IllegalArgumentException()
         }
 
-        when (u2) {
-            c1 -> ball++
-            c2 -> strike++
-            c3 -> ball++
-        }
-
-        when (u3) {
-            c1 -> ball++
-            c2 -> ball++
-            c3 -> strike++
-        }
+        val (strike, ball) = comparator.compare(computer, user)
 
         return if (ball + strike == 0) {
             Nothing

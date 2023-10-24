@@ -8,20 +8,20 @@ class BaseballGame {
         BaseballConsole()
     }
     private val engine: BaseballEngine by lazy {
-        BaseballEngine()
+        BaseballEngine(RotationComparator())
     }
 
     init {
         console.printWelcomeMessage()
     }
 
-    fun start(computerNumber: BaseballNum? = null) {
+    fun start(computerNumber: String? = null) {
         val computer = computerNumber ?: engine.generateRandomNumber()
         val userInput = console.getInput()
-        produceResult(computer, userInput.toBaseballNum())
+        produceResult(computer, userInput)
     }
 
-    private fun produceResult(computer: BaseballNum, userInput: BaseballNum) {
+    private fun produceResult(computer: String, userInput: String) {
         val result = engine.compare(computer, userInput)
         console.printResult(result)
         when (result) {
