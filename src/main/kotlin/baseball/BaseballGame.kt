@@ -8,7 +8,7 @@ fun main() {
     do {
         val computerNum = generateRandomNum()
         try {
-            solveBaseBallGame(convertStringToHashMap(computerNum.joinToString("")))
+            solveBaseBallGame(computerNum)
         } catch (e: java.lang.IllegalArgumentException){
             throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
         }

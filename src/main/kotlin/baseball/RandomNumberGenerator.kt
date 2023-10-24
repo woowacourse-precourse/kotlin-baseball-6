@@ -10,7 +10,6 @@ fun generateRandomNum(): MutableList<Int> {
             computerNum.add(randomNumber)
         }
     }
-
     return computerNum
 }
 

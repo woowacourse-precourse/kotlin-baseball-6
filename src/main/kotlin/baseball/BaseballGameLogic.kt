@@ -3,16 +3,16 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 
-fun solveBaseBallGame(computerNum: HashMap<Int, Int>) {
+fun solveBaseBallGame(computerNum: MutableList<Int>) {
     while (true) {
         val userNum = getUserInput()
-        val userNumHashMap = if (checkCorrectNum(userNum)) {
-            convertStringToHashMap(userNum)
+        val userNumList = if (checkCorrectNum(userNum)) {
+            convertStringToMutableList(userNum)
         } else {
             throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
         }
 
-        var result = compareNum(computerNum, userNumHashMap)
+        var result = compareNum(computerNum, userNumList)
         var resultMessage = calculateBaseballGameResult(result)
         println(resultMessage)
 
@@ -35,14 +35,14 @@ fun checkCorrectNum(num: String): Boolean {
 }
 
 fun compareNum(
-    computerNum: HashMap<Int, Int>,
-    userNum: HashMap<Int, Int>
+    computerNum: MutableList<Int>,
+    userNum: MutableList<Int>
 ): HashMap<String, Int> {
     var resultHashMap: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0, "nothing" to 0)
-    for ((key, value) in userNum) {
-        val hasKey = computerNum.containsKey(key)
-        if (hasKey) {
-            if (computerNum[key] == value) {
+    for (value in userNum) {
+        val indexOfKey = computerNum.indexOf(value)
+        if (indexOfKey!=-1) {
+            if (indexOfKey == userNum.indexOf(value)) {
                 resultHashMap["strike"] = resultHashMap["strike"]!! + 1
             } else {
                 resultHashMap["ball"] = resultHashMap["ball"]!! + 1
