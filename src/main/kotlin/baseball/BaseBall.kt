@@ -7,6 +7,7 @@ enum class GameStatus {
     ONGOING,
     STOP
 }
+
 private const val RANDOM_START = 1
 private const val RANDOM_END = 9
 const val INPUT_NUMBER_COUNT = 3
@@ -41,6 +42,7 @@ class BaseBall() {
         }
         computerList = tempComputerList
     }
+
     private fun printScore(): GameStatus {
         val countScore = countScore(computerList)
         val strike = countScore.first

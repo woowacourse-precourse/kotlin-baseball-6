@@ -1,17 +1,14 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
-
 
 
 fun main() {
     do {
         val baseBall = BaseBall()
         baseBall.startGame()
-    } while(checkRestart())
+    } while (checkRestart())
 }
-
 
 
 fun checkRestart(): Boolean {
