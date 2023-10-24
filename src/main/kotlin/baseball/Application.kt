@@ -36,7 +36,7 @@ class Computer {
     private fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
         var strike = 0
         var ball = 0
-        //var comNum = "123"
+        var comNum = "425"
         for (index in playerNum.indices) {
             if (playerNum[index] == comNum[index]) {
                 strike++
@@ -98,6 +98,9 @@ class Player {
         }
         if (enterNum.length != uniqueDigits.size) {
             throw IllegalArgumentException("중복되지 않은 숫자를 입력해주세요.")
+        }
+        if ('0' in uniqueDigits) {
+            throw IllegalArgumentException("0을 제외한 1~9 사이의 숫자를 입력해주세요.")
         }
     }
 
