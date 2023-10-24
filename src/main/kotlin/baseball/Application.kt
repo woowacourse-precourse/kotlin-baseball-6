@@ -1,27 +1,28 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    val computer = mutableListOf<Int>()
-
-    // computer에 랜덤한 값 입력할 코드
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
-
     println("숫자 야구 게임을 시작합니다.")
     // 무한번 질문을 위한 무한 반복문
     while (true) {
+        val computer = mutableListOf<Int>()
+
+        // computer에 랜덤한 값 입력할 코드
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
+            }
+        }
+
         var strike = 0  // 위치, 숫자 모두 맞음
         var ball = 0    // 위치만 맞음
         var out = 0     // 위치, 숫자 모두 틀림
 
         print("숫자를 입력해주세요 : ")
-        val myAnswer = readlnOrNull()?.map { e -> e.toString().toInt()}?.toIntArray()?.toMutableList()
+        val myAnswer = readLine()?.map { e -> e.toString().toInt()}?.toIntArray()?.toMutableList()
 
         // 3개의 숫자를 입력하지 않은 경우
         if (myAnswer?.size != 3) {
