@@ -22,4 +22,16 @@ class UserInputValidation {
     private fun callInputRageException() {
         throw IllegalArgumentException("1에서 9사이의 숫자가 아닙니다.")
     }
+
+    fun inputUnique(input: String) {
+        val unique = input.toSet()
+
+        if (unique.size != input.length) {
+            callInputUniqueException()
+        }
+    }
+
+    private fun callInputUniqueException() {
+        throw IllegalArgumentException("중복된 숫자는 입력하면 안됩니다.")
+    }
 }
