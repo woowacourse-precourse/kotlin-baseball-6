@@ -9,9 +9,10 @@ fun main() {
 
     println("숫자 야구 게임을 시작합니다.")
 
+
     while(oneOrTwo==1){
+        comAnswer = comNumberCreator()
         print("숫자를 입력해주세요 : ")
-        comAnswer = pickNumberInRange(100,999).toString()
         myAnswer = readLine()!!.toString()
         checkLengthAndNumeric(myAnswer)
 
@@ -29,6 +30,20 @@ fun main() {
         }
     }
 
+}
+
+fun comNumberCreator(): String {
+    var comAnswer: Int
+    val comAnswerList = mutableListOf<String>()
+
+    while(comAnswerList.size < 3){
+        comAnswer = pickNumberInRange(0,9)
+
+        if(!comAnswerList.contains(comAnswer.toString())){
+            comAnswerList.add(comAnswer.toString())
+        }
+    }
+    return comAnswerList.joinToString("")
 }
 
 fun checkLengthAndNumeric(s: String) {
@@ -66,7 +81,6 @@ fun AnswerCheck(myAnswer: String, comAnswer: String): Boolean{
         }
     }
 
-    println(comList)
     if(numOfStrike!=0 && numOfBall!=0){
         println("${numOfBall}볼 ${numOfStrike}스트라이크")
     }else if(numOfStrike!=0 && numOfBall==0){
