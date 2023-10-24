@@ -20,7 +20,7 @@ private fun setGame() {
 private fun playGame() {
     do {
         val userInput = getUserNumber()                         // 수 입력 받기
-        val (strike, ball) = answerCheck(answer, userInput)    // 입력 받은 수 검사
+        val (strike, ball) = checkAnswer(answer, userInput)    // 입력 받은 수 검사
         printResult(strike, ball)                             // 결과 출력
     } while (strike != COUNT)                                // strike수가 COUNT와 같으면 반복문 탈출
     println("${COUNT}개의 숫자를 모두 맞히셨습니다! 게임 종료")

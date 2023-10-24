@@ -2,7 +2,7 @@ package baseball
 
 import constants.COUNT
 
-fun answerCheck(answer: IntArray, userInput: IntArray): Pair<Int, Int> {
+fun checkAnswer(answer: IntArray, userInput: IntArray): Pair<Int, Int> {
     var strike = 0
     var ball = 0
 
