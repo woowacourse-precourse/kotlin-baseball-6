@@ -10,7 +10,7 @@ class BaseBallGameRestarter {
             RESTART_GAME -> ChoiceState.RESTART
             EXIT_GAME -> ChoiceState.EXIT
             else -> {
-                require(true) { ErrorMessage.CHOICE.message }
+                require(false) { ErrorMessage.CHOICE.message }
                 ChoiceState.EXIT
             }
         }

@@ -47,7 +47,7 @@ class NumberComparator {
         val splitNumber = userNumber.split(ExtraText.BLANK.text).toMutableList()
         splitNumber.remove(ExtraText.BLANK.text)
         splitNumber.remove(ExtraText.BLANK.text)
-        if (splitNumber.contains(ExtraText.ZERO.text)) require(true) { ErrorMessage.INPUT_ZERO.message }
+        if (splitNumber.contains(ExtraText.ZERO.text)) require(false) { ErrorMessage.INPUT_ZERO.message }
         return splitNumber
     }
 }
