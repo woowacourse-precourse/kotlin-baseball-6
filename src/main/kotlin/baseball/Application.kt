@@ -9,13 +9,13 @@ class NumberBaseball {
     inner class InputGame {
         fun inputException(userNumber: MutableList<Char>, inputNumber: String) {
             if (inputNumber.length != 3) {
-                throw IllegalArgumentException("입력된 숫자가 3자리가 아닙니다.")
+                IllegalArgumentException("입력된 숫자가 3자리가 아닙니다.")
             }
             if (!inputNumber.matches(Regex("\\d+"))){
-                throw IllegalArgumentException("숫자가 아닌 문자 또는 0이 포함되어있습니다.")
+                 IllegalArgumentException("숫자가 아닌 문자 또는 0이 포함되어있습니다.")
             }
             if (inputNumber.toSet().size != inputNumber.length) {
-                throw IllegalArgumentException("중복된 숫자가 존재합니다.")
+                 IllegalArgumentException("중복된 숫자가 존재합니다.")
             }
             for (index in inputNumber.indices) {
                 userNumber.add(inputNumber[index])
@@ -92,7 +92,7 @@ class NumberBaseball {
             return true
         }
         if(!(inputNumber==1||inputNumber==2))
-            throw IllegalArgumentException("한자리 숫자는 1,2만 입력 가능합니다.")
+            IllegalArgumentException("한자리 숫자는 1,2만 입력 가능합니다.")
         return false
     }
     fun main() {
