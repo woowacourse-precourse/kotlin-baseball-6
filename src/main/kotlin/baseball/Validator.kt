@@ -1,12 +1,14 @@
 package baseball
 
+import net.bytebuddy.implementation.bytecode.collection.ArrayLength
+
 class Validator {
     fun validateString(inputString: String) {
         isNumber(inputString)
-        isLengthThree(inputString)
+        isValidLength(inputString, 3)
     }
 
-    fun toNumberList(inputString: String) : MutableList<Int>{
+    fun toNumberList(inputString: String): MutableList<Int> {
         val numberList = mutableListOf<Int>()
         for (char in inputString) {
             numberList.add(char.code - '0'.code)
@@ -15,17 +17,14 @@ class Validator {
         return numberList
     }
 
-    fun validateRestartNumber(inputString: String): Int{
-        if (inputString.length == 1){
-            isNumber(inputString)
-            val num: Int = inputString.toInt()
-            return if(num == 1 || num == 2){
-                num
-            } else {
-                throw IllegalArgumentException("input must be 1 or 2")
-            }
+    fun validateRestartNumber(inputString: String): Int {
+        isValidLength(inputString, 1)
+        isNumber(inputString)
+        val num: Int = inputString.toInt()
+        return if (num == 1 || num == 2) {
+            num
         } else {
-            throw IllegalArgumentException("input length must be 1")
+            throw IllegalArgumentException("input must be 1 or 2")
         }
     }
 
@@ -34,9 +33,9 @@ class Validator {
         hasZero(inputList)
     }
 
-    private fun isLengthThree(inputString: String) {
-        if (inputString.length != 3) {
-            throw IllegalArgumentException("input's length must be 3, but ${inputString.length}")
+    private fun isValidLength(inputString: String, length: Int) {
+        if (inputString.length != length) {
+            throw IllegalArgumentException("input's length must be ${length}, but ${inputString.length}")
         }
     }
 
