@@ -1,8 +1,6 @@
 package baseball
 
 import baseball.util.GameState.GAME_START_MESSAGE
-import baseball.util.GameState.MATCHING_ALL_MESSAGE
-import baseball.util.GameValue.GAME_COMPLETE_STRIKE
 
 class GameManager : Game() {
 
@@ -17,14 +15,6 @@ class GameManager : Game() {
     private fun gameStart() {
         do {
             resultCheck(Player.inputNumber())
-        } while (isFinish())
-    }
-
-    private fun isFinish(): Boolean {
-        if (strike == GAME_COMPLETE_STRIKE) {
-            println(MATCHING_ALL_MESSAGE)
-            return false
-        }
-        return true
+        } while (!isResult())
     }
 }
