@@ -39,6 +39,18 @@ class ApplicationTest : NsTest() {
             }
         }
     }
+
+    @Test
+    fun `게임은 정답을 가지고 있습니다`() {
+        // given
+        val game = BaseballGame()
+
+        // when
+        val randomNumber = game.generateRandomNumber()
+
+        // then
+        assertThat(randomNumber).hasSize(3)
+    }
     override fun runMain() {
         main()
     }
