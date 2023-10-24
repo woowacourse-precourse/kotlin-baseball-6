@@ -5,30 +5,28 @@ import org.junit.jupiter.api.assertThrows
 fun main() {
 
 
-    //랜덤 정수 생성
+    //랜덤 정수 생성하는 instance
     val numProducer = RandomNumProducer()
+    //결과값 계산하는 instance
     val gameCalculator = GameCalculator()
+
     var answerList : List<Int>
     var inputList : List<Int>
     var gameResult : GameResult
-    var programFinish: Boolean = false
+    var programFinish =  false
 
+    //랜덤 숫자 생성
     answerList = numProducer.makeRandomNum()
 
     //게임 시작
     print("숫자 야구 게임을 시작합니다.\n")
 
     while(!programFinish) {
-//        answerList.forEach { println(it) }
-        //문자열 입력
 
             print("숫자를 입력해주세요 : ")
             val inputNum = readlnOrNull()
 
-            //입력 받지 않았거나 숫자 3자리로 구성 되어 있지 않은 경우  에러 처리
-
             inputList = checkInput(inputNum)
-
 
             //게임 시작
            gameResult = gameCalculator.calculate(answerList, inputList)
@@ -55,7 +53,6 @@ fun main() {
                         else if(restartInput == "2") programFinish = true
                         else throw IllegalArgumentException("1이나 2 중 하나를 입력 해야 합니다.")
 
-
                     }
             }
 
@@ -66,7 +63,7 @@ fun main() {
 //숫자 3자리의 배열로 입력되어 있는지 확인 후 int 배열 return
 fun checkInput(input : String?) : List<Int> {
     val intList : MutableList<Int> = mutableListOf()
-
+    //아무것도 입력되지 않은 경우
     if(input== null) throw IllegalArgumentException("압력 값은 서로 다른 0~9까지의 숫자 3자리로 구성 되어야 합니다.")
 
     //문자열을 문자 배열로 변환
@@ -80,6 +77,7 @@ fun checkInput(input : String?) : List<Int> {
         //숫자가 아닌 문자가 입력된 경우
         val num = it.toIntOrNull()
         if(num == null || num ==0 ) throw IllegalArgumentException("압력 값은 서로 다른 0~9까지의 숫자 3자리로 구성 되어야 합니다.")
+        //숫자 배열에 add
         intList.add(num)
     }
 
