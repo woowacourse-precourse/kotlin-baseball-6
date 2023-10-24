@@ -5,6 +5,9 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+### 추가 ignore ###
+local.properties
+
 ### macOS ###
 .DS_Store
 
