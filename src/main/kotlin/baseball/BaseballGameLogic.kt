@@ -31,7 +31,7 @@ fun getUserInput(): String {
 }
 
 fun checkCorrectNum(num: String): Boolean {
-    return num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3
+    return num.all { it.isDigit() } && num.length == 3 && num.toSet().size == 3 && !num.contains("0")
 }
 
 fun compareNum(
