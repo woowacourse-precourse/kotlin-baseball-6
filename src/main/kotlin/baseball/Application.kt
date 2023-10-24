@@ -8,7 +8,7 @@ fun main() {
     while (true) {
         val game = NumberBaseballGame()
         val result = game.start()
-        if (result == "2") break
+        if (result == NumberBaseballGame.END) break
     }
 }
 
@@ -35,7 +35,7 @@ class NumberBaseballGame {
     private fun inputGameFlowDecision(): String {
         output.printReceiveGameFlowInput()
         return Console.readLine().also {
-            if (it != "1" && it != "2") throw IllegalArgumentException()
+            if (it != RESTART && it != END) throw IllegalArgumentException()
         }
     }
 
@@ -69,6 +69,11 @@ class NumberBaseballGame {
             }
         }
         return ball to strike
+    }
+
+    companion object {
+        const val RESTART = "1"
+        const val END = "2"
     }
 }
 
