@@ -1,6 +1,7 @@
 package baseball
 
 import baseball.utils.Utils
+import camp.nextstep.edu.missionutils.Console
 
 class Baseball {
     fun run(computer: List<Int>) {
@@ -16,7 +17,7 @@ class Baseball {
 
     fun getPlayerNumber() : List<Int> {
         print("숫자를 입력해주세요 : ")
-        val userNumber = readLine()
+        val userNumber = Console.readLine()
         return Utils().checkInput(userNumber!!)
     }
 

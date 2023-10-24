@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
 
@@ -31,7 +32,7 @@ fun generateRandomComputerNumber() : List<Int> {
 
 fun restartOrExit() : Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val inputNumber = readln()
+    val inputNumber = Console.readLine()
     when (inputNumber) {
         "" -> throw NullPointerException("값을 입력하지 않았습니다. 프로그램 종료합니다.")
         "1" -> return false
