@@ -2,7 +2,7 @@ package baseball.controller
 
 import baseball.constant.ChoiceState
 import baseball.domain.BallCountResult
-import baseball.domain.BaseBallGame
+import baseball.service.BaseBallGame
 import baseball.view.PrintOutputView
 import baseball.view.ReadUserInputView
 

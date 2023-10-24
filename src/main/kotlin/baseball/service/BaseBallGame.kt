@@ -1,6 +1,9 @@
-package baseball.domain
+package baseball.service
 
 import baseball.constant.ChoiceState
+import baseball.domain.BallCountResult
+import baseball.domain.BaseBallGameRestarter
+import baseball.domain.NumberComparator
 import baseball.repository.RandomNumberRepository
 import baseball.util.RandomNumberGenerator
 
