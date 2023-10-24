@@ -1,6 +1,6 @@
 package baseball
 
-import baseball.Controller.GameController
+import baseball.controller.GameController
 
 fun main() {
     val game = GameController()
