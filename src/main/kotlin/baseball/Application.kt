@@ -12,7 +12,7 @@ object BaseballGameStatus {
 object BaseballNumberValidity {
     const val VALID_LENGTH = 3
     const val DIGIT_START_CODE = '0'.code
-    const val DIGIT_START = 1
+    const val DIGIT_START = 0
     const val DIGIT_END = 9
 }
 
@@ -43,7 +43,7 @@ private fun letterToInt(letter: Char): Int {
 
 private fun isValidBaseballNumber(digits: List<Int>): Boolean {
     val digitValidity = digits.map { isValidDigit(it) }
-    return (isValidLength(digits)) and (digitValidity.all { it }) and (isEveryLetterUnique(digits))
+    return (isValidLength(digits)) and (digitValidity.all { it }) and (areAllDigitUnique(digits))
 }
 
 private fun isValidLength(digits: List<Int>): Boolean {
@@ -54,25 +54,25 @@ private fun isValidDigit(digit: Int): Boolean {
     return (BaseballNumberValidity.DIGIT_START <= digit) and (digit <= BaseballNumberValidity.DIGIT_END)
 }
 
-private fun isEveryLetterUnique(queryLetterCode: List<Int>): Boolean {
+private fun areAllDigitUnique(queryDigit: List<Int>): Boolean {
     val digitSet = hashSetOf<Int>()
-    return queryLetterCode.all { digitSet.add(it) }
+    return queryDigit.all { digitSet.add(it) }
 }
 
-fun findDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
+fun digitIntersectCount(query: BaseballNumber, answer: BaseballNumber): Int {
     val setQueryDigit = query.toSet()
     val setAnswerDigit = answer.toSet()
     return setAnswerDigit.count { setQueryDigit.contains(it) }
 }
 
-fun findExactDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
+fun digitMatchCount(query: BaseballNumber, answer: BaseballNumber): Int {
     val digitPair = query.zip(answer)
     return digitPair.count { (queryDigit, answerDigit) -> queryDigit == answerDigit }
 }
 
 fun judgeResult(query: BaseballNumber, answer: BaseballNumber): ArrayList<Int> {
-    val strikes = findExactDigitMatch(query, answer)
-    val balls = findDigitMatch(query, answer) - strikes
+    val strikes = digitMatchCount(query, answer)
+    val balls = digitIntersectCount(query, answer) - strikes
     return arrayListOf(strikes, balls)
 }
 
@@ -109,6 +109,7 @@ fun gameTurn(answer: BaseballNumber): Int {
 fun gameplay() {
     println(BaseballTurnStatus.GAME_START)
     val answer = generateRandomBaseballNumber()
+    println(answer)
     var strikes = 0
     while (strikes != 3) {
         strikes = gameTurn(answer)
