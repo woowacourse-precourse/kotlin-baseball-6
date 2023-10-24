@@ -39,14 +39,13 @@ fun solveBaseBallGame(computerNum:HashMap<Int, Int>){
             print(Dialogues.gameOverMessage)
             break
         }
-
     }
 }
 
 fun changeToHashMap(num: MutableList<Int>):HashMap<Int, Int>{
     var hashMap = HashMap<Int, Int>()
-    num.forEachIndexed{ index, char ->
-        hashMap[char] = index
+    num.forEachIndexed{ index, num ->
+        hashMap[num] = index
     }
     return hashMap
 }
