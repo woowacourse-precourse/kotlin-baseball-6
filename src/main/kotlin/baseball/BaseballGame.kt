@@ -3,7 +3,7 @@ package baseball
 const val START_GAME = 1
 const val END_GAME = 2
 const val PLAYING = 3
-const val GAME_OVER = 4 // FIXME 네이밍 변경
+const val GAME_OVER = 4
 
 const val START_NUMBER = 1
 const val END_NUMBER = 9
@@ -17,8 +17,8 @@ class BaseballGame(
     private var playState = GAME_OVER
 
     fun start() {
-        println("숫자 야구 게임을 시작합니다.")
         gameState = START_GAME
+        println("숫자 야구 게임을 시작합니다.")
 
         while (gameState == START_GAME) {
             play()
@@ -33,7 +33,7 @@ class BaseballGame(
         playState = PLAYING
         computer.generateNumbers()
 
-        do {
+        while (playState == PLAYING) {
             print("숫자를 입력해주세요 : ")
             val userNumbers = user.requestInputNumbers()
             val ballCount = computer.calculateBallCount(userNumbers)
@@ -41,11 +41,8 @@ class BaseballGame(
 
             showPlayMessage(ballCount, strikeCount)
 
-            // FIXME 인텐트 제거
-            if (strikeCount == NUMBER_COUNT) {
-                playState = GAME_OVER
-            }
-        } while (playState == PLAYING)
+            if (strikeCount == NUMBER_COUNT) playState = GAME_OVER
+        }
     }
 
     private fun showPlayMessage(ballCount: Int, strikeCount: Int) {
