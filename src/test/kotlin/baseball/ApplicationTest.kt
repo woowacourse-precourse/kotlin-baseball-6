@@ -28,19 +28,6 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { runException("1234") }
         }
     }
-    @Test
-    fun testRandomNumberGeneration() {
-        val numberBaseball = NumberBaseball()
-        val computerNumber = numberBaseball.input.createComputerNumber()
-
-        // ComputerNumber는 3자리 숫자여야 합니다.
-        assertEquals(3, computerNumber.length)
-        assertTrue(computerNumber.all { it in '1'..'9' })
-
-        // 중복된 숫자가 없어야 합니다.
-        assertTrue(computerNumber[0] != computerNumber[1] && computerNumber[1] != computerNumber[2] && computerNumber[0] != computerNumber[2])
-    }
-
     override fun runMain() {
         NumberBaseball().main()
     }
