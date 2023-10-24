@@ -41,23 +41,13 @@ fun gameStart() {
 fun input(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val userNumber = Console.readLine().trim()
-    val numberList = mutableListOf<Int>()
 
     require(userNumber.matches(Regex("[1-9]{3}"))) {
         "1에서 9 사이의 3개의 숫자를 입력하세요."
     }
 
-    addNumberToList(userNumber, numberList)
-
-    return numberList
-}
-
-/**
- * 입력 받은 숫자를 List로 add 하는 함수
- */
-fun addNumberToList(number: String, numberList: MutableList<Int>) {
-    repeat(SIZE) { index ->
-        numberList.add(number[index].digitToInt())
+    return userNumber.map {
+        it.toString().toInt()
     }
 }
 
@@ -99,7 +89,7 @@ fun comparisonNumber(myNumberList: List<Int>, computerNumberList: List<Int>): Bo
  */
 fun printResult(ball: Int, strike: Int): Boolean {
     val message = when {
-        strike == 3 -> "3스트라이크\n3개의 숫자를 모두 맞혔습니다! 게임 종료"
+        strike == SIZE -> "3스트라이크\n${SIZE}개의 숫자를 모두 맞혔습니다! 게임 종료"
         strike == 0 && ball == 0 -> "낫싱"
         strike == 0 -> "${ball}볼"
         ball == 0 -> "${strike}스트라이크"
