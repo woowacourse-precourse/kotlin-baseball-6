@@ -27,7 +27,7 @@ class GameController(private val model: GameRulesManager, private val view: Game
                 val result = model.checkUserGuess(userInput)
                 view.showResult(result)
 
-                if (result.contains("3스트라이크")) {
+                if (result.contains("게임 종료")) {
                     val restart = Console.readLine()
                     isRoundEnd = true
                     isGameEnd = restart != "1"
