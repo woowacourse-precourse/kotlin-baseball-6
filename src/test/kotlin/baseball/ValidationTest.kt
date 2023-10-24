@@ -2,7 +2,7 @@ package baseball
 
 import baseball.model.validation.DuplicateNumberValidation
 import baseball.model.validation.InvalidLengthValidation
-import baseball.model.validation.NumberValidation
+import baseball.model.validation.PositiveNumberValidation
 import baseball.model.validation.OutOfRangeNumberValidation
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -15,7 +15,7 @@ class ValidationTest {
     @ValueSource(strings = ["-21", "마라탕", "0"])
     fun `입력 값이 양수인지`(input: String) {
         assertThrows<IllegalArgumentException> {
-            NumberValidation().check(input)
+            PositiveNumberValidation().check(input)
         }
     }
 

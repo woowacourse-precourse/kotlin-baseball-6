@@ -3,7 +3,7 @@ package baseball.model.validation
 typealias Predicate = (String) -> Boolean
 
 internal enum class InputError(val message: String) {
-    NotNumber("숫자가 아닌 값을 입력했습니다."),
+    NotPositiveNumber("양의 정수만 입력 가능합니다."),
     DuplicateNumber("똑같은 숫자는 입력할 수 없습니다."),
     InvalidLength("3개의 숫자만 입력해주세요."),
     OutOfRangeNumber("1~9까지의 숫자만 입력 가능합니다.")
@@ -46,13 +46,14 @@ internal class InvalidLengthValidation : BaseValidation() {
     override val error: InputError = InputError.InvalidLength
 }
 
-internal class NumberValidation : BaseValidation() {
+internal class PositiveNumberValidation : BaseValidation() {
 
-    override val predicate: Predicate = { s -> s.isInt() }
-    override val error: InputError = InputError.NotNumber
+    override val predicate: Predicate = { s -> s.isPositiveInt() }
+    override val error: InputError = InputError.NotPositiveNumber
 
-    private fun String.isInt(): Boolean =
-        runCatching { this.toInt() }.isSuccess
+    private fun String.isPositiveInt(): Boolean =
+        runCatching { this.toInt() > 0 }
+            .getOrDefault(false)
 }
 
 internal class OutOfRangeNumberValidation : BaseValidation() {
