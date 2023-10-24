@@ -6,8 +6,11 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     startGameMessage()
     val computerNumber = generationNumber()
-    val userNumber = getUserNumber()
-    gameResults(computerNumber, userNumber)
+    do {
+        val userNumber = getUserNumber()
+        val isEndGame = gameResults(computerNumber, userNumber)
+    } while (!isEndGame)
+
 }
 
 fun generationNumber(): String {
@@ -40,7 +43,7 @@ fun validateValue(userNumber: String) {
     }
 }
 
-fun gameResults(computer: String, user: String) {
+fun gameResults(computer: String, user: String): Boolean {
     var ball = 0
     var strike = 0
 
@@ -54,14 +57,15 @@ fun gameResults(computer: String, user: String) {
         }
     }
 
-    if(ball == 0 && strike == 0){
+    if (ball == 0 && strike == 0) {
         print("낫싱")
     }
-    if(ball != 0){
+    if (ball != 0) {
         print("${ball}볼 ")
     }
-    if(strike != 0){
+    if (strike != 0) {
         print("${strike}스트라이크")
     }
     println()
+    return strike == 3
 }
