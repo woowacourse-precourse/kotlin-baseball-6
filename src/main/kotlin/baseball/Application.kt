@@ -16,7 +16,7 @@ fun startGame() {
     var stopFlag = 1
     var numberOfComputer = getNumberFromComputer()
 
-    do {
+    while (stopFlag == 1) {
         val numberOfPlayer = getNumberFromPlayer()
         val gameResult = compareNumbers(numberOfComputer, numberOfPlayer)
 
@@ -31,7 +31,7 @@ fun startGame() {
                 numberOfComputer = getNumberFromComputer()
             }
         }
-    } while (stopFlag == 1)
+    }
 
     Console.close()
 }
