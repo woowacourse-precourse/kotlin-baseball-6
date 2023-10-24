@@ -54,4 +54,13 @@ class GameRulesManager {
             }
         }
     }
+
+    //게임 재시작
+    fun restartGame(input: String): Boolean {
+        return when (input) {
+            "1" -> false
+            "2" -> true
+            else -> true
+        }
+    }
 }

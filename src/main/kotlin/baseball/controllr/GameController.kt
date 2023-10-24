@@ -3,6 +3,7 @@ package baseball.controllr
 import baseball.model.GameRulesManager
 import baseball.view.GameView
 import camp.nextstep.edu.missionutils.Console
+
 /*
 김영현
 GameController는 게임의 진행을 관리하며, 사용자 입력과 모델 간의 상호작용을 중계합니다.
@@ -28,13 +29,12 @@ class GameController(private val model: GameRulesManager, private val view: Game
                 view.showResult(result)
 
                 if (result.contains("게임 종료")) {
-                    val restart = Console.readLine()
                     isRoundEnd = true
-                    isGameEnd = restart != "1"
+                    var restart = view.restartInputLine()
+                    isGameEnd = model.restartGame(restart)
                 }
             }
         }
         view.showEndGameMessage()
     }
-
 }

@@ -32,6 +32,16 @@ class GameView {
         println(result)
     }
 
+    //게임 재시작
+    fun restartInputLine(): String{
+        var restart = Console.readLine()
+        while (restart != "1" && restart != "2") {
+            println("잘못된 값 다시입력")
+            restart = Console.readLine()
+        }
+        return restart
+    }
+
     //게임종료
     fun showEndGameMessage() {
         println("게임이 종료되었습니다.")
