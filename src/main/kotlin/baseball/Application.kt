@@ -14,7 +14,17 @@ const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면
 
 
 fun main() {
-    TODO("프로그램 구현")
+    var computer: MutableList<Int> = mutableListOf()
+    var userNumber: List<Int> = listOf()
+    var gameStart: Boolean = true
+    var gameRestart: Boolean = true
+    println(START_MESSAGE)
+
+    while(gameStart or gameRestart){
+
+        gameStart = game(computer, userNumber)
+        gameRestart = gameOver()
+    }
 }
 
 fun generateRandomNumber(): MutableList<Int> {
@@ -86,11 +96,15 @@ fun compareNumber(game: List<Int>): String {
     return str
 }
 
-fun gameOver():Boolean {
-    println(RESTART_MESSAGE)
-    return when (Console.readLine().toInt()) {
+fun gameOver(): Boolean {
+    val userReply = Console.readLine().toInt()
+
+    if((userReply != 1) && (userReply !=2 )){
+        println(RESTART_MESSAGE)
+    }
+    return when (userReply) {
         1 -> true
         2 -> false
-        else -> throw IllegalArgumentException("1과 2 중 선택해주세요")
+        else -> gameOver()
     }
 }
