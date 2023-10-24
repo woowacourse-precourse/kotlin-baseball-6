@@ -13,16 +13,14 @@ class Baseball {
     }
 
     fun getResultMessage () : String {
-        var message = ""
         if(isZero(strikes) && isZero(balls)) {
-            message += "낫싱"
+            return "낫싱"
         } else if (isZero(strikes)) {
-            message += "${balls}볼"
+            return "${balls}볼"
         } else if (isZero(balls)) {
-            message += "${strikes}스트라이크"
+            return "${strikes}스트라이크"
         } else {
-            message += "${balls}볼 ${strikes}스트라이크 "
+            return "${balls}볼 ${strikes}스트라이크 "
         }
-        return message
     }
 }
