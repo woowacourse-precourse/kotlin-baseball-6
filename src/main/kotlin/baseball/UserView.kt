@@ -1,21 +1,16 @@
 package baseball
 
-import baseball.model.UserInput
-import camp.nextstep.edu.missionutils.Console
-
 fun gameStartPrompt() {
     println("숫자 야구 게임을 시작합니다.")
 }
 
 /** [2&4]. 0) 입력을 위한 안내 문구 출력 (View) */
-fun printInputPrompt(digit: Int): String {
+fun printInputPrompt(digit: Int) {
     if (digit == BASEBALL_DIGITS) {
         print("숫자를 입력해주세요 : ")
     } else if (digit == MENU_DIGITS) {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
-
-    return Console.readLine() ?: ""
 }
 
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 (View) */

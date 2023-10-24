@@ -7,7 +7,9 @@ import camp.nextstep.edu.missionutils.Randoms
 class Answer {
     private var _number: IntArray = intArrayOf()
 
-    init { newGenerator() }
+    init {
+        newGenerator()
+    }
 
     val number: IntArray get() = _number
 
@@ -27,6 +29,6 @@ fun answerGenerator(): IntArray {
             computer.add(randomNumber)
         }
     }
+
     return computer.toIntArray()
 }
-

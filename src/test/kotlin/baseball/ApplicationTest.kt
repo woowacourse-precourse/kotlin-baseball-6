@@ -1,17 +1,13 @@
 package baseball
 
-import baseball.model.Answer
 import baseball.model.BaseballInput
-import baseball.model.MenuInput
 import baseball.model.UserInput
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
-import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import javax.tools.Tool
 
 class ApplicationTest : NsTest() {
 
@@ -66,10 +62,7 @@ class ApplicationTest : NsTest() {
 
     fun Tool(baseballInput: BaseballInput, data: String) {
         println("오류 체크 : $data")
-        baseballInput.setData(data)
-        baseballInput.validate(BASEBALL_DIGITS, BASEBALL_RANGE)
-        baseballInput.setArray() // inputDataArray 초기화
-        baseballInput.checkDuplicate(BASEBALL_DIGITS)
+        baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
     }
 
     @Test
@@ -83,8 +76,7 @@ class ApplicationTest : NsTest() {
 
         TestExceptionData.forEach { data ->
             assertThrows<IllegalArgumentException> {
-                userInput.setData(data)
-                userInput.validate(MENU_DIGITS, MENU_RANGE)
+                userInput.setDataWithValidation(data, MENU_DIGITS, MENU_RANGE)
             }
         }
     }
