@@ -1,42 +1,34 @@
 package baseball.domain
 
+import baseball.repository.RandomNumberRepository
+
 class BaseBallGame {
-    private var randomNumber: MutableList<Int> = GenerateRandomNumber().generate()
-    private var gameState: GameResult = GameResult.Lose
-    private var choiceState: ChoiceState = ChoiceState.Start
+
+    private val randomNumberRepository = RandomNumberRepository()
 
     init {
-        println("숫자 야구 게임을 시작합니다.")
+        initRandomNumber()
     }
 
-    fun playGame(userNumber: Int, compareNumbers: CompareNumbers): Map<BallCount, Int> {
-        val gameResult = compareNumbers.compareEachNumbers(randomNumber, userNumber)
-        setGameResult(gameResult)
-        return compareNumbers.compareEachNumbers(randomNumber, userNumber)
+    fun playGame(userNumber: String): BallCountResult {
+        val numberComparator = NumberComparator()
+        return numberComparator.compareEachNumbers(userNumber, randomNumberRepository.loadRandomNumber())
     }
 
-    private fun setGameResult(gameResult: Map<BallCount, Int>) {
-        gameState = if (gameResult[BallCount.Strike] == 3) {
-            GameResult.Win
-        } else {
-            GameResult.Lose
-        }
+    fun restartChoice(userChoice: String): ChoiceState {
+        val gameRestarter = BaseBallGameRestarter()
+        return gameRestarter.checkRestartChoice(userChoice)
     }
 
     fun restartGame() {
-        randomNumber = GenerateRandomNumber().generate()
-        gameState = GameResult.Lose
-        choiceState = ChoiceState.Restart
+        initRandomNumber()
     }
 
-    fun exitGame() {
-        choiceState = ChoiceState.Exit
+    private fun initRandomNumber() {
+        randomNumberRepository.saveRandomNumber(RandomNumberGenerator().generate().reduce { i, j ->
+            i * 10 + j
+        })
     }
 
-    fun getGameState() = choiceState
 
-
-    fun isPlaying(): GameResult {
-        return gameState
-    }
 }

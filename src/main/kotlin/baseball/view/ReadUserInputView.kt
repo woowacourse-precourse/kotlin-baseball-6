@@ -50,9 +50,9 @@ class ReadUserInputView {
     }
 
     companion object {
-        const val RESTART_GAME = 1
-        const val EXIT_GAME = 2
-        const val MIN_VALUE = 100
-        const val MAX_VALUE = 999
+        private const val RESTART_GAME = 1
+        private const val EXIT_GAME = 2
+        private const val MIN_VALUE = 100
+        private const val MAX_VALUE = 999
     }
 }

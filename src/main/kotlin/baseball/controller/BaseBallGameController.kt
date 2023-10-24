@@ -1,35 +1,36 @@
 package baseball.controller
 
-import baseball.domain.*
-import baseball.view.PrintResultView
-import baseball.view.ReadNumberView
-import baseball.view.ReadUserRestartChoiceView
+import baseball.domain.BallCountResult
+import baseball.domain.BaseBallGame
+import baseball.domain.ChoiceState
+import baseball.view.PrintOutputView
+import baseball.view.ReadUserInputView
 
 class BaseBallGameController(
-    private val inputNumberView: ReadNumberView,
-    private val inputChoiceView: ReadUserRestartChoiceView,
-    private val resultView: PrintResultView,
-    private val compareNumbers: CompareNumbers,
-    private val numberValidator: ValidateUserInput
+    private val inputNumberView: ReadUserInputView,
+    private val resultView: PrintOutputView
 ) {
     fun play() {
         val baseBallGame = BaseBallGame()
-        while (baseBallGame.getGameState() != ChoiceState.Exit) {
-            while (baseBallGame.isPlaying() == GameResult.Lose) {
-                val userNumberInput = inputNumberView.readUserNumberInput()
-                val userNumber = numberValidator.validateNumber(userNumberInput)
-                val gameResult = baseBallGame.playGame(userNumber, compareNumbers)
-                resultView.printGameResult(gameResult)
-
-            }
-            val restartStateInput = inputChoiceView.readUserRestartInput()
-            val restartState = numberValidator.validateRestart(restartStateInput)
-            if (restartState == ChoiceState.Restart) {
-                baseBallGame.restartGame()
-            } else {
-                baseBallGame.exitGame()
-            }
+        resultView.printStartGame()
+        while (true) {
+            if (playGame(baseBallGame) == ChoiceState.EXIT) break
+            baseBallGame.restartGame()
         }
+    }
+
+    private fun playGame(baseBallGame: BaseBallGame): ChoiceState {
+        var gameResult = BallCountResult()
+        while (gameResult.countStrike() != 3) {
+            val userInputNumbers = inputNumberView.readUserNumberInput()
+            gameResult = baseBallGame.playGame(userInputNumbers)
+            resultView.printGameResult(gameResult)
+
+        }
+        val restartStateInput = inputNumberView.readUserRestartInput()
+        return baseBallGame.restartChoice(restartStateInput)
+
+
     }
 
 }

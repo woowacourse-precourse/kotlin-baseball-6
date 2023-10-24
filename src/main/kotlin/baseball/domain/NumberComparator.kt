@@ -2,12 +2,13 @@ package baseball.domain
 
 class NumberComparator {
 
-    private lateinit var randomNumbers: MutableList<Int>
-    private lateinit var userNumbers: MutableList<Int>
+    private val randomNumbers = mutableListOf<Int>()
+    private val userNumbers = mutableListOf<Int>()
     private val ballCountResult: BallCountResult = BallCountResult()
 
-    fun compareEachNumbers(userInputtedNumber: String): BallCountResult {
+    fun compareEachNumbers(userInputtedNumber: String, randomNumber: RandomNumber): BallCountResult {
         convertUserNumber(userInputtedNumber)
+        convertRandomNumber(randomNumber.loadNumber())
         userNumbers.forEachIndexed { index, number ->
             if (randomNumbers.contains(number)) {
                 comparePosition(number, index)
@@ -25,13 +26,25 @@ class NumberComparator {
     }
 
     private fun convertUserNumber(userNumber: String) {
-        val splitNumber = userNumber.split("").toMutableList()
-        splitNumber.remove("")
-        splitNumber.remove("")
-        if (splitNumber.contains("0")) require(true) { "0 입력 오류!" }
+        val splitNumber = convertNumber(userNumber)
 
         splitNumber.forEach {
             userNumbers.add(it.toInt())
         }
+    }
+
+    private fun convertRandomNumber(randomNumber: Int) {
+        val splitNumber = convertNumber(randomNumber.toString())
+        splitNumber.forEach {
+            randomNumbers.add(it.toInt())
+        }
+    }
+
+    private fun convertNumber(userNumber: String): MutableList<String> {
+        val splitNumber = userNumber.split("").toMutableList()
+        splitNumber.remove("")
+        splitNumber.remove("")
+        if (splitNumber.contains("0")) require(true) { "0 입력 오류!" }
+        return splitNumber
     }
 }
