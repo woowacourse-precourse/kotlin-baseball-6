@@ -12,6 +12,7 @@ fun main() {
     while(oneOrTwo==1){
         print("숫자를 입력해주세요 : ")
         comAnswer = pickNumberInRange(100,999).toString()
+        myAnswer = readLine()!!.toString()
     }
 
 }
