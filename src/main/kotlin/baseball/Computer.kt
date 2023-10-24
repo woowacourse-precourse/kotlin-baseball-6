@@ -26,9 +26,8 @@ class Computer {
         this.createAnswer()
     }
 
-    fun judgeNumberBall(str: String): String {
+    fun judgeNumberBall(numberBall: MutableList<Int>): String {
         var strike = 0; var ball = 0
-        val numberBall = mapToIntNumberList(str)
 
         for (i in 0..2) {
             when(numberBall[i]){
@@ -59,14 +58,6 @@ class Computer {
         else{
             return false
         }
-    }
-
-    private fun mapToIntNumberList(numberBall: String): MutableList<Int> {
-        var numberList = mutableListOf<Int>()
-        numberBall.forEach {
-            numberList.add(it.code - 48)
-        }
-        return numberList
     }
 
 }

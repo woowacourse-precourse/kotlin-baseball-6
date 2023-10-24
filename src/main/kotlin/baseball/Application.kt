@@ -8,9 +8,10 @@ fun main() {
 
     while (true) {
         print("숫자를 입력해주세요: ")
-        var numberBall = Console.readLine()
+        var str = Console.readLine()
 
-        if (isAvailableInput(numberBall)) {
+        if (isAvailableInput(str)) {
+            val numberBall = mapStringToNumberBall(str)
             val result = computer.judgeNumberBall(numberBall)
             println(result)
 
@@ -33,11 +34,19 @@ fun main() {
     }
 }
 
-fun isAvailableInput(numberBall: String?): Boolean {
-    try {
-        if (numberBall != null && numberBall.length == 3) {
+fun mapStringToNumberBall(str: String): MutableList<Int> {
+    var numberList = mutableListOf<Int>()
+    str.forEach {
+        numberList.add(it.code - 48)
+    }
+    return numberList
+}
 
-            if (isInProperRange(numberBall) && isAllDifferentNumber(numberBall)) {
+fun isAvailableInput(input: String?): Boolean {
+    try {
+        if (input != null && input.length == 3) {
+
+            if (isInProperRange(input) && isAllDifferentNumber(input)) {
                 return true
             }
             throw Error()
@@ -50,9 +59,9 @@ fun isAvailableInput(numberBall: String?): Boolean {
 
 }
 
-fun isInProperRange(numberBall: String): Boolean {
+fun isInProperRange(str: String): Boolean {
     for (i in 0..2) {
-        var number = numberBall[i].code - 48
+        var number = str[i].code - 48
         if (number !in 1..9) {
             return false
         }
@@ -60,8 +69,8 @@ fun isInProperRange(numberBall: String): Boolean {
     return true
 }
 
-fun isAllDifferentNumber(numberBall: String): Boolean {
-    if (!numberBall.substring(1).contains(numberBall[0]) && !numberBall.substring(0, 1).contains(numberBall[2])) {
+fun isAllDifferentNumber(str: String): Boolean {
+    if (!str.substring(1).contains(str[0]) && !str.substring(0, 1).contains(str[2])) {
         return true
     } else {
         return false
