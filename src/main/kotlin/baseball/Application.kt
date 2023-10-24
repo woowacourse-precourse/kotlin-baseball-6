@@ -51,7 +51,15 @@ fun main() {
         println(compareNumbers(num.toInt(), number));
         if(num.toInt().equals(number)){
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            break
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val restart = Console.readLine()
+            if (restart != null) {
+                if(restart.toInt() == 2){
+                    break
+                }else{
+                    number = generateRandomNumber()
+                }
+            }
         }
     }
 }
