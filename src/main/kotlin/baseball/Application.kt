@@ -39,9 +39,9 @@ class BaseballGame(
 
             inputMenu(menuInput)
             if (menuInput.selectedMenu == 1) {
-                answer.newGenerator() // [4]. 4) 메뉴 입력에 따른 정답 재생성
+                answer.newGenerator() // [4]. 4) 메뉴 입력에 따른 정답 재생성 - 1인 경우
             }
-            isStay = (menuInput.selectedMenu == 1)
+            isStay = (menuInput.selectedMenu == 1) // 메뉴 입력값이 2라면 종료
         }
     }
 }

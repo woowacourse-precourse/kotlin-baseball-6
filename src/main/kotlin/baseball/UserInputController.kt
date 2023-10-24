@@ -28,11 +28,11 @@ fun inputBaseball(baseballInput: BaseballInput) {
 
 /** [3]. 1) Ball, Strike 검증 함수 호출 (Controller) */
 fun calculate(baseballInput: BaseballInput, answer: Answer): Boolean {
-    val calculateResult = baseballInput.calculateBallAndStrike(answer.number)
+    val calculateResult = baseballInput.calculateBallAndStrike(answer.number) // Controller -> Model
     val (ball, strike) = calculateResult
         .split(", ")
         .map { it.toInt() }
-    calculateResultPrint(ball, strike)
+    calculateResultPrint(ball, strike) // Controller -> View
 
     val isAllStrike = calculateResult == "0, $BASEBALL_DIGITS"
     return isAllStrike
