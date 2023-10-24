@@ -1,3 +1,5 @@
+@file:Suppress("ThrowableNotThrown")
+
 package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
@@ -32,19 +34,18 @@ fun checkNums(comNums: List<Int>, userNums: List<Int>): Boolean {
     return false;
 }
 
+@Throws(IllegalArgumentException::class)
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
     var playBall = true // 게임 시작
-    var computerInput = mutableListOf<Int>() // 컴퓨터 입력 변수
 
-    val nums = mutableListOf<Int>() // 무작위 숫자 저장할 변수 선언
-    while (nums.size < 3) {
+    val computerInput = mutableListOf<Int>() // 컴퓨터 입력 변수
+    while (computerInput.size < 3) {
         // 숫자 무작위로 1부터 9까지 선택
         val randomNum = Randoms.pickNumberInRange(0, 9) + 1
-        if (!nums.contains(randomNum))  // 숫자가 nums 리스트에 없다면
-            nums.add(randomNum) // 해당 숫자를 nums 리스트에 추가 -> 중복 X
+        if (!computerInput.contains(randomNum))  // 숫자가 nums 리스트에 없다면
+            computerInput.add(randomNum) // 해당 숫자를 nums 리스트에 추가 -> 중복 X
     }
-    computerInput = nums; // 저장된 nums 리스트를 computerInput 리스트에 저장
 
     while (playBall) {
         // 사용자 입력 부분
@@ -55,18 +56,20 @@ fun main() {
             // 사용자가 입력한 문자열이 3인지 확인
             // toIntOrNull()을 이용해서
             // 입력한 문자열이 정수 변환이 되는지와 숫자로만 이루어져 있는지 확인
-            if (userInput.length == 3 && userInput.toIntOrNull() != null)
+            if (userInput.length == 3 && userInput.toIntOrNull() != null) {
                 Input = checkNums(computerInput, userInput.map { it.toString().toInt() })
-            else {
-                throw IllegalArgumentException()
-                break;
-            }
+            } else IllegalArgumentException()
+//            {
+//                println("3자리 숫자를 입력해야합니다. 다시 시도하세요.")
+//                continue
+//            }
         }
         // 프로그램 종료 부분
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        when (Console.readLine()) {
-            "1" -> playBall = true // 1 입력하면 게임 새로 시작
-            "2" -> playBall = false // 2 입력하면 게임 종료
-        }
+        if (Console.readLine() == "1") {
+            playBall = true // 1 입력하면 게임 새로 시작
+        } else if (Console.readLine() == "2") {
+            playBall = false // 2 입력하면 게임 종료
+        } else IllegalArgumentException()
     }
 }
