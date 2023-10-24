@@ -36,7 +36,7 @@ class Computer {
     private fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
         var strike = 0
         var ball = 0
-        var comNum = "425"
+        //var comNum = "425"
         for (index in playerNum.indices) {
             if (playerNum[index] == comNum[index]) {
                 strike++
