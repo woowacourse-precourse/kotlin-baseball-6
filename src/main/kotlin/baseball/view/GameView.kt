@@ -2,6 +2,7 @@ package baseball.view
 
 import camp.nextstep.edu.missionutils.Console
 
+
 /*
 김영현-Agilecatch
 GameView 클래스는 게임의 화면 표시와 관련된 역할을 합니다.
@@ -16,19 +17,19 @@ class GameView {
 
     //숫자입력
     fun getUserInput(): List<Int> {
-        println("숫자를 입력해주세요: ")
+        println("숫자를 입력해주세요 : ")
         val userInput = Console.readLine()
 
         // 사용자 입력 값이 null, 정수가 아닐 경우 예외처리
-        if (userInput == null || !userInput.all { it.isDigit() }) {
+        while (userInput == null || !userInput.all { it.isDigit() }) {
             throw IllegalArgumentException("올바른 입력이 아닙니다.")
         }
         // 중복되지 않은 3자리 값이 아닐 경우 예외처리
-        if (userInput.toSet().size != 3) {
+        while (userInput.toSet().size != 3) {
             throw IllegalArgumentException("올바른 입력이 아닙니다.")
         }
 
-        return userInput.map { it.toString().toInt() }
+        return userInput.chunked(1).map { it.toInt() }
     }
 
     //결과호출
