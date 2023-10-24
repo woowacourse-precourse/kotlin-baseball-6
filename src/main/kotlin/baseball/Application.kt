@@ -12,7 +12,7 @@ fun main() {
 fun startBaseballGame() {
     val computer: List<Int> = randomComputer()
     var me: List<Int>
-    var wrong: Boolean = true
+    var wrong = true
 
     while (wrong) {
         me = guessComputer()
@@ -95,8 +95,8 @@ fun checkGuess(m: String) {
 
 // 3) '컴퓨터의 숫자'와 '나의 숫자' 비교
 fun diffComputerMe(computer: List<Int>, me: List<Int>): Boolean {
-    var strike: Int = 0
-    var ball: Int = 0
+    var strike = 0
+    var ball = 0
 
     for (i in me.indices) {
         if (me[i] == computer[i]) {
