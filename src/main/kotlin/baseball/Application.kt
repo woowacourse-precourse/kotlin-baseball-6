@@ -70,13 +70,17 @@ fun makeRandomNumber(): MutableList<Int> {
 }
 
 fun runBaseBallGame() {
-//    숫자 랜덤 생성
-    val baseballNumbers = makeRandomNumber()
-//    유저 입력 받는 부분
     do {
-        val userNumber = userInput()
-        val continueGame = answerUserQuestion(baseballNumbers, userNumber)
-    } while (continueGame)
+//    숫자 랜덤 생성
+        val baseballNumbers = makeRandomNumber()
+//    유저 입력 받는 부분
+        do {
+            val userNumber = userInput()
+            val continueGame = answerUserQuestion(baseballNumbers, userNumber)
+        } while (continueGame)
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val isContinue = readln().toInt()
+    } while (isContinue != 2)
 }
 
 
