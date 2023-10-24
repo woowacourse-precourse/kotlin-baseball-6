@@ -1,27 +1,32 @@
 package baseball
 
-import baseball.utils.Comment.ENTER_NUMBER_COMMENT
 import baseball.domain.BaseballMatch
 import baseball.domain.Computer
-import baseball.domain.User
 import baseball.domain.User.userChoiceValidation
 import baseball.domain.User.userNumberValidation
 import baseball.model.GameState
 import baseball.model.MatchResult
+import baseball.utils.Comment
+import baseball.utils.Comment.ENTER_NUMBER_COMMENT
 import camp.nextstep.edu.missionutils.Console
 
 object PlayGame {
+
+    init {
+        println(Comment.STARTING_COMMENT)
+    }
 
     fun playGame() {
         val baseBallMatch = BaseballMatch(computer = Computer.generateComputerNumbers())
 
         while (true) {
             val gameState = round(baseBallMatch)
-            when(gameState) {
+            when (gameState) {
                 GameState.RESTART -> {
                     playGame()
                     return
                 }
+
                 GameState.EXIT -> return
                 GameState.CONTINUE -> continue
             }
@@ -39,7 +44,7 @@ object PlayGame {
     }
 
     private fun gameStateResult(matchResult: MatchResult): GameState {
-        return when(matchResult) {
+        return when (matchResult) {
             is MatchResult.Success -> {
                 println(matchResult.comment)
 
@@ -48,6 +53,7 @@ object PlayGame {
 
                 GameState.entries.find { it.value == userChoice }!!
             }
+
             is MatchResult.Fail -> {
                 println(matchResult.comment)
 
