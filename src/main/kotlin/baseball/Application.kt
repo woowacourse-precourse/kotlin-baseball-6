@@ -91,6 +91,9 @@ fun checkAvailability(userInput : String) {
     if (userInput.length != 3 || userInput.toIntOrNull() == null || userInput.contains("0")) {
         throwException()
     }
+    else if(userInput.toSet().size != userInput.length) {
+        throwException()
+    }
 }
 
 fun throwException() {
