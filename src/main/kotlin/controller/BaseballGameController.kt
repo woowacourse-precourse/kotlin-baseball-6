@@ -1,6 +1,8 @@
 package controller
 
+import camp.nextstep.edu.missionutils.Console
 import model.RandomNumberCreate
+import validation.UserInputValidation
 import view.BaseballInputView
 
 class BaseballGameController {
@@ -13,6 +15,7 @@ class BaseballGameController {
 
     private fun UserNumber() {
         BaseballInputView().printInputNumberMessage()
-        var userNumber = readLine()
+        var userNumber = Console.readLine()
+        UserInputValidation().inputLength(userNumber)
     }
 }
