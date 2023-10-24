@@ -3,10 +3,10 @@ package util
 import camp.nextstep.edu.missionutils.Randoms
 
 object RandomNumbersGenerator {
-    fun create(): MutableList<Int> {
+    fun create(count: Int, startInclusive: Int, endInclusive: Int): MutableList<Int> {
         val numbers = mutableListOf<Int>()
-        while (numbers.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
+        while (numbers.size < count) {
+            val randomNumber = Randoms.pickNumberInRange(startInclusive, endInclusive)
             if (!numbers.contains(randomNumber)) numbers.add(randomNumber)
         }
         return numbers

@@ -15,7 +15,7 @@ class BaseballGame {
     }
 
     private fun playRound() {
-        val answerNumbers = RandomNumbersGenerator.create()
+        val answerNumbers = RandomNumbersGenerator.create(3, 1, 9)
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {
             val userNumbers = getInput()
