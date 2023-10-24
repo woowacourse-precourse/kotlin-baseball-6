@@ -6,9 +6,9 @@ import javax.swing.text.html.HTML.Tag.I
 
 var userInput = ""
 var userNumber = 0
-var int_one = 0
-var int_two = 0
-var int_three = 0
+var intOne = 0
+var intTwo = 0
+var intThree = 0
 const val NUMBER_SIZE = 3
 
 fun main() {
@@ -37,22 +37,36 @@ fun getUserNumbers(): MutableList<Int> { // 사용자 입력값 얻기
 
     try {
         userNumber = userInput.toInt()
-        //userInputCheck(userInput)
-    } catch (e: NumberFormatException) { // 문자를 입력할 경우
+        userInputCheck(userInput)
+    } catch (e: NumberFormatException) { // 문자열을 입력할 경우
         throw IllegalArgumentException("문자가 아닌 숫자를 입력하세요.")
     }
 
-    int_one=userNumber/100
-    int_two= (userNumber%100)/10
-    int_three=userNumber%10
+    intOne = userNumber/100
+    intTwo = (userNumber%100)/10
+    intThree = userNumber%10
 
-    user.add(int_one)
-    user.add(int_two)
-    user.add(int_three)
+    user.add(intOne)
+    user.add(intTwo)
+    user.add(intThree)
 
     return user
 }
 
+fun userInputCheck(userInput: String) {
+    val user: MutableList<Char> = mutableListOf()
+    if(userInput.length != 3) // 3자리 정수가 아닐 경우
+        throw IllegalArgumentException("3자리 정수를 입력하세요.")
 
+    for(i: Int in 0 until NUMBER_SIZE)
+        user.add(userInput[i])
+
+    for(i in user.indices) { // 중복된 숫자를 입력할 경우
+        for(j in i+1 until user.size) {
+            if(user[i] == user[j])
+                throw IllegalArgumentException("중복되지 않는 숫자를 입력하세요.")
+        }
+    }
+}
 
 
