@@ -18,6 +18,11 @@ class NumberBaseballGame {
             val user = inputUserNumbers()
             val (ball, strike) = checkGuess(user, computer)
             output.printGuessResult(ball, strike)
+
+            if (strike == 3) {
+                output.printGameEnd()
+                break
+            }
         }
     }
 
@@ -63,6 +68,7 @@ class NumberBaseballGame {
 
 class OutputWriter {
     fun printGameStart() = println("숫자 야구 게임을 시작합니다.")
+    fun printGameEnd() = println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     fun printReceiveNumberInput() = print("숫자를 입력해주세요 : ")
     fun printGuessResult(ball: Int, strike: Int) {
         if (ball == 0 && strike == 0) {
