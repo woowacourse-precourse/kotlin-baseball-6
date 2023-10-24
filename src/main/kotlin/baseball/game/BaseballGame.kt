@@ -3,7 +3,9 @@ package baseball.game
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
-class BaseballGame(val digits: Int = 3) {
+const val GAME_DIGITS = 3
+
+class BaseballGame(val digits: Int = GAME_DIGITS) {
     val name = "숫자 야구 게임"
 
     init {
