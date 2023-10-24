@@ -27,7 +27,14 @@ fun continueOrQuit() {
 
     checkAnswer(answer)
 
-    TODO("Not yet implemented")
+    when (answer) {
+        "1" -> {
+            startBaseballGame()
+        }
+        "2" -> {
+            return
+        }
+    }
 }
 
 // 1) '컴퓨터의 숫자' 초기화
@@ -80,7 +87,7 @@ fun checkGuess(m: String) {
 
     for (c in m) {
         // 1부터 9까지의 수로 이뤄지지 않은 경우
-        if (Character.getNumericValue(c) in 1..9) {
+        if (c !in '1'..'9') {
             throw IllegalArgumentException("1부터 9까지의 수로 이뤄져야 합니다.")
         }
     }
