@@ -14,16 +14,22 @@ const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면
 
 
 fun main() {
+
+    gameStart()
+
+}
+
+fun gameStart() {
     var computer: MutableList<Int> = mutableListOf()
     var userNumber: List<Int> = listOf()
-    var gameStart: Boolean = true
-    var gameRestart: Boolean = true
+
+    var areUReady = true
     println(START_MESSAGE)
 
-    while(gameStart or gameRestart){
+    while(areUReady) {
+        game(computer, userNumber)
+        areUReady = gameOver()
 
-        gameStart = game(computer, userNumber)
-        gameRestart = gameOver()
     }
 }
 
@@ -55,25 +61,27 @@ fun userInput(): List<Int> {
     return userNumber
 }
 
-fun game(computer: List<Int>, userNumber: List<Int>): List<Int>{
+fun game(computer: List<Int>, userNumber: List<Int>): Pair<Int,Int> {
+
     var ballCount: Int = 0
     var strikeCount: Int = 0
 
     for (i in computer.indices) {
         if (computer[i] == userNumber[i]) {
             strikeCount++
-        }
-        else{ // if (computer.contains(userNumber[i]))
+        } else { // if (computer.contains(userNumber[i]))
             ballCount++
         }
+
+        }
+
+    return Pair(ballCount,strikeCount)
     }
 
-    return listOf(ballCount,strikeCount)
-}
 
-fun compareNumber(game: List<Int>): String {
-    val ball = game[0]
-    val strike = game[1]
+fun compareNumber(game:Pair<Int,Int>): String {
+    val ball = game.first
+    val strike = game.second
 
     var str = ""
 
@@ -89,10 +97,11 @@ fun compareNumber(game: List<Int>): String {
     else {
         str = "${ball}볼 ${strike}스트라이크"
     }
-    if(strike == 3) {
-        str = "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
+    if (strike == 3) {
+        "${strike}스트라이크\n${THREE_STRIKE_MESSAGE}"
         gameOver()
     }
+
     return str
 }
 
