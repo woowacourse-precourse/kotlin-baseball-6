@@ -14,7 +14,7 @@ private fun playBaseballGame() {
     while (true) {
         user.apply {
             printInputMessage()
-            baseballNumberInput()
+            inputBaseballNumber()
         }
         with(baseballGame) {
             printBaseballResultMessage()

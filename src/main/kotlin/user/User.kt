@@ -6,7 +6,7 @@ class User {
     var currentUserBaseballNumber = 0
         private set
 
-    fun baseballNumberInput(input: Int = readLine().toInt()){
+    fun inputBaseballNumber(input: Int = readLine().toInt()){
         if (input in INPUT_MIN_VALUE..INPUT_MAX_VALUE) {
             currentUserBaseballNumber = input
         } else {
