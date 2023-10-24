@@ -1,10 +1,14 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
+import baseball.Constant.CORRECT_THREE_NUMBERS_MESSAGE
+import baseball.Constant.FINISH_BASEBALL_GAME_MESSAGE
+import baseball.Constant.START_BASEBALL_GAME_MESSAGE
+import baseball.Constant.THREE_STRIKE
+import baseball.Constant.ZERO_BALL
 
 object Game {
     fun start() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(START_BASEBALL_GAME_MESSAGE)
         startBaseballGame()
     }
 
@@ -33,6 +37,6 @@ object Game {
 
     private fun isAnswer(): Boolean {
         val (ball, strike) = GameCount.getCount()
-        return (ball == 0 && strike == 3)
+        return (ball == ZERO_BALL && strike == THREE_STRIKE)
     }
 }

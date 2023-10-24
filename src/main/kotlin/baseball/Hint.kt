@@ -1,8 +1,10 @@
 package baseball
 
+import baseball.Constant.NUMBER_LENGTH
+
 object Hint {
     fun compareNumber(computer: List<Int>, player: List<Int>) {
-        for (index in 0 until 3) {
+        for (index in 0 until NUMBER_LENGTH) {
             // 스트라이크 판별
             if (computer[index] == player[index]) {
                 GameCount.plusStrikeCount()
