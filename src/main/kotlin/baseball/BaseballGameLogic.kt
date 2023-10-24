@@ -17,7 +17,7 @@ fun solveBaseBallGame(computerNum: MutableList<Int>) {
         println(resultMessage)
 
         if (isGameOver(resultMessage)) {
-            print(Dialogues.gameOverMessage)
+            println(Dialogues.gameOverMessage)
             break
         }
     }
@@ -42,27 +42,27 @@ fun compareNum(
     computerNum: MutableList<Int>,
     userNum: MutableList<Int>
 ): HashMap<String, Int> {
-    var resultHashMap: HashMap<String, Int> = hashMapOf("strike" to 0, "ball" to 0, "nothing" to 0)
+    var resultHashMap: HashMap<String, Int> = hashMapOf(GameResult.STRIKE to 0, GameResult.BALL to 0, GameResult.NOTHING to 0)
     for (value in userNum) {
         val indexOfKey = computerNum.indexOf(value)
         if (indexOfKey != -1) {
             if (indexOfKey == userNum.indexOf(value)) {
-                resultHashMap["strike"] = resultHashMap["strike"]!! + 1
+                resultHashMap[GameResult.STRIKE] = resultHashMap[GameResult.STRIKE]!! + 1
             } else {
-                resultHashMap["ball"] = resultHashMap["ball"]!! + 1
+                resultHashMap[GameResult.BALL] = resultHashMap[GameResult.BALL]!! + 1
             }
         } else {
-            resultHashMap["nothing"] = resultHashMap["nothing"]!! + 1
+            resultHashMap[GameResult.NOTHING] = resultHashMap[GameResult.NOTHING]!! + 1
         }
     }
     return resultHashMap
 }
 
 
-fun calculateBaseballGameResult(numArray: HashMap<String, Int>): String {
-    var strike = numArray["strike"]
-    var ball = numArray["ball"]
-    var nothing = numArray["nothing"]
+fun calculateBaseballGameResult(gameResult: HashMap<String, Int>): String {
+    var strike = gameResult[GameResult.STRIKE]
+    var ball = gameResult[GameResult.BALL]
+    var nothing = gameResult[GameResult.NOTHING]
     return if (nothing == 3) {
         Dialogues.nothingMessage
     } else if (strike == 3) {
@@ -82,4 +82,4 @@ fun calculateBaseballGameResult(numArray: HashMap<String, Int>): String {
 }
 
 
-fun isGameOver(result: String) = result == "3스트라이크"
+fun isGameOver(result: String) = result == "3${Dialogues.strikeMessage}"
