@@ -1,7 +1,6 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
 import util.Constants.DUPLICATE_NUMBER_MESSAGE
 import util.Constants.INPUT_MESSAGE
 import util.Constants.INVALID_INPUT_MESSAGE
@@ -12,14 +11,6 @@ fun main() {
     game.start()
 }
 
-fun creatRandomNumbers(): MutableList<Int> {
-    val numbers = mutableListOf<Int>()
-    while (numbers.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!numbers.contains(randomNumber)) numbers.add(randomNumber)
-    }
-    return numbers
-}
 
 fun getUserInput(): MutableList<Int> {
     print(INPUT_MESSAGE)

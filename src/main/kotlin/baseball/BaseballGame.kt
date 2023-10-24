@@ -2,6 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Console
 import util.Constants
+import util.RandomNumbersGenerator
 
 class BaseballGame {
 
@@ -13,7 +14,7 @@ class BaseballGame {
     }
 
     private fun play() {
-        val answerNumbers = creatRandomNumbers()
+        val answerNumbers = RandomNumbersGenerator.creatRandomNumbers()
 //    println(answerNumbers) // 랜덤 생성된 정답 미리보기
         do {
             val userNumbers = getUserInput()
