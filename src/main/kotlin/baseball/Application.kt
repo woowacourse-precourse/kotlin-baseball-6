@@ -4,10 +4,10 @@ import game.BaseballGame
 import user.User
 
 fun main() {
-    startBaseballGame()
+    playBaseballGame()
 }
 
-private fun startBaseballGame() {
+private fun playBaseballGame() {
     val user = User()
     val baseballGame = BaseballGame(user)
 
@@ -17,8 +17,9 @@ private fun startBaseballGame() {
             baseballNumberInput()
         }
         with(baseballGame) {
-            if(isBaseballGameResult()) {
-                printBaseballGameSuccess()
+            printBaseballResultMessage()
+            if(isThreeStrikes()) {
+                printBaseballGameSuccessMessage()
                 if(user.restartOrExitInput() != User.EXIT) setNewRandomNumbers() else return
             }
         }
