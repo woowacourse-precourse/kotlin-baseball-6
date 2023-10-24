@@ -119,5 +119,7 @@ fun setStopFlag(): Int {
 
     val flagFromPlayer = Console.readLine()
 
+    if (!(flagFromPlayer.equals("1")) && !(flagFromPlayer.equals("2"))) throw IllegalArgumentException()
+
     return flagFromPlayer.toInt()
 }
