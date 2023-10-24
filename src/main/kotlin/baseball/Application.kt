@@ -14,7 +14,7 @@ fun main() {
     while(isRunning) {
         //랜덤 숫자 지정
         var randomNum = createRandomNum()
-
+        println(randomNum)
         while (inGame) {
             print("숫자를 입력해주세요 : ")
             val userInput = Console.readLine()
@@ -89,7 +89,7 @@ fun compareNum(userNum : String, randomNum : String) : String {
 }
 
 fun checkAvailability(userInput : String) {
-    if (userInput.length != 3 || userInput.toIntOrNull() == null) {
+    if (userInput.length != 3 || userInput.toIntOrNull() == null || userInput.contains("0")) {
         throwException()
     }
 }
