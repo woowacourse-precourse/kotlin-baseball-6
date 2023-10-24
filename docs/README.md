@@ -9,7 +9,10 @@
 2. 사용자 입력
     * `"숫자를 입력해주세요 : "` -> 사용자 입력
     * 잘못된 값일 경우, `IllegalArgumentException` 발생 시키고 종료
-      
+      - 3자리 외의 숫자
+      - 0~9 외의 숫자
+      - 중복된 숫자
+    
 
 3. Ball, Strike 검증 및 결과 출력
     * Ball, Strike 검증
