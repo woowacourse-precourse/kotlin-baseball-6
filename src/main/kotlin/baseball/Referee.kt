@@ -28,14 +28,16 @@ class Referee {
         if (isNothing(ballCount + strikeCount)) return GameResult.NOTHING.message
         return StringBuilder().apply {
             if (ballCount > 0) {
-                append("$ballCount${GameResult.BALL.message}$EMPTY_SPACE")
+                append(formatBallCount(ballCount, GameResult.BALL.message))
             }
             if (strikeCount > 0) {
-                append("$strikeCount${GameResult.STRIKE.message}")
+                append(formatStrikeCount(strikeCount, GameResult.STRIKE.message))
             }
         }.toString()
     }
 
+    private fun formatBallCount(count: Int, label: String) = "$count$label$EMPTY_SPACE"
+    private fun formatStrikeCount(count: Int, label: String) = "$count$label"
     private fun isNothing(totalCount: Int) = totalCount == 0
     private fun isStrike(answerBall: Int, userBall: Int) = answerBall == userBall
     private fun isBall(answerBalls: List<Int>, userBall: Int) = userBall in answerBalls
