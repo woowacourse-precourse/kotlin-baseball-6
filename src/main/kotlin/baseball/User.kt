@@ -9,4 +9,14 @@ class User {
             throw IllegalArgumentException("")
         }
     }
+
+    fun inputNumber() : MutableList<Int> {
+        print(STR_INPUT_MESSAGE)
+        val userInput : String = readLine()!!
+        checkInputNumber(userInput)
+
+        userNumber = Utils.stringToIntList(userInput)
+
+        return userNumber
+    }
 }
