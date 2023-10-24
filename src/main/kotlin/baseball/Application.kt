@@ -37,6 +37,8 @@ class NumberBaseballGame {
     private fun inputGameFlowDecision(): String {
         output.printReceiveGameFlowInput()
         val gameDecision = Console.readLine()
+
+        //예외 처리 : 1,2 이외의 값을 입력할 경우
         if (gameDecision != "1" && gameDecision != "2") {
             throw IllegalArgumentException()
         }
