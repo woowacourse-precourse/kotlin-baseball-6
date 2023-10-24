@@ -10,11 +10,10 @@ class Computer() {
 
         while (balls.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (balls.contains(randomNumber)) {
+            if (!balls.contains(randomNumber)) {
                 balls.add(randomNumber)
             }
         }
         return balls
     }
-
 }
