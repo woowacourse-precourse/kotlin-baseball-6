@@ -17,5 +17,6 @@ class BaseballGameController {
         BaseballInputView().printInputNumberMessage()
         var userNumber = Console.readLine()
         UserInputValidation().inputLength(userNumber)
+        UserInputValidation().inputZeroToNine(userNumber)
     }
 }
