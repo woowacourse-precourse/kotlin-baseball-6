@@ -12,16 +12,22 @@ class NumberBaseballGame {
     fun start() {
         output.printGameStart()
         output.printReceiveNumberInput()
-        inputUserNumbers()
+        val user = inputUserNumbers()
+        val computer = generateRandomNumbers()
+        val (strike, ball) = checkGuess(user,computer)
+        print("$strike, $ball")
     }
 
     //서로 다른 3자리의 수 입력
-    private fun inputUserNumbers(): String? {
-        val user = Console.readLine()
+    private fun inputUserNumbers(): List<Int> {
+        val input = Console.readLine()
 
-        if (user.length != 3 || user.toSet().size != 3) {
+        if (input.length != 3 || input.toSet().size != 3) {
             throw IllegalArgumentException()
         }
+
+        val user = input.map { it.toString().toInt() }
+
         return user
     }
 
@@ -35,6 +41,21 @@ class NumberBaseballGame {
             }
         }
         return computer
+    }
+
+    //컴퓨터와 사용자 입력값 비교
+    private fun checkGuess(user: List<Int>, computer: List<Int>): Pair<Int,Int> {
+        var strike = 0
+        var ball = 0
+
+        for (i in user.indices) {
+            if (user[i] == computer[i]) {
+                strike++
+            } else if (computer.contains(user[i])) {
+                ball++
+            }
+        }
+        return strike to ball
     }
 }
 
