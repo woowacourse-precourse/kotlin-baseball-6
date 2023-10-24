@@ -173,7 +173,7 @@ while (computer.size() < 3) {
 
 ### RandomBaseballNumberGenerator
 
-- [ ] 랜덤 야구 숫자 생성
+- [x] 랜덤 야구 숫자 생성
 
 ### Controller
 
