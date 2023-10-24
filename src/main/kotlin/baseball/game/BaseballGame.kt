@@ -32,7 +32,7 @@ class BaseballGame(val digits: Int = GAME_DIGITS) {
         when (Console.readLine().trim()) {
             "1" -> start()
             "2" -> Unit
-            else -> restartProcess()
+            else -> throw IllegalArgumentException("1 혹은 2만 입력 가능.")
         }
 
     }
