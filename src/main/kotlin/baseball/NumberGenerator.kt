@@ -21,7 +21,6 @@ class NumberGenerator {
                 randomList.add(randomNumber)
             }
         }
-        println(randomList)
         return randomList
     }
 }
