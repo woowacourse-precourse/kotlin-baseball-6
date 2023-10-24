@@ -8,17 +8,16 @@ fun main() {
     while (true) {
         val game = NumberBaseballGame()
         val result = game.start()
-        if (result == "2") {
-            break
-        }
+        if (result == "2") break
     }
 }
 
 class NumberBaseballGame {
+
     private val output = OutputWriter()
     private val computer = generateRandomNumbers()
-    fun start(): String {
 
+    fun start(): String {
         while (true) {
             output.printReceiveNumberInput()
             val user = inputUserNumbers()
@@ -33,38 +32,21 @@ class NumberBaseballGame {
         return inputGameFlowDecision()
     }
 
-    //1(재시작)과 2(종료) 중 하나 입력
     private fun inputGameFlowDecision(): String {
         output.printReceiveGameFlowInput()
-        val gameDecision = Console.readLine()
-
-        //예외 처리 : 1,2 이외의 값을 입력할 경우
-        if (gameDecision != "1" && gameDecision != "2") {
-            throw IllegalArgumentException()
+        return Console.readLine().also {
+            if (it != "1" && it != "2") throw IllegalArgumentException()
         }
-        return gameDecision
     }
 
-    //서로 다른 3자리의 수 입력
     private fun inputUserNumbers(): List<Int> {
-        val input = Console.readLine()
-
-        //예외 처리 : 중복값을 입력할 경우, 3자리의 수가 아닐 경우
-        if (input.length != 3 || input.toSet().size != 3) {
-            throw IllegalArgumentException()
+        return Console.readLine().run {
+            require(length == 3 && this.toSet().size == 3) { throw IllegalArgumentException() }
+            require(all { it in '1'..'9' }) { throw IllegalArgumentException() }
+            map { it.toString().toInt() }
         }
-
-        //예외 처리 : 1~9 범위가 아닌 값을 입력할 경우
-        if (!input.all { it in '1'..'9' }) {
-            throw IllegalArgumentException()
-        }
-
-        val user = input.map { it.toString().toInt() }
-
-        return user
     }
 
-    //1~9 범위의 서로 다른 3자리의 수 생성
     private fun generateRandomNumbers(): List<Int> {
         val computer = mutableListOf<Int>()
         while (computer.size < 3) {
@@ -76,15 +58,14 @@ class NumberBaseballGame {
         return computer
     }
 
-    //컴퓨터와 사용자 입력값 비교
     private fun checkGuess(user: List<Int>, computer: List<Int>): Pair<Int,Int> {
         var strike = 0
-        var ball = user.count {computer.contains(it)}
+        var ball = user.count { it in computer }
 
         for (i in user.indices) {
             if (user[i] == computer[i]) {
-                strike +=1
-                ball -=1
+                strike++
+                ball--
             }
         }
         return ball to strike
@@ -97,14 +78,11 @@ class OutputWriter {
     fun printReceiveNumberInput() = print("숫자를 입력해주세요 : ")
     fun printReceiveGameFlowInput() = println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     fun printGuessResult(ball: Int, strike: Int) {
-        if (ball == 0 && strike == 0) {
-            printNothingResult()
-        }else if (ball >0 && strike == 0) {
-            printOnlyBalls(ball)
-        }else if (ball == 0 && strike > 0) {
-            printOnlyStrikes(strike)
-        }else {
-            printBallAndStrike(ball, strike)
+        when {
+            ball == 0 && strike == 0 -> printNothingResult()
+            ball >0 && strike == 0 -> printOnlyBalls(ball)
+            ball == 0 && strike > 0 -> printOnlyStrikes(strike)
+            else -> printBallAndStrike(ball, strike)
         }
     }
 
