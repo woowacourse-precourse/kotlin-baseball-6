@@ -33,6 +33,13 @@ fun main() {
             throw IllegalArgumentException("서로 다른 숫자를 입력하세요")
         }
 
+        // 숫자 0을 입력할 경우
+        for (i in 0..2) {
+            if (myAnswer[i] == 0) {
+                throw IllegalArgumentException("1~9의 숫자를 입력하세요")
+            }
+        }
+
         for (i in 0..2) {
             if (myAnswer[i] == computer[i]) { // 위치가 같고 숫자가 존재할 경우
                 strike++
