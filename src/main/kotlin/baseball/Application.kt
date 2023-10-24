@@ -74,7 +74,7 @@ class Computer {
         val comNum = com.createRandomNum()
         do {
             print("숫자를 입력해주세요 : ")
-            var result = com.compareNum(comNum, player.enterNum())
+            val result = com.compareNum(comNum, player.enterNum())
             com.printResult(result)
         } while (result.first != 3)
     }
