@@ -15,10 +15,7 @@ fun main() {
         }
         println("게임을 종료합니다.")
     } catch (e: IllegalArgumentException) {
-        println(
-            "잘못된 값을 입력하셨습니다. 올바른 형식의 숫자를 입력해주세요.\n" +
-                    "프로그램을 종료합니다."
-        )
+        throw IllegalArgumentException("잘못된 값을 입력하셨습니다. 올바른 형식의 숫자를 입력해주세요.")
     }
 }
 
