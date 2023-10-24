@@ -1,3 +1,7 @@
+
+# <span style="color:blue;background-color: #fff5b1">구현할 기능 목록 정리본은 docs의 README.md 파일에 정리해놓았습니다!!</span>
+# [docs의 README.md 파일 바로가기 Click!!!](https://github.com/SoftyChoo/kotlin-baseball-6/tree/SoftyChoo/docs)
+
 # 미션 - 숫자 야구
 
 ## 🔍 진행 방식
@@ -142,12 +146,4 @@ while (computer.size() < 3) {
 - 미션은 [kotlin-baseball](https://github.com/woowacourse-precourse/kotlin-baseball-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
-
-# <span style="color:blue;background-color: #fff5b1">구현할 기능 목록 정리본은 docs의 README.md 파일에 정리해놓았습니다!!</span>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
 
