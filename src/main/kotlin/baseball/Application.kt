@@ -1,5 +1,4 @@
 package baseball
-
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console.readLine
 
@@ -8,18 +7,36 @@ fun main() {
     // 게임을 시작한다.
     startGame()
 
-    // 게임 재시작 반복문
+    // 게임 시작 반복문
     do {
         // 컴퓨터 숫자를 생성해 computer에 담는다.
         val computer = createComputerNumber()
 
         // 게임 라운드 반복문
         do {
-            if (!playerTryAnswer(computer)) break
-        } while (true)
+
+        } while (playerTryAnswer(computer))
 
     } while (restartGameOrEndProgram()) // 게임 재시작(true) 또는 프로그램(false) 종료
 
+}
+
+fun startGame() {
+    println(Const.GAME_START)
+}
+
+fun createComputerNumber(): MutableList<Int> {
+
+    val computer = mutableListOf<Int>()
+
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+
+    return computer
 }
 
 fun playerTryAnswer(computer: MutableList<Int>): Boolean {
@@ -40,23 +57,6 @@ fun playerTryAnswer(computer: MutableList<Int>): Boolean {
         return false
     }
     return true
-}
-
-fun startGame() {
-    println(Const.GAME_START)
-}
-
-fun createComputerNumber(): MutableList<Int> {
-
-    val computer = mutableListOf<Int>()
-    while (computer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
-        }
-    }
-
-    return computer
 }
 
 fun getPlayerNumber(): String {
