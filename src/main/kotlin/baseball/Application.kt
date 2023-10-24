@@ -90,5 +90,12 @@ fun printGameOverMessage(){
 
 fun checkExitStatus(): Boolean {
     val exitStatus = Console.readLine().trim()
+    checkValidExitStatus(exitStatus)
     return exitStatus == "1"
+}
+
+fun checkValidExitStatus(exitStatus: String) {
+    if (exitStatus != "1" && exitStatus != "2") {
+        throw IllegalArgumentException("1, 2 둘 중 하나만 입력 가능")
+    }
 }
