@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.constants.GameConfig
 import baseball.model.BaseballInput
 import baseball.model.UserInput
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
@@ -19,7 +20,7 @@ class ApplicationTest : NsTest() {
                 assertThat(output())
                     .contains(
                         "낫싱", "3볼", "2볼 1스트라이크", "3스트라이크",
-                        "낫싱", "2볼 1스트라이크", "3스트라이크", "게임 종료"
+                        "낫싱", "2볼 1스트라이크", "3스트라이크", "게임 종료",
                     )
             },
             1, 2, 3, 4, 8, 9
@@ -42,23 +43,31 @@ class ApplicationTest : NsTest() {
             listOf(
                 "12", "1234", "012", "01", "1",  // 자리수, 숫자 0
                 "a165", "#^\$", "'", "`", "+",   // 특수 문자
-                "112", "565", "988", "0945"      // 숫자 중복
+                "112", "565", "988", "0945",     // 숫자 중복
             )
         TestExceptionData.forEach { data ->
             assertThrows<IllegalArgumentException> {
                 println("오류 체크 : $data")
-                baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
+                baseballInput.setDataWithValidation(
+                    data,
+                    GameConfig.BASEBALL_DIGITS,
+                    GameConfig.BASEBALL_RANGE,
+                )
             }
         }
 
         // 오류 없는지 검증
         val TestData: List<String> = listOf(
-            "123", "456", "789", "498", "176"
+            "123", "456", "789", "498", "176",
         )
         TestData.forEach { data ->
             assertDoesNotThrow {
                 println("오류 체크 : $data")
-                baseballInput.setDataWithValidation(data, BASEBALL_DIGITS, BASEBALL_RANGE)
+                baseballInput.setDataWithValidation(
+                    data,
+                    GameConfig.BASEBALL_DIGITS,
+                    GameConfig.BASEBALL_RANGE,
+                )
             }
         }
     }
@@ -69,16 +78,19 @@ class ApplicationTest : NsTest() {
         val TestExceptionData: List<String> =
             listOf(
                 "a", "%", "12", "21", "01",
-                "3", "03", "22", "123", "10"
+                "3", "03", "22", "123", "10",
             )
 
         TestExceptionData.forEach { data ->
             assertThrows<IllegalArgumentException> {
-                userInput.setDataWithValidation(data, MENU_DIGITS, MENU_RANGE)
+                userInput.setDataWithValidation(
+                    data,
+                    GameConfig.MENU_DIGITS,
+                    GameConfig.MENU_RANGE
+                )
             }
         }
     }
-
 
     override fun runMain() {
         main()

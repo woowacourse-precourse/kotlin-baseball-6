@@ -1,9 +1,8 @@
 package baseball.model
 
-import baseball.BASEBALL_DIGITS
+import baseball.constants.GameConfig
 import camp.nextstep.edu.missionutils.Randoms
 
-// TODO : newGenerator()를 일부에서만 접근할 수 있는 방법 학습하고 적용
 class Answer {
     private var _number: IntArray = intArrayOf()
 
@@ -15,20 +14,19 @@ class Answer {
 
     internal fun newGenerator() {
         _number = answerGenerator()
-        println("정답 : ${number.contentToString()}") // TODO For Debuging
     }
 }
 
 /** [1]. 1..9에서 서로 다른 N개의 수 뽑기 (Model) */
 fun answerGenerator(): IntArray {
     val computer = mutableListOf<Int>()
-
-    while (computer.size < BASEBALL_DIGITS) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
+    while (computer.size < GameConfig.BASEBALL_DIGITS) {
+        val randomNumber = Randoms.pickNumberInRange(
+            GameConfig.BASEBALL_RANGE_FIRST, GameConfig.BASEBALL_RANGE_LAST,
+        )
         if (!computer.contains(randomNumber)) {
             computer.add(randomNumber)
         }
     }
-
     return computer.toIntArray()
 }
