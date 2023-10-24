@@ -17,8 +17,8 @@ fun main() {
         }
 
         while(true) {
-            var cntBall:Int = 0
-            var cntStrike:Int = 0
+            var cntBall = 0
+            var cntStrike = 0
 
             print("숫자를 입력해주세요 : ")
             val user: String = Console.readLine()
