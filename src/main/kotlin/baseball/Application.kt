@@ -25,23 +25,26 @@ fun main() {
             }
             if (strike == 3) {
                 strikeMessage()
-                break
+                reStart = 0
             } else {
                 scoreMessage(strike, ball)
             }
 
         }
         val input = Console.readLine().toInt()
-        if (input == 1) {
-            reStart = 1
-        } else if (input == 2) {
-            gameStatus = 0
-            Console.close()
-        } else{
-            throw IllegalArgumentException("1이나 2를 쓰세요.")
+        when (input) {
+            1 -> {
+                reStart = 1
+            }
+            2 -> {
+                gameStatus = 0
+                Console.close()
+            }
+            else -> {
+                throw IllegalArgumentException("1이나 2를 쓰세요.")
+            }
         }
     }
-    Console.close()
 }
 
 fun startMessage() {
