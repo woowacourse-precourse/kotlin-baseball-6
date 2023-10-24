@@ -1,11 +1,12 @@
 package baseball
 
 fun main() {
-    println("숫자 야구 게임을 시작합니다.")
 
+    // 인스턴스 생성
     val model = model.BaseballModel()
     val view = view.BaseballView()
     val controller = Controller(model, view)
 
-    controller.run()
+    view.printGameStart() // 게임 시작 문구 출력
+    controller.run()     // 컨트롤러 실행
 }
