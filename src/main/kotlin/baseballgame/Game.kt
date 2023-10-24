@@ -110,7 +110,7 @@ class Game {
 
     // Input Value 확인
     private fun checkInputValue(stringArray: Array<String>, intArray: IntArray) {
-        for (i in 0 until 3) {
+        for (i in 0 until Constant.CORRECT_USER_SIZE) {
             if ((stringArray[i].toInt() < 0) or (stringArray[i].toInt() > 9)) {
                 throw IllegalArgumentException(StringError.INPUT_VALUE_ERROR)
             }
