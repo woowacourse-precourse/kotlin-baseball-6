@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
+const val MAX_NUMBER = 3
+
 data class GuessResult(
     val ballNumber: Int,
     val strikeNumber: Int
@@ -11,7 +13,7 @@ data class GuessResult(
 
 fun makeSecretNumber(): String {
     val computer: MutableList<Int> = mutableListOf()
-    for (it in 0 until 3) {
+    for (it in 0 until MAX_NUMBER) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
             computer.add(randomNumber)
@@ -21,7 +23,7 @@ fun makeSecretNumber(): String {
 }
 
 fun isValidGuessNumber(input: String): Boolean {
-    return input.length == 3 && input.toSet().size == 3 && input.all { isNumber(it) }
+    return input.length == MAX_NUMBER && input.toSet().size == MAX_NUMBER && input.all { isNumber(it) }
 }
 
 fun isValidContinueNumber(input: String): Boolean {
@@ -38,8 +40,8 @@ fun getGuessResult(secretNumber: String, guessNumber: String): GuessResult {
 
 fun countBall(secretNumber: String, guessNumber: String): Int {
     var ball = 0
-    for (secretIt in 0 until 3) {
-        for (guessIt in 0 until 3) {
+    for (secretIt in 0 until MAX_NUMBER) {
+        for (guessIt in 0 until MAX_NUMBER) {
             if (secretIt == guessIt) {
                 continue
             }
@@ -53,7 +55,7 @@ fun countBall(secretNumber: String, guessNumber: String): Int {
 
 fun countStrike(secretNumber: String, guessNumber: String): Int {
     var strike = 0
-    for (it in 0 until 3) {
+    for (it in 0 until MAX_NUMBER) {
         if (secretNumber[it] == guessNumber[it]) {
             strike++
         }
@@ -86,8 +88,8 @@ fun main() {
             }
             val guessResult = getGuessResult(secretNumber, guessNumber)
             printGuessResult(guessResult)
-            if (guessResult.strikeNumber == 3) {
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            if (guessResult.strikeNumber == MAX_NUMBER) {
+                println("${MAX_NUMBER}개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
             }
         }
