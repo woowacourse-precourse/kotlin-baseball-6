@@ -38,6 +38,6 @@ class Computer {
     }
 
     fun checkGameState(strike: Int): Boolean {
-        return strike == SIZE
+        return strike != SIZE
     }
 }

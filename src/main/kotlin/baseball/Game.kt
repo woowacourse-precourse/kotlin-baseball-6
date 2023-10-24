@@ -31,6 +31,7 @@ class Game {
                 if (restartGame) {
                     gameState = true
                     computerNumber = computer.setComputerNumber()
+                    println(computerNumber)
                 }
             }
         }
