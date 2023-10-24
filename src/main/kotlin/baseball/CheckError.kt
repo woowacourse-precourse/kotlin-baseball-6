@@ -6,19 +6,19 @@ class CheckError {
         checkNumber(number)
         checkDuplication(number)
     }
-    fun checkOverthree(number: String){
+    private fun checkOverthree(number: String){
         if (number.length != 3) { //숫자가 3이 넘어가면 에러
             throw IllegalArgumentException("숫자가 3이 넘어갑니다.")
         }
     }
-    fun checkNumber(number: String){
+    private fun checkNumber(number: String){
         for (i in number.indices) { // 숫자가 아니면 에러
             if (number[i] < '1' || number[i] > '9') {
                 throw IllegalArgumentException("숫자가 아닙니다.")
             }
         }
     }
-    fun checkDuplication(number: String){
+    private fun checkDuplication(number: String){
         for (i in number.indices) { //숫자가 중복되면 에러
             if (!myNumber.contains(Character.getNumericValue(number[i]))) {
                 myNumber.add(Character.getNumericValue(number[i]))
