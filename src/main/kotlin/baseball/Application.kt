@@ -61,11 +61,11 @@ fun scoreMessage(strike: Int, ball: Int, out: Int) {
     if (out == 3) {
         println("낫싱")
     } else if (strike == 0 && ball != 0) {
-        println(ball.toString() + "볼")
+        println("${ball}볼")
     } else if (strike != 0 && ball == 0) {
-        println(strike.toString() + "스트라이크")
+        println("${strike}스트라이크")
     } else {
-        println(ball.toString() + "볼 " + strike.toString() + "스트라이크")
+        println("${ball}볼 " + "${strike}스트라이크")
     }
 }
 
