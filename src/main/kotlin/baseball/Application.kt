@@ -7,6 +7,22 @@ fun main() {
 
 }
 
+fun startGame() {
+    val computerNumList = getComputerNumList()
+    println(computerNumList)
+    while (true) {
+        val userNumList = getUserNum()
+        val result = getBallAndStrike(computerNumList, userNumList)
+        printResult(result)
+        if (result.second == 3) {
+            printGameOverMessage()
+            return
+        }
+
+    }
+
+}
+
 fun printFirstMessage(){
     println("숫자 야구 게임을 시작합니다.")
 }
