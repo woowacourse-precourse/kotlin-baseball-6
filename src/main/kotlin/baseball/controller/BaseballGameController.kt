@@ -4,17 +4,14 @@ import baseball.model.Balls
 import baseball.model.BaseballGameModel
 import baseball.model.Score
 import baseball.view.BaseballGameView
-import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballGameController(private val view: BaseballGameView, private val model: BaseballGameModel) {
     fun run() {
         view.printStartMessage()
         while (!model.isExit) {
             playGame()
-            val userInput = view.inputGameExit()
-            model.isExit = checkIsExit(userInput = userInput)
+            checkIsExit(userInputIsExit = view.inputGameExit())
         }
-
     }
 
     private fun playGame() {
@@ -37,16 +34,12 @@ class BaseballGameController(private val view: BaseballGameView, private val mod
         }
     }
 
-    private fun checkIsExit(userInput: Int): Boolean {
-        require(userInput in 1 until 3) { "$userInput 1 또는 2가 아닙니다." }
-
-        return if (userInput == 2) {
-            view.printExitMessage()
-            true
-        } else {
+    private fun checkIsExit(userInputIsExit: Boolean) {
+        if (!userInputIsExit) {
             model.reset()
-            false
+        } else {
+            view.printExitMessage()
+            model.isExit = true
         }
     }
-
 }
