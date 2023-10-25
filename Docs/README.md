@@ -13,8 +13,7 @@
 >
 >ㄴ. `camp.nextstep.edu.missionutils.Console`의 `readLine()` 사용
 >
->　　**사용자가 잘못된 값을 입력할 경우**, `IllegalArgumentException` **예외 발생시킨 후>
->　　애플리케이션 종료**
+>　　**사용자가 잘못된 값을 입력할 경우**, `IllegalArgumentException` **예외 발생시킨 후 애플리케이션 종료**
 >
 >ㄷ. `list`에 3자리숫자 추가
 ## 3. 컴퓨터가 입력받은 숫자 리스트를 랜덤숫자 리스트와 비교하여 결과 출력
