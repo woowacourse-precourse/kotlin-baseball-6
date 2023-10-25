@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 enum class PlayerInputType(val type: Int) {
-    GAME(3), // 3 자리 수 입력 (컴퓨터 숫자 맞추기)
+    GAME(3), // 3 자리 수 입력 (플레이어의 숫자)
     REPLAY(1) // 1 자리 수 입력 (게임 재시작 여부)
 }
 
@@ -36,7 +36,7 @@ fun main() {
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
                 playerString = Console.readLine()
-                parsingPlayerInput(playerList, playerString, PlayerInputType.REPLAY.type) // 플에이어의 한자리 입력 검증 & 파싱
+                parsingPlayerInput(playerList, playerString, PlayerInputType.REPLAY.type) // 플레이어의 한자리 입력 검증 & 파싱
 
                 // 재시작 여부 값이 올바름
                 play = (playerList[0] == 1)
