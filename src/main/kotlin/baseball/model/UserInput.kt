@@ -58,23 +58,27 @@ class BaseballInput : UserInput() {
         }
     }
 
-    /** [3]. 1) 매개변수 2개를 이용하여 "B, S" 형태로 변환 (Model) */
-    fun countBaseball(answer: IntArray): String {
-        val ballCount = countBall(answer)
-        val strikeCount = countStrike(answer)
-        return ballCount + GameConfig.DELIMITER + strikeCount
+    data class BallStrike(val ball: Int, val strike: Int) // data class 하나로 코드가 굉장히 깔끔해졌다!!!
+
+    /** [3]. 1) 매개변수 2개를 이용하여 BallStrike를 반환 (Model) */
+    fun countBaseball(answer: IntArray): BallStrike {
+        val calculateResult = BallStrike(
+            countBall(answer),
+            countStrike(answer)
+        )
+        return calculateResult
     }
 
-    fun countBall(answer: IntArray): String {
+    fun countBall(answer: IntArray): Int {
         return inputDataArray.filterIndexed { index, i ->
             i in answer.filter { it != answer[index] } // Ball
-        }.size.toString()
+        }.size
     }
 
-    fun countStrike(answer: IntArray): String {
+    fun countStrike(answer: IntArray): Int {
         return inputDataArray.filterIndexed { index, i ->
             i == answer[index] // Strike
-        }.size.toString()
+        }.size
     }
 }
 

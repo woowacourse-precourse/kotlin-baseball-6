@@ -20,13 +20,8 @@ fun printInputPrompt(digit: Int) {
 /** [3]. 2) "S, B" 형태의 값에 따라 문구 출력, 정답을 맞췄는지 반환 (View) */
 fun calculateResultPrint(ball: Int, strike: Int) {
     when {
-        strike == GameConfig.BASEBALL_DIGITS -> {
-            println(Message.RESULT_ALL_STRIKE)
-        }
-
-        strike == 0 && ball == 0 -> {
-            println(Message.RESULT_NOTHING)
-        }
+        strike == GameConfig.BASEBALL_DIGITS -> println(Message.RESULT_ALL_STRIKE)
+        strike == 0 && ball == 0 -> println(Message.RESULT_NOTHING)
         strike != 0 || ball != 0 -> {
             var calculateResult = ""
             calculateResult += "$ball${GameConfig.BALL}".takeIf { ball != 0 }

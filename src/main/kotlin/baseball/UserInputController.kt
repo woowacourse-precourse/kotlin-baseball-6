@@ -28,12 +28,7 @@ fun inputMenu(menuInput: MenuInput) {
 
 /** [3]. 1) Ball, Strike 검증 함수 호출 (Controller) */
 fun calculate(baseballInput: BaseballInput, answer: Answer): Boolean {
-    val calculateResult = baseballInput.countBaseball(answer.number) // Controller -> Model
-
-    val (ball, strike) = calculateResult
-        .split(GameConfig.DELIMITER)
-        .map { it.toInt() }
-
+    val (ball, strike) = baseballInput.countBaseball(answer.number) // Controller -> Model
     calculateResultPrint(ball, strike) // Controller -> View
 
     val isAllStrike = (strike == GameConfig.BASEBALL_DIGITS)
