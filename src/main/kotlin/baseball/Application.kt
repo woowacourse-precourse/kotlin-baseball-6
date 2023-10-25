@@ -13,7 +13,7 @@ fun runBaseballGame(){
     var userDecision = true
 
     while(userDecision){
-        val computerNumber = generateRandomNumber()
+        val computerNumber = generateRandomComputerNumber()
         while(true){
             print("숫자를 입력해주세요 : ")
             val userInput = getUserInput()
@@ -38,7 +38,7 @@ fun runBaseballGame(){
 }
 
 // 컴퓨터의 랜덤한 숫자 생성
-fun generateRandomNumber(): ArrayList<Int>{
+fun generateRandomComputerNumber(): ArrayList<Int>{
     val computerNumber = ArrayList<Int>()
 
     while (computerNumber.size < 3) {
@@ -115,19 +115,19 @@ fun calculateResult(computerNumber: ArrayList<Int>, userInput: ArrayList<Int>): 
 }
 
 fun getUserDecision(): Int{
-    val userInputString = Console.readLine()
-    val userInputList = ArrayList<Int>()
+    val userDecisionString = Console.readLine()
+    val userDecisionList = ArrayList<Int>()
 
-    for(element in userInputString){
-        userInputList.add(element.toString().toInt())
+    for(element in userDecisionString){
+        userDecisionList.add(element.toString().toInt())
     }
 
-    if(userInputList.size != 1){
+    if(userDecisionList.size != 1){
         throw IllegalArgumentException("잘 못 된 길이의 숫자 입력")
     }
-    if(userInputList[0] != 1 && userInputList[0] != 2){
+    if(userDecisionList[0] != 1 && userDecisionList[0] != 2){
         throw IllegalArgumentException("잘 못 된 범위의 숫자 입력")
     }
 
-    return userInputList[0]
+    return userDecisionList[0]
 }
