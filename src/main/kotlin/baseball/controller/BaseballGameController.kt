@@ -24,7 +24,7 @@ object BaseballGameController {
         }
 
         println(Constants.GAME_END_MESSAGE)
-        retry()
+        this.retry()
     }
 
     private fun retry() {
