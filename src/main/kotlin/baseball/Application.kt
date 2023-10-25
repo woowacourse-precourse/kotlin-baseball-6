@@ -16,17 +16,17 @@ fun main() {
 
             val hitCheck = checkTarget(targetList, inputList)
             println(hitCheck)
-        } while (hitCheck.strike != 3)
+        } while (hitCheck.strike != Const.NUMBER_CNT)
 
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.")
-    }while(getInput(InputTypeEnum.RESTART) == "1")
+        println("${Const.NUMBER_CNT}개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하시려면 ${Const.REPLAY}, 종료하려면 ${Const.END}를 입력하세요.")
+    }while(getInput(InputTypeEnum.RESTART) == Const.REPLAY)
 
 }
 
 fun setNumber(): List<Int> {
     val list = mutableListOf<Int>()
-    while (list.size < 3) {
+    while (list.size < Const.NUMBER_CNT) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (list.contains(randomNumber).not()) {
             list.add(randomNumber)
@@ -46,9 +46,9 @@ fun getInput(type: InputTypeEnum): String {
 
             val distinctChecker = userInput.map {
                 it
-            }.distinct().size == 3
+            }.distinct().size == Const.NUMBER_CNT
 
-            if (numberChecker.not() || distinctChecker.not() || userInput.length != 3) {
+            if (numberChecker.not() || distinctChecker.not() || userInput.length != Const.NUMBER_CNT) {
                 throw IllegalArgumentException()
             } else {
                 userInput
@@ -56,7 +56,7 @@ fun getInput(type: InputTypeEnum): String {
         }
 
         InputTypeEnum.RESTART -> {
-            if (userInput != "1" && userInput != "2") {
+            if (userInput != Const.REPLAY && userInput != Const.END) {
                 throw IllegalArgumentException()
             } else {
                 userInput
