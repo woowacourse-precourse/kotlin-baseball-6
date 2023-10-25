@@ -10,22 +10,23 @@ import camp.nextstep.edu.missionutils.Console
 class BaseBallController {
 
     private val baseBallView = BaseBallView()
+
     fun playGame() {
         baseBallView.printPlayGame()
-        var computer = BaseBall(mutableListOf())
+        var computerBaseBall = BaseBall(mutableListOf())
         var status = START
 
         while (true) {
             when (status) {
                 START -> {
-                    computer = Computer().makeComputerList()
+                    computerBaseBall = Computer().makeComputerList()
                     status = CONTINUE
                 }
 
                 CONTINUE -> {
                     baseBallView.printInputUser()
                     val user = User().inputUser()
-                    status = checkBaseBall(computer, user)
+                    status = checkBaseBall(computerBaseBall, user)
                 }
 
                 END -> {
