@@ -15,10 +15,16 @@ class Program {
         this.randomNumber = set.toString()
     }
 
-    fun checkThreeNumbers(input: String){
+    fun checkThreeNumbers(input: String) {
         if (input.length != 3) {
             throw IllegalArgumentException("입력은 반드시 3글자여야 합니다. 다시 입력해주세요.")
         }
     }
 
+    fun checkDistinctNumbers(input: String) {
+        val numbersSet = input.toCharArray().toSet()
+        if (numbersSet.size != 3) {
+            throw IllegalArgumentException("입력한 숫자는 3자리 모두 다 다른 숫자여야 합니다.")
+        }
+    }
 }
