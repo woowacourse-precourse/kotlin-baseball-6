@@ -10,7 +10,7 @@ object UserConsole {
         return convertStringToNumberList(userInput)
     }
 
-    private fun validateInput(userInput: String) {
+    fun validateInput(userInput: String) {
         if (!userInput.all { it.isDigit() }) throw IllegalArgumentException(Constants.INVALID_INPUT_MESSAGE)
         if (userInput.length != 3) throw IllegalArgumentException(Constants.INVALID_LENGTH_MESSAGE)
         if (userInput.toSet().size != userInput.length) throw IllegalArgumentException(Constants.DUPLICATE_NUMBER_MESSAGE)
@@ -30,7 +30,7 @@ object UserConsole {
         return userInput
     }
 
-    private fun validateRestartInput(userInput: String?) {
+    fun validateRestartInput(userInput: String?) {
         if (userInput != "1" && userInput != "2") throw IllegalArgumentException(Constants.INVALID_RESTART_INPUT_MESSAGE)
     }
 }
