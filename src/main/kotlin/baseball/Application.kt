@@ -15,7 +15,7 @@ fun playGame() {
     do {
         print("숫자를 입력해주세요 : ")
         val input = getInput()
-        var result = compare(answer, input)
+        val result = compare(answer, input)
         showResult(result)
     } while (result.first != 3)
 
@@ -99,4 +99,8 @@ fun showResult(result : Pair<Int, Int>){
     else {
         println("${ball}볼 ${strike}스트라이크")
     }
+}
+
+fun afterGame() {
+
 }
