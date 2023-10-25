@@ -8,14 +8,12 @@ class Game(
     private val scoreCalculator: BaseballScoreCalculator,
 ) {
 
-    private val scorePrinter = ScorePrinter()
-
     fun start() {
         val computerList = computerNumberGenerator.getNumberList()
         do {
             val userList = userInput.getNumberList()
-            val result = scoreCalculator.calculate(computerList, userList)
-            scorePrinter.print(result)
+            val score = scoreCalculator.calculate(computerList, userList)
+            score.toMessage()
         } while (!isGameEnd(computerList, userList))
     }
 
