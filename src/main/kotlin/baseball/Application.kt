@@ -20,7 +20,7 @@ fun main() {
         appendToPlayer(input, player)
 
         val (strike, ball) = compareList(computer, player)
-        val gameResult = printResult(strike, ball)
+        val gameResult = createResMessage(strike, ball)
         println(gameResult)
 
         if (strike == 3) {
@@ -81,7 +81,7 @@ fun compareList(computer: MutableList<Int>, player: MutableList<Int>): Pair<Int,
     return Pair(strike, ball)
 }
 
-fun printResult(strike: Int, ball: Int): String {
+fun createResMessage(strike: Int, ball: Int): String {
     val result = mutableListOf<String>()
 
     if (ball > 0) {
