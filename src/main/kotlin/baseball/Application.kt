@@ -8,33 +8,27 @@ fun main() {
     val player = mutableListOf<Int>()
 
     println("숫자 야구 게임을 시작합니다.")
-
     while (true) {
         createRandomList(computer)
 
         print("숫자를 입력해 주세요 : ")
-
         val input = readLine()
         checkUserInput(input)
 
         player.clear()
 
-        for (char in input.orEmpty()) {
-            if (char.isDigit()) {
-                player.add(char.toString().toInt())
-            }
-        }
+        appendToPlayer(input, player)
 
         val (strike, ball) = compareList(computer, player)
         val print = printResult(strike, ball)
         println(print)
 
-        if (strike == 3){
+        if (strike == 3) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
             computer.clear()
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             val isContinue = readLine()?.toInt() ?: 2
-            if(isContinue == 2){
+            if (isContinue == 2) {
                 println("게임 종료")
                 break
             }
@@ -62,11 +56,20 @@ fun checkUserInput(input: String?) {
     }
 }
 
-fun compareList(computer : MutableList<Int>, player: MutableList<Int> ): Pair<Int, Int>{
+fun appendToPlayer(input: String?, player: MutableList<Int>): MutableList<Int> {
+    for (char in input.orEmpty()) {
+        if (char.isDigit()) {
+            player.add(char.toString().toInt())
+        }
+    }
+    return player
+}
+
+fun compareList(computer: MutableList<Int>, player: MutableList<Int>): Pair<Int, Int> {
     var strike = 0
     var ball = 0
 
-    for( i in computer.indices) {
+    for (i in computer.indices) {
         if (computer[i] == player[i]) {
             strike++
         } else if (player.contains(computer[i])) {
