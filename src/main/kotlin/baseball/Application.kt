@@ -3,6 +3,11 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+enum class PlayerInputType(val type: Int) {
+    GAME(3), // 3 자리 수
+    REPLAY(1) // 1자리 수
+}
+
 fun main() {
 
     var play = true // 게임 진행 결정값
@@ -19,22 +24,7 @@ fun main() {
         while (true) {
             print("숫자를 입력해주세요 : ")
             playerString = Console.readLine()
-            playerString?.let {
-
-                playerList.clear()
-
-                // 세자리가 아닌 예외
-                if (it.length != 3) throw IllegalArgumentException()
-                for (index in it.indices) {
-                    // 숫자가 아닌 예외
-                    if (it[index] < '1' || it[index] > '9') throw IllegalArgumentException()
-                    // 숫자가 중복된 예외
-                    if (playerList.contains(it[index] - '0')) throw IllegalArgumentException()
-                    // 정수 리스트에 넣어주기
-                    playerList.add(it[index] - '0')
-                }
-            } ?: throw IllegalArgumentException() // null인 예외
-
+            parsingPlayerInput(playerList, playerString, PlayerInputType.GAME.type) // 세자리 입력 파싱
 
             // 게임 결과 분기
             if (!compareList(computerList, playerList)) {
@@ -47,14 +37,10 @@ fun main() {
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
                 playerString = Console.readLine()
-
-                // 길이가 1이 아닌 예외
-                if (playerString == null || playerString.length != 1) throw IllegalArgumentException()
-                // 숫자가 아닌 예외
-                if (playerString[0] < '1' || playerString[0] > '9') throw IllegalArgumentException()
+                parsingPlayerInput(playerList, playerString, PlayerInputType.REPLAY.type) // 한자리 입력 파싱
 
                 // 재시작 여부 값이 올바름
-                play = (playerString[0] == '1')
+                play = (playerList[0] == 1)
                 break // while(true) 종료`
             }
         }
@@ -71,6 +57,24 @@ fun generateComputerList(computerList: MutableList<Int>) {
         if (randomNumber !in computerList) {
             computerList.add(randomNumber)
         }
+    }
+}
+
+// 사용자 입력(1. 세자리 입력 값 2. 게임 재시작 여부)을 검증 후 playerList에 정수로 담아줌
+fun parsingPlayerInput(playerList: MutableList<Int>, playerInput: String?, numberOfDigits: Int) {
+
+    // 초기화
+    playerList.clear()
+
+    if (playerInput == null || playerInput.length != numberOfDigits) throw IllegalArgumentException()
+
+    for (index in playerInput.indices) {
+        // 숫자가 아닌 예외
+        if (playerInput[index] < '1' || playerInput[index] > '9') throw IllegalArgumentException()
+        // 숫자가 중복된 예외
+        if (playerList.contains(playerInput[index] - '0')) throw IllegalArgumentException()
+        // 정수 리스트에 넣어주기
+        playerList.add(playerInput[index] - '0')
     }
 }
 
