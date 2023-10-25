@@ -4,6 +4,8 @@ import java.lang.IllegalArgumentException
 
 class Program {
     var randomNumber = "000"
+    var restartNumber = "1"
+    var quitNumber = "2"
 
     fun setRandomNumber() {
         var set = mutableSetOf<Int>()
@@ -25,6 +27,12 @@ class Program {
         val numbersSet = input.toCharArray().toSet()
         if (numbersSet.size != 3) {
             throw IllegalArgumentException("입력한 숫자는 3자리 모두 다 다른 숫자여야 합니다.")
+        }
+    }
+
+    fun checkRestartNumber(input: String) {
+        if ((restartNumber != input) && (quitNumber != input) ) {
+            throw IllegalArgumentException("1(재시작) 또는 2(종료)를 입력해주세요. 다시 입력해주세요.")
         }
     }
 }

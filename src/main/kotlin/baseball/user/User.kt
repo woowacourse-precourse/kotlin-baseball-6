@@ -2,15 +2,15 @@ package baseball.user
 
 class User {
     var randomNumber: String = "000"
-    var restartNumber: Int = -1
+    var restartNumber: String = ""
 
     fun inputRandomNumber(): String {
         this.randomNumber = readLine()!!
         return this.randomNumber
     }
 
-    fun inputRestartNumber(): Int {
-        this.restartNumber = readLine()!!.toInt()
+    fun inputRestartNumber(): String {
+        this.restartNumber = readLine()!!
         return this.restartNumber
     }
 }
