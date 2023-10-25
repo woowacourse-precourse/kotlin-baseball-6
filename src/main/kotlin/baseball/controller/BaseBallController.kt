@@ -3,6 +3,7 @@ package baseball.controller
 import baseball.BASEBALL_MAX_SIZE
 import baseball.model.BaseBall
 import baseball.model.Computer
+import baseball.model.GameStatus
 import baseball.model.User
 import baseball.view.InputView
 import baseball.view.OutputView
@@ -12,7 +13,7 @@ class BaseBallController {
 
     private val inputVIew = InputView()
     private val outputVIew = OutputView()
-    private var status = START
+    private var status = GameStatus.START
 
     fun playGame() {
         inputVIew.printPlayGame()
@@ -21,15 +22,15 @@ class BaseBallController {
 
         while (true) {
             when (status) {
-                START -> {
+                GameStatus.START -> {
                     computerBaseBall = startGame(computer)
                 }
 
-                CONTINUE -> {
+                GameStatus.CONTINUE -> {
                     continueGame(computerBaseBall)
                 }
 
-                END -> {
+                GameStatus.END -> {
                     break
                 }
             }
@@ -37,7 +38,7 @@ class BaseBallController {
     }
 
     private fun startGame(computer: Computer): BaseBall {
-        status = CONTINUE
+        status = GameStatus.CONTINUE
         return computer.makeComputerList()
     }
 
@@ -47,9 +48,9 @@ class BaseBallController {
         status = checkAnswer(computerBaseBall, user)
     }
 
-    private fun checkAnswer(computerList: BaseBall, userList: BaseBall): Int {
+    private fun checkAnswer(computerList: BaseBall, userList: BaseBall): GameStatus {
         val strike = checkStrike(computerList, userList)
-        val ball = checkBall(computerList, userList) - strike
+        val ball = checkBall(computerList, userList, strike)
 
         outputVIew.printBaseBallResult(strike, ball)
         if (strike == BASEBALL_MAX_SIZE) {
@@ -57,7 +58,7 @@ class BaseBallController {
             return askContinueGame()
         }
 
-        return CONTINUE
+        return GameStatus.CONTINUE
     }
 
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
@@ -70,33 +71,30 @@ class BaseBallController {
         return strike
     }
 
-    private fun checkBall(computerList: BaseBall, userList: BaseBall): Int {
+    private fun checkBall(computerList: BaseBall, userList: BaseBall, strike: Int): Int {
         var ball = 0
         userList.baseBallData.forEach {
-            if (computerList.baseBallData.contains(it))
+            if (computerList.baseBallData.contains(it)) {
                 ball++
+            }
         }
-        return ball
+        return ball - strike
     }
 
-    private fun askContinueGame(): Int {
+    private fun askContinueGame(): GameStatus {
         inputVIew.printContinue()
         val input = Console.readLine()
 
         require(input == GAME_END_NUM || input == GAME_CONTINUE_NUM)
 
         if (input == GAME_END_NUM) {
-            return END
+            return GameStatus.END
         }
-        return START
+        return GameStatus.START
     }
 
     companion object {
         const val GAME_END_NUM = "2"
         const val GAME_CONTINUE_NUM = "1"
-
-        const val END = 1
-        const val START = 2
-        const val CONTINUE = 3
     }
 }
