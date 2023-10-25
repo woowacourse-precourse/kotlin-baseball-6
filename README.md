@@ -9,11 +9,11 @@
 ## 📮 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-    제출한다.
+    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
+      제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+    - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
+    - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## 🚨 과제 제출 전 체크 리스트 - 0점 방지
 
@@ -37,10 +37,10 @@ BUILD SUCCESSFUL in 0s
 기본적으로 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 맞추는 게임이다.
 
 - 같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱이란 힌트를 얻고, 그 힌트를 이용해서 먼저 상대방(컴퓨터)의 수를 맞추면 승리한다.
-  - 예) 상대방(컴퓨터)의 수가 425일 때
-    - 123을 제시한 경우 : 1스트라이크
-    - 456을 제시한 경우 : 1볼 1스트라이크
-    - 789를 제시한 경우 : 낫싱
+    - 예) 상대방(컴퓨터)의 수가 425일 때
+        - 123을 제시한 경우 : 1스트라이크
+        - 456을 제시한 경우 : 1볼 1스트라이크
+        - 789를 제시한 경우 : 낫싱
 - 위 숫자 야구 게임에서 상대방의 역할을 컴퓨터가 한다. 컴퓨터는 1에서 9까지 서로 다른 임의의 수 3개를 선택한다. 게임 플레이어는 컴퓨터가 생각하고 있는 서로 다른 3개의 숫자를 입력하고, 컴퓨터는 입력한
   숫자에 대한
   결과를 출력한다.
@@ -120,8 +120,8 @@ BUILD SUCCESSFUL in 0s
 ### 라이브러리
 
 - `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
-  - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
-  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
+    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 #### 사용 예시
 
@@ -142,3 +142,118 @@ while (computer.size() < 3) {
 - 미션은 [kotlin-baseball](https://github.com/woowacourse-precourse/kotlin-baseball-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 📌 기능 목록표
+
+### Computer
+
+- [x] 랜덤 야구 숫자를 설정
+- [x] 랜덤 야구 숫자를 반환
+
+### Player
+
+- [x] 야구 숫자 설정
+- [x] 야구 숫자 반환
+
+### InputView
+
+- [x] 야구 숫자 입력
+- [x] 게임 새로 시작 혹은 게임 종료 입력
+
+### OutputView
+
+- [x] 게임 시작 문구 출력
+- [x] 숫자 입력 요구 문구 출력
+- [x] 게임 중간 결과 문구 출력
+    - [x] 볼이나 스트라이크가 하나도 없는 경우
+    - [x] 볼이나 스트라이크가 하나라도 있는 경우
+    - [x] 스트라이크가 3개일 경우
+- [x] 모든 숫자 정답 문구 출력
+- [x] 게임 새로 시작 혹은 게임 종료 문구 출력
+
+### RandomBaseballNumberGenerator
+
+- [x] 랜덤 야구 숫자 생성
+
+### Controller
+
+- [ ] 컴퓨터 랜덤 숫자를 설정
+- [ ] 플레이어 숫자 설정
+- [ ] 컴퓨터 랜덤 숫자와 플레이어 숫자 비교
+- [ ] 문구 출력
+- [ ] 입력
+
+### BaseballNumberValidator
+
+- [x] 세 자리 수 인지 확인
+- [x] 서로 다른 숫자 인지 확인
+- [x] 수인지 확인
+
+### GameControlValidator
+
+- [x] 1이나 2인지 확인.
+
+### BaseballNumberComparator
+
+- [x] 컴퓨터 랜덤 야구 숫자와 입력된 야구 숫자 비교
+    - [x] 컴퓨터가 설정한 수에 포함되면 볼 개수를 늘림
+    - [x] 컴퓨터가 설정한 수와 위치가 같으면 스트라이크 개수를 늘림
+
+## 👉 클래스 다이어 그램
+
+```mermaid
+---
+title: Baseball Game
+---
+classDiagram
+    Computer <.. Controller
+    BaseballNumberComparator <.. Controller
+    Player <.. Controller
+    InputView <.. Controller
+    OutputView <.. Controller
+    Computer <.. BaseballNumberComparator
+    Player <.. BaseballNumberComparator
+    RandomBaseballNumberGenerator <.. Computer
+    BaseballNumberValidator <.. InputView
+    GameControlValidator <.. InputView
+    class Computer {
+        -String _randomBaseballNumber
+        +String randomBaseballNumber
+        +setRandomBaseballNumber()
+    }
+    class Player {
+        -String _baseballNumber
+        +String baseballNumber
+        +setBaseballNumber()
+    }
+    class InputView {
+        +askBaseballNumber()
+        +askRestartOrTerminate()
+    }
+    class OutputView {
+        +startBaseballGame()
+        +pleaseInputBaseballNumber()
+        +guessedAllBaseballNumber()
+        +restartOrTerminateGame()
+        +intermediateGameResult()
+    }
+    class RandomBaseballNumberGenerator {
+        +generateRandomBaseballNumber()
+    }
+    class Controller {
+        +startGame()
+    }
+    class BaseballNumberValidator {
+        +isThreeLetters()
+        +isItANumber()
+        +allThreeLettersDifferent()
+    }
+    class GameControlValidator {
+        +isOneOrTwo()
+    }
+    class BaseballNumberComparator { 
+        +compareAnswerWithPlayerBaseballNumber
+        -checksContainingNumbers()
+        -checkNumbersAreInSamePlace()
+    }
+```
