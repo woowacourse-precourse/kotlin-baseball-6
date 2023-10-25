@@ -40,7 +40,7 @@ fun main() {
                 }
                 //답변 유효성 확인
                 else {
-                    throw Exception("IllegalArgumentException")
+                    throw IllegalArgumentException()
                 }
 
             }
@@ -89,9 +89,9 @@ fun compareNum(userNum : String, randomNum : String) : String {
 
 fun checkAvailability(userInput : String) {
     if (userInput.length != 3 || userInput.toIntOrNull() == null || userInput.contains("0")) {
-        throw Exception("IllegalArgumentException")
+        throw IllegalArgumentException()
     }
     else if(userInput.toSet().size != userInput.length) {
-        throw Exception("IllegalArgumentException")
+        throw IllegalArgumentException()
     }
 }
