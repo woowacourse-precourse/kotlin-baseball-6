@@ -83,7 +83,7 @@ fun compareNum(computerNum: List<Int>, userNum: List<Int>): STATE {
 fun howManyStrike(computerNum: List<Int>, userNum: List<Int>): Int {
     var strikeNum = 0
     for (idx in 0..2) {
-        if (computerNum[idx] == userNum[idx]) strikeNum += 1
+        if (computerNum[idx] == userNum[idx]) strikeNum ++
     }
     return strikeNum
 }
