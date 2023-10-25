@@ -39,7 +39,6 @@ fun baseballGame() {
  * @param threeNumber 게임 숫자를 저장할 MutableSet
  */
 fun getThreeNumber(threeNumber: MutableSet<String>) {
-    threeNumber.clear()
     while (threeNumber.size < 3) {
         val number = pickNumberInRange(1, 9)
         if (number.toString() !in threeNumber) {
