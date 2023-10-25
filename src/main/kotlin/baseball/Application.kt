@@ -6,8 +6,15 @@ fun main() {
     var isProgramEnded = false
     while(!isProgramEnded) {
         val answer : Array<Char> = createGameAnswer()
-        val numberInput : Array<Char> = requestNumberInput()
+        var isGameEnded = false
 
+        while(!isGameEnded) {
+            val numberInput: Array<Char> = requestNumberInput()
+            val (strikeNum, ballNum) = checkBallsAndStrikes(answer, numberInput)
+            if (checkIfUserWin(strikeNum, ballNum)) {
+                isGameEnded = true
+            }
+        }
         isProgramEnded = true
     }
 }
