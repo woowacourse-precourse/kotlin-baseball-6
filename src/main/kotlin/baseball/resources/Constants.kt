@@ -24,3 +24,9 @@ const val NINE = 9
 const val NINE_CHAR = '9'
 
 const val MAX_NUMBER = 3
+
+const val NOT_DIGIT_ERROR = "문자가 섞인 입력 값입니다."
+const val CONTAIN_ZERO_ERROR = "입력 포맷이 일치하지 않습니다. 1부터 9까지 수만 입력해주세요."
+const val NOT_THREE_DIGITS_ERROR = "세 자리 숫자가 아닙니다."
+const val DUPLICATES_NUMBER_ERROR = "중복되는 숫자가 존재합니다."
+const val NOT_ONE_OR_TWO_ONLY_ERROR = "1 또는 2를 입력해주세요."
