@@ -40,4 +40,12 @@ class Program {
         val contains = numbersSet.contains(input)
         return contains
     }
+
+    fun isSamePlaceSameNumber(inputNumber: Char, index: Int): Boolean {
+        if (this.randomNumber[index] == inputNumber) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
