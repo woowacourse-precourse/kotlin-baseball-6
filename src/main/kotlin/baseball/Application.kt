@@ -7,16 +7,53 @@ fun main() {
     val message = "숫자 야구 게임을 시작합니다"
     println(message)
 
-    startGame()
+    try {
+        startGame()
+    } catch (e: IllegalArgumentException) {
+        print(e)
+        return
+    }
 }
 
 fun startGame() {
     val answer = getRandomNums()
+    var strike = 0
 
-    val inputNumList = getUserInput()
-    if (isNumValidated(inputNumList)) {
-        // ToDo...
+
+    while (strike != 3) {
+        val inputNumList = getUserInput()
+        if (!isNumValidated(inputNumList)) {
+            throw IllegalArgumentException("잘못된 값이 입력되었습니다. 게임을 종료합니다.")
+        }
+        var (ball, strike) = matchEachNums(answer, inputNumList)
+        printResult(ball, strike)
     }
+}
+
+fun printResult(ball: Int, strike: Int) {
+    val str = when {
+        (strike == 0 && ball == 0) -> "낫싱"
+        (strike == 0) -> ball.toString() + "볼"
+        (ball == 0) -> strike.toString() + "스트라이크"
+        else -> ball.toString() + "볼 " + strike.toString() + "스트라이크"
+    }
+    print(str)
+}
+
+fun matchEachNums(answer: List<Int>, input: List<Int>): Pair<Int, Int> {
+    var strike = 0
+    var ball = 0
+    for (i in 0 until 3) {
+        if (answer[i] == input[i])
+            strike++
+    }
+    for (i in 0 until 3) {
+        if (answer.contains(input[i]))
+            ball++
+    }
+    ball -= strike
+
+    return Pair(ball, strike)
 }
 
 fun getUserInput(): MutableList<Int> {
