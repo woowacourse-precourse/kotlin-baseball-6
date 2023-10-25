@@ -43,7 +43,7 @@ fun generateRandomNumber(): List<Int> {
 }
 
 fun userInput(): List<Int> {
-    println(INPUT_NUMBER_MESSAGE)
+    print(INPUT_NUMBER_MESSAGE)
     val user = Console.readLine().map {it.digitToInt()}
 
     if(user.contains(0)) {
@@ -52,8 +52,11 @@ fun userInput(): List<Int> {
     if(user.size != 3) {
         throw IllegalArgumentException("3자리 수를 입력해주세요")
     }
-    if(user.toSet().size != user.size) {
+    if(user.toSet().size != 3) {
         throw IllegalArgumentException("중복 되지 않는 숫자를 입력해주세요")
+    }
+    if(user.isEmpty()){
+        throw IllegalArgumentException("값을 넣어주세요")
     }
 
     return user
@@ -78,7 +81,7 @@ fun game(computer: List<Int>, user: List<Int>):Boolean {
     println(compareNumber(ball, strike))
 
     if (strike == 3) {
-        println(THREE_STRIKE_MESSAGE)
+        print(THREE_STRIKE_MESSAGE)
         return false
     }
     return true
@@ -90,15 +93,15 @@ fun compareNumber(ball:Int, strike: Int): String {
 
     var str = ""
     if (ball == 0 && strike == 0) {
-        println("낫싱")
+        print("낫싱")
     }
     else if (ball == 0 && strike > 0) {
-        println("${strike}스트라이크")
+        print("${strike}스트라이크")
     }
     else if (strike == 0 && ball > 0) {
-        println("${ball}볼")
+        print("${ball}볼")
     }else{
-        println("${ball}볼 ${strike}스트라이크")}
+        print("${ball}볼 ${strike}스트라이크")}
     return str
 }
 
@@ -112,7 +115,7 @@ fun gameOver(areUDone:Boolean): Boolean {
         return when (userReply) {
             1 -> true
             2 -> false
-            else -> gameOver(areUDone)
+            else -> throw IllegalArgumentException("1 또는 2를 선택해주세요")
         }
     }
     return false
