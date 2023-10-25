@@ -1,5 +1,7 @@
 package baseball.domain
 
+import baseball.utils.Constants
+
 class GameLogic(private val computerNum: Int, private val userNum: Int) {
 
     fun checkResult(): Boolean {
@@ -21,7 +23,7 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         }
     }
 
-    fun countStrikes(computer: Int, user: Int): Int {
+    private fun countStrikes(computer: Int, user: Int): Int {
         var strikes = 0
         for (i in computer.toString().indices) {
             if (computer.toString()[i] == user.toString()[i]) strikes++
@@ -38,20 +40,20 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
     }
 
     private fun threeStrike() {
-        println("3스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println(Constants.THREE_STRIKE)
+        println(Constants.GAME_OVER_MESSAGE)
     }
 
     private fun checkZeroCount(strikes: Int, balls: Int) {
         when (balls) {
             0 -> when (strikes) {
-                0 -> println("낫싱")
-                else -> println("${strikes}스트라이크")
+                0 -> println(Constants.NOTHING_MESSAGE)
+                else -> println("$strikes"+Constants.STRIKE_MESSAGE)
             }
 
             else -> when (strikes) {
-                0 -> println("${balls}볼")
-                else -> println("${balls}볼 ${strikes}스트라이크")
+                0 -> println("$balls"+Constants.BALL_MESSAGE)
+                else -> println("$balls"+Constants.BALL_MESSAGE + " $strikes" + Constants.STRIKE_MESSAGE)
             }
         }
     }

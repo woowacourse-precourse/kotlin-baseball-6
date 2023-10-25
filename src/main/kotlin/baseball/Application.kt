@@ -12,13 +12,19 @@ fun main() {
 
     resultView.printStartMessage()
 
-    do {
-        val userNum = inputView.userInputNum()
+    playGame(inputView, resultView, gameService)
+}
 
-        if (gameService.startGame(userNum)) {
-            if (!resultView.askForRestart()) break
+fun playGame(inputView: InputView, resultView: ResultView, gameService: GameService) {
+    val userNum = inputView.userInputNum()
+
+    if (gameService.startGame(userNum)) {
+        if (!resultView.askForRestart()) {
+            return
         }
 
         gameService.restart()
-    } while (true)
+    }
+
+    playGame(inputView, resultView, gameService)
 }
