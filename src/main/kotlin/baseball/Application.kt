@@ -4,17 +4,12 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    // 1. 게임 시작을 위한 세팅
-    val answer = generateAnswer()
 
-    playGame(answer)
-    var check = isRestart()
-
-    while (check[0] == 1) {
-        val ans = generateAnswer()
-        playGame(ans)
-        check = isRestart()
-    }
+    do {
+        val answer = generateAnswer()   //정답 생성
+        playGame(answer)                //게임 시작
+        var check = isRestart()         //재시작 여부
+    } while (check[0] == 1)
 }
 
 fun generateAnswer(): ArrayList<Int> {
