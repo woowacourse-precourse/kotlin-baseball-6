@@ -25,6 +25,38 @@ fun userInputNumbers(): List<Int>{
     return userInputNumberList
 }
 
+fun checkResult(randomNumbers: List<Int>, userInputNumbers: List<Int>): List<Int>{
+    var ball: Int = 0
+    var strike: Int = 0
+
+    for(i in 0 until userInputNumbers.size){
+        if(randomNumbers.contains(userInputNumbers[i])){
+            if(randomNumbers[i]==userInputNumbers[i]){
+                strike +=1
+            }
+            else{
+                ball +=1
+            }
+        }
+    }
+    return listOf(ball, strike)
+}
+
+fun printResult(result: List<Int>){
+    val ball = result[0]
+    val strike = result[1]
+
+    if(ball==0 && strike==0){
+        println("낫싱")
+    }
+    else if(ball==0){
+        println("${strike}스트라이크")
+    }
+    else if(strike==0){
+        println("${ball}볼")
+    }
+}
+
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
 }
