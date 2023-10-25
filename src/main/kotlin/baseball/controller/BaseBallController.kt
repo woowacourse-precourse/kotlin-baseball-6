@@ -1,7 +1,6 @@
 package baseball.controller
 
 import baseball.BASEBALL_MAX_SIZE
-import baseball.model.BaseBall
 import baseball.model.Computer
 import baseball.model.GameStatus
 import baseball.model.User
@@ -17,7 +16,7 @@ class BaseBallController {
 
     fun playGame() {
         inputVIew.printPlayGame()
-        var computerBaseBall = BaseBall(mutableListOf())
+        var computerBaseBall = mutableListOf<Int>()
 
         while (true) {
             when (status) {
@@ -36,18 +35,18 @@ class BaseBallController {
         }
     }
 
-    private fun startGame(): BaseBall {
+    private fun startGame(): MutableList<Int> {
         status = GameStatus.CONTINUE
         return Computer.makeComputerList()
     }
 
-    private fun continueGame(computerBaseBall: BaseBall) {
+    private fun continueGame(computerBaseBall: MutableList<Int>) {
         inputVIew.printInputUser()
         val user = User().inputUser()
         status = checkAnswer(computerBaseBall, user)
     }
 
-    private fun checkAnswer(computerList: BaseBall, userList: BaseBall): GameStatus {
+    private fun checkAnswer(computerList: MutableList<Int>, userList: MutableList<Int>): GameStatus {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList, strike)
 
@@ -60,20 +59,20 @@ class BaseBallController {
         return GameStatus.CONTINUE
     }
 
-    private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
+    private fun checkStrike(computerList: MutableList<Int>, userList: MutableList<Int>): Int {
         var strike = 0
-        for (i in 0 until userList.baseBallData.size) {
-            if (userList.baseBallData[i] == computerList.baseBallData[i]) {
+        for (i in 0 until userList.size) {
+            if (userList[i] == computerList[i]) {
                 strike++
             }
         }
         return strike
     }
 
-    private fun checkBall(computerList: BaseBall, userList: BaseBall, strike: Int): Int {
+    private fun checkBall(computerList: MutableList<Int>, userList: MutableList<Int>, strike: Int): Int {
         var ball = 0
-        userList.baseBallData.forEach {
-            if (computerList.baseBallData.contains(it)) {
+        userList.forEach {
+            if (computerList.contains(it)) {
                 ball++
             }
         }

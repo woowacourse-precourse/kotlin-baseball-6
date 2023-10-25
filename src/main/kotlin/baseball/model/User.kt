@@ -4,7 +4,7 @@ import baseball.BASEBALL_MAX_SIZE
 import camp.nextstep.edu.missionutils.Console
 
 class User {
-    fun inputUser(): BaseBall {
+    fun inputUser(): MutableList<Int> {
         val userList = mutableListOf<Int>()
         val input = Console.readLine().toCharArray()
 
@@ -15,7 +15,7 @@ class User {
         for (i in input) {
             userList.add(i.digitToInt())
         }
-        return BaseBall(userList)
+        return userList
     }
 
     private fun checkNumber(input: CharArray) {

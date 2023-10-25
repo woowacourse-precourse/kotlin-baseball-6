@@ -4,7 +4,7 @@ import baseball.BASEBALL_MAX_SIZE
 import camp.nextstep.edu.missionutils.Randoms
 
 object Computer {
-    fun makeComputerList(): BaseBall {
+    fun makeComputerList(): MutableList<Int> {
         val computerList = mutableListOf<Int>()
         while (computerList.size < BASEBALL_MAX_SIZE) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
@@ -12,6 +12,6 @@ object Computer {
                 computerList.add(randomNumber)
             }
         }
-        return BaseBall(computerList)
+        return computerList
     }
 }
