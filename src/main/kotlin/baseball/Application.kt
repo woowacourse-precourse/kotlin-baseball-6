@@ -1,5 +1,16 @@
 package baseball
 
+import baseball.controller.BaseBallGameController
+import baseball.view.PrintOutputView
+import baseball.view.ReadUserInputView
+
 fun main() {
-    TODO("프로그램 구현")
+    BaseBallGameController(
+        ReadUserInputView(),
+        PrintOutputView()
+    ).play()
 }
+
+
+
+
