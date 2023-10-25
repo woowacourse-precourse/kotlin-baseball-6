@@ -11,8 +11,9 @@ fun main() {
 
 private fun baseballGameMain() {
     val questionNums : MutableList<Char> = createQuestion()
+    println(questionNums)
     val userNums :  MutableList<Char> = inputNums()
-
+    printHint(countHintNum(questionNums, userNums))
 }
 
 private fun createQuestion(): MutableList<Char> {
@@ -41,7 +42,11 @@ private fun checkInput(input : String){
     }
 }
 
-
+private fun printHint(hintNums : Array<Int>) {
+    if (hintNums[0] != 0) print("${hintNums[0]}볼 ")
+    if (hintNums[1] != 0) print("${hintNums[1]}스트라이크")
+    if (hintNums[0] == 0 && hintNums[1] == 0) print("낫싱")
+}
 
 private fun countHintNum(questionNums : MutableList<Char>, userNums : MutableList<Char>): Array<Int> {
     var bollCnt : Int = 0
