@@ -23,5 +23,4 @@ fun genAnswer() : String {
         }
     }
     return answer.joinToString("")
-
 }
