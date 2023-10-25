@@ -9,8 +9,12 @@ class BaseballConsole {
 
     fun getInput(): String {
         print("숫자를 입력해주세요 : ")
-        val input = Console.readLine()
-        return validateUserInput(input)
+        try {
+            val input = Console.readLine()
+            return validateUserInput(input)
+        } catch (e: Exception) {
+            throw IllegalArgumentException()
+        }
     }
 
     private fun validateUserInput(input: String?): String {
@@ -55,8 +59,12 @@ class BaseballConsole {
     }
 
     fun getEndFlag(): EndFlag {
-        val endFlag = Console.readLine()
-        return validateEndFlag(endFlag?.trim())
+        try {
+            val endFlag = Console.readLine()
+            return validateEndFlag(endFlag?.trim())
+        } catch (e: Exception) {
+            throw IllegalArgumentException()
+        }
     }
 
     private fun validateEndFlag(input: String?): EndFlag {
