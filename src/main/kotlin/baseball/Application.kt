@@ -13,7 +13,7 @@ fun main() {
     }
 
     val hitCheck = checkTarget(targetList, inputList)
-
+    println(hitCheck)
 
 }
 
