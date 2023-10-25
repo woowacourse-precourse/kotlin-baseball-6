@@ -38,6 +38,32 @@ class Main {
         }
     }
 
+    fun restart(){
+        computer.randomAnswer()
+        while (true){
+            // 입력값 확인
+            val input = user.trial()
+            validInputCheck(input)
+
+            // 게임 시작
+            val result_str = Result(computer.computer, input)
+            println(result_str)
+
+            if(result_str.compareTo("3스트라이크") == 0){
+                println(GAME_END_MESSAGE)
+                println(GAME_RESTART_MESSAGE)
+                val restartState = Console.readLine()
+                when (restartState) {
+                    REPLAY_SIGNAL.toString() -> restart()
+                    END_SIGNAL.toString() -> return
+                    else -> throw IllegalArgumentException()
+                }
+            }
+
+
+            //CheckResult(input, )
+        }
+    }
 
     private fun validInputCheck(input: String) {
         validationInputLength(input)
@@ -47,10 +73,5 @@ class Main {
 
     private fun reset() {
         computer.resetAnswer()
-    }
-
-    private fun restart(){
-        this.reset()
-        this.start()
     }
 }
