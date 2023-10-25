@@ -5,11 +5,10 @@ import baseball.domain.Computer
 import baseball.domain.GameStatus
 import baseball.domain.Guess
 import baseball.view.InputView
-import baseball.view.OutputView
 
 class GameController(
     private val inputView: InputView,
-    private val outputView: OutputView,
+    private val outputManager: OutputManager,
     private val computer: Computer,
 ) {
     fun run() {
@@ -32,7 +31,7 @@ class GameController(
         val result = computer.checkGuess(guess)
 
         // 결과 출력
-        outputView.printResult(result)
+        outputManager.printResult(result)
 
         // 3스트라이크가 아닌 경우 재귀 호출
         if (result.strikeCount != BallNumbers.BALL_COUNT) {
