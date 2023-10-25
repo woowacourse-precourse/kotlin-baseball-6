@@ -10,8 +10,10 @@ import camp.nextstep.edu.missionutils.Console
 /** [2, 4] 2) 사용자 입력 검증 : baseball, menu 공통 처리 (Controller) */
 fun inputValidator(userInput: UserInput, digit: Int) {
     printInputPrompt(digit)
+
     val userInputData = Console.readLine() ?: GameConfig.EMPTY_STRING
-    userInput.setDataWithValidation(userInputData, null, null)
+
+    userInput.setDataWithValidation(userInputData)
 }
 
 // 단일 라인이긴 하지만 '='로 반환하기에 길이가 김
@@ -37,4 +39,3 @@ fun calculate(baseballInput: BaseballInput, answer: Answer): Boolean {
     val isAllStrike = (strike == GameConfig.BASEBALL_DIGITS)
     return isAllStrike
 }
-

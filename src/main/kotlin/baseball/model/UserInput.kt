@@ -7,11 +7,17 @@ import baseball.utils.toIntArray
 // Q1. 사용자 입력값 검증 로직을 이쪽으로에 두는 게 맞는 걸까?
 // GPT A1. 입력 값에 따라 내부 상태가 변경되는 경우 해당 로직을 모델 내에 두는 것이 적절하다.
 
+// setter 없음
 open class UserInput {
     // Q2. validate를 자식에서 각각 오버라이드 해서 Baseball은 중복 검증을 추가로 수행하게 하는 게 맞을까?
     // GPT 23. 상속을 활용하는 좋은 예시라고 생각한다.
+
     /** Baseball, Menu 공통. 1, 2) 입력된 문자열의 길이 및 범위 체크  (Model) */
-    open fun setDataWithValidation(userInputData: String, digit: Int?, range: CharRange?) {
+    open fun setDataWithValidation(
+        userInputData: String = "",
+        digit: Int? = null,
+        range: CharRange? = null
+    ) {
         // 입력된 데이터 모두가 range에 속하는지 체크
         val rangeCheck = userInputData.map { it }.all { it in range!! }
 
