@@ -11,7 +11,7 @@ class GameMachine(
     }
 
     fun startGame() {
-        baseballGame.game()
+        baseballGame.startGame()
     }
 
 }

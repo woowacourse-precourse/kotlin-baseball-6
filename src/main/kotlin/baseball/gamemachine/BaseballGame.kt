@@ -17,42 +17,42 @@ class BaseballGame(
 
 ) {
 
-    // 이건 전체 게임 즉, 맞출때 까지
-    fun game() {
+    // 이건 전체 게임 즉, 맞출때 까지 반복
+    fun startGame() {
         var flag = START
 
         while (flag == START) {
             var computerNum = generator.makeComputerNumber()
-            flag = smallGame(computerNum)
+            flag = playGame(computerNum)
         }
     }
 
-    // 이건 하나에 대한 문답만을 책임
-    private fun smallGame(answer: List<Int>):Int {
+
+    private fun playGame(answer: List<Int>): Int {
         var ball: Int
         var strike: Int
 
-        while(true) {
+        while (true) {
             var myNum = strToList(input.inputMyNumber())
             val ballAndStrike = answerChecker.checkAnswer(answer, myNum)
 
             ball = ballAndStrike[0]
             strike = ballAndStrike[1]
 
-            if (judge(ball,strike)) {
+            if (judge(ball, strike)) {
 
-                return input.inputRetryChoice()
+                return input.inputRetryChoice().toInt()
             }
         }
 
     }
 
-    fun judge(ball:Int, strike:Int):Boolean {
-        if(strike == THREE_STRIKE) {
+    private fun judge(ball: Int, strike: Int): Boolean {
+        if (strike == THREE_STRIKE) {
             printer.printStrike(strike)
             return true
         }
-        if(strike == ZERO && ball == ZERO) {
+        if (strike == ZERO && ball == ZERO) {
             printer.printNothing()
             return false
         }
@@ -64,7 +64,7 @@ class BaseballGame(
             printer.printStrike(strike)
             return false
         }
-        printer.printBallAndStrike(ball,strike)
+        printer.printBallAndStrike(ball, strike)
         return false
     }
 
@@ -72,7 +72,6 @@ class BaseballGame(
     private fun strToList(myNum: String): List<Int> {
         var num = mutableListOf<Int>()
         for (char in myNum) {
-            // code로 하면 아스키 코드가 나옴
             num.add(char.toString().toInt())
         }
         return num
