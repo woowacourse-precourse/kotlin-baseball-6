@@ -1,5 +1,8 @@
 package baseball
 
+import baseball.app.BaseballGameApp
+
 fun main() {
-    TODO("프로그램 구현")
+    val game = BaseballGameApp()
+    game.run()
 }
