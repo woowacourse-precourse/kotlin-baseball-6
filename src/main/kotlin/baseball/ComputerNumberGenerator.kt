@@ -1,5 +1,8 @@
 package baseball
 
+import baseball.NumberBounds.END_NUMBER
+import baseball.NumberBounds.MAX_SIZE
+import baseball.NumberBounds.START_NUMBER
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 class ComputerNumberGenerator : NumberProvider {
@@ -11,14 +14,8 @@ class ComputerNumberGenerator : NumberProvider {
     private fun generateRandomNumberList(): List<Int> {
         val numberSet = mutableSetOf<Int>()
         while (numberSet.size < MAX_SIZE) {
-            numberSet.add(pickNumberInRange(START, END))
+            numberSet.add(pickNumberInRange(START_NUMBER, END_NUMBER))
         }
         return numberSet.toList()
-    }
-
-    companion object {
-        private const val START = 1
-        private const val END = 9
-        private const val MAX_SIZE = 3
     }
 }

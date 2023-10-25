@@ -1,16 +1,24 @@
 package baseball
 
+import baseball.ErrorMessage.BOUND_ERROR
+import baseball.ErrorMessage.DUPLICATE_ERROR
+import baseball.ErrorMessage.FORMAT_ERROR
+import baseball.ErrorMessage.SIZE_ERROR
+import baseball.GameMessage.INPUT_MESSAGE
+import baseball.NumberBounds.END_NUMBER
+import baseball.NumberBounds.MAX_SIZE
+import baseball.NumberBounds.START_NUMBER
 import camp.nextstep.edu.missionutils.Console
 
 class UserInput : NumberProvider {
 
     override fun getNumberList(): List<Int> {
         try {
-            print("숫자를 입력해주세요 : ")
+            print(INPUT_MESSAGE)
             return Console.readLine().map { it.toString().toInt() }
                 .apply { validate(this) }
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("숫자가 아닙니다.")
+            throw IllegalArgumentException(FORMAT_ERROR)
         } catch (e: IllegalArgumentException) {
             throw e
         }
@@ -24,27 +32,21 @@ class UserInput : NumberProvider {
 
     private fun validateNumberDuplicate(userInput: List<Int>) {
         if (userInput.size != userInput.toSet().size) {
-            throw IllegalArgumentException("중복된 숫자가 있습니다.")
+            throw IllegalArgumentException(DUPLICATE_ERROR)
         }
     }
 
     private fun validateNumberInRange(userInput: List<Int>) {
         userInput.forEach {
-            if (it < START || it > END) {
-                throw IllegalArgumentException("범위에 속하지 않은 숫자입니다.")
+            if (it < START_NUMBER || it > END_NUMBER) {
+                throw IllegalArgumentException(BOUND_ERROR)
             }
         }
     }
 
     private fun validateNumberLength(userInput: List<Int>) {
         if (userInput.size != MAX_SIZE) {
-            throw IllegalArgumentException("세 자리가 아닙니다.")
+            throw IllegalArgumentException(SIZE_ERROR)
         }
-    }
-
-    companion object {
-        private const val START = 1
-        private const val END = 9
-        private const val MAX_SIZE = 3
     }
 }

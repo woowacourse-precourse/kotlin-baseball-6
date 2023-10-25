@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.ErrorMessage.BOUND_ERROR
+import baseball.GameMessage.RESTART_MESSAGE
 import camp.nextstep.edu.missionutils.Console
 
 class Game(
@@ -18,14 +20,19 @@ class Game(
     }
 
     fun isRestart(): Boolean {
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println(RESTART_MESSAGE)
 
         return when (Console.readLine()) {
-            "1" -> true
-            "2" -> false
-            else -> throw IllegalArgumentException("1 또는 2가 아닙니다")
+            RESTART -> true
+            END -> false
+            else -> throw IllegalArgumentException(BOUND_ERROR)
         }
     }
 
     private fun isGameEnd(computerList: List<Int>, userList: List<Int>): Boolean = computerList == userList
+
+    companion object {
+        private const val RESTART = "1"
+        private const val END = "2"
+    }
 }

@@ -1,8 +1,10 @@
 package baseball
 
+import baseball.GameMessage.GAME_START_MESSAGE
+
 class GameRunner {
     fun run() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(GAME_START_MESSAGE)
         do {
             val computerNumberGenerator = ComputerNumberGenerator()
             val userInput = UserInput()
