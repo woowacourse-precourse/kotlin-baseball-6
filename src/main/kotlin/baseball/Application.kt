@@ -4,11 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
-
 const val START_MESSAGE = "숫자 야구 게임을 시작합니다."
 const val INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : "
-const val THREE_STRIKE_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료"
-const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요"
+const val THREE_STRIKE_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 
 
 
@@ -38,7 +37,7 @@ fun generateRandomNumber(): List<Int> {
             computer.add(randomNumber)
         }
     }
-    //println(computer)
+    println(computer)
     return computer
 }
 
@@ -58,7 +57,6 @@ fun userInput(): List<Int> {
     if(user.isEmpty()){
         throw IllegalArgumentException("값을 넣어주세요")
     }
-
     return user
 }
 
@@ -81,7 +79,7 @@ fun game(computer: List<Int>, user: List<Int>):Boolean {
     println(compareNumber(ball, strike))
 
     if (strike == 3) {
-        print(THREE_STRIKE_MESSAGE)
+        println(THREE_STRIKE_MESSAGE)
         return false
     }
     return true
