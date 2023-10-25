@@ -1,5 +1,10 @@
 package baseball
 
+import baseball.gamemachine.GameMachine
+
+
 fun main() {
-    TODO("프로그램 구현")
+    val gameMachine = GameMachine()
+
+    gameMachine.startGame()
 }
