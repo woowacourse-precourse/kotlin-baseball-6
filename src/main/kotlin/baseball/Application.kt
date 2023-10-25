@@ -10,14 +10,14 @@ fun main() {
 
 // 컴퓨터가 세자리 수의 랜덤값 생성
 fun ComRandomNum(): MutableList<Char> {
-    var computerNum = mutableListOf<Char>()
-    while (computerNum.size < 3) {
+    var computerNum = ""
+    while (computerNum.length < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9).toString()
         if (!computerNum.contains(randomNumber)) {
-            computerNum.add(randomNumber)
+            computerNum += randomNumber
         }
     }
-    return computerNum
+    return computerNum.toMutableList()
 }
 
 // 잘못된 입력값 점검
