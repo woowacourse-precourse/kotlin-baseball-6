@@ -22,16 +22,15 @@ class BaseballGame {
             print(GameMessage.INPUT_NUMBER.message)
             you.getInput()
 
-            if(printResult(check(computer, you))) {
-                result = inputResult()
-                if(result == 2) break
+            if(checkInput(computer, you)) {
+                if(inputResult() == 2) break
 
                 computer.reset()
             }
         }
     }
 
-    fun check(computer: Computer, you: Person): Pair<Int, Int> {
+    private fun checkInput(computer: Computer, you: Person): Boolean {
         var strike = 0
         var ball = 0
         for ((index, value) in you.person.withIndex()) {
@@ -45,11 +44,10 @@ class BaseballGame {
                 }
             }
         }
-        return Pair(strike, ball)
+        return showResult(strike, ball)
     }
 
-    fun printResult(check: Pair<Int, Int>) : Boolean {
-        val (strike, ball) = check
+    private fun showResult(strike: Int, ball: Int): Boolean {
         if(strike == 0) {
             if(ball == 0) {
                 println(Result.NOTHING.state)
