@@ -19,8 +19,8 @@ class UserInputException{
         }
 
         fun isNumber(userInput: String){
-            for(i in 0 until userInput.length){
-                if(userInput[i].code <'0'.code || userInput[i].code >'9'.code) throw IllegalArgumentException("입력값은 숫자여야 합니다.")
+            for(numberIndex in 0 until userInput.length){
+                if(userInput[numberIndex].code <'0'.code || userInput[numberIndex].code >'9'.code) throw IllegalArgumentException("입력값은 숫자여야 합니다.")
             }
         }
 
@@ -51,8 +51,8 @@ fun userInputNumbers(): List<Int>{
     UserInputException.isDuplicate(userInput)
     UserInputException.isNumber(userInput)
 
-    for(i in 0 until userInput.length){
-        userInputNumberList.add(userInput[i].code - '0'.code)
+    for(numberIndex in 0 until userInput.length){
+        userInputNumberList.add(userInput[numberIndex].code - '0'.code)
     }
     return userInputNumberList
 }
@@ -61,9 +61,9 @@ fun checkResult(randomNumbers: List<Int>, userInputNumbers: List<Int>): List<Int
     var ball: Int = 0
     var strike: Int = 0
 
-    for(i in 0 until userInputNumbers.size){
-        if(randomNumbers.contains(userInputNumbers[i])){
-            if(randomNumbers[i]==userInputNumbers[i]){
+    for(numberIndex in 0 until userInputNumbers.size){
+        if(randomNumbers.contains(userInputNumbers[numberIndex])){
+            if(randomNumbers[numberIndex]==userInputNumbers[numberIndex]){
                 strike +=1
             }
             else{
