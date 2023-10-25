@@ -19,12 +19,18 @@ fun main() {
 
             user.clear()
             val input = Console.readLine()
-            try {
-                isValidateInputNumber(input)
-            } catch (e: IllegalArgumentException) {
-                break@loop
-            }
+
+            isValidateInputNumber(input)
+
             input.forEach { user.add(it.digitToInt()) }
+
+                for(i in 1..9) {
+                    var result = 0
+                    user.forEachIndexed { _, value ->
+                        if(value == i) result++
+                    }
+                    if(result > 1) throw IllegalArgumentException("zz")
+                }
 
             computer.forEachIndexed { i, value ->
                 repeat(3) { j ->
@@ -73,6 +79,7 @@ fun getNotEmptyInt(string: String?): Int {
     if (input.toIntOrNull() == null) {
         throw IllegalArgumentException("input String cannot be parsed Int")
     }
+    if(input.length > 3 ) throw IllegalArgumentException("input String cannot be parsed Int")
     return input.toInt()
 }
 
