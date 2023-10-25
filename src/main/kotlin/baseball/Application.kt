@@ -12,6 +12,9 @@ fun main() {
         it.code - 48
     }
 
+    val hitCheck = checkTarget(targetList, inputList)
+
+
 }
 
 fun setNumber(): List<Int> {
@@ -41,5 +44,18 @@ fun getInput(): String {
     } else {
         return userInput
     }
+}
+
+fun checkTarget(targetList: List<Int>, inputList: List<Int>): CheckResult {
+    var strike = 0
+    var ball = 0
+    for (i in inputList.indices) {
+        val index = targetList.indexOf(inputList[i])
+        if (index != -1) {
+            if (index == i) strike++ else ball++
+        }
+    }
+
+    return CheckResult(strike, ball)
 }
 
