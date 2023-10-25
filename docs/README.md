@@ -7,7 +7,6 @@
 ## Game Class
 - [Done] 유저의 입력을 받는 기능
 - [Done] 유저의 입력값을 컴퓨터 랜덤숫자와 비교하여 볼과 스트라이크를 검증하는 기능
-- [ToDo] 게임 종료시, 게임 옵션 제공 기능
 - [ToDo] 유저의 입력값 예외처리
 
 ## GamePrint
@@ -17,7 +16,7 @@
 - [Done] 게임중, 결과 값 프린트 기능
 - [Done] 게임 종료 이후, 안내 문구 프린트 기능
 
-## Result dataClass
+## Result DataClass
 - [Done] 스트라이크와 볼을 변수로 갖는 Result 데이터클래스 구현
 
 ## Test
