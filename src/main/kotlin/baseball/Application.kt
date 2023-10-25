@@ -39,9 +39,14 @@ fun createRandomNum(): List<Int> {
 fun getUserInputNum(): List<Int> {
     print("숫자를 입력해주세요 : ")
     val userInputChar = Console.readLine().toCharArray()
+    checkInputIsDigit(userInputChar)
     val inputNum = userInputChar.map { num -> num.toString().toInt() }
     checkIsValidNum(inputNum)
     return inputNum
+}
+
+fun checkInputIsDigit(userInput: CharArray) {
+    userInput.forEach { if (!it.isDigit()) throw IllegalArgumentException("숫자만 입력해주세요") }
 }
 
 fun checkIsValidNum(inputNum: List<Int>) {
