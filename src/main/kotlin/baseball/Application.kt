@@ -9,7 +9,7 @@ import baseball.view.ResultView
 fun main() {
     val inputView = InputView(InputValidator())
     val resultView = ResultView()
-    val gameService = GameService(Computer())
+    val gameService = GameService(Computer(), resultView)
 
     resultView.printStartMessage()
 
