@@ -93,12 +93,23 @@ fun playGame(computer: Computer) {
         when {
             strike == 3 -> {
                 println("3개의 숫자를 모두 맞히셨습니다!\n게임 종료")
-                return
+                if (askRestart()) {
+                    playGame(Computer())
+                } else {
+                    return
+                }
             }
             strike > 0 && ball == 0 -> println("$strike 스트라이크")
             strike == 0 && ball > 0 -> println("$ball 볼")
             strike > 0 && ball > 0 -> println("$strike 스트라이크 $ball 볼")
             strike == 0 && ball == 0 -> println("낫싱")
         }
+    }
+}
+
+fun askRestart(): Boolean {
+    while (true) {
+        println("게임을 다시 시작하시겠습니까?")
+        return false
     }
 }
