@@ -45,5 +45,10 @@ class Controller(
     fun inputRestartOrTerminate(): String {
         return InputView.inputReStartOrExit(GameControlValidatorImpl)
     }
+
+    companion object {
+        const val THREE_STRIKE = 3
+        const val TERMINATE = "2"
+    }
 }
 
