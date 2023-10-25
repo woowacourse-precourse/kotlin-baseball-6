@@ -29,7 +29,7 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
 
     fun getResultMessage(strikes: Int, balls: Int): String {
         return if (strikes == 3) {
-            Constants.THREE_STRIKE_MESSAGE + "\n" + Constants.GAME_OVER_MESSAGE
+            Constants.STRIKE_MESSAGE + "\n" + Constants.GAME_OVER_MESSAGE
         } else {
             getGameProgressMessage(strikes, balls)
         }
