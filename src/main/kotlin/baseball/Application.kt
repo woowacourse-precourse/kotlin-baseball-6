@@ -23,10 +23,9 @@ fun startBaseballPlay() {
     println(playerAnswer)
 
     if (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0) {
-        baseballHint(computerRandomNum, playerAnswer)
-    } else {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        strikeAndBall(computerRandomNum, playerAnswer)
     }
+
 }
 
 fun createComputerRandomNum(): MutableList<Int> {
@@ -75,8 +74,7 @@ fun compareComputerAndPlayer(computer: String, player: String): Int {
     }
 }
 
-fun baseballHint(computer: String, player: String) {
-
+fun strikeAndBall(computer: String, player: String) {
     var strike = 0
     var ball = 0
 
@@ -88,6 +86,11 @@ fun baseballHint(computer: String, player: String) {
             ball++
         }
     }
+
+    baseballHint(strike, ball)
+}
+
+fun baseballHint(strike: Int, ball: Int) {
 
     when {
         (strike == 0 && ball == 0) -> println("낫싱")
@@ -121,4 +124,8 @@ fun isNum(inputPlayer: String): Boolean {
         }
     }
     return isNum
+}
+
+fun endBaseballPlay() {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
