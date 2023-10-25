@@ -1,13 +1,14 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import java.lang.NumberFormatException
 
-var uiState :GameUiState = GameUiState.Loading
+
 fun main() {
 
-
-    lateinit var computer : List<Int>
+    var uiState :GameUiState = GameUiState.Loading
+    var computer = emptyList<Int>()
 
 
     while (true)
@@ -27,22 +28,18 @@ fun main() {
                 uiState = GameUiState.Restart
             }
             GameUiState.Restart -> {
-                restart()
+                println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+                val input = inputNumber()
+                when(input){
+                    1-> uiState = GameUiState.Loading
+                    2-> uiState = GameUiState.Ending
+                    else-> throw IllegalArgumentException()
+                }
             }
             GameUiState.Ending ->{
                 break
             }
         }
-    }
-}
-fun restart()
-{
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val input = inputNumber()
-    when(input){
-        1-> uiState = GameUiState.Loading
-        2-> uiState = GameUiState.Ending
-        else-> throw IllegalArgumentException()
     }
 }
 fun init():List<Int>
@@ -105,7 +102,7 @@ fun inputNumber():Int
 {
     var num: Int
     try {
-        num = readln().toInt()
+        num = Console.readLine()!!.toInt()
     }catch (e:NumberFormatException)
     {
         throw IllegalArgumentException()
