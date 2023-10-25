@@ -2,13 +2,13 @@ package baseball
 
 fun compareNumber(computerNumber: List<Int>): Int {         // 숫자 비교하기
     print("숫자를 입력해주세요 : ")
-    val userNumbers = inputNumber()
+    val input = inputNumber()
     var strikeCount: Int = 0
     var ballCount: Int = 0
     for (i in 0..2) {
-        if (userNumbers[i] == computerNumber[i]) {
+        if (input[i] == computerNumber[i]) {
             strikeCount++
-        } else if (computerNumber.contains(userNumbers[i])) {
+        } else if (computerNumber.contains(input[i])) {
             ballCount++
         }
     }
