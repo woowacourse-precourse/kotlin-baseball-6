@@ -63,24 +63,24 @@ fun game(computer: List<Int>, user: List<Int>):Boolean {
     var strike = 0
 
     for (i in computer.indices) {
+
         if (computer[i] == user[i]) {
             strike++
-            continue;
+            continue
         }
-        for(j in computer.indices) {
-            if (computer.contains(user[i])) {
-                ball++
-            }
+        if (computer.contains(i)) {
+            ball++
         }
     }
-    println(compareNumber(ball,strike))
-    if (strike == 3) {
-        println("${strike}스트라이크\n${THREE_STRIKE_MESSAGE}")
-        return false
-    }
+    println(compareNumber(ball, strike))
 
+    if (strike == 3) {
+            println("${strike}스트라이크\n${THREE_STRIKE_MESSAGE}")
+            return false
+        }
     return true
 }
+
 
 
 fun compareNumber(ball:Int, strike: Int): String {
@@ -94,7 +94,7 @@ fun compareNumber(ball:Int, strike: Int): String {
     }
     else if (strike == 0 && ball > 0) {
         println("${ball}볼")
-    }else {
+    }else if (strike > 0 && ball > 0){
         println("${ball}볼 ${strike}스트라이크")}
     return str
 }
