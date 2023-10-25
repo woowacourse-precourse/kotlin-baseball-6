@@ -1,7 +1,7 @@
 # 기능 목록
 
 - [x] 기본 입력 및 변수 설정
-- [ ] 잘못된 입력 시 IllegalArgumentException 발생 및 종료
+- [x] 잘못된 입력 시 IllegalArgumentException 발생 및 종료
 - [ ] 컴퓨터 랜덤 3자리의 숫자 발생
 - [ ] 볼/스트라이크 판단
 - [ ] 출력 결과 확인
