@@ -32,7 +32,7 @@ class Baseball(
 
     private fun playInning() {
         pitcher.generateNumbers()
-        print(pitcher.getNumbers())
+
         do {
             batter.enterNumbers()
             referee.judge(pitcher.getNumbers(), batter.getNumbers())
