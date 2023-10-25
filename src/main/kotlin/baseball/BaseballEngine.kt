@@ -6,15 +6,13 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class BaseballEngine(private val comparator: BaseballComparator) {
 
-    private val maxSize = 3
-
     fun generateRandomNumber(): String {
         return getRandomList().joinToString("")
     }
 
     private fun getRandomList(): List<Int> {
         val computer = mutableListOf<Int>()
-        while (computer.size < maxSize) {
+        while (computer.size < BaseballGame.MAX_SIZE) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!computer.contains(randomNumber)) {
                 computer.add(randomNumber)
@@ -24,7 +22,7 @@ class BaseballEngine(private val comparator: BaseballComparator) {
     }
 
     fun compare(computer: String, user: String): BaseballResult {
-        if (computer.length != maxSize || user.length != maxSize) {
+        if (computer.length != BaseballGame.MAX_SIZE || user.length != BaseballGame.MAX_SIZE) {
             throw IllegalArgumentException()
         }
 
@@ -34,7 +32,7 @@ class BaseballEngine(private val comparator: BaseballComparator) {
             Nothing
         } else if (ball == 0) {
             val result = Strike(strike)
-            if (strike == maxSize) {
+            if (strike == BaseballGame.MAX_SIZE) {
                 Success(result)
             } else {
                 result

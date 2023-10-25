@@ -84,6 +84,26 @@ class BaseballConsoleTest {
     }
 
     @Test
+    fun 영_포함_입력() {
+        // given
+        val method = BaseballConsole::class.java.getDeclaredMethod("validateUserInput", String::class.java)
+        method.isAccessible = true
+
+        // when
+        val input = "012"
+
+        // then
+        try {
+            method.invoke(console, input)
+        } catch (e: InvocationTargetException) {
+            Assertions.assertEquals(IllegalArgumentException::class.java, e.targetException.javaClass)
+        }
+        assertThrows<InvocationTargetException> {
+            method.invoke(console, input)
+        }
+    }
+
+    @Test
     fun 세자리_이상_입력() {
         // given
         val method = BaseballConsole::class.java.getDeclaredMethod("validateUserInput", String::class.java)

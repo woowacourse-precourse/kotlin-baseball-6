@@ -16,7 +16,7 @@ class BaseballConsole {
     private fun validateUserInput(input: String?): String {
         val trimInput = input?.trim()
         return if (trimInput.isNullOrEmpty()
-            || trimInput.length != 3
+            || trimInput.length != BaseballGame.MAX_SIZE
             || isDuplication(trimInput)
             || isNumber(trimInput).not()
         ) {
@@ -35,13 +35,14 @@ class BaseballConsole {
         return false
     }
 
-    private fun isNumber(input: String): Boolean =
-        try {
-            input.toInt()
-            true
-        } catch (nfe: NumberFormatException) {
-            false
+    private fun isNumber(input: String): Boolean {
+        for (i in input) {
+            if (i !in '1'..'9') {
+                return false
+            }
         }
+        return true
+    }
 
     fun printResult(result: BaseballResult) {
         println(result)

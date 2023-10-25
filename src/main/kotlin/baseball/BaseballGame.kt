@@ -41,4 +41,8 @@ class BaseballGame {
             EndFlag.RESTART -> start()
         }
     }
+
+    companion object {
+        const val MAX_SIZE = 3
+    }
 }
