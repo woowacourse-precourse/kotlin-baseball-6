@@ -26,14 +26,11 @@ fun playGame() {
             }
         }
 
-        if (strike > 0 && ball == 0) {
-            println("$strike 스트라이크")
-        } else if (strike == 0 && ball > 0) {
-            println("$ball 볼")
-        } else if (strike == 0 && ball == 0) {
-            println("낫싱")
-        } else {
-            println("$strike 스트라이크 $ball 볼")
+        when {
+            strike > 0 && ball == 0 -> println("$strike 스트라이크")
+            strike == 0 && ball > 0 -> println("$ball 볼")
+            strike == 0 && ball == 0 -> println("낫싱")
+            else -> println("$strike 스트라이크 $ball 볼")
         }
 
         if (strike == 3) {
@@ -90,15 +87,13 @@ fun askRestart(): Boolean {
         val input = Console.readLine()?.toInt()
 
         when (input) {
-            1 -> {
+            1 ->
                 return true
-            }
 
             2 -> {
                 println("숫자 야구 게임을 종료합니다.")
                 return false
             }
-
             else -> throw IllegalArgumentException()
         }
     }
