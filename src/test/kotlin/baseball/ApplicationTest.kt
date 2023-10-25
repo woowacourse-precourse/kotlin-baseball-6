@@ -1,19 +1,11 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.catchThrowable
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when`
-import java.io.ByteArrayOutputStream
-import java.io.OutputStream
-import java.io.PrintStream
 
 
 class ApplicationTest : NsTest() {
@@ -46,6 +38,13 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `입력 숫자가 1~9 범위 밖의 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("103") }
+        }
+    }
+
+    @Test
     fun `checkInputThree_테스트 3개 미만`() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> { runException("12") }
@@ -55,7 +54,7 @@ class ApplicationTest : NsTest() {
     @Test
     fun `checkIsNumber_테스트`() {
         assertSimpleTest {
-            assertThrows<IllegalArgumentException> { runException("a!=bㅁ") }
+            assertThrows<IllegalArgumentException> { runException("a!=") }
         }
     }
 

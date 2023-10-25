@@ -3,19 +3,23 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 class User {
-
     fun inputNumber(): MutableList<Int> {
         val inputNumber = Console.readLine()
         val userNumber = mutableListOf<Int>()
         checkBlank(inputNumber)
         checkInputThree(inputNumber)
         for (char in inputNumber) {
-            val num = char.toString().toIntOrNull()
-            userNumber.add(checkDuplicate(userNumber,checkIsNumber(num)))
+            var num = char.toString().toIntOrNull()
+            num = checkIsZero(checkIsNumber(num))
+            userNumber.add(checkDuplicate(userNumber,num))
         }
         return userNumber
     }
-
+    private fun checkIsZero(inputNumber: Int) : Int {
+        if (inputNumber == 0)
+            throw IllegalArgumentException()
+        return inputNumber
+    }
     private fun checkInputThree(inputNumber: String) {
         if (inputNumber.length != 3)
             throw IllegalArgumentException()
