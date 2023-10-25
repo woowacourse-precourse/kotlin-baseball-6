@@ -57,7 +57,7 @@ fun GameNum(userNum: MutableList<Char>, randNum: MutableList<Char>): MutableList
 fun GamePrint(gameNum: MutableList<Int>){
     var ball = gameNum[0]
     var strike = gameNum[1]
-    if (ball != 0) print("${ball}볼")
+    if (ball != 0) print("${ball}볼 ")
     if (strike != 0) print("${strike}스트라이크")
     if (ball == 0 && strike == 0) print("낫싱")
     println()
