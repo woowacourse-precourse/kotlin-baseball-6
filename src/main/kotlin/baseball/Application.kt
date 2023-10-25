@@ -4,44 +4,59 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    println("숫자 야구 게임에 오신 것을 환영합니다!")
+    println("숫자 야구 게임을 시작합니다.")
+    playGame()
+}
+
+fun playGame() {
+    val user = User()
+    val computer = Computer()
+    computer.createNumbers()
 
     while (true) {
-        try {
-            println("[1] 게임 시작하기 [2] 게임 종료하기")
-            val input = Console.readLine()?.toInt()
+        val userNums = user.inputNums()
+        var strike = 0
+        var ball = 0
 
-            when (input) {
-                1 -> {
-                    val computer = Computer()
-                    computer.createNumbers()
-                    playGame(computer)
-                }
-
-                2 -> {
-                    println("숫자 야구 게임을 종료합니다.")
-                    break
-                }
+        for (index in userNums.indices) {
+            if (userNums[index] == computer.randNums[index]) {
+                strike++
+            } else if (computer.randNums.contains(userNums[index])) {
+                ball++
             }
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("잘못된 입력입니다.")
+        }
+
+        if (strike > 0 && ball == 0) {
+            println("$strike 스트라이크")
+        } else if (strike == 0 && ball > 0) {
+            println("$ball 볼")
+        } else if (strike == 0 && ball == 0) {
+            println("낫싱")
+        } else {
+            println("$strike 스트라이크 $ball 볼")
+        }
+
+        if (strike == 3) {
+            println("3개의 숫자를 모두 맞히셨습니다!\n게임 종료")
+            if (!askRestart())
+                break
+            computer.createNumbers()
         }
     }
 }
 
 class Computer {
-    var randNums = IntArray(3)
+    var randNums: List<Int> = emptyList()
 
     fun createNumbers() {
-        for (computerNum in randNums.indices) {
-            while (true) {
-                val comRandom = Randoms.pickNumberInRange(1, 9)
-                if (!randNums.contains(comRandom)) {
-                    randNums[computerNum] = comRandom
-                    break
-                }
+        val computer = mutableListOf<Int>()
+        while (computer.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (!computer.contains(randomNumber)) {
+                computer.add(randomNumber)
             }
         }
+        randNums = computer
         println("랜덤 숫자를 선택완료했습니다.")
     }
 }
@@ -67,42 +82,29 @@ class User {
     }
 }
 
-fun playGame(computer: Computer) {
-    val user = User()
 
-    while (true) {
-        val userNums = user.inputNums()
-        var strike = 0
-        var ball = 0
-
-        for (index in userNums.indices) {
-            if (userNums[index] == computer.randNums[index]) {
-                strike++
-            } else if (computer.randNums.contains(userNums[index])) {
-                ball++
-            }
-        }
-
-        when {
-            strike == 3 -> {
-                println("3개의 숫자를 모두 맞히셨습니다!\n게임 종료")
-                if (askRestart()) {
-                    playGame(Computer())
-                } else {
-                    return
-                }
-            }
-            strike > 0 && ball == 0 -> println("$strike 스트라이크")
-            strike == 0 && ball > 0 -> println("$ball 볼")
-            strike > 0 && ball > 0 -> println("$strike 스트라이크 $ball 볼")
-            strike == 0 && ball == 0 -> println("낫싱")
-        }
-    }
-}
 
 fun askRestart(): Boolean {
     while (true) {
         println("게임을 다시 시작하시겠습니까?")
-        return false
+        while (true) {
+            try {
+                println("[1] 게임 시작하기 [2] 게임 종료하기")
+                val input = Console.readLine()?.toInt()
+
+                when (input) {
+                    1 -> {
+                        return true
+                    }
+
+                    2 -> {
+                        println("숫자 야구 게임을 종료합니다.")
+                        return false
+                    }
+                }
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("잘못된 입력입니다.")
+            }
+        }
     }
 }
