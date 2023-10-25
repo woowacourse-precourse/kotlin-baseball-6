@@ -37,3 +37,22 @@ fun getUserInput(): List<Int> {
     return input.map { it.toString().toInt() }
 }
 
+fun checkGuess(userGuess: List<Int>, computerNumbers: List<Int>): String {
+    var strikes = 0
+    var balls = 0
+
+    for (i in userGuess.indices) {
+        if (userGuess[i] == computerNumbers[i]) {
+            strikes++
+        } else if (userGuess[i] in computerNumbers) {
+            balls++
+        }
+    }
+
+    return when {
+        strikes == 3 -> "3 스트라이크"
+        strikes > 0 || balls > 0 -> "$strikes 스트라이크, $balls 볼"
+        else -> "낫싱"
+    }
+}
+
