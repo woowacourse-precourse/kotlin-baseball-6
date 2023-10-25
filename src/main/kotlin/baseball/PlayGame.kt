@@ -47,14 +47,14 @@ class PlayGame(
     }
 
     private fun gameStateResult(matchResult: MatchResult): GameState {
-        when (matchResult) {
+        return when (matchResult) {
             is MatchResult.Success -> {
                 println(matchResult.comment)
 
                 val userChoice = Console.readLine()
                 userChoice.userChoiceValidation()
 
-                return when (userChoice) {
+                 when (userChoice) {
                     RESTART_VALUE -> {
                         GameState.RESTART
                     }
@@ -69,7 +69,7 @@ class PlayGame(
             is MatchResult.Fail -> {
                 println(matchResult.comment)
 
-                return GameState.CONTINUE
+                GameState.CONTINUE
             }
         }
     }
