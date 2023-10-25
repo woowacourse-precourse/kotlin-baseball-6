@@ -12,10 +12,14 @@ fun main() {
         // 컴퓨터 숫자를 생성해 computer에 담는다.
         val computer = createComputerNumber()
 
+        var gameRoundCounter = 0
+
         // 게임 라운드 반복문
         do {
-
+            gameRoundCounter++
         } while (playerTryAnswer(computer))
+
+//        println("${gameRoundCounter}라운드 만에 성공!!")
 
     } while (restartGameOrEndProgram()) // 게임 재시작(true) 또는 프로그램(false) 종료
 
