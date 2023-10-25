@@ -18,12 +18,12 @@ fun playGame() {
             val userInput = readLine()
             if (userInput == "1") {
                 randomNumbers = makeRandomNumbers()
+                continue
             } else if (userInput == "2") {
                 println("GAME OVER")
                 break
-            } else {
-                throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
             }
+            throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
         }
     }
 }
@@ -34,9 +34,8 @@ fun getUserInput(randomNumbers: MutableList<Int>): Boolean {
     if (verifiedInput) {
         val gameResult = validateStrikeAndBall(randomNumbers, userInput)
         return printGameResult(gameResult)
-    } else {
-        throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
     }
+    throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
 }
 
 fun printGameResult(gameResult: MutableList<Int>): Boolean {
@@ -46,9 +45,8 @@ fun printGameResult(gameResult: MutableList<Int>): Boolean {
         println("${gameResult[1]}스트라이크")
     } else if (gameResult[0] != 0 && gameResult[1] != 0) {
         println("${gameResult[0]}볼 ${gameResult[1]}스트라이크")
-    } else {
-        println("낫싱")
     }
+    println("낫싱")
     if (gameResult[1] == 3) {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return true
