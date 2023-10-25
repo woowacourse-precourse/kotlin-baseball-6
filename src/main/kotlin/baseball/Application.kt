@@ -7,6 +7,20 @@ fun main() {
     // 야구게임 함수 호출
 }
 
+/**
+ * 게임에 사용할 3개의 서로 다른 숫자를 생성하여 MutableSet에 저장하는 함수.
+ *
+ * @param threeNumber 게임 숫자를 저장할 MutableSet
+ */
+fun getThreeNumber(threeNumber: MutableSet<String>) {
+    threeNumber.clear()
+    while (threeNumber.size < 3) {
+        val number = pickNumberInRange(1, 9)
+        if (number.toString() !in threeNumber) {
+            threeNumber.add(number.toString())
+        }
+    }
+}
 
 /**
  * 게임 종료 또는 새로운 게임 시작 여부를 사용자에게 물어 사용자 선택에 따라 반환하는 함수.
