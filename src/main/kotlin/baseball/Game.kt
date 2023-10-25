@@ -11,6 +11,8 @@ class Game constructor(
             gamePrint.startGamePrint()
             inGame()
             gamePrint.gameOptionPrint()
+            val userInput = Console.readLine()
+            throwsUserOptionNumberInputError(userInput)
 
         }
     }
@@ -20,12 +22,12 @@ class Game constructor(
         while (true) {
 
             gamePrint.inputUserPrint()
-            val userNumber = Console.readLine().map {
-                it.digitToInt()
-            }.toList()
+            val userInput = Console.readLine()
+            throwsUserGameNumberInputError(userInput)
+            val userNumber: List<Int>
 
-            val result: Result = checkNumbers(userNumber, randomNumber)
-            gamePrint.resultPrint(result)
+            //val result: Result = checkNumbers(userNumber, randomNumber)
+            //gamePrint.resultPrint(result)
 
         }
     }
@@ -54,6 +56,29 @@ class Game constructor(
         }
 
         return Result(strikeCount = strikeCount, ballCount = ballCount)
+    }
+
+    private fun throwsUserGameNumberInputError(userInput: String) {
+        // 입력 값이 3자리가 아닐 경우 체크
+        require(userInput.length == 3)
+
+        // 입력 값이 숫자가 아닐 경우 체크
+        userInput.forEach { i ->
+            require(i.isDigit())
+            require(i != '0')
+        }
+
+        // 입력 값 내에 중복 숫자가 있는 체크
+        val hashSet = hashSetOf<Char>()
+        userInput.forEach { i ->
+            require(!hashSet.contains(i))
+            hashSet.add(i)
+        }
+
+    }
+
+    private fun throwsUserOptionNumberInputError(userInput : String){
+        require(userInput.toInt() == 1 || userInput.toInt() == 2)
     }
 
 }
