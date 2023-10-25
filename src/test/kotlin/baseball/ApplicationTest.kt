@@ -29,5 +29,6 @@ class ApplicationTest : NsTest() {
 
     override fun runMain() {
         main()
+
     }
 }
