@@ -3,8 +3,6 @@ import camp.nextstep.edu.missionutils.Randoms
 class Model {
     var answerNumber: String = ""
     var userNumber: String = ""
-    var isGameOver = false
-    var isGameRunning = false
 
     fun generateNumber(): String {
         val answer = mutableListOf<Int>()
@@ -19,7 +17,5 @@ class Model {
     fun modelInit() {
         answerNumber = generateNumber()
         userNumber = ""
-        isGameOver = false
-        isGameRunning = true
     }
 }

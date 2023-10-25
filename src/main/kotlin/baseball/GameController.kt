@@ -1,12 +1,11 @@
 package baseball
-import camp.nextstep.edu.missionutils.Console
 
 class GameController(private val view: GameView, private val model: Model) {
     fun startGame() {
-        while(true) {
+        view.startGameView()
+        do {
             playGame()
-            if(!restartGame()) break
-        }
+        } while(restartGame())
     }
 
     private fun playGame() {
@@ -16,7 +15,8 @@ class GameController(private val view: GameView, private val model: Model) {
             val hint = compareNumber(model.userNumber, model.answerNumber)
             view.hintView(hint.first, hint.second)
             if(hint.first == 3) {
-
+                restartGame()
+                return
             }
         }
     }
