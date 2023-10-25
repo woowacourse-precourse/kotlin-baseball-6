@@ -7,11 +7,28 @@ fun main() {
     // 야구게임 함수 호출
 }
 
+
 /**
  * 게임 종료 또는 새로운 게임 시작 여부를 사용자에게 물어 사용자 선택에 따라 반환하는 함수.
  *
  * @return 게임을 새로 시작할 경우 true, 종료할 경우 false
  * @throws 은 잘못된 입력값일 경우 예외를 던짐
+ */
+fun makeGameChoice(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (Console.readLine()) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("잘못된 입력값입니다.")
+    }
+}
+
+/**
+ * 게임 결과를 계산하는 함수.
+ *
+ * @param inputNumber 사용자 입력 숫자
+ * @param numberSet 게임 숫자 세트
+ * @return 게임 결과 메시지
  */
 fun gameResults(inputNumber: String, numberSet: MutableSet<String>): String {
     val inputNumIdx = inputNumber.toList().map { it.toString() }
