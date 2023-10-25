@@ -22,6 +22,7 @@ class Baseball(
         pitcher.generateNumbers()
         batter.enterNumbers()
         referee.judge(pitcher.getNumbers(), batter.getNumbers())
-        referee.showResult()
+
+        println(referee.getResultMessage())
     }
 }

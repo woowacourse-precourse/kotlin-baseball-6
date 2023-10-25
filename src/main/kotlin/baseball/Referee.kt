@@ -5,6 +5,8 @@ class Referee {
     private var hasAnyMatchNumber = false
     private var resultMessage = ""
 
+    fun getResultMessage(): String = resultMessage
+
     fun judge(pitcherNumbers: List<Int>, batterNumbers: List<Int>) {
         checkNothingOrNot(pitcherNumbers, batterNumbers)
 
@@ -47,17 +49,16 @@ class Referee {
         }
     }
 
-    fun showResult() {
-        if (!hasAnyMatchNumber) println("낫싱")
-        else println(resultMessage)
-    }
-
     private fun setResultMessage() {
         resultMessage = ""
         val ballCounts = ballStrikeCounts[0]
         val strikeCounts = ballStrikeCounts[1]
 
-        if (ballCounts > 0) resultMessage = "${ballCounts}볼 "
-        if (strikeCounts > 0) resultMessage += "${strikeCounts}스트라이크"
+        if (!hasAnyMatchNumber) resultMessage = "낫싱"
+        else {
+            if (ballCounts > 0) resultMessage = "${ballCounts}볼"
+            if (resultMessage.isNotEmpty() && strikeCounts > 0) resultMessage += " ${strikeCounts}스트라이크"
+            else if (resultMessage.isEmpty() && strikeCounts > 0) resultMessage += "${strikeCounts}스트라이크"
+        }
     }
 }
