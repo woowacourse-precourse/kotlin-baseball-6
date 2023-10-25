@@ -83,9 +83,10 @@ fun strikeAndBall(computer: String, player: String) {
     for (index in 0..2) {
         if (computer[index] == player[index]) {
             strike++
-        }
-        if (computer.contains(player[index])) {
-            ball++
+        } else {
+            if (computer.contains(player[index])) {
+                ball++
+            }
         }
     }
 
