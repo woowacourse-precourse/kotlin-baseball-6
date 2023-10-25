@@ -72,8 +72,7 @@ fun makeGameChoice(): Boolean {
 fun getUserInput(): String {
     while (true) {
         val inputNumber = Console.readLine()
-        val parsedNumber = inputNumber.toIntOrNull()
-        if (parsedNumber != null && inputNumber.length == 3) {
+        if (inputNumber.length == 3) {
             return inputNumber
         } else {
             throw IllegalArgumentException("잘못된 입력값입니다.")
