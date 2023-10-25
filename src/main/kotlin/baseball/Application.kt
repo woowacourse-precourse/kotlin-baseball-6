@@ -66,16 +66,17 @@ fun countStrike(secretNumber: String, guessNumber: String): Int {
     return strike
 }
 
-fun printGuessResult(result: GuessResult) {
+fun getGuessResultString(result: GuessResult): String {
     if (result.ballNumber == 0 && result.strikeNumber != 0) {
-        println("${result.strikeNumber}스트라이크")
-    } else if (result.ballNumber != 0 && result.strikeNumber == 0) {
-        println("${result.ballNumber}볼")
-    } else if (result.ballNumber == 0) {
-        println("낫싱")
-    } else {
-        println("${result.ballNumber}볼 ${result.strikeNumber}스트라이크")
+        return "${result.strikeNumber}스트라이크"
     }
+    if (result.ballNumber != 0 && result.strikeNumber == 0) {
+        return "${result.ballNumber}볼"
+    }
+    if (result.ballNumber == 0) {
+        return "낫싱"
+    }
+    return "${result.ballNumber}볼 ${result.strikeNumber}스트라이크"
 }
 
 
@@ -90,7 +91,9 @@ fun main() {
                 "Wrong guessNumber $guessNumber"
             }
             val guessResult = getGuessResult(secretNumber, guessNumber)
-            printGuessResult(guessResult)
+            println(
+                getGuessResultString(guessResult)
+            )
             if (guessResult.strikeNumber == MAX_NUMBER) {
                 println("${MAX_NUMBER}개의 숫자를 모두 맞히셨습니다! 게임 종료")
                 break
