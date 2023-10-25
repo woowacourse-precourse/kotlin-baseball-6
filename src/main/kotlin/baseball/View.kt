@@ -15,11 +15,11 @@ class View {
 
     fun printResult(result: Result) {
         var output = ""
-        if (result.strike > 0) {
-            output += "${result.strike}스트라이크 "
-        }
         if (result.ball > 0) {
-            output += "${result.ball}볼"
+            output += "${result.ball}볼 "
+        }
+        if (result.strike > 0) {
+            output += "${result.strike}스트라이크"
         }
         if (result.strike == 0 && result.ball == 0) {
             output = "낫싱"

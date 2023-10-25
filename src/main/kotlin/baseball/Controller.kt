@@ -23,11 +23,10 @@ class Controller(private val view: View) {
         while (true) {
             val userNumber = UserNumber(view.inputUserNumber())
             val judgeResult = referee.judge(userNumber, answer)
+            view.printResult(judgeResult)
             if (judgeResult.strike == 3) {
                 view.printCorrectMessage()
                 break
-            } else {
-                view.printResult(judgeResult)
             }
         }
     }
