@@ -42,11 +42,9 @@ for (n in numList) {
 
 if (numList.size != 3 || numList.any { it < 1 } || isDupli)
 ```
-
-
-
-
-> test1
-```kotlin
-val name = mutableListOf<String>()
-```
+2. 테스트 코드 예외 통과 X
+테스트 코드를 실행했을 때 게임 종료 후 재시작은 통과했지만 예외 테스트에서 failed 됐다.
+- 해결 방법
+  사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되야하는 조건이였다.
+  따라서 try-catch로 다시 입력을 받는게 아니고 throw로 예외 처리만 하고 종료하면 되는 조건이었다.
+  try-catch문을 삭제하고 실행하니 테스트 코드가 통과됐다.
