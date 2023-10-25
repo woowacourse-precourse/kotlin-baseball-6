@@ -4,17 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms
 import kotlin.system.exitProcess
 
 fun main() {
-    // TODO 제일 큰 while문 만들고 그 안에 중첩 while문에 println("숫자야구시작") 다음 단계부터 넣기
-
     loop@ while (true) {
         val answerArray = Array(3, { 0 })    // 숫자
         val myAnswerArray = Array(3, { 0 })  // 내가 입력한 숫자
 
-        for (i: Int in 0..2) {  // 정답 배열 저장
+        for (i: Int in 0..2)  // 정답 배열 저장
             answerArray[i] = Randoms.pickNumberInRange(1, 9)
-            //print(answerArray[i])  // 맞게 저장됐는지 출력해보기
-        }
-        //println()
 
         println("숫자 야구를 시작합니다.")  // 시작
 
@@ -22,10 +17,8 @@ fun main() {
             print("숫자를 입력해주세요 : ")
             val myAnswer = readLine()
 
-            if (myAnswer.isNullOrBlank()) {  // isNullOrEmpty()랑 다름
-                break
-            } else if (myAnswer.length > 3 || myAnswer.length <= 2) {
-                break
+            if (myAnswer?.length != 3) {
+                throw IllegalArgumentException()
             } else {  // 입력받은 숫자(문자열) 나눠서 int로 변환하고 myAnswerArray에 저장
                 val myAnswer1 = myAnswer?.substring(0 until 1)
                 myAnswerArray[0] = myAnswer1!!.toInt()
