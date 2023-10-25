@@ -1,8 +1,5 @@
-package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
-
-fun main() {
+fun main(args: Array<String>) {
 
     var flag = 1
 
@@ -11,23 +8,23 @@ fun main() {
     while ( flag == 1 ) {
         performBaseballGame(flag)
     }
-}
+    println("Hello World!")
 
+
+    // Try adding program arguments via Run/Debug configuration.
+    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
+    println("Program arguments: ${args.joinToString()}")
+}
 
 fun performBaseballGame(flag : Int): Int {
 
     val computer = mutableListOf<Int>()
-    createRandomNum(computer)
-
-
-    return flag
-}
-
-fun createRandomNum(computer :  MutableList<Int>) {
     while (computer.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNumber)) {
             computer.add(randomNumber)
         }
     }
+
+    return flag
 }
