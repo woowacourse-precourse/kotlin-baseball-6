@@ -30,7 +30,7 @@ fun playGame() {
             strike > 0 && ball == 0 -> println("$strike 스트라이크")
             strike == 0 && ball > 0 -> println("$ball 볼")
             strike == 0 && ball == 0 -> println("낫싱")
-            else -> println("$ball 볼$strike 스트라이크")
+            else -> println("${ball}볼 ${strike}스트라이크")
         }
 
         if (strike == 3) {
@@ -68,7 +68,7 @@ class User {
                     throw IllegalArgumentException()
                 } else if (userInput.length != 3) {
                     throw IllegalArgumentException()
-                } else if (!userInput.all { it.isDigit() }) {
+                } else if (!userInput.all { it.isDigit() && it.toString().toInt() in 1..9 }) {
                     throw IllegalArgumentException()
                 } else if (userInput.toSet().size != 3) {
                     throw IllegalArgumentException()
