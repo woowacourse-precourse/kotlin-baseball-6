@@ -55,7 +55,7 @@ class User {
     fun inputNums(): IntArray {
         while (true) {
             println("각 자리가 겹치지 않는 세 자리의 숫자를 입력해주세요. 예시 - 789")
-            val userInput = readLine()
+            val userInput = Console.readLine()
 
             if (userInput == null) {
                 throw IllegalArgumentException("[Error] 입력된 값이 없습니다. 다시 입력해주세요.")
