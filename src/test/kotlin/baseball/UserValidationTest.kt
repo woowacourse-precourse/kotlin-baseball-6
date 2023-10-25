@@ -40,6 +40,8 @@ class UserValidationTest {
     fun `사용자가 1, 2가 아닌 숫자 입력`() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             "3".userChoiceValidation()
+            "33213".userChoiceValidation()
+            "12435245456453645365436345654365436354643565436".userChoiceValidation()
         }
     }
 
@@ -47,6 +49,7 @@ class UserValidationTest {
     fun `사용자가 1, 2가 아닌 문자 입력`() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             "가".userChoiceValidation()
+            "!".userChoiceValidation()
         }
     }
 

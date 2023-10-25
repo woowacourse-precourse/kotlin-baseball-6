@@ -18,31 +18,30 @@ class PlayGame(
     }
 
     fun playGame() {
-        val baseBallMatch = BaseballMatch(computer = computer.generateComputerNumbers())
+        val computerNumber = computer.generateComputerNumbers()
 
         while (true) {
-            val gameState = round(baseBallMatch)
+            val gameState = round(computerNumber)
             when (gameState) {
+                GameState.CONTINUE -> continue
                 GameState.RESTART -> {
                     playGame()
                     return
                 }
-
                 GameState.EXIT -> {
                     Console.close()
                     return
                 }
-                GameState.CONTINUE -> continue
             }
         }
     }
 
-    private fun round(baseBallMatch: BaseballMatch): GameState {
+    private fun round(computerNumber: String): GameState {
         print(ENTER_NUMBER_COMMENT)
         val userNumber = Console.readLine()
         userNumber.userNumberValidation()
 
-        val matchResult = baseBallMatch.matchComputerUserNumber(userNumber)
+        val matchResult = BaseballMatch(computerNumber).matchComputerUserNumber(userNumber)
 
         return gameStateResult(matchResult)
     }
@@ -55,9 +54,18 @@ class PlayGame(
                 val userChoice = Console.readLine()
                 userChoice.userChoiceValidation()
 
-                GameState.entries.find { it.value == userChoice }!!
+                when (userChoice) {
+                    RESTART_VALUE -> {
+                        GameState.RESTART
+                    }
+                    EXIT_VALUE -> {
+                        GameState.EXIT
+                    }
+                    else -> {
+                        GameState.CONTINUE
+                    }
+                }
             }
-
             is MatchResult.Fail -> {
                 println(matchResult.comment)
 

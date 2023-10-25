@@ -12,6 +12,8 @@ class Computer {
             computerNumbers.add(generateRandomNumbers())
         }
 
-        return computerNumbers.joinToString("")
+        return computerNumbers.joinToString("").also {
+            println(it)
+        }
     }
 }
