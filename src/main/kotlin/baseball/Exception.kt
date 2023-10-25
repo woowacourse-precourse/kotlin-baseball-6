@@ -10,15 +10,13 @@ object Exception {
             val charConvertToInt = char.digitToIntOrNull()
             val charConvertToCode = char.code
             if (charConvertToCode > MAX_NUM_RANGE_ASCII || charConvertToCode < MIN_NUM_RANGE_ASCII) {
-                return false
+                throw IllegalArgumentException(WRONG_INPUT_EXCEPTION)
             }
             if (charConvertToInt == null) {
-                throw IllegalArgumentException(NO_EXIST_INPUT_NUM_TEXT)
-                return false
+                throw IllegalArgumentException(NO_EXIST_INPUT_NUM_EXCEPTION)
             }
             if (charConvertToInt > MAX_INPUT_NUM || charConvertToInt < MIN_INPUT_NUM) {
                 throw IllegalArgumentException(WRONG_INPUT_NUM_RANGE_EXCEPTION)
-                return false
             }
         }
         return true
