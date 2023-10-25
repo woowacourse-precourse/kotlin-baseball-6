@@ -67,12 +67,8 @@ fun userInputCheck(userInput: String) {
     for (i: Int in 0 until NUMBER_SIZE)
         user.add(userInput[i])
 
-    for (i in user.indices) { // 중복된 숫자를 입력한 경우 예외처리
-        for (j in i+1 until user.size) {
-            if (user[i] == user[j])
-                throw IllegalArgumentException("중복되지 않는 숫자를 입력하세요.")
-        }
-    }
+    if (!user.distinct().equals(user)) // 중복된 숫자를 입력한 경우 예외처리
+        throw IllegalArgumentException("중복되지 않는 숫자를 입력하세요.")
 }
 
 fun getStrikeBall(computer: MutableList<Int>, user: MutableList<Int>): MutableList<Int> { // 스트라이크, 볼 개수 구하기
