@@ -3,47 +3,36 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
-
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-
-    var numString:String
-    var nums:MutableList<Int>
-    var strike:Int = 0
-    var ball:Int = 0
+    var userNums:MutableList<Int>
+    var strike:Int
+    var ball:Int
     var again = 1
 
-    var answers:MutableList<Int>
+    var randomNums:MutableList<Int>
 
     while(again == 1){
         strike=0
         ball=0
-        answers = mutableListOf()
-        while (answers.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!answers.contains(randomNumber)) {
-                answers.add(randomNumber)
-            }
-        }
+        randomNums = getRandomNums()
+
         while(strike != 3){
             strike=0
             ball=0
 
             print("숫자를 입력해주세요 : ")
 
-            numString = Console.readLine()
-            nums = numString.map{it.toString().toInt()}.toMutableList()
-            if(nums.size != 3){
-                throw IllegalArgumentException()
-            }
+            userNums = getUserNums()
 
             for(i in 0..2){
-                if(nums[i] in answers && nums[i]==answers[i]){
+                if(userNums[i] in randomNums && userNums[i]==randomNums[i]){
                     strike += 1
-                }else if (nums[i] in answers && nums[i]!=answers[i]){
+                }else if (userNums[i] in randomNums && userNums[i]!=randomNums[i]){
                     ball += 1
                 }
             }
+
             if(strike != 0 && ball ==0){
                 println("${strike}스트라이크")
             }else if(strike ==0 && ball !=0){
@@ -58,7 +47,26 @@ fun main() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         again = Console.readLine().toInt()
     }
-
-
-
 }
+
+fun getRandomNums():MutableList<Int>{
+    var randomNums = mutableListOf<Int>()
+    while (randomNums.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!randomNums.contains(randomNumber)) {
+            randomNums.add(randomNumber)
+        }
+    }
+    return randomNums
+}
+
+fun getUserNums():MutableList<Int>{
+    var nums = Console.readLine().map{it.toString().toInt()}.toMutableList()
+    if(nums.size != 3){
+        throw IllegalArgumentException()
+    }
+    return nums
+}
+
+
+
