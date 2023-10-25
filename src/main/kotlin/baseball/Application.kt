@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     // TODO("프로그램 구현")
-
+    EndGame()
 }
 
 // 컴퓨터가 세자리 수의 랜덤값 생성
@@ -63,3 +63,30 @@ fun GamePrint(gameNum: MutableList<Int>){
     println()
 }
 
+// 게임 시작과 종료
+fun PlayGame() {
+    var randNums = ComRandomNum()
+    while (true) {
+        print("숫자를 입력해주세요 :")
+        var userNums = InputNum()
+        var gameNums = GameNum(userNums, randNums)
+        GamePrint(gameNums)
+        if(gameNums[1] == 3){
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
+    }
+}
+
+// 게임 재개 및 끝
+fun EndGame() {
+    var EndNum: Int
+    println("숫자 야구 게임을 시작합니다.")
+    while(true) {
+        PlayGame()
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        EndNum = Console.readLine().toInt()
+        if(EndNum != 1 && EndNum != 2) throw IllegalArgumentException("1 또는 2를 입력하세요")
+        if(EndNum == 2) break
+    }
+}
