@@ -23,5 +23,19 @@ private fun createQuestion(): MutableList<Int> {
 
 private fun guessNums(){
     val input : String = Console.readLine()
+    checkInput(input.replace(" ", ""))
+
+}
+
+private fun checkInput(input : String){
+    if(input.length != 3) {
+        throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
+    }
+
+    for(i in input){
+        if(!i.isDigit()){throw IllegalArgumentException("숫자를 입력 해야 합니다.")}
+        if (input.count { it == i } > 1) throw IllegalArgumentException("세 개의 다른 숫자를 입력 해야 합니다.")
+    }
+
 }
 
