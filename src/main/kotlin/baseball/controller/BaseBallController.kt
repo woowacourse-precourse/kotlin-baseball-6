@@ -27,7 +27,7 @@ class BaseBallController {
                 CONTINUE -> {
                     baseBallView.printInputUser()
                     val user = User().inputUser()
-                    status = checkBaseBall(computerBaseBall, user)
+                    status = checkAnswer(computerBaseBall, user)
                 }
 
                 END -> {
@@ -38,14 +38,14 @@ class BaseBallController {
 
     }
 
-    private fun checkBaseBall(computerList: BaseBall, userList: BaseBall): Int {
+    private fun checkAnswer(computerList: BaseBall, userList: BaseBall): Int {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList) - strike
 
         baseBallView.printBaseBallResult(strike, ball)
         if (strike == BASEBALL_MAX_SIZE) {
             baseBallView.printGameOver()
-            return checkContinue()
+            return askContinueGame()
         }
 
         return CONTINUE
@@ -54,8 +54,9 @@ class BaseBallController {
     private fun checkStrike(computerList: BaseBall, userList: BaseBall): Int {
         var strike = 0
         for (i in 0 until userList.baseBallData.size) {
-            if (userList.baseBallData[i] == computerList.baseBallData[i])
+            if (userList.baseBallData[i] == computerList.baseBallData[i]) {
                 strike++
+            }
         }
         return strike
     }
@@ -69,7 +70,7 @@ class BaseBallController {
         return ball
     }
 
-    private fun checkContinue(): Int {
+    private fun askContinueGame(): Int {
         baseBallView.printContinue()
         val input = Console.readLine()
 
