@@ -22,4 +22,5 @@ const val END_PLAY_TEXT = "3개의 숫자를 모두 맞히셨습니다! 게임 �
 const val RESTART_PLAY_TEXT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 const val RESTART_INPUT_NUM = 1
 const val END_INPUT_NUM = 2
-const val WRONT_RESTART_NUM_EXCEPTION = "잘못된 입력 형식입니다. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+const val WRONG_RESTART_NUM_EXCEPTION = "잘못된 입력 형식입니다. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+const val WRONG_INPUT_EXCEPTION = "잘못된 입력 형식입니다. 숫자를 입력해주세요."

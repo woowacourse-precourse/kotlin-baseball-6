@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.Exception.isNum
+import baseball.Exception.wrongNumException
 import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
 
@@ -35,9 +37,7 @@ fun inputPlayerNum(): String {
     print(INPUT_ANSWER_TEXT)
     val inputPlayer = Console.readLine()
     val playerNum = mutableListOf<Char>()
-    if (!isNum(inputPlayer)) {
-        throw IllegalArgumentException(WRONG_NUM_EXCEPTION)
-    }
+    wrongNumException(inputPlayer)
     if (inputPlayer.length != INPUT_ANSWER_LENGTH) {
         throw IllegalArgumentException(WRONG_NUM_LENGTH_EXCEPTION)
     }
@@ -78,29 +78,6 @@ fun baseballHint(strike: Int, ball: Int) {
     }
 }
 
-fun isNum(inputPlayer: String): Boolean {
-    var isNum = true
-    inputPlayer.forEach { char ->
-        val charConvertToInt = char.digitToIntOrNull()
-        val charConvertToCode = char.code
-        if (charConvertToCode > MAX_NUM_RANGE_ASCII || charConvertToCode < MIN_NUM_RANGE_ASCII) {
-            isNum = false
-            return isNum
-        }
-        if (charConvertToInt == null) {
-            throw IllegalArgumentException(NO_EXIST_INPUT_NUM_TEXT)
-            isNum = false
-            return isNum
-        }
-        if (charConvertToInt > MAX_INPUT_NUM || charConvertToInt < MIN_INPUT_NUM) {
-            throw IllegalArgumentException(WRONG_INPUT_NUM_RANGE_EXCEPTION)
-            isNum = false
-            return isNum
-        }
-    }
-    return isNum
-}
-
 fun endBaseballPlay() {
     println(END_PLAY_TEXT)
 }
@@ -115,5 +92,5 @@ fun restartBaseballPlay(): Boolean {
     if (inputPlayerRestart.toInt() == END_INPUT_NUM) {
         return false
     }
-    throw IllegalArgumentException(WRONT_RESTART_NUM_EXCEPTION)
+    throw IllegalArgumentException(WRONG_RESTART_NUM_EXCEPTION)
 }
