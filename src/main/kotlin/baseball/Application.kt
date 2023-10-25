@@ -93,11 +93,14 @@ fun main() {
 fun checkInput(number: String) {
     // null, 정수, 입력 자리수 체크
     if (number.isNotEmpty() && number.chars()
-            .allMatch { Character.isDigit(it) } && number.length == BASEBALL_LENGTH
+            .allMatch { char -> Character.isDigit(char) } && number.length == BASEBALL_LENGTH
     ) {
         // 겹치지 않는 숫자 체크와 1-9 사이 체크
-        for (i in 0..<BASEBALL_LENGTH) {
-            if (number.count { it == number[i] } > 1 || Character.getNumericValue(number[i]) == 0) {
+        for (i in 0 until BASEBALL_LENGTH) {
+            if (number[i] == '0') {
+                throw IllegalArgumentException()
+            }
+            if (number.toSet().size != BASEBALL_LENGTH) {
                 throw IllegalArgumentException()
             }
         }
