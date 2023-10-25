@@ -1,11 +1,9 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms //Random 값 추출 - pickNumberInRange()
-import camp.nextstep.edu.missionutils.Console //사용자 입력 값 - readLine()
+import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-
-    // 게임 시작
     println("숫자 야구 게임을 시작합니다.")
     do {
         startBaseballPlay()
@@ -15,11 +13,9 @@ fun main() {
 
 fun startBaseballPlay() {
 
-    // 컴퓨터 랜덤 값 생성
     val computerRandomNum = createComputerRandomNum()
 
     do {
-        // 플레이어 입력 값
         val playerAnswer = inputPlayerNum()
 
         strikeAndBall(computerRandomNum, playerAnswer)
@@ -33,15 +29,12 @@ fun startBaseballPlay() {
 fun createComputerRandomNum(): String {
 
     val computerNum = mutableListOf<Int>()
-    // list 크기 3 미만, 즉 3글자가 아닐경우 1~9 사이 랜덤값 생성
     while (computerNum.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
-        // 서로 다른 수만 생성
         if (!computerNum.contains(randomNumber)) {
             computerNum.add(randomNumber)
         }
     }
-    // list 공백 제거하고 문자열로
     return computerNum.joinToString("")
 }
 
@@ -56,7 +49,6 @@ fun inputPlayerNum(): String {
         throw IllegalArgumentException("잘못된 입력 형식")
     }
     if (inputPlayer.length != 3) {
-        // 입력값 3자리 수 아님
         throw IllegalArgumentException("잘못된 길이의 입력값 (3자리 수로 입력하세요.)")
     }
     for (index in 0..inputPlayer.length - 1) {
@@ -100,7 +92,6 @@ fun baseballHint(strike: Int, ball: Int) {
         (strike != 0 && ball == 0) -> println("${strike}스트라이크")
         (strike == 0 && ball != 0) -> println("${ball}볼")
         (strike != 0 && ball != 0) -> println("${ball}볼 ${strike}스트라이크")
-//        else -> 오류 처리?
     }
 }
 
