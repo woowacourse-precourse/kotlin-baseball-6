@@ -20,3 +20,19 @@
     1. 1을 누르면 true를, 2를 누르면 false를, 이외 숫자를 누르면 `IllegalArgumentException` 발생
    2. 위의 1,2,3번 과정을 1을 눌렀을 때 반복한다
    3. 2를 누르면 종료된다
+
+## 클래스 분리
+
+- UserInput
+   - 사용자의 입력 담당
+   - 입력한 숫자의 유효성 검증
+- ComputerNumberGenerator
+   - 랜덤 숫자를 리스트에 저장
+- BaseballScoreCalculator
+   - 컴퓨터의 값과 사용자의 값을 비교하여 ball과 strike를 계산
+- ScorePrinter
+   - 계산한 값을 print
+- Game
+   - 게임을 진행
+- GameRunner
+   - 새로운 게임을 시작
