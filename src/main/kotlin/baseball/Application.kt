@@ -20,7 +20,7 @@ fun main() {
     println("게임 종료!")
 }
 
-fun playGame() {
+fun playGame() { // 게임 시작
     val computerNumbers = generateComputerNumbers()
 
     while (true) {
@@ -39,11 +39,11 @@ fun playGame() {
 }
 
 
-fun generateComputerNumbers(): List<Int> {
+fun generateComputerNumbers(): List<Int> { // 컴퓨터 랜덤 변수 할당
     return List(3) { Randoms.pickNumberInRange(1, 9) }
 }
 
-fun getUserInput(): List<Int> {
+fun getUserInput(): List<Int> { // 유저 입력값 받고 예외처리
     print("숫자를 입력해주세요 : ")
     val input = Console.readLine()
     if (input == null || input.length != 3 || input.any { it !in '1'..'9' }) {
@@ -52,7 +52,7 @@ fun getUserInput(): List<Int> {
     return input.map { it.toString().toInt() }
 }
 
-fun checkGuess(userGuess: List<Int>, computerNumbers: List<Int>): String {
+fun checkGuess(userGuess: List<Int>, computerNumbers: List<Int>): String { // 스트라이크/볼/낫싱 판정
     var strikes = 0
     var balls = 0
 
