@@ -36,6 +36,7 @@
 - docs : 문서 수정
 - test : 테스트 코드 추가
 - refactor : 코드 리팩토링
+- comment : 주석 추가 및 변경
 - style : 코드 의미에 영향을 주지 않는 변경사항
 - chore : 빌드 부분 혹은 패키지 매니저 수정사항
 - cicd : CI/CD 관련 설정
