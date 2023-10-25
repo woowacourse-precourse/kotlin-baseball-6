@@ -16,14 +16,14 @@ fun main() {
 }
 
 fun playGame(inputView: InputView, resultView: ResultView, gameService: GameService) {
-    val userNum = inputView.userInputNum()
+    val userNum = inputView.getUserInputNum()
 
     if (gameService.startGame(userNum)) {
         if (!resultView.askForRestart()) {
             return
         }
 
-        gameService.restart()
+        gameService.restartGame()
     }
 
     playGame(inputView, resultView, gameService)

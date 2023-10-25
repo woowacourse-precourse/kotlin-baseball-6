@@ -10,7 +10,7 @@ class GameService(private val computer: Computer) {
         return gameLogic.checkResult()
     }
 
-    fun restart() {
+    fun restartGame() {
         computer.updateNumber()
     }
 }

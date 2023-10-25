@@ -12,12 +12,12 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         return when (strikes) {
 
             3 -> {
-                threeStrike()
+                threeStrikeLogic()
                 true
             }
 
             else -> {
-                checkZeroCount(strikes, balls)
+                printResultCount(strikes, balls)
                 false
             }
         }
@@ -39,12 +39,12 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         return balls - countStrikes(computer, user)
     }
 
-    private fun threeStrike() {
-        println(Constants.THREE_STRIKE)
+    private fun threeStrikeLogic() {
+        println(Constants.THREE_STRIKE_MESSAGE)
         println(Constants.GAME_OVER_MESSAGE)
     }
 
-    private fun checkZeroCount(strikes: Int, balls: Int) {
+    private fun printResultCount(strikes: Int, balls: Int) {
         when (balls) {
             0 -> when (strikes) {
                 0 -> println(Constants.NOTHING_MESSAGE)

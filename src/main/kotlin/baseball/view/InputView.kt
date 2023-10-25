@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
 
-    fun userInputNum(): Int {
-        print(Constants.INPUT_USER)
+    fun getUserInputNum(): Int {
+        print(Constants.INPUT_USER_MESSAGE)
         val input = Console.readLine()
 
         if (input.length != 3 || !input.all { it.isDigit() }) {
