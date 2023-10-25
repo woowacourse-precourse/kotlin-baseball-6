@@ -59,8 +59,8 @@ fun countStAndBall(randomList: List<Int>, numList: List<Int>): Pair<Int, Int> {
     var strike: Int = 0
     var ball: Int = 0
     for (i in 0..2) {
-        if (randomList[i] in numList) {
-            if (randomList[i] == numList[i]) {
+        if (numList[i] in randomList) {
+            if (numList[i] == randomList[i]) {
                 strike += 1
             } else {
                 ball += 1
