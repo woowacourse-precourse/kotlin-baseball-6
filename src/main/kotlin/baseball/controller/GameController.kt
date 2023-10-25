@@ -1,8 +1,8 @@
 package baseball.controller
 
 import baseball.config.GameNumberConfig.DIGIT_NUMBER
-import baseball.service.NumberValidator
 import baseball.model.Computer
+import baseball.service.NumberValidator
 import baseball.view.InputCmdView
 import baseball.view.InputNumberView
 import baseball.view.OutputGuideView
