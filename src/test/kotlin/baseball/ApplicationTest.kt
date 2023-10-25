@@ -27,6 +27,34 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `예외 테스트_1`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("12") }
+        }
+    }
+
+    @Test
+    fun `예외 테스트_2`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("111") }
+        }
+    }
+
+    @Test
+    fun `예외 테스트_3`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("101") }
+        }
+    }
+
+    @Test
+    fun `예외 테스트_4`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("hello") }
+        }
+    }
+
     override fun runMain() {
         main()
     }
