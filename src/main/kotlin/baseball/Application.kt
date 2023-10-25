@@ -57,17 +57,18 @@ fun getThreeNumber(threeNumber: MutableSet<String>) {
  * @return 사용자가 입력한 3자리 숫자
  * @throws IllegalArgumentException 잘못된 입력값일 경우 예외를 던짐
  */
+
 fun getUserInput(): String {
     while (true) {
         val inputNumber = Console.readLine()
-        val parsedNumber = inputNumber.toIntOrNull()
-        if (parsedNumber != null && inputNumber.length == 3) {
+        if (inputNumber.length == 3 && inputNumber.all { it in '1'..'9' } && inputNumber.toSet().size == 3) {
             return inputNumber
         } else {
             throw IllegalArgumentException("잘못된 입력값입니다.")
         }
     }
 }
+
 
 /**
  * 게임 결과를 계산하는 함수.
