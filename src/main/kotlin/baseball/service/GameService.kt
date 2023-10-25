@@ -8,10 +8,12 @@ class GameService(private val computer: Computer, private val resultView: Result
     fun startGame(userInput: Int): Boolean {
         val gameLogic = GameLogic(computer.computerNum, userInput)
         val gameResult = gameLogic.checkResult()
+        val strikes = gameResult.first
+        val balls = gameResult.second
 
-        resultView.printResultView(gameLogic, gameResult.first, gameResult.second)
+        resultView.printResultView(gameLogic, strikes, balls)
 
-        return gameResult.first == 3
+        return strikes== 3
     }
 
     fun restartGame() {
