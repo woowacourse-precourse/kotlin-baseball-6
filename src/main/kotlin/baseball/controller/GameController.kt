@@ -1,4 +1,4 @@
-package baseball
+package baseball.controller
 
 import baseball.model.Answer
 import baseball.model.ExitInput
@@ -7,7 +7,7 @@ import baseball.utils.RandomNumberGenerator
 import baseball.view.OutputView
 import camp.nextstep.edu.missionutils.Console
 
-class Game {
+class GameController {
 
     private val outputView = OutputView()
 

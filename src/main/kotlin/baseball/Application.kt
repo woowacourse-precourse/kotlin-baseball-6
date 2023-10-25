@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.controller.GameController
+
 fun main() {
-    Game().run()
+    GameController().run()
 }
