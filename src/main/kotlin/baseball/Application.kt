@@ -8,7 +8,7 @@ fun main() {
     do {
         val answer = generateAnswer()   //정답 생성
         playGame(answer)                //게임 시작
-        var check = isRestart()         //재시작 여부
+        val check = isRestart()         //재시작 여부
     } while (check[0] == 1)
 }
 
@@ -28,7 +28,7 @@ fun generateAnswer(): ArrayList<Int> {
 fun readInput(): IntArray {
     // 2. 사용자 입력
     print("숫자를 입력해주세요 : ")
-    var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
+    val inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
     if (isValidInput(inputData, 3, 1..9)) return inputData!!
     throw IllegalArgumentException()
@@ -37,7 +37,7 @@ fun readInput(): IntArray {
 fun isRestart(): IntArray {
     // 4. 게임 종료 후 재시작 or 종료 입력받기
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
+    val inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
     if (isValidInput(inputData, 1, 1..2)) return inputData!!
     throw IllegalArgumentException()
