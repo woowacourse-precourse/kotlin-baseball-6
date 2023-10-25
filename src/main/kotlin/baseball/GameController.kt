@@ -6,12 +6,14 @@ class GameController(private val view: GameView, private val model: Model) {
     fun playGame() {
 
     }
-    /*fun inputNumber(): String {
+    fun inputNumber(): String {
         view.inputNumberView()
+        val input = Console.readLine()
+        numberCheck(input)
 
+        return input
     }
-*/
-    fun numberCheck(input: String) {
+    private fun numberCheck(input: String) {
         require(input.length == 3) {"입력값이 3자리가 아닙니다."}
         require(input.all { it.isDigit() } && '0' !in input) {"입력값에 0이나 숫자가 아닌 값이 있습니다."}
         require(input.toSet().size == input.length) {"입력값에 중복되는 숫자가 있습니다."}

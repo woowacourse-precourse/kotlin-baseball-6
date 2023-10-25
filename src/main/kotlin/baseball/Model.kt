@@ -4,6 +4,7 @@ class Model {
     var answerNumber: String = ""
     var userNumber: String = ""
     var isGameOver = false
+    var isGameRunning = false
 
     fun generateNumber(): String {
         val answer = mutableListOf<Int>()
@@ -19,5 +20,6 @@ class Model {
         answerNumber = generateNumber()
         userNumber = ""
         isGameOver = false
+        isGameRunning = true
     }
 }
