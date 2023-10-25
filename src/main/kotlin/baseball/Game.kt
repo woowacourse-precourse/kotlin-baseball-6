@@ -14,22 +14,28 @@ class Game constructor(
             val userInput = Console.readLine()
             throwsUserOptionNumberInputError(userInput)
 
+            if (userInput.toInt() == 2) break
         }
     }
 
     private fun inGame() {
-        val randomNumber = Computer().randomNumbers
+        val randomNumber = Computer.createRandomNumbers()
         while (true) {
 
             gamePrint.inputUserPrint()
             val userInput = Console.readLine()
             throwsUserGameNumberInputError(userInput)
-            val userNumber: List<Int>
+            val userNumber = userInput.map {
+                it.digitToInt()
+            }.toList()
 
-            //val result: Result = checkNumbers(userNumber, randomNumber)
-            //gamePrint.resultPrint(result)
-
+            val result: Result = checkNumbers(userNumber, randomNumber)
+            gamePrint.resultPrint(result)
+            if (result.userSuccess) {
+                break;
+            }
         }
+        gamePrint.endGamePrint()
     }
 
     private fun checkNumbers(
@@ -77,7 +83,8 @@ class Game constructor(
 
     }
 
-    private fun throwsUserOptionNumberInputError(userInput : String){
+    private fun throwsUserOptionNumberInputError(userInput: String) {
+        // 입력받은 값이 1과 2가 아닐경우 체크
         require(userInput.toInt() == 1 || userInput.toInt() == 2)
     }
 
