@@ -1,6 +1,6 @@
 package baseball
 
-import kotlin.random.Random
+import camp.nextstep.edu.missionutils.Randoms
 
 class Pitcher(
     private val numberCount: Int,
@@ -15,7 +15,7 @@ class Pitcher(
         val numbers = mutableListOf<Int>()
 
         while (numbers.size != numberCount) {
-            val number = Random.nextInt(maxNumber) + minNumber
+            val number = Randoms.pickNumberInRange(minNumber, maxNumber)
             if (!numbers.contains(number)) numbers.add(number)
         }
 
