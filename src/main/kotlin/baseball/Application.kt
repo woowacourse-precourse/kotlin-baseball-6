@@ -14,21 +14,22 @@ fun main() {
 fun startBaseballPlay() {
 
     // 컴퓨터 랜덤 값 생성
-    val computerRandomNum = createComputerRandomNum().joinToString("")
-
-    // 플레이어 입력 값
-    val playerAnswer = inputPlayerNum().joinToString("")
-
+    val computerRandomNum = createComputerRandomNum()
     println(computerRandomNum)
-    println(playerAnswer)
 
-    if (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0) {
+    do {
+        // 플레이어 입력 값
+        val playerAnswer = inputPlayerNum()
+
         strikeAndBall(computerRandomNum, playerAnswer)
-    }
+
+    } while (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0)
+    endBaseballPlay()
+
 
 }
 
-fun createComputerRandomNum(): MutableList<Int> {
+fun createComputerRandomNum(): String {
 
     val computerNum = mutableListOf<Int>()
     // list 크기 3 미만, 즉 3글자가 아닐경우 1~9 사이 랜덤값 생성
@@ -40,10 +41,10 @@ fun createComputerRandomNum(): MutableList<Int> {
         }
     }
     // list 공백 제거하고 문자열로
-    return computerNum
+    return computerNum.joinToString("")
 }
 
-fun inputPlayerNum(): MutableList<Char> {
+fun inputPlayerNum(): String {
 
     val playerNum = mutableListOf<Char>()
 
@@ -63,7 +64,7 @@ fun inputPlayerNum(): MutableList<Char> {
         }
         playerNum.add(inputPlayer[index])
     }
-    return playerNum
+    return playerNum.joinToString("")
 }
 
 fun compareComputerAndPlayer(computer: String, player: String): Int {
