@@ -8,13 +8,14 @@ class Program {
     var quitNumber = "2"
 
     fun setRandomNumber() {
-        var set = mutableSetOf<Int>()
+        val set = mutableSetOf<Int>()
 
-        while(set.size < 6) {
+        while (set.size < 3) {
             set.add((1..9).random())
         }
 
-        this.randomNumber = set.toString()
+        // 무작위로 생성된 숫자를 문자열로 변환
+        randomNumber = set.joinToString("")
     }
 
     fun checkThreeNumbers(input: String) {
@@ -26,7 +27,7 @@ class Program {
     fun checkDistinctNumbers(input: String) {
         val numbersSet = input.toCharArray().toSet()
         if (numbersSet.size != 3) {
-            throw IllegalArgumentException("입력한 숫자는 3자리 모두 다 다른 숫자여야 합니다.")
+            throw IllegalArgumentException("입력한 숫자는 3자리 모두 다 다른 숫자여야 합니다. 다시 입력해주세요.")
         }
     }
 
@@ -41,8 +42,8 @@ class Program {
         return contains
     }
 
-    fun isSamePlaceSameNumber(inputNumber: Char, index: Int): Boolean {
-        if (this.randomNumber[index] == inputNumber) {
+    fun isSamePlaceSameNumber(input: String, index: Int): Boolean {
+        if (this.randomNumber[index] == input[index]) {
             return true
         } else {
             return false
