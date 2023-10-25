@@ -19,3 +19,10 @@ fun generateRandomNumber(): List<Int> {
     }
     return computer
 }
+
+fun getUserInput(): List<Int> {
+    print("숫자를 입력해주세요 : ")
+    val input = Console.readLine()
+    return input.map { it.toString().toInt() }
+}
+
