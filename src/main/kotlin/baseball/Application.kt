@@ -30,10 +30,8 @@ fun readInput(): IntArray {
     print("숫자를 입력해주세요 : ")
     var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
-    if (inputData == null || inputData.size != 3 || !inputData.all { it in 0..9 } || inputData.toSet().size != 3) {
-        throw IllegalArgumentException()
-    }
-    return inputData
+    if (isValidInput(inputData, 3, 1..9)) return inputData!!
+    throw IllegalArgumentException()
 }
 
 fun isRestart(): IntArray {
@@ -41,10 +39,13 @@ fun isRestart(): IntArray {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
-    if (inputData == null || inputData.size != 1 || !inputData.all { it in 1..2 }) {
-        throw IllegalArgumentException()
-    }
-    return inputData
+    if (isValidInput(inputData, 1, 1..2)) return inputData!!
+    throw IllegalArgumentException()
+}
+
+//유효값 검증 함수
+fun isValidInput(input: IntArray?, size: Int, range: IntRange): Boolean {
+    return input != null && input.size == size && input.all { it in range } && input.toSet().size == size
 }
 
 fun playGame(answer: ArrayList<Int>) {
