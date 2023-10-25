@@ -3,7 +3,6 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import java.lang.IllegalArgumentException
-import java.util.regex.Pattern
 
     private fun inputException(userNumber: MutableList<Char>, inputNumber: String) {
         if (inputNumber.length != 3) {
