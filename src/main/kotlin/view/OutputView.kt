@@ -15,7 +15,7 @@ object OutputView {
     }
 
     fun pleaseInputBaseballNumber() {
-        println(PLEASES_INPUT_BASEBALL_NUMBER)
+        print(PLEASES_INPUT_BASEBALL_NUMBER)
     }
 
     fun guessedAllBaseballNumber() {
