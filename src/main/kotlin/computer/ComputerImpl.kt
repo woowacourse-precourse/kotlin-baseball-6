@@ -10,6 +10,6 @@ class ComputerImpl(
         get() = _randomBaseballNumber
 
     override fun setRandomBaseballNumber() {
-        TODO("Not yet implemented")
+        _randomBaseballNumber = randomBaseballNumberGenerator.generateRandomBaseballNumber()
     }
 }
