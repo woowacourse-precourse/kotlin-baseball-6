@@ -1,17 +1,15 @@
 package baseball.view
 
+import baseball.domain.InputValidator
 import baseball.utils.Constants
 import camp.nextstep.edu.missionutils.Console
 
-class InputView {
+class InputView(private val inputValidator: InputValidator) {
 
     fun getUserInputNum(): Int {
         print(Constants.INPUT_USER_MESSAGE)
         val input = Console.readLine()
 
-        if (input.length != 3 || !input.all { it.isDigit() }) {
-            throw IllegalArgumentException()
-        }
-        return input.toInt()
+        return inputValidator.validate(input)
     }
 }
