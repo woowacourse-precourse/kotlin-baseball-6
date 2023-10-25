@@ -18,16 +18,12 @@ fun makeSecretNumber(): String {
     return computer.joinToString("")
 }
 
-fun isValidGuessNumber(input: String): Boolean {
-    return input.length == MAX_NUMBER && !hasDuplicatedNumberInside(input) && input.all { isNumber(it) }
-}
-
+fun isValidGuessNumber(input: String) =
+    input.length == MAX_NUMBER && !hasDuplicatedNumberInside(input) && input.all { isNumber(it) }
 fun hasDuplicatedNumberInside(input: String) = input.length != input.toSet().size
 fun isNumber(input: Char) = input in '0'..'9'
-
-fun isValidContinueNumber(input: String): Boolean {
-    return input.length == 1 && input[0] in '1'..'2'
-}
+fun isValidContinueNumber(input: String) =
+    input.length == 1 && input[0] in '1'..'2'
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
