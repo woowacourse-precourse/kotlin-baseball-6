@@ -34,7 +34,7 @@ class NumberBaseballGame {
     private fun inputGameFlowDecision(): String {
         output.printReceiveGameFlowInput()
         return Console.readLine().also {
-            if (it != RESTART && it != END) throw IllegalArgumentException()
+            if (it != RESTART && it != END) throw IllegalArgumentException("1(재시작),2(종료) 중 하나를 입력해주세요.")
         }
     }
 
@@ -46,9 +46,9 @@ class NumberBaseballGame {
     }
 
     private fun validateUserInput(input: String) {
-        require(input.length == 3) { throw IllegalArgumentException() }
-        require(input.toSet().size == 3) { throw IllegalArgumentException() }
-        require(input.all { it in '1'..'9' }) { throw IllegalArgumentException() }
+        require(input.length == 3) { throw IllegalArgumentException("숫자 3개를 입력해주세요.") }
+        require(input.toSet().size == 3) { throw IllegalArgumentException("중복값이 존재합니다.") }
+        require(input.all { it in '1'..'9' }) { throw IllegalArgumentException("1~9 사이의 숫자를 입력해주세요.") }
     }
 
     private fun generateRandomNumbers(): List<Int> {
