@@ -1,10 +1,10 @@
 package baseball
 
 class GameManager {
-    companion object{
-        fun start(){
+    companion object {
+        fun start() {
             printStartMessage()
-            var keepGoing : Int
+            var keepGoing: Int
             do {
                 progressRound()
                 keepGoing = User.getRestartInput()
@@ -12,12 +12,12 @@ class GameManager {
         }
 
         // 최초 실행 시 게임 시작 문구 출력
-        private fun printStartMessage(){
+        private fun printStartMessage() {
             println("숫자 야구 게임을 시작합니다.")
         }
 
         // 한 라운드를 실행, 사용자가 이길 때 까지 반복
-        private fun progressRound(){
+        private fun progressRound() {
             // 컴퓨터가 서로 다른 3자리 난수를 생성
             val computer = Computer.generateRandomNumber()
             // 사용자가 맞출 때 까지(우승할 때 까지) 반복
