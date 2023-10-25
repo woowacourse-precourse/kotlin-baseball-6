@@ -12,24 +12,29 @@ fun main() {
     var ball = 0
 
     setComputerNums(computer)
+    while (true) {
+        val input = Console.readLine()
+        input.forEach { user.add(it.digitToInt()) }
 
-    val input = Console.readLine()
-    input.forEach { user.add(it.digitToInt()) }
-
-    computer.forEachIndexed { i, value ->
-        repeat(3) { j ->
-            if(i == j) { if(value == user[i]) strike++ }
-            else { if(value == user[j]) ball++ }
+        computer.forEachIndexed { i, value ->
+            repeat(3) { j ->
+                if (i == j) {
+                    if (value == user[i]) strike++
+                } else {
+                    if (value == user[j]) ball++
+                }
+            }
         }
-    }
 
-    if (strike == 3) {
-        println("${strike}스트라이크")
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    } else if (strike != 0 && ball != 0) println("${ball}볼 ${strike}스트라이크")
-    else if (ball != 0) println("${ball}볼")
-    else if (strike != 0) println("${strike}스트라이크")
-    else print("낫싱")
+        if (strike == 3) {
+            println("${strike}스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        } else if (strike != 0 && ball != 0) println("${ball}볼 ${strike}스트라이크")
+        else if (ball != 0) println("${ball}볼")
+        else if (strike != 0) println("${strike}스트라이크")
+        else print("낫싱")
+    }
 }
 
 private fun setComputerNums(computer: MutableList<Int>) {
