@@ -7,6 +7,23 @@ fun main() {
     while (true) {
         val computer = generateRandomNumber()
         var attempts = 0
+
+        while (true) {
+            val userInput = getUserInput()
+            val result = checkGuess(computer, userInput)
+            println(result)
+
+            if (result == "3스트라이크") {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                break
+            }
+            attempts++
+        }
+
+        if (!playAgain()) {
+            break
+        }
+    }
 }
     
 fun generateRandomNumber(): List<Int> {
