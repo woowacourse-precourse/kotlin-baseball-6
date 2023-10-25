@@ -13,7 +13,7 @@ const val RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면
 
 
 fun main() {
-    var computer: MutableList<Int> = mutableListOf()
+    var computer: List<Int> = listOf()
     var user: List<Int>
     var areUReady = true
     var gameRestart = true
@@ -29,7 +29,7 @@ fun main() {
     }
 }
 
-fun generateRandomNumber(): MutableList<Int> {
+fun generateRandomNumber(): List<Int> {
 
     val computer = mutableListOf<Int>()
     while (computer.size < 3) {
@@ -38,6 +38,7 @@ fun generateRandomNumber(): MutableList<Int> {
             computer.add(randomNumber)
         }
     }
+    //println(computer)
     return computer
 }
 
@@ -63,21 +64,23 @@ fun game(computer: List<Int>, user: List<Int>):Boolean {
     var strike = 0
 
     for (i in computer.indices) {
-
+        if(user[i] !in computer){
+            continue
+        }
         if (computer[i] == user[i]) {
             strike++
             continue
         }
-        if (computer.contains(i)) {
+        else {
             ball++
         }
     }
     println(compareNumber(ball, strike))
 
     if (strike == 3) {
-            println("${strike}스트라이크\n${THREE_STRIKE_MESSAGE}")
-            return false
-        }
+        println(THREE_STRIKE_MESSAGE)
+        return false
+    }
     return true
 }
 
@@ -94,7 +97,7 @@ fun compareNumber(ball:Int, strike: Int): String {
     }
     else if (strike == 0 && ball > 0) {
         println("${ball}볼")
-    }else if (strike > 0 && ball > 0){
+    }else{
         println("${ball}볼 ${strike}스트라이크")}
     return str
 }
