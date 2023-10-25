@@ -17,13 +17,12 @@ class BaseBallController {
 
     fun playGame() {
         inputVIew.printPlayGame()
-        val computer = Computer()
         var computerBaseBall = BaseBall(mutableListOf())
 
         while (true) {
             when (status) {
                 GameStatus.START -> {
-                    computerBaseBall = startGame(computer)
+                    computerBaseBall = startGame()
                 }
 
                 GameStatus.CONTINUE -> {
@@ -37,9 +36,9 @@ class BaseBallController {
         }
     }
 
-    private fun startGame(computer: Computer): BaseBall {
+    private fun startGame(): BaseBall {
         status = GameStatus.CONTINUE
-        return computer.makeComputerList()
+        return Computer.makeComputerList()
     }
 
     private fun continueGame(computerBaseBall: BaseBall) {

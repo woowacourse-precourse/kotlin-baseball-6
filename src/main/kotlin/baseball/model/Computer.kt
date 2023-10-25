@@ -3,7 +3,7 @@ package baseball.model
 import baseball.BASEBALL_MAX_SIZE
 import camp.nextstep.edu.missionutils.Randoms
 
-class Computer {
+object Computer {
     fun makeComputerList(): BaseBall {
         val computerList = mutableListOf<Int>()
         while (computerList.size < BASEBALL_MAX_SIZE) {
