@@ -37,7 +37,7 @@ class BaseballGame(
             ball = ballAndStrike[0]
             strike = ballAndStrike[1]
 
-            if (judge(ball, strike)) {
+            if (getResult(ball, strike)) {
 
                 return input.inputRetryChoice().toInt()
             }
@@ -45,7 +45,7 @@ class BaseballGame(
 
     }
 
-    private fun judge(ball: Int, strike: Int): Boolean {
+    private fun getResult(ball: Int, strike: Int): Boolean {
         if (strike == THREE_STRIKE) {
             printer.printStrike(strike)
             return true
