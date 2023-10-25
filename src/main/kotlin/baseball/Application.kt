@@ -1,15 +1,20 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Randoms
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     // 1. 게임 시작을 위한 세팅
     val answer = answerSelect()
-//    println("answer : ${answer}")
 
     play(answer)
+    var check = newOrExit()
 
+    while (check[0] == 1) {
+        val ans = answerSelect()
+        play(ans)
+        check = newOrExit()
+    }
 }
 
 fun answerSelect(): ArrayList<Int> {
@@ -25,42 +30,52 @@ fun answerSelect(): ArrayList<Int> {
     return computer
 }
 
-fun inputNum(): IntArray{
+fun inputNum(): IntArray {
     // 2. 사용자 입력
     print("숫자를 입력해주세요 : ")
-    var inputData = readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
+    var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
     if (inputData == null || inputData.size != 3 || !inputData.all { it in 0..9 } || inputData.toSet().size != 3) {
-        throw IllegalArgumentException("입력이 잘못되었습니다.")
+        throw IllegalArgumentException()
     }
     return inputData
 }
 
-fun play(answer: ArrayList<Int>){
+fun newOrExit(): IntArray {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
+
+    if (inputData == null || inputData.size != 1 || !inputData.all { it in 1..2 }) {
+        throw IllegalArgumentException()
+    }
+    return inputData
+}
+
+fun play(answer: ArrayList<Int>) {
     // 3. Ball, Strike 검증 및 결과 출력
 
     println("숫자 야구 게임을 시작합니다.")
 
-    var strike =0
+    var strike = 0
 
-    while (strike!=3){
-        strike=0
-        var ball=0
+    while (strike != 3) {
+        strike = 0
+        var ball = 0
 
-        val inputData= inputNum()
+        val inputData = inputNum()
 
-        for((index, i) in answer.withIndex()){
-            if(answer[index]==inputData[index]) strike++
-            if(i in inputData) ball++
+        for ((index, i) in answer.withIndex()) {
+            if (answer[index] == inputData[index]) strike++
+            if (i in inputData) ball++
         }
-        ball -=strike
-        if(strike==0 && ball==0){
+        ball -= strike
+        if (strike == 0 && ball == 0) {
             println("낫싱")
-        }else{
-            if(ball!=0){
+        } else {
+            if (ball != 0) {
                 print("${ball}볼 ")
             }
-            if(strike!=0){
+            if (strike != 0) {
                 print("${strike}스트라이크")
             }
             println()
