@@ -23,7 +23,8 @@ class AnswerTest {
         )
 
         // when
-        val (strikeCount, ballCount) = answer.compareTo(guess)
+        val strikeCount = answer.countStrikes(guess)
+        val ballCount = answer.countBalls(guess)
 
         // then
         assertThat(strikeCount).isEqualTo(3)
@@ -47,7 +48,8 @@ class AnswerTest {
         )
 
         // when
-        val (strikeCount, ballCount) = answer.compareTo(guess)
+        val strikeCount = answer.countStrikes(guess)
+        val ballCount = answer.countBalls(guess)
 
         // then
         assertThat(strikeCount).isEqualTo(0)
@@ -71,7 +73,8 @@ class AnswerTest {
         )
 
         // when
-        val (strikeCount, ballCount) = answer.compareTo(guess)
+        val strikeCount = answer.countStrikes(guess)
+        val ballCount = answer.countBalls(guess)
 
         // then
         assertThat(strikeCount).isEqualTo(0)
