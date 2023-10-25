@@ -50,6 +50,13 @@ class UserValidationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `사용자가 공백 입력`() {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            "".userChoiceValidation()
+        }
+    }
+
     override fun runMain() {
         main()
     }

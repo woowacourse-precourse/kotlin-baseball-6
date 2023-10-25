@@ -1,15 +1,15 @@
 package baseball.domain
 
 import baseball.utils.Number.MAX_NUMBER
-import baseball.utils.RandomNumber
+import baseball.utils.generateRandomNumbers
 
-object Computer {
+class Computer {
 
     fun generateComputerNumbers(): String {
         val computerNumbers = mutableSetOf<Int>()
 
         while (computerNumbers.size < MAX_NUMBER) {
-            computerNumbers.add(RandomNumber.generateRandomNumbers())
+            computerNumbers.add(generateRandomNumbers())
         }
 
         return computerNumbers.joinToString("")

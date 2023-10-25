@@ -6,21 +6,16 @@ import baseball.utils.Number.ONE_CHAR
 import baseball.utils.UserChoice.EXIT_VALUE
 import baseball.utils.UserChoice.RESTART_VALUE
 
-object User {
+fun String.userNumberValidation() {
+    require(length == MAX_NUMBER)
 
-    fun String.userNumberValidation() {
-        require(length == MAX_NUMBER)
+    require(all { number -> number in ONE_CHAR..NINE_CHAR})
 
-        map {
-            require(it in ONE_CHAR..NINE_CHAR)
-        }
+    require(toSet().size == MAX_NUMBER)
+}
 
-        require(toSet().size == MAX_NUMBER)
-    }
-
-    fun String.userChoiceValidation() {
-        let { userChoice ->
-            require(userChoice == RESTART_VALUE || userChoice == EXIT_VALUE)
-        }
+fun String.userChoiceValidation() {
+    let { userChoice ->
+        require(userChoice == RESTART_VALUE || userChoice == EXIT_VALUE)
     }
 }

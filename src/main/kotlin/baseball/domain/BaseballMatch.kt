@@ -32,7 +32,7 @@ class BaseballMatch(
     }
 
     private fun countBalls(user: String) {
-        user.map { userNum ->
+        user.forEach { userNum ->
             if (userNum in computer) {
                 ball++
             }
@@ -40,7 +40,7 @@ class BaseballMatch(
     }
 
     private fun countStrike(user: String) {
-        user.mapIndexed { index, userNum ->
+        user.forEachIndexed { index, userNum ->
             if (computer[index] == userNum) {
                 strike++
                 ball--
