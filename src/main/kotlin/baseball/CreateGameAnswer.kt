@@ -3,12 +3,12 @@ package baseball
 import camp.nextstep.edu.missionutils.Randoms
 
 fun createGameAnswer() : Array<Char> {
-    val gameAnswerArr = mutableListOf<Char>()
-    while (gameAnswerArr.size < 3) {
+    val gameAnswer = mutableListOf<Char>()
+    while (gameAnswer.size < 3) {
         val randomNum = Character.forDigit(Randoms.pickNumberInRange(1,9), 10)
-        if (!gameAnswerArr.contains(randomNum)) {
-            gameAnswerArr.add(randomNum)
+        if (!gameAnswer.contains(randomNum)) {
+            gameAnswer.add(randomNum)
         }
     }
-    return gameAnswerArr.toCharArray().toTypedArray()
+    return gameAnswer.toCharArray().toTypedArray()
 }
