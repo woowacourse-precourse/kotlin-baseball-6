@@ -1,5 +1,5 @@
 package baseball
-import kotlin.random.Random
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     var playAgain = true
@@ -7,7 +7,7 @@ fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
     while (playAgain) {
-        val computerNumber = randomNumber()
+        val computerNumber = generateRandomNumber()
 
         while (true) {
             print("숫자를 입력해주세요 : ")
@@ -42,13 +42,19 @@ fun main() {
     }
 }
 
-fun randomNumber(): Int {
-    var number: Int
-    do {
-        number = Random.nextInt(100, 1000)
-    } while (!size(number))
-    return number
+fun generateRandomNumber(): Int {
+    val computer = mutableListOf<Int>()
+    while (computer.size < 3) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        if (!computer.contains(randomNumber)) {
+            computer.add(randomNumber)
+        }
+    }
+
+    val result = computer[0] * 100 + computer[1] * 10 + computer[2]
+    return result
 }
+
 
 fun size(num: Int): Boolean {
     val digits = num.toString().toSet()
@@ -86,5 +92,7 @@ fun displayResult(result: Int) {
         println("$strikes 스트라이크")
     } else if (balls > 0) {
         println("$balls 볼")
+    } else{
+        println("낫싱")
     }
 }
