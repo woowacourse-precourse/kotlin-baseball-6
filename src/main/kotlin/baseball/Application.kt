@@ -20,7 +20,7 @@ fun main() {
             user.clear()
             val input = Console.readLine()
             try {
-                input.isValidateInputNumber()
+                isValidateInputNumber(input)
             } catch (e: IllegalArgumentException) {
                 break@loop
             }
@@ -43,7 +43,7 @@ fun main() {
             } else if (strike != 0 && ball != 0) println("${ball}볼 ${strike}스트라이크")
             else if (ball != 0) println("${ball}볼")
             else if (strike != 0) println("${strike}스트라이크")
-            else print("낫싱")
+            else println("낫싱")
         }
     } while(restartOrNot(Console.readLine()))
 }
@@ -59,8 +59,37 @@ private fun setComputerNums(computer: MutableList<Int>) {
 
 private fun restartOrNot(input: String?): Boolean {
     return try {
-        input.getValidateRestartNumber() == 1
+        getValidateRestartNumber(input) == 1
     } catch(e: IllegalArgumentException) {
         false
     }
+}
+
+fun getNotEmptyInt(string: String?): Int {
+    val input = string?.trim()
+    if (input.isNullOrEmpty()) {
+        throw IllegalArgumentException("input String is null or empty")
+    }
+    if (input.toIntOrNull() == null) {
+        throw IllegalArgumentException("input String cannot be parsed Int")
+    }
+    return input.toInt()
+}
+
+fun isValidateInputNumber(string: String?) {
+    val num = getNotEmptyInt(string)
+    if (num < 123 || num > 987) {
+        throw IllegalArgumentException("input number is unavailable")
+    }
+    if (num.toString().contains('0')) {
+        throw IllegalArgumentException("input number is unavailable")
+    }
+}
+
+fun getValidateRestartNumber(string: String?): Int {
+    val num = getNotEmptyInt(string)
+    if (num != 1 && num != 2) {
+        throw IllegalArgumentException("restart number is unavailable")
+    }
+    return num
 }
