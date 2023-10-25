@@ -15,7 +15,7 @@ fun main() {
 
             if (userNum?.length != 3) throw IllegalArgumentException()
             for (i in userNum) {
-                if (!i.isDigit() || userArr.contains(i.digitToInt())) throw IllegalArgumentException()
+                if (!i.isDigit() || userArr.contains(i.digitToInt()) || i == '0') throw IllegalArgumentException()
                 userArr.add(i.digitToInt())
             }
 
@@ -39,7 +39,6 @@ fun getComputerNum(): MutableList<Int> {
     while (com.size < 3) {
         val rand = Randoms.pickNumberInRange(1, 9)
         if (!com.contains(rand)) com.add(rand)
-        println(com)
     }
     return com
 }
