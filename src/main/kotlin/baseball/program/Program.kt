@@ -48,4 +48,17 @@ class Program {
             return false
         }
     }
+
+    fun returnResult(countOfStrike: Int, countOfBall: Int) {
+        if (countOfBall != 0) {
+            print("${countOfBall}볼 ")
+        }
+        if (countOfStrike != 0) {
+            println("${countOfStrike}스트라이크")
+        }
+        if (countOfBall == 0 && countOfStrike == 0) {
+            println("낫싱")
+        }
+
+    }
 }
