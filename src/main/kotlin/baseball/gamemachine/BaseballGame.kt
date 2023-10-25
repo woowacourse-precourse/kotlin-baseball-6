@@ -4,7 +4,6 @@ import baseball.io.Input
 import baseball.io.Output
 
 const val START = 1
-const val END = 2
 
 const val THREE_STRIKE = 3
 const val ZERO = 0
@@ -17,12 +16,11 @@ class BaseballGame(
 
 ) {
 
-    // 이건 전체 게임 즉, 맞출때 까지 반복
     fun startGame() {
         var flag = START
 
         while (flag == START) {
-            var computerNum = generator.makeComputerNumber()
+            val computerNum = generator.makeComputerNumber()
             flag = playGame(computerNum)
         }
     }
@@ -33,7 +31,7 @@ class BaseballGame(
         var strike: Int
 
         while (true) {
-            var myNum = strToList(input.inputMyNumber())
+            val myNum = strToList(input.inputMyNumber())
             val ballAndStrike = answerChecker.checkAnswer(answer, myNum)
 
             ball = ballAndStrike[0]
@@ -70,7 +68,7 @@ class BaseballGame(
 
 
     private fun strToList(myNum: String): List<Int> {
-        var num = mutableListOf<Int>()
+        val num = mutableListOf<Int>()
         for (char in myNum) {
             num.add(char.toString().toInt())
         }
