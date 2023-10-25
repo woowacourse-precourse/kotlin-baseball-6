@@ -1,7 +1,7 @@
 package validation
 
 class UserInputValidation {
-    public fun inputLength(input: String) {
+    public fun inputLength(input: String) { // todo public제거
         if (input.length != 3) {
             callInputLengthException()
         }
@@ -19,7 +19,7 @@ class UserInputValidation {
         }
     }
 
-    private fun callInputRageException() {
+    private fun callInputRageException() { // todo 오타수정 range
         throw IllegalArgumentException("1에서 9사이의 숫자가 아닙니다.")
     }
 

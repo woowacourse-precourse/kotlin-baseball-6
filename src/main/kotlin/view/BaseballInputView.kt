@@ -8,7 +8,7 @@ import util.Message.Constant.START_GAME_MESSAGE
 class BaseballInputView {
     fun printStartGameMessage() = println(START_GAME_MESSAGE)
 
-    fun printInputNumberMessage() = println(INPUT_NUMBER_MASSAGE)
+    fun printInputNumberMessage() = print(INPUT_NUMBER_MASSAGE)
 
     fun printRestartGameMessage() = println(RESTART_GAME_MESSAGE)
 
