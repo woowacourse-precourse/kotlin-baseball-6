@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     var playAgain = true
@@ -20,3 +21,19 @@ fun main() {
 }
 
 fun playGame() {
+
+}
+
+fun generateComputerNumbers(): List<Int> {
+    return List(3) { Randoms.pickNumberInRange(1, 9) }
+}
+
+fun getUserInput(): List<Int> {
+    print("숫자를 입력해주세요 : ")
+    val input = Console.readLine()
+    if (input == null || input.length != 3 || input.any { it !in '1'..'9' }) {
+        throw IllegalArgumentException("잘못된 입력입니다.")
+    }
+    return input.map { it.toString().toInt() }
+}
+
