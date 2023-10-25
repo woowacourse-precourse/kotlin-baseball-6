@@ -17,7 +17,7 @@
 - [ToDo] 게임 종료 이후, 안내 문구 프린트 기능
 
 ## Result dataClass
-- [ToDo] 스트라이크와 볼을 변수로 갖는 Result 데이터클래스 구현
+- [Done] 스트라이크와 볼을 변수로 갖는 Result 데이터클래스 구현
 
 ## Test
 - [ToDo] 테스트 코드 구현 및 실행
