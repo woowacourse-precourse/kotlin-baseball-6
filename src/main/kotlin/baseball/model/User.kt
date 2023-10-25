@@ -12,8 +12,9 @@ class User {
         checkSize(input)
         checkRepeat(input)
 
-        for (i in input)
+        for (i in input) {
             userList.add(i.digitToInt())
+        }
         return BaseBall(userList)
     }
 
