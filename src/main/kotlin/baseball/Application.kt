@@ -28,6 +28,21 @@ fun startGame() {
         var (ball, strike) = matchEachNums(answer, inputNumList)
         printResult(ball, strike)
     }
+    print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+
+    restartOrTerminate()
+}
+
+fun restartOrTerminate() {
+    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val userInput = Console.readLine().toInt()
+    if (userInput == 1) {
+        startGame()
+    } else if (userInput == 2) {
+        return
+    } else {
+        throw IllegalArgumentException("1이나 2만 입력하실 수 있습니다.")
+    }
 }
 
 fun printResult(ball: Int, strike: Int) {
