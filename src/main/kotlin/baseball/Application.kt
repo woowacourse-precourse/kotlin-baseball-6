@@ -8,10 +8,20 @@ fun main() {
     val computer = mutableListOf<Int>()
     val user = mutableListOf<Int>()
 
+    var strike = 0
+    var ball = 0
+
     setComputerNums(computer)
 
     val input = Console.readLine()
     input.forEach { user.add(it.digitToInt()) }
+
+    computer.forEachIndexed { i, value ->
+        repeat(3) { j ->
+            if(i == j) { if(value == user[i]) strike++ }
+            else { if(value == user[j]) ball++ }
+        }
+    }
 }
 
 private fun setComputerNums(computer: MutableList<Int>) {
