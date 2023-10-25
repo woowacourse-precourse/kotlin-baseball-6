@@ -1,7 +1,7 @@
 package baseball
 
-import baseball.domain.User.userChoiceValidation
-import baseball.domain.User.userNumberValidation
+import baseball.domain.userChoiceValidation
+import baseball.domain.userNumberValidation
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
