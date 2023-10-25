@@ -1,19 +1,33 @@
 # 기능 목록
 
 ## View
-- Guide
-  - 게임 진행을 위한 안내를 출력하는 기능
-- Result
-  - 게임 진행 결과를 출력하는 기능
-- UserInput
-  - 사용자의 입력을 출력하는 기능
+- JudgmentView
+  - 판정 출력하는 파일
+- NoticeView
+  - 안내문을 출력하는 파일
+- UserInputView
+  - 사용자에게 입력 받는 파일
 
 ## Controller
+- BaseballController
+  - 야구를 진행할때 필요한 기능을 구현한 파일
 - BaseballGame
-  - 게임의 전체적인 진행을 실행하는 기능(Todo:기능 구현후에 적절한 이름에 맞게 기능을 나눌 예정)
+  - 게임의 전체적인 진행을 실행하는 기능을 구현한 파일 
 
 ## Model
- - StrikeNumber
-   - 게임에서 찾아야하는 스트라이크 숫자
- - UserNumber
-   - 유저가 입력한 숫자
+ - TargetNumbersModel
+   - 목푶 숫자를 저장하는 모델 
+ - TargetNumbersGenerator
+    - 목표 숫자를 생성하는 모델 
+ - RetryNumberGenerator
+   - 다시 시작할지 여부의 숫자를 입력 받아 검사하고 변환하여 생성하는 모델
+ - RetryNumberModel
+   - 다시 시작할지 여부의 숫자를 저장하는 모델
+ - UserNumbersGenerator
+   - 사용자의 숫자를 입력받아 검사하고 변환하여 생성하는 모델
+ - UserNumbersModel
+   - 사용자의 숫자를 입력받아 저장하는 모델
+ - NumberGenerator
+   - 숫자를 생성하는 Interface
+ - NumbersGenerator
+   - 숫자들을 생성하는 Interface

@@ -7,7 +7,7 @@ import baseball.view.UserInputView
 class BaseBallGame {
     private val noticeView = NoticeView()
     private val userInputView = UserInputView()
-    private val baseBallNumberGenerator = BaseBallNumbersGenerator()
+    private val baseBallNumberGenerator = TargetNumbersGenerator()
 
     private var isContinue = false
 
@@ -42,7 +42,7 @@ class BaseBallGame {
 
     private fun isWin(baseballController: BaseballController): Boolean {
         val userNumber = UserNumbersGenerator(userInputView.getBaseBallNum()).generate()
-        val userModel = UserModel(userNumber)
+        val userModel = UserNumbersModel(userNumber)
         val judgment = baseballController.judgment(userModel.getNumbers())
         return judgment == WIN_JUDGMENT
     }

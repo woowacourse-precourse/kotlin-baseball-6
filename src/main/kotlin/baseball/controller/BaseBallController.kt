@@ -1,10 +1,10 @@
 package baseball.controller
 
-import baseball.model.BaseballModel
+import baseball.model.TargetNumbersModel
 import baseball.view.JudgmentView
 
 class BaseballController(private val numbers: MutableList<Int>) {
-    private val baseballModel = BaseballModel(numbers)
+    private val baseballModel = TargetNumbersModel(numbers)
     private val judgmentView = JudgmentView()
 
     fun judgment(userNumbers: MutableList<Int>): String {

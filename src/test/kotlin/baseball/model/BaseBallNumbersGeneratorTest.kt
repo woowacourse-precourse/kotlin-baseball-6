@@ -7,11 +7,11 @@ import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BaseBallNumbersGeneratorTest {
-    private lateinit var baseBallNumbersGenerator: BaseBallNumbersGenerator
+    private lateinit var baseBallNumbersGenerator: TargetNumbersGenerator
 
     @BeforeEach
     fun `setUp`() {
-        baseBallNumbersGenerator = BaseBallNumbersGenerator()
+        baseBallNumbersGenerator = TargetNumbersGenerator()
     }
 
     @Test

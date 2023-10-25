@@ -1,7 +1,5 @@
 package baseball.model
 
-import camp.nextstep.edu.missionutils.Randoms
-
 class UserNumbersGenerator(private val inputText: String) : NumbersGenerator {
     init {
         val isNumbers = inputText.all { it.toString().matches(ONE_TO_NINE_REGEX.toRegex()) }
