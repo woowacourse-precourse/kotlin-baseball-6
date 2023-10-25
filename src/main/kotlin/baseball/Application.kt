@@ -6,9 +6,12 @@ var computer = mutableListOf<Int>()
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.") // 1) 게임 시작 문구 출력
-    while (true) { // 5) 정답이 나올 때까지 2~4번 과정 반복
+    while (true) { // 8) 사용자가 1을 선택한 경우 2~7번 과정 반복
         generateRandomNumber()
         playBaseballGame()
+        if(!playBaseballGameAgain()) {
+            break
+        }
     }
 }
 
@@ -24,7 +27,7 @@ fun generateRandomNumber() {
 
 fun playBaseballGame() {
     val com = computer.joinToString("")
-    while (true) {
+    while (true) { // 5) 정답이 나올 때까지 3~4번 과정 반복
         print("숫자를 입력해주세요 : ")
         var ball = 0
         var strike = 0
@@ -56,5 +59,14 @@ fun playBaseballGame() {
                 else -> println("${ball}볼 ${strike}스트라이크")
             }
         }
+    }
+}
+
+fun playBaseballGameAgain(): Boolean{
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (readLine()) { // 7) 게임이 끝난 경우 재시작/종료를 구분하는 1과 2 중 하나의 수 입력 받기
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException()
     }
 }
