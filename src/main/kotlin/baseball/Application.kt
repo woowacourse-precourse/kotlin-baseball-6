@@ -8,6 +8,10 @@ fun main() {
     val targetList = setNumber()
 
     val input = getInput()
+    val inputList = input.map {
+        it.code - 48
+    }
+
 }
 
 fun setNumber(): List<Int> {
