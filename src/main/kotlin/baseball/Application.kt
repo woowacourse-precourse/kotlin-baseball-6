@@ -37,7 +37,7 @@ fun playGame() {
         }
 
         if (strike == 3) {
-            println("3개의 숫자를 모두 맞히셨습니다!\n게임 종료")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             if (!askRestart())
                 break
             computer.createNumbers()
@@ -84,10 +84,8 @@ class User {
 
 
 fun askRestart(): Boolean {
-    while (true) {
-        println("게임을 다시 시작하시겠습니까?")
         while (true) {
-            println("[1] 게임 시작하기 [2] 게임 종료하기")
+            println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             val input = Console.readLine()?.toInt()
 
             when (input) {
@@ -99,7 +97,7 @@ fun askRestart(): Boolean {
                     println("숫자 야구 게임을 종료합니다.")
                     return false
                 }
-                else -> throw IllegalArgumentException()
+                else -> IllegalArgumentException()
             }
         }
     }
