@@ -33,13 +33,13 @@ fun playGame() { // 게임 시작
         val result = checkGuess(userGuess, computerNumbers)
         println("결과: $result")
 
-        if (result == "3 스트라이크") {
+        if (result == "3스트라이크") {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             break
         }
     }
 
-    println("게임 종료!")
+    println("게임 종료")
 }
 
 
@@ -78,8 +78,8 @@ fun checkGuess(userGuess: List<Int>, computerNumbers: List<Int>): String { // �
     }
 
     return when {
-        strikes == 3 -> "3 스트라이크"
-        strikes > 0 || balls > 0 -> "$strikes 스트라이크, $balls 볼"
+        strikes == 3 -> "3스트라이크"
+        strikes > 0 || balls > 0 -> "{$balls}볼 {$strikes}스트라이크"
         else -> "낫싱"
     }
 }
