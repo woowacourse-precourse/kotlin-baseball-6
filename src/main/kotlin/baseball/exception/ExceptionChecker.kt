@@ -38,8 +38,8 @@ class ExceptionChecker {
 
     }
 
-    fun checkRetryInput(choice: Int) {
-        if (choice != 1 && choice != 2) {
+    fun checkRetryInput(choice: String) {
+        if (choice != "1" && choice != "2") {
             throw exception
         }
     }

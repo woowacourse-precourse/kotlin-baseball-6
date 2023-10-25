@@ -21,11 +21,11 @@ class Input(
         return myNum
     }
 
-    fun inputRetryChoice(): Int {
+    fun inputRetryChoice(): String {
         printer.printSuccessMessage()
-        var choice: Int
+        var choice:String
         try {
-            choice = Console.readLine().toInt()
+            choice = Console.readLine()
             exceptionChecker.checkRetryInput(choice)
         } catch (e: Exception) {
             throw e
