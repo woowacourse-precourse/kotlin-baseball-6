@@ -1,6 +1,6 @@
 package baseball
 
-fun checkIfUserWin(strikeNum: Int, ballNum : Int) : Boolean {
+fun checkIfUserWin(strikeNum: Int, ballNum: Int): Boolean {
     if (ballNum == 0 && strikeNum == 0) {
         println("낫싱")
     } else if (ballNum == 0) {
