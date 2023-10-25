@@ -7,7 +7,7 @@ class UserNumbersGenerator(private val inputText: String) : NumbersGenerator {
         val isNumbers = inputText.all { it.toString().matches(ONE_TO_NINE_REGEX.toRegex()) }
         val isDuplication = inputText.toMutableList().distinct().size == inputText.length
         val isCorrectCount = inputText.length == USER_NUMBER_COUNT
-        require(isNumbers && isDuplication && isCorrectCount){ println("바보")}
+        require(isNumbers && isDuplication && isCorrectCount){ println()}
     }
     override fun generate(): MutableList<Int> = inputText.map { it.digitToInt() }.toMutableList()
 
