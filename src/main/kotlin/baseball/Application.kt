@@ -4,16 +4,20 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    var playAgain = true
-
     println("숫자 야구 게임을 시작합니다.")
 
-    while (playAgain) {
-        playGame()
+    playGame()
+
+    while (true) {
         print("게임을 새로 시작하려면 1, 종료하려면 2을 입력하세요: ")
         val input = Console.readLine()
         if (input == "2") {
-            playAgain = false
+            break
+        } else if (input == "1") {
+            playGame()
+        }
+        else {
+            throw IllegalArgumentException("잘못된 입력입니다.")
         }
     }
 
@@ -39,16 +43,25 @@ fun playGame() { // 게임 시작
 }
 
 
-fun generateComputerNumbers(): List<Int> { // 컴퓨터 랜덤 변수 할당
-    return List(3) { Randoms.pickNumberInRange(1, 9) }
+fun generateComputerNumbers(): List<Int> { // 컴퓨터 랜덤 변수 설정
+    val numbers = mutableListOf<Int>()
+    while (numbers.size < 3) {
+        val randomNum = Randoms.pickNumberInRange(1, 9)
+        if (randomNum !in numbers) {
+            numbers.add(randomNum)
+        }
+    }
+    return numbers
 }
 
 fun getUserInput(): List<Int> { // 유저 입력값 받고 예외처리
     print("숫자를 입력해주세요 : ")
     val input = Console.readLine()
-    if (input == null || input.length != 3 || input.any { it !in '1'..'9' }) {
-        throw IllegalArgumentException("잘못된 입력입니다.")
+
+    if (input == null || input.length != 3 || !input.all { it in '1'..'9' } || input.toSet().size != 3) {
+        throw IllegalArgumentException("잘못된 입력입니다. 서로 다른 3자리 숫자를 입력하세요.")
     }
+
     return input.map { it.toString().toInt() }
 }
 
