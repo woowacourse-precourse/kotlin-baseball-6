@@ -17,7 +17,7 @@ fun main() {
             val userGuess = userInput?.toIntOrNull()
 
             if (userGuess == null || !input(userGuess)) {
-                throw IllegalArgumentException("올바른 선택이 아닙니다. 게임을 종료합니다.")
+                throw IllegalArgumentException()
             } else {
                 val result = checkGuess(userGuess, computerNumber)
 
