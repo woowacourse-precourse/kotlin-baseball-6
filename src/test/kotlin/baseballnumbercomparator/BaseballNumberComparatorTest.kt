@@ -33,4 +33,11 @@ class BaseballNumberComparatorTest {
 
         assertEquals(result, BaseballResult(strike = 1, ball = 2))
     }
+
+    @Test
+    fun `세 자리수 모두 자리, 숫자가 다를 때 0스트라이크 0볼이 나오는지 확인`() {
+        val result = baseballNumberComparator.compareAnswerWithPlayerBaseballNumber("123", "456")
+
+        assertEquals(result, BaseballResult(strike = 0, ball = 0))
+    }
 }
