@@ -67,16 +67,12 @@ fun countStrike(secretNumber: String, guessNumber: String): Int {
 }
 
 fun getGuessResultString(result: GuessResult): String {
-    if (result.ballNumber == 0 && result.strikeNumber != 0) {
-        return "${result.strikeNumber}스트라이크"
+    return when {
+        result.ballNumber == 0 && result.strikeNumber != 0 -> "${result.strikeNumber}스트라이크"
+        result.ballNumber != 0 && result.strikeNumber == 0 -> "${result.ballNumber}볼"
+        result.ballNumber == 0 -> "낫싱"
+        else -> "${result.ballNumber}볼 ${result.strikeNumber}스트라이크"
     }
-    if (result.ballNumber != 0 && result.strikeNumber == 0) {
-        return "${result.ballNumber}볼"
-    }
-    if (result.ballNumber == 0) {
-        return "낫싱"
-    }
-    return "${result.ballNumber}볼 ${result.strikeNumber}스트라이크"
 }
 
 
