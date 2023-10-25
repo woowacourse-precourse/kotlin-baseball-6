@@ -12,4 +12,11 @@ class Program {
 
         this.randomNumber = set.toString()
     }
+
+    fun checkThreeNumbers(input: String): Boolean {
+        var bool = if (input.length == 3) true else false
+        return bool
+    }
+
+
 }
