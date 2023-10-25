@@ -4,8 +4,8 @@ object Validator {
 
     fun validAnswer(input: String) {
         require(input.length == 3) { ErrorType.InvalidLength.message }
-        require(input.all { char -> char.isDigit()}) { ErrorType.Duplicated.message}
-        require(input.toSet().size == 3) { ErrorType.NotNumeric.message }
+        require(input.all { char -> char.isDigit()}) { ErrorType.NotNumeric.message}
+        require(input.toSet().size == 3) { ErrorType.Duplicated.message }
         require(input.all { char -> char.digitToInt() in (1..9).toList() }) { ErrorType.OutOfRange.message }
     }
 
