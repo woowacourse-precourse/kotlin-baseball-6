@@ -44,14 +44,16 @@ object NumberBaseball {
     private fun getUserInput() {
         print("숫자를 입력해 주세요 : ")
         if (userNumbers.size > 0) userNumbers.clear()
-        val userInput = Console.readLine().removeWhiteSpaces()
+        val userInput = Console.readLine()
+            .removeWhiteSpaces()
         checkValidateInput(userInput)
         userNumbers = userInputToNumbers(userInput)
     }
 
     // 사용자 입력에서 공백 문자를 제거하기 위한 확장 함수
     private fun String.removeWhiteSpaces(): String {
-        return this.replace(" ", "").replace("\t", "")
+        return this.replace(" ", "")
+            .replace("\t", "")
     }
 
     private fun checkValidateInput(input: String) {
@@ -113,7 +115,8 @@ object NumberBaseball {
 
     fun askQuitOrRestart() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val tempStr = Console.readLine().trim()
+        val tempStr = Console.readLine()
+            .trim()
 
         require(tempStr.length == 1) { "올바른 입력이 아닙니다." }
         require(tempStr == RESTART_GAME || tempStr == QUIT_GAME) { "올바른 입력이 아닙니다." }
