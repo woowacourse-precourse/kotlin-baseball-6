@@ -21,7 +21,6 @@ fun startGame() {
     if (resultStrike == 3) {
         QuitOrRetry()
     }
-
 }
 
 fun getRandomNumbers(): MutableList<Int> { // 랜덤값 얻기
@@ -76,10 +75,10 @@ fun userInputCheck(userInput: String) {
     }
 }
 
-fun getHints(computer: MutableList<Int>, user: MutableList<Int>) { // 스트라이크, 볼, 낫싱 힌트 얻기
+fun getStrikeBall(computer: MutableList<Int>, user: MutableList<Int>): MutableList<Int> { // 스트라이크, 볼 개수 구하기
+    val hint: MutableList<Int> = mutableListOf()
     var strike = 0
     var ball = 0
-
     for (i in computer.indices) {
         if (computer[i] == user[i]) {
             strike++
@@ -90,6 +89,16 @@ fun getHints(computer: MutableList<Int>, user: MutableList<Int>) { // 스트라�
             ball++
         }
     }
+    hint.add(strike)
+    hint.add(ball)
+
+    return hint
+}
+
+fun getHints(computer: MutableList<Int>, user: MutableList<Int>) { // 스트라이크, 볼, 낫싱 힌트 얻기
+    var hints = getStrikeBall(computer, user)
+    var strike = hints[0]
+    var ball = hints[1]
 
     if (strike == 0 && ball == 0) {
         println("낫싱")
@@ -103,7 +112,6 @@ fun getHints(computer: MutableList<Int>, user: MutableList<Int>) { // 스트라�
         println("${strike}스트라이크")
         if (strike == 3)
             resultStrike = 3
-
         return
     }
 
