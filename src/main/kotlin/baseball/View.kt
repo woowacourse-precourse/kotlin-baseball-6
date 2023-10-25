@@ -8,8 +8,12 @@ class View {
 
     fun inputUserNumber(): List<Int> {
         print(REQUEST_INPUT_MESSAGE)
-        val input = readln()
-        // todo 모두 숫자인지 여부 예외처리
+        return invalidateUserNumber(readln())
+    }
+
+    private fun invalidateUserNumber(input: String): List<Int> {
+        val number = input.map { it.digitToIntOrNull() }
+        if (number.contains(null)) throw IllegalArgumentException(USER_NUMBER_INPUT_ERROR)
         return input.map { it.toString().toInt() }
     }
 
@@ -34,7 +38,7 @@ class View {
         return when (readln()) {
             "1" -> true
             "2" -> false
-            else -> throw IllegalArgumentException(INPUT_ERROR)
+            else -> throw IllegalArgumentException(QUEST_PLAYING_GAME_INPUT_ERROR)
         }
     }
 
@@ -46,6 +50,7 @@ class View {
         private const val NOTHING = "낫싱"
         private const val CORRECT_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
         private const val END_GAME_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
-        private const val INPUT_ERROR = "1 혹은 2만 입력해주세요"
+        private const val USER_NUMBER_INPUT_ERROR = "숫자만 입력 가능합니다"
+        private const val QUEST_PLAYING_GAME_INPUT_ERROR = "1 혹은 2만 입력해주세요"
     }
 }
