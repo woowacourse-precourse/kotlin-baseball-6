@@ -20,7 +20,7 @@ class NumberBaseballGame {
     fun start(): String {
         while (true) {
             val user = inputUserNumbers()
-            val (ball, strike) = compareGuess(user, computer)
+            val (ball, strike) = compareGuess(user)
             output.printGuessResult(ball, strike)
 
             if (strike == 3) {
@@ -58,7 +58,7 @@ class NumberBaseballGame {
         return computer
     }
 
-    private fun compareGuess(user: List<Int>, computer: List<Int>): Pair<Int,Int> {
+    private fun compareGuess(user: List<Int>): Pair<Int,Int> {
         var strike = 0
         var ball = user.count { it in computer }
 
