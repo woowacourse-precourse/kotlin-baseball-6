@@ -15,16 +15,17 @@ class BaseballGame(
         gameStartPrompt()
 
         while (isStay) {
-            // [2]. 숫자 야구 입력
-            inputBaseball(baseballInput)
-            val isAllStrike = calculate(baseballInput, answer) // [3]. 계산 및 결과 출력
+            // [2]. baseball / 입력, 검증
+            inputBaseballWithValidator(baseballInput)
+            // [3]. baseball / 계산, 결과 출력
+            val isAllStrike = calculateBaseball(baseballInput, answer)
             when (isAllStrike) {
                 true -> gameEndPrompt()
                 false -> continue
             }
 
-            // [4]. 메뉴 입력
-            inputMenu(menuInput)
+            // [4]. menu / 입력, 검증 및 처리
+            inputMenuWithValidator(menuInput)
             when (menuInput.selectedMenu) {
                 GameConfig.MENU_RANGE_FIRST -> answer.newGenerator()
                 GameConfig.MENU_RANGE_LAST -> isStay = false

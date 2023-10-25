@@ -4,27 +4,23 @@ import baseball.constants.GameConfig
 import baseball.utils.charToInt
 import baseball.utils.toIntArray
 
-// Q1. 사용자 입력값 검증 로직을 이쪽으로에 두는 게 맞는 걸까?
-// GPT A1. 입력 값에 따라 내부 상태가 변경되는 경우 해당 로직을 모델 내에 두는 것이 적절하다.
-
-// setter 없음
 open class UserInput {
-    // Q2. validate를 자식에서 각각 오버라이드 해서 Baseball은 중복 검증을 추가로 수행하게 하는 게 맞을까?
-    // GPT 23. 상속을 활용하는 좋은 예시라고 생각한다.
-
-    /** Baseball, Menu 공통. 1, 2) 입력된 문자열의 길이 및 범위 체크  (Model) */
+    /** [2, 4]. baseball, menu / 입력, 검증
+     * 2.A) 입력된 문자열의 길이 검증
+     * 2.B) 입력된 문자열의 범위 검증 (Model) */
     open fun setDataWithValidation(
         userInputData: String = "",
-        digit: Int? = null, range: CharRange? = null
+        digit: Int = 0,
+        range: CharRange = CharRange('0', '0')
     ) {
-        if (userInputData.length != digit!!) {
+        if (userInputData.length != digit) {
             throw IllegalArgumentException("입력된 값($userInputData)은 ${digit}자리가 아닙니다.")
         }
 
         // 입력된 데이터 모두가 range에 속하는지 체크
-        val rangeCheck = userInputData.map { it }.all { it in range!! }
+        val rangeCheck = userInputData.map { it }.all { it in range }
         if (rangeCheck == false) {
-            throw IllegalArgumentException("입력된 값($userInputData) 중에 ${range!!.first}~${range.last} 범위를 벗어난 문자가 있습니다.")
+            throw IllegalArgumentException("입력된 값($userInputData) 중에 ${range.first}~${range.last} 범위를 벗어난 문자가 있습니다.")
         }
     }
 }
@@ -35,7 +31,7 @@ class BaseballInput : UserInput() {
 
     val inputDataArray: IntArray get() = _inputDataArray
 
-    override fun setDataWithValidation(userInputData: String, digit: Int?, range: CharRange?) {
+    override fun setDataWithValidation(userInputData: String, digit: Int, range: CharRange) {
         super.setDataWithValidation(
             userInputData,
             GameConfig.BASEBALL_DIGITS,
@@ -47,7 +43,8 @@ class BaseballInput : UserInput() {
         _inputDataArray = userInputData.toIntArray()
     }
 
-    /** [2]. 3) 숫자 중복 체크 (Model) */
+    /** [2]. baseball / 입력, 검증
+     * 2.C) 숫자 중복 체크 (Model) */
     fun checkDuplicate(userInputData: String, digit: Int) {
         val inputDataSet = userInputData.map {
             it.charToInt()
@@ -60,7 +57,8 @@ class BaseballInput : UserInput() {
 
     data class BallStrike(val ball: Int, val strike: Int) // data class 하나로 코드가 굉장히 깔끔해졌다!!!
 
-    /** [3]. 1) 매개변수 2개를 이용하여 BallStrike를 반환 (Model) */
+    /** [3]. baseball / 계산, 결과 출력
+     * 1. Ball, Strike 계산 (Model) */
     fun countBaseball(answer: IntArray): BallStrike {
         val calculateResult = BallStrike(
             countBall(answer),
@@ -87,7 +85,7 @@ class MenuInput : UserInput() {
     var _selectedMenu: Int = -1
     val selectedMenu: Int get() = _selectedMenu
 
-    override fun setDataWithValidation(userInputData: String, digit: Int?, range: CharRange?) {
+    override fun setDataWithValidation(userInputData: String, digit: Int, range: CharRange) {
         super.setDataWithValidation(
             userInputData,
             GameConfig.MENU_DIGITS,
