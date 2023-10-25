@@ -43,18 +43,16 @@ fun isRestart(): IntArray {
     throw IllegalArgumentException()
 }
 
-//유효값 검증 함수
 fun isValidInput(input: IntArray?, size: Int, range: IntRange): Boolean {
+    //유효값 검증 함수
     return input != null && input.size == size && input.all { it in range } && input.toSet().size == size
 }
 
 fun playGame(answer: ArrayList<Int>) {
     // 3. Ball, Strike 검증 및 결과 출력
-
     println("숫자 야구 게임을 시작합니다.")
 
     var strike = 0
-
     while (strike != 3) {
         strike = 0
         var ball = 0
