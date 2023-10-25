@@ -10,17 +10,18 @@ class BaseballGameController {
     private var computerNumber: String = ""
     private var userNumber: String = ""
     var gameStatus = BaseballGameStatus()
+    var reStrat: String = ""
 
     public fun GameStart() {
         BaseballInputView().printStartGameMessage()
         computerNumber = RandomNumberCreate().createRandomNumber()
-
         while (!gameStatus.isGameStatus) {
             UserNumber()
             gameStatusReset()
             countBallStrike()
             printGameStatus()
         }
+        restartGame()
     }
 
     private fun UserNumber() {
@@ -52,8 +53,7 @@ class BaseballGameController {
     private fun printGameStatus() {
         if (gameStatus.strike == 3) {
             println("3스트라이크")
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            gameStatus.isGameStatus = true
+            BaseballInputView().printEndGameMessage()
         } else if (gameStatus.strike == 0 && gameStatus.ball != 0) {
             println(gameStatus.ball.toString() + "볼")
         } else if (gameStatus.ball == 0 && gameStatus.strike != 0) {
@@ -62,6 +62,15 @@ class BaseballGameController {
             println(gameStatus.ball.toString() + "볼 " + gameStatus.strike + "스트라이크")
         } else {
             println(gameStatus.nothing)
+        }
+    }
+
+    private fun restartGame() {
+        BaseballInputView().printRestartGameMessage()
+        reStrat = Console.readLine()
+        if (reStrat.equals("1")) {
+            gameStatus.isGameStatus = false
+            GameStart()
         }
     }
 }
