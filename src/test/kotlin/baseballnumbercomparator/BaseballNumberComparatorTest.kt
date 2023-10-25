@@ -26,4 +26,11 @@ class BaseballNumberComparatorTest {
 
         assertEquals(result, BaseballResult(strike = 0, ball = 3))
     }
+
+    @Test
+    fun `한 자리수만 자리, 숫자가 같고 나머지는 숫자만 같을 때 1스트라이크 2볼이 나오는지 확인`() {
+        val result = baseballNumberComparator.compareAnswerWithPlayerBaseballNumber("123", "321")
+
+        assertEquals(result, BaseballResult(strike = 1, ball = 2))
+    }
 }
