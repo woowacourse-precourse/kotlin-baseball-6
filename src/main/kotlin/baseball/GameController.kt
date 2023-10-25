@@ -1,25 +1,32 @@
 package baseball
-
 import camp.nextstep.edu.missionutils.Console
 
 class GameController(private val view: GameView, private val model: Model) {
-    fun playGame() {
-
-    }
-    fun inputNumber(): String {
-        view.inputNumberView()
-        val input = Console.readLine()
-        numberCheck(input)
-
-        return input
-    }
-    private fun numberCheck(input: String) {
-        require(input.length == 3) {"입력값이 3자리가 아닙니다."}
-        require(input.all { it.isDigit() } && '0' !in input) {"입력값에 0이나 숫자가 아닌 값이 있습니다."}
-        require(input.toSet().size == input.length) {"입력값에 중복되는 숫자가 있습니다."}
+    fun startGame() {
+        while(true) {
+            playGame()
+            if(!restartGame()) break
+        }
     }
 
-    fun compareNumber(input: String, answer: String) : Pair<Int, Int> {
+    private fun playGame() {
+        model.modelInit()
+        while(true) {
+            model.userNumber = view.inputNumberView()
+            val hint = compareNumber(model.userNumber, model.answerNumber)
+            view.hintView(hint.first, hint.second)
+            if(hint.first == 3) {
+
+            }
+        }
+    }
+
+    private fun restartGame() : Boolean {
+        val restartInput = view.restartInputView()
+        return restartInput == "1"
+    }
+
+    private fun compareNumber(input: String, answer: String) : Pair<Int, Int> {
         var ball = 0;
         var strike = 0;
 
@@ -28,6 +35,6 @@ class GameController(private val view: GameView, private val model: Model) {
             if (input[i] != answer[i] && input[i] in answer) ball++
         }
 
-        return Pair(ball, strike)
+        return Pair(strike, ball)
     }
 }
