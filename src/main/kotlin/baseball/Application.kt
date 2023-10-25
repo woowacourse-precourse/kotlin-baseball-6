@@ -69,3 +69,26 @@ fun compare(answer: String, userInput: String): Pair<Int, Int> {
     return Pair(strike, ball)
 
 }
+
+fun showResult(result : Pair<Int, Int>){
+    val strike = result.first
+    val ball = result.second
+
+    if (strike == 0 && ball == 0) {
+        println("낫싱")
+        return
+    }
+
+    else if (strike == 0) {
+        println("${ball}볼")
+        return
+    }
+
+    else if (ball == 0) {
+        println("${strike}스트라이크")
+        return
+    }
+    else {
+        println("${ball}볼 ${strike}스트라이크")
+    }
+}
