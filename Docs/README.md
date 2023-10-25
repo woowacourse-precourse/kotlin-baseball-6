@@ -1,18 +1,18 @@
 # 기능구현할 목록
 ## 1. 컴퓨터가 1~9 중 서로 다른 랜덤숫자 3개 추출
->>>ㄱ. 3사이즈의 빈 `lsit`를 생성(컴퓨터용)
->>>ㄴ. `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()` 사용
->>>ㄷ. 랜덤숫자 추출시, 중복숫자가 몇개 될 지 알 수 없으므로, `for` 대신 `while` 사용 후
->>>　`list`에 추출된 랜덤숫자 3개까지 추가(중복된 숫자는 제외)
+>ㄱ. 3사이즈의 빈 `lsit`를 생성(컴퓨터용)
+>ㄴ. `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()` 사용
+>ㄷ. 랜덤숫자 추출시, 중복숫자가 몇개 될 지 알 수 없으므로, `for` 대신 `while` 사용 후
+>　`list`에 추출된 랜덤숫자 3개까지 추가(중복된 숫자는 제외)
 　
 ## 2. 사용자가 3개 숫자를 입력
->>>ㄱ. 3사이즈의 빈 `list`를 생성(사용자용)
->>>ㄴ. `camp.nextstep.edu.missionutils.Console`의 `readLine()` 사용
->>>　　**사용자가 잘못된 값을 입력할 경우**, `IllegalArgumentException` **예외 발생시킨 후 
->>>　　애플리케이션 종료**
->>>ㄷ. `list`에 3자리숫자 추가
+>ㄱ. 3사이즈의 빈 `list`를 생성(사용자용)
+>ㄴ. `camp.nextstep.edu.missionutils.Console`의 `readLine()` 사용
+>　　**사용자가 잘못된 값을 입력할 경우**, `IllegalArgumentException` **예외 발생시킨 후 
+>　　애플리케이션 종료**
+>ㄷ. `list`에 3자리숫자 추가
 ## 3. 컴퓨터가 입력받은 숫자 리스트를 랜덤숫자 리스트와 비교하여 결과 출력
->>>ㄱ. `for` 사용하여 컴퓨터의 리스트와 사용자의 리스트 비교
+>ㄱ. `for` 사용하여 컴퓨터의 리스트와 사용자의 리스트 비교
 
 ```
 ex) 컴퓨터의 랜덤숫자 : 425 → 내부에서만 알 수 있음. 비공개
