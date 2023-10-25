@@ -6,7 +6,7 @@ class GameView (private val check: InputCheck){
         println("숫자 야구 게임을 시작합니다.")
     }
 
-    fun inputNumberView() : String{
+    fun inputNumberView() : String {
         print("숫자를 입력해주세요 : ")
         val input = Console.readLine() ?: ""
         check.userNumberCheck(input)
@@ -21,12 +21,17 @@ class GameView (private val check: InputCheck){
         return flag
     }
 
-    fun hintView(strike: Int, ball: Int): String {
+    fun makeHint(strike: Int, ball: Int): String {
         return when {
             strike != 0 -> "${strike}스트라이크"
             ball != 0 -> "${ball}볼"
             strike != 0 && ball != 0 -> "${ball}볼 ${strike}스트라이크"
             else -> "낫싱"
         }
+    }
+
+    fun hintView(strike: Int, ball: Int) {
+        val hint = makeHint(strike, ball)
+        println(hint)
     }
 }
