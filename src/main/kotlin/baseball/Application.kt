@@ -9,12 +9,12 @@ private var computerNumbers = listOf(0, 0, 0)
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-
     while (command == 1) {
         generateRandomNumbers()
 
         while (true) {
-            val userInput = getUserInput()
+            val userInput: List<Int>
+            userInput = getUserInput()
             errorInputHandler(userInput)
             compareNumbers(userInput, computerNumbers)
 
@@ -22,11 +22,10 @@ fun main() {
                 println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
                 command = readLine()!!.toInt()
                 break
-            }
+            } else continue
         }
 
         if (command == 2) return
-        else throw IllegalArgumentException()
     }
 }
 
