@@ -9,11 +9,10 @@ fun main() {
     while (true) {
         try {
             println("[1] 게임 시작하기 [2] 게임 종료하기")
-            val selectStart = Console.readLine()?.toInt()
+            val input = Console.readLine()?.toInt()
 
-            when (selectStart) {
+            when (input) {
                 1 -> {
-                    println("숫자 야구 게임을 시작합니다.")
                     val computer = Computer()
                     computer.createNumbers()
                     playGame(computer)
@@ -23,13 +22,9 @@ fun main() {
                     println("숫자 야구 게임을 종료합니다.")
                     break
                 }
-
-                else -> {
-                    println("잘못된 입력입니다. 다시 입력해주세요.")
-                }
             }
         } catch (e: NumberFormatException) {
-            println("잘못된 입력입니다. 다시 입력해주세요.")
+            throw IllegalArgumentException("잘못된 입력입니다.")
         }
     }
 }
@@ -74,13 +69,11 @@ class User {
 
 fun playGame(computer: Computer) {
     val user = User()
-    var strike: Int
-    var ball: Int
 
     while (true) {
         val userNums = user.inputNums()
-        strike = 0
-        ball = 0
+        var strike = 0
+        var ball = 0
 
         for (index in userNums.indices) {
             if (userNums[index] == computer.randNums[index]) {
@@ -99,7 +92,6 @@ fun playGame(computer: Computer) {
                     return
                 }
             }
-
             strike > 0 && ball == 0 -> println("$strike 스트라이크")
             strike == 0 && ball > 0 -> println("$ball 볼")
             strike > 0 && ball > 0 -> println("$strike 스트라이크 $ball 볼")
