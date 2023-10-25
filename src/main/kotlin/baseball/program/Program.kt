@@ -1,5 +1,7 @@
 package baseball.program
 
+import java.lang.IllegalArgumentException
+
 class Program {
     var randomNumber = "000"
 
@@ -13,10 +15,10 @@ class Program {
         this.randomNumber = set.toString()
     }
 
-    fun checkThreeNumbers(input: String): Boolean {
-        var bool = if (input.length == 3) true else false
-        return bool
+    fun checkThreeNumbers(input: String){
+        if (input.length != 3) {
+            throw IllegalArgumentException("입력은 반드시 3글자여야 합니다. 다시 입력해주세요.")
+        }
     }
-
 
 }
