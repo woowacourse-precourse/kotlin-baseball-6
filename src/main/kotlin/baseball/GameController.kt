@@ -16,7 +16,6 @@ class GameController {
                 val userGuess = view.getUserInput()
                 val result = model.checkGuess(userGuess, computerNumbers)
                 view.displayResult(result)
-
                 attempts++
 
                 if (result == "3스트라이크") {
