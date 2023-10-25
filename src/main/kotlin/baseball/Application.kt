@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    //TODO("프로그램 구현")
     do {
         playGame()
     } while (afterGame())
@@ -19,15 +18,15 @@ fun playGame() {
         val input = getInput()
         val result = compare(answer, input)
         showResult(result)
-    } while (result.first != 3)
+    } while (result.first != 3)    // 스트라이크의 횟수가 3이 아닌 경우
 
 }
 
-fun genAnswer() : String {
+fun genAnswer() : String {      // 세 자리의 난수 생성
     val answer = mutableListOf<Int>()
     while (answer.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!answer.contains(randomNumber)) {
+        val randomNumber = Randoms.pickNumberInRange(1, 9)  // 1부터 9까지의 수
+        if (!answer.contains(randomNumber)) {       // 각 숫자가 겹치지 않게
             answer.add(randomNumber)
         }
     }
