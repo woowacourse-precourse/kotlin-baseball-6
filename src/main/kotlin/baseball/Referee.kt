@@ -19,6 +19,8 @@ class Referee {
     }
 
     private fun countBall(pitcherNumbers: List<Int>, batterNumbers: List<Int>) {
+        ballStrikeCounts[0] = 0
+
         for (number in pitcherNumbers) {
             if (batterNumbers.contains(number)
                 && pitcherNumbers.indexOf(number) != batterNumbers.indexOf(number)
@@ -29,6 +31,8 @@ class Referee {
     }
 
     private fun countStrike(pitcherNumbers: List<Int>, batterNumbers: List<Int>) {
+        ballStrikeCounts[1] = 0
+
         for (number in pitcherNumbers) {
             if (batterNumbers.contains(number)
                 && pitcherNumbers.indexOf(number) == batterNumbers.indexOf(number)

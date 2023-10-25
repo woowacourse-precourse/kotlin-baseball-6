@@ -13,16 +13,25 @@ class Baseball(
         printStartMessage()
     }
 
+    fun runGame() {
+        pitcher.generateNumbers()
+
+        do {
+            batter.enterNumbers()
+            referee.judge(pitcher.getNumbers(), batter.getNumbers())
+            println(referee.getResultMessage())
+        } while (referee.getResultMessage() != "3스트라이크")
+
+        printEndMessage()
+    }
+
     private fun printStartMessage() {
         val message = "숫자 야구 게임을 시작합니다"
         println(message)
     }
 
-    fun runGame() {
-        pitcher.generateNumbers()
-        batter.enterNumbers()
-        referee.judge(pitcher.getNumbers(), batter.getNumbers())
-
-        println(referee.getResultMessage())
+    private fun printEndMessage() {
+        val message = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        println(message)
     }
 }
