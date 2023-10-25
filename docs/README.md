@@ -30,8 +30,9 @@
    - 랜덤 숫자를 리스트에 저장
 - BaseballScoreCalculator
    - 컴퓨터의 값과 사용자의 값을 비교하여 ball과 strike를 계산
-- ScorePrinter
-   - 계산한 값을 print
+- Score
+    - strike와 ball을 저장
+    - toMessage 함수를 통해 score 메세지 프린트
 - Game
    - 게임을 진행
 - GameRunner
