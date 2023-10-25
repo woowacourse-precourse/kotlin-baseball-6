@@ -7,7 +7,7 @@ import java.lang.NumberFormatException
 
 fun main() {
 
-    var uiState :GameUiState = GameUiState.Loading
+    var uiState :GameUiState = GameUiState.Init
     var computer = emptyList<Int>()
 
 
@@ -20,7 +20,7 @@ fun main() {
                 uiState = GameUiState.Loading
             }
             GameUiState.Loading ->{
-                computer = init()
+                computer = generateRandomNumberList()
                 uiState = GameUiState.Playing
             }
             GameUiState.Playing ->{
@@ -42,16 +42,16 @@ fun main() {
         }
     }
 }
-fun init():List<Int>
+fun generateRandomNumberList():List<Int>
 {
-    val computer = mutableListOf<Int>()
-    while (computer.size < 3) {
+    val list = mutableListOf<Int>()
+    while (list.size < 3) {
         val randomNumber = Randoms.pickNumberInRange(1, 9)
-        if (!computer.contains(randomNumber)) {
-            computer.add(randomNumber)
+        if (!list.contains(randomNumber)) {
+            list.add(randomNumber)
         }
     }
-    return computer
+    return list
 }
 fun gamePlay(computer:List<Int>)
 {
