@@ -51,7 +51,7 @@ fun inputPlayerNum(): String {
     if (inputPlayer.length != 3) {
         throw IllegalArgumentException("잘못된 길이의 입력값 (3자리 수로 입력하세요.)")
     }
-    for (index in 0..inputPlayer.length - 1) {
+    for (index in inputPlayer.indices) {
         if (playerNum.contains(inputPlayer[index])) {
             throw IllegalArgumentException("중복된 숫자가 존재")
         }
@@ -61,10 +61,10 @@ fun inputPlayerNum(): String {
 }
 
 fun compareComputerAndPlayer(computer: String, player: String): Int {
-    if (computer == player) {
-        return 1
+    return if (computer == player) {
+        1
     } else {
-        return 0
+        0
     }
 }
 
