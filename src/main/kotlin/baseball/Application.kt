@@ -87,7 +87,6 @@ fun compareNum(userNum : String, randomNum : String) : String {
     return answer
 }
 
-//유효성 검사
 fun checkAvailability(userInput : String) {
     if (userInput.length != 3 || userInput.toIntOrNull() == null || userInput.contains("0")) {
         throwException()
@@ -97,7 +96,6 @@ fun checkAvailability(userInput : String) {
     }
 }
 
-//예외처리
 fun throwException() {
     throw Exception("IllegalArgumentException")
 }
