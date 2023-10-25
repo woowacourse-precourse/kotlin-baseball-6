@@ -24,6 +24,24 @@ fun makeGameChoice(): Boolean {
 }
 
 /**
+ * 사용자로부터 3자리 숫자 입력을 받는 함수.
+ *
+ * @return 사용자가 입력한 3자리 숫자
+ * @throws IllegalArgumentException 잘못된 입력값일 경우 예외를 던짐
+ */
+fun getUserInput(): String {
+    while (true) {
+        val inputNumber = Console.readLine()
+        val parsedNumber = inputNumber.toIntOrNull()
+        if (parsedNumber != null && inputNumber.length == 3) {
+            return inputNumber
+        } else {
+            throw IllegalArgumentException("잘못된 입력값입니다.")
+        }
+    }
+}
+
+/**
  * 게임 결과를 계산하는 함수.
  *
  * @param inputNumber 사용자 입력 숫자
