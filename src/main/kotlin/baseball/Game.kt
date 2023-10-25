@@ -72,12 +72,17 @@ class Game {
             return
         }
         val hint = buildString {
-            if (result.strike > 0) {
-                append("${result.strike}스트라이크")
+            if (result.ball > 0 && result.strike> 0) {
+                append("${result.ball}볼 ${result.strike}스트라이크")
+            }else {
+                if (result.ball > 0) {
+                    append("${result.ball}볼")
+                }
+                if (result.strike > 0) {
+                    append("${result.strike}스트라이크")
+                }
             }
-            if (result.ball > 0) {
-                append("${result.ball}볼")
-            }
+
         }
         println(hint)
     }
