@@ -1,5 +1,7 @@
-package baseball
+// Application.kt
+import baseball.Game
 
 fun main() {
-    TODO("프로그램 구현")
+    val game = Game()
+    game.start()
 }
