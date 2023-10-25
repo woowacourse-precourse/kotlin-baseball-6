@@ -1,5 +1,8 @@
 package baseball
 
+import controller.BaseballGameController
+import view.BaseballInputView
+
 fun main() {
-    TODO("프로그램 구현")
+    BaseballGameController().GameStart()
 }
