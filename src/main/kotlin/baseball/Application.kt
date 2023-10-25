@@ -59,12 +59,14 @@ class User {
 
             if (userInput == null) {
                 throw IllegalArgumentException("[Error] 입력된 값이 없습니다. 다시 입력해주세요.")
-            }  else if (userInput.length != 3) {
+            } else if (userInput.length != 3) {
                 throw IllegalArgumentException("[Error] 3자리의 수를 입력해주세요.")
             } else if (!userInput.all { it.isDigit() }) {
                 throw IllegalArgumentException("[Error] 숫자만 입력해주세요.")
             } else if (userInput.toSet().size != 3) {
                 throw IllegalArgumentException("[Error] 숫자가 중복되었습니다.")
+            } else {
+                return userInput.map { it.toString().toInt() }.toIntArray()
             }
         }
     }
@@ -97,6 +99,7 @@ fun playGame(computer: Computer) {
                     return
                 }
             }
+
             strike > 0 && ball == 0 -> println("$strike 스트라이크")
             strike == 0 && ball > 0 -> println("$ball 볼")
             strike > 0 && ball > 0 -> println("$strike 스트라이크 $ball 볼")
