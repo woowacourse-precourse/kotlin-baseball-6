@@ -5,21 +5,41 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 import java.util.ArrayList
 
 fun main() {
-    makeRandomNumbers()
+    playGame()
 }
 
-fun getUserInput(randomNumbers: MutableList<Int>) {
+fun playGame() {
+    println("숫자 야구 게임을 시작합니다.")
+    var randomNumbers = makeRandomNumbers()
+    while (true) {
+        print("숫자를 입력해주세요 : ")
+        val exitGame = getUserInput(randomNumbers)
+        if (exitGame) {
+            val userInput = readLine()
+            if (userInput == "1") {
+                randomNumbers = makeRandomNumbers()
+            } else if (userInput == "2") {
+                println("GAME OVER")
+                break
+            } else {
+                throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
+            }
+        }
+    }
+}
+
+fun getUserInput(randomNumbers: MutableList<Int>): Boolean {
     val userInput = readLine().map { it.digitToInt() }.toMutableList()
     val verifiedInput = validateInput(userInput)
     if (verifiedInput) {
         val gameResult = validateStrikeAndBall(randomNumbers, userInput)
-        printGameResult(gameResult)
+        return printGameResult(gameResult)
     } else {
         throw IllegalArgumentException("입력값이 유효하지 않습니다. 게임을 종료합니다.")
     }
 }
 
-fun printGameResult(gameResult: MutableList<Int>) {
+fun printGameResult(gameResult: MutableList<Int>): Boolean {
     if (gameResult[0] != 0 && gameResult[1] == 0) {
         println("${gameResult[0]}볼")
     } else if (gameResult[0] == 0 && gameResult[1] != 0) {
@@ -30,8 +50,10 @@ fun printGameResult(gameResult: MutableList<Int>) {
         println("낫싱")
     }
     if (gameResult[1] == 3) {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        return true
     }
+    return false
 }
 
 fun validateStrikeAndBall(randomNumbers: MutableList<Int>, userInput: MutableList<Int>): MutableList<Int> {
@@ -47,7 +69,6 @@ fun validateStrikeAndBall(randomNumbers: MutableList<Int>, userInput: MutableLis
             }
         }
     }
-    println("${ball}, ${strike}")
     result.add(ball)
     result.add(strike)
     return result
@@ -62,7 +83,7 @@ fun validateInput(userInput: MutableList<Int>): Boolean {
     }
 }
 
-fun makeRandomNumbers() {
+fun makeRandomNumbers(): MutableList<Int> {
     val randomNumbers = mutableListOf<Int>()
     while (randomNumbers.size < 3) {
         val randomNumber = pickNumberInRange(1, 9)
@@ -70,8 +91,7 @@ fun makeRandomNumbers() {
             randomNumbers.add(randomNumber)
         }
     }
-    println(randomNumbers)
-    getUserInput(randomNumbers)
+    return randomNumbers
 }
 
 
