@@ -1,8 +1,10 @@
 package baseball.model
 
-class RetryNumberModel(private var number:Int) {
-    fun getNumber() = number
-    fun setNumber(number:Int){
-        this.number = number
+class RetryNumberModel(private val number:Int) {
+
+    fun isRetry() = number == RETRY_NUM
+
+    companion object {
+        const val RETRY_NUM = 1
     }
 }

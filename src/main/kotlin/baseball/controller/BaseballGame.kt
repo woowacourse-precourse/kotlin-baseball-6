@@ -33,8 +33,9 @@ class BaseBallGame {
 
     private fun retry() {
         noticeView.restart()
-        val isRetry = userInputView.getRetryNum()
-        if(isRetry == RETRY_NUM){
+        val retryNumber=RetryNumberGenerator(userInputView.getRetryNum()).generator()
+        val retryNumberModel = RetryNumberModel(retryNumber)
+        if(retryNumberModel.isRetry()){
             progress()
         }
     }
@@ -48,6 +49,5 @@ class BaseBallGame {
 
     companion object {
         const val WIN_JUDGMENT = "3스트라이크"
-        const val RETRY_NUM = "1"
     }
 }
