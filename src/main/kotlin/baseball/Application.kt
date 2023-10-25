@@ -20,12 +20,13 @@ fun main() {
         appendToPlayer(input, player)
 
         val (strike, ball) = compareList(computer, player)
-        val print = printResult(strike, ball)
-        println(print)
+        val gameResult = printResult(strike, ball)
+        println(gameResult)
 
         if (strike == 3) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
             computer.clear()
+
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
             val isContinue = readLine()?.toInt() ?: 2
             if (isContinue == 2) {
@@ -96,3 +97,4 @@ fun printResult(strike: Int, ball: Int): String {
 
     return result.joinToString(" ")
 }
+
