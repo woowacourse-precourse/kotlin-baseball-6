@@ -1,11 +1,13 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
     var ans : MutableList<Int> = createQuestion()
+    guessNums()
 }
 
 private fun createQuestion(): MutableList<Int> {
@@ -18,3 +20,8 @@ private fun createQuestion(): MutableList<Int> {
     }
     return questionNums
 }
+
+private fun guessNums(){
+    val input : String = Console.readLine()
+}
+
