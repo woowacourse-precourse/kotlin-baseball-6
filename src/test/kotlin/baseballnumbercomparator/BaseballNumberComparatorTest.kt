@@ -10,7 +10,7 @@ class BaseballNumberComparatorTest {
 
     @BeforeEach
     fun setUp() {
-        baseballNumberComparator = BaseballNumberComparatorImpl()
+        baseballNumberComparator = BaseballNumberComparatorImpl
     }
 
     @Test

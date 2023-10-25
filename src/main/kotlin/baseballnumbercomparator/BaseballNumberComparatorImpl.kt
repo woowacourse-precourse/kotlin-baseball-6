@@ -1,11 +1,15 @@
 package baseballnumbercomparator
 
-class BaseballNumberComparatorImpl : BaseballNumberComparator {
+object BaseballNumberComparatorImpl : BaseballNumberComparator {
+    private const val ZERO = 0
+    private const val ONE_STRIKE = 1
+    private const val ONE_BALL = 1
+
     override fun compareAnswerWithPlayerBaseballNumber(answer: String, baseballNumber: String): BaseballResult {
         var strike = ZERO
         var ball = ZERO
 
-        val checkContainingNumbersResult = checkContainingNumbers(answer,baseballNumber, ball)
+        val checkContainingNumbersResult = checkContainingNumbers(answer, baseballNumber, ball)
         ball = checkContainingNumbersResult.ball
 
         val checkNumbersAreInSamePlaceResult = checkNumbersAreInSamePlace(answer, baseballNumber, strike, ball)
@@ -19,10 +23,10 @@ class BaseballNumberComparatorImpl : BaseballNumberComparator {
         var ball = currentBall
         for (index in 0..2) {
             if (answer.contains(baseballNumber[index])) {
-                ball += 1
+                ball += ONE_BALL
             }
         }
-        return BaseballResult(0, ball)
+        return BaseballResult(ZERO, ball)
     }
 
     private fun checkNumbersAreInSamePlace(
@@ -36,14 +40,10 @@ class BaseballNumberComparatorImpl : BaseballNumberComparator {
 
         for (index in 0..2) {
             if (answer[index] == baseballNumber[index]) {
-                strike += 1
-                ball -= 1
+                strike += ONE_STRIKE
+                ball -= ONE_BALL
             }
         }
         return BaseballResult(strike, ball)
-    }
-
-    companion object {
-        private const val ZERO = 0
     }
 }
