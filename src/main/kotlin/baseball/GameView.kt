@@ -22,12 +22,10 @@ class GameView (private val check: InputCheck){
     }
 
     fun makeHint(strike: Int, ball: Int): String {
-        return when {
-            strike != 0 -> "${strike}스트라이크"
-            ball != 0 -> "${ball}볼"
-            strike != 0 && ball != 0 -> "${ball}볼 ${strike}스트라이크"
-            else -> "낫싱"
-        }
+        if (strike == 0 && ball == 0) return "낫싱"
+        if (strike != 0 && ball != 0) return "${ball}볼 ${strike}스트라이크"
+        if (strike != 0) return "${strike}스트라이크"
+        return "${ball}볼"
     }
 
     fun hintView(strike: Int, ball: Int) {

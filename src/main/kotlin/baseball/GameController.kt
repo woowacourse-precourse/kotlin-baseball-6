@@ -15,7 +15,6 @@ class GameController(private val view: GameView, private val model: Model) {
             val hint = compareNumber(model.userNumber, model.answerNumber)
             view.hintView(hint.first, hint.second)
             if(hint.first == 3) {
-                restartGame()
                 return
             }
         }
