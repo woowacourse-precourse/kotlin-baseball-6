@@ -8,6 +8,32 @@ fun main() {
 }
 
 /**
+ * 숫자 야구 게임을 진행하는 함수.
+ */
+fun baseballGame() {
+    val numberSet: MutableSet<String> = mutableSetOf()
+    var startGame = true
+
+    println("숫자 야구 게임을 시작합니다.")
+
+    while (startGame) {
+        getThreeNumber(numberSet)
+        while (true) {
+            print("숫자를 입력해주세요 : ")
+            val inputNumber = getUserInput()
+            val result = gameResults(inputNumber, numberSet)
+            println(result)
+
+            if (result == "3스트라이크") {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                break
+            }
+        }
+        startGame = makeGameChoice()
+    }
+}
+
+/**
  * 게임에 사용할 3개의 서로 다른 숫자를 생성하여 MutableSet에 저장하는 함수.
  *
  * @param threeNumber 게임 숫자를 저장할 MutableSet
