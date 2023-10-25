@@ -1,6 +1,7 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
@@ -19,6 +20,8 @@ fun main() {
         val comArr = getComputerNum()
 
 
+
+
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val again = Console.readLine()
         if (again == "1") continue
@@ -30,6 +33,10 @@ fun main() {
 }
 
 fun getComputerNum(): MutableList<Int> {
-    val computer = mutableListOf<Int>()
-
+    val com = mutableListOf<Int>()
+    while (com.size < 3) {
+        val rand = Randoms.pickNumberInRange(1, 9)
+        if (com.contains(rand)) com.add(rand)
+    }
+    return com
 }
