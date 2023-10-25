@@ -6,14 +6,19 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
 
-    var ans : MutableList<Int> = createQuestion()
-    guessNums()
+    baseballGameMain()
 }
 
-private fun createQuestion(): MutableList<Int> {
-    val questionNums : MutableList<Int> = mutableListOf<Int>()
+private fun baseballGameMain() {
+    val questionNums : MutableList<Char> = createQuestion()
+    val userNums :  MutableList<Char> = inputNums()
+    countHintNum(questionNums, userNums)
+}
+
+private fun createQuestion(): MutableList<Char> {
+    val questionNums : MutableList<Char> = mutableListOf<Char>()
     while (questionNums.size < 3) {
-        val curNum : Int = Randoms.pickNumberInRange(1, 9)
+        val curNum : Char = Randoms.pickNumberInRange(1, 9).toChar()
         if(!questionNums.contains(curNum)) {
             questionNums.add(curNum)
         }
@@ -21,21 +26,37 @@ private fun createQuestion(): MutableList<Int> {
     return questionNums
 }
 
-private fun guessNums(){
+private fun inputNums() : MutableList<Char> {
     val input : String = Console.readLine()
     checkInput(input.replace(" ", ""))
-
+    return input.toMutableList()
 }
 
 private fun checkInput(input : String){
-    if(input.length != 3) {
-        throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")
-    }
-
+    if(input.length != 3) {throw IllegalArgumentException("3개의 숫자를 입력 해야 합니다.")}
     for(i in input){
         if(!i.isDigit()){throw IllegalArgumentException("숫자를 입력 해야 합니다.")}
         if (input.count { it == i } > 1) throw IllegalArgumentException("세 개의 다른 숫자를 입력 해야 합니다.")
     }
-
 }
+
+
+
+private fun countHintNum(questionNums : MutableList<Char>, userNums : MutableList<Char>): Array<Int> {
+    var bollCnt : Int = 0
+    var strikeCnt : Int = 0
+
+    for(i in userNums.indices){
+        if(questionNums[i] == userNums[i]){
+            strikeCnt += 1
+        }
+        if(questionNums[i] != userNums[i] && questionNums.contains(userNums[i])){
+            bollCnt += 1
+        }
+    }
+
+    return arrayOf(bollCnt, strikeCnt)
+}
+
+
 
