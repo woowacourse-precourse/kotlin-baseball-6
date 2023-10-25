@@ -2,20 +2,16 @@ package baseball
 
 import java.lang.IllegalArgumentException
 
-class Validator(
-    private val numberCount: Int,
-    private val minNumber: Int,
-    private val maxNumber: Int
-) {
+class Validator {
 
-    fun validateNumbers(input: String) {
-        checkNumberCount(input)
+    fun validateNumbers(input: String, numberCount: Int, minNumber: Int, maxNumber: Int) {
+        checkNumberCount(input, numberCount)
         checkNumberFormat(input)
-        checkNumberRange(input)
+        checkNumberRange(input, minNumber, maxNumber)
         checkNumberDistinction(input)
     }
 
-    private fun checkNumberCount(input: String) {
+    private fun checkNumberCount(input: String, numberCount: Int) {
         if (input.length != numberCount)
             throw IllegalArgumentException()
     }
@@ -25,7 +21,7 @@ class Validator(
             throw IllegalArgumentException()
     }
 
-    private fun checkNumberRange(input: String) {
+    private fun checkNumberRange(input: String, minNumber: Int, maxNumber: Int) {
         if (input.map { data -> Character.getNumericValue(data) in minNumber..maxNumber }.contains(false))
             throw IllegalArgumentException()
     }
@@ -33,5 +29,11 @@ class Validator(
     private fun checkNumberDistinction(input: String) {
         if (input.length != input.toSet().size)
             throw IllegalArgumentException()
+    }
+
+    fun validateCommand(input: String) {
+        checkNumberCount(input, 1)
+        checkNumberFormat(input)
+        checkNumberRange(input, 1, 2)
     }
 }

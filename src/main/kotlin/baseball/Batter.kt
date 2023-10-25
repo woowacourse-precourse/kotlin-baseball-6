@@ -8,7 +8,7 @@ class Batter(
     private val maxNumber: Int
 ) {
     private var numbers = listOf<Int>()
-    private val validator = Validator(numberCount, minNumber, maxNumber)
+    private val validator = Validator()
 
     fun getNumbers(): List<Int> = this.numbers
 
@@ -29,7 +29,7 @@ class Batter(
     }
 
     private fun formatChangedNumbers(input: String): List<Int> {
-        validator.validateNumbers(input)
+        validator.validateNumbers(input, numberCount, minNumber, maxNumber)
         return input.map { data -> Character.getNumericValue(data) }
     }
 }
