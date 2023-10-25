@@ -14,25 +14,22 @@ fun main() {
 fun startBaseballPlay() {
 
     // 컴퓨터 랜덤 값 생성
-    val computerRandomNum = createComputerRandomNum()
+    val computerRandomNum = createComputerRandomNum().joinToString("")
 
     // 플레이어 입력 값
-    val playerAnswer = inputPlayerNum()
+    val playerAnswer = inputPlayerNum().joinToString("")
 
     println(computerRandomNum)
     println(playerAnswer)
 
-    // 컴퓨터 값과 플레이어 값 비교
-    do {
-
-        // 값이 다를경우 힌트 구현
+    if (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0) {
         baseballHint(computerRandomNum, playerAnswer)
-
-    } while (compareComputerAndPlayer(computerRandomNum, playerAnswer) == 0)
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    } else {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    }
 }
 
-fun createComputerRandomNum(): String {
+fun createComputerRandomNum(): MutableList<Int> {
 
     val computerNum = mutableListOf<Int>()
     // list 크기 3 미만, 즉 3글자가 아닐경우 1~9 사이 랜덤값 생성
@@ -44,15 +41,20 @@ fun createComputerRandomNum(): String {
         }
     }
     // list 공백 제거하고 문자열로
-    return computerNum.joinToString("")
+    return computerNum
 }
 
-fun inputPlayerNum(): String {
+fun inputPlayerNum(): MutableList<Char> {
+
+    val playerNum = mutableListOf<Char>()
 
     print("숫자를 입력해주세요 : ")
     val inputPlayer = Console.readLine()
 
-    return inputPlayer
+    for (index in 0..inputPlayer.length - 1) {
+        playerNum.add(inputPlayer[index])
+    }
+    return playerNum
 }
 
 fun compareComputerAndPlayer(computer: String, player: String): Int {
@@ -65,4 +67,23 @@ fun compareComputerAndPlayer(computer: String, player: String): Int {
 
 fun baseballHint(computer: String, player: String) {
 
+    var strike = 0
+    var ball = 0
+
+    for (index in 0..2) {
+        if (computer[index] == player[index]) {
+            strike++
+        }
+        if (computer.contains(player[index])) {
+            ball++
+        }
+    }
+
+    when {
+        (strike == 0 && ball == 0) -> println("낫싱")
+        (strike != 0 && ball == 0) -> println("${strike}스트라이크")
+        (strike == 0 && ball != 0) -> println("${ball}볼")
+        (strike != 0 && ball != 0) -> println("${ball}볼 ${strike}스트라이크")
+//        else -> 오류 처리?
+    }
 }
