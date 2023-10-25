@@ -5,22 +5,23 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    val targetList = setNumber()
-
     do {
-        val input = getInput(InputTypeEnum.HIT)
-        val inputList = input.map {
-            it.code - 48
-        }
+        val targetList = setNumber()
 
-        val hitCheck = checkTarget(targetList, inputList)
-        println(hitCheck)
-    } while (hitCheck.strike != 3)
+        do {
+            val input = getInput(InputTypeEnum.HIT)
+            val inputList = input.map {
+                it.code - 48
+            }
 
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.")
+            val hitCheck = checkTarget(targetList, inputList)
+            println(hitCheck)
+        } while (hitCheck.strike != 3)
 
-    val replay = getInput(InputTypeEnum.RESTART)
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.")
+    }while(getInput(InputTypeEnum.RESTART) == "1")
+
 }
 
 fun setNumber(): List<Int> {
