@@ -7,8 +7,9 @@ const val MAX = 9
 const val SIZE = 3
 
 class RandomNumberInit {
-    fun GetRandomNumber(): String{
+    fun getRandomNumber(): String{
         val computer = mutableListOf<Int>()
+
         while (computer.size < SIZE) {
             val randomNumber = Randoms.pickNumberInRange(MIN, MAX)
             if (!computer.contains(randomNumber)) {

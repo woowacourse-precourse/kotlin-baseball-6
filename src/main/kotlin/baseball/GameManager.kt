@@ -1,11 +1,13 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
+
 class BaseballReady {
     private var inputNumber = ""
-    private var randomNumber = InitRandomNumber()
+    private var randomNumber = initRandomNumber()
     private var strike = 0
     private var ball = 0
-    fun RangeCheck() : Boolean {
+    fun rangeCheck() : Boolean {
         var check = false
 
         try {
@@ -26,26 +28,26 @@ class BaseballReady {
         }
         return check
     }
-    fun InitRandomNumber() :String{
+    private fun initRandomNumber() :String{
         val randomNumberGenerator = RandomNumberInit()
-        val random = randomNumberGenerator.GetRandomNumber()
+        val random = randomNumberGenerator.getRandomNumber()
         return random
     }
     fun setInputNumber() {
-        inputNumber = readLine().toString()
+        inputNumber = Console.readLine().toString()
     }
-    fun InitBallStrike(){
+    fun initBallStrike(){
         strike = 0
         ball = 0
     }
-    fun CheckStrike() {
+    fun checkStrike() {
         for( i in 0..2) {
             if (inputNumber[i] == randomNumber[i]) {
                 strike += 1
             }
         }
     }
-    fun CheckBall() {
+    fun checkBall() {
         for(i in 0..2) {
             for(j in 0..2){
                 if(i == j) continue
@@ -56,7 +58,7 @@ class BaseballReady {
         }
     }
 
-    fun CheckNothing() :Boolean {
+    fun checkNothing() :Boolean {
         var checkNothing = false
 
         if(strike == 0 && ball == 0) {
@@ -65,7 +67,7 @@ class BaseballReady {
         }
         return checkNothing
     }
-    fun PrintStrikeBall() {
+    fun printStrikeBall() {
         if (strike == 0 && ball == 0) return
         else if(strike == 0)
         {
@@ -75,11 +77,11 @@ class BaseballReady {
             println("${strike}스트라이크 ")
         }
         else{
-            println("${strike}스트라이크 ${ball}볼")
+            println(" ${ball}볼 ${strike}스트라이크")
         }
     }
 
-    fun CheckAnswer(): Boolean {
+    fun checkAnswer(): Boolean {
         return strike == 3
     }
 }
