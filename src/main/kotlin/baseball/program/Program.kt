@@ -22,7 +22,8 @@ class Program {
 
     fun checkThreeNumbers(input: String) {
         if (input.length != 3) {
-            throw IllegalArgumentException("입력은 반드시 3글자여야 합니다. 다시 입력해주세요.")
+//            throw IllegalArgumentException("입력은 반드시 3글자여야 합니다. 다시 입력해주세요.")
+            throw IllegalArgumentException()
         }
     }
 
