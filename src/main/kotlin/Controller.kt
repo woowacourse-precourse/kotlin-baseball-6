@@ -3,6 +3,7 @@ import baseballnumbercomparator.BaseballResult
 import computer.Computer
 import player.Player
 import validator.baseballnumbervalidator.BaseballNumberValidatorImpl
+import validator.gamecontrolvalidator.GameControlValidatorImpl
 import view.InputView
 import view.OutputView
 
@@ -39,6 +40,10 @@ class Controller(
 
     fun showIntermediateResult(baseballResult: BaseballResult) {
         OutputView.intermediateResult(baseballResult.strike, baseballResult.ball)
+    }
+
+    fun inputRestartOrTerminate(): String {
+        return InputView.inputReStartOrExit(GameControlValidatorImpl)
     }
 }
 
