@@ -23,7 +23,7 @@ class BaseballController(private val numbers:MutableList<Int>) {
         return if (strikeCnt==0) BLANK else "$strikeCnt$STRIKE"
     }
 
-    fun getBallResult(userNumbers:MutableList<Int>): String {
+    private fun getBallResult(userNumbers:MutableList<Int>): String {
         var ballCnt = 0
         baseballModel.getNumbers().forEachIndexed { idx, num ->
             if (userNumbers[idx] != num && userNumbers.contains(num)) ballCnt++
