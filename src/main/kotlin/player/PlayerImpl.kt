@@ -6,6 +6,6 @@ class PlayerImpl : Player {
         get() = _baseballNumber
 
     override fun setBaseballNumber(inputBaseballNumber: String) {
-        TODO("Not yet implemented")
+        _baseballNumber = inputBaseballNumber
     }
 }
