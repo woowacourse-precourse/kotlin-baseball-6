@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 fun main() {
-    // 야구게임 함수 호출
+    baseballGame()
 }
 
 /**
