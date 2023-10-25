@@ -31,7 +31,7 @@ class BaseballConsole {
     }
 
     private fun isDuplication(input: String): Boolean {
-        for (i in 0..<input.lastIndex) {
+        for (i in 0 until input.lastIndex) {
             for (j in i + 1..input.lastIndex) {
                 if (input[i] == input[j]) return true
             }

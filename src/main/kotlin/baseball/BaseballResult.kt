@@ -1,7 +1,7 @@
 package baseball
 
 sealed class BaseballResult {
-    data object Nothing : BaseballResult() {
+    object Nothing : BaseballResult() {
         override fun toString(): String {
             return "낫싱"
         }
