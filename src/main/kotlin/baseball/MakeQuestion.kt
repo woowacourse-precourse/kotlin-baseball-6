@@ -2,7 +2,7 @@ package baseball
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class MakeQuestion {
+class Question {
     private val computerEmpty = emptyList<Int>()
     private val computer = computerEmpty.toMutableList()
     fun makeThreeNumbers(): String {

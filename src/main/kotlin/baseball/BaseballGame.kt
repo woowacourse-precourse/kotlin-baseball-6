@@ -3,8 +3,8 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 
 class BaseballGame {
-    fun baseballGame(): String {
-        val makeQuestion = MakeQuestion()
+    fun baseballGameStart(): String {
+        val makeQuestion = Question()
         val question = makeQuestion.makeThreeNumbers()
         do {
             print("숫자를 입력해주세요 : ")
