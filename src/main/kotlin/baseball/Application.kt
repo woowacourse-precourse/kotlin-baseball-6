@@ -57,26 +57,27 @@ class Computer {
             }
         }
         randNums = computer
-        println("랜덤 숫자를 선택완료했습니다.")
     }
 }
 
 class User {
     fun inputNums(): IntArray {
         while (true) {
-            println("각 자리가 겹치지 않는 세 자리의 숫자를 입력해주세요. 예시 - 789")
-            val userInput = Console.readLine()
+            while (true) {
+                println("숫자를 입력해주세요 : ")
+                val userInput = Console.readLine()
 
-            if (userInput == null) {
-                throw IllegalArgumentException()
-            } else if (userInput.length != 3) {
-                throw IllegalArgumentException()
-            } else if (!userInput.all { it.isDigit() }) {
-                throw IllegalArgumentException()
-            } else if (userInput.toSet().size != 3) {
-                throw IllegalArgumentException()
-            } else {
-                return userInput.map { it.toString().toInt() }.toIntArray()
+                if (userInput == null) {
+                    throw IllegalArgumentException()
+                } else if (userInput.length != 3) {
+                    throw IllegalArgumentException()
+                } else if (!userInput.all { it.isDigit() }) {
+                    throw IllegalArgumentException()
+                } else if (userInput.toSet().size != 3) {
+                    throw IllegalArgumentException()
+                } else {
+                    return userInput.map { it.toString().toInt() }.toIntArray()
+                }
             }
         }
     }
@@ -98,7 +99,7 @@ fun askRestart(): Boolean {
                 return false
             }
 
-            else -> IllegalArgumentException()
+            else -> throw IllegalArgumentException()
         }
     }
 }
