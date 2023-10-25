@@ -1,18 +1,17 @@
-package baseball
-
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 object BaseballGameStatus {
     const val REPLAY = 1
     const val GAME_OVER = 2
+    const val INVALID = -1
     const val REPLAY_PROMPT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 }
 
 object BaseballNumberValidity {
     const val VALID_LENGTH = 3
     const val DIGIT_START_CODE = '0'.code
-    const val DIGIT_START = 0
+    const val DIGIT_START = 1
     const val DIGIT_END = 9
 }
 
@@ -43,7 +42,7 @@ private fun letterToInt(letter: Char): Int {
 
 private fun isValidBaseballNumber(digits: List<Int>): Boolean {
     val digitValidity = digits.map { isValidDigit(it) }
-    return (isValidLength(digits)) and (digitValidity.all { it })
+    return (isValidLength(digits)) and (digitValidity.all { it }) and (isEveryLetterUnique(digits))
 }
 
 private fun isValidLength(digits: List<Int>): Boolean {
@@ -54,35 +53,39 @@ private fun isValidDigit(digit: Int): Boolean {
     return (BaseballNumberValidity.DIGIT_START <= digit) and (digit <= BaseballNumberValidity.DIGIT_END)
 }
 
-private fun areAllDigitUnique(queryDigit: List<Int>): Boolean {
+private fun isEveryLetterUnique(queryLetterCode: List<Int>): Boolean {
     val digitSet = hashSetOf<Int>()
-    return queryDigit.all { digitSet.add(it) }
+    return queryLetterCode.all { digitSet.add(it) }
 }
 
-fun digitIntersectCount(query: BaseballNumber, answer: BaseballNumber): Int {
+fun findDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
     val setQueryDigit = query.toSet()
     val setAnswerDigit = answer.toSet()
     return setAnswerDigit.count { setQueryDigit.contains(it) }
 }
 
-fun digitMatchCount(query: BaseballNumber, answer: BaseballNumber): Int {
+fun findExactDigitMatch(query: BaseballNumber, answer: BaseballNumber): Int {
     val digitPair = query.zip(answer)
     return digitPair.count { (queryDigit, answerDigit) -> queryDigit == answerDigit }
 }
 
-fun judgeResult(query: BaseballNumber, answer: BaseballNumber): ArrayList<Int> {
-    val strikes = digitMatchCount(query, answer)
-    val balls = digitIntersectCount(query, answer) - strikes
-    return arrayListOf(strikes, balls)
+fun judgeResult(query: BaseballNumber, answer: BaseballNumber):Pair<Int, Int> {
+    val strikes = findExactDigitMatch(query, answer)
+    val balls = findDigitMatch(query, answer) - strikes
+    return strikes to balls
+}
+
+fun pickUniqueDigit(pickNumber:ArrayList<Int>){
+    val randomNumber = Randoms.pickNumberInRange(1, 9)
+    if (!pickNumber.contains(randomNumber)) {
+        pickNumber.add(randomNumber)
+    }
 }
 
 fun generateRandomBaseballNumber(): BaseballNumber {
-    val numberList = IntRange(1, 9).toMutableList()
     val pickNumber = ArrayList<Int>(0)
-    for (i in 1..BaseballNumberValidity.VALID_LENGTH) {
-        val currentPick = Randoms.pickNumberInRange(0, numberList.size - 1)
-        pickNumber.add(numberList[currentPick])
-        numberList.removeAt(currentPick)
+    while (pickNumber.size < 3) {
+        pickUniqueDigit(pickNumber)
     }
     return BaseballNumber(pickNumber.joinToString(""))
 }
@@ -100,6 +103,8 @@ fun formatResult(strikes: Int, balls: Int): String {
 fun gameTurn(answer: BaseballNumber): Int {
     print(BaseballTurnStatus.TURN_PROMPT)
     val queryString = Console.readLine()
+    print(queryString)
+    println()
     val query = BaseballNumber(queryString)
     val (strikes, balls) = judgeResult(query, answer)
     println(formatResult(strikes, balls))
@@ -109,11 +114,23 @@ fun gameTurn(answer: BaseballNumber): Int {
 fun gameplay() {
     println(BaseballTurnStatus.GAME_START)
     val answer = generateRandomBaseballNumber()
-    println(answer)
+    println("answer : $answer")
     var strikes = 0
     while (strikes != 3) {
         strikes = gameTurn(answer)
     }
+}
+
+fun isValidReplayStatus(replayStatusString:String):Boolean{
+    return (replayStatusString.length == 1) and (replayStatusString.all { it.isDigit() })
+}
+
+fun readReplayStatus():Int{
+    val replayStatusString = Console.readLine().trim()
+    if (isValidReplayStatus(replayStatusString)){
+        return replayStatusString.toInt()
+    }
+    return BaseballGameStatus.INVALID
 }
 
 fun main() {
@@ -121,7 +138,7 @@ fun main() {
     while (replayStatus == BaseballGameStatus.REPLAY) {
         gameplay()
         println(BaseballGameStatus.REPLAY_PROMPT)
-        replayStatus = Console.readLine().toInt()
+        replayStatus = readReplayStatus()
     }
     require(replayStatus == BaseballGameStatus.GAME_OVER) { "Invalid query." }
 }
