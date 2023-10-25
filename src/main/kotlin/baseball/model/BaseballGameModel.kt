@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class BaseballGameModel {
 
 
-    var computerBalls: Balls = getRandomBalls()
+    private var computerBalls: Balls = getRandomBalls()
     var isExit: Boolean = false
 
     private fun getRandomBalls(): Balls {
