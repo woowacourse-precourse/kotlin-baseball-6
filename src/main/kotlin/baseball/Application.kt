@@ -3,6 +3,9 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
+/**
+ * 메인 게임 루프를 시작하는 함수.
+ */
 fun main() {
     baseballGame()
 }
@@ -39,26 +42,12 @@ fun baseballGame() {
  * @param threeNumber 게임 숫자를 저장할 MutableSet
  */
 fun getThreeNumber(threeNumber: MutableSet<String>) {
+    threeNumber.clear()
     while (threeNumber.size < 3) {
         val number = pickNumberInRange(1, 9)
         if (number.toString() !in threeNumber) {
             threeNumber.add(number.toString())
         }
-    }
-}
-
-/**
- * 게임 종료 또는 새로운 게임 시작 여부를 사용자에게 물어 사용자 선택에 따라 반환하는 함수.
- *
- * @return 게임을 새로 시작할 경우 true, 종료할 경우 false
- * @throws 은 잘못된 입력값일 경우 예외를 던짐
- */
-fun makeGameChoice(): Boolean {
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    return when (Console.readLine()) {
-        "1" -> true
-        "2" -> false
-        else -> throw IllegalArgumentException("잘못된 입력값입니다.")
     }
 }
 
@@ -71,7 +60,8 @@ fun makeGameChoice(): Boolean {
 fun getUserInput(): String {
     while (true) {
         val inputNumber = Console.readLine()
-        if (inputNumber.length == 3) {
+        val parsedNumber = inputNumber.toIntOrNull()
+        if (parsedNumber != null && inputNumber.length == 3) {
             return inputNumber
         } else {
             throw IllegalArgumentException("잘못된 입력값입니다.")
@@ -85,6 +75,21 @@ fun getUserInput(): String {
  * @param inputNumber 사용자 입력 숫자
  * @param numberSet 게임 숫자 세트
  * @return 게임 결과 메시지
+ */
+fun makeGameChoice(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (Console.readLine()) {
+        "1" -> true
+        "2" -> false
+        else -> throw IllegalArgumentException("잘못된 입력값입니다.")
+    }
+}
+
+/**
+ * 게임 종료 또는 새로운 게임 시작 여부를 사용자에게 물어 사용자 선택에 따라 반환하는 함수.
+ *
+ * @return 게임을 새로 시작할 경우 true, 종료할 경우 false
+ * @throws IllegalArgumentException 잘못된 입력값일 경우 예외를 던짐
  */
 fun gameResults(inputNumber: String, numberSet: MutableSet<String>): String {
     val inputNumIdx = inputNumber.toList().map { it.toString() }
