@@ -1,5 +1,6 @@
 package baseball.model
 
+import baseball.model.validator.Validator
 import baseball.model.ExitInput.Type.Companion.isEquals
 
 @JvmInline

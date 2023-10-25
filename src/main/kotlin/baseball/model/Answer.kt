@@ -1,5 +1,7 @@
 package baseball.model
 
+import baseball.model.validator.Validator
+
 class Answer(private val numbers: List<Int>): List<Int> by numbers {
 
     constructor(input: String) : this(input.toIntList())

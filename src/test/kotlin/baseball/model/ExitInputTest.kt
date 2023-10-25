@@ -1,6 +1,7 @@
 package baseball.model
 
 import baseball.assertEqualsThrowsMessage
+import baseball.model.validator.Validator
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.assertEquals
