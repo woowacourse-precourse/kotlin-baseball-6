@@ -7,7 +7,9 @@ fun main() {
 
     // 게임 시작
     println("숫자 야구 게임을 시작합니다.")
-    startBaseballPlay()
+    do {
+        startBaseballPlay()
+    } while (restartBaseballPlay())
 
 }
 
@@ -15,7 +17,6 @@ fun startBaseballPlay() {
 
     // 컴퓨터 랜덤 값 생성
     val computerRandomNum = createComputerRandomNum()
-    println(computerRandomNum)
 
     do {
         // 플레이어 입력 값
@@ -129,4 +130,14 @@ fun isNum(inputPlayer: String): Boolean {
 
 fun endBaseballPlay() {
     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+}
+
+fun restartBaseballPlay(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+    val inputPlayerRestart = Console.readLine()
+    if (inputPlayerRestart.toInt() == 1) {
+        return true
+    }
+    return false
 }
