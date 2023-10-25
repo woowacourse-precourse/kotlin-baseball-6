@@ -7,13 +7,15 @@ fun main() {
     println("숫자 야구 게임을 시작합니다.")
     val targetList = setNumber()
 
-    val input = getInput()
-    val inputList = input.map {
-        it.code - 48
-    }
+    do {
+        val input = getInput()
+        val inputList = input.map {
+            it.code - 48
+        }
 
-    val hitCheck = checkTarget(targetList, inputList)
-    println(hitCheck)
+        val hitCheck = checkTarget(targetList, inputList)
+        println(hitCheck)
+    }while (hitCheck.strike != 3)
 
 }
 
