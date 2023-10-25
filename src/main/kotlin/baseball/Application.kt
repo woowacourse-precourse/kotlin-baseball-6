@@ -51,7 +51,17 @@ fun inputPlayerNum(): MutableList<Char> {
     print("숫자를 입력해주세요 : ")
     val inputPlayer = Console.readLine()
 
+    if (!isNum(inputPlayer)) {
+        throw IllegalArgumentException("잘못된 입력 형식")
+    }
+    if (inputPlayer.length != 3) {
+        // 입력값 3자리 수 아님
+        throw IllegalArgumentException("잘못된 길이의 입력값 (3자리 수로 입력하세요.)")
+    }
     for (index in 0..inputPlayer.length - 1) {
+        if (playerNum.contains(inputPlayer[index])) {
+            throw IllegalArgumentException("중복된 숫자가 존재")
+        }
         playerNum.add(inputPlayer[index])
     }
     return playerNum
@@ -86,4 +96,29 @@ fun baseballHint(computer: String, player: String) {
         (strike != 0 && ball != 0) -> println("${ball}볼 ${strike}스트라이크")
 //        else -> 오류 처리?
     }
+}
+
+fun isNum(inputPlayer: String): Boolean {
+
+    var isNum = true
+
+    inputPlayer.forEach { char ->
+        val charConvertToInt = char.digitToIntOrNull()
+        val charConvertToCode = char.code
+        if (charConvertToCode > 57 || charConvertToCode < 48) {
+            isNum = false
+            return isNum
+        }
+        if (charConvertToInt == null) {
+            throw IllegalArgumentException("입력값이 존재하지 않습니다.")
+            isNum = false
+            return isNum
+        }
+        if (charConvertToInt > 9 || charConvertToInt < 1) {
+            throw IllegalArgumentException("입력값 범위가 옳지 않습니다. 1~9범위 사용해주세요")
+            isNum = false
+            return isNum
+        }
+    }
+    return isNum
 }
