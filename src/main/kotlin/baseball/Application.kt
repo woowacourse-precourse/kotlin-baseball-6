@@ -37,6 +37,7 @@ fun readInput(): IntArray {
 }
 
 fun isRestart(): IntArray {
+    // 4. 게임 종료 후 재시작 or 종료 입력받기
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
