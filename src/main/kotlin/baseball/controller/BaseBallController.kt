@@ -13,13 +13,14 @@ class BaseBallController {
 
     fun playGame() {
         baseBallView.printPlayGame()
+        val computer = Computer()
         var computerBaseBall = BaseBall(mutableListOf())
         var status = START
 
         while (true) {
             when (status) {
                 START -> {
-                    computerBaseBall = Computer().makeComputerList()
+                    computerBaseBall = computer.makeComputerList()
                     status = CONTINUE
                 }
 
