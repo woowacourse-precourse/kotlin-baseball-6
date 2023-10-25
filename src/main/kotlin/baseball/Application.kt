@@ -40,11 +40,15 @@ class NumberBaseballGame {
 
     private fun inputUserNumbers(): List<Int> {
         output.printReceiveNumberInput()
-        return Console.readLine().run {
-            require(length == 3 && this.toSet().size == 3) { throw IllegalArgumentException() }
-            require(all { it in '1'..'9' }) { throw IllegalArgumentException() }
-            map { it.toString().toInt() }
-        }
+        val input = Console.readLine()
+        validateUserInput(input)
+        return input.map { it.toString().toInt() }
+    }
+
+    private fun validateUserInput(input: String) {
+        require(input.length == 3) { throw IllegalArgumentException() }
+        require(input.toSet().size == 3) { throw IllegalArgumentException() }
+        require(input.all { it in '1'..'9' }) { throw IllegalArgumentException() }
     }
 
     private fun generateRandomNumbers(): List<Int> {
