@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    println("숫자 야구 게임을 시작합니다.")
+    println(StringRes.START_MSG)
     do {
         val targetList = setNumber()
 
@@ -18,8 +18,8 @@ fun main() {
             println(hitCheck)
         } while (hitCheck.strike != Const.NUMBER_CNT)
 
-        println("${Const.NUMBER_CNT}개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하시려면 ${Const.REPLAY}, 종료하려면 ${Const.END}를 입력하세요.")
+        println(StringRes.ENDING_MSG)
+        println(StringRes.REPLAY_MSG)
     }while(getInput(InputTypeEnum.RESTART) == Const.REPLAY)
 
 }

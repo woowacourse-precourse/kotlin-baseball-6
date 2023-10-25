@@ -7,15 +7,15 @@ data class CheckResult(
     override fun toString(): String {
         val msg = StringBuilder()
         if (ball != 0) {
-            msg.append("${ball}볼 ")
+            msg.append("${ball}${StringRes.BALL} ")
         }
 
         if (strike != 0) {
-            msg.append("${strike}스트라이크 ")
+            msg.append("${strike}${StringRes.STRIKE} ")
         }
 
         if (strike == 0 && ball == 0) {
-            msg.append("낫싱")
+            msg.append(StringRes.NOTHING)
         }
 
         msg.trim()
