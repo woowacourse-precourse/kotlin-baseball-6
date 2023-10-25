@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.funcs.gameStart
+
 fun main() {
-    TODO("프로그램 구현")
+    gameStart()
 }
