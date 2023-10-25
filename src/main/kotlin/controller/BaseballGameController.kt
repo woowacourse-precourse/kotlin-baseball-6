@@ -12,7 +12,7 @@ class BaseballGameController {
     var gameStatus = BaseballGameStatus()
     var reStrat: String = ""
 
-    public fun GameStart() {
+    fun GameStart() {
         BaseballInputView().printStartGameMessage()
         computerNumber = RandomNumberCreate().createRandomNumber()
         while (!gameStatus.isGameStatus) {

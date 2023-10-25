@@ -1,7 +1,7 @@
 package validation
 
 class UserInputValidation {
-    public fun inputLength(input: String) { // todo public제거
+    fun inputLength(input: String) { // todo public제거
         if (input.length != 3) {
             callInputLengthException()
         }
