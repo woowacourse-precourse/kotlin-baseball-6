@@ -36,5 +36,9 @@ class Controller(
         OutputView.guessedAllBaseballNumber()
         OutputView.restartOrTerminateGame()
     }
+
+    fun showIntermediateResult(baseballResult: BaseballResult) {
+        OutputView.intermediateResult(baseballResult.strike, baseballResult.ball)
+    }
 }
 
