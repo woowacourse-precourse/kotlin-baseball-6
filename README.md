@@ -142,3 +142,13 @@ while (computer.size() < 3) {
 - 미션은 [kotlin-baseball](https://github.com/woowacourse-precourse/kotlin-baseball-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+
+## 기능 구현
+1. 정답 숫자 배열, 내가 입력한 숫자 배열 만들기
+2. Randoms.pickNumberInRange(1, 9)를 통해 정답 숫자 배열의 0~3번째 원소 초기화
+3. 숫자 입력하고 그 숫자로 내가 입력한 숫자 배열의 원소 초기화
+4. 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨 후 앱 종료
+5. 입력한 수에 대한 결과를 볼, 스트라이크로 표시
+6. 3스트라이크가 될 때까지 게임 계속, 3스트라이크가 되면 게임 종료
