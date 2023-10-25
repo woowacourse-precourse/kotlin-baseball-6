@@ -11,4 +11,4 @@
 
 3. Application.kt에서 main함수를 작성한다.
 - main함수에서는 게임 시작 메시지를 출력하고 baseballGame()을 호출해 게임을 시작하도록 한다.
-- while문을 통해 baseballGame()의 리턴값이 "1"일 경우 게임을 재시작하며, "2"일 경우 게임을 종료한다.
+- while문을 통해 baseballGame()의 리턴값이 "1"일 경우 게임을 재시작하며, "2"일 경우 게임을 종료한다. 
