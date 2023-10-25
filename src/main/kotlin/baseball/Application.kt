@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     //TODO("프로그램 구현")
 
-
 }
 
 fun playGame() {
@@ -101,6 +100,17 @@ fun showResult(result : Pair<Int, Int>){
     }
 }
 
-fun afterGame() {
-
+fun afterGame(): Boolean {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val userInput = Console.readLine().toInt()
+    if (userInput == 1) {
+        return true
+    }
+    else if (userInput ==2 ){
+        return false
+    }
+    else {
+        throw IllegalArgumentException("1또는 2만 입력하세요.")
+    }
 }
