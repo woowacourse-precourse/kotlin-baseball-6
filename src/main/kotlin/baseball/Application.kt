@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
-    var restart : Boolean = true
+    var restart = true
     while(restart) {
         val answer = makeAnswer()
         var guess: String?
@@ -16,6 +16,7 @@ fun main() {
             try {
                 print("숫자를 입력해주세요 : ")
                 guess = Console.readLine()
+                println(guess)
                 checkInput(guess)
             } catch (e: IllegalArgumentException) {
                 throw IllegalArgumentException()
@@ -27,11 +28,12 @@ fun main() {
 
             if (result == "3스트라이크") {
                 println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                break
+                gamegoing = false
             }
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val newgame = readLine()
+        var newgame = Console.readLine()
+        println(newgame)
         when (newgame) {
             "1" -> { continue}
             "2" -> restart = false
@@ -90,5 +92,3 @@ fun checkInput(number: String) {
         throw IllegalArgumentException()
     }
 }
-
-
