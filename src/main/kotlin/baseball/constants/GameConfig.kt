@@ -12,8 +12,9 @@ object GameConfig {
     const val MENU_RANGE_FIRST = 1
     const val MENU_RANGE_LAST = 2
 
-    const val EMPTY_STRING = ""
     const val DELIMITER = ", " // "B, S"
+    const val STRIKE = "스트라이크"
+    const val BALL = "볼"
 }
 /*
     val BaseballRange = CharRange(

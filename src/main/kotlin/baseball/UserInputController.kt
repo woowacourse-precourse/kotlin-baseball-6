@@ -11,8 +11,7 @@ import camp.nextstep.edu.missionutils.Console
 fun inputValidator(userInput: UserInput, digit: Int) {
     printInputPrompt(digit)
 
-    val userInputData = Console.readLine() ?: GameConfig.EMPTY_STRING
-
+    val userInputData = Console.readLine() ?: ""
     userInput.setDataWithValidation(userInputData)
 }
 
@@ -36,6 +35,7 @@ fun calculate(baseballInput: BaseballInput, answer: Answer): Boolean {
         .map { it.toInt() }
 
     calculateResultPrint(ball, strike) // Controller -> View
+
     val isAllStrike = (strike == GameConfig.BASEBALL_DIGITS)
     return isAllStrike
 }

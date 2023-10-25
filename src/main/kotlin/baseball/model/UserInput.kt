@@ -15,15 +15,15 @@ open class UserInput {
     /** Baseball, Menu 공통. 1, 2) 입력된 문자열의 길이 및 범위 체크  (Model) */
     open fun setDataWithValidation(
         userInputData: String = "",
-        digit: Int? = null,
-        range: CharRange? = null
+        digit: Int? = null, range: CharRange? = null
     ) {
-        // 입력된 데이터 모두가 range에 속하는지 체크
-        val rangeCheck = userInputData.map { it }.all { it in range!! }
-
         if (userInputData.length != digit!!) {
             throw IllegalArgumentException("입력된 값($userInputData)은 ${digit}자리가 아닙니다.")
-        } else if (rangeCheck == false) {
+        }
+
+        // 입력된 데이터 모두가 range에 속하는지 체크
+        val rangeCheck = userInputData.map { it }.all { it in range!! }
+        if (rangeCheck == false) {
             throw IllegalArgumentException("입력된 값($userInputData) 중에 ${range!!.first}~${range.last} 범위를 벗어난 문자가 있습니다.")
         }
     }
