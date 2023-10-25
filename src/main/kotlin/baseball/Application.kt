@@ -25,12 +25,12 @@ fun main() {
             val me = mutableListOf<Int>()
             for (char in splitInput) {
                 val numberOfInput : Int = Character.getNumericValue(char)
-                require(numberOfInput in 1..9)
+                require(numberOfInput in 1 until 10)
                 me.add(numberOfInput)
             }
 
-            for (i in 0..<3) {
-                for (j in 0..<3) {
+            for (i in 0 until 3) {
+                for (j in 0 until 3) {
                     if (me[i] == computer[j]) {
                         if (i == j) {
                             strike++
