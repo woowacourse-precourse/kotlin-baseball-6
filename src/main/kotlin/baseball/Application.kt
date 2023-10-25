@@ -15,15 +15,11 @@ fun main() {
         print("숫자를 입력해 주세요 : ")
 
         val input = readLine()
+        checkUserInput(input)
 
-        // 사용자 입력이 null 또는 길이가 3이 아닌 경우에 대한 예외 처리
-        if (input == null || input.length != 3) {
-            throw IllegalArgumentException("올바른 입력이 아닙니다.")
-        }
+        player.clear()
 
-        player.clear() // 새로운 시도를 위해 player 리스트 초기화
-
-        for (char in input) {
+        for (char in input.orEmpty()) {
             if (char.isDigit()) {
                 player.add(char.toString().toInt())
             }
@@ -43,14 +39,14 @@ fun main() {
                 break
             }
         } else {
-             player.clear()
+            player.clear()
         }
 
     }
 
 }
 
-fun createRandomList(computer: MutableList<Int>) : MutableList<Int> {
+fun createRandomList(computer: MutableList<Int>): MutableList<Int> {
     while (computer.size < 3) {
         val randomNum = Randoms.pickNumberInRange(1, 9)
         if (!computer.contains(randomNum)) {
@@ -59,7 +55,14 @@ fun createRandomList(computer: MutableList<Int>) : MutableList<Int> {
     }
     return computer
 }
-fun compareList(computer : MutableList<Int>, player: MutableList<Int> ) : Pair<Int, Int>{
+
+fun checkUserInput(input: String?) {
+    if (input == null || input.length != 3) {
+        throw IllegalArgumentException("올바른 입력이 아닙니다.")
+    }
+}
+
+fun compareList(computer : MutableList<Int>, player: MutableList<Int> ): Pair<Int, Int>{
     var strike = 0
     var ball = 0
 
