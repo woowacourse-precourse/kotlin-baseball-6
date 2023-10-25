@@ -5,36 +5,38 @@ import java.lang.IllegalArgumentException
 
 class Utils {
     val user = mutableListOf<Int>()
+    var playerInput = String()
 
     fun checkInput(input: String) : List<Int> {
-        checkInputNull(input)
-        checkInputLength(input)
-        checkInputNumber(input)
-        checkInputNumberDifferent(input)
+        playerInput = input
+        checkInputNull()
+        checkInputLength()
+        checkInputNumber()
+        checkInputNumberDifferent()
         return user
     }
 
-    fun checkInputNull(input: String){
-        if(input.isNullOrEmpty()) throw NullPointerException("값을 입력하지 않았습니다. 프로그램을 종료합니다.")
+    fun checkInputNull(){
+        if(playerInput.isNullOrEmpty()) throw NullPointerException("값을 입력하지 않았습니다. 프로그램을 종료합니다.")
     }
 
-    fun checkInputLength(input: String) {
-        when (input.length) {
+    fun checkInputLength() {
+        when (playerInput.length) {
             INPUT_SIZE -> return
             else -> throw IllegalArgumentException("잘못된 값을 입력했습니다. 프로그램을 종료합니다.")
         }
     }
 
-    fun checkInputNumber(input: String) {
-        for (c in input.toCharArray()) {
+    fun checkInputNumber() {
+        for (c in playerInput.toCharArray()) {
             if (!c.isDigit() || c == '0') {
                 throw IllegalArgumentException("숫자가 아닌 문자가 입력되었습니다. 프로그램을 종료합니다.")
             }
         }
     }
 
-    fun checkInputNumberDifferent(input: String) {
-        for (c in input.toCharArray()) {
+    fun checkInputNumberDifferent() {
+        for (c in playerInput.toCharArray()) {
             if(!user.contains(c-'0')) user.add(c-'0')
         }
 
