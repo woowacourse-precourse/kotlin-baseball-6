@@ -81,9 +81,9 @@ class BaseballGame {
 
         return when {
             strikeCount == 3 -> "3스트라이크"
-            strikeCount > 0 && ballCount > 0 -> "$ballCount 볼 $strikeCount 스트라이크"
-            strikeCount > 0 -> "$strikeCount 스트라이크"
-            ballCount > 0 -> "$ballCount 볼"
+            strikeCount > 0 && ballCount > 0 -> "${ballCount}볼 ${strikeCount}스트라이크"
+            strikeCount > 0 -> "${strikeCount}스트라이크"
+            ballCount > 0 -> "${ballCount}볼"
             else -> "낫싱"
         }
     }
