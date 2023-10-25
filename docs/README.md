@@ -17,3 +17,7 @@
     - 재시작/종료 -> 1/2로 결정
 
 # 6. 리펙토링
+    - 클래스 : Game, Computer, Person
+            Result
+    - Enum : Result(Strike, Ball, Nothing), ErrorMessage(IllegalException)
+    - 기능 다시 구현하기
