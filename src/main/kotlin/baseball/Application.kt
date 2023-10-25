@@ -65,9 +65,12 @@ fun game(computer: List<Int>, user: List<Int>):Boolean {
     for (i in computer.indices) {
         if (computer[i] == user[i]) {
             strike++
+            continue;
         }
-        if (computer.contains(user[i])) {
-            ball++
+        for(j in computer.indices) {
+            if (computer.contains(user[i])) {
+                ball++
+            }
         }
     }
     println(compareNumber(ball,strike))
