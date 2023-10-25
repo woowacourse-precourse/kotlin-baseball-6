@@ -4,37 +4,32 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    val message = "숫자 야구 게임을 시작합니다"
+    val message = "숫자 야구 게임을 시작합니다."
     println(message)
 
-    try {
-        startGame()
-    } catch (e: IllegalArgumentException) {
-        print(e)
-        return
-    }
+    startGame()
 }
 
 fun startGame() {
     val answer = getRandomNums()
     var strike = 0
-
-
+    
     while (strike != 3) {
         val inputNumList = getUserInput()
         if (!isNumValidated(inputNumList)) {
             throw IllegalArgumentException("잘못된 값이 입력되었습니다. 게임을 종료합니다.")
         }
-        var (ball, strike) = matchEachNums(answer, inputNumList)
-        printResult(ball, strike)
+        var (ball, newStrike) = matchEachNums(answer, inputNumList)
+        printResult(ball, newStrike)
+        strike = newStrike
     }
-    print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 
     restartOrTerminate()
 }
 
 fun restartOrTerminate() {
-    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val userInput = Console.readLine().toInt()
     if (userInput == 1) {
         startGame()
@@ -52,7 +47,7 @@ fun printResult(ball: Int, strike: Int) {
         (ball == 0) -> strike.toString() + "스트라이크"
         else -> ball.toString() + "볼 " + strike.toString() + "스트라이크"
     }
-    print(str)
+    println(str)
 }
 
 fun matchEachNums(answer: List<Int>, input: List<Int>): Pair<Int, Int> {
@@ -72,7 +67,11 @@ fun matchEachNums(answer: List<Int>, input: List<Int>): Pair<Int, Int> {
 }
 
 fun getUserInput(): MutableList<Int> {
+    print("숫자를 입력해주세요 : ")
     val inputNum = Console.readLine()
+    if (inputNum.length != 3) {
+        throw IllegalArgumentException()
+    }
     val numList = inputNum.map { it.toString().toInt() }.toMutableList()
     return numList
 }
