@@ -25,9 +25,8 @@ class GameModel {
         val intersectionSize = userNumbers.intersect(computerNumbers).size
         val balls = intersectionSize - strikes
 
-        if (strikes == 3) {
-            return "3스트라이크"
-        } else if (strikes > 0 || balls > 0) {
+        if (strikes == 3) {  return "3스트라이크"  }
+        else if (strikes > 0 || balls > 0) {
             val result = mutableListOf<String>()
             if (balls > 0) {
                 result.add("${balls}볼")
