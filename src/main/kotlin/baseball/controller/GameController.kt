@@ -22,6 +22,7 @@ class GameController {
                 break
             }
         }
+        Console.close()
     }
 
     private fun startGuessingAnswerUntilAllStrike(computer: Answer) {
