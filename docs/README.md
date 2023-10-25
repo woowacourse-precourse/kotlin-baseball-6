@@ -2,7 +2,7 @@
 
 ## Computer Class
 - [Done] 랜덤 숫자 리스트 생성 기능 구현
-- [ToDo] 랜덤 숫자 예외처리
+- [Done] 랜덤 숫자 예외처리
 
 ## Game Class
 - [Done] 유저의 입력을 받는 기능
