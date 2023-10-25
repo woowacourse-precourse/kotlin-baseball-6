@@ -22,7 +22,6 @@ class Program {
 
     fun checkThreeNumbers(input: String) {
         if (input.length != 3) {
-//            throw IllegalArgumentException("입력은 반드시 3글자여야 합니다. 다시 입력해주세요.")
             throw IllegalArgumentException()
         }
     }
@@ -30,26 +29,22 @@ class Program {
     fun checkDistinctNumbers(input: String) {
         val numbersSet = input.toCharArray().toSet()
         if (numbersSet.size != 3) {
-            throw IllegalArgumentException("입력한 숫자는 3자리 모두 다 다른 숫자여야 합니다. 다시 입력해주세요.")
-        }
+            throw IllegalArgumentException()        }
     }
 
     fun checkOnlyDigits(input: String) {
         if (!input.matches(Regex("\\d+"))) {
-            throw IllegalArgumentException("입력은 숫자로만 이루어져야 합니다. 다시 입력해주세요.")
-        }
+            throw IllegalArgumentException()        }
     }
 
     fun checkContainsSpace(input: String) {
         if (input.contains(" ")) {
-            throw IllegalArgumentException("입력에 공백이 포함되어있습니다. 다시 입력해주세요.")
-        }
+            throw IllegalArgumentException()        }
     }
 
     fun checkRestartNumber(input: String) {
         if ((restartNumber != input) && (quitNumber != input) ) {
-            throw IllegalArgumentException("1(재시작) 또는 2(종료)를 입력해주세요. 다시 입력해주세요.")
-        }
+            throw IllegalArgumentException()        }
     }
     fun isNumberPresent(input: Char): Boolean {
         val numbersSet = this.randomNumber.toCharArray().toSet()
