@@ -45,8 +45,9 @@ fun printGameResult(gameResult: MutableList<Int>): Boolean {
         println("${gameResult[1]}스트라이크")
     } else if (gameResult[0] != 0 && gameResult[1] != 0) {
         println("${gameResult[0]}볼 ${gameResult[1]}스트라이크")
+    } else {
+        println("낫싱")
     }
-    println("낫싱")
     if (gameResult[1] == 3) {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return true
