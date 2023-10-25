@@ -30,8 +30,8 @@ fun main() {
         else if (again == "2") break
         else throw IllegalArgumentException()
     }
-    Console.close()
 
+    Console.close()
 }
 
 fun getComputerNum(): MutableList<Int> {
