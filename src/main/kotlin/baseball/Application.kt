@@ -1,5 +1,7 @@
 package baseball
+import camp.nextstep.edu.missionutils.Console
 
 fun main() {
-    TODO("프로그램 구현")
+    val game = GameController(GameView(InputCheck()), Model())
+    game.startGame()
 }

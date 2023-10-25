@@ -1,0 +1,39 @@
+package baseball
+
+class GameController(private val view: GameView, private val model: Model) {
+    fun startGame() {
+        view.startGameView()
+        do {
+            playGame()
+        } while(restartGame())
+    }
+
+    private fun playGame() {
+        model.modelInit()
+        while(true) {
+            model.userNumber = view.inputNumberView()
+            val hint = compareNumber(model.userNumber, model.answerNumber)
+            view.hintView(hint.first, hint.second)
+            if(hint.first == 3) {
+                return
+            }
+        }
+    }
+
+    private fun restartGame() : Boolean {
+        val restartInput = view.restartInputView()
+        return restartInput == "1"
+    }
+
+    private fun compareNumber(input: String, answer: String) : Pair<Int, Int> {
+        var ball = 0;
+        var strike = 0;
+
+        for(i in input.indices) {
+            if (input[i] == answer[i]) strike++
+            if (input[i] != answer[i] && input[i] in answer) ball++
+        }
+
+        return Pair(strike, ball)
+    }
+}
