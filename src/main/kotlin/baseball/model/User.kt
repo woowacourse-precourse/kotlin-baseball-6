@@ -19,9 +19,7 @@ class User {
     }
 
     private fun checkNumber(input: CharArray) {
-        input.forEach {
-            require(it in '1'..'9')
-        }
+        require(input.all { it in '1'..'9' })
     }
 
     private fun checkSize(input: CharArray) {
