@@ -52,3 +52,20 @@ fun validateInput(userInput: String) {
     }
 
 }
+
+fun compare(answer: String, userInput: String): Pair<Int, Int> {
+    var strike = 0
+    var ball = 0
+
+    for (index in userInput.indices) {
+        if (userInput[index] == answer[index]) {
+            strike++
+            continue
+        }
+        if (answer.contains(userInput[index])) {
+            ball++
+        }
+    }
+    return Pair(strike, ball)
+
+}
