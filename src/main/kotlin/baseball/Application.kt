@@ -80,7 +80,6 @@ fun parsingPlayerInput(playerList: MutableList<Int>, playerInput: String?, numbe
 // 게임 결과 처리 함수
 fun compareList(computerList: List<Int>, playerList: List<Int>): Boolean {
 
-    var result = "" // 결과
     var strikes = 0 // 스트라이크
     var balls = 0 // 볼
 
@@ -92,7 +91,7 @@ fun compareList(computerList: List<Int>, playerList: List<Int>): Boolean {
         }
     }
 
-    result = if (balls > 0 && strikes > 0)
+    val result = if (balls > 0 && strikes > 0)
         "${balls}볼 ${strikes}스트라이크"
     else if (balls > 0)
         "${balls}볼"
