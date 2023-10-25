@@ -135,9 +135,9 @@ fun printPlayerScore(calculatePlayerScore: PlayerScore) {
         // 볼 + 스트라이크
         calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike >= 1 -> resultPlayerScore += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL} ${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
         // 볼만
-        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike < 1 -> resultPlayerScore += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL}"
+        calculatePlayerScore.ball >= 1 && calculatePlayerScore.strike == 0 -> resultPlayerScore += "${calculatePlayerScore.ball}${Const.PLAYER_SCORE_BALL}"
         // 스트라이크만
-        calculatePlayerScore.ball < 1 && calculatePlayerScore.strike >= 1 -> resultPlayerScore += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
+        calculatePlayerScore.ball == 0 && calculatePlayerScore.strike >= 1 -> resultPlayerScore += "${calculatePlayerScore.strike}${Const.PLAYER_SCORE_STRIKE}"
         // 낫싱
         calculatePlayerScore.strike == 0 && calculatePlayerScore.ball == 0 -> resultPlayerScore += "${Const.PLAYER_SCORE_NOTHING}"
     }
