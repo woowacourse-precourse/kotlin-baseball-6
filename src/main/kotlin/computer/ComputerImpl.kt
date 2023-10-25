@@ -5,8 +5,9 @@ import randombaseballnumbergenerator.RandomBaseballNumberGenerator
 class ComputerImpl(
     private val randomBaseballNumberGenerator: RandomBaseballNumberGenerator
 ) : Computer {
+    private var _randomBaseballNumber: String = ""
     override val randomBaseballNumber: String
-        get() = TODO("Not yet implemented")
+        get() = _randomBaseballNumber
 
     override fun setRandomBaseballNumber() {
         TODO("Not yet implemented")
