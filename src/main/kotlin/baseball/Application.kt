@@ -21,8 +21,23 @@ fun main() {
 }
 
 fun playGame() {
+    val computerNumbers = generateComputerNumbers()
 
+    while (true) {
+        val userGuess = getUserInput()
+
+        val result = checkGuess(userGuess, computerNumbers)
+        println("결과: $result")
+
+        if (result == "3 스트라이크") {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }
+    }
+
+    println("게임 종료!")
 }
+
 
 fun generateComputerNumbers(): List<Int> {
     return List(3) { Randoms.pickNumberInRange(1, 9) }
