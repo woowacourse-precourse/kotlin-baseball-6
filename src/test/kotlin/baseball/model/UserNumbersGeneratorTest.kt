@@ -19,7 +19,7 @@ class UserNumbersGeneratorTest {
     }
 
     @Test
-    fun `입력받은 텍스트가 모두 숫자인지 테스트`(){
+    fun `입력받은 텍스트가 모두 1에서 9까지의 숫자인지 테스트`(){
         Assertions.assertSimpleTest {
             assertThrows<IllegalArgumentException> {  userNumbersGenerator = UserNumbersGenerator("12q") }
         }
