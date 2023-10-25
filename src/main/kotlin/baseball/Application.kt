@@ -3,6 +3,33 @@ package baseball
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
+class UserInputException{
+    companion object{
+        fun checkLength(userInput: String){
+            if(userInput.length!=3) throw IllegalArgumentException("입력값은 세 자리여야 합니다.")
+        }
+
+        fun checkZeroContain(userInput: String){
+            if(userInput.contains("0")) throw IllegalArgumentException("0은 입력할 수 없습니다.")
+        }
+
+        fun isDuplicate(userInput: String){
+            val distinctUserInput = userInput.toList().distinct().joinToString("")
+            if(distinctUserInput.length !=userInput.length) throw IllegalArgumentException("입력값은 서로다른 숫자여야 합니다.")
+        }
+
+        fun isNumber(userInput: String){
+            for(i in 0 until userInput.length){
+                if(userInput[i].code <'0'.code || userInput[i].code >'9'.code) throw IllegalArgumentException("입력값은 숫자여야 합니다.")
+            }
+        }
+
+        fun checkRestartUserInput(userInput: String){
+            if(!userInput.equals("1") && !userInput.equals("2")) throw IllegalArgumentException("1 또는 2를 입력해주세요.")
+        }
+    }
+}
+
 fun createRandomNumbers(): List<Int>{
     var randomNumbers = mutableListOf<Int>()
 
@@ -18,6 +45,11 @@ fun createRandomNumbers(): List<Int>{
 fun userInputNumbers(): List<Int>{
     var userInputNumberList = mutableListOf<Int>()
     val userInput = Console.readLine()
+
+    UserInputException.checkLength(userInput)
+    UserInputException.checkZeroContain(userInput)
+    UserInputException.isDuplicate(userInput)
+    UserInputException.isNumber(userInput)
 
     for(i in 0 until userInput.length){
         userInputNumberList.add(userInput[i].code - '0'.code)
@@ -76,6 +108,8 @@ fun start(){
 fun restart(){
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val userInput = Console.readLine()
+
+    UserInputException.checkRestartUserInput(userInput)
 
     if (userInput.equals("1")){
         start()
