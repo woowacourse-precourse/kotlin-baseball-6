@@ -1,6 +1,6 @@
 package baseball.domain
 
-import baseball.utils.Number.MAX_NUMBER
+import baseball.resources.*
 import baseball.utils.generateRandomNumbers
 
 class Computer {

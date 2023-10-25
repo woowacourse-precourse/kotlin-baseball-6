@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class UserValidationTest : NsTest() {
+class UserValidationTest {
 
     @Test
     fun `사용자가 2자리 숫자 입력`() {
@@ -55,9 +55,5 @@ class UserValidationTest : NsTest() {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             "".userChoiceValidation()
         }
-    }
-
-    override fun runMain() {
-        main()
     }
 }

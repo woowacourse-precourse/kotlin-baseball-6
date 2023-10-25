@@ -6,8 +6,7 @@ import baseball.domain.userChoiceValidation
 import baseball.domain.userNumberValidation
 import baseball.model.GameState
 import baseball.model.MatchResult
-import baseball.utils.Comment
-import baseball.utils.Comment.ENTER_NUMBER_COMMENT
+import baseball.resources.*
 import camp.nextstep.edu.missionutils.Console
 
 class PlayGame(
@@ -15,7 +14,7 @@ class PlayGame(
 ) {
 
     init {
-        println(Comment.STARTING_COMMENT)
+        println(STARTING_COMMENT)
     }
 
     fun playGame() {

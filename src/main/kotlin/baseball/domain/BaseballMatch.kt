@@ -1,22 +1,13 @@
 package baseball.domain
 
 import baseball.model.MatchResult
-import baseball.utils.BaseBallComment.BALL_COMMENT
-import baseball.utils.BaseBallComment.NOTHING_COMMENT
-import baseball.utils.BaseBallComment.STRIKE_COMMENT
-import baseball.utils.Comment.BR
-import baseball.utils.Comment.END_COMMENT
-import baseball.utils.Comment.GAME_STOP_COMMENT
-import baseball.utils.Comment.SPACE
-import baseball.utils.Number.THREE
-import baseball.utils.Number.ZERO
+import baseball.resources.*
 
 class BaseballMatch(
-    private val computer: String
-) {
-
-    private var ball: Int = ZERO
+    private val computer: String,
+    private var ball: Int = ZERO,
     private var strike: Int = ZERO
+) {
 
     fun matchComputerUserNumber(user: String): MatchResult {
         resetBallCount()
