@@ -31,5 +31,10 @@ class Controller(
             player.baseballNumber
         )
     }
+
+    fun threeStrike() {
+        OutputView.guessedAllBaseballNumber()
+        OutputView.restartOrTerminateGame()
+    }
 }
 
