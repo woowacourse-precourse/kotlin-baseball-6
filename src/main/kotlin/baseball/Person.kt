@@ -21,17 +21,17 @@ class Person {
 
     private fun validate(input: String): Boolean{
         if(input.length > 3) {
-            throw IllegalArgumentException("3자리 이상을 입력하였습니다.")
+            throw IllegalArgumentException(ErrorMessage.LENGTH_OVER_THREE.eMessage)
         }
 
         for (number in input) {
             if (number !in ('1'..'9')) {
-                throw IllegalArgumentException("수를 잘못 입력하였습니다.")
+                throw IllegalArgumentException(ErrorMessage.WRONG_NUMBER.eMessage)
             }
             if(input.count {
                     it == number
                 } > 1) {
-                throw IllegalArgumentException("중복된 숫자를 입력하셨습니다.")
+                throw IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.eMessage)
             }
         }
 

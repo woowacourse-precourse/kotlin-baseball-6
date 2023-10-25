@@ -16,10 +16,10 @@ class BaseballGame {
     }
 
     fun start() {
-        println("숫자 야구 게임을 시작합니다.")
+        println(GameMessage.GAME_START.message)
 
         while(result == 1){
-            print("숫자를 입력해주세요 : ")
+            print(GameMessage.INPUT_NUMBER.message)
             you.getInput()
 
             if(printResult(check(computer, you))) {
@@ -52,36 +52,36 @@ class BaseballGame {
         val (strike, ball) = check
         if(strike == 0) {
             if(ball == 0) {
-                println("낫싱")
+                println(Result.NOTHING.state)
                 return false
             }
-            println("${ball}볼")
+            println("${ball}"+Result.BALL.state)
             return false
         }
         if(ball == 0) {
-            println("${strike}스트라이크")
+            println("${strike}"+Result.STRIKE.state)
             if(strike == 3) {
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                println(GameMessage.GAME_END.message)
                 return true
             }
             return false
         }
-        println("${ball}볼 ${strike}스트라이크")
+        println("${ball}" + Result.BALL.state + " ${strike}" + Result.STRIKE.state)
         return false
     }
 
     private fun inputResult(): Int {
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println(GameMessage.GAME_RESTART.message)
         return validateResult(Console.readLine())
     }
 
     private fun validateResult(input: String): Int {
         if(input.length > 1) {
-            throw IllegalArgumentException("1 또는 2만 입력해주세요")
+            throw IllegalArgumentException(ErrorMessage.LENGTH_OVER_ONE.eMessage)
         }
 
         if(input[0] !in '1'..'2') {
-            throw IllegalArgumentException("1,2 이외의 숫자를 입력하셨습니다.")
+            throw IllegalArgumentException(ErrorMessage.WRONG_NUMBER.eMessage)
         }
 
         return input.toInt()
