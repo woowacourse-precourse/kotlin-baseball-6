@@ -4,15 +4,18 @@ import baseball.BASEBALL_MAX_SIZE
 import baseball.model.BaseBall
 import baseball.model.Computer
 import baseball.model.User
-import baseball.view.BaseBallView
+import baseball.view.InputView
+import baseball.view.OutputView
 import camp.nextstep.edu.missionutils.Console
 
 class BaseBallController {
 
-    private val baseBallView = BaseBallView()
+    private val inputVIew = InputView()
+    private val outputVIew = OutputView()
+
 
     fun playGame() {
-        baseBallView.printPlayGame()
+        inputVIew.printPlayGame()
         val computer = Computer()
         var computerBaseBall = BaseBall(mutableListOf())
         var status = START
@@ -25,7 +28,7 @@ class BaseBallController {
                 }
 
                 CONTINUE -> {
-                    baseBallView.printInputUser()
+                    inputVIew.printInputUser()
                     val user = User().inputUser()
                     status = checkAnswer(computerBaseBall, user)
                 }
@@ -35,16 +38,15 @@ class BaseBallController {
                 }
             }
         }
-
     }
 
     private fun checkAnswer(computerList: BaseBall, userList: BaseBall): Int {
         val strike = checkStrike(computerList, userList)
         val ball = checkBall(computerList, userList) - strike
 
-        baseBallView.printBaseBallResult(strike, ball)
+        outputVIew.printBaseBallResult(strike, ball)
         if (strike == BASEBALL_MAX_SIZE) {
-            baseBallView.printGameOver()
+            outputVIew.printGameOver()
             return askContinueGame()
         }
 
@@ -71,7 +73,7 @@ class BaseBallController {
     }
 
     private fun askContinueGame(): Int {
-        baseBallView.printContinue()
+        inputVIew.printContinue()
         val input = Console.readLine()
 
         require(input == GAME_END_NUM || input == GAME_CONTINUE_NUM)
