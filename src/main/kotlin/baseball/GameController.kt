@@ -7,7 +7,7 @@ class GameController {
     fun run() {
         view.displayMessage("숫자 야구 게임을 시작합니다.")
         var playAgain = true
-        
+
         while (playAgain) {
             val computerNumbers = model.generateComputerNumbers()
             var attempts = 0
