@@ -21,5 +21,7 @@ class Baseball(
     fun runGame() {
         pitcher.generateNumbers()
         batter.enterNumbers()
+        referee.judge(pitcher.getNumbers(), batter.getNumbers())
+        referee.showResult()
     }
 }
