@@ -8,6 +8,7 @@ class NumberComparator(private val userInputtedNumber: UserExpect) {
     init {
         val userNumber = userInputtedNumber.convertToInt()
         require(isCorrectRangeNumber(userNumber)) { ErrorMessage.NOT_NUMBER_RANGE.message }
+        require(isUniqueNumber(userInputtedNumber.getUserInput())) { ErrorMessage.NOT_DISTINCT_NUMBER.message }
     }
 
     private val randomNumbers = mutableListOf<Int>()
@@ -30,6 +31,15 @@ class NumberComparator(private val userInputtedNumber: UserExpect) {
             in MIN_VALUE..MAX_VALUE -> true
             else -> false
         }
+    }
+
+    private fun isUniqueNumber(userNumber: String): Boolean {
+        val splitNumber = userNumber.split(ExtraText.BLANK.text)
+            .filter { it.isNotBlank() }
+            .toMutableList()
+
+        val distinctNumber = splitNumber.distinct()
+        return splitNumber.size == distinctNumber.size
     }
 
     private fun comparePosition(number: Int, index: Int) {
@@ -56,9 +66,10 @@ class NumberComparator(private val userInputtedNumber: UserExpect) {
     }
 
     private fun convertNumber(userNumber: String): MutableList<String> {
-        val splitNumber = userNumber.split(ExtraText.BLANK.text).toMutableList()
-        splitNumber.remove(ExtraText.BLANK.text)
-        splitNumber.remove(ExtraText.BLANK.text)
+        val splitNumber = userNumber.split(ExtraText.BLANK.text)
+            .filter { it.isNotBlank() }
+            .toMutableList()
+
         if (splitNumber.contains(ExtraText.ZERO.text)) require(false) { ErrorMessage.INPUT_ZERO.message }
         return splitNumber
     }

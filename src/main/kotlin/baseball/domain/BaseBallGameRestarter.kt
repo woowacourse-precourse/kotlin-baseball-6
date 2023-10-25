@@ -10,21 +10,18 @@ class BaseBallGameRestarter(private val userChoice: Int) {
     }
 
     fun checkRestartChoice(): ChoiceState {
-        return when (userChoice) {
-            RESTART_GAME -> ChoiceState.RESTART
-            EXIT_GAME -> ChoiceState.EXIT
-            else -> {
-                require(false) { ErrorMessage.CHOICE.message }
-                ChoiceState.EXIT
-            }
+        if (userChoice == RESTART_GAME) {
+            return ChoiceState.RESTART
         }
+
+        return ChoiceState.EXIT
     }
 
 
     private fun isIncorrectRangeChoice(userNumber: Int): Boolean {
         return when (userNumber) {
-            in RESTART_GAME..EXIT_GAME -> false
-            else -> true
+            in RESTART_GAME..EXIT_GAME -> true
+            else -> false
         }
     }
 
