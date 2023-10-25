@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
-//숫자야구는 3개 혹은 4개의 숫자로 하는 게임이다. 변경 여지 있음.
-
 fun makeSecretNumber(): String {
     val computer: MutableList<Int> = mutableListOf()
     for (it in 0 until MAX_NUMBER) {
