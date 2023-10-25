@@ -1,8 +1,8 @@
 package baseball
 
 import baseball.model.Answer
+import baseball.model.ExitInput
 import baseball.model.Hint
-import baseball.model.Validator
 import baseball.utils.RandomNumberGenerator
 import baseball.view.OutputView
 import camp.nextstep.edu.missionutils.Console
@@ -15,34 +15,33 @@ class Game {
         outputView.printGameStart()
         while (true) {
             val computer = Answer(RandomNumberGenerator.generate(1, 9, 3))
-            startGuessingAnswer(computer)
+            startGuessingAnswerUntilAllStrike(computer)
+            outputView.printGameClear()
 
-            if (!playNextGame()) {
+            if (isGameExit()) {
                 break
             }
         }
     }
 
-    private fun startGuessingAnswer(computer: Answer) {
+    private fun startGuessingAnswerUntilAllStrike(computer: Answer) {
         while (true) {
             print("숫자를 입력해주세요 : ")
             val userAnswer = Answer(Console.readLine())
-            if (checkStrike(userAnswer, computer)) {
+            if (isAllStrike(userAnswer, computer)) {
                 return
             }
         }
     }
 
-    private fun checkStrike(input: Answer, computer: Answer): Boolean {
+    private fun isAllStrike(input: Answer, computer: Answer): Boolean {
         val hint = Hint(computerAnswer = computer, userAnswer = input)
         outputView.printHint(hint)
         return hint.isAllStrike()
     }
 
-    private fun playNextGame(): Boolean {
-        outputView.printGameClear()
-        val answer = Console.readLine()
-        Validator.validExitInput(answer)
-        return answer == "1"
+    private fun isGameExit(): Boolean {
+        val input = ExitInput(Console.readLine())
+        return input.isExit()
     }
 }
