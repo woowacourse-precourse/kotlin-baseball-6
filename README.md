@@ -4,7 +4,7 @@
 - 게임 시작
   - 종료 선택
     - 게임 재개 혹은 종료
-    - 재개 : 1, 종료 : 2, 이외의 숫자는 `illegalArgumentException` 발생 후 어플 종료
+    - 재개 : 1, 종료 : 2, 이외의 숫자는 `illegalArgumentException` 발생 후 어플 종료 
 
 - 랜덤 숫자 생성
   - 컴퓨터가 랜덤 숫자를 3개 생성
