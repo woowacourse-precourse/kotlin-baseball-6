@@ -77,18 +77,13 @@ fun gameResult(answer: List<Int>, guess: String): String {
     }
 }
 
-fun checkInput(number: String) {
-    // null, 정수, 입력 자리수 체크
-    if (number.isNotEmpty() && number.chars()
-            .allMatch { Character.isDigit(it) } && number.length == 3
-    ) {
-        // 겹치지 않는 숫자 체크와 1-9 사이 체크
-        for (i in 0..<3) {
-            if (number.count { it == number[i] } > 1 || Character.getNumericValue(number[i]) == 0) {
-                throw IllegalArgumentException()
-            }
-        }
-    } else {
-        throw IllegalArgumentException()
+fun checkInput(check: String) {
+    if (check.length != 3 || !check.all { it.isDigit() }) {
+        throw IllegalArgumentException("입력 오류.")
+    }
+
+    val uniqueNum = check.toSet()
+    if (uniqueNum.size != 3) {
+        throw IllegalArgumentException("서로 다른 수가 아닙니다.")
     }
 }
