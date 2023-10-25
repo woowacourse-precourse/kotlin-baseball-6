@@ -33,6 +33,12 @@ class Program {
         }
     }
 
+    fun checkOnlyDigits(input: String) {
+        if (!input.matches(Regex("\\d+"))) {
+            throw IllegalArgumentException("입력은 숫자로만 이루어져야 합니다. 다시 입력해주세요.")
+        }
+    }
+
     fun checkRestartNumber(input: String) {
         if ((restartNumber != input) && (quitNumber != input) ) {
             throw IllegalArgumentException("1(재시작) 또는 2(종료)를 입력해주세요. 다시 입력해주세요.")
