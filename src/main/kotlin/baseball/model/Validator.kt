@@ -18,5 +18,6 @@ object Validator {
         OutOfRange("각 숫자는 1~9까지의 숫자만 입력 가능합니다."),
         Duplicated("중복되는 숫자는 입력 불가능합니다."),
         NotNumeric("문자는 입력할 수 없습니다."),
+        InvalidExitInput("1 또는 2만 입력할 수 있습니다.")
     }
 }
