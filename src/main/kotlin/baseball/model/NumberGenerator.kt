@@ -1,6 +1,7 @@
 package baseball.model
 
 interface NumberGenerator {
-    fun generator():Int
+
+    fun generator(): Int
 
 }

@@ -25,7 +25,7 @@ class BaseBallNumbersGeneratorTest {
     }
 
     @Test
-    fun `1에서 9의 숫자로 이루어지는지 테스트`(){
+    fun `1에서 9의 숫자로 이루어지는지 테스트`() {
         val oneToNine = (1..9)
         baseBallNumbersGenerator.generate().map { baseballNumber ->
             assert(oneToNine.contains(baseballNumber))

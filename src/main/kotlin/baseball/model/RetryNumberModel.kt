@@ -1,6 +1,6 @@
 package baseball.model
 
-class RetryNumberModel(private val number:Int) {
+class RetryNumberModel(private val number: Int) {
 
     fun isRetry() = number == RETRY_NUM
 

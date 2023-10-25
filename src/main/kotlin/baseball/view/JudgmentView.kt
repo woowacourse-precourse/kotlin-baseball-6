@@ -1,7 +1,7 @@
 package baseball.view
 
 class JudgmentView {
-    fun result(result:String){
+    fun result(result: String) {
         println(result)
     }
 

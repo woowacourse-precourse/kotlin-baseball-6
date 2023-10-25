@@ -24,7 +24,7 @@ class BaseBallControllerTest {
             mutableListOf(3, 1, 2),
             mutableListOf(4, 5, 6),
             mutableListOf(3, 2, 5),
-            mutableListOf(1,2,3)
+            mutableListOf(1, 2, 3)
         )
         val expected = mutableListOf(
             "3볼 ",
@@ -32,7 +32,7 @@ class BaseBallControllerTest {
             "1볼 1스트라이크",
             "3스트라이크"
         )
-        for (index in usersNumbers.indices){
+        for (index in usersNumbers.indices) {
             assertEquals(baseballController.judgment(usersNumbers[index]), expected[index])
         }
     }

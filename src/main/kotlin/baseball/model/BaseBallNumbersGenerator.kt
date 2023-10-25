@@ -2,7 +2,7 @@ package baseball.model
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class BaseBallNumbersGenerator:NumbersGenerator {
+class BaseBallNumbersGenerator : NumbersGenerator {
     override fun generate(): MutableList<Int> {
         val result = mutableListOf<Int>()
         while (result.size < 3) {
