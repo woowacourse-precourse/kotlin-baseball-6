@@ -71,9 +71,9 @@ fun parsingPlayerInput(playerList: MutableList<Int>, playerInput: String?, numbe
         // 숫자가 아닌 예외
         if (playerInput[index] < '1' || playerInput[index] > '9') throw IllegalArgumentException()
         // 숫자가 중복된 예외
-        if (playerList.contains(playerInput[index] - '0')) throw IllegalArgumentException()
+        if (playerList.contains(Character.getNumericValue(playerInput[index]))) throw IllegalArgumentException()
         // 정수 리스트에 넣어주기
-        playerList.add(playerInput[index] - '0')
+        playerList.add(Character.getNumericValue(playerInput[index]))
     }
 }
 
