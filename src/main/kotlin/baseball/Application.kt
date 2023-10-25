@@ -12,18 +12,19 @@ fun main() {
 private fun baseballGameMain() {
     val questionNums : MutableList<Char> = createQuestion()
     val userNums :  MutableList<Char> = inputNums()
-    countHintNum(questionNums, userNums)
+
 }
 
 private fun createQuestion(): MutableList<Char> {
-    val questionNums : MutableList<Char> = mutableListOf<Char>()
-    while (questionNums.size < 3) {
-        val curNum : Char = Randoms.pickNumberInRange(1, 9).toChar()
+    var questionNums : String = ""
+    while (questionNums.length < 3) {
+        val curNum : String = Randoms.pickNumberInRange(1, 9).toString()
         if(!questionNums.contains(curNum)) {
-            questionNums.add(curNum)
+            questionNums += curNum
         }
     }
-    return questionNums
+
+    return questionNums.toMutableList()
 }
 
 private fun inputNums() : MutableList<Char> {
