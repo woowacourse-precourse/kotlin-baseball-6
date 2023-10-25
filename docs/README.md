@@ -24,6 +24,6 @@
    2. printResult
       ball과 strike 갯수 출력
 
-5. Exception
-   추가 예외 처리
+5. Exception 추가 예외 처리
+   1. 1~9 사이의 숫자가 아닌 0이 포함되면 에러처리
    

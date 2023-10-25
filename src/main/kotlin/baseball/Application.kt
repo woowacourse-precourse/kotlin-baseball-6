@@ -51,6 +51,10 @@ fun startGame(){
                 var strike = 0
 
                 for (num in userInputList) {
+                    if(num == 0){
+                        throw IllegalArgumentException("1~9사이의 숫자를 입력해야 합니다.")
+                    }
+
                     if (num in computer) {
                         val computerNum = computer.indexOf(num)
                         val myNum = userInputList.indexOf(num)
