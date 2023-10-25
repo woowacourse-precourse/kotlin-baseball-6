@@ -3,14 +3,19 @@ package baseball.domain
 import baseball.constant.ErrorMessage
 import baseball.constant.ExtraText
 
-class NumberComparator {
+class NumberComparator(private val userInputtedNumber: UserExpect) {
+
+    init {
+        val userNumber = userInputtedNumber.convertToInt()
+        require(isCorrectRangeNumber(userNumber)) { ErrorMessage.NOT_NUMBER_RANGE.message }
+    }
 
     private val randomNumbers = mutableListOf<Int>()
     private val userNumbers = mutableListOf<Int>()
     private val ballCountResult: BallCountResult = BallCountResult()
 
-    fun compareEachNumbers(userInputtedNumber: String, randomNumber: RandomNumber): BallCountResult {
-        convertUserNumber(userInputtedNumber)
+    fun compareEachNumbers(randomNumber: RandomNumber): BallCountResult {
+        convertUserNumber(userInputtedNumber.getUserInput())
         convertRandomNumber(randomNumber.loadNumber())
         userNumbers.forEachIndexed { index, number ->
             if (randomNumbers.contains(number)) {
@@ -18,6 +23,13 @@ class NumberComparator {
             }
         }
         return ballCountResult
+    }
+
+    private fun isCorrectRangeNumber(userNumber: Int): Boolean {
+        return when (userNumber) {
+            in MIN_VALUE..MAX_VALUE -> true
+            else -> false
+        }
     }
 
     private fun comparePosition(number: Int, index: Int) {
@@ -49,5 +61,10 @@ class NumberComparator {
         splitNumber.remove(ExtraText.BLANK.text)
         if (splitNumber.contains(ExtraText.ZERO.text)) require(false) { ErrorMessage.INPUT_ZERO.message }
         return splitNumber
+    }
+
+    companion object {
+        private const val MIN_VALUE = 100
+        private const val MAX_VALUE = 999
     }
 }

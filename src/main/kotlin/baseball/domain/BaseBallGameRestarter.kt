@@ -3,16 +3,28 @@ package baseball.domain
 import baseball.constant.ChoiceState
 import baseball.constant.ErrorMessage
 
-class BaseBallGameRestarter {
-    fun checkRestartChoice(userChoice: String): ChoiceState {
-        val userRestartChoice = userChoice.toInt()
-        return when (userRestartChoice) {
+class BaseBallGameRestarter(private val userChoice: Int) {
+
+    init {
+        require(isIncorrectRangeChoice(userChoice)) { ErrorMessage.NOT_RESTART_RANGE.message }
+    }
+
+    fun checkRestartChoice(): ChoiceState {
+        return when (userChoice) {
             RESTART_GAME -> ChoiceState.RESTART
             EXIT_GAME -> ChoiceState.EXIT
             else -> {
                 require(false) { ErrorMessage.CHOICE.message }
                 ChoiceState.EXIT
             }
+        }
+    }
+
+
+    private fun isIncorrectRangeChoice(userNumber: Int): Boolean {
+        return when (userNumber) {
+            in RESTART_GAME..EXIT_GAME -> false
+            else -> true
         }
     }
 

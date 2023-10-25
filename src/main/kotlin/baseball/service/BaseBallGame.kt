@@ -4,6 +4,7 @@ import baseball.constant.ChoiceState
 import baseball.domain.BallCountResult
 import baseball.domain.BaseBallGameRestarter
 import baseball.domain.NumberComparator
+import baseball.domain.UserExpect
 import baseball.repository.RandomNumberRepository
 import baseball.util.RandomNumberGenerator
 
@@ -15,14 +16,14 @@ class BaseBallGame {
         initRandomNumber()
     }
 
-    fun playGame(userNumber: String): BallCountResult {
-        val numberComparator = NumberComparator()
-        return numberComparator.compareEachNumbers(userNumber, randomNumberRepository.loadRandomNumber())
+    fun playGame(userExpect: UserExpect): BallCountResult {
+        val numberComparator = NumberComparator(userExpect)
+        return numberComparator.compareEachNumbers(randomNumberRepository.loadRandomNumber())
     }
 
-    fun restartChoice(userChoice: String): ChoiceState {
-        val gameRestarter = BaseBallGameRestarter()
-        return gameRestarter.checkRestartChoice(userChoice)
+    fun restartChoice(userChoice: Int): ChoiceState {
+        val gameRestarter = BaseBallGameRestarter(userChoice)
+        return gameRestarter.checkRestartChoice()
     }
 
     fun restartGame() {
