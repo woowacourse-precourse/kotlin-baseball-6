@@ -19,6 +19,8 @@ fun main() {
 
     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.")
+
+    val replay = getInput(InputTypeEnum.RESTART)
 }
 
 fun setNumber(): List<Int> {
@@ -53,8 +55,11 @@ fun getInput(type: InputTypeEnum): String {
         }
 
         InputTypeEnum.RESTART -> {
-            // TODO : 기능 구현 필요
-            userInput
+            if (userInput != "1" && userInput != "2") {
+                throw IllegalArgumentException()
+            } else {
+                userInput
+            }
         }
     }
 
