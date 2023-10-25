@@ -15,6 +15,7 @@ fun main() {
                 isGameEnded = true
             }
         }
-        isProgramEnded = true
+
+        isProgramEnded = !requestRestartInput()
     }
 }
