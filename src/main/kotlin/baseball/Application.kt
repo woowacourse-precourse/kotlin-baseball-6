@@ -20,7 +20,7 @@ fun main() {
 
         println(StringRes.ENDING_MSG)
         println(StringRes.REPLAY_MSG)
-    }while(getInput(InputTypeEnum.RESTART) == Const.REPLAY)
+    } while (getInput(InputTypeEnum.RESTART) == Const.REPLAY)
 
 }
 
