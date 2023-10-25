@@ -9,7 +9,7 @@ fun solveBaseBallGame(computerNum: MutableList<Int>) {
         val userNumList = if (checkCorrectNum(userNum)) {
             convertStringToMutableList(userNum)
         } else {
-            throw IllegalArgumentException("서로 다른 세 자리 숫자를 입력해주세요.")
+            throw IllegalArgumentException(Dialogues.illegalArgumentExceptionMessage)
         }
 
         var result = compareNum(computerNum, userNumList)
