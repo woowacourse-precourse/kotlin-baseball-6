@@ -28,4 +28,10 @@ object Validation {
         }
 
     }
+
+    fun checkDecision(input: String) {
+        if (input != "1" && input != "2") {
+            throw IllegalArgumentException(Message.ERROR_DECISION)
+        }
+    }
 }
