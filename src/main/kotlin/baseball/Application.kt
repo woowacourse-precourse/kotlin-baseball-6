@@ -1,5 +1,9 @@
 package baseball
 
+import baseball.controller.GameManager
+import baseball.model.RandomGenerator
+import baseball.view.OutputView
+
 fun main() {
-    TODO("프로그램 구현")
+    OutputView.Start()
 }
