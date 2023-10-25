@@ -48,12 +48,12 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         when (balls) {
             0 -> when (strikes) {
                 0 -> println(Constants.NOTHING_MESSAGE)
-                else -> println("$strikes"+Constants.STRIKE_MESSAGE)
+                else -> println("$strikes" + Constants.STRIKE_MESSAGE)
             }
 
             else -> when (strikes) {
-                0 -> println("$balls"+Constants.BALL_MESSAGE)
-                else -> println("$balls"+Constants.BALL_MESSAGE + " $strikes" + Constants.STRIKE_MESSAGE)
+                0 -> println("$balls" + Constants.BALL_MESSAGE)
+                else -> println("$balls" + Constants.BALL_MESSAGE + " $strikes" + Constants.STRIKE_MESSAGE)
             }
         }
     }

@@ -8,7 +8,7 @@ class ResultView {
         println(Constants.START_MESSAGE)
     }
 
-    fun askForRestart(): Boolean{
+    fun askForRestart(): Boolean {
         println(Constants.ASK_RESTART_MESSAGE)
         return Console.readLine().toInt() != 2
     }
