@@ -45,3 +45,15 @@ fun checkGuess(computer: List<Int>, userInput: List<Int>): String {
         else -> "낫싱"
     }
 }
+
+fun playAgain(): Boolean {
+    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val choice = Console.readLine().toInt()
+    if (choice == 1) {
+        return true
+    } else if (choice == 2) {
+        return false
+    } else {
+        throw IllegalArgumentException("잘못된 값을 입력하셨습니다. 프로그램을 종료합니다.")
+    }
+}
