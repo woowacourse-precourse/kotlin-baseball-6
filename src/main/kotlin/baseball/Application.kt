@@ -14,19 +14,26 @@ fun main() {
 
             val userInput = readLine()
 
-            val userGuess = userInput?.toIntOrNull()
+            try {
+                val userGuess = userInput?.toInt()
 
-            if (userGuess == null || !input(userGuess)) {
-                throw IllegalArgumentException()
-            } else {
-                val result = checkGuess(userGuess, computerNumber)
-
-                if (result == 30) {
-                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                    break
+                if (userGuess == null || !input(userGuess)) {
+                    throw IllegalArgumentException()
                 } else {
-                    displayResult(result)
+                    val result = checkGuess(userGuess, computerNumber)
+
+                    if (result == 30) {
+                        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                        break
+                    } else {
+                        displayResult(result)
+                        if (result == 0) {
+                            println("낫싱")
+                        }
+                    }
                 }
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException()
             }
         }
 
@@ -92,7 +99,5 @@ fun displayResult(result: Int) {
         println("$strikes 스트라이크")
     } else if (balls > 0) {
         println("$balls 볼")
-    } else{
-        println("낫싱")
     }
 }
