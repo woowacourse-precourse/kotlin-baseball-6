@@ -27,6 +27,7 @@ object Game {
             Hint.printHint(count)
         } while (!isAnswer())
         // 정답을 맞춘 후 실행됨
+        println(CORRECT_THREE_NUMBERS_MESSAGE + FINISH_BASEBALL_GAME_MESSAGE)
         Computer.askRestartOrFinish()
         Player.inputRestartOrEnd()
     }
