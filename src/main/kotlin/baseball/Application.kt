@@ -98,16 +98,11 @@ fun compareNumbers(numberOfComputer: List<String>, numberOfPlayer: List<String>)
 }
 
 fun printResult(result: Result) {
-    if (result.sumResult() == 0) {
-        println("낫싱")
-    } else {
-        if (result.strike == 0) {
-            println("${result.ball}볼")
-        } else if (result.ball == 0 && result.strike < 3) {
-            println("${result.strike}스트라이크")
-        } else if (result.strike < 3 && result.ball != 0) {
-            println("${result.ball}볼 ${result.strike}스트라이크")
-        }
+    when {
+        result.sumResult() == 0 -> println("낫싱")
+        result.strike == 0 -> println("${result.ball}볼")
+        result.ball == 0 && result.strike < 3 -> println("${result.strike}스트라이크")
+        result.ball != 0 && result.strike < 3 -> println("${result.ball}볼 ${result.strike}스트라이크")
     }
 }
 
