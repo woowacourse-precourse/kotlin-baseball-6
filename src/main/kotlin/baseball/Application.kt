@@ -40,7 +40,7 @@ fun main() {
                 var ball = 0
 
                 // 자리가 같으면 strike, 포함만 되어있다면 ball에 1을 추가한다
-                for (i in 0..<baseballLength) {
+                for (i in 0 until baseballLength) {
                     if (computer[i] == Character.getNumericValue(number[i])) {
                         strike++
                     } else if (computer.contains(Character.getNumericValue(number[i]))) {
