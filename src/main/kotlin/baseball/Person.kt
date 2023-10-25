@@ -1,3 +1,5 @@
+package baseball
+
 import java.lang.IllegalArgumentException
 import camp.nextstep.edu.missionutils.Console
 
