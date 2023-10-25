@@ -31,6 +31,7 @@ fun main() {
                     program.checkThreeNumbers(input)
                     program.checkDistinctNumbers(input)
                     program.checkOnlyDigits(input)
+                    program.checkContainsSpace(input)
                     isValidInput = true
                 } catch (e: IllegalArgumentException) {
                     println(e.message)

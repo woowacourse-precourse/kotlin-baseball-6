@@ -39,6 +39,12 @@ class Program {
         }
     }
 
+    fun checkContainsSpace(input: String) {
+        if (input.contains(" ")) {
+            throw IllegalArgumentException("입력에 공백이 포함되어있습니다. 다시 입력해주세요.")
+        }
+    }
+
     fun checkRestartNumber(input: String) {
         if ((restartNumber != input) && (quitNumber != input) ) {
             throw IllegalArgumentException("1(재시작) 또는 2(종료)를 입력해주세요. 다시 입력해주세요.")
