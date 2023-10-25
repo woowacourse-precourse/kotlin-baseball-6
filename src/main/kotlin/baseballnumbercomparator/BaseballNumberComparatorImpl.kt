@@ -7,7 +7,11 @@ class BaseballNumberComparatorImpl : BaseballNumberComparator {
 
         val checkContainingNumbersResult = checkContainingNumbers(answer,baseballNumber, ball)
         ball = checkContainingNumbersResult.ball
-        
+
+        val checkNumbersAreInSamePlaceResult = checkNumbersAreInSamePlace(answer, baseballNumber, strike, ball)
+        strike = checkNumbersAreInSamePlaceResult.strike
+        ball = checkNumbersAreInSamePlaceResult.ball
+
         return BaseballResult(strike = strike, ball)
     }
 
@@ -21,8 +25,22 @@ class BaseballNumberComparatorImpl : BaseballNumberComparator {
         return BaseballResult(0, ball)
     }
 
-    private fun checkNumbersAreInSamePlace() {
+    private fun checkNumbersAreInSamePlace(
+        answer: String,
+        baseballNumber: String,
+        currentStrike: Int,
+        currentBall: Int
+    ): BaseballResult {
+        var strike = currentStrike
+        var ball = currentBall
 
+        for (index in 0..2) {
+            if (answer[index] == baseballNumber[index]) {
+                strike += 1
+                ball -= 1
+            }
+        }
+        return BaseballResult(strike, ball)
     }
 
     companion object {
