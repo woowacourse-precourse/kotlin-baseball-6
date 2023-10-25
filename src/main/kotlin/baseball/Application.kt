@@ -55,8 +55,34 @@ fun printResult(result: List<Int>){
     else if(strike==0){
         println("${ball}볼")
     }
+    else if(ball!=0 && strike!=0){
+        println("${ball}볼 ${strike}스트라이크")
+    }
+}
+
+fun start(){
+    print("숫자를 입력해주세요 : ")
+    val randomNumbers = createRandomNumbers()
+    do {
+        val userInputNumbers = userInputNumbers()
+        val result = checkResult(randomNumbers, userInputNumbers)
+        printResult(result)
+    }while (result[1]!=3)
+
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    restart()
+}
+
+fun restart(){
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val userInput = Console.readLine()
+
+    if (userInput.equals("1")){
+        start()
+    }
 }
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
+    start()
 }
