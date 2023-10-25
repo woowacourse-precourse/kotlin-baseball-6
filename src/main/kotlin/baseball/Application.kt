@@ -28,8 +28,8 @@ fun inputRestart(): Boolean {
     val restart = readlnOrNull()
 
     return when (restart) {
-        "2" -> false
         "1" -> true
+        "2" -> false
         else -> throw IllegalArgumentException()
     }
 }
