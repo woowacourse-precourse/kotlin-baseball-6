@@ -1,5 +1,8 @@
 package baseball
 
+val gameManager: GameManager by lazy {
+    GameManager()
+}
 fun main() {
-    TODO("프로그램 구현")
+    gameManager.gameMaking()
 }
