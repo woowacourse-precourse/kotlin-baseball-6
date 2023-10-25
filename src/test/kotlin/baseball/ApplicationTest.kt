@@ -40,7 +40,12 @@ class ApplicationTest : NsTest() {
         }
     }
 
-
+    @Test
+    fun `예외 테스트2`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("가나다") }
+        }
+    }
 
     override fun runMain() {
         main()
