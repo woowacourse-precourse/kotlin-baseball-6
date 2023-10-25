@@ -29,7 +29,7 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         return strikes
     }
 
-    fun countBalls(computer: Int, user: Int): Int {
+    private fun countBalls(computer: Int, user: Int): Int {
         var balls = 0
         for (digit in user.toString()) {
             if (digit in computer.toString()) balls++
@@ -37,12 +37,12 @@ class GameLogic(private val computerNum: Int, private val userNum: Int) {
         return balls - countStrikes(computer, user)
     }
 
-    fun threeStrike() {
+    private fun threeStrike() {
         println("3스트라이크")
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
-    fun checkZeroCount(strikes: Int, balls: Int) {
+    private fun checkZeroCount(strikes: Int, balls: Int) {
         when (balls) {
             0 -> when (strikes) {
                 0 -> println("낫싱")

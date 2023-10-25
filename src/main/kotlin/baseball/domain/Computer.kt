@@ -8,18 +8,19 @@ class Computer {
     fun updateNumber() {
         computerNum = getRandomNum()
     }
-}
 
-fun getRandomNum(): Int {
-    val computerNum = mutableListOf<Int>()
+    private fun getRandomNum(): Int {
+        val computerNum = mutableListOf<Int>()
 
-    while (computerNum.size < 3) {
-        val randomNumber = Randoms.pickNumberInRange(1, 9)
+        while (computerNum.size < 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
 
-        if (!computerNum.contains(randomNumber)) {
-            computerNum.add(randomNumber)
+            if (!computerNum.contains(randomNumber)) {
+                computerNum.add(randomNumber)
+            }
         }
+
+        return computerNum.joinToString("").toInt()
     }
 
-    return computerNum.joinToString("").toInt()
 }
