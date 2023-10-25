@@ -152,8 +152,8 @@ while (computer.size() < 3) {
 
 ### Player
 
-- [ ] 야구 숫자 설정
-- [ ] 야구 숫자 반환
+- [x] 야구 숫자 설정
+- [x] 야구 숫자 반환
 
 ### InputView
 
