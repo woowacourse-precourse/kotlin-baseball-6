@@ -45,7 +45,7 @@ fun main() {
             else if (strike != 0) println("${strike}스트라이크")
             else print("낫싱")
         }
-    } while (ending(Console.readLine().toInt()))
+    } while(restartOrNot(Console.readLine()))
 }
 
 private fun setComputerNums(computer: MutableList<Int>) {
@@ -57,6 +57,10 @@ private fun setComputerNums(computer: MutableList<Int>) {
     }
 }
 
-private fun ending(num: Int): Boolean {
-    return num == 1
+private fun restartOrNot(input: String?): Boolean {
+    return try {
+        input.getValidateRestartNumber() == 1
+    } catch(e: IllegalArgumentException) {
+        false
+    }
 }

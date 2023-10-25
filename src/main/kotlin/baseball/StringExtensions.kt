@@ -15,3 +15,11 @@ fun String?.isValidateInputNumber() {
         throw IllegalArgumentException("input number is unavailable")
     }
 }
+
+fun String?.getValidateRestartNumber(): Int {
+    val num = this.getNotEmptyInt()
+    if (num != 1 && num != 2) {
+        throw IllegalArgumentException("restart number is unavailable")
+    }
+    return num
+}
