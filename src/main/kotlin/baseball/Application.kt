@@ -9,12 +9,15 @@ fun main() {
 
     lateinit var computer : List<Int>
 
-    println("숫자 야구 게임을 시작합니다.")
 
     while (true)
     {
         when(uiState)
         {
+            GameUiState.Init->{
+                println("숫자 야구 게임을 시작합니다.")
+                uiState = GameUiState.Loading
+            }
             GameUiState.Loading ->{
                 computer = init()
                 uiState = GameUiState.Playing
@@ -110,6 +113,7 @@ fun inputNumber():Int
     return num
 }
 sealed interface GameUiState{
+    object Init : GameUiState
     object Playing : GameUiState
     object Loading : GameUiState
     object Restart : GameUiState
