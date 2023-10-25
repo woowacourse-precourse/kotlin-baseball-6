@@ -8,7 +8,7 @@ fun main() {
     val computer = mutableListOf<Int>()
     val user = mutableListOf<Int>()
 
-    do {
+    loop@do {
         computer.clear()
         setComputerNums(computer)
         while (true) {
@@ -19,6 +19,11 @@ fun main() {
 
             user.clear()
             val input = Console.readLine()
+            try {
+                input.isValidateInputNumber()
+            } catch (e: IllegalArgumentException) {
+                break@loop
+            }
             input.forEach { user.add(it.digitToInt()) }
 
             computer.forEachIndexed { i, value ->
