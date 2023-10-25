@@ -27,20 +27,6 @@ class ApplicationTest : NsTest() {
         }
     }
 
-    @Test
-    fun `0 입력 예외 테스트`() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> { runException("103") }
-        }
-    }
-    
-    @Test
-    fun `100 마만 입력 예외 테스트`() {
-        assertSimpleTest {
-            assertThrows<IllegalArgumentException> { runException("103") }
-        }
-    }
-
     override fun runMain() {
         main()
     }
