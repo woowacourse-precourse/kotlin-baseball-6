@@ -1,6 +1,7 @@
 package baseball.program
 
 import java.lang.IllegalArgumentException
+import camp.nextstep.edu.missionutils.Randoms
 
 class Program {
     var randomNumber = "000"
@@ -11,7 +12,8 @@ class Program {
         val set = mutableSetOf<Int>()
 
         while (set.size < 3) {
-            set.add((1..9).random())
+            val num = Randoms.pickNumberInRange(1, 9)
+            set.add(num)
         }
 
         // 무작위로 생성된 숫자를 문자열로 변환
