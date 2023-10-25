@@ -20,17 +20,19 @@ fun main() {
             trial ++
         }
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        // 1 입력 시 새로 시작
         restart = readLine()?.trim() == "1"
     }
 }
 
 
-
+// 1부터 9까지 서로 다른 수로 이루어진 3자리의 수 생성 함수
 fun generateDifferentThreeNum(): String {
     val shuffledNumbers = (1..9).toList().shuffled().take(3)
     return shuffledNumbers.joinToString("")
 }
 
+// 사용자로부터 세 자리 숫자를 입력받는 함수
 fun getUserInput(trial: Int): String {
     while(true) {
         print("숫자를 입력해주세요: ")
@@ -43,6 +45,7 @@ fun getUserInput(trial: Int): String {
     }
 }
 
+// 입력한 수에 대한 힌트 제공 함수
 fun numberHint(userInput: String, differentThreeNum: String): String{
     var ball = 0
     var strike = 0
@@ -54,6 +57,7 @@ fun numberHint(userInput: String, differentThreeNum: String): String{
             ball++
         }
     }
+
 
     if(strike == 3) {
         return "3스트라이크"
