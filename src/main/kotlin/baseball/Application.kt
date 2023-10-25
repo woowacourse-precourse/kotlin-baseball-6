@@ -33,7 +33,10 @@ class Computer {
         return computer.joinToString("")
     }
 
-    private fun compareNum(comNum: String, playerNum: String): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
+    private fun compareNum(
+        comNum: String,
+        playerNum: String
+    ): Pair<Int, Int> {//숫자 비교하여 스크라이크 볼개수 출력
         var strike = 0
         var ball = 0
         //var comNum = "425"
@@ -70,7 +73,10 @@ class Computer {
         return
     }
 
-    fun playGame(com: Computer, player: Player) {
+    fun playGame(
+        com: Computer,
+        player: Player
+    ) {
         val comNum = com.createRandomNum()
         do {
             print("숫자를 입력해주세요 : ")
@@ -116,7 +122,9 @@ class Player {
 
     private fun restartOrQuitException(restartNumber: String): Int {
         val intRestartNumber = restartNumber.toIntOrNull()
-        if (intRestartNumber != 1 && intRestartNumber != 2 || restartNumber.toIntOrNull() == null) {
+        if (intRestartNumber != 1 && intRestartNumber != 2 ||
+            restartNumber.toIntOrNull() == null
+        ) {
             throw IllegalArgumentException("1 또는 2를 입력해주세요")
         }
         return intRestartNumber
