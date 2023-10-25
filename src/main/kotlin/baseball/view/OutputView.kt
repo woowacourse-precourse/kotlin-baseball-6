@@ -1,9 +1,9 @@
 package baseball.view
 
-import baseball.domain.BallResult
+import baseball.domain.GameResult
 
 class OutputView {
-    fun printResult(result: BallResult) {
+    fun printResult(result: GameResult) {
         if (result.ballCount + result.strikeCount == 0) {
             print("낫싱")
         }
@@ -13,6 +13,5 @@ class OutputView {
         if (result.strikeCount > 0) {
             print("${result.strikeCount}스트라이크")
         }
-        println()
     }
 }
