@@ -5,5 +5,5 @@ import baseball.model.RandomGenerator
 import baseball.view.OutputView
 
 fun main() {
-    GameManager()
+    OutputView.Start()
 }

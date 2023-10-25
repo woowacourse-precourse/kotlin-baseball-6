@@ -1,7 +1,6 @@
 package baseball.model
 
 class BallCount(val Balls:List<Int>,val answer:List<Int>) {
-
     fun StrikeBallCount(): MutableList<Int>{
         var strike = 0
         var ball = 0

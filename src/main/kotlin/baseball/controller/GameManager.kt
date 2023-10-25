@@ -2,21 +2,25 @@ package baseball.controller
 
 import baseball.model.BallCount
 import baseball.model.RandomGenerator
+import baseball.model.ResumeOrQuit
 import baseball.model.StringToInt
 import baseball.view.InputView
 import baseball.view.OutputView
 
 class GameManager {
-    val answer : List<Int> = RandomGenerator().RandomNum()
     init {
-        OutputView.Start()
+        val answer: List<Int> = RandomGenerator().RandomNum()
+        var result: MutableList<Int> = mutableListOf()
+
         do {
             OutputView.NumInput()
             val input = InputView().UserNumInput()
             if (input != null) {
-                OutputView().Result(BallCount(StringToInt(input).StringToIntList(),answer).StrikeBallCount())
+
+                result = BallCount(StringToInt(input).StringToIntList(), answer).StrikeBallCount()
+                OutputView().Result(result)
             }
-        } while (true)
+        } while (ResumeOrQuit(result[0]).GoStop())
     }
 
 }

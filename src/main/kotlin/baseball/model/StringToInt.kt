@@ -12,19 +12,19 @@ class StringToInt(val input: String) {
         } catch (e: NumberFormatException) {
             throw invalidInputException
         }
+
         val numList: MutableList<Int> = mutableListOf()
         var remainingNumber = inputNum
-        if (remainingNumber != null) {
-            while (remainingNumber > 0) {
-                val num = remainingNumber % 10
-                if ((num !in 1..9) || numList.contains(num)) {
-                    throw invalidInputException
-                } else {
-                    numList.add(num)
-                }
-                remainingNumber /= 10
+        while (remainingNumber > 0) {
+            val num = remainingNumber % 10
+            if ((num !in 1..9) || numList.contains(num)) {
+                throw invalidInputException
+            } else {
+                numList.add(num)
             }
+            remainingNumber /= 10
         }
-        return numList
+        if (numList.size != 3) throw invalidInputException
+        return numList.reversed().toList()
     }
 }

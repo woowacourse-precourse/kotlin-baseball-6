@@ -3,9 +3,6 @@ package baseball.model
 import camp.nextstep.edu.missionutils.Randoms
 
 class RandomGenerator {
-    init {
-        RandomNum()
-    }
     fun RandomNum(): List<Int>{
         val computer: MutableList<Int> = mutableListOf()
         while (computer.size < 3) {
