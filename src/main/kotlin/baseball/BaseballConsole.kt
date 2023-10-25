@@ -67,4 +67,8 @@ class BaseballConsole {
             else -> throw IllegalArgumentException()
         }
     }
+
+    fun close() {
+        Console.close()
+    }
 }

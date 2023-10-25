@@ -37,7 +37,7 @@ class BaseballGame {
     private fun end() {
         console.printEndMessage()
         when (console.getEndFlag()) {
-            EndFlag.FINISH -> return
+            EndFlag.FINISH -> console.close()
             EndFlag.RESTART -> start()
         }
     }
