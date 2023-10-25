@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 fun main() {
@@ -21,6 +22,21 @@ fun getTargetNumber(targetNum: MutableSet<String>){
         val number = pickNumberInRange(1, 9)
         if (number.toString() !in targetNum) {
             targetNum.add(number.toString())
+        }
+    }
+}
+
+// 플레이어 숫자 입력 함수
+// 1~9까지 서로다른 정수를 입력
+// 조건을 만족하면 입력받은 수를 반환
+// 만족하지 못하면 illegalArgumentException 발생 후 어플 종료
+fun getInputNumber(): String{
+    while (true) {
+        val inputNum = Console.readLine()
+        if (inputNum.all { it in '1'..'9' } && inputNum.toSet().size == 3 && !inputNum.contains('0') && inputNum.length == 3) {
+            return inputNum
+        } else {
+            throw IllegalArgumentException("1~9까지의 서로다른 숫자를 입력하세요")
         }
     }
 }
