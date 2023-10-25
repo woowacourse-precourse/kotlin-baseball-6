@@ -19,7 +19,6 @@ class NumberBaseballGame {
 
     fun start(): String {
         while (true) {
-            output.printReceiveNumberInput()
             val user = inputUserNumbers()
             val (ball, strike) = checkGuess(user, computer)
             output.printGuessResult(ball, strike)
@@ -40,6 +39,7 @@ class NumberBaseballGame {
     }
 
     private fun inputUserNumbers(): List<Int> {
+        output.printReceiveNumberInput()
         return Console.readLine().run {
             require(length == 3 && this.toSet().size == 3) { throw IllegalArgumentException() }
             require(all { it in '1'..'9' }) { throw IllegalArgumentException() }
