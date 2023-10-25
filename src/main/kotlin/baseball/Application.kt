@@ -27,8 +27,8 @@ fun playGame() {
         }
 
         when {
-            strike > 0 && ball == 0 -> println("$strike 스트라이크")
-            strike == 0 && ball > 0 -> println("$ball 볼")
+            strike > 0 && ball == 0 -> println("${strike}스트라이크")
+            strike == 0 && ball > 0 -> println("${ball}볼")
             strike == 0 && ball == 0 -> println("낫싱")
             else -> println("${ball}볼 ${strike}스트라이크")
         }
@@ -61,7 +61,7 @@ class User {
     fun inputNums(): IntArray {
         while (true) {
             while (true) {
-                println("숫자를 입력해주세요 : ")
+                print("숫자를 입력해주세요 : ")
                 val userInput = Console.readLine()
 
                 if (userInput == null) {
