@@ -9,7 +9,7 @@ import java.util.regex.Pattern
         if (inputNumber.length != 3) {
             throw IllegalArgumentException("입력된 숫자가 3자리가 아닙니다.")
         }
-        if (!inputNumber.matches(Regex("\\d+"))){
+        if (!inputNumber.matches(Regex("\\d+"))||inputNumber.matches(Regex("^0$"))){
             throw IllegalArgumentException("숫자가 아닌 문자 또는 0이 포함되어있습니다.")
         }
         val uniqueNumbers = inputNumber.toSet().size
