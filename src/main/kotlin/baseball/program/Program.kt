@@ -35,4 +35,9 @@ class Program {
             throw IllegalArgumentException("1(재시작) 또는 2(종료)를 입력해주세요. 다시 입력해주세요.")
         }
     }
+    fun isNumberPresent(input: Char): Boolean {
+        val numbersSet = this.randomNumber.toCharArray().toSet()
+        val contains = numbersSet.contains(input)
+        return contains
+    }
 }
