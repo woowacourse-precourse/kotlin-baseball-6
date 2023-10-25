@@ -68,13 +68,13 @@ class User {
             val userInput = Console.readLine()
 
             if (userInput == null) {
-                throw IllegalArgumentException("[Error] 입력된 값이 없습니다. 다시 입력해주세요.")
+                throw IllegalArgumentException()
             } else if (userInput.length != 3) {
-                throw IllegalArgumentException("[Error] 3자리의 수를 입력해주세요.")
+                throw IllegalArgumentException()
             } else if (!userInput.all { it.isDigit() }) {
-                throw IllegalArgumentException("[Error] 숫자만 입력해주세요.")
+                throw IllegalArgumentException()
             } else if (userInput.toSet().size != 3) {
-                throw IllegalArgumentException("[Error] 숫자가 중복되었습니다.")
+                throw IllegalArgumentException()
             } else {
                 return userInput.map { it.toString().toInt() }.toIntArray()
             }
@@ -83,27 +83,23 @@ class User {
 }
 
 
-
 fun askRestart(): Boolean {
     while (true) {
         println("게임을 다시 시작하시겠습니까?")
         while (true) {
-            try {
-                println("[1] 게임 시작하기 [2] 게임 종료하기")
-                val input = Console.readLine()?.toInt()
+            println("[1] 게임 시작하기 [2] 게임 종료하기")
+            val input = Console.readLine()?.toInt()
 
-                when (input) {
-                    1 -> {
-                        return true
-                    }
-
-                    2 -> {
-                        println("숫자 야구 게임을 종료합니다.")
-                        return false
-                    }
+            when (input) {
+                1 -> {
+                    return true
                 }
-            } catch (e: NumberFormatException) {
-                throw IllegalArgumentException("잘못된 입력입니다.")
+
+                2 -> {
+                    println("숫자 야구 게임을 종료합니다.")
+                    return false
+                }
+                else -> throw IllegalArgumentException()
             }
         }
     }
