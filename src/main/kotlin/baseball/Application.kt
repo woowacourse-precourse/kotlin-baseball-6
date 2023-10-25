@@ -9,6 +9,10 @@ object BaseballGameStatus {
     const val INVALID = -1
 }
 
+object BaseballGameStatusConstraints {
+    const val VALID_LENGTH = 1
+}
+
 object BaseballNumberConstraints {
     const val VALID_LENGTH = 3
     const val DIGIT_START_CODE = '0'.code
@@ -32,6 +36,10 @@ class BaseballNumber(numberString: String) : Iterable<Int> {
     }
 
     override fun iterator(): Iterator<Int> = digits.iterator()
+
+    override fun toString(): String {
+        return digits.joinToString("")
+    }
 }
 
 private fun charToDigit(character: Char): Int {
@@ -67,16 +75,20 @@ fun countExactPositionMatches(query: BaseballNumber, answer: BaseballNumber): In
     return digitPair.count { (queryDigit, answerDigit) -> queryDigit == answerDigit }
 }
 
-fun judgeResult(query: BaseballNumber, answer: BaseballNumber):Pair<Int, Int> {
+fun judgeResult(query: BaseballNumber, answer: BaseballNumber): Pair<Int, Int> {
     val strikes = countExactPositionMatches(query, answer)
     val balls = countMatchingDigits(query, answer) - strikes
     return strikes to balls
 }
 
-fun addUniqueRandomDigit(pickNumber:ArrayList<Int>){
+fun generateRandomBaseballDigit():Int{
+    return Randoms.pickNumberInRange(BaseballNumberConstraints.DIGIT_START, BaseballNumberConstraints.DIGIT_END)
+}
+
+fun addUniqueRandomDigit(pickNumber: ArrayList<Int>) {
     var randomNumber: Int
     do {
-        randomNumber = Randoms.pickNumberInRange(1, 9)
+        randomNumber = generateRandomBaseballDigit()
     } while (pickNumber.contains(randomNumber))
     pickNumber.add(randomNumber)
 }
@@ -117,13 +129,27 @@ fun gameplay() {
     }
 }
 
-fun isValidReplayStatus(replayStatusString:String):Boolean{
-    return (replayStatusString.length == 1) and (replayStatusString.all { it.isDigit() })
+fun isReplayStatusValid(replayStatusString: String): Boolean {
+    return (hasValidLength(replayStatusString) and isNumeric(replayStatusString) and isValidReplayValue(
+        replayStatusString.toInt()
+    ))
 }
 
-fun readReplayStatus():Int{
+fun hasValidLength(input: String): Boolean {
+    return input.length == BaseballGameStatusConstraints.VALID_LENGTH
+}
+
+fun isNumeric(input: String): Boolean {
+    return input.all { it.isDigit() }
+}
+
+fun isValidReplayValue(input: Int): Boolean {
+    return (input == BaseballGameStatus.REPLAY) or (input == BaseballGameStatus.GAME_OVER)
+}
+
+fun readReplayStatus(): Int {
     val replayStatusString = Console.readLine().trim()
-    if (isValidReplayStatus(replayStatusString)){
+    if (isReplayStatusValid(replayStatusString)) {
         return replayStatusString.toInt()
     }
     return BaseballGameStatus.INVALID
