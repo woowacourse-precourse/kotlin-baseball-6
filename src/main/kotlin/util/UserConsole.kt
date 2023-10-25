@@ -12,6 +12,7 @@ object UserConsole {
 
     fun validateInput(userInput: String) {
         if (!userInput.all { it.isDigit() }) throw IllegalArgumentException(Constants.INVALID_INPUT_MESSAGE)
+        if (userInput.contains("0")) throw IllegalArgumentException(Constants.INVALID_RANGE_MESSAGE)
         if (userInput.length != 3) throw IllegalArgumentException(Constants.INVALID_LENGTH_MESSAGE)
         if (userInput.toSet().size != userInput.length) throw IllegalArgumentException(Constants.DUPLICATE_NUMBER_MESSAGE)
     }

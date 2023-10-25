@@ -7,6 +7,7 @@ object Constants {
     const val SUCCESS_MESSAGE = "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료"
     const val INVALID_INPUT_MESSAGE = "숫자만 입력하세요"
     const val INVALID_LENGTH_MESSAGE = "3자리 수를 입력하세요"
+    const val INVALID_RANGE_MESSAGE = "1부터 9 사이의 수를 입력하세요"
     const val DUPLICATE_NUMBER_MESSAGE = "각기 다른 3개의 숫자를 입력하세요"
     const val INVALID_RESTART_INPUT_MESSAGE = "1과 2 중에서 입력하세요"
 }
