@@ -74,9 +74,7 @@ class BaseBallController {
         baseBallView.printContinue()
         val input = Console.readLine()
 
-        if (!(input == GAME_END_NUM || input == GAME_CONTINUE_NUM)) {
-            throw IllegalArgumentException()
-        }
+        require(input == GAME_END_NUM || input == GAME_CONTINUE_NUM)
 
         if (input == GAME_END_NUM) {
             return END

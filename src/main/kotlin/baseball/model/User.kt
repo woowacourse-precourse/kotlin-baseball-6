@@ -19,21 +19,15 @@ class User {
 
     private fun checkNumber(input: CharArray) {
         input.forEach {
-            if (it !in '1'..'9') {
-                throw IllegalArgumentException()
-            }
+            require(it in '1'..'9')
         }
     }
 
     private fun checkSize(input: CharArray) {
-        if (input.size != BASEBALL_MAX_SIZE) {
-            throw IllegalArgumentException()
-        }
+        require(input.size == BASEBALL_MAX_SIZE)
     }
 
     private fun checkRepeat(input: CharArray) {
-        if (input.size != input.distinct().count()) {
-            throw IllegalArgumentException()
-        }
+        require(input.size == input.distinct().count())
     }
 }
