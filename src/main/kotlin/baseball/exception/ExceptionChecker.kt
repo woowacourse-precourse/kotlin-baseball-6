@@ -8,7 +8,7 @@ class ExceptionChecker {
 
     fun checkValidation(num: String) {
         checkSize(num)
-        checkZero(num)
+        checkIsNum(num)
         checkDuplicateNumber(num)
     }
 
@@ -18,11 +18,16 @@ class ExceptionChecker {
         }
     }
 
-    private fun checkZero(num: String) {
-        if (num.contains(ZERO)) {
-            throw exception
+    private fun checkIsNum(num: String) {
+        val numRange = listOf('1', '2', '3', '4', '5', '6', '7', '8', '9')
+
+        for (i in 0 until CORRECT_SIZE) {
+            if (!numRange.contains(num[i])) {
+                throw exception
+            }
         }
     }
+
 
     private fun checkDuplicateNumber(num: String) {
         var numList = num.toList().distinct()
@@ -34,7 +39,7 @@ class ExceptionChecker {
     }
 
     fun checkRetryInput(choice: Int) {
-        if(choice != 1 && choice != 2) {
+        if (choice != 1 && choice != 2) {
             throw exception
         }
     }

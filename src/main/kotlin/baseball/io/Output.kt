@@ -9,15 +9,16 @@ class Output {
     fun askNumber() {
         print("숫자를 입력해주세요 : ")
     }
-    fun printBallAndStrike(ball:Int, strike:Int) {
+
+    fun printBallAndStrike(ball: Int, strike: Int) {
         println("${ball}볼 ${strike}스트라이크")
     }
 
-    fun printBall(ball:Int) {
+    fun printBall(ball: Int) {
         println("${ball}볼")
     }
 
-    fun printStrike(strike:Int) {
+    fun printStrike(strike: Int) {
         println("${strike}스트라이크")
     }
 

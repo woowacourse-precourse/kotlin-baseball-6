@@ -4,7 +4,7 @@ import baseball.exception.ExceptionChecker
 import camp.nextstep.edu.missionutils.Console
 
 class Input(
-    private val printer:Output = Output(),
+    private val printer: Output = Output(),
     private val exceptionChecker: ExceptionChecker = ExceptionChecker()
 ) {
 
@@ -21,13 +21,13 @@ class Input(
         return myNum
     }
 
-    fun inputRetryChoice():Int {
+    fun inputRetryChoice(): Int {
         printer.printSuccessMessage()
         var choice: Int
         try {
             choice = Console.readLine().toInt()
             exceptionChecker.checkRetryInput(choice)
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             throw e
         }
 
