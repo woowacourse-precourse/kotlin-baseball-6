@@ -17,7 +17,7 @@ class GameModel {
     fun checkGuess(userGuess: String, computerNumbers: List<Int>): String {
         // Validate user input
         if (userGuess.length != 3 || userGuess.toSet().size != 3 || !userGuess.all { it.isDigit() }) {
-            throw IllegalArgumentException("잘못된 입력입니다.")
+            throw IllegalArgumentException("잘못된 입력입니다!")
         }
 
         val userNumbers = userGuess.map { it.toString().toInt() }
