@@ -70,7 +70,7 @@ fun gamePlay(computer:List<Int>)
             input/=10
         }
 
-        if(myNumber.size > 3) throw IllegalArgumentException()
+        if(myNumber.size != 3) throw IllegalArgumentException()
         myNumber.reverse()
 
         var strike = 0
