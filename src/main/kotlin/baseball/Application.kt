@@ -30,6 +30,7 @@ fun main() {
                     val input = user.inputRandomNumber()
                     program.checkThreeNumbers(input)
                     program.checkDistinctNumbers(input)
+                    program.checkOnlyDigits(input)
                     isValidInput = true
                 } catch (e: IllegalArgumentException) {
                     println(e.message)
