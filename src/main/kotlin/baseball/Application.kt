@@ -5,19 +5,19 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     // 1. 게임 시작을 위한 세팅
-    val answer = answerSelect()
+    val answer = generateAnswer()
 
-    play(answer)
-    var check = newOrExit()
+    playGame(answer)
+    var check = isRestart()
 
     while (check[0] == 1) {
-        val ans = answerSelect()
-        play(ans)
-        check = newOrExit()
+        val ans = generateAnswer()
+        playGame(ans)
+        check = isRestart()
     }
 }
 
-fun answerSelect(): ArrayList<Int> {
+fun generateAnswer(): ArrayList<Int> {
     // 1. 게임 시작을 위한 세팅
     val computer = arrayListOf<Int>()
 
@@ -30,7 +30,7 @@ fun answerSelect(): ArrayList<Int> {
     return computer
 }
 
-fun inputNum(): IntArray {
+fun readInput(): IntArray {
     // 2. 사용자 입력
     print("숫자를 입력해주세요 : ")
     var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
@@ -41,7 +41,7 @@ fun inputNum(): IntArray {
     return inputData
 }
 
-fun newOrExit(): IntArray {
+fun isRestart(): IntArray {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     var inputData = Console.readLine()?.toCharArray()?.map { it.toString().toInt() }?.toIntArray()
 
@@ -51,7 +51,7 @@ fun newOrExit(): IntArray {
     return inputData
 }
 
-fun play(answer: ArrayList<Int>) {
+fun playGame(answer: ArrayList<Int>) {
     // 3. Ball, Strike 검증 및 결과 출력
 
     println("숫자 야구 게임을 시작합니다.")
@@ -62,7 +62,7 @@ fun play(answer: ArrayList<Int>) {
         strike = 0
         var ball = 0
 
-        val inputData = inputNum()
+        val inputData = readInput()
 
         for ((index, i) in answer.withIndex()) {
             if (answer[index] == inputData[index]) strike++
