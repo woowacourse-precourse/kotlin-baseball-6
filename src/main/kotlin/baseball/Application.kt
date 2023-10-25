@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms
 import kotlin.collections.mutableListOf
 
 //숫자야구는 3개 혹은 4개의 숫자로 하는 게임이다. 변경 여지 있음.
-const val MAX_NUMBER = 3
 
 fun makeSecretNumber(): String {
     val computer: MutableList<Int> = mutableListOf()
@@ -22,8 +21,7 @@ fun isValidGuessNumber(input: String) =
     input.length == MAX_NUMBER && !hasDuplicatedNumberInside(input) && input.all { isNumber(it) }
 fun hasDuplicatedNumberInside(input: String) = input.length != input.toSet().size
 fun isNumber(input: Char) = input in '0'..'9'
-fun isValidContinueNumber(input: String) =
-    input.length == 1 && input[0] in '1'..'2'
+fun isValidContinueNumber(input: String) = input.length == 1 && input[0] in '1'..'2'
 
 fun main() {
     println("숫자 야구 게임을 시작합니다.")
