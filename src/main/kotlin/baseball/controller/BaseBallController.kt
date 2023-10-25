@@ -12,25 +12,21 @@ class BaseBallController {
 
     private val inputVIew = InputView()
     private val outputVIew = OutputView()
-
+    private var status = START
 
     fun playGame() {
         inputVIew.printPlayGame()
         val computer = Computer()
         var computerBaseBall = BaseBall(mutableListOf())
-        var status = START
 
         while (true) {
             when (status) {
                 START -> {
-                    computerBaseBall = computer.makeComputerList()
-                    status = CONTINUE
+                    computerBaseBall = startGame(computer)
                 }
 
                 CONTINUE -> {
-                    inputVIew.printInputUser()
-                    val user = User().inputUser()
-                    status = checkAnswer(computerBaseBall, user)
+                    continueGame(computerBaseBall)
                 }
 
                 END -> {
@@ -38,6 +34,17 @@ class BaseBallController {
                 }
             }
         }
+    }
+
+    private fun startGame(computer: Computer): BaseBall {
+        status = CONTINUE
+        return computer.makeComputerList()
+    }
+
+    private fun continueGame(computerBaseBall: BaseBall) {
+        inputVIew.printInputUser()
+        val user = User().inputUser()
+        status = checkAnswer(computerBaseBall, user)
     }
 
     private fun checkAnswer(computerList: BaseBall, userList: BaseBall): Int {
