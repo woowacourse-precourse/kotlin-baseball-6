@@ -90,6 +90,8 @@ fun checkValidation(checkList: String): Boolean {
         if (duplicateCheckList.contains(number)) {
             isValid = false
         }
+        
+        duplicateCheckList.add(number)
     }
 
     return isValid
