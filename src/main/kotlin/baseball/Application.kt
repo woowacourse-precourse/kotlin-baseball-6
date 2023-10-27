@@ -24,13 +24,13 @@ fun main() {
 
             input.forEach { user.add(it.digitToInt()) }
 
-                for(i in 1..9) {
-                    var result = 0
-                    user.forEachIndexed { _, value ->
-                        if(value == i) result++
-                    }
-                    if(result > 1) throw IllegalArgumentException("zz")
+            for(i in 1..9) {
+                var result = 0
+                user.forEachIndexed { _, value ->
+                    if(value == i) result++
                 }
+                if(result > 1) throw IllegalArgumentException("zz")
+            }
 
             computer.forEachIndexed { i, value ->
                 repeat(3) { j ->
