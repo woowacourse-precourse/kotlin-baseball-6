@@ -33,7 +33,7 @@ fun generateDifferentThreeNum(): String {
 }
 
 // 사용자로부터 세 자리 숫자를 입력받는 함수
-fun getUserInput(trial: Int): String {
+fun getUserInput(): String {
     while(true) {
         print("숫자를 입력해주세요: ")
         val input = readLine()?.trim()
