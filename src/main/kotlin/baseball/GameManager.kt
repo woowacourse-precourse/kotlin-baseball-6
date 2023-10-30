@@ -7,7 +7,7 @@ class GameManager {
     private var result = INIT
 
     fun execute() {
-        println("숫자 야구 게임을 시작합니다.")
+        showExecuteMessage()
 
         while(state) {
             initComputer()
@@ -32,6 +32,7 @@ class GameManager {
     private fun initUser() {
         val user = User()
         if (userNumberList.isNotEmpty()) userNumberList.clear()
+        showInputMessage()
         userNumberList.addAll(user.getNumberList())
     }
 
@@ -42,6 +43,7 @@ class GameManager {
 
     private fun finish() {
         val user = User()
+        showFinishMessage()
         val finishNumber = user.getFinishNumber()
         if (finishNumber == 1) restart()
         else exit()
@@ -54,5 +56,17 @@ class GameManager {
 
     private fun exit() {
         state = EXIT
+    }
+
+    private fun showExecuteMessage() {
+        println("숫자 야구를 시작합니다.")
+    }
+
+    private fun showInputMessage() {
+        print("숫자를 입력해주세요 : ")
+    }
+
+    private fun showFinishMessage() {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     }
 }
