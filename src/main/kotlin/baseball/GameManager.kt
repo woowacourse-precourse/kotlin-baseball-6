@@ -1,13 +1,10 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
-import camp.nextstep.edu.missionutils.Randoms
-
 class GameManager {
     private val computerNumberList = mutableListOf<Int>()
     private val userNumberList = mutableListOf<Int>()
-    private var state = true
-    private var result = true
+    private var state = INIT
+    private var result = INIT
 
     fun execute() {
         println("숫자 야구 게임을 시작합니다.")
@@ -51,11 +48,11 @@ class GameManager {
     }
 
     private fun restart() {
-        result = true
-        state = true
+        state = RESTART
+        result = INIT
     }
 
     private fun exit() {
-        state = false
+        state = EXIT
     }
 }
