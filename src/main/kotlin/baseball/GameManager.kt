@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms
 class GameManager {
     private val computerNumberList = mutableListOf<Int>()
     private val userNumberList = mutableListOf<Int>()
+    private var result = true
 
     fun execute() {
         println("숫자 야구 게임을 시작합니다.")
@@ -14,32 +15,11 @@ class GameManager {
             initComputer()
 
             initUser()
-            while (true) {
+            while (result) {
                 print("숫자를 입력해주세요 : ")
 
-                var strike = 0
-                var ball = 0
-
                 initUser()
-
-                computer.forEachIndexed { i, value ->
-                    repeat(3) { j ->
-                        if (i == j) {
-                            if (value == user[i]) strike++
-                        } else {
-                            if (value == user[j]) ball++
-                        }
-                    }
-                }
-
-                if (strike == 3) {
-                    println("${strike}스트라이크")
-                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                    break
-                } else if (strike != 0 && ball != 0) println("${ball}볼 ${strike}스트라이크")
-                else if (ball != 0) println("${ball}볼")
-                else if (strike != 0) println("${strike}스트라이크")
-                else println("낫싱")
+                getResult()
             }
         } while(restartOrNot())
     }
@@ -54,6 +34,11 @@ class GameManager {
         val user = User()
         if (userNumberList.isNotEmpty()) userNumberList.clear()
         userNumberList.addAll(user.getNumberList())
+    }
+
+    private fun getResult() {
+        val referee = Referee()
+        result = !(referee.getResult(computerNumberList, userNumberList))
     }
 
     private fun restartOrNot(): Boolean {
