@@ -1,5 +1,6 @@
 package baseball
 
+// 유효성 검사(사용자 숫자)
 fun isValidateInputStringForGame(input: String) {
     // 빈 문자열 확인
     if (input.isBlank()) throw IllegalArgumentException("input string is empty")
@@ -13,6 +14,7 @@ fun isValidateInputStringForGame(input: String) {
     if (isDuplicated(input)) throw IllegalArgumentException("number is duplicated in input string")
 }
 
+// 중복 검사(사용자 숫자)
 fun isDuplicated(input: String): Boolean {
     input.forEachIndexed { index, num ->
         var count = 0
@@ -26,6 +28,7 @@ fun isDuplicated(input: String): Boolean {
     return false
 }
 
+// 유효성 검사(재실행 숫자)
 fun isValidateInputStringForFinish(input: String) {
     // 빈 문자열 확인
     if (input.isBlank()) throw IllegalArgumentException("input string is empty")

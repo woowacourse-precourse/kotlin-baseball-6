@@ -1,9 +1,11 @@
 package baseball
 
+// 채점 기능 클래스
 class Referee {
     private var strike = 0
     private var ball = 0
 
+    // 채점 기능
     fun getResult(computerNums: MutableList<Int>, userNums: MutableList<Int>): Boolean {
         strike = 0
         ball = 0

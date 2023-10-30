@@ -6,6 +6,7 @@ class GameManager {
     private var state = INIT
     private var result = INIT
 
+    // 프로그램 실행
     fun execute() {
         showExecuteMessage()
         while (state) {
@@ -22,12 +23,14 @@ class GameManager {
         }
     }
 
+    // 컴퓨터 숫자 초기화
     private fun initComputer() {
         val computer = Computer()
         if (computerNumberList.isNotEmpty()) computerNumberList.clear()
         computerNumberList.addAll(computer.getNumberList())
     }
 
+    // 유저 숫자 입력
     private fun initUser() {
         val user = User()
         if (userNumberList.isNotEmpty()) userNumberList.clear()
@@ -35,11 +38,13 @@ class GameManager {
         userNumberList.addAll(user.getNumberList())
     }
 
+    // 채점 기능 - playGame() while문 탈출 기여
     private fun getResult() {
         val referee = Referee()
         result = !(referee.getResult(computerNumberList, userNumberList))
     }
 
+    // 재실행 분기문 - execute() while문 탈출 기여
     private fun finish() {
         val user = User()
         showFinishMessage()
@@ -48,11 +53,13 @@ class GameManager {
         else exit()
     }
 
+    // 게임 재실행 - const 변수 초기화
     private fun restart() {
         result = INIT
         state = RESTART
     }
 
+    // 게임 종료 - false
     private fun exit() {
         state = EXIT
     }
