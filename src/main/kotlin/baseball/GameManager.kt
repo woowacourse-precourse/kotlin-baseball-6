@@ -8,18 +8,17 @@ class GameManager {
 
     fun execute() {
         showExecuteMessage()
-
-        while(state) {
-            initComputer()
-
-            initUser()
-            while (result) {
-                print("숫자를 입력해주세요 : ")
-
-                initUser()
-                getResult()
-            }
+        while (state) {
+            playGame()
             finish()
+        }
+    }
+
+    private fun playGame() {
+        initComputer()
+        while (result) {
+            initUser()
+            getResult()
         }
     }
 
@@ -50,8 +49,8 @@ class GameManager {
     }
 
     private fun restart() {
-        state = RESTART
         result = INIT
+        state = RESTART
     }
 
     private fun exit() {
