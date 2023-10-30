@@ -1,6 +1,6 @@
 package baseball
 
-fun isValidateInputString(input: String) {
+fun isValidateInputStringForGame(input: String) {
     // 빈 문자열 확인
     if (input.isBlank()) throw IllegalArgumentException("input string is empty")
     // 3자리 수 길이 확인
@@ -26,7 +26,7 @@ fun isDuplicated(input: String): Boolean {
     return false
 }
 
-fun isValidateFinishNumber(input: String) {
+fun isValidateInputStringForFinish(input: String) {
     // 빈 문자열 확인
     if (input.isBlank()) throw IllegalArgumentException("input string is empty")
     // 1 또는 2 외의 값 확인

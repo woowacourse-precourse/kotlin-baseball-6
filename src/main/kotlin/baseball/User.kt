@@ -6,14 +6,14 @@ class User {
     fun getNumberList(): MutableList<Int> {
         val mutableList = mutableListOf<Int>()
         val input = Console.readLine()
-        isValidateInputString(input)
+        isValidateInputStringForGame(input)
         input.forEach { mutableList.add(it.digitToInt()) }
         return mutableList
     }
 
     fun getFinishNumber(): Int {
         val input = Console.readLine()
-        isValidateFinishNumber(input)
+        isValidateInputStringForFinish(input)
         return input.toInt()
     }
 }
