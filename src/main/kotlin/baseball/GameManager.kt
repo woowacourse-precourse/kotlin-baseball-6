@@ -5,35 +5,22 @@ import camp.nextstep.edu.missionutils.Randoms
 
 class GameManager {
     private val computerNumberList = mutableListOf<Int>()
+    private val userNumberList = mutableListOf<Int>()
 
     fun execute() {
         println("숫자 야구 게임을 시작합니다.")
-        val computer = mutableListOf<Int>()
-        val user = mutableListOf<Int>()
 
         loop@do {
-            computer.clear()
             initComputer()
+
+            initUser()
             while (true) {
                 print("숫자를 입력해주세요 : ")
 
                 var strike = 0
                 var ball = 0
 
-                user.clear()
-                val input = Console.readLine()
-
-                isValidateInputString(input)
-
-                input.forEach { user.add(it.digitToInt()) }
-
-                for(i in 1..9) {
-                    var result = 0
-                    user.forEachIndexed { _, value ->
-                        if(value == i) result++
-                    }
-                    if(result > 1) throw IllegalArgumentException("zz")
-                }
+                initUser()
 
                 computer.forEachIndexed { i, value ->
                     repeat(3) { j ->
@@ -61,6 +48,12 @@ class GameManager {
         val computer = Computer()
         if (computerNumberList.isNotEmpty()) computerNumberList.clear()
         computerNumberList.addAll(computer.getNumberList())
+    }
+
+    private fun initUser() {
+        val user = User()
+        if (userNumberList.isNotEmpty()) userNumberList.clear()
+        userNumberList.addAll(user.getNumberList())
     }
 
     private fun restartOrNot(): Boolean {
