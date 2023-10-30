@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 class GameManager {
+    private val computerNumberList = mutableListOf<Int>()
 
     fun execute() {
         println("숫자 야구 게임을 시작합니다.")
@@ -12,7 +13,7 @@ class GameManager {
 
         loop@do {
             computer.clear()
-            setComputerNums(computer)
+            initComputer()
             while (true) {
                 print("숫자를 입력해주세요 : ")
 
@@ -56,13 +57,10 @@ class GameManager {
         } while(restartOrNot())
     }
 
-    private fun setComputerNums(computer: MutableList<Int>) {
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
+    private fun initComputer() {
+        val computer = Computer()
+        if (computerNumberList.isNotEmpty()) computerNumberList.clear()
+        computerNumberList.addAll(computer.getNumberList())
     }
 
     private fun restartOrNot(): Boolean {
