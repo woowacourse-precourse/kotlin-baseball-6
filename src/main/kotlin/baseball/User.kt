@@ -10,4 +10,10 @@ class User {
         input.forEach { mutableList.add(it.digitToInt()) }
         return mutableList
     }
+
+    fun getFinishNumber(): Int {
+        val input = Console.readLine()
+        isValidateFinishNumber(input)
+        return input.toInt()
+    }
 }
