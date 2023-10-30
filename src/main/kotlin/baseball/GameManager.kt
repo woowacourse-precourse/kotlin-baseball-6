@@ -22,7 +22,7 @@ class GameManager {
                 user.clear()
                 val input = Console.readLine()
 
-                isValidateInputNumber(input)
+                isValidateInputString(input)
 
                 input.forEach { user.add(it.digitToInt()) }
 
@@ -53,7 +53,7 @@ class GameManager {
                 else if (strike != 0) println("${strike}스트라이크")
                 else println("낫싱")
             }
-        } while(restartOrNot(Console.readLine()))
+        } while(restartOrNot())
     }
 
     private fun setComputerNums(computer: MutableList<Int>) {
@@ -65,41 +65,9 @@ class GameManager {
         }
     }
 
-    private fun restartOrNot(input: String?): Boolean {
-        return try {
-            getValidateRestartNumber(input) == 1
-        } catch(e: IllegalArgumentException) {
-            false
-        }
-    }
-
-    fun getNotEmptyInt(string: String?): Int {
-        val input = string?.trim()
-        if (input.isNullOrEmpty()) {
-            throw IllegalArgumentException("input String is null or empty")
-        }
-        if (input.toIntOrNull() == null) {
-            throw IllegalArgumentException("input String cannot be parsed Int")
-        }
-        if(input.length > 3 ) throw IllegalArgumentException("input String cannot be parsed Int")
-        return input.toInt()
-    }
-
-    fun isValidateInputNumber(string: String?) {
-        val num = getNotEmptyInt(string)
-        if (num < 123 || num > 987) {
-            throw IllegalArgumentException("input number is unavailable")
-        }
-        if (num.toString().contains('0')) {
-            throw IllegalArgumentException("input number is unavailable")
-        }
-    }
-
-    fun getValidateRestartNumber(string: String?): Int {
-        val num = getNotEmptyInt(string)
-        if (num != 1 && num != 2) {
-            throw IllegalArgumentException("restart number is unavailable")
-        }
-        return num
+    private fun restartOrNot(): Boolean {
+        val input = Console.readLine()
+        isValidateFinishNumber(input)
+        return true
     }
 }
