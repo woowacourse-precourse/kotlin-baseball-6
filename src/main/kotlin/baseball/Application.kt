@@ -58,16 +58,16 @@ fun main() {
 
 fun generateRandomNumber(): String {
 
-    val number1 = Randoms.pickNumberInRange(0,9).toString()
+    val number1 = Randoms.pickNumberInRange(1,9).toString()
     var number2: String
     var number3: String
 
     do {
-        number2 = Randoms.pickNumberInRange(0, 9).toString()
+        number2 = Randoms.pickNumberInRange(1, 9).toString()
     } while (number2 == number1)
 
     do {
-        number3 = Randoms.pickNumberInRange(0, 9).toString()
+        number3 = Randoms.pickNumberInRange(1, 9).toString()
     } while (number3 == number1 || number3 == number2)
 
     return "$number1$number2$number3"
