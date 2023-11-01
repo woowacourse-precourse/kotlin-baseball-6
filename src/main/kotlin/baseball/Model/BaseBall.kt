@@ -29,14 +29,16 @@ class BaseBall {
 
     private fun isStrike(computer: List<Int>, user: List<Int>, index: Int) {
         if (computer[index] == user[index]) {
-            _strike++
+            plusStrikeCount()
         }
     }
 
     private fun isBall(computer: List<Int>, user: List<Int>, index: Int) {
         if (computer[index] != user[index] && computer.contains(user[index])) {
-            _ball++
+            plusBallCount()
         }
-
     }
+
+    private fun plusStrikeCount() = _strike++
+    private fun plusBallCount() = _ball++
 }
