@@ -10,12 +10,8 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     printGameStart()
     val computerNumber = setComputerNumber()
-    val userInput = getUserInput()
-    validateLength(userInput)
-    validateInteger(userInput)
-    validateRange(userInput)
-    validateUniqueNumber(userInput)
-    makeIntList(userInput)
+    val userNumber = getUserInputList()
+
 }
 
 fun printGameStart() {
@@ -39,4 +35,13 @@ fun setComputerNumber(): List<Int> {
 
 fun makeIntList(number: String): List<Int> {
     return number.map { it.digitToInt() }.toList()
+}
+
+fun getUserInputList(): List<Int> {
+    val userInput = getUserInput()
+    validateLength(userInput)
+    validateInteger(userInput)
+    validateRange(userInput)
+    validateUniqueNumber(userInput)
+    return makeIntList(userInput)
 }
