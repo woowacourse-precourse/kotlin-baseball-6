@@ -37,6 +37,16 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `사용자 입력이 정수인지 검증`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { validateInteger("12a") }
+            assertThrows<IllegalArgumentException> { validateInteger("1!2") }
+            assertThrows<IllegalArgumentException> { validateInteger("_+E") }
+            assertThrows<IllegalArgumentException> { validateInteger("ab!") }
+        }
+    }
+
     override fun runMain() {
         main()
     }
