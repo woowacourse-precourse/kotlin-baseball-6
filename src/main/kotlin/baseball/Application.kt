@@ -59,3 +59,15 @@ fun compareNumber(computer: List<Int>, user: List<Int>): Pair<Int, Int> {
     }
     return Pair(strike, ball)
 }
+
+fun printHint(hint: Pair<Int, Int>) {
+    val (strike, ball) = hint
+    val result = when {
+        strike == 0 && ball == 0 -> "낫싱"
+        strike > 0 && ball == 0 -> "${strike}스트라이크"
+        strike == 0 && ball > 0 -> "${ball}볼"
+        else -> "${ball}볼 ${strike}스트라이크"
+    }
+
+    print(result)
+}
