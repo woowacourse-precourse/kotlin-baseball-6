@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.Util.Validator.validateGameStatus
 import baseball.Util.Validator.validateInteger
 import baseball.Util.Validator.validateLength
 import baseball.Util.Validator.validateRange
@@ -81,4 +82,5 @@ fun printHint(hint: Pair<Int, Int>) {
 
 fun decideGameStatus() {
     val userInput = getUserInput()
+    validateGameStatus(userInput)
 }

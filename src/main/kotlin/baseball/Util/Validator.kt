@@ -20,4 +20,12 @@ object Validator {
         val validation = number.toSet()
         if (validation.size != 3) throw IllegalArgumentException("사용자의 입력 중 중복된 숫자가 존재합니다.")
     }
+
+    fun validateGameStatus(number: String) {
+        if (number == "1" || number == "2") {
+            return
+        }
+
+        throw IllegalArgumentException("사용자의 입력이 1 또는 2가 아닙니다.")
+    }
 }
