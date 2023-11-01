@@ -45,3 +45,17 @@ fun getUserInputList(): List<Int> {
     validateUniqueNumber(userInput)
     return makeIntList(userInput)
 }
+
+fun compareNumber(computer: List<Int>, user: List<Int>): Pair<Int, Int> {
+    var strike = 0
+    var ball = 0
+
+    for (i in user.indices) {
+        if (computer[i] == user[i]) {
+            strike++
+        } else if (computer.contains(user[i])) {
+            ball++
+        }
+    }
+    return Pair(strike, ball)
+}
