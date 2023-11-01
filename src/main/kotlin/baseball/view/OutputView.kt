@@ -27,6 +27,6 @@ class OutputView {
     }
 
     fun printInputNumberMessage() {
-        println(print("숫자를 입력해주세요 : "))
+        print("숫자를 입력해주세요 : ")
     }
 }
