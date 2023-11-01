@@ -10,6 +10,7 @@ class GameController(private val inputView: InputView, private val outputView: O
     fun run() {
         gameInit()
         gameStart()
+        gameEnd()
     }
 
     fun gameInit() {
@@ -25,15 +26,18 @@ class GameController(private val inputView: InputView, private val outputView: O
             baseBall.compareNumber(computer.numberList, userNumber)
             outputView.printHint(baseBall)
             if (baseBall.isGameEnd()) {
-                outputView.printGameEndMessage()
-                val status = inputView.decideGameStatus()
-                if (status == 1) {
-                    computer.resetComputerNumber()
-                    computer.setComputerNumber()
-                } else {
-                    break
-                }
+                break
             }
+        }
+    }
+
+    fun gameEnd() {
+        outputView.printGameEndMessage()
+        val status = inputView.decideGameStatus()
+        if (status == 1) {
+            computer.resetComputerNumber()
+            computer.setComputerNumber()
+            gameStart()
         }
     }
 
