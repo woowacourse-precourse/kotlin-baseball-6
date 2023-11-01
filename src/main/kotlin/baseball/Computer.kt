@@ -1,6 +1,6 @@
 package baseball
 
-import baseball.C.RANDOM_SIZE
+import baseball.Util.C.RANDOM_SIZE
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {

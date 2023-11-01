@@ -1,13 +1,13 @@
 package baseball
 
-import baseball.C.BALL_STRING
-import baseball.C.GAME_END_STRING
-import baseball.C.GET_INPUT_STRING
-import baseball.C.GAME_RESTART_STRING
-import baseball.C.GAME_START_STRING
-import baseball.C.INPUT_REGEX
-import baseball.C.NOTHING
-import baseball.C.STRIKE_STRING
+import baseball.Util.C.BALL_STRING
+import baseball.Util.C.GAME_END_STRING
+import baseball.Util.C.GET_INPUT_STRING
+import baseball.Util.C.GAME_RESTART_STRING
+import baseball.Util.C.GAME_START_STRING
+import baseball.Util.C.INPUT_REGEX
+import baseball.Util.C.NOTHING
+import baseball.Util.C.STRIKE_STRING
 import camp.nextstep.edu.missionutils.Console
 
 class System {

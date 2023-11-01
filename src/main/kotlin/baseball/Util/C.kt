@@ -1,4 +1,4 @@
-package baseball
+package baseball.Util
 
 object C {
     const val GAME_START_STRING = "숫자 야구 게임을 시작합니다."
