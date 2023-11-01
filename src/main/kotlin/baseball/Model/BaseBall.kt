@@ -23,7 +23,7 @@ class BaseBall {
         }
     }
 
-    fun resetHint() {
+    private fun resetHint() {
         _strike = 0
         _ball = 0
     }

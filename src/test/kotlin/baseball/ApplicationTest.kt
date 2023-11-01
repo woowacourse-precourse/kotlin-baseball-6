@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
+
     @Test
     fun `게임종료 후 재시작`() {
         assertRandomNumberInRangeTest(
@@ -77,14 +78,6 @@ class ApplicationTest : NsTest() {
             assertThrows<IllegalArgumentException> { validateGameStatus("11") }
         }
     }
-
-//    @Test
-//    fun `문자열 정수형 리스트로 반환 검증`() {
-//        val input = "125"
-//        val validation = makeIntList(input)
-//        val result = listOf<Int>(1, 2, 5)
-//        assertThat(validation).isEqualTo(result)
-//    }
 
     @Test
     fun `사용자의 입력과 컴퓨터의 숫자를 비교 반환 검증`() {
