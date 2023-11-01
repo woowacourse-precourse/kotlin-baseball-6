@@ -15,6 +15,7 @@ fun main() {
     validateInteger(userInput)
     validateRange(userInput)
     validateUniqueNumber(userInput)
+    makeIntList(userInput)
 }
 
 fun printGameStart() {
@@ -34,4 +35,8 @@ fun setComputerNumber(): List<Int> {
         }
     }
     return computer.toList()
+}
+
+fun makeIntList(number: String): List<Int> {
+    return number.map { it.digitToInt() }.toList()
 }
