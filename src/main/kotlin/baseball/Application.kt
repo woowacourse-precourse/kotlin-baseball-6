@@ -83,7 +83,7 @@ fun printHint(hint: Pair<Int, Int>) {
         else -> "${ball}볼 ${strike}스트라이크"
     }
 
-    print(result)
+    println(result)
 }
 
 fun decideGameStatus(): Int {
