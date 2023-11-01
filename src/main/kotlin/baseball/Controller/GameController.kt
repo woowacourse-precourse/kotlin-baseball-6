@@ -1,5 +1,6 @@
 package baseball.Controller
 
+import baseball.Model.BaseBall
 import baseball.Model.Computer
 import baseball.View.InputView
 import baseball.View.OutputView
@@ -14,9 +15,10 @@ class GameController(private val inputView: InputView, private val outputView: O
         while (true) {
             val input = inputView.getUserInputList()
             val userNumber = makeIntList(input)
-            val hint = compareNumber(computer.numberList, userNumber)
-            outputView.printHint(hint)
-            if (hint.first == 3) {
+            val baseBall = BaseBall()
+            baseBall.compareNumber(computer.numberList, userNumber)
+            outputView.printHint(baseBall)
+            if (baseBall.isGameEnd()) {
                 outputView.printGameEndMessage()
                 val status = inputView.decideGameStatus()
                 if (status == 1) {
@@ -31,19 +33,5 @@ class GameController(private val inputView: InputView, private val outputView: O
 
     fun makeIntList(number: String): List<Int> {
         return number.map { it.digitToInt() }.toList()
-    }
-
-    fun compareNumber(computer: List<Int>, user: List<Int>): Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
-
-        for (i in user.indices) {
-            if (computer[i] == user[i]) {
-                strike++
-            } else if (computer.contains(user[i])) {
-                ball++
-            }
-        }
-        return Pair(strike, ball)
     }
 }
