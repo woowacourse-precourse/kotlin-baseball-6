@@ -21,6 +21,7 @@ class GameController(private val inputView: InputView, private val outputView: O
 
     private fun gameStart() {
         do {
+            outputView.printInputNumberMessage()
             val input = inputView.getUserInputList()
             val userNumber = makeIntList(input)
             val baseBall = BaseBall()

@@ -11,7 +11,6 @@ class InputView {
     }
 
     fun getUserInputList(): String {
-        print("숫자를 입력해주세요 : ")
         val userInput = getUserInput()
         Validator.validateLength(userInput)
         Validator.validateInteger(userInput)
