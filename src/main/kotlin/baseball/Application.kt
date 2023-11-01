@@ -51,6 +51,7 @@ fun makeIntList(number: String): List<Int> {
 }
 
 fun getUserInputList(): List<Int> {
+    print("숫자를 입력해주세요 : ")
     val userInput = getUserInput()
     validateLength(userInput)
     validateInteger(userInput)
@@ -89,4 +90,9 @@ fun decideGameStatus(): Int {
     val userInput = getUserInput()
     validateGameStatus(userInput)
     return userInput.toInt()
+}
+
+fun printGameEndMessage() {
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 }
