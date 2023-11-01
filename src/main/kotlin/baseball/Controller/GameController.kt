@@ -19,16 +19,13 @@ class GameController(private val inputView: InputView, private val outputView: O
     }
 
     fun gameStart() {
-        while (true) {
+        do {
             val input = inputView.getUserInputList()
             val userNumber = makeIntList(input)
             val baseBall = BaseBall()
             baseBall.compareNumber(computer.numberList, userNumber)
             outputView.printHint(baseBall)
-            if (baseBall.isGameEnd()) {
-                break
-            }
-        }
+        } while (baseBall.isGameEnd())
     }
 
     fun gameEnd() {
