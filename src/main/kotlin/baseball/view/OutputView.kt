@@ -1,6 +1,6 @@
-package baseball.View
+package baseball.view
 
-import baseball.Model.BaseBall
+import baseball.model.BaseBall
 
 class OutputView {
     fun printGameEndMessage() {

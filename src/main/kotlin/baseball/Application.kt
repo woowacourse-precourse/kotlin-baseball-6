@@ -1,8 +1,8 @@
 package baseball
 
-import baseball.Controller.GameController
-import baseball.View.InputView
-import baseball.View.OutputView
+import baseball.controller.GameController
+import baseball.view.InputView
+import baseball.view.OutputView
 
 fun main() {
     val inputView = InputView()

@@ -1,4 +1,4 @@
-package baseball.Util
+package baseball.util
 
 enum class Exception(private val message: String) {
     INVALID_NUMBER_LENGTH("사용자의 입력이 3자리수가 아닙니다."),

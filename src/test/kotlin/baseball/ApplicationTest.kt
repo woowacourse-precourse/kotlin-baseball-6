@@ -1,11 +1,11 @@
 package baseball
 
-import baseball.Model.BaseBall
-import baseball.Util.Validator.validateGameStatus
-import baseball.Util.Validator.validateInteger
-import baseball.Util.Validator.validateLength
-import baseball.Util.Validator.validateRange
-import baseball.Util.Validator.validateUniqueNumber
+import baseball.model.BaseBall
+import baseball.util.Validator.validateGameStatus
+import baseball.util.Validator.validateInteger
+import baseball.util.Validator.validateLength
+import baseball.util.Validator.validateRange
+import baseball.util.Validator.validateUniqueNumber
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest

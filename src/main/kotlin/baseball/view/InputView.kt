@@ -1,6 +1,6 @@
-package baseball.View
+package baseball.view
 
-import baseball.Util.Validator
+import baseball.util.Validator
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {

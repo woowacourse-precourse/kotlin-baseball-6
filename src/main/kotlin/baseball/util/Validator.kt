@@ -1,9 +1,9 @@
-package baseball.Util
+package baseball.util
 
-import baseball.Util.Constants.GAME_NUMBER_LENGTH
-import baseball.Util.Constants.QUIT
-import baseball.Util.Constants.REGEX
-import baseball.Util.Constants.RESTART
+import baseball.util.Constants.GAME_NUMBER_LENGTH
+import baseball.util.Constants.QUIT
+import baseball.util.Constants.REGEX
+import baseball.util.Constants.RESTART
 import java.lang.IllegalArgumentException
 
 object Validator {

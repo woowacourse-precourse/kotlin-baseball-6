@@ -1,10 +1,10 @@
-package baseball.Controller
+package baseball.controller
 
-import baseball.Model.BaseBall
-import baseball.Model.Computer
-import baseball.Util.Constants.RESTART
-import baseball.View.InputView
-import baseball.View.OutputView
+import baseball.view.InputView
+import baseball.model.BaseBall
+import baseball.model.Computer
+import baseball.util.Constants.RESTART
+import baseball.view.OutputView
 
 class GameController(private val inputView: InputView, private val outputView: OutputView) {
     private val computer = Computer()

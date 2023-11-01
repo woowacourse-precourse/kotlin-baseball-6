@@ -1,4 +1,4 @@
-package baseball.Util
+package baseball.util
 
 object Constants {
     const val RESTART = "1"

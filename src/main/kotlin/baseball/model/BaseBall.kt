@@ -1,6 +1,6 @@
-package baseball.Model
+package baseball.model
 
-import baseball.Util.Constants.GAME_NUMBER_LENGTH
+import baseball.util.Constants.GAME_NUMBER_LENGTH
 
 class BaseBall {
     private var _strike = 0

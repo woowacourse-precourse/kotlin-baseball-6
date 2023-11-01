@@ -1,8 +1,8 @@
-package baseball.Model
+package baseball.model
 
-import baseball.Util.Constants.END_INDEX
-import baseball.Util.Constants.GAME_NUMBER_LENGTH
-import baseball.Util.Constants.START_INDEX
+import baseball.util.Constants.END_INDEX
+import baseball.util.Constants.GAME_NUMBER_LENGTH
+import baseball.util.Constants.START_INDEX
 import camp.nextstep.edu.missionutils.Randoms
 
 class Computer {
