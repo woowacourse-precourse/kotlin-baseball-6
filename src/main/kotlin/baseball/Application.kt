@@ -5,19 +5,24 @@ import baseball.Util.Validator.validateInteger
 import baseball.Util.Validator.validateLength
 import baseball.Util.Validator.validateRange
 import baseball.Util.Validator.validateUniqueNumber
+import baseball.View.InputView
+import baseball.View.OutputView
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
-    printGameStart()
+    val inputView = InputView()
+    val outputView = OutputView()
+    outputView.printGameStart()
     var computerNumber = setComputerNumber()
 
     while (true) {
-        val userNumber = getUserInputList()
+        val userNumber = inputView.getUserInputList()
         val hint = compareNumber(computerNumber, userNumber)
-        printHint(hint)
+        outputView.printHint(hint)
         if (hint.first == 3) {
-            val status = decideGameStatus()
+            outputView.printGameEndMessage()
+            val status = inputView.decideGameStatus()
             if (status == 1) {
                 computerNumber = setComputerNumber()
             } else {
@@ -25,14 +30,6 @@ fun main() {
             }
         }
     }
-}
-
-fun printGameStart() {
-    println("숫자 야구 게임을 시작합니다.")
-}
-
-fun getUserInput(): String {
-    return Console.readLine()
 }
 
 fun setComputerNumber(): List<Int> {
@@ -50,16 +47,6 @@ fun makeIntList(number: String): List<Int> {
     return number.map { it.digitToInt() }.toList()
 }
 
-fun getUserInputList(): List<Int> {
-    print("숫자를 입력해주세요 : ")
-    val userInput = getUserInput()
-    validateLength(userInput)
-    validateInteger(userInput)
-    validateRange(userInput)
-    validateUniqueNumber(userInput)
-    return makeIntList(userInput)
-}
-
 fun compareNumber(computer: List<Int>, user: List<Int>): Pair<Int, Int> {
     var strike = 0
     var ball = 0
@@ -72,27 +59,4 @@ fun compareNumber(computer: List<Int>, user: List<Int>): Pair<Int, Int> {
         }
     }
     return Pair(strike, ball)
-}
-
-fun printHint(hint: Pair<Int, Int>) {
-    val (strike, ball) = hint
-    val result = when {
-        strike == 0 && ball == 0 -> "낫싱"
-        strike > 0 && ball == 0 -> "${strike}스트라이크"
-        strike == 0 && ball > 0 -> "${ball}볼"
-        else -> "${ball}볼 ${strike}스트라이크"
-    }
-
-    println(result)
-}
-
-fun decideGameStatus(): Int {
-    val userInput = getUserInput()
-    validateGameStatus(userInput)
-    return userInput.toInt()
-}
-
-fun printGameEndMessage() {
-    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 }
