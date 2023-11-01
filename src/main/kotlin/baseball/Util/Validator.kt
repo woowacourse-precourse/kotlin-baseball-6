@@ -8,21 +8,21 @@ import java.lang.IllegalArgumentException
 
 object Validator {
     fun validateLength(number: String) {
-        if (number.length != GAME_NUMBER_LENGTH) throw IllegalArgumentException("사용자의 입력이 3자리가 아닙니다.")
+        if (number.length != GAME_NUMBER_LENGTH) throw IllegalArgumentException(Exception.INVALID_NUMBER_LENGTH.getMessage())
     }
 
     fun validateInteger(number: String) {
-        number.toIntOrNull() ?: throw IllegalArgumentException("사용자의 입력이 정수가 아닙니다.")
+        number.toIntOrNull() ?: throw IllegalArgumentException(Exception.INVALID_INTEGER.getMessage())
     }
 
     fun validateRange(number: String) {
         val regex = REGEX.toRegex()
-        if (!regex.matches(number)) throw IllegalArgumentException("사용자의 입력이 1부터 9까지의 숫자가 아닙니다.")
+        if (!regex.matches(number)) throw IllegalArgumentException(Exception.INVALID_RANGE.getMessage())
     }
 
     fun validateUniqueNumber(number: String) {
         val validation = number.toSet()
-        if (validation.size != GAME_NUMBER_LENGTH) throw IllegalArgumentException("사용자의 입력 중 중복된 숫자가 존재합니다.")
+        if (validation.size != GAME_NUMBER_LENGTH) throw IllegalArgumentException(Exception.INVALID_UNIQUE.getMessage())
     }
 
     fun validateGameStatus(number: String) {
@@ -30,6 +30,6 @@ object Validator {
             return
         }
 
-        throw IllegalArgumentException("사용자의 입력이 1 또는 2가 아닙니다.")
+        throw IllegalArgumentException(Exception.INVALID_GAME_STATUS_NUMBER.getMessage())
     }
 }
