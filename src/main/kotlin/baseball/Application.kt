@@ -78,3 +78,7 @@ fun printHint(hint: Pair<Int, Int>) {
 
     print(result)
 }
+
+fun decideGameStatus() {
+    val userInput = getUserInput()
+}
