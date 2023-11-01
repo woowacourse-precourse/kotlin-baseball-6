@@ -7,6 +7,10 @@ class GameOutputView {
      fun printGameStart() {
         println(C.GAME_START_MSG)
     }
+    fun printInput(){
+        print(C.GET_INPUT_MSG)
+    }
+
     //게임 결과를 출력하는 함수
      fun printGameResult(result: Pair<Int, Int>) {
         val (strike, ball) = result
