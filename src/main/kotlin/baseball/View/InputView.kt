@@ -1,7 +1,6 @@
 package baseball.View
 
 import baseball.Util.Validator
-import baseball.makeIntList
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
@@ -11,14 +10,14 @@ class InputView {
         return userInput.toInt()
     }
 
-    fun getUserInputList(): List<Int> {
+    fun getUserInputList(): String {
         print("숫자를 입력해주세요 : ")
         val userInput = getUserInput()
         Validator.validateLength(userInput)
         Validator.validateInteger(userInput)
         Validator.validateRange(userInput)
         Validator.validateUniqueNumber(userInput)
-        return makeIntList(userInput)
+        return userInput
     }
 
     fun getUserInput(): String {
