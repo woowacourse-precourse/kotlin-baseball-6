@@ -9,6 +9,15 @@ class GameController(private val inputView: InputView, private val outputView: O
     val computer = Computer()
     fun run() {
         gameInit()
+        gameStart()
+    }
+
+    fun gameInit() {
+        outputView.printGameStart()
+        computer.setComputerNumber()
+    }
+
+    fun gameStart() {
         while (true) {
             val input = inputView.getUserInputList()
             val userNumber = makeIntList(input)
@@ -26,11 +35,6 @@ class GameController(private val inputView: InputView, private val outputView: O
                 }
             }
         }
-    }
-
-    fun gameInit() {
-        outputView.printGameStart()
-        computer.setComputerNumber()
     }
 
     fun makeIntList(number: String): List<Int> {
