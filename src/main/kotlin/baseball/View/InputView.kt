@@ -19,7 +19,7 @@ class InputView {
         return userInput
     }
 
-    fun getUserInput(): String {
+    private fun getUserInput(): String {
         return Console.readLine()
     }
 }
