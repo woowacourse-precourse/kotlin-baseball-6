@@ -1,8 +1,7 @@
 package baseball.controller
 
 import baseball.model.Computer
-import baseball.util.C.GET_INPUT_STRING
-import baseball.util.C.INPUT_REGEX
+import baseball.util.C.GET_INPUT_MSG
 import baseball.util.Validator.checkUserInputValid
 import baseball.view.GameOutputView
 import camp.nextstep.edu.missionutils.Console
@@ -39,7 +38,7 @@ class System {
 
     //플레이어 입력을 받는 함수
     private fun getUserInput() {
-        print(GET_INPUT_STRING)
+        print(GET_INPUT_MSG)
         userInput = Console.readLine().toString() //플레이어 입력
     }
 
