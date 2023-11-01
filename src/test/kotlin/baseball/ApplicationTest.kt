@@ -47,6 +47,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `사용자 입력 중 중복된 수가 없는지 검증`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { validateUniqueNumber("122") }
+            assertThrows<IllegalArgumentException> { validateUniqueNumber("994") }
+        }
+    }
+
     override fun runMain() {
         main()
     }
