@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.Util.Validator.validateGameStatus
 import baseball.Util.Validator.validateInteger
 import baseball.Util.Validator.validateLength
 import baseball.Util.Validator.validateRange
@@ -64,6 +65,15 @@ class ApplicationTest : NsTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> { validateRange("012") }
             assertThrows<IllegalArgumentException> { validateRange("980") }
+        }
+    }
+
+    @Test
+    fun `사용자의 입력이 1, 2 인지 검증`(){
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { validateGameStatus("0") }
+            assertThrows<IllegalArgumentException> { validateGameStatus("3") }
+            assertThrows<IllegalArgumentException> { validateGameStatus("11") }
         }
     }
 
