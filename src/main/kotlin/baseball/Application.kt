@@ -10,14 +10,19 @@ import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     printGameStart()
-    val computerNumber = setComputerNumber()
+    var computerNumber = setComputerNumber()
 
     while (true) {
         val userNumber = getUserInputList()
         val hint = compareNumber(computerNumber, userNumber)
         printHint(hint)
         if (hint.first == 3) {
-            break
+            val status = decideGameStatus()
+            if (status == 1) {
+                computerNumber = setComputerNumber()
+            } else {
+                break
+            }
         }
     }
 }
@@ -80,7 +85,8 @@ fun printHint(hint: Pair<Int, Int>) {
     print(result)
 }
 
-fun decideGameStatus() {
+fun decideGameStatus(): Int {
     val userInput = getUserInput()
     validateGameStatus(userInput)
+    return userInput.toInt()
 }
