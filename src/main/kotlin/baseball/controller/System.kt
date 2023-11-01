@@ -3,6 +3,7 @@ package baseball.controller
 import baseball.model.Computer
 import baseball.util.C.GET_INPUT_STRING
 import baseball.util.C.INPUT_REGEX
+import baseball.util.Validator.checkUserInputValid
 import baseball.view.GameOutputView
 import camp.nextstep.edu.missionutils.Console
 
@@ -25,6 +26,7 @@ class System {
         while (!isFinished) {
             getUserInput()
             checkUserInputValid(userInput)
+            makeUserInputList(userInput)
             result = computer.getGameResult(userInputList)
             gamerOutputView.printGameResult(result)
             if (result.first == 3) {
@@ -55,19 +57,4 @@ class System {
     private fun makeUserInputList(userInput: String) {
         userInputList = userInput.chunked(1)
     }
-
-    //플레이어의 입력값이 유효한 지 검사하는 함수
-    private fun checkUserInputValid(userInput: String) {
-        if (!checkRegexMatch(userInput) || !checkDiffNums(userInput)) throw IllegalArgumentException()
-        else makeUserInputList(userInput)
-    }
-
-    //정규표현식과 일치하는 지 확인하는 함수
-    private fun checkRegexMatch(userInput: String): Boolean {
-        val regex = INPUT_REGEX.toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
-        return regex.matches(userInput)
-    }
-
-    //중복된 숫자가 없는 지 확인하는 함수
-    private fun checkDiffNums(userInput: String): Boolean = (userInput.length == userInput.toSet().size)
 }
