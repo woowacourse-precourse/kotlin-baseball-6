@@ -11,7 +11,8 @@ object C {
     const val NOTHING = "낫싱"
 
     const val RANDOM_SIZE = 3
-    
+    const val FINISH_CONDITION = 3
+
     const val INPUT_REGEX = "[1-9]{3}"
 
 }

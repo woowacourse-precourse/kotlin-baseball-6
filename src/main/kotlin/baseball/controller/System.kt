@@ -1,6 +1,7 @@
 package baseball.controller
 
 import baseball.model.Computer
+import baseball.util.C.FINISH_CONDITION
 import baseball.util.C.GET_INPUT_MSG
 import baseball.util.Validator.checkUserInputValid
 import baseball.view.GameOutputView
@@ -22,14 +23,19 @@ class System {
 
     //게임 실행 함수
     fun gameStart() {
+
         while (!isFinished) {
+
             getUserInput()
             checkUserInputValid(userInput)
             makeUserInputList(userInput)
+
             result = computer.getGameResult(userInputList)
             gamerOutputView.printGameResult(result)
-            if (result.first == 3) {
+
+            if (result.first == FINISH_CONDITION) {
                 gamerOutputView.printGameEnded()
+
                 if (endGame()) isFinished = true
                 else computer.makeRandomNums()
             }
