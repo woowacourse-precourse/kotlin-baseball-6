@@ -1,13 +1,9 @@
-package baseball
+package baseball.controller
 
-import baseball.Util.C.BALL_STRING
-import baseball.Util.C.GAME_END_STRING
-import baseball.Util.C.GET_INPUT_STRING
-import baseball.Util.C.GAME_RESTART_STRING
-import baseball.Util.C.GAME_START_STRING
-import baseball.Util.C.INPUT_REGEX
-import baseball.Util.C.NOTHING
-import baseball.Util.C.STRIKE_STRING
+import baseball.Computer
+import baseball.util.C.GET_INPUT_STRING
+import baseball.util.C.INPUT_REGEX
+import baseball.view.GameOutputView
 import camp.nextstep.edu.missionutils.Console
 
 class System {
@@ -17,9 +13,10 @@ class System {
     private var isFinished = false
     private var result: Pair<Int, Int> = Pair(0, 0)
     private val computer = Computer()
+    private val gamerOutputView = GameOutputView()
 
     init {
-        printGameStart()
+        gamerOutputView.printGameStart()
         computer.makeRandomNumList()
     }
 
@@ -29,9 +26,9 @@ class System {
             getUserInput()
             checkUserInputValid(userInput)
             result = computer.getGameResult(userInputList)
-            printGameResult(result)
+            gamerOutputView.printGameResult(result)
             if (result.first == 3) {
-                printGameEnded()
+                gamerOutputView.printGameEnded()
                 if (endGame()) isFinished = true
                 else computer.makeRandomNumList()
             }
@@ -43,6 +40,7 @@ class System {
         print(GET_INPUT_STRING)
         userInput = Console.readLine().toString() //플레이어 입력
     }
+
     //재시작 여부를 받는 함수
     private fun endGame(): Boolean {
         val userInput = Console.readLine()
@@ -63,32 +61,13 @@ class System {
         if (!checkRegexMatch(userInput) || !checkDiffNums(userInput)) throw IllegalArgumentException()
         else makeUserInputList(userInput)
     }
+
     //정규표현식과 일치하는 지 확인하는 함수
     private fun checkRegexMatch(userInput: String): Boolean {
         val regex = INPUT_REGEX.toRegex() //1-9사이의 숫자로 구성된 세 자릿수 정규표현식
         return regex.matches(userInput)
     }
+
     //중복된 숫자가 없는 지 확인하는 함수
     private fun checkDiffNums(userInput: String): Boolean = (userInput.length == userInput.toSet().size)
-
-    //게임 시작을 출력하는 함수
-    private fun printGameStart() {
-        println(GAME_START_STRING)
-    }
-    //게임 결과를 출력하는 함수
-    private fun printGameResult(result: Pair<Int, Int>) {
-        val (strike, ball) = result
-        val resultText = when {
-            strike > 0 && ball == 0 -> "$strike$STRIKE_STRING"
-            strike == 0 && ball > 0 -> "$ball$BALL_STRING"
-            strike == 0 && ball == 0 -> NOTHING
-            else -> "$ball$BALL_STRING $strike$STRIKE_STRING"
-        }
-        println(resultText)
-    }
-    //게임 종료를 출력하는 함수
-    private fun printGameEnded() {
-        println(GAME_END_STRING)
-        println(GAME_RESTART_STRING)
-    }
 }
