@@ -27,6 +27,16 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `사용자 입력 3자리 숫자인지 검증`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { validateLength("1234") }
+            assertThrows<IllegalArgumentException> { validateLength("12") }
+            assertThrows<IllegalArgumentException> { validateLength("12345") }
+            assertThrows<IllegalArgumentException> { validateLength("") }
+        }
+    }
+
     override fun runMain() {
         main()
     }
