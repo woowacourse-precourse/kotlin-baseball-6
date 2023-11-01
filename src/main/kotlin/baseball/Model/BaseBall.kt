@@ -1,5 +1,7 @@
 package baseball.Model
 
+import baseball.Util.Constants.GAME_NUMBER_LENGTH
+
 class BaseBall {
     private var _strike = 0
     val strike: Int
@@ -20,5 +22,5 @@ class BaseBall {
         }
     }
 
-    fun gameStatus() = strike != 3
+    fun gameStatus() = strike != GAME_NUMBER_LENGTH
 }

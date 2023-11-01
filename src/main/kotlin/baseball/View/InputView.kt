@@ -4,10 +4,10 @@ import baseball.Util.Validator
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
-    fun decideGameStatus(): Int {
+    fun decideGameStatus(): String {
         val userInput = getUserInput()
         Validator.validateGameStatus(userInput)
-        return userInput.toInt()
+        return userInput
     }
 
     fun getUserInputList(): String {
