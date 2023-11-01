@@ -4,14 +4,11 @@ import baseball.Model.BaseBall
 import baseball.Model.Computer
 import baseball.View.InputView
 import baseball.View.OutputView
-import camp.nextstep.edu.missionutils.Randoms
 
 class GameController(private val inputView: InputView, private val outputView: OutputView) {
     val computer = Computer()
     fun run() {
-        outputView.printGameStart()
-        computer.setComputerNumber()
-
+        gameInit()
         while (true) {
             val input = inputView.getUserInputList()
             val userNumber = makeIntList(input)
@@ -29,6 +26,11 @@ class GameController(private val inputView: InputView, private val outputView: O
                 }
             }
         }
+    }
+
+    fun gameInit() {
+        outputView.printGameStart()
+        computer.setComputerNumber()
     }
 
     fun makeIntList(number: String): List<Int> {
