@@ -1,6 +1,6 @@
 package baseball.controller
 
-import baseball.Computer
+import baseball.model.Computer
 import baseball.util.C.GET_INPUT_STRING
 import baseball.util.C.INPUT_REGEX
 import baseball.view.GameOutputView
@@ -17,7 +17,7 @@ class System {
 
     init {
         gamerOutputView.printGameStart()
-        computer.makeRandomNumList()
+        computer.makeRandomNums()
     }
 
     //게임 실행 함수
@@ -30,7 +30,7 @@ class System {
             if (result.first == 3) {
                 gamerOutputView.printGameEnded()
                 if (endGame()) isFinished = true
-                else computer.makeRandomNumList()
+                else computer.makeRandomNums()
             }
         }
     }
