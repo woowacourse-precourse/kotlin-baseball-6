@@ -20,5 +20,5 @@ class BaseBall {
         }
     }
 
-    fun isGameEnd() = strike == 3
+    fun gameStatus() = strike != 3
 }

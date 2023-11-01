@@ -25,7 +25,7 @@ class GameController(private val inputView: InputView, private val outputView: O
             val baseBall = BaseBall()
             baseBall.compareNumber(computer.numberList, userNumber)
             outputView.printHint(baseBall)
-        } while (baseBall.isGameEnd())
+        } while (baseBall.gameStatus())
     }
 
     fun gameEnd() {
