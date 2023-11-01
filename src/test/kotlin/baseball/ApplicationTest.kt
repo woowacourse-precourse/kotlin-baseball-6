@@ -67,6 +67,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `문자열 정수형 리스트로 반환 검증`() {
+        val input = "125"
+        val validation = makeIntList(input)
+        val result = listOf<Int>(1, 2, 5)
+        assertThat(validation).isEqualTo(result)
+    }
+
     override fun runMain() {
         main()
     }
