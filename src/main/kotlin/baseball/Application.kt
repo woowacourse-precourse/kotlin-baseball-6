@@ -7,6 +7,7 @@ fun main() {
     printGameStart()
     val userInput = getUserInput()
     validateLength(userInput)
+    validateInteger(userInput)
 }
 
 fun printGameStart() {
@@ -19,4 +20,8 @@ fun getUserInput(): String {
 
 fun validateLength(number: String) {
     if (number.length != 3) throw IllegalArgumentException("사용자의 입력이 3자리가 아닙니다.")
+}
+
+fun validateInteger(number: String) {
+    number.toIntOrNull() ?: throw IllegalArgumentException("사용자의 입력이 정수가 아닙니다.")
 }
