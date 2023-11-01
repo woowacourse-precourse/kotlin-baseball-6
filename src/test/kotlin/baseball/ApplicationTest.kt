@@ -55,6 +55,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `사용자 입력 중 각자리가 범위에 맞는지 검증`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { validateRange("012") }
+            assertThrows<IllegalArgumentException> { validateRange("980") }
+        }
+    }
+
     override fun runMain() {
         main()
     }
