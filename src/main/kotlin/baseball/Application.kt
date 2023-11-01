@@ -10,8 +10,15 @@ import camp.nextstep.edu.missionutils.Randoms
 fun main() {
     printGameStart()
     val computerNumber = setComputerNumber()
-    val userNumber = getUserInputList()
 
+    while (true) {
+        val userNumber = getUserInputList()
+        val hint = compareNumber(computerNumber, userNumber)
+        printHint(hint)
+        if (hint.first == 3) {
+            break
+        }
+    }
 }
 
 fun printGameStart() {
