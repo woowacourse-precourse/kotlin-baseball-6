@@ -1,10 +1,12 @@
 package baseball
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.IllegalArgumentException
 
 fun main() {
     printGameStart()
     val userInput = getUserInput()
+    validateLength(userInput)
 }
 
 fun printGameStart() {
@@ -13,4 +15,8 @@ fun printGameStart() {
 
 fun getUserInput(): String {
     return Console.readLine()
+}
+
+fun validateLength(number: String) {
+    if (number.length != 3) throw IllegalArgumentException("사용자의 입력이 3자리가 아닙니다.")
 }
