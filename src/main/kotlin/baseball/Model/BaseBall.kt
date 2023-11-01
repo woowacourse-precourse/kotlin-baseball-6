@@ -13,6 +13,7 @@ class BaseBall {
 
 
     fun compareNumber(computer: List<Int>, user: List<Int>) {
+        resetHint()
         for (i in user.indices) {
             if (computer[i] == user[i]) {
                 _strike++
@@ -20,6 +21,11 @@ class BaseBall {
                 _ball++
             }
         }
+    }
+
+    fun resetHint() {
+        _strike = 0
+        _ball = 0
     }
 
     fun gameStatus() = strike != GAME_NUMBER_LENGTH

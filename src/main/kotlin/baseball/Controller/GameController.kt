@@ -8,6 +8,7 @@ import baseball.View.OutputView
 
 class GameController(private val inputView: InputView, private val outputView: OutputView) {
     private val computer = Computer()
+    private val baseBall = BaseBall()
 
     fun run() {
         gameInit()
@@ -22,12 +23,7 @@ class GameController(private val inputView: InputView, private val outputView: O
 
     private fun gameStart() {
         do {
-            outputView.printInputNumberMessage()
-            val input = inputView.getUserInputList()
-            val userNumber = makeIntList(input)
-            val baseBall = BaseBall()
-            baseBall.compareNumber(computer.numberList, userNumber)
-            outputView.printHint(baseBall)
+            oneCycleGame()
         } while (baseBall.gameStatus())
     }
 
@@ -47,5 +43,13 @@ class GameController(private val inputView: InputView, private val outputView: O
 
     private fun makeIntList(number: String): List<Int> {
         return number.map { it.digitToInt() }.toList()
+    }
+
+    private fun oneCycleGame() {
+        outputView.printInputNumberMessage()
+        val input = inputView.getUserInputList()
+        val userNumber = makeIntList(input)
+        baseBall.compareNumber(computer.numberList, userNumber)
+        outputView.printHint(baseBall)
     }
 }
