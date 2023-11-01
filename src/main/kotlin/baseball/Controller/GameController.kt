@@ -7,7 +7,8 @@ import baseball.View.InputView
 import baseball.View.OutputView
 
 class GameController(private val inputView: InputView, private val outputView: OutputView) {
-    val computer = Computer()
+    private val computer = Computer()
+
     fun run() {
         gameInit()
         gameStart()
@@ -34,10 +35,14 @@ class GameController(private val inputView: InputView, private val outputView: O
         outputView.printGameEndMessage()
         val status = inputView.decideGameStatus()
         if (status == RESTART) {
-            computer.resetComputerNumber()
-            computer.setComputerNumber()
-            gameStart()
+            gameReset()
         }
+    }
+
+    private fun gameReset() {
+        computer.resetComputerNumber()
+        computer.setComputerNumber()
+        gameStart()
     }
 
     private fun makeIntList(number: String): List<Int> {
