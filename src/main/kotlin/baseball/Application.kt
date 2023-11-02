@@ -21,8 +21,8 @@ import java.lang.IllegalArgumentException
     private fun createComputerNumber(): String {
         val uniqueNumbers = mutableSetOf<Char>()
         while (uniqueNumbers.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9).toString().single()
-            uniqueNumbers.add(randomNumber)
+            val randomNumber = Randoms.pickNumberInRange(1, 9).toString()
+            uniqueNumbers.add(randomNumber.single())
         }
         return uniqueNumbers.joinToString("")
     }
@@ -59,8 +59,7 @@ import java.lang.IllegalArgumentException
     }
 
     private fun endGame() {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
     }
 
     private fun resetGame(): Boolean {
