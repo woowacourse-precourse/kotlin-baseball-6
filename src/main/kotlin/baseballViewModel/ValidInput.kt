@@ -2,24 +2,27 @@ package baseballViewModel
 
 
 class ValidInput {
+    companion object{
+        val size_limit=3
+    }
     private fun sizeCheck(inputNumber: String) {
-        if (inputNumber.length != 3)
-            throw IllegalArgumentException("[Error]숫자는 3개 모두 입력하셔야합니다.")
+        if (inputNumber.length != size_limit)
+            throw IllegalArgumentException(ErrorMessage.INPUT_SIZE_ERROR.message)
     }
 
     private fun containZero(inputNumber: String) {
         if (inputNumber.contains("0"))
-            throw IllegalArgumentException("[Error]숫자는 1부터 9까지로 구성되어있습니다.")
+            throw IllegalArgumentException(ErrorMessage.MISS_RANGE.message)
     }
 
     private fun duplicateNumber(inputNumber: String) {
         if (inputNumber.toSet().size != inputNumber.length)
-            throw IllegalArgumentException("[Error]중복된 숫자가 존재합니다.")
+            throw IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.message)
     }
 
     private fun notInt(inputNumber: String) {
         if (inputNumber.toIntOrNull() == null)
-            throw IllegalArgumentException("[Error]숫자만 입력 가능합니다.")
+            throw IllegalArgumentException(ErrorMessage.ONLY_NUMBERS.message)
     }
 
     fun validUserNumber(inputNumber: String, userNumber: MutableList<Char>) {
