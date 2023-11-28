@@ -1,9 +1,14 @@
 package baseball.model
 
+import baseball.model.BaseballNumbers.Companion.NUMBERS_DIGIT
+
 data class BallAndStrike(
     val strikeCount: Int,
     val ballCount: Int
 ) {
+
+    fun isSuccess() = strikeCount == NUMBERS_DIGIT
+
     override fun toString(): String {
         return when {
             (strikeCount > 0 && ballCount > 0) ->
