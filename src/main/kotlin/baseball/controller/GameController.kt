@@ -1,26 +1,24 @@
 package baseball.controller
 
+import baseball.model.Answer
 import baseball.model.BaseballNumbers
-import baseball.model.RandomAnswer
 import baseball.model.Referee
 import baseball.view.Command
 import baseball.view.InputView
 import baseball.view.OutputView
 
-class GameController {
-
+class GameController(
+    val referee: Referee,
+    val answer: Answer
+) {
     private val inputView = InputView()
     private val outputView = OutputView()
-
-    private val referee = Referee()
-
 
     fun start() {
         outputView.showStartPrompt()
         do {
-            val answer = RandomAnswer().generated()
-            println(answer)
-            startGame(answer)
+            val thisAnswer = answer.generated()
+            startGame(thisAnswer)
             outputView.showSuccessPrompt()
         } while (inputView.readCommand() == Command.RESTART)
     }
