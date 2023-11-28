@@ -12,7 +12,6 @@ class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
 
-    private val numbersConverter = NumbersConverter()
     private val referee = Referee()
 
 
@@ -28,7 +27,7 @@ class GameController {
 
     private fun startGame(answer: BaseballNumbers) {
         do {
-            val userBaseballNumbers = numbersConverter.toBaseballNumbers(inputView.readNumbers())
+            val userBaseballNumbers = (inputView.readNumbers()).toBaseballNumbers()
             val ballAndStrike = referee.compare(userBaseballNumbers, answer)
             outputView.showTurnResult(ballAndStrike)
         } while (!ballAndStrike.isSuccess())
