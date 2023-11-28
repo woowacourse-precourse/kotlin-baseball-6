@@ -4,6 +4,8 @@ import baseball.model.BaseballNumber
 import baseball.model.BaseballNumber.Companion.START_NUMBER
 import baseball.model.BaseballNumbers
 import baseball.model.BaseballNumbers.Companion.NUMBERS_DIGIT
+import baseball.view.Command
+import baseball.view.InputView.Companion.COMMAND_PROMPT
 
 
 fun Int.toBaseballNumbers(): BaseballNumbers {
@@ -21,5 +23,13 @@ fun Int.toBaseballNumbers(): BaseballNumbers {
     return BaseballNumbers(numbers)
 }
 
-const val INVALID_NUMBERS = "0 이상의 $NUMBERS_DIGIT 자리 수를 입력해주세요."
+fun Int.toCommand(): Command {
+    val command = Command.entries.firstOrNull { it.command == this }
+    require(command != null) {
+        INVALID_COMMAND
+    }
+    return command
+}
 
+const val INVALID_NUMBERS = "0 이상의 $NUMBERS_DIGIT 자리 수를 입력해주세요."
+val INVALID_COMMAND = "잘못된 입력입니다.\n $COMMAND_PROMPT"

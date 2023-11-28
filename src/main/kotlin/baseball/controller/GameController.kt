@@ -20,7 +20,7 @@ class GameController(
             val thisAnswer = answerGenerator.generate()
             startGame(thisAnswer)
             outputView.showSuccessPrompt()
-        } while (inputView.readCommand() == Command.RESTART)
+        } while (inputView.readCommand().toCommand() == Command.RESTART)
     }
 
     private fun startGame(answer: BaseballNumbers) {
