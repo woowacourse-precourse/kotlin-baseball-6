@@ -4,6 +4,7 @@ import baseball.model.BaseballNumbers.Companion.INVALID_NUMBERS_SIZE
 import baseball.model.BaseballNumbers.Companion.NUMBERS_DUPLICATED
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 class BaseballNumbersTest {
@@ -29,6 +30,17 @@ class BaseballNumbersTest {
             )
         }
         assertThat(exception.message).isEqualTo(NUMBERS_DUPLICATED)
+    }
+
+    @Test
+    fun `세자리 중복이 없는 숫자 셋의 경우 정상이다`() {
+        assertDoesNotThrow {
+            BaseballNumbers(
+                listOf(
+                    BaseballNumber(1), BaseballNumber(2), BaseballNumber(3),
+                )
+            )
+        }
     }
 
 }
