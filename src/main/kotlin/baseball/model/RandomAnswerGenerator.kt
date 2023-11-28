@@ -7,10 +7,10 @@ import camp.nextstep.edu.missionutils.Randoms.pickNumberInRange
 
 class RandomAnswerGenerator : AnswerGenerator {
     override fun generate(): BaseballNumbers {
-        val numbers = mutableListOf<BaseballNumber>()
+        val numbers = mutableSetOf<BaseballNumber>()
         while (numbers.size < NUMBERS_DIGIT) {
             numbers.add(BaseballNumber(pickNumberInRange(START_NUMBER, END_NUMBER)))
         }
-        return BaseballNumbers(numbers)
+        return BaseballNumbers(numbers.toList())
     }
 }
