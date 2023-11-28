@@ -1,6 +1,6 @@
 package baseball.controller
 
-import baseball.model.Answer
+import baseball.model.AnswerGenerator
 import baseball.model.BaseballNumbers
 import baseball.model.Referee
 import baseball.view.Command
@@ -9,7 +9,7 @@ import baseball.view.OutputView
 
 class GameController(
     val referee: Referee,
-    val answer: Answer
+    val answerGenerator: AnswerGenerator
 ) {
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -17,7 +17,7 @@ class GameController(
     fun start() {
         outputView.showStartPrompt()
         do {
-            val thisAnswer = answer.generated()
+            val thisAnswer = answerGenerator.generate()
             startGame(thisAnswer)
             outputView.showSuccessPrompt()
         } while (inputView.readCommand() == Command.RESTART)
