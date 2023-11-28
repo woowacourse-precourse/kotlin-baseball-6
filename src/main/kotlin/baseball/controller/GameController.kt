@@ -17,13 +17,13 @@ class GameController(
     fun start() {
         outputView.showStartPrompt()
         do {
-            val thisAnswer = answerGenerator.generate()
-            startGame(thisAnswer)
+            val answer = answerGenerator.generate()
+            oneCycleGame(answer)
             outputView.showSuccessPrompt()
         } while (inputView.readCommand().toCommand() == Command.RESTART)
     }
 
-    private fun startGame(answer: BaseballNumbers) {
+    private fun oneCycleGame(answer: BaseballNumbers) {
         do {
             val userBaseballNumbers = (inputView.readNumbers()).toBaseballNumbers()
             val ballAndStrike = referee.compare(userBaseballNumbers, answer)
