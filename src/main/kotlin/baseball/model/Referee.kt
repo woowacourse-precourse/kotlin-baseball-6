@@ -10,7 +10,7 @@ class Referee {
                 strikeCount++
                 continue
             }
-            if (answer.numbers.contains(BaseballNumber(i))) {
+            if (answer.numbers.contains(BaseballNumber(inputNumbers.numbers[i].number))) {
                 ballCount++
             }
         }
