@@ -1,5 +1,13 @@
 package baseball
 
+import baseball.controller.GameController
+import baseball.model.RandomAnswerGenerator
+import baseball.model.Referee
+
 fun main() {
-    TODO("프로그램 구현")
+    val gameController = GameController(
+        referee = Referee(),
+        answerGenerator = RandomAnswerGenerator()
+    )
+    gameController.start()
 }
