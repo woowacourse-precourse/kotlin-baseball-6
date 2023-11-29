@@ -1,39 +1,31 @@
 package baseball.controller
 
+import baseball.domain.ComputerNumberGenerator
 import baseball.domain.Referee
 import baseball.domain.model.Computer
 import baseball.domain.model.Player
 import baseball.presentation.InputView
 import baseball.presentation.OutputView
-import camp.nextstep.edu.missionutils.Randoms
 
-class BaseBallGame {
-    private val inputView = InputView()
-    private val outputView = OutputView()
+class BaseBallGame(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
 
-    init {
-        play()
-    }
-
-    private fun play() {
+    fun play() {
         outputView.printStart()
-
         do {
             val computer = createComputer()
             println(computer)
-
             do {
                 val player = createPlayer()
                 val referee = Referee(player, computer)
-
                 val result = referee.judge()
-                println("${result.strike} ${result.ball} ${result.nothing}")
+                outputView.printResult(result)
             } while (result.strike != 3)
             outputView.printEnd()
-
-            val reGameOrStop = inputView.readReGameOrStop().toInt()
-        } while (reGameOrStop == 1)
-
+            val reGameOrQuitProgram = inputView.readReGameOrQuitProgram().toInt()
+        } while (reGameOrQuitProgram == 1)
     }
 
     private fun createPlayer(): Player =
@@ -45,14 +37,12 @@ class BaseBallGame {
             createPlayer()
         }
 
-    private fun createComputer(): Computer {
-        val computer = mutableListOf<Int>()
-        while (computer.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
+    private fun createComputer(): Computer =
+        try {
+            val computerNumber = ComputerNumberGenerator.generate()
+            Computer(computerNumber)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            createComputer()
         }
-        return Computer(computer)
-    }
 }

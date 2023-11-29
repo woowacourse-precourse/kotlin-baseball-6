@@ -18,7 +18,7 @@ class RefereeTest {
 
     @ParameterizedTest
     @MethodSource("provideBallData")
-    fun `볼`(player: Player, computer: Computer, expectedBallCount: Int) {
+    fun `볼 기능 테스트`(player: Player, computer: Computer, expectedBallCount: Int) {
         val actualBallCount = Referee(player, computer).ball()
 
         assertThat(actualBallCount).isEqualTo(expectedBallCount)
@@ -26,7 +26,7 @@ class RefereeTest {
 
     @ParameterizedTest
     @MethodSource("provideNothingData")
-    fun `낫싱`(player: Player, computer: Computer, expectedIsNothing: Boolean) {
+    fun `낫싱 기능 테스트`(player: Player, computer: Computer, expectedIsNothing: Boolean) {
         val actualIsNothing = Referee(player, computer).nothing()
 
         assertThat(actualIsNothing).isEqualTo(expectedIsNothing)

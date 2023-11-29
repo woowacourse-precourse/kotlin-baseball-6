@@ -15,7 +15,7 @@ class InputView {
         }
     }
 
-    fun readReGameOrStop(): String {
+    fun readReGameOrQuitProgram(): String {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val input = Console.readLine()
         return try {
@@ -23,7 +23,7 @@ class InputView {
             input
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            readReGameOrStop()
+            readReGameOrQuitProgram()
         }
     }
 
