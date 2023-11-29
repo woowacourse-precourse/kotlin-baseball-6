@@ -9,6 +9,7 @@ class Referee(
     private val computer: Computer,
 ) {
     fun judge() = JudgeResult(strike(), ball(), nothing())
+
     // strike, ball, nothing private으로 바꾸고, judge로 test하기
     fun strike(): Int =
         computer.number.indices.count { computer.number[it] == player.number[it] }
