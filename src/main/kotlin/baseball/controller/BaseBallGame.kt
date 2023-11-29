@@ -18,18 +18,22 @@ class BaseBallGame {
     private fun play() {
         outputView.printStart()
 
-        val computer = createComputer()
-        println(computer)
-
         do {
-            val player = createPlayer()
-            val referee = Referee(player, computer)
+            val computer = createComputer()
+            println(computer)
 
-            val result = referee.judge()
-            println("${result.strike} ${result.ball} ${result.nothing}")
-        } while (result.strike != 3)
+            do {
+                val player = createPlayer()
+                val referee = Referee(player, computer)
 
-        outputView.printEnd()
+                val result = referee.judge()
+                println("${result.strike} ${result.ball} ${result.nothing}")
+            } while (result.strike != 3)
+            outputView.printEnd()
+
+            val reGameOrStop = inputView.readReGameOrStop().toInt()
+        } while (reGameOrStop == 1)
+
     }
 
     private fun createPlayer(): Player =

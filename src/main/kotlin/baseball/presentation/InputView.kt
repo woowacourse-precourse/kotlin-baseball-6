@@ -15,6 +15,18 @@ class InputView {
         }
     }
 
+    fun readReGameOrStop(): String {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val input = Console.readLine()
+        return try {
+            validatePlayerNumber(input)
+            input
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readReGameOrStop()
+        }
+    }
+
     private fun validatePlayerNumber(input: String) =
         requireNotNull(input.toIntOrNull()) { NUMBER_ERROR }
 
