@@ -24,7 +24,7 @@ class InningTest {
         val score = inning.matchUp("123")
 
         // then
-        assertThat(score.isStrike()).isTrue()
+        assertThat(score.isEnd()).isTrue()
         assertThat(score.strikes).isEqualTo(3)
         assertThat(score.balls).isEqualTo(0)
     }

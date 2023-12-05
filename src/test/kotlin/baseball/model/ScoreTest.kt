@@ -32,7 +32,7 @@ class ScoreTest {
         val score = Score(3, 0)
 
         // then
-        assertThat(score.isStrike()).isTrue()
+        assertThat(score.isEnd()).isTrue()
     }
 
     @Test

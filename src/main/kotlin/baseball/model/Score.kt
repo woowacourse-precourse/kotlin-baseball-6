@@ -14,7 +14,7 @@ data class Score(
         validateRange(strikes, balls)
     }
 
-    fun isStrike(): Boolean {
+    fun isEnd(): Boolean {
         return strikes == MAX_NUMBER && balls == MIN_NUMBER
     }
 

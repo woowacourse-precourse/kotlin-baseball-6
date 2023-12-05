@@ -29,7 +29,7 @@ class Controller(
             val userNumber = inputView.readNumbers()
             val score = inning.matchUp(userNumber)
 
-            if (score.isStrike()) {
+            if (score.isEnd()) {
                 outputView.printEndMessage()
                 break
             }
