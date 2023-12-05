@@ -1,5 +1,7 @@
 package baseball.model
 
+import camp.nextstep.edu.missionutils.Randoms
+
 data class PlayingNumber(val numbers: List<Int>) {
 
     init {
@@ -18,6 +20,17 @@ data class PlayingNumber(val numbers: List<Int>) {
             val numbers = playingNumber.map { Character.getNumericValue(it) }
 
             return PlayingNumber(numbers)
+        }
+
+        fun pitchBall(): PlayingNumber {
+            val uniqueNumbers = linkedSetOf<Int>()
+
+            while (uniqueNumbers.size < DIGIT_COUNT) {
+                val randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER)
+                uniqueNumbers.add(randomNumber)
+            }
+
+            return PlayingNumber(uniqueNumbers.toList())
         }
 
     }
