@@ -16,11 +16,11 @@ class Controller(
 
     fun process() {
         do {
-            playingInning()
+            playInning()
         } while (shouldContinueGame())
     }
 
-    private fun playingInning() {
+    private fun playInning() {
         outputView.printStartMessage()
         val computerNumber = PlayingNumber.pitchBall()
         val inning = Inning(computerNumber)
