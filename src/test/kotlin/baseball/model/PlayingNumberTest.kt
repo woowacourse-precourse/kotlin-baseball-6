@@ -1,7 +1,7 @@
 package baseball.model
 
-import org.assertj.core.api.Assertions.assertThatCode
-import org.assertj.core.api.Assertions.assertThatExceptionOfType
+import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -49,6 +49,38 @@ class PlayingNumberTest {
             }.withMessageContaining("1~9 사이의 자연수만 입력해주세요")
         }
 
+    }
+
+    @Nested
+    inner class Count {
+        private lateinit var computerNumber: PlayingNumber
+        private lateinit var userNumber: PlayingNumber
+
+        @BeforeEach
+        fun setUp() {
+            // given
+
+            computerNumber = PlayingNumber(listOf(1, 2, 3))
+            userNumber = PlayingNumber(listOf(1, 3, 2))
+        }
+
+        @Test
+        fun countStrike() {
+            // when
+            val strikes = userNumber.countStrike(computerNumber)
+
+            // then
+            assertThat(strikes).isEqualTo(1)
+        }
+
+        @Test
+        fun countBall() {
+            // when
+            val balls = userNumber.countBall(computerNumber)
+
+            // then
+            assertThat(balls).isEqualTo(2)
+        }
     }
 
 }

@@ -22,6 +22,13 @@ data class PlayingNumber(val numbers: List<Int>) {
 
     }
 
+    fun countStrike(pitchNumber: PlayingNumber): Int =
+            numbers.zip(pitchNumber.numbers)
+                    .count { (a, b) -> a == b }
+
+    fun countBall(pitchNumber: PlayingNumber): Int =
+            numbers.filter { it in pitchNumber.numbers }.size - countStrike(pitchNumber)
+
     private fun validateSize(numbers: List<Int>) {
         require(numbers.size == DIGIT_COUNT) {
             "${DIGIT_COUNT}자리 숫자만 입력해주세요."
