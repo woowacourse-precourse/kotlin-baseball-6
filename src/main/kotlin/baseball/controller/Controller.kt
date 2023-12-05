@@ -1,6 +1,6 @@
 package baseball.controller
 
-import baseball.model.MatchUp
+import baseball.model.Inning
 import baseball.model.PlayingNumber
 import baseball.model.Score
 import baseball.view.InputView
@@ -23,11 +23,11 @@ class Controller(
     private fun playingInning() {
         outputView.printStartMessage()
         val computerNumber = PlayingNumber.pitchBall()
-        val matchUp = MatchUp(computerNumber)
+        val inning = Inning(computerNumber)
 
         while (true) {
             val userNumber = inputView.readNumbers()
-            val score = matchUp.play(userNumber)
+            val score = inning.matchUp(userNumber)
 
             if (score.isStrike()) {
                 outputView.printEndMessage()

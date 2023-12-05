@@ -6,22 +6,22 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 
-class MatchUpTest {
+class InningTest {
 
-    private lateinit var matchUp: MatchUp
+    private lateinit var inning: Inning
 
     @BeforeEach
     fun setUp() {
         // given
         val pitcherNumber = PlayingNumber.of("123")
-        matchUp = MatchUp(pitcherNumber)
+        inning = Inning(pitcherNumber)
     }
 
     @Test
     @DisplayName("모든 숫자가 스트라이크인 경우")
     fun play_whenAllStrikes() {
         // when
-        val score = matchUp.play("123")
+        val score = inning.matchUp("123")
 
         // then
         assertThat(score.isStrike()).isTrue()
@@ -33,7 +33,7 @@ class MatchUpTest {
     @DisplayName("")
     fun play() {
         // when
-        val score = matchUp.play("321")
+        val score = inning.matchUp("321")
 
         // then
         assertThat(score.strikes).isEqualTo(1)
@@ -44,7 +44,7 @@ class MatchUpTest {
     @DisplayName("모든 숫자가 낫싱인경우")
     fun play_whenNothing() {
         // when
-        val score = matchUp.play("456")
+        val score = inning.matchUp("456")
 
         // then
         assertThat(score.isNothing()).isTrue()

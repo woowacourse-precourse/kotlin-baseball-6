@@ -1,8 +1,8 @@
 package baseball.model
 
-class MatchUp(private val pitcher: PlayingNumber) {
+class Inning(private val pitcher: PlayingNumber) {
 
-    fun play(userNumber: String): Score {
+    fun matchUp(userNumber: String): Score {
         val playingNumber = PlayingNumber.of(userNumber)
 
         val strikes = playingNumber.countStrike(pitcher)
