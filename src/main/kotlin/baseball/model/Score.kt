@@ -1,8 +1,5 @@
 package baseball.model
 
-private const val MAX_NUMBER = 3
-
-private const val MIN_NUMBER = 0
 
 data class Score(
         val strikes: Int,
@@ -32,5 +29,12 @@ data class Score(
         require(strike >= MIN_NUMBER && ball >= MIN_NUMBER) {
             "스트라이크와 볼은 ${MIN_NUMBER}보다 커야 합니다."
         }
+    }
+
+    companion object {
+
+        private const val MAX_NUMBER = 3
+        private const val MIN_NUMBER = 0
+
     }
 }
