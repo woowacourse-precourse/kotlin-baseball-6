@@ -65,6 +65,7 @@ class PlayingNumberTest {
         }
 
         @Test
+        @DisplayName("스트라이크의 갯수를 센다")
         fun countStrike() {
             // when
             val strikes = userNumber.countStrike(computerNumber)
@@ -74,6 +75,7 @@ class PlayingNumberTest {
         }
 
         @Test
+        @DisplayName("볼의 갯수를 센다")
         fun countBall() {
             // when
             val balls = userNumber.countBall(computerNumber)

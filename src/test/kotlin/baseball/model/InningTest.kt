@@ -13,7 +13,7 @@ class InningTest {
     @BeforeEach
     fun setUp() {
         // given
-        val pitcherNumber = PlayingNumber.of("123")
+        val pitcherNumber = PlayingNumber.from("123")
         inning = Inning(pitcherNumber)
     }
 
