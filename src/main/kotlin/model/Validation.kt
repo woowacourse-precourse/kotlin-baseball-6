@@ -32,7 +32,7 @@ object Validation {
 
     private fun checkValidForm(input: String){
         require(input=="1"||input=="2"){
-            "1 혹은 2 만 입력 가능합니다."
+            "[ERROR] 1 혹은 2 만 입력 가능합니다."
         }
 
     }
