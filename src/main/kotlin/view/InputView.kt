@@ -16,4 +16,16 @@ class InputView {
         }
     }
 
+    fun readIsRetry(): Int {
+        return try {
+            val input = Console.readLine()
+            Validation.checkRetry(input)
+            input.toInt()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readIsRetry()
+        }
+    }
+
+
 }
