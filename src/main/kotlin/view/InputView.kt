@@ -7,6 +7,7 @@ class InputView {
 
     fun readNumbers(): List<Int> {
         return try {
+            print("숫자를 입력해주세요 : ")
             val input = Console.readLine()
             Validation.checkBaseballNum(input)
             input.toList().map { it.toString().toInt() }
@@ -16,16 +17,19 @@ class InputView {
         }
     }
 
-    fun readIsRetry(): Int {
+    fun readIsRetry(): Boolean {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return try {
             val input = Console.readLine()
             Validation.checkRetry(input)
-            input.toInt()
+            isRetryIntToBoolean(input)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             readIsRetry()
         }
     }
+
+    private fun isRetryIntToBoolean(input: String): Boolean = input == "1"
 
 
 }
