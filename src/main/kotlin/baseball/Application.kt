@@ -11,21 +11,20 @@ fun main() {
     while (playAgain) {
 
         println("숫자 야구 게임을 시작합니다.")
-
         val answer = generateRandomNumber()
-        // println(answer)
+
         var isGameWon = false
 
         while (!isGameWon) {
 
             print("숫자를 입력해주세요 : ")
+
             val guess = Console.readLine()
 
-            //guess.all { it.isDigit() } -> 사용자가 입력한 문자가 모두 숫자인지를 확인하는 코틀린의 내장 함수
+            if (guess != null && guess.length == 3 && guess.all { it.isDigit() } && hasDuplicateDigits(guess)) {
 
-            if (guess != null && guess.length == 3 && guess.all { it.isDigit() }) {
+                val result = getResult(sortStringAscending(guess), answer)
 
-                val result = getResult(guess, answer)
                 println(result)
 
                 if (result == "3스트라이크") {
@@ -36,18 +35,20 @@ fun main() {
                 }
 
             } else {
-
-                throw IllegalArgumentException("")
-
+                throw IllegalArgumentException("삐빅! 잘못된 입력입니다.")
             }//예외처리
-
-
 
         }
 
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val choice = Console.readLine()
-        playAgain = choice == "1"
+
+        do{
+
+            print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+            val choice = Console.readLine()
+            playAgain = choice == "1"
+
+        }while(choice == "1" || choice == "2")
+
 
 
     }
@@ -55,45 +56,54 @@ fun main() {
 
 }
 
+private fun hasDuplicateDigits(input: String): Boolean {
+    val digits = input.toList()
+    return digits.toSet().size != digits.size
+}
 
-fun generateRandomNumber(): String {
+private fun sortStringAscending(input: String): String {
+    return input.toList().sorted().joinToString("")
+}
 
-    val number1 = Randoms.pickNumberInRange(0,9).toString()
+
+
+private fun generateRandomNumber(): String {
+
+    var number1: String
     var number2: String
     var number3: String
 
     do {
+        number1 = Randoms.pickNumberInRange(0, 9).toString()
         number2 = Randoms.pickNumberInRange(0, 9).toString()
-    } while (number2 == number1)
-
-    do {
         number3 = Randoms.pickNumberInRange(0, 9).toString()
-    } while (number3 == number1 || number3 == number2)
+    } while (hasDuplicate(listOf(number1, number2, number3)))
 
-    return "$number1$number2$number3"
+    return sortAndConcatenateNumbers(number1, number2, number3)
+}
 
 
-} //서로 다른 3자리수 구현
+private fun sortAndConcatenateNumbers(number1: String, number2: String, number3: String) = listOf(number1, number2, number3).sorted().joinToString("")
 
-fun getResult(guess: String, answer: String): String {
+private fun hasDuplicate(numbers : List<String>) = numbers.toSet().size != numbers.size
+
+
+private fun getResult(guess: String, answer: String) : String {
 
     var strikes = 0
     var balls = 0
 
-    for (i in guess.indices) {
-
-        if (guess[i] == answer[i]) {
+    for ((guessDigit, answerDigit) in guess.zip(answer)) {
+        if (guessDigit == answerDigit) {
             strikes++
-        } else if (guess[i] in answer) {
-            balls++;
+        } else if (guessDigit in answer) {
+            balls++
         }
-
     }
 
     val strikesText = if (strikes > 0)  "$strikes"+"스트라이크" else ""
     val ballsText = if (balls > 0) "$balls"+"볼 " else ""
     return if (strikes == 0 && balls == 0) "낫싱" else "$ballsText$strikesText"
-
 
 }
 
