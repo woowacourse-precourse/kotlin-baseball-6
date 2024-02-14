@@ -35,45 +35,81 @@ private fun startGameProcess(numberSize: Int, computer: MutableList<Int>) {
     while (true) {
         var ballCount = 0
         var strikeCount = 0
-        print("숫자를 입력해주세요 : ")
-        val inputNumbers = Console.readLine()
+        val inputNumbers = getInputNumbers()
 
-        if (inputNumbers.length != numberSize) {
-            throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
-        }
+        checkInputNumberSize(inputNumbers, numberSize)
 
-        for (i in 0 until numberSize) {
-            if (computer[i] == inputNumbers[i].toString().toInt()) {
-                strikeCount++
+        strikeCount = judgeStrike(numberSize, computer, inputNumbers, strikeCount)
+
+        ballCount = judgeBall(numberSize, computer, inputNumbers, ballCount)
+
+        printJudgeResult(ballCount, strikeCount)
+
+        if (isGameOver(strikeCount, numberSize)) break
+    }
+}
+
+private fun isGameOver(strikeCount: Int, numberSize: Int): Boolean {
+    return strikeCount == numberSize
+}
+
+private fun printJudgeResult(ballCount: Int, strikeCount: Int) {
+    if (ballCount > 0) {
+        print("${ballCount}볼 ")
+    }
+
+    if (strikeCount > 0) {
+        print("${strikeCount}스트라이크 ")
+    }
+
+    if (ballCount == 0 && strikeCount == 0) {
+        print("낫싱")
+    }
+
+    println()
+}
+
+private fun judgeBall(
+    numberSize: Int,
+    computer: MutableList<Int>,
+    inputNumbers: String,
+    ballCount: Int
+): Int {
+    var ballCount1 = ballCount
+    for (i in 0 until numberSize) {
+        if (computer.contains(inputNumbers[i].toString().toInt())) {
+            if (computer[i] != inputNumbers[i].toString().toInt()) {
+                ballCount1++
             }
-        }
-
-        for (i in 0 until numberSize) {
-            if (computer.contains(inputNumbers[i].toString().toInt())) {
-                if (computer[i] != inputNumbers[i].toString().toInt()) {
-                    ballCount++
-                }
-            }
-        }
-
-        if (ballCount > 0) {
-            print("${ballCount}볼 ")
-        }
-
-        if (strikeCount > 0) {
-            print("${strikeCount}스트라이크 ")
-        }
-
-        if (ballCount == 0 && strikeCount == 0) {
-            print("낫싱")
-        }
-
-        println()
-
-        if (strikeCount == numberSize) {
-            break
         }
     }
+    return ballCount1
+}
+
+private fun judgeStrike(
+    numberSize: Int,
+    computer: MutableList<Int>,
+    inputNumbers: String,
+    strikeCount: Int
+): Int {
+    var strikeCount1 = strikeCount
+    for (i in 0 until numberSize) {
+        if (computer[i] == inputNumbers[i].toString().toInt()) {
+            strikeCount1++
+        }
+    }
+    return strikeCount1
+}
+
+private fun checkInputNumberSize(inputNumbers: String, numberSize: Int) {
+    if (inputNumbers.length != numberSize) {
+        throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
+    }
+}
+
+private fun getInputNumbers(): String {
+    print("숫자를 입력해주세요 : ")
+    return Console.readLine()
 }
 
 private fun getComputerNumbers(numberSize: Int): MutableList<Int> {
