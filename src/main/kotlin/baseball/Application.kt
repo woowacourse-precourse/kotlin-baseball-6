@@ -17,6 +17,7 @@ fun main() {
     }
 
     while (true) {
+        var ballCount = 0
         var strikeCount = 0
         print("숫자를 입력해주세요 : ")
         val inputNumbers = Console.readLine()
@@ -31,9 +32,20 @@ fun main() {
             }
         }
 
+        for (i in 0 until numberSize) {
+            if (computer.contains(inputNumbers[i].toString().toInt())) {
+                if (computer[i] != inputNumbers[i].toString().toInt()) {
+                    ballCount++
+                }
+            }
+        }
+
+        if (ballCount > 0) {
+            print("${ballCount}볼 ")
+        }
+
         if (strikeCount > 0) {
             print("${strikeCount}스트라이크 ")
         }
-
     }
 }
