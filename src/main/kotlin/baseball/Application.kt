@@ -1,5 +1,6 @@
 package baseball
 
+import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
@@ -15,4 +16,13 @@ fun main() {
         }
     }
 
+    while (true) {
+        print("숫자를 입력해주세요 : ")
+        val inputNumbers = Console.readLine()
+
+        if (inputNumbers.length != numberSize) {
+            throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
+        }
+
+    }
 }
