@@ -17,11 +17,22 @@ fun main() {
     }
 
     while (true) {
+        var strikeCount = 0
         print("숫자를 입력해주세요 : ")
         val inputNumbers = Console.readLine()
 
         if (inputNumbers.length != numberSize) {
             throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
+        }
+
+        for (i in 0 until numberSize) {
+            if (computer[i] == inputNumbers[i].toString().toInt()) {
+                strikeCount++
+            }
+        }
+
+        if (strikeCount > 0) {
+            print("${strikeCount}스트라이크 ")
         }
 
     }
