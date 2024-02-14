@@ -51,5 +51,11 @@ fun main() {
         if (ballCount == 0 && strikeCount == 0) {
             print("낫싱")
         }
+
+        println()
+
+        if (strikeCount == numberSize) {
+            break
+        }
     }
 }
