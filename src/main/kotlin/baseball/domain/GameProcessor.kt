@@ -10,12 +10,10 @@ class GameProcessor (private val numberSize: Int) {
         val judge = Judge()
 
         while (true) {
-            val inputNumbers = InputView.getInputNumbers()
+            val userNumbers = InputView.inputUserNumbers(numberSize)
 
-            checkInputNumberSize(inputNumbers, numberSize)
-
-            val strikeCount = judge.judgeStrike(numberSize, computer.numbers, inputNumbers)
-            val ballCount = judge.judgeBall(numberSize, computer.numbers, inputNumbers)
+            val strikeCount = judge.judgeStrike(numberSize, computer.numbers, userNumbers)
+            val ballCount = judge.judgeBall(numberSize, computer.numbers, userNumbers)
 
             OutputView.printJudgeResult(ballCount, strikeCount)
 
@@ -23,11 +21,5 @@ class GameProcessor (private val numberSize: Int) {
         }
 
         return !InputView.isReStart()
-    }
-
-    private fun checkInputNumberSize(inputNumbers: String, numberSize: Int) {
-        if (inputNumbers.length != numberSize) {
-            throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
-        }
     }
 }

@@ -1,5 +1,6 @@
 package baseball.view
 
+import baseball.validate.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
@@ -8,9 +9,11 @@ class InputView {
             println("숫자 야구 게임을 시작합니다.")
         }
 
-        fun getInputNumbers(): String {
+        fun inputUserNumbers(numberSize: Int): String {
             print("숫자를 입력해주세요 : ")
-            return Console.readLine()
+            val inputNumbers = Console.readLine()
+            InputValidator.validateInputNumberSize(inputNumbers, numberSize)
+            return inputNumbers
         }
 
         fun isReStart(): Boolean {
