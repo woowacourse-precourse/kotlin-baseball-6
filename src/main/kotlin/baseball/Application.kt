@@ -1,41 +1,29 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.Console
+import baseball.view.InputView
+import baseball.view.OutputView
 import camp.nextstep.edu.missionutils.Randoms
 
 fun main() {
     val numberSize = 3
     while (true) {
-        printGameStartMessage()
+        InputView.printGameStartMessage()
 
         val computer = getComputerNumbers(numberSize)
 
         startGameProcess(numberSize, computer)
 
-        printGameEndMessage(numberSize)
+        OutputView.printGameEndMessage(numberSize)
 
-        if (!isReStart()) break
+        if (!InputView.isReStart()) break
     }
-}
-
-private fun printGameStartMessage() {
-    println("숫자 야구 게임을 시작합니다.")
-}
-
-private fun printGameEndMessage(numberSize: Int) {
-    println("${numberSize}개의 숫자를 모두 맞히셨습니다! 게임 종료")
-    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-}
-
-private fun isReStart(): Boolean {
-    return Console.readLine().toInt() == 1
 }
 
 private fun startGameProcess(numberSize: Int, computer: MutableList<Int>) {
     while (true) {
         var ballCount = 0
         var strikeCount = 0
-        val inputNumbers = getInputNumbers()
+        val inputNumbers = InputView.getInputNumbers()
 
         checkInputNumberSize(inputNumbers, numberSize)
 
@@ -43,7 +31,7 @@ private fun startGameProcess(numberSize: Int, computer: MutableList<Int>) {
 
         ballCount = judgeBall(numberSize, computer, inputNumbers, ballCount)
 
-        printJudgeResult(ballCount, strikeCount)
+        OutputView.printJudgeResult(ballCount, strikeCount)
 
         if (isGameOver(strikeCount, numberSize)) break
     }
@@ -51,22 +39,6 @@ private fun startGameProcess(numberSize: Int, computer: MutableList<Int>) {
 
 private fun isGameOver(strikeCount: Int, numberSize: Int): Boolean {
     return strikeCount == numberSize
-}
-
-private fun printJudgeResult(ballCount: Int, strikeCount: Int) {
-    if (ballCount > 0) {
-        print("${ballCount}볼 ")
-    }
-
-    if (strikeCount > 0) {
-        print("${strikeCount}스트라이크 ")
-    }
-
-    if (ballCount == 0 && strikeCount == 0) {
-        print("낫싱")
-    }
-
-    println()
 }
 
 private fun judgeBall(
@@ -105,11 +77,6 @@ private fun checkInputNumberSize(inputNumbers: String, numberSize: Int) {
     if (inputNumbers.length != numberSize) {
         throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
     }
-}
-
-private fun getInputNumbers(): String {
-    print("숫자를 입력해주세요 : ")
-    return Console.readLine()
 }
 
 private fun getComputerNumbers(numberSize: Int): MutableList<Int> {
