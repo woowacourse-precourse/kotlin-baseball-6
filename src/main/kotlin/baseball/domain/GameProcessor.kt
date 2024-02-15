@@ -2,12 +2,11 @@ package baseball.domain
 
 import baseball.view.InputView
 import baseball.view.OutputView
-import camp.nextstep.edu.missionutils.Randoms
 
 class GameProcessor (private val numberSize: Int) {
 
     fun startGameProcess(): Boolean {
-        val computer = getComputerNumbers(numberSize)
+        val computer = Computer(numberSize)
 
         while (true) {
             var ballCount = 0
@@ -16,9 +15,9 @@ class GameProcessor (private val numberSize: Int) {
 
             checkInputNumberSize(inputNumbers, numberSize)
 
-            strikeCount = judgeStrike(numberSize, computer, inputNumbers, strikeCount)
+            strikeCount = judgeStrike(numberSize, computer.numbers, inputNumbers, strikeCount)
 
-            ballCount = judgeBall(numberSize, computer, inputNumbers, ballCount)
+            ballCount = judgeBall(numberSize, computer.numbers, inputNumbers, ballCount)
 
             OutputView.printJudgeResult(ballCount, strikeCount)
 
@@ -68,16 +67,5 @@ class GameProcessor (private val numberSize: Int) {
         if (inputNumbers.length != numberSize) {
             throw IllegalArgumentException("숫자는 ${numberSize}자리를 입력해주세요")
         }
-    }
-
-    private fun getComputerNumbers(numberSize: Int): MutableList<Int> {
-        val computer = mutableListOf<Int>()
-        while (computer.size < numberSize) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (!computer.contains(randomNumber)) {
-                computer.add(randomNumber)
-            }
-        }
-        return computer
     }
 }
