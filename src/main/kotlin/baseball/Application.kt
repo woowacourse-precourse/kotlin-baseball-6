@@ -8,8 +8,8 @@ fun main() {
     val numberSize = 3
     while (true) {
         InputView.printGameStartMessage()
-        val gameProcessor = GameProcessor(numberSize)
-        val isRestart = gameProcessor.startGameProcess()
+        val gameProcessor = GameProcessor()
+        val isRestart = gameProcessor.startGameProcess(numberSize)
         OutputView.printGameEndMessage(numberSize)
         if (!isRestart) break
     }

@@ -1,25 +1,19 @@
 package baseball.domain
 
 import baseball.view.InputView
-import baseball.view.OutputView
 
-class GameProcessor (private val numberSize: Int) {
+class GameProcessor {
 
-    fun startGameProcess(): Boolean {
+    fun startGameProcess(numberSize: Int): Boolean {
         val computer = Computer(numberSize)
         val judge = Judge()
 
         while (true) {
             val userNumbers = InputView.inputUserNumbers(numberSize)
-
-            val strikeCount = judge.judgeStrike(numberSize, computer.numbers, userNumbers)
-            val ballCount = judge.judgeBall(numberSize, computer.numbers, userNumbers)
-
-            OutputView.printJudgeResult(ballCount, strikeCount)
-
-            if (judge.isGameOver(strikeCount, numberSize)) break
+            val gameResult = judge.judgeGameResult(numberSize, computer.numbers, userNumbers)
+            if (gameResult) break
         }
 
-        return !InputView.isReStart()
+        return InputView.isReStart()
     }
 }
