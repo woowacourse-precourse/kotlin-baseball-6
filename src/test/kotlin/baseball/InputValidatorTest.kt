@@ -21,4 +21,12 @@ class InputValidatorTest {
 
     }
 
+    @Test
+    @DisplayName("지정된 자릿수의 숫자를 입력하지 않을 시 예외가 발생한다.")
+    fun inputSizeTest() {
+        assertThat(
+            assertThrows<IllegalArgumentException>
+            { InputValidator.validateInputNumberSize("123", 4) }
+        ).isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
