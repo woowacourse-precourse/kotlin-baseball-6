@@ -14,6 +14,7 @@ class InputView {
             val inputNumbers = Console.readLine()
             InputValidator.validateNumberFormat(inputNumbers)
             InputValidator.validateInputNumberSize(inputNumbers, numberSize)
+            InputValidator.validateNumberDuplicate(inputNumbers)
             return inputNumbers
         }
 

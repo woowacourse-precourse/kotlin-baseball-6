@@ -27,4 +27,13 @@ class InputValidatorTest {
             { InputValidator.validateInputNumberSize("123", 4) }
         ).isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    @DisplayName("중복된 숫자를 입력 시 예외가 발생한다.")
+    fun inputDuplicateNumberTest() {
+        assertThat(
+            assertThrows<IllegalArgumentException>
+            { InputValidator.validateNumberDuplicate("122") }
+        ).isInstanceOf(IllegalArgumentException::class.java)
+    }
 }

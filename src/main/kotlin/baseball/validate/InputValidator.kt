@@ -17,5 +17,16 @@ class InputValidator {
             }
         }
 
+        fun validateNumberDuplicate(inputNumbers: String) {
+            val existCount = IntArray(10)
+
+            for (i in inputNumbers.indices) {
+                if (existCount[i] == 0) {
+                    throw IllegalArgumentException("중복되지 않는 숫자를 입력해주세요")
+                }
+                existCount[i]++
+            }
+        }
+
     }
 }
