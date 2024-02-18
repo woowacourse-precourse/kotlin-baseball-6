@@ -19,7 +19,10 @@ class InputView {
 
         fun isReStart(): Boolean {
             println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-            return Console.readLine().toInt() == 1
+            val restartInput = Console.readLine()
+            InputValidator.validateNumberFormat(restartInput)
+            InputValidator.validateInputNumberSize(restartInput, 1)
+            return restartInput.toInt() == 1
         }
 
     }
