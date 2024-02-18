@@ -9,5 +9,13 @@ class InputValidator {
             }
         }
 
+        fun validateNumberFormat(inputNumbers: String) {
+            try {
+                inputNumbers.toInt()
+            } catch (e: Exception) {
+                throw IllegalArgumentException("숫자를 입력해주세요")
+            }
+        }
+
     }
 }

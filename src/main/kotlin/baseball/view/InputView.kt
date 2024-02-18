@@ -12,6 +12,7 @@ class InputView {
         fun inputUserNumbers(numberSize: Int): String {
             print("숫자를 입력해주세요 : ")
             val inputNumbers = Console.readLine()
+            InputValidator.validateNumberFormat(inputNumbers)
             InputValidator.validateInputNumberSize(inputNumbers, numberSize)
             return inputNumbers
         }
