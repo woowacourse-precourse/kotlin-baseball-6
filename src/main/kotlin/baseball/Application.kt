@@ -36,6 +36,35 @@ private class Player {
     }
 }
 
+private class Exception {
+    fun hasGameOver() {
+
+        val playerNumber = Player().guessNumber()
+
+        if (playerNumber.length != 3) {
+
+            throw IllegalArgumentException()
+            // 플레이어번호 3자리가 아니면 예외 처리
+        }
+
+        if (playerNumber.toIntOrNull() == null) {
+
+            throw IllegalArgumentException()
+            // 플레이어 번호가 숫자가 아니면 예외 처리
+        }
+
+        val numberList = playerNumber.toList().groupBy { it }
+        val duplication = numberList.filter { it.value.size > 1 }.values
+
+        if (duplication.isNotEmpty()) {
+
+            throw IllegalArgumentException()
+            // 플레이어 번호에 중복된 숫자가 있으면 예외 처리
+
+        }
+    }
+}
+
 
 private class Baseball {
 
